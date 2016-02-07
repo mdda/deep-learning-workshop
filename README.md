@@ -1,5 +1,7 @@
-# FOSSASIA 2016 : Deep Learning Workshop
-### http://2016.fossasia.org/
+## FOSSASIA 2016 : Deep Learning Workshop
+
+*  http://2016.fossasia.org/
+
 
 This repo will include the source to build a VM to be used for the Workshop participants.
 
@@ -16,5 +18,4 @@ The VM itself will include (subject to change) :
   * (probably not Caffe)
 
 
-### Scratchpad
 
