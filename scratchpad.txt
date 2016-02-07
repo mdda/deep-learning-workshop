@@ -1,136 +1,165 @@
-    Topic :  Deep Learning 
-      Either : 
-        Talk of 20 minutes 
-          simple to demo (own laptop, etc)
-        Workshop of 1 or 2 hours  (very tempting, except for the planning/time committment)
-          Michal loves the idea 
-            and also thinks that DeepDream is a really interesting topic
-              suggestion : VirtualBox images are pretty portable
-                if we only need iPython with all the imports, don't need to worry about editor, etc
-                could also do it without installing X - and running the browser session in the host machine...
-                unfortunately VM solution probably doesn't allow for GPU anyway : 
-                  https://github.com/BVLC/caffe/issues/2749
-                successful installers could also open up their 'server' to access via WiFi, without risk
-                  https://nsrc.org/workshops/2014/btnog/raw-attachment/wiki/Track2Agenda/ex-virtualbox-portforward-ssh.htm
-                  https://www.reddit.com/r/IPython/comments/3gw3e5/how_to_access_to_the_ipython_server_from_a/
-                http://blog.ouseful.info/2014/12/12/seven-ways-of-running-ipython-notebooks/
-                  http://blog.ouseful.info/2015/05/18/kiteflying-around-containers-a-better-alternative-to-course-vms/
-                http://lambdaops.com/ipythonjupyter-tmpnb-debuts/                
-                
-            
-          ConvNets:
-            Pros 
-              More materials available
-              Different angles : Art, Commerce
-              Can do some simple 'real' training (MNIST)
-              Can also use pre-built model (ImageNet / Inception-3)
-            Cons
-              'Simple stuff'
-              Overlap with potential customers?
-              Google DeepDreaming may not be ready : CHECK THIS
-            Ideas for progression :
-              Stanford Seminar - Oriol Vinyals of Google
-                https://youtu.be/UAq961jQjYg
+##  Workshop of 1 or 2 hours  
+  Very tempting, except for the planning/time commitment
+  Michal loves the idea 
+    and also thinks that DeepDream is a really interesting topic
+  Thumbs up from organiser on DeepLearning idea
+    Not too worried about track selection, etc - all a work-in-progress
 
-          RNNs / NLP:
-            Pros 
-              More similar to current work
-            Cons
-              Difficult to set up satisfying motivation / experiments
 
-          Reinforcement Learning:
-            Pros 
-              Go=Sexy
-            Cons
-              Not so clearly 'deep learning'
-              Very Difficult to set up satisfying motivation / experiments
-              Very Difficult to set up satisfying motivation / experiments
-              Someone else might do it...
-                
-          What environment to use?  
-            VPS?  expense...
-            
-            docker images?  
-              GPU would be tricky to use, and there's no OS-independence
-                http://stackoverflow.com/questions/25185405/using-gpu-from-a-docker-container
-                https://github.com/NVIDIA/nvidia-docker
-              Can run on windows (it essentially builds on top of a Virtualized Linux environment)
-                https://docs.docker.com/engine/installation/windows/
-            
-            USB Live environments?  
-            
-            iPython (somehow)?
-              https://github.com/donnemartin/data-science-ipython-notebooks
-              Deep Dream (Caffe)
-                https://github.com/donnemartin/data-science-ipython-notebooks/blob/master/deep-learning/deep-dream/dream.ipynb
-                  http://googleresearch.blogspot.sg/2015/07/deepdream-code-example-for-visualizing.html
-                http://www.pyimagesearch.com/2015/07/06/bat-country-an-extendible-lightweight-python-package-for-deep-dreaming-with-caffe-and-convolutional-neural-networks/#show_and_tell  
-                  https://github.com/jrosebr1/bat-country/blob/master/demo.py
-              TensorFlow
-                https://github.com/donnemartin/data-science-ipython-notebooks/blob/master/deep-learning/tensor-flow-exercises/5_word2vec.ipynb
+### Foundation : Python (or iPython)
 
-            Using Caffe models in Lasagne
-              https://github.com/Lasagne/Lasagne/issues/157
+  TensorFlow?  (would require more work)
+  Theano + Lasagne (standing on head)
 
-            TensorFlow + iPython + VM
-              https://github.com/gavinln/tensorflow-ipy
-              http://stackoverflow.com/questions/33784214/how-to-test-tensorflow-cifar10-cnn-tutorial-model?rq=1
-              
-            Something akin to DeepDream using Keras on TensorFlow :
-              http://blog.keras.io/how-convolutional-neural-networks-see-the-world.html
-              TensorFlow backend for Keras is pretty functional : 
-                http://blog.keras.io/keras-now-running-on-tensorflow.html
 
-            Udacity course from Google 
-              https://www.udacity.com/course/deep-learning--ud730
-                Lesson 1: From Machine Learning to Deep Learning
-                Lesson 2: Deep Neural Networks
-                Lesson 3: Convolutional Neural Networks
-                Lesson 4: Deep Models for Text and Sequences
 
-          Model Zoo ideas:
-            https://groups.google.com/a/tensorflow.org/forum/m/#!topic/discuss/BKOiAgKDxqM
-            But decent ImageNet model is ~60Mb => need ThumbDrives
-          Inception 3 :
-            https://www.tensorflow.org/versions/master/tutorials/image_recognition/index.html
-          Inception 3 / Deep Dream = Coming soon (bottom of page) :
-            https://www.tensorflow.org/versions/master/tutorials/index.html
-          Caffe :
-            http://caffe.berkeleyvision.org/gathered/examples/imagenet.html
-          Lasagne :
-            https://github.com/Lasagne/Recipes/tree/master/modelzoo
+## How to implement workshop practicals
 
-          Microsoft Deep Residual Networks (with models, and Lasagne version link)
-            https://github.com/KaimingHe/deep-residual-networks
-            https://github.com/Lasagne/Recipes/tree/master/papers/deep_residual_learning
-          
-          
-          Thumb drive ideas:
-            http://www.aliexpress.com/item/Usb-flash-drive-4gb-8gb-16gb-32gb-cat-s-claw-usb-pendrive-gift-u-disk-memory/32424298881.html?spm=2114.01010208.3.319.T9dcav&ws_ab_test=searchweb201556_1,searchweb201644_1_505_506_503_504_502_10001_9705_10002_10016_10005_10006_10003_10004_62,searchweb201560_1,searchweb1451318400_6151,searchweb1451318411_6452&btsid=657fe2dd-426e-4442-9694-674c828df7b0
-            http://www.aliexpress.com/item/Wholesale-and-custom-Cat-model-of-metal-gift-art-creative-personality-key-usb-flash-drive-16gb/32323841251.html?spm=2114.01010208.3.10.YqupqE&ws_ab_test=searchweb201556_1,searchweb201644_1_505_506_503_504_502_10001_9705_10002_10016_10005_10006_10003_10004_62,searchweb201560_1,searchweb1451318400_6151,searchweb1451318411_6452&btsid=5d059c6f-8cb2-440f-b9d3-87d3b94f4f3b
-              
-          Other peoples'
-            http://www.slideshare.net/roelofp/deep-learning-as-a-catdog-detector
-            
-          JS in the browser :
-            Pros
-              CPU-only
-              Single-threaded
-              Avoids thumb-drive distribution
-            Cons
-              Not Python
-              No GPU or multi-core - though this is (basically) same as with VM or docker
-              Not iPython 
-            Code
-              https://github.com/karpathy/convnetjs
-              https://github.com/karpathy/reinforcejs
-                There is a new paper in regards to deep reinforcements learning in continous spaces by deepmind. 
-                Continuous control with deep reinforcements learning. Is there plans to add this in code form. Many thanks Andrew.
+Suggestion : VirtualBox images are pretty portable
 
-              
-      Foundation : Python (or iPython)
-        TensorFlow?  (would require more work)
-        Theano + Lasagne (standing on head)
+  if we only need iPython with all the imports, don't need to worry about editor, etc
+  could also do it without installing X - and running the browser session in the host machine...
+  
+  unfortunately VM solution probably doesn't allow for GPU anyway : 
+    https://github.com/BVLC/caffe/issues/2749
+  
+  successful installers could also open up their 'server' to access via WiFi, without risk
+    https://nsrc.org/workshops/2014/btnog/raw-attachment/wiki/Track2Agenda/ex-virtualbox-portforward-ssh.htm
+    https://www.reddit.com/r/IPython/comments/3gw3e5/how_to_access_to_the_ipython_server_from_a/
+  
+  http://blog.ouseful.info/2014/12/12/seven-ways-of-running-ipython-notebooks/
+    http://blog.ouseful.info/2015/05/18/kiteflying-around-containers-a-better-alternative-to-course-vms/
+  
+  http://lambdaops.com/ipythonjupyter-tmpnb-debuts/                
+
+    
+### Topics within Deep Learning     
+#### ConvNets:
+
+  Pros 
+    More materials available
+    Different angles : Art, Commerce
+    Can do some simple 'real' training (MNIST)
+    Can also use pre-built model (ImageNet / Inception-3)
+  Cons
+    'Simple stuff'
+    Overlap with potential customers?
+    Google DeepDreaming may not be ready : CHECK THIS
+  Ideas for progression :
+    Stanford Seminar - Oriol Vinyals of Google
+      https://youtu.be/UAq961jQjYg
+
+#### RNNs / NLP:
+
+  Pros 
+    More similar to current work
+  Cons
+    Difficult to set up satisfying motivation / experiments
+
+#### Reinforcement Learning:
+
+  Pros 
+    Go=Sexy
+    
+  Cons
+    Not so clearly 'deep learning'
+    Very Difficult to set up satisfying motivation / experiments
+    Very Difficult to set up satisfying motivation / experiments
+    Someone else might do it...
+
+
+## What environment to use?  
+
+VPS?  expense...
+
+  TensorFlow + iPython + VM
+    https://github.com/gavinln/tensorflow-ipy
+    http://stackoverflow.com/questions/33784214/how-to-test-tensorflow-cifar10-cnn-tutorial-model?rq=1
+
+  Thumb drive ideas:
+    http://www.aliexpress.com/item/Usb-flash-drive-4gb-8gb-16gb-32gb-cat-s-claw-usb-pendrive-gift-u-disk-memory/32424298881.html?spm=2114.01010208.3.319.T9dcav&ws_ab_test=searchweb201556_1,searchweb201644_1_505_506_503_504_502_10001_9705_10002_10016_10005_10006_10003_10004_62,searchweb201560_1,searchweb1451318400_6151,searchweb1451318411_6452&btsid=657fe2dd-426e-4442-9694-674c828df7b0
+    http://www.aliexpress.com/item/Wholesale-and-custom-Cat-model-of-metal-gift-art-creative-personality-key-usb-flash-drive-16gb/32323841251.html?spm=2114.01010208.3.10.YqupqE&ws_ab_test=searchweb201556_1,searchweb201644_1_505_506_503_504_502_10001_9705_10002_10016_10005_10006_10003_10004_62,searchweb201560_1,searchweb1451318400_6151,searchweb1451318411_6452&btsid=5d059c6f-8cb2-440f-b9d3-87d3b94f4f3b
       
-      Thumbs up from organiser on DeepLearning idea
-        Not too worried about track selection, etc - all a work-in-progress
+      
+    
+docker images?  
+
+      GPU would be tricky to use, and there's no OS-independence
+        http://stackoverflow.com/questions/25185405/using-gpu-from-a-docker-container
+        https://github.com/NVIDIA/nvidia-docker
+        
+      Can run on windows (it essentially builds on top of a Virtualized Linux environment)
+        https://docs.docker.com/engine/installation/windows/
+    
+USB Live environments?  
+
+
+More generally    
+
+  iPython as a GUI
+    https://github.com/donnemartin/data-science-ipython-notebooks
+    Deep Dream (Caffe)
+      https://github.com/donnemartin/data-science-ipython-notebooks/blob/master/deep-learning/deep-dream/dream.ipynb
+        http://googleresearch.blogspot.sg/2015/07/deepdream-code-example-for-visualizing.html
+      http://www.pyimagesearch.com/2015/07/06/bat-country-an-extendible-lightweight-python-package-for-deep-dreaming-with-caffe-and-convolutional-neural-networks/#show_and_tell  
+        https://github.com/jrosebr1/bat-country/blob/master/demo.py
+    TensorFlow
+      https://github.com/donnemartin/data-science-ipython-notebooks/blob/master/deep-learning/tensor-flow-exercises/5_word2vec.ipynb
+
+  JS in the browser :
+    Pros
+      CPU-only
+      Single-threaded
+      Avoids thumb-drive distribution
+    Cons
+      Not Python
+      No GPU or multi-core - though this is (basically) same as with VM or docker
+      Not iPython 
+    Code
+      https://github.com/karpathy/convnetjs
+      https://github.com/karpathy/reinforcejs
+        There is a new paper in regards to deep reinforcements learning in continous spaces by deepmind. 
+        Continuous control with deep reinforcements learning. Is there plans to add this in code form. Many thanks Andrew.
+
+Models
+
+  Model Zoo ideas:
+    https://groups.google.com/a/tensorflow.org/forum/m/#!topic/discuss/BKOiAgKDxqM
+    But decent ImageNet model is ~60Mb => need ThumbDrives
+  Inception 3 :
+    https://www.tensorflow.org/versions/master/tutorials/image_recognition/index.html
+  Inception 3 / Deep Dream = Coming soon (bottom of page) :
+    https://www.tensorflow.org/versions/master/tutorials/index.html
+  Caffe :
+    http://caffe.berkeleyvision.org/gathered/examples/imagenet.html
+  Lasagne :
+    https://github.com/Lasagne/Recipes/tree/master/modelzoo
+
+  Microsoft Deep Residual Networks (with models, and Lasagne version link)
+    https://github.com/KaimingHe/deep-residual-networks
+    https://github.com/Lasagne/Recipes/tree/master/papers/deep_residual_learning
+  
+
+  Using Caffe models in Lasagne
+    https://github.com/Lasagne/Lasagne/issues/157
+
+  Something akin to DeepDream using Keras on TensorFlow :
+    http://blog.keras.io/how-convolutional-neural-networks-see-the-world.html
+    TensorFlow backend for Keras is pretty functional : 
+      http://blog.keras.io/keras-now-running-on-tensorflow.html
+
+
+Other courses
+
+  Udacity course from Google 
+    https://www.udacity.com/course/deep-learning--ud730
+      Lesson 1: From Machine Learning to Deep Learning
+      Lesson 2: Deep Neural Networks
+      Lesson 3: Convolutional Neural Networks
+      Lesson 4: Deep Models for Text and Sequences
+
+  
+  Other peoples'
+    http://www.slideshare.net/roelofp/deep-learning-as-a-catdog-detector
+    
+      
