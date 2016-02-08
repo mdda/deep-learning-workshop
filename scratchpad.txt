@@ -8,29 +8,52 @@
 
 ### Foundation : Python (or iPython)
 
-  TensorFlow?  (would require more work)
-  Theano + Lasagne (standing on head)
+Potential Toolsets : 
+
+*  TensorFlow?  (would require more work)
+*  Theano + Lasagne (standing on head)
+
+Cannot rely on people having appropriate GPU installation (TensorFlow is particularly fussy version-wise).
+Therefore, must resign ourselves to CPU-based training.
 
 
 
 ## How to implement workshop practicals
 
-Suggestion : VirtualBox images are pretty portable
+Running iPython 
 
-  if we only need iPython with all the imports, don't need to worry about editor, etc
-  could also do it without installing X - and running the browser session in the host machine...
+*  http://blog.ouseful.info/2014/12/12/seven-ways-of-running-ipython-notebooks/
+   *  http://blog.ouseful.info/2015/05/18/kiteflying-around-containers-a-better-alternative-to-course-vms/
+
+Host the VM on a central server?
+
+*  http://lambdaops.com/ipythonjupyter-tmpnb-debuts/
+  *  Problem : CPU usage is high - so 10 people logged in would probably bring a single host to its knees
+
+
+## VirtualBox images
+
+VirtualBox images are pretty portable...
+
+*  If we only need iPython with all the imports, don't need to worry about editor, etc
+   *  could also do it without installing X - and running the browser session in the host machine...
   
-  unfortunately VM solution probably doesn't allow for GPU anyway : 
-    https://github.com/BVLC/caffe/issues/2749
+
+*  Fedora minimal VM building : 
+   *  https://developer.fedoraproject.org/tools/virt-builder/about.html
+
+
+Successful installers could also open up their 'server' to access via WiFi, without risk :
+
+*  https://nsrc.org/workshops/2014/btnog/raw-attachment/wiki/Track2Agenda/ex-virtualbox-portforward-ssh.htm
+*  https://www.reddit.com/r/IPython/comments/3gw3e5/how_to_access_to_the_ipython_server_from_a/
   
-  successful installers could also open up their 'server' to access via WiFi, without risk
-    https://nsrc.org/workshops/2014/btnog/raw-attachment/wiki/Track2Agenda/ex-virtualbox-portforward-ssh.htm
-    https://www.reddit.com/r/IPython/comments/3gw3e5/how_to_access_to_the_ipython_server_from_a/
+
+GPU?
+
+*  unfortunately VM solution probably doesn't allow for GPU anyway : 
+   *  https://github.com/BVLC/caffe/issues/2749
   
-  http://blog.ouseful.info/2014/12/12/seven-ways-of-running-ipython-notebooks/
-    http://blog.ouseful.info/2015/05/18/kiteflying-around-containers-a-better-alternative-to-course-vms/
-  
-  http://lambdaops.com/ipythonjupyter-tmpnb-debuts/                
 
     
 ### Topics within Deep Learning     
