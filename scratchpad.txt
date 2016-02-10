@@ -52,6 +52,7 @@ VirtualBox images are pretty portable...
   *  https://www.packer.io/intro/index.html
      *  OVF exports for VirtualBox?
      *  VirtualBox VDI file?
+  *  http://virtuallyhyper.com/2013/06/migrate-from-libvirt-kvm-to-virtualbox/
 
 Successful installers could also open up their 'server' to access via WiFi, without risk :
 
