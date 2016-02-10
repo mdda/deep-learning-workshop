@@ -53,7 +53,19 @@ VirtualBox images are pretty portable...
      *  OVF exports for VirtualBox?
      *  VirtualBox VDI file?
   *  http://virtuallyhyper.com/2013/06/migrate-from-libvirt-kvm-to-virtualbox/
-
+     *  Sadly, the virt-convert tool no longer supports the -o vmx option. 
+        *   It looks like you might have to just use the old version:
+     *  Might want to state right at the beginning that this requires VMware installed and isn't any use if you don't!
+        *   ovftool is free, you just have to create a myVMware account. The registration for a MyVMWare account is also free, you just need a valid email address. Have you tried registering for a MyVMware account?
+  *  http://it-ovid.blogspot.sg/2012/10/virtual-box-headless-cheatsheet.html
+     *    Import VMWare disk images
+        *   VBoxManage convertfromraw --format vmdk --variant Standard <source>.vmdk <destination>.vdi
+        
+*  Alternative : Vagrant
+   *   https://www.vagrantup.com/        
+   *   This was how the Spark environment for the edX course was done...  Perhaps the vagrant(?) files exist?
+        
+  
 Successful installers could also open up their 'server' to access via WiFi, without risk :
 
 *  https://nsrc.org/workshops/2014/btnog/raw-attachment/wiki/Track2Agenda/ex-virtualbox-portforward-ssh.htm
