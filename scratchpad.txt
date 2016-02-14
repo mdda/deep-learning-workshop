@@ -24,11 +24,16 @@ Running iPython
 
 *  http://blog.ouseful.info/2014/12/12/seven-ways-of-running-ipython-notebooks/
    *  http://blog.ouseful.info/2015/05/18/kiteflying-around-containers-a-better-alternative-to-course-vms/
+      *  https://github.com/docker/kitematic  (docker container manager for VirtualBox VM - but Not For Linux => disqualified)
 
 Host the VM on a central server?
 
 *  http://lambdaops.com/ipythonjupyter-tmpnb-debuts/
   *  Problem : CPU usage is high - so 10 people logged in would probably bring a single host to its knees
+
+
+This project provides a Ubuntu (14.04) Vagrant Virtual Machine (VM) with the TensorFlow library from Google and IPython (now know as Jupyter) notebooks :
+*  https://github.com/gavinln/tensorflow-ipy
 
 
 ## VirtualBox images
@@ -135,7 +140,7 @@ VPS?  expense...
   Thumb drive ideas:
     http://www.aliexpress.com/item/Usb-flash-drive-4gb-8gb-16gb-32gb-cat-s-claw-usb-pendrive-gift-u-disk-memory/32424298881.html?spm=2114.01010208.3.319.T9dcav&ws_ab_test=searchweb201556_1,searchweb201644_1_505_506_503_504_502_10001_9705_10002_10016_10005_10006_10003_10004_62,searchweb201560_1,searchweb1451318400_6151,searchweb1451318411_6452&btsid=657fe2dd-426e-4442-9694-674c828df7b0
     http://www.aliexpress.com/item/Wholesale-and-custom-Cat-model-of-metal-gift-art-creative-personality-key-usb-flash-drive-16gb/32323841251.html?spm=2114.01010208.3.10.YqupqE&ws_ab_test=searchweb201556_1,searchweb201644_1_505_506_503_504_502_10001_9705_10002_10016_10005_10006_10003_10004_62,searchweb201560_1,searchweb1451318400_6151,searchweb1451318411_6452&btsid=5d059c6f-8cb2-440f-b9d3-87d3b94f4f3b
-      
+
       
     
 docker images?  
