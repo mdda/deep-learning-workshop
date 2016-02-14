@@ -20,6 +20,7 @@ Therefore, must resign ourselves to CPU-based training.
 
 ## How to implement workshop practicals
 
+
 Running iPython 
 
 *  http://blog.ouseful.info/2014/12/12/seven-ways-of-running-ipython-notebooks/
@@ -32,8 +33,24 @@ Host the VM on a central server?
   *  Problem : CPU usage is high - so 10 people logged in would probably bring a single host to its knees
 
 
-This project provides a Ubuntu (14.04) Vagrant Virtual Machine (VM) with the TensorFlow library from Google and IPython (now know as Jupyter) notebooks :
+## Vagrant
+
+This project provides a Ubuntu (14.04) Vagrant Virtual Machine (VM) with the TensorFlow library from Google and IPython (now know as Jupyter) notebooks using vagrant :
 *  https://github.com/gavinln/tensorflow-ipy
+
+Python-dev vagrant configuration :
+*  https://github.com/AnthonyNystrom/python-dev-bootstrap
+
+*  https://datascience.berkeley.edu/data-science-vagrant-ipython-notebook/
+   *  Except that :
+      *   vagrant still requires people to have VirtualBox installed.
+      *   vagrant downloads 320Mb disk images - which would over-burden the network, and take 20mins
+      *   ... So : Much more reasonable to distribute VirtualBox VM images on USB ...
+
+*  Alternative : Vagrant
+   *   https://developer.fedoraproject.org/tools/vagrant/vagrant-virtualbox.html
+   *   https://www.vagrantup.com/        
+        *   This was how the Spark environment for the edX course was done...  Perhaps the vagrant(?) files exist?
 
 
 ## VirtualBox images
@@ -44,15 +61,15 @@ VirtualBox images are pretty portable...
    *  could also do it without installing X - and running the browser session in the host machine...
   
 Background :
-*  https://spin.atomicobject.com/2013/06/03/ovf-virtual-machine/
-  *  qemu-img – Part of the QEMU project, qemu-img is the holy grail, Swiss Army knife of disk image conversion. If you need to convert a disk image, check here first.
-     *  http://docs.openstack.org/image-guide/convert-images.html#qemu-img-convert-raw-qcow2-qed-vdi-vmdk-vhd
-     
 *  Fedora minimal VM building : 
    *  https://developer.fedoraproject.org/tools/virt-builder/about.html
    *  http://libguestfs.org/virt-builder.1.html
       *   https://kashyapc.fedorapeople.org/virt/virt-builder-usage.txt
 
+*  https://spin.atomicobject.com/2013/06/03/ovf-virtual-machine/
+  *  qemu-img – Part of the QEMU project, qemu-img is the holy grail, Swiss Army knife of disk image conversion. If you need to convert a disk image, check here first.
+     *  http://docs.openstack.org/image-guide/convert-images.html#qemu-img-convert-raw-qcow2-qed-vdi-vmdk-vhd
+     
 *  Explicit instructions:
    *   https://rwmj.wordpress.com/2013/10/27/using-virt-builder-to-build-packages/
    
@@ -73,12 +90,7 @@ Background :
   *  http://it-ovid.blogspot.sg/2012/10/virtual-box-headless-cheatsheet.html
      *    Import VMWare disk images
         *   VBoxManage convertfromraw --format vmdk --variant Standard <source>.vmdk <destination>.vdi
-        
-*  Alternative : Vagrant
-   *   https://developer.fedoraproject.org/tools/vagrant/vagrant-virtualbox.html
-   *   https://www.vagrantup.com/        
-        *   This was how the Spark environment for the edX course was done...  Perhaps the vagrant(?) files exist?
-   
+
         
   
 Successful installers could also open up their 'server' to access via WiFi, without risk :
