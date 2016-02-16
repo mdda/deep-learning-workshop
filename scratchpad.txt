@@ -150,9 +150,9 @@ VPS?  expense...
     http://stackoverflow.com/questions/33784214/how-to-test-tensorflow-cifar10-cnn-tutorial-model?rq=1
 
   Thumb drive ideas:
-    http://www.aliexpress.com/item/Usb-flash-drive-4gb-8gb-16gb-32gb-cat-s-claw-usb-pendrive-gift-u-disk-memory/32424298881.html?spm=2114.01010208.3.319.T9dcav&ws_ab_test=searchweb201556_1,searchweb201644_1_505_506_503_504_502_10001_9705_10002_10016_10005_10006_10003_10004_62,searchweb201560_1,searchweb1451318400_6151,searchweb1451318411_6452&btsid=657fe2dd-426e-4442-9694-674c828df7b0
-    http://www.aliexpress.com/item/Wholesale-and-custom-Cat-model-of-metal-gift-art-creative-personality-key-usb-flash-drive-16gb/32323841251.html?spm=2114.01010208.3.10.YqupqE&ws_ab_test=searchweb201556_1,searchweb201644_1_505_506_503_504_502_10001_9705_10002_10016_10005_10006_10003_10004_62,searchweb201560_1,searchweb1451318400_6151,searchweb1451318411_6452&btsid=5d059c6f-8cb2-440f-b9d3-87d3b94f4f3b
-
+    http://www.aliexpress.com/item/Usb-flash-drive-4gb-8gb-16gb-32gb-cat-s-claw-usb-pendrive-gift-u-disk-memory/32424298881.html
+    http://www.aliexpress.com/item/Wholesale-and-custom-Cat-model-of-metal-gift-art-creative-personality-key-usb-flash-drive-16gb/32323841251.html
+    http://www.aliexpress.com/item/Usb-flash-drive-Smart-Phone-OTG-Pendrive-Pen-Drive-32GB-16GB-8GB-4GB-Memory-stick-mini/32462761490.html
       
     
 docker images?  
