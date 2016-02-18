@@ -88,8 +88,9 @@ Background :
      *  Might want to state right at the beginning that this requires VMware installed and isn't any use if you don't!
         *   ovftool is free, you just have to create a myVMware account. The registration for a MyVMWare account is also free, you just need a valid email address. Have you tried registering for a MyVMware account?
   *  http://it-ovid.blogspot.sg/2012/10/virtual-box-headless-cheatsheet.html
-     *    Import VMWare disk images
+     *  Import VMWare disk images
         *   VBoxManage convertfromraw --format vmdk --variant Standard <source>.vmdk <destination>.vdi
+     *  This was suggested by Kai Hendry as being very do-able
 
         
   
