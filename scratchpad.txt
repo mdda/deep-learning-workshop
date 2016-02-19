@@ -91,6 +91,12 @@ Background :
      *  Import VMWare disk images
         *   VBoxManage convertfromraw --format vmdk --variant Standard <source>.vmdk <destination>.vdi
      *  This was suggested by Kai Hendry as being very do-able
+        *   Also ... VirtualBox is capable of importing and exporting virtual machines in the standard Open Virtualization Format (OVF). 
+   *  [How To] Headless VirtualBox on Headless Server
+      *   https://forums.virtualbox.org/viewtopic.php?f=7&t=60681
+         *  Just a note: exporting a VM will change internal IDs for both the VM virtual motherboard and the disks.
+         *  This will typically break a grub/fstab config in Linux and possibly trigger again activation on Windows. Copying the VM directly really is the proper way of doing it.
+         *  Exporting should be a last resort thing.
 
         
   
