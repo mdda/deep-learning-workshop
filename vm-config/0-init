@@ -1,0 +1,7 @@
+
+# Turn SELINUX off : It's a downer during development...
+delete /.autorelabel
+
+edit /etc/selinux/config:\
+      s/SELINUX=enforcing/SELINUX=permissive/
+
