@@ -1,2 +1,7 @@
-install python
+
+# Fedora system packages are much faster to install than build into the virtualenv
+
+install python virtualenv
+install scipy numpy python-pandas Cython 
+install pydot
 
