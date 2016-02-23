@@ -3,5 +3,5 @@
 
 install python virtualenv
 install scipy numpy python-pandas Cython 
-install pydot
+install pydot libyaml 
 

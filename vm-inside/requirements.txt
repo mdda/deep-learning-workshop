@@ -1,0 +1,20 @@
+
+
+
+
+# Plotting of graphs
+bokeh>=0.11.0
+jsonschema
+
+# iPython Notebook 
+ipython>=3.1.0
+
+# Visualization of theano graphs
+pydot 
+
+## This is for Python word2vec
+#gensim
+
+## This is a hd5 pickler (fast)
+hickle
+
