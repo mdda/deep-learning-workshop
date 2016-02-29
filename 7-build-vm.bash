@@ -20,6 +20,9 @@ guest_type=fedora-23
 # Because virt-builder copies the build script permissions too.
 #chmod +x $build_script
 
+
+image_file=/tmp/$guest_type.img
+
 port=8080
 
 # How much guest memory we need for the build:
@@ -32,7 +35,7 @@ export LIBGUESTFS_MEMSIZE=4096
 virt-builder \
   $guest_type \
   --size 8G \
-  --output /tmp/$guest_type.img \
+  --output $image_file \
   --commands-from-file vm-config/0-init \
   --write "/home/user/configure-vm.conf:port=$port" \
   --commands-from-file vm-config/1-user \
@@ -53,7 +56,7 @@ qemu-system-x86_64 \
   -smp 4 \
   -net user \
   -serial stdio \
-  -drive file=/tmp/$guest_type.img,format=raw,if=virtio,cache=unsafe
+  -drive file=$image_file,format=raw,if=virtio,cache=unsafe
 
 # The build ran OK if this contains the magic string (see $build_script).
 #virt-cat -a /tmp/$guest_type.img /root/virt-sysprep-firstboot.log
@@ -66,3 +69,4 @@ qemu-system-x86_64 \
 # Leave the guest around so you can examine the /home/build dir if you want.
 # Or you could delete it.
 #rm /tmp/$guest_type.img
+

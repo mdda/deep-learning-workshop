@@ -32,6 +32,18 @@ Host the VM on a central server?
 *  http://lambdaops.com/ipythonjupyter-tmpnb-debuts/
   *  Problem : CPU usage is high - so 10 people logged in would probably bring a single host to its knees
 
+Alternative : AWS GPU instance
+  *  How to install Theano on Amazon EC2 GPU instances for deep learning 
+     *  Has prebuilt AMI too  : The current one is ami-b141a2f5 (the updated one at the top of the post). You can always search Theano - CUDA 7 as its name.
+        *  NOw : ami-1f3e225a
+     *  http://markus.com/install-theano-on-aws/
+
+  *  Requirement : g2.2xlarge On-Demand Instances
+     *  g2.2xlarge : GRID K520 gpu 
+     *  Pricing : 
+        *             vCPU  ECU  Memory (GiB) Instance Storage (GB)  Linux/UNIX Usage
+        * g2.2xlarge  8      26           15                 60 SSD    $0.65 per Hour
+        * g2.8xlarge  32    104           60            2 x 120 SSD    $2.60 per Hour
 
 ## Vagrant
 
