@@ -44,6 +44,12 @@ Alternative : AWS GPU instance
         *             vCPU  ECU  Memory (GiB) Instance Storage (GB)  Linux/UNIX Usage
         * g2.2xlarge  8      26           15                 60 SSD    $0.65 per Hour
         * g2.8xlarge  32    104           60            2 x 120 SSD    $2.60 per Hour
+        
+  *  Import of existing VMs
+     *  Verify that your VM satisfies the prerequisites for VM Import, prepare it for import, 
+        and export it from its current environment as an OVA file (or VMDK, VHD, or RAW).
+        
+
 
 ## Vagrant
 
