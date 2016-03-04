@@ -175,14 +175,22 @@ VPS?  expense...
     http://stackoverflow.com/questions/33784214/how-to-test-tensorflow-cifar10-cnn-tutorial-model?rq=1
 
   Thumb drive ideas:
-    http://www.aliexpress.com/item/Usb-flash-drive-4gb-8gb-16gb-32gb-cat-s-claw-usb-pendrive-gift-u-disk-memory/32424298881.html
-    http://www.aliexpress.com/item/Wholesale-and-custom-Cat-model-of-metal-gift-art-creative-personality-key-usb-flash-drive-16gb/32323841251.html
-    http://www.aliexpress.com/item/Usb-flash-drive-Smart-Phone-OTG-Pendrive-Pen-Drive-32GB-16GB-8GB-4GB-Memory-stick-mini/32462761490.html
     http://www.aliexpress.com/item/USB-3-0-3000-style-Cartoon-Usb-Flash-Drive-4GB-8GB-16GB-32GB-Pen-Drive-100pcs/32500540806.html
-    http://www.aliexpress.com/item/Free-Shipping-cartoon-pen-drive-kitty-cat-flash-memory-stick-pendrive-1GB-64GB/2038130430.html
-    http://www.aliexpress.com/item/Cartoon-Animal-Flat-Cat-Style-4GB-8GB-16GB-32GB-USB-2-0-Flash-Drive-Pen-Drive/32372039038.html
-    http://www.aliexpress.com/item/Cute-Cat-Claw-Usb-Flash-Drive-USB-2-0-pen-drive-64GB-32GB-16GB-Pendrive-8GB/32593071579.html
+
+  Utilitarian:
+    http://www.aliexpress.com/item/Usb-flash-drive-Smart-Phone-OTG-Pendrive-Pen-Drive-32GB-16GB-8GB-4GB-Memory-stick-mini/32462761490.html
     
+  Cat-themed:
+    Claw:
+      http://www.aliexpress.com/item/Cute-Cat-Claw-Usb-Flash-Drive-USB-2-0-pen-drive-64GB-32GB-16GB-Pendrive-8GB/32593071579.html
+      http://www.aliexpress.com/item/Usb-flash-drive-4gb-8gb-16gb-32gb-cat-s-claw-usb-pendrive-gift-u-disk-memory/32424298881.html
+    Metal:
+      http://www.aliexpress.com/item/Wholesale-and-custom-Cat-model-of-metal-gift-art-creative-personality-key-usb-flash-drive-16gb/32323841251.html
+    3D: 
+      http://www.aliexpress.com/item/Free-Shipping-cartoon-pen-drive-kitty-cat-flash-memory-stick-pendrive-1GB-64GB/2038130430.html
+      http://www.aliexpress.com/item/Plastic-cartoon-baby-hello-kitty-cat-USB-Flash-Drives-thumb-pen-drives-memory-stick-2G-4GB/1024940593.html
+    Flat:
+      http://www.aliexpress.com/item/Cartoon-Animal-Flat-Cat-Style-4GB-8GB-16GB-32GB-USB-2-0-Flash-Drive-Pen-Drive/32372039038.html
     
 docker images?  
 
