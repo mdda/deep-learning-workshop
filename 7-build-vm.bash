@@ -3,6 +3,11 @@
 set -e
 set -x
 
+# dnf install libguestfs
+# target location :: <REPO>/vm-images
+
+
+
 # Use a homebrew compile of libguestfs from git.
 #d=$HOME/d/libguestfs
 
@@ -21,7 +26,8 @@ guest_type=fedora-23
 #chmod +x $build_script
 
 
-image_file=/tmp/$guest_type.img
+#image_file=/tmp/$guest_type.img
+image_file=./vm-images/$guest_type.img
 
 port=8080
 
@@ -34,7 +40,7 @@ export LIBGUESTFS_MEMSIZE=4096
 
 virt-builder \
   $guest_type \
-  --size 8G \
+  --size 4G \
   --output $image_file \
   --commands-from-file vm-config/0-init \
   --write "/home/user/configure-vm.conf:port=$port" \

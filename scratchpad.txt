@@ -237,6 +237,21 @@ More generally
         There is a new paper in regards to deep reinforcements learning in continous spaces by deepmind. 
         Continuous control with deep reinforcements learning. Is there plans to add this in code form. Many thanks Andrew.
 
+      http://cs.stanford.edu/people/karpathy/convnetjs/demo/image_regression.html
+        Cat picture reconstruction
+
+      http://cs.stanford.edu/people/karpathy/convnetjs/demo/mnist.html      
+        MNIST
+
+  Tensorflow in iPython notebook :
+    https://github.com/pkmital/tensorflow_tutorials
+    MNIST:
+      https://github.com/pkmital/tensorflow_tutorials/blob/master/notebooks/05_basic_convnet.ipynb
+
+  Google Inception network notebooks :
+    https://github.com/google/inception
+    
+      
 Models
 
   Model Zoo ideas:
