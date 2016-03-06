@@ -6,6 +6,7 @@ set -x
 # dnf install libguestfs
 # target location :: <REPO>/vm-images
 
+# FWIW: Upgrade square to F23
 
 
 # Use a homebrew compile of libguestfs from git.
