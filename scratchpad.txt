@@ -280,6 +280,13 @@ Models
       http://blog.keras.io/keras-now-running-on-tensorflow.html
 
 
+  Image Analogies using Neural Networks (github.com)
+    *  HN : https://news.ycombinator.com/item?id=11234793
+       *   Paper : https://github.com/awentzonline/image-analogies/?
+    *  Similiar code : https://github.com/fchollet/keras/blob/master/examples/neural_style_transfer.py
+
+
+
 Other courses
 
   Udacity course from Google 
