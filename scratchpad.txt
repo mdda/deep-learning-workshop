@@ -284,7 +284,10 @@ Models
     *  HN : https://news.ycombinator.com/item?id=11234793
        *   Paper : https://github.com/awentzonline/image-analogies/?
     *  Similiar code : https://github.com/fchollet/keras/blob/master/examples/neural_style_transfer.py
-
+    *  http://ostagram.ru/static_pages/lenta?last_days=30
+    *  http://deepart.io/
+       *   Our algorithm uses a neural network based on the 19-layer VGG network by Karen Simonyan and Andrew Zisserman.
+       *   University of Tübingen has a pending patent application for the Neural Art technology.
 
 
 Other courses
