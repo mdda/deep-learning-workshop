@@ -25,8 +25,7 @@ set -x
 
 # Try : LIBGUESTFS_BACKEND=direct
 
-# LIBGUESTFS_BACKEND=direct
-# export LIBGUESTFS_BACKEND
+# LIBGUESTFS_BACKEND=direct; export LIBGUESTFS_BACKEND
 
 #[  25.1] Writing: /home/user/configure-vm.conf
 # virt-builder: error: libguestfs error: internal_write: open: 
