@@ -3,23 +3,20 @@
 set -e
 set -x
 
+## See : https://developer.fedoraproject.org/tools/virt-builder/about.html
+
+## Required for virt-builder ::
 # dnf install libguestfs libguestfs-tools
-# target location :: <REPO>/vm-images
 
-# FWIW: Upgrade square to F23
+## Running this script the first time takes an extra ~10mins to download 
+##   http://libguestfs.org/download/builder/fedora-23.xz
 
+# target location :: <REPO>/vm-images/
 
-# Use a homebrew compile of libguestfs from git.
-#d=$HOME/d/libguestfs
-
-# See : https://developer.fedoraproject.org/tools/virt-builder/about.html
 
 # This is the Fedora platform we want to build on.
 guest_type=fedora-23
 
-# The SRPM we want to build.
-#srpmdir=/home/rjones/d/fedora/libvirt/f19
-#srpm=libvirt-1.0.5.6-3.fc19.src.rpm
 
 # The build script.
 #build_script=/tmp/build-it.sh
