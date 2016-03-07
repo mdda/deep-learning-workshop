@@ -3,7 +3,7 @@
 set -e
 set -x
 
-# dnf install libguestfs
+# dnf install libguestfs libguestfs-tools
 # target location :: <REPO>/vm-images
 
 # FWIW: Upgrade square to F23
