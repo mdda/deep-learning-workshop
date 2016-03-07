@@ -38,7 +38,7 @@ export LIBGUESTFS_MEMSIZE=4096
 
 virt-builder \
   $guest_type \
-  --size 4G \
+  --size 7G \
   --output $image_file \
   --commands-from-file vm-config/0-init \
   --write "/home/user/configure-vm.conf:port=$port" \
