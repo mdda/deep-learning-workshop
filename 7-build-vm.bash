@@ -7,9 +7,32 @@ set -x
 
 ## Required for virt-builder ::
 # dnf install libguestfs libguestfs-tools
+# ->> libguestfs-1.30.6-2.fc22.x86_64 ...
 
 ## Running this script the first time takes an extra ~10mins to download 
 ##   http://libguestfs.org/download/builder/fedora-23.xz
+
+# virt-builder: error: images cannot be shrunk, the output size is too small 
+# for this image.  Requested size = 4.0G, minimum size = 6.0G
+
+# virt-builder: error: libguestfs error: bridge 'virbr0' not found.  Try 
+# running:  brctl show
+
+# If libvirt is being used then the appliance will connect to "virbr0"
+#  (can be overridden by setting "LIBGUESTFS_BACKEND_SETTINGS=network_bridge=<some_bridge>").  
+#  This enables full-featured network connections, with working ICMP, ping and so on.
+#     ->> suggests that libvirt is not cooperating, somehow
+
+# Try : LIBGUESTFS_BACKEND=direct
+
+# LIBGUESTFS_BACKEND=direct
+# export LIBGUESTFS_BACKEND
+
+#[  25.1] Writing: /home/user/configure-vm.conf
+# virt-builder: error: libguestfs error: internal_write: open: 
+# /home/user/configure-vm.conf: No such file or directory
+
+
 
 # target location :: <REPO>/vm-images/
 
@@ -41,8 +64,8 @@ virt-builder \
   --size 7G \
   --output $image_file \
   --commands-from-file vm-config/0-init \
-  --write "/home/user/configure-vm.conf:port=$port" \
   --commands-from-file vm-config/1-user \
+  --write "/home/user/configure-vm.conf:port=$port" \
   --commands-from-file vm-config/3-packages \
   --firstboot-command 'poweroff'
 
