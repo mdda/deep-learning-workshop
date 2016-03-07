@@ -4,7 +4,7 @@ mkdir /home/user
 
 # This is a configuration script to run when first booted
 # it makes use of /home/user/configure-vm.conf the we've creating on-the-fly for the VM to incorporate
-upload vm-inside/configure-vm.bash:/home/user 
+upload vm-guest/configure-vm.bash:/home/user 
 
 firstboot-command 'useradd -m -p "" user'
 firstboot-command 'chown user.user /home/user'
