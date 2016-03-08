@@ -80,8 +80,8 @@ virt-builder \
   --output $image_file \
   --commands-from-file vm-config/0-init \
   --commands-from-file vm-config/1-packages \
-  --write "/home/user/configure-vm.conf:port=$port" \
-  --commands-from-file vm-config/3-user 
+  --commands-from-file vm-config/3-user \
+  --write "/home/user/configure-vm.conf:port=$port"
   
 #  --firstboot-command 'poweroff'
 
@@ -89,6 +89,8 @@ virt-builder \
 #  --run-command "yum-builddep -y /home/build/$srpm" 
 
 # Run qemu directly.  Could also use virt-install --import here.
+
+# Documentation : http://dev.man-online.org/man1/qemu-system-x86_64/
 qemu-system-x86_64 \
   -nodefconfig \
   -nodefaults \
