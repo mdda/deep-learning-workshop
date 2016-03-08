@@ -64,7 +64,7 @@ export LIBGUESTFS_MEMSIZE=4096
 #virt-builder -v -x
 #  --size 7G 
 
-virt-builder 
+virt-builder \
   $guest_type \
   --output $image_file \
   --commands-from-file vm-config/0-init \
