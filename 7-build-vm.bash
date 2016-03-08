@@ -61,17 +61,17 @@ export LIBGUESTFS_MEMSIZE=4096
 # Use a long build path to work around RHBZ#757089.
 # $d/run $d/builder/virt-builder 
 
-#virt-builder 
+#virt-builder -v -x
 #  --size 7G 
 
-virt-builder -v -x \
+virt-builder 
   $guest_type \
   --output $image_file \
   --commands-from-file vm-config/0-init \
   --commands-from-file vm-config/1-user \
-  --write "/home/user/configure-vm.conf:port=$port" \
-  --firstboot-command 'poweroff'
-
+  --write "/home/user/configure-vm.conf:port=$port" 
+  
+#  --firstboot-command 'poweroff'
 #  --commands-from-file vm-config/3-packages
 
 
