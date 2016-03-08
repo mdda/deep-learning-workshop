@@ -16,6 +16,9 @@ virtualenv --system-site-packages env
 #pip install --upgrade pip
 pip install -r requirements.txt 
 
+# May be better to install all of the virtualenv once in the host machine, and then copy it out
+#  Alternatively, once this is built, copy it out to the host machine for 'caching'
+
 # If we get this far, everything installed/initialised successfully.
 # This string is detected in the guest afterwards.
 echo '=== CONFIGURATION FINISHED OK ==='

@@ -79,9 +79,9 @@ virt-builder \
   $guest_type \
   --output $image_file \
   --commands-from-file vm-config/0-init \
-  --commands-from-file vm-config/1-user \
+  --commands-from-file vm-config/1-packages \
   --write "/home/user/configure-vm.conf:port=$port" \
-  --commands-from-file vm-config/3-packages 
+  --commands-from-file vm-config/3-user 
   
 #  --firstboot-command 'poweroff'
 

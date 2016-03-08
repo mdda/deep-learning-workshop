@@ -1,9 +1,9 @@
 
 ## Theano-HEAD from git 
 
-#--allow-external theano
-#--allow-unverified theano
-#git+https://github.com/Theano/Theano.git#egg=theano
+--allow-external theano
+--allow-unverified theano
+git+https://github.com/Theano/Theano.git#egg=theano
 
 
 # Plotting of graphs
@@ -20,5 +20,5 @@ pydot
 #gensim
 
 ## This is a hd5 pickler (fast)
-hickle
+#hickle
 

@@ -5,3 +5,5 @@ delete /.autorelabel
 edit /etc/selinux/config:\
       s/SELINUX=enforcing/SELINUX=permissive/
 
+# http://libguestfs.org/virt-builder.1.html#users-and-passwords
+root-password password:fossasia
