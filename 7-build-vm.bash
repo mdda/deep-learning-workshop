@@ -74,6 +74,13 @@ export LIBGUESTFS_MEMSIZE=4096
 # tmpfs           201M     0  201M   0% /run/user/1000
 
 
+# virsh net-list --all
+# virsh net-define /usr/share/libvirt/networks/default.xml
+# virsh net-autostart default
+# virsh net-start default
+# brctl show
+
+
 virt-builder \
   $guest_type \
   --output $image_file \
@@ -97,7 +104,7 @@ qemu-system-x86_64 \
   -cpu host \
   -m 2048 \
   -smp 4 \
-  -net user \
+  -net nic -net user \
   -serial stdio \
   -drive file=$image_file,format=raw,if=virtio,cache=unsafe
 
