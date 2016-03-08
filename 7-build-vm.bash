@@ -14,8 +14,6 @@ set -x
 ## Running this script the first time takes an extra ~10mins to download 
 ##   http://libguestfs.org/download/builder/fedora-23.xz
 
-# virt-builder: error: images cannot be shrunk, the output size is too small 
-# for this image.  Requested size = 4.0G, minimum size = 6.0G
 
 # virt-builder: error: libguestfs error: bridge 'virbr0' not found.  Try 
 # running:  brctl show
@@ -25,29 +23,28 @@ set -x
 #  This enables full-featured network connections, with working ICMP, ping and so on.
 #     ->> suggests that libvirt is not cooperating, somehow
 
-# Try : LIBGUESTFS_BACKEND=direct
-
+## Try : LIBGUESTFS_BACKEND=direct
 # LIBGUESTFS_BACKEND=direct; export LIBGUESTFS_BACKEND
 
-#[  25.1] Writing: /home/user/configure-vm.conf
-# virt-builder: error: libguestfs error: internal_write: open: 
-# /home/user/configure-vm.conf: No such file or directory
+## Easier to use libvirt properly (doesn't require LIBGUESTFS_BACKEND setting above), by configuring virtual networks using virtsh :
 
-# This worked, apparently
+# virsh net-list --all
+# virsh net-define /usr/share/libvirt/networks/default.xml
+# virsh net-autostart default
+# virsh net-start default
+# brctl show
 
-
-# target location :: <REPO>/vm-images/
 
 
 # This is the Fedora platform we want to build on.
 guest_type=fedora-23
-
 
 # The build script.
 #build_script=/tmp/build-it.sh
 # Because virt-builder copies the build script permissions too.
 #chmod +x $build_script
 
+# target location :: <REPO>/vm-images/
 
 #image_file=/tmp/$guest_type.img
 image_file=./vm-images/$guest_type.img
@@ -62,6 +59,9 @@ export LIBGUESTFS_MEMSIZE=4096
 # $d/run $d/builder/virt-builder 
 
 
+# virt-builder: error: images cannot be shrunk, the output size is too small 
+# for this image.  Requested size = 4.0G, minimum size = 6.0G
+
 ## Filesystem with fedora-23 installed is actually mostly empty :
 # Filesystem      Size  Used Avail Use% Mounted on
 # devtmpfs        994M     0  994M   0% /dev
@@ -74,22 +74,16 @@ export LIBGUESTFS_MEMSIZE=4096
 # tmpfs           201M     0  201M   0% /run/user/1000
 
 
-# virsh net-list --all
-# virsh net-define /usr/share/libvirt/networks/default.xml
-# virsh net-autostart default
-# virsh net-start default
-# brctl show
-
 
 virt-builder \
   $guest_type \
   --output $image_file \
   --commands-from-file vm-config/0-init \
   --commands-from-file vm-config/1-user \
-  --write "/home/user/configure-vm.conf:port=$port" 
+  --write "/home/user/configure-vm.conf:port=$port" \
+  --commands-from-file vm-config/3-packages 
   
 #  --firstboot-command 'poweroff'
-#  --commands-from-file vm-config/3-packages
 
 
 #  --install /usr/bin/yum-builddep,/usr/bin/rpmbuild,@buildsys-build,@development-tools 
