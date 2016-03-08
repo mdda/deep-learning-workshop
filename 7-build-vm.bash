@@ -59,7 +59,9 @@ export LIBGUESTFS_MEMSIZE=4096
 # Use a long build path to work around RHBZ#757089.
 # $d/run $d/builder/virt-builder 
 
-virt-builder \
+#virt-builder 
+
+virt-builder -v -x \
   $guest_type \
   --size 7G \
   --output $image_file \
