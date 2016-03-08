@@ -6,8 +6,10 @@ set -x
 ## See : https://developer.fedoraproject.org/tools/virt-builder/about.html
 
 ## Required for virt-builder ::
-# dnf install libguestfs libguestfs-tools
+# dnf install libguestfs libguestfs-tools libvirt-daemon-config-network
 # ->> libguestfs-1.30.6-2.fc22.x86_64 ...
+# ->> without the libvirt-daemon-config-network, the bridging network thing doesn't get set up properly
+
 
 ## Running this script the first time takes an extra ~10mins to download 
 ##   http://libguestfs.org/download/builder/fedora-23.xz
@@ -68,8 +70,10 @@ virt-builder -v -x \
   --commands-from-file vm-config/0-init \
   --commands-from-file vm-config/1-user \
   --write "/home/user/configure-vm.conf:port=$port" \
-  --commands-from-file vm-config/3-packages \
   --firstboot-command 'poweroff'
+
+#  --commands-from-file vm-config/3-packages
+
 
 #  --install /usr/bin/yum-builddep,/usr/bin/rpmbuild,@buildsys-build,@development-tools 
 #  --run-command "yum-builddep -y /home/build/$srpm" 
