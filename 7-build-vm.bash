@@ -61,8 +61,18 @@ export LIBGUESTFS_MEMSIZE=4096
 # Use a long build path to work around RHBZ#757089.
 # $d/run $d/builder/virt-builder 
 
-#virt-builder -v -x
-#  --size 7G 
+
+## Filesystem with fedora-23 installed is actually mostly empty :
+# Filesystem      Size  Used Avail Use% Mounted on
+# devtmpfs        994M     0  994M   0% /dev
+# tmpfs          1001M     0 1001M   0% /dev/shm
+# tmpfs          1001M  216K 1001M   1% /run
+# tmpfs          1001M     0 1001M   0% /sys/fs/cgroup
+# /dev/vda3       5.0G  751M  4.2G  15% /
+# tmpfs          1001M  4.0K 1001M   1% /tmp
+# /dev/vda1       477M   74M  374M  17% /boot
+# tmpfs           201M     0  201M   0% /run/user/1000
+
 
 virt-builder \
   $guest_type \
