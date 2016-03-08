@@ -85,7 +85,6 @@ virt-builder \
   
 #  --firstboot-command 'poweroff'
 
-
 #  --install /usr/bin/yum-builddep,/usr/bin/rpmbuild,@buildsys-build,@development-tools 
 #  --run-command "yum-builddep -y /home/build/$srpm" 
 
