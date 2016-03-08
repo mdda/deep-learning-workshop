@@ -31,6 +31,18 @@ set -x
 # virt-builder: error: libguestfs error: internal_write: open: 
 # /home/user/configure-vm.conf: No such file or directory
 
+# This worked, apparently
+
+#[    6.391649] firstboot.sh[553]: /usr/lib/virt-sysprep/firstboot.sh start
+#[    6.393218] firstboot.sh[553]: Scripts dir: /usr/lib/virt-sysprep/scripts
+#[    6.399265] firstboot.sh[553]: === Running /usr/lib/virt-sysprep/scripts/0001--useradd--m--p----user- ===
+#[    6.401602] firstboot.sh[553]: /usr/lib/virt-sysprep/scripts-done/0001--useradd--m--p----user-: line 1: useradd -m -p "" user: command not found
+#[    6.404435] firstboot.sh[553]: === Running /usr/lib/virt-sysprep/scripts/0002--chown-user-user--home-user- ===
+#[    6.405882] firstboot.sh[553]: /usr/lib/virt-sysprep/scripts-done/0002--chown-user-user--home-user-: line 1: chown user.user /home/user: No such file or directory
+#[    6.408073] firstboot.sh[553]: === Running /usr/lib/virt-sysprep/scripts/0003--su---user--c--home-user-configure-vm-bash- ===
+#[    6.409388] firstboot.sh[553]: /usr/lib/virt-sysprep/scripts-done/0003--su---user--c--home-user-configure-vm-bash-: line 1: su - user -c /home/user/configure-vm.bash: No such file or directory
+#[    6.410882] firstboot.sh[553]: === Running /usr/lib/virt-sysprep/scripts/0004-poweroff ===
+
 
 
 # target location :: <REPO>/vm-images/

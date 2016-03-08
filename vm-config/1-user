@@ -9,6 +9,10 @@ upload vm-guest/configure-vm.conf:/home/user/
 
 upload vm-guest/requirements.txt:/home/user/
 
-firstboot-command 'useradd -m -p "" user'
-firstboot-command 'chown user.user /home/user'
-firstboot-command 'su - user -c /home/user/configure-vm.bash'
+firstboot-command useradd -m -p "" user
+firstboot-command chown user.user /home/user
+firstboot-command su - user -c /home/user/configure-vm.bash
+
+#firstboot-command 'useradd -m -p "" user'
+#firstboot-command 'chown user.user /home/user'
+#firstboot-command 'su - user -c /home/user/configure-vm.bash'
