@@ -13,7 +13,7 @@ source configure-vm.conf
 
 virtualenv --system-site-packages env
 . env/bin/activate
-pip install --upgrade pip
+#pip install --upgrade pip
 pip install -r requirements.txt 
 
 # If we get this far, everything installed/initialised successfully.
