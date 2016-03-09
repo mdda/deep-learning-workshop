@@ -1,6 +1,9 @@
 # Geany project
 .geany/
 
+# Password file
+vm-config/root-password
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

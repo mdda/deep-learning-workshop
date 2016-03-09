@@ -1,0 +1,7 @@
+
+# This is the Fedora platform we want to build on.
+guest_type=fedora-23
+
+image_file=./vm-images/$guest_type.img
+
+port=8080

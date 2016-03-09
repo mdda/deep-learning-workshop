@@ -3,6 +3,8 @@
 set -e
 set -x
 
+source ./vm-config/params
+
 ## See : https://developer.fedoraproject.org/tools/virt-builder/about.html
 
 ## Required for virt-builder ::
@@ -36,8 +38,6 @@ set -x
 
 
 
-# This is the Fedora platform we want to build on.
-guest_type=fedora-23
 
 # The build script.
 #build_script=/tmp/build-it.sh
@@ -46,10 +46,6 @@ guest_type=fedora-23
 
 # target location :: <REPO>/vm-images/
 
-#image_file=/tmp/$guest_type.img
-image_file=./vm-images/$guest_type.img
-
-port=8080
 
 # How much guest memory we need for the build:
 export LIBGUESTFS_MEMSIZE=4096
