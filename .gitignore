@@ -4,6 +4,11 @@
 # Password file
 vm-config/root-password
 
+# cached versions of : the python env
+vm-guest/cache/env
+
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
