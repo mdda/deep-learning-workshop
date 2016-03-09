@@ -7,9 +7,12 @@ mkdir /home/user
 upload vm-guest/configure-vm.bash:/home/user/
 upload vm-guest/configure-vm.conf:/home/user/
 
-# This is the (potentially empty) cache of the python env that we'll build (probably later)
-upload vm-guest/cache/env:/home/user/
+
+# This is the requirements.txt to be installed into the python virtualenv
 upload vm-guest/requirements.txt:/home/user/
+
+# This is the (potentially empty) cache of the python env that we'll build (probably later)
+copy-in vm-guest/cache/env:/home/user/
 
 
 firstboot-command useradd --create-home --password "" user
