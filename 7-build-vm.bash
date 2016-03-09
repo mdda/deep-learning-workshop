@@ -69,7 +69,8 @@ export LIBGUESTFS_MEMSIZE=4096
 # /dev/vda1       477M   74M  374M  17% /boot
 # tmpfs           201M     0  201M   0% /run/user/1000
 
-
+# Ensure that the python env cache exists
+mkdir -p vm-guest/cache/env
 
 virt-builder \
   $guest_type \
