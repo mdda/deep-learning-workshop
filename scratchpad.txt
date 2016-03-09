@@ -303,4 +303,6 @@ Other courses
   Other peoples'
     http://www.slideshare.net/roelofp/deep-learning-as-a-catdog-detector
     
-      
+
+Squid caching of RPM downloads?      
+  http://serverascode.com/2014/03/29/squid-cache-yum.html
