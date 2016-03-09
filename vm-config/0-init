@@ -8,5 +8,5 @@ edit /etc/selinux/config:\
 # http://libguestfs.org/virt-builder.1.html#users-and-passwords
 #root-password password:fossasia
 
-root-password file:./vm-config/root-password 
-#root-password file:root-password 
+#root-password file:./vm-config/root-password 
+root-password file:vm-config/root-password 
