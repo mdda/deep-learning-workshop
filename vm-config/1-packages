@@ -1,9 +1,7 @@
 
 # Fedora system packages are much faster to install than build into the virtualenv
 
-install joe,git
+install joe,git,gcc
 install python,python-virtualenv,python-pip
 install scipy,numpy,python-pandas,Cython
 install pydot,libyaml 
-
-# ,gcc
