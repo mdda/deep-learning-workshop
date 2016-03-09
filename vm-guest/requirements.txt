@@ -1,9 +1,11 @@
 
-## Theano-HEAD from git 
+### Theano-HEAD from git 
+#
+#--allow-external theano
+#--allow-unverified theano
+#git+https://github.com/Theano/Theano.git#egg=theano
 
---allow-external theano
---allow-unverified theano
-git+https://github.com/Theano/Theano.git#egg=theano
+theano>=0.7.0
 
 
 # Plotting of graphs
