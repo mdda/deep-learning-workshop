@@ -1,7 +1,17 @@
 
 # Fedora system packages are much faster to install than build into the virtualenv
 
-install joe,git,gcc
+# virtualenv installation
 install python,python-virtualenv,python-pip
+
+# editor and git (for theano repo download)
+install joe,git
+
+# For compiling parts of tornado-speedup  (gcc-c++ is for theano compilation)
+install gcc,gcc-c++,python-devel
+
+# Super-useful
 install scipy,numpy,python-pandas,Cython
+
+# Good for iPython
 install pydot,libyaml 
