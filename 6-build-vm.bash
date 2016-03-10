@@ -81,7 +81,7 @@ virt-builder \
   --commands-from-file vm-config/1-packages \
   --commands-from-file vm-config/3-user \
   --write "/home/user/configure-vm.conf:port_ipython=$port_ipython" \
-  --write "/home/user/configure-vm.conf:port_tensorflow=$port_tensorflow"
+  --write "/home/user/configure-vm.conf:port_tensorboard=$port_tensorboard"
   
 #  --firstboot-command 'poweroff'
 

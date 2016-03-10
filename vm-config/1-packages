@@ -7,8 +7,9 @@ install python,python-virtualenv,python-pip
 # editor and git (for ?theano / ?keras repo download)
 install joe,git
 
-# For compiling parts of tornado-speedup  (gcc-c++ is for theano compilation)
-install gcc,gcc-c++,python-devel
+# For compiling parts of tornado-speedup (gcc-c++ is for theano compilation)
+#   and redhat-rpm-config is to help jupyter install (see : https://bugs.launchpad.net/ironic/+bug/1527614)
+install gcc,gcc-c++,python-devel,redhat-rpm-config
 
 # Super-useful
 install scipy,numpy,python-pandas,Cython
