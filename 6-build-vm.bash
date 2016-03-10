@@ -78,9 +78,8 @@ virt-builder \
   --root-password file:./vm-config/root-password \
   --commands-from-file vm-config/0-init \
   --commands-from-file vm-config/1-packages \
-  --commands-from-file vm-config/3-user 
-  
-#  --firstboot-command 'poweroff'
+  --commands-from-file vm-config/3-user \
+  --firstboot-command 'poweroff'
 
 #  --install /usr/bin/yum-builddep,/usr/bin/rpmbuild,@buildsys-build,@development-tools 
 #  --run-command "yum-builddep -y /home/build/$srpm" 
