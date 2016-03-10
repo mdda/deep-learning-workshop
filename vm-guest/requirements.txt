@@ -5,7 +5,7 @@
 #--allow-unverified theano
 #git+https://github.com/Theano/Theano.git#egg=theano
 
-theano>=0.7.0
+#theano>=0.7.0
 
 
 # Plotting of graphs

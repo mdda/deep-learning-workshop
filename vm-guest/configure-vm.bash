@@ -8,12 +8,12 @@ set -x
 cd /home/user
 source configure-vm.conf
 
-# Build from SRPM.
-#rpmbuild --define '_topdir /home/build' --rebuild /home/build/$srpm
 
 virtualenv --system-site-packages env
 . env/bin/activate
-#pip install --upgrade pip
+pip install --upgrade pip
+pip install https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.7.1-cp27-none-linux_x86_64.whl
+
 pip install -r requirements.txt 
 
 # May be better to install all of the virtualenv once in the host machine, and then copy it out

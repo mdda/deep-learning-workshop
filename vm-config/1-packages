@@ -18,11 +18,11 @@ install pydot,libyaml
 
 
 
-# sudo upgrade pip
 # virtualenv --system-site-packages env
 # . env/bin/activate
 # pip install --upgrade pip
 # pip install https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.7.1-cp27-none-linux_x86_64.whl
 
+## sudo upgrade pip
 ## virtualenv --system-site-packages --no-setuptools env
 ## pip install --upgrade https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.7.1-cp27-none-linux_x86_64.whl

@@ -20,5 +20,5 @@ firstboot-command cp -r /etc/skel/. /home/user
 firstboot-command chown -R user:user /home/user
 firstboot-command chmod 744 /home/user/configure-vm.bash
 
-#firstboot-command su - user -c /home/user/configure-vm.bash
+firstboot-command su - user -c /home/user/configure-vm.bash
 
