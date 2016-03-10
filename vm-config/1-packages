@@ -17,3 +17,6 @@ install scipy,numpy,python-pandas,Cython
 # Good for iPython
 install pydot,libyaml 
 
+
+# And add the systemd service definition files
+## TODO
