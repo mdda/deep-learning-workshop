@@ -1,8 +1,13 @@
 
+## Host-specific stuff (should be ignored by guest)
+
 # This is the Fedora platform we want to build on.
 guest_type=fedora-23
 
 image_file=./vm-images/$guest_type.img
+
+
+## This is guest-specific configuration, and will be readable at /home/user/config/params
 
 port_jupyter=8080
 port_tensorboard=8081

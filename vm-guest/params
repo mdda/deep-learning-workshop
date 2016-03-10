@@ -1,3 +1,6 @@
+## ACTUALLY UNUSED NOW ::
+##   We're just copying over vm-config/params verbatim
+
 
 # This is an initially empty guest-vm parameter file, and the main build-vm will add ::
 

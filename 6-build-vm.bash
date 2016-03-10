@@ -78,11 +78,7 @@ virt-builder \
   --root-password file:./vm-config/root-password \
   --commands-from-file vm-config/0-init \
   --commands-from-file vm-config/1-packages \
-  --commands-from-file vm-config/3-user \
-  --write "/home/user/config/params:port_jupyter=$port_jupyter" \
-  --write "/home/user/config/params:notebook_dir=$notebook_dir" \
-  --write "/home/user/config/params:port_tensorboard=$port_tensorboard" \
-  --write "/home/user/config/params:tensorflow_dir=$tensorflow_dir"
+  --commands-from-file vm-config/3-user 
   
 #  --firstboot-command 'poweroff'
 
