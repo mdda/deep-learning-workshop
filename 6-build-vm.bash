@@ -102,15 +102,18 @@ qemu-system-x86_64 \
   -serial stdio \
   -drive file=$image_file,format=raw,if=virtio,cache=unsafe
 
-# The build ran OK if this contains the magic string (see $build_script).
-#virt-cat -a /tmp/$guest_type.img /root/virt-sysprep-firstboot.log
-#virt-cat -a $image_file /root/virt-sysprep-firstboot.log
+# The build ran OK if this contains the magic string (see the build script ./vm-guest/configure-vm.bash) :
+virt-cat -a $image_file /root/virt-sysprep-firstboot.log
 
 # Copy out the SRPMs & RPMs.
 #rm -rf /tmp/result
 #mkdir /tmp/result
 #virt-copy-out -a $image_file /home/build/RPMS /home/build/SRPMS /tmp/result
 
+# Copy out the ~/env directory - so that it's cached between builds
+#rm -rf ./vm-guest/cache/env
+#virt-copy-out -a $image_file /home/env ./vm-guest/cache/
+
 # Leave the guest around so you can examine the /home/build dir if you want.
 # Or you could delete it.
-#rm /tmp/$guest_type.img
+#rm $image_file
