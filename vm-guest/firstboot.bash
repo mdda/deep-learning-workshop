@@ -6,15 +6,14 @@ set -e
 set -x
 
 cd /home/user
-source configure-vm.conf
-
+source ./config/params
 
 virtualenv --system-site-packages env
 . env/bin/activate
 pip install --upgrade pip
 pip install https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.7.1-cp27-none-linux_x86_64.whl
 
-pip install -r requirements.txt 
+pip install -r ./config/requirements.txt 
 # Once this ~/env is built, we can copy it out to the host machine for 'caching'
 
 # Create this directories safely

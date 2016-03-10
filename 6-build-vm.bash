@@ -79,10 +79,10 @@ virt-builder \
   --commands-from-file vm-config/0-init \
   --commands-from-file vm-config/1-packages \
   --commands-from-file vm-config/3-user \
-  --write "/home/user/configure-vm.conf:port_jupyter=$port_jupyter" \
-  --write "/home/user/configure-vm.conf:notebook_dir=$notebook_dir" \
-  --write "/home/user/configure-vm.conf:port_tensorboard=$port_tensorboard" \
-  --write "/home/user/configure-vm.conf:tensorflow_dir=$tensorflow_dir"
+  --write "/home/user/config/params:port_jupyter=$port_jupyter" \
+  --write "/home/user/config/params:notebook_dir=$notebook_dir" \
+  --write "/home/user/config/params:port_tensorboard=$port_tensorboard" \
+  --write "/home/user/config/params:tensorflow_dir=$tensorflow_dir"
   
 #  --firstboot-command 'poweroff'
 
