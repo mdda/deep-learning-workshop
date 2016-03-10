@@ -306,3 +306,6 @@ Other courses
 
 Squid caching of RPM downloads?      
   http://serverascode.com/2014/03/29/squid-cache-yum.html
+
+virt-builder cache location
+  https://rwmj.wordpress.com/2014/09/11/creating-a-local-virt-builder-repository/

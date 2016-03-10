@@ -4,7 +4,7 @@
 # virtualenv installation
 install python,python-virtualenv,python-pip
 
-# editor and git (for theano repo download)
+# editor and git (for ?theano / ?keras repo download)
 install joe,git
 
 # For compiling parts of tornado-speedup  (gcc-c++ is for theano compilation)
