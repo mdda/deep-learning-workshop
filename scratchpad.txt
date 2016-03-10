@@ -251,6 +251,22 @@ More generally
   Google Inception network notebooks :
     https://github.com/google/inception
     
+
+  Something akin to DeepDream using Keras on TensorFlow :: Keras
+    *  http://blog.keras.io/how-convolutional-neural-networks-see-the-world.html
+    *  TensorFlow backend for Keras is pretty functional : 
+       *  http://blog.keras.io/keras-now-running-on-tensorflow.html
+    *  and :: https://github.com/fchollet/keras/blob/master/examples/deep_dream.py
+
+  Image Analogies using Neural Networks (github.com) :: Keras
+    *  HN : https://news.ycombinator.com/item?id=11234793
+       *   Paper : https://github.com/awentzonline/image-analogies/
+    *  Similiar code : https://github.com/fchollet/keras/blob/master/examples/neural_style_transfer.py
+    *  http://ostagram.ru/static_pages/lenta?last_days=30
+    *  http://deepart.io/
+       *   Our algorithm uses a neural network based on the 19-layer VGG network by Karen Simonyan and Andrew Zisserman.
+       *   University of Tübingen has a pending patent application for the Neural Art technology.
+
   Turn your two-bit doodles into fine artworks with deep neural networks
     *  https://news.ycombinator.com/item?id=11257566
        *  https://github.com/alexjc/neural-doodle
@@ -260,23 +276,9 @@ More generally
     *  There's no additional training apart from that. 
       *  The neural network is used to extract patterns (grain/texture/style) 
       *  and a separate optimization tries to reproduce them as appropriate.
-    
 
-  Something akin to DeepDream using Keras on TensorFlow :
-    *  http://blog.keras.io/how-convolutional-neural-networks-see-the-world.html
-    *  TensorFlow backend for Keras is pretty functional : 
-       *  http://blog.keras.io/keras-now-running-on-tensorflow.html
 
-  Image Analogies using Neural Networks (github.com)
-    *  HN : https://news.ycombinator.com/item?id=11234793
-       *   Paper : https://github.com/awentzonline/image-analogies/
-    *  Similiar code : https://github.com/fchollet/keras/blob/master/examples/neural_style_transfer.py
-    *  http://ostagram.ru/static_pages/lenta?last_days=30
-    *  http://deepart.io/
-       *   Our algorithm uses a neural network based on the 19-layer VGG network by Karen Simonyan and Andrew Zisserman.
-       *   University of Tübingen has a pending patent application for the Neural Art technology.
-
-  neural-style (torch implementation)
+  neural-style :: Torch
     *  https://github.com/jcjohnson/neural-style
 
 
