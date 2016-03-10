@@ -251,7 +251,35 @@ More generally
   Google Inception network notebooks :
     https://github.com/google/inception
     
-      
+  Turn your two-bit doodles into fine artworks with deep neural networks
+    *  https://news.ycombinator.com/item?id=11257566
+       *  https://github.com/alexjc/neural-doodle
+    *  For details, the research paper is linked on the GitHub page: http://arxiv.org/abs/1603.01768
+    *  For a video and higher-level overview see my article from yesterday: http://nucl.ai/blog/neural-doodles/
+    *  It's a pre-trained network on image classification dataset from 2014 called ImageNet. The network is called VGG, paper is here: http://arxiv.org/abs/1409.1556
+    *  There's no additional training apart from that. 
+      *  The neural network is used to extract patterns (grain/texture/style) 
+      *  and a separate optimization tries to reproduce them as appropriate.
+    
+
+  Something akin to DeepDream using Keras on TensorFlow :
+    *  http://blog.keras.io/how-convolutional-neural-networks-see-the-world.html
+    *  TensorFlow backend for Keras is pretty functional : 
+       *  http://blog.keras.io/keras-now-running-on-tensorflow.html
+
+  Image Analogies using Neural Networks (github.com)
+    *  HN : https://news.ycombinator.com/item?id=11234793
+       *   Paper : https://github.com/awentzonline/image-analogies/
+    *  Similiar code : https://github.com/fchollet/keras/blob/master/examples/neural_style_transfer.py
+    *  http://ostagram.ru/static_pages/lenta?last_days=30
+    *  http://deepart.io/
+       *   Our algorithm uses a neural network based on the 19-layer VGG network by Karen Simonyan and Andrew Zisserman.
+       *   University of Tübingen has a pending patent application for the Neural Art technology.
+
+  neural-style (torch implementation)
+    *  https://github.com/jcjohnson/neural-style
+
+
 Models
 
   Model Zoo ideas:
@@ -273,21 +301,6 @@ Models
 
   Using Caffe models in Lasagne
     https://github.com/Lasagne/Lasagne/issues/157
-
-  Something akin to DeepDream using Keras on TensorFlow :
-    http://blog.keras.io/how-convolutional-neural-networks-see-the-world.html
-    TensorFlow backend for Keras is pretty functional : 
-      http://blog.keras.io/keras-now-running-on-tensorflow.html
-
-
-  Image Analogies using Neural Networks (github.com)
-    *  HN : https://news.ycombinator.com/item?id=11234793
-       *   Paper : https://github.com/awentzonline/image-analogies/?
-    *  Similiar code : https://github.com/fchollet/keras/blob/master/examples/neural_style_transfer.py
-    *  http://ostagram.ru/static_pages/lenta?last_days=30
-    *  http://deepart.io/
-       *   Our algorithm uses a neural network based on the 19-layer VGG network by Karen Simonyan and Andrew Zisserman.
-       *   University of Tübingen has a pending patent application for the Neural Art technology.
 
 
 Other courses
