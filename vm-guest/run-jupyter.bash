@@ -6,4 +6,9 @@ cd /home/user
 source configure-vm.conf
 
 . env/bin/activate
-ipython --matplotlib=notebook
+
+## Old-style
+#ipython --matplotlib=notebook
+
+## New-style
+jupyter notebook --ip=0.0.0.0 --port=$port_jupyter --no-browser --notebook-dir=$notebook_dir

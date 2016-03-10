@@ -15,9 +15,11 @@ pip install --upgrade pip
 pip install https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.7.1-cp27-none-linux_x86_64.whl
 
 pip install -r requirements.txt 
+# Once this ~/env is built, we can copy it out to the host machine for 'caching'
 
-# May be better to install all of the virtualenv once in the host machine, and then copy it out
-#  Alternatively, once this is built, copy it out to the host machine for 'caching'
+# Create this directories safely
+mkdir -p $notebook_dir
+mkdir -p $tensorflow_dir
 
 # If we get this far, everything installed/initialised successfully.
 # This string is detected in the guest afterwards.

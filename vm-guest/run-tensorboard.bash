@@ -6,4 +6,4 @@ cd /home/user
 source configure-vm.conf
 
 . env/bin/activate
-tensorboard --host 0.0.0.0 --port $port_tensorboard --logdir /home/user/tensorflow.logdir
+tensorboard --host 0.0.0.0 --port $port_tensorboard --logdir $tensorflow_dir

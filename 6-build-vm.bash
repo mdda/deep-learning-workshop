@@ -72,7 +72,6 @@ export LIBGUESTFS_MEMSIZE=4096
 # Ensure that the python env cache exists
 mkdir -p vm-guest/cache/env
 
-
 virt-builder \
   $guest_type \
   --output $image_file \
@@ -80,8 +79,10 @@ virt-builder \
   --commands-from-file vm-config/0-init \
   --commands-from-file vm-config/1-packages \
   --commands-from-file vm-config/3-user \
-  --write "/home/user/configure-vm.conf:port_ipython=$port_ipython" \
-  --write "/home/user/configure-vm.conf:port_tensorboard=$port_tensorboard"
+  --write "/home/user/configure-vm.conf:port_jupyter=$port_jupyter" \
+  --write "/home/user/configure-vm.conf:notebook_dir=$notebook_dir" \
+  --write "/home/user/configure-vm.conf:port_tensorboard=$port_tensorboard" \
+  --write "/home/user/configure-vm.conf:tensorflow_dir=$tensorflow_dir"
   
 #  --firstboot-command 'poweroff'
 
