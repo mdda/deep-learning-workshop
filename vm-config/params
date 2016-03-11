@@ -4,8 +4,8 @@
 # This is the Fedora platform we want to build on.
 guest_type=fedora-23
 
-image_file=./vm-images/$guest_type.img
-
+image_file=./vm-images/${guest_type}.img
+vbox_disk=./vm-images/${guest_type}_fossasia.vmdk
 
 ## This is guest-specific configuration, and will be readable at /home/user/config/params
 

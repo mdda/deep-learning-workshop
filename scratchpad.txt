@@ -71,6 +71,11 @@ Python-dev vagrant configuration :
         *   This was how the Spark environment for the edX course was done...  Perhaps the vagrant(?) files exist?
 
 
+*  Explicit instructions for building fedora environment that runs self-contained:
+   *   https://rwmj.wordpress.com/2013/10/27/using-virt-builder-to-build-packages/
+   
+
+
 ## VirtualBox images
 
 VirtualBox images are pretty portable...
@@ -85,12 +90,9 @@ Background :
       *   https://kashyapc.fedorapeople.org/virt/virt-builder-usage.txt
 
 *  https://spin.atomicobject.com/2013/06/03/ovf-virtual-machine/
-  *  qemu-img – Part of the QEMU project, qemu-img is the holy grail, Swiss Army knife of disk image conversion. If you need to convert a disk image, check here first.
+  *  qemu-img – Part of the QEMU project, qemu-img is the holy grail, Swiss Army knife of disk image conversion.  If you need to convert a disk image, check here first.
      *  http://docs.openstack.org/image-guide/convert-images.html#qemu-img-convert-raw-qcow2-qed-vdi-vmdk-vhd
      
-*  Explicit instructions:
-   *   https://rwmj.wordpress.com/2013/10/27/using-virt-builder-to-build-packages/
-   
    
 *  Creating something bootable by VirtualBox
   *  https://github.com/devrandom/gitian-builder#virtualbox-1
@@ -104,7 +106,9 @@ Background :
      *  Sadly, the virt-convert tool no longer supports the -o vmx option. 
         *   It looks like you might have to just use the old version:
      *  Might want to state right at the beginning that this requires VMware installed and isn't any use if you don't!
-        *   ovftool is free, you just have to create a myVMware account. The registration for a MyVMWare account is also free, you just need a valid email address. Have you tried registering for a MyVMware account?
+        *   ovftool is free, you just have to create a myVMware account. 
+        *   The registration for a MyVMWare account is also free, you just need a valid email address. 
+        *   Have you tried registering for a MyVMware account?
   *  http://it-ovid.blogspot.sg/2012/10/virtual-box-headless-cheatsheet.html
      *  Import VMWare disk images
         *   VBoxManage convertfromraw --format vmdk --variant Standard <source>.vmdk <destination>.vdi
@@ -113,7 +117,8 @@ Background :
    *  [How To] Headless VirtualBox on Headless Server
       *   https://forums.virtualbox.org/viewtopic.php?f=7&t=60681
          *  Just a note: exporting a VM will change internal IDs for both the VM virtual motherboard and the disks.
-         *  This will typically break a grub/fstab config in Linux and possibly trigger again activation on Windows. Copying the VM directly really is the proper way of doing it.
+         *  This will typically break a grub/fstab config in Linux and possibly trigger again activation on Windows. 
+            *  Copying the VM directly really is the proper way of doing it.
          *  Exporting should be a last resort thing.
 
         
