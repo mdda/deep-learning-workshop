@@ -12,3 +12,8 @@ edit /etc/selinux/config:\
 ## command line...
 #root-password file:./root-password 
 #root-password file:./vm-config/root-password 
+
+
+# Don't want the firewall, since we'd like to see services inside the guest from the host...
+firstboot-command systemctl stop firewalld
+firstboot-command systemctl disable firewalld
