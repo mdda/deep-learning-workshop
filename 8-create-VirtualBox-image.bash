@@ -93,6 +93,8 @@ VBoxManage modifyvm ${vbox_name} --natpf1 "tensorboard,tcp,,${port_tensorboard},
 VBoxManage storagectl    ${vbox_name} --name "Sata Controller" --add sata --portcount 2
 VBoxManage storageattach ${vbox_name} --storagectl "Sata Controller" --port 0 --device 0 --type hdd --medium ${vbox_disk}
 
+rm -f ${vbox_appliance}
+
 VBoxManage export ${vbox_name} --output ${vbox_appliance} --ovf10 \
    --vsys 0 \
    --vendor "Red Cat Labs" --vendorurl "http://www.redcatlabs.com/" \
