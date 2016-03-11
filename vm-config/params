@@ -12,7 +12,7 @@ vbox_name=fossasia_mdda
 vbox_ostype=Fedora_64
 vbox_memory=2048
 
-vbox_appliance=${vbox_name}.ova
+vbox_appliance=./vm-images/${vbox_name}.ova
 
 
 

@@ -78,7 +78,7 @@ VBoxManage createvm --name ${vbox_name} --ostype ${vbox_ostype} --register
 
 VBoxManage modifyvm ${vbox_name} --memory ${vbox_memory} --acpi on \
        --natpf1     jupyter,tcp,,${port_jupyter},,${port_jupyter} \
-       --natpf2 tensroboard,tcp,,${port_tensorboard},,${port_tensorboard}
+       --natpf2 tensorboard,tcp,,${port_tensorboard},,${port_tensorboard}
                                           
 #       --nic1 bridged --bridgeadapter1 eth0  
 # [--natpf<1-N> [<rulename>],tcp|udp,[<hostip>],
@@ -94,5 +94,4 @@ VBoxManage export ${vbox_name} --output ${vbox_appliance} --ovf10 \
    --vendor "Red Cat Labs" --vendorurl "http://www.redcatlabs.com/" \
    --description "Deep Learning Workshop at FOSSASIA 2016 (Singapore)"
 
-## TODO :
-#VBoxManage unregistervm ${vbox_name}
+VBoxManage unregistervm ${vbox_name} --delete
