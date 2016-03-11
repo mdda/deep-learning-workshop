@@ -16,6 +16,17 @@ qemu-system-x86_64 \
   -cpu host \
   -m 2048 \
   -smp 4 \
-  -net nic -net user \
+  -net user,hostfwd=tcp::$port_jupyter-:$port_jupyter,hostfwd=tcp::$port_tensorboard-:$port_tensorboard  \
+  -net nic \
   -serial stdio \
   -drive file=$image_file,format=raw,if=virtio,cache=unsafe
+
+
+
+#  http://serverfault.com/questions/704294/qemu-multiple-port-forwarding
+
+
+# ,hostfwd=tcp::$port_tensorboard:$port_tensorboard
+#  -net user,hostfwd=tcp::$port_jupyter-:$port_jupyter 
+#  -net nic 
+#  -net user,hostfwd=tcp::$port_jupyter-:$port_jupyter
