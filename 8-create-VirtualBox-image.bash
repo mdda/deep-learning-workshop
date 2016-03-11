@@ -45,3 +45,17 @@ qemu-img convert -O vmdk ${image_file} ${vbox_disk}
 ##        Set up port forwarding on the network adapter
 ##        Export virtual machine appliance : OVA
 
+## The OVA created (which contains the vmdk, which contains the .img ...) :
+#ls -l vm-images/
+#-rw-r--r--. 1 andrewsm andrewsm 6442450944 Mar 11 22:05 fedora-23.img
+#-rw-r--r--. 1 andrewsm andrewsm 1945305088 Mar 11 23:13 fedora-23_fossasia.vmdk
+#-rw-------. 1 andrewsm andrewsm  817735168 Mar 11 23:15 fedora-23_fossasia.ova
+
+
+## After importing the OVA :
+# [andrewsm@square fossasia-2016_deep-learning]$ ls -l  /home/andrewsm/VirtualBoxVMs/fossasia_1/
+# total 1904036
+# -rw-------. 1 andrewsm andrewsm       7918 Mar 11 23:22 fossasia_1.vbox
+# -rw-------. 1 andrewsm andrewsm       7918 Mar 11 23:20 fossasia_1.vbox-prev
+# -rw-------. 1 andrewsm andrewsm 1950220288 Mar 11 23:22 fossasia-disk1.vmdk
+
