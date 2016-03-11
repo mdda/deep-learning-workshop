@@ -35,7 +35,9 @@ qemu-img info ${image_file}
 # http://softwarerecs.stackexchange.com/questions/30424/open-source-commandline-tool-to-create-ovf-and-ova-files
 #   "Oracle Virtual Box can export to OVF files and VBoxManage clonehd can convert VMDK to streaming VMDK amongst many other options."
 
-qemu-img convert -O vmdk ${image_file} ${vbox_disk}
+if [ ! -e "${vbox_disk}" ]; then
+  qemu-img convert -O vmdk ${image_file} ${vbox_disk}
+fi
 
 # ls -l vm-images/
 ## -rw-r--r--. 1 andrewsm andrewsm 6442450944 Mar 11 22:05 fedora-23.img
@@ -69,11 +71,14 @@ qemu-img convert -O vmdk ${image_file} ${vbox_disk}
 #VBoxManage storageattach [nameofVM] --storagectl "Sata Controller" --port 1 --device 0 --type dvddrive --medium  [/full/path/to/iso/file.iso]
 #VBoxManage modifyvm [nameofVM] --vrdeport 3001
 
-VBoxManage createvm --ostype linux --name ${vbox_name}
+## To find --ostype "" potentials: 
+# VBoxManage list ostypes
+
+VBoxManage createvm --name ${vbox_name} --ostype ${vbox_ostype} --register
 
 VBoxManage modifyvm ${vbox_name} --memory ${vbox_memory} --acpi on \
-       --natpf1 tcp,,${port_jupyter},,${port_jupyter} \
-       --natpf2 tcp,,${port_tensorboard},,${port_tensorboard}
+       --natpf1     jupyter,tcp,,${port_jupyter},,${port_jupyter} \
+       --natpf2 tensroboard,tcp,,${port_tensorboard},,${port_tensorboard}
                                           
 #       --nic1 bridged --bridgeadapter1 eth0  
 # [--natpf<1-N> [<rulename>],tcp|udp,[<hostip>],
@@ -85,5 +90,9 @@ VBoxManage storagectl ${vbox_name} --name "Sata Controller" --add sata
 VBoxManage storageattach ${vbox_name} --storagectl "Sata Controller" --port 0 --device 0 --type hdd --medium ${vbox_disk}
 
 VBoxManage export ${vbox_name} --output ${vbox_appliance} --ovf10 \
+   --vsys 0 \
    --vendor "Red Cat Labs" --vendorurl "http://www.redcatlabs.com/" \
    --description "Deep Learning Workshop at FOSSASIA 2016 (Singapore)"
+
+## TODO :
+#VBoxManage unregistervm ${vbox_name}
