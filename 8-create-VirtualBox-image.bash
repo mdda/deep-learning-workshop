@@ -35,4 +35,13 @@ qemu-img info ${image_file}
 # http://softwarerecs.stackexchange.com/questions/30424/open-source-commandline-tool-to-create-ovf-and-ova-files
 #   "Oracle Virtual Box can export to OVF files and VBoxManage clonehd can convert VMDK to streaming VMDK amongst many other options."
 
-qemu-img convert ${image_file} ${vbox_disk}
+qemu-img convert -O vmdk ${image_file} ${vbox_disk}
+
+# ls -l vm-images/
+## -rw-r--r--. 1 andrewsm andrewsm 6442450944 Mar 11 22:05 fedora-23.img
+## -rw-r--r--. 1 andrewsm andrewsm 1944453120 Mar 11 23:07 fedora-23_fossasia.vmdk
+
+## Next : Create a linux-fedora-x64 machine with that vmdk disk image
+##        Set up port forwarding on the network adapter
+##        Export virtual machine appliance : OVA
+
