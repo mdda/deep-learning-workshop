@@ -258,6 +258,7 @@ More generally
        *  http://blog.keras.io/keras-now-running-on-tensorflow.html
     *  and :: https://github.com/fchollet/keras/blob/master/examples/deep_dream.py
 
+
   Image Analogies using Neural Networks (github.com) :: Keras
     *  HN : https://news.ycombinator.com/item?id=11234793
        *   Paper : https://github.com/awentzonline/image-analogies/
@@ -266,6 +267,13 @@ More generally
     *  http://deepart.io/
        *   Our algorithm uses a neural network based on the 19-layer VGG network by Karen Simonyan and Andrew Zisserman.
        *   University of Tübingen has a pending patent application for the Neural Art technology.
+
+    *   There's also this: https://http://deepart.io/ - Not sure if it's the same thing but makes interesting pictures.
+       *   According to their about page, that site is using this algorithm http://arxiv.org/pdf/1508.06576.pdf 
+           *   whereas neural-image-analogies is a combination of http://www.mrl.nyu.edu/projects/image-analogies/index.html and http://arxiv.org/pdf/1601.04589v1.pdf
+       *   Basically you can do a few other things with image analogies, such as texture-by-numbers, that the neural style algo doesn't cover. 
+       *   In addition, the matching and blending covered in the Li and Wand paper provides more accurate style details.
+
 
   Turn your two-bit doodles into fine artworks with deep neural networks
     *  https://news.ycombinator.com/item?id=11257566
