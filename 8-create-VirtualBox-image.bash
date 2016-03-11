@@ -79,9 +79,9 @@ fi
 
 VBoxManage createvm --name ${vbox_name} --ostype ${vbox_ostype} --register
 
-VBoxManage modifyvm ${vbox_name} --memory ${vbox_memory} --cpus ${vbox_cpus} \
-       --natpf1     jupyter,tcp,,${port_jupyter},,${port_jupyter} \
-       --natpf2 tensorboard,tcp,,${port_tensorboard},,${port_tensorboard}
+VBoxManage modifyvm ${vbox_name} --memory ${vbox_memory} --cpus ${vbox_cpus}
+VBoxManage modifyvm ${vbox_name} --natpf1 "jupyter,tcp,,${port_jupyter},,${port_jupyter}"
+VBoxManage modifyvm ${vbox_name} --natpf1 "tensorboard,tcp,,${port_tensorboard},,${port_tensorboard}"
                                           
 # --acpi on                                          
 #       --nic1 bridged --bridgeadapter1 eth0  
@@ -90,7 +90,7 @@ VBoxManage modifyvm ${vbox_name} --memory ${vbox_memory} --cpus ${vbox_cpus} \
 
 #--boot1 dvd  --vrdeport 3389
 
-VBoxManage storagectl ${vbox_name} --name "Sata Controller" --add sata
+VBoxManage storagectl    ${vbox_name} --name "Sata Controller" --add sata --portcount 2
 VBoxManage storageattach ${vbox_name} --storagectl "Sata Controller" --port 0 --device 0 --type hdd --medium ${vbox_disk}
 
 VBoxManage export ${vbox_name} --output ${vbox_appliance} --ovf10 \
