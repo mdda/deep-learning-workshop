@@ -71,15 +71,19 @@ fi
 #VBoxManage storageattach [nameofVM] --storagectl "Sata Controller" --port 1 --device 0 --type dvddrive --medium  [/full/path/to/iso/file.iso]
 #VBoxManage modifyvm [nameofVM] --vrdeport 3001
 
+## Also good : http://networking.ringofsaturn.com/Unix/Create_Virtual_Machine_VBoxManage.php
+
+
 ## To find --ostype "" potentials: 
 # VBoxManage list ostypes
 
 VBoxManage createvm --name ${vbox_name} --ostype ${vbox_ostype} --register
 
-VBoxManage modifyvm ${vbox_name} --memory ${vbox_memory} --acpi on \
+VBoxManage modifyvm ${vbox_name} --memory ${vbox_memory} --cpus ${vbox_cpus} \
        --natpf1     jupyter,tcp,,${port_jupyter},,${port_jupyter} \
        --natpf2 tensorboard,tcp,,${port_tensorboard},,${port_tensorboard}
                                           
+# --acpi on                                          
 #       --nic1 bridged --bridgeadapter1 eth0  
 # [--natpf<1-N> [<rulename>],tcp|udp,[<hostip>],
 #        <hostport>,[<guestip>],<guestport>]

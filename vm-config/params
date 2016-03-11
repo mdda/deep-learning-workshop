@@ -11,6 +11,7 @@ vbox_disk=./vm-images/${guest_type}_fossasia.vmdk
 vbox_name=fossasia_mdda
 vbox_ostype=Fedora_64
 vbox_memory=2048
+vbox_cpus=4
 
 vbox_appliance=./vm-images/${vbox_name}.ova
 
