@@ -46,16 +46,44 @@ qemu-img convert -O vmdk ${image_file} ${vbox_disk}
 ##        Export virtual machine appliance : OVA
 
 ## The OVA created (which contains the vmdk, which contains the .img ...) :
-#ls -l vm-images/
-#-rw-r--r--. 1 andrewsm andrewsm 6442450944 Mar 11 22:05 fedora-23.img
-#-rw-r--r--. 1 andrewsm andrewsm 1945305088 Mar 11 23:13 fedora-23_fossasia.vmdk
-#-rw-------. 1 andrewsm andrewsm  817735168 Mar 11 23:15 fedora-23_fossasia.ova
+# ls -l vm-images/
+# -rw-r--r--. 1 andrewsm andrewsm 6442450944 Mar 11 22:05 fedora-23.img
+# -rw-r--r--. 1 andrewsm andrewsm 1945305088 Mar 11 23:13 fedora-23_fossasia.vmdk
+# -rw-------. 1 andrewsm andrewsm  817735168 Mar 11 23:15 fedora-23_fossasia.ova
 
 
 ## After importing the OVA :
-# [andrewsm@square fossasia-2016_deep-learning]$ ls -l  /home/andrewsm/VirtualBoxVMs/fossasia_1/
+# ls -l  /home/andrewsm/VirtualBoxVMs/fossasia_1/
 # total 1904036
 # -rw-------. 1 andrewsm andrewsm       7918 Mar 11 23:22 fossasia_1.vbox
 # -rw-------. 1 andrewsm andrewsm       7918 Mar 11 23:20 fossasia_1.vbox-prev
 # -rw-------. 1 andrewsm andrewsm 1950220288 Mar 11 23:22 fossasia-disk1.vmdk
 
+
+## http://www.linuxhomeserverguide.com/server-config/CreateVM.php
+#VBoxManage createvm --name [nameofVM] --register
+#VBoxManage modifyvm [nameofVM] --memory 1024 --acpi on --boot1 dvd --nic1 bridged --bridgeadapter1 eth0
+#VBoxManage createhd --filename [nameofdisk].vdi --size 10000
+#VBoxManage storagectl [nameofVM] --name "Sata Controller" --add sata
+#VBoxManage storageattach [nameofVM] --storagectl "Sata Controller" --port 0 --device 0 --type hdd --medium [nameofdisk].vdi
+#VBoxManage storageattach [nameofVM] --storagectl "Sata Controller" --port 1 --device 0 --type dvddrive --medium  [/full/path/to/iso/file.iso]
+#VBoxManage modifyvm [nameofVM] --vrdeport 3001
+
+VBoxManage createvm --ostype linux --name ${vbox_name}
+
+VBoxManage modifyvm ${vbox_name} --memory ${vbox_memory} --acpi on \
+       --natpf1 tcp,,${port_jupyter},,${port_jupyter} \
+       --natpf2 tcp,,${port_tensorboard},,${port_tensorboard}
+                                          
+#       --nic1 bridged --bridgeadapter1 eth0  
+# [--natpf<1-N> [<rulename>],tcp|udp,[<hostip>],
+#        <hostport>,[<guestip>],<guestport>]
+
+#--boot1 dvd  --vrdeport 3389
+
+VBoxManage storagectl ${vbox_name} --name "Sata Controller" --add sata
+VBoxManage storageattach ${vbox_name} --storagectl "Sata Controller" --port 0 --device 0 --type hdd --medium ${vbox_disk}
+
+VBoxManage export ${vbox_name} --output ${vbox_appliance} --ovf10 \
+   --vendor "Red Cat Labs" --vendorurl "http://www.redcatlabs.com/" \
+   --description "Deep Learning Workshop at FOSSASIA 2016 (Singapore)"
