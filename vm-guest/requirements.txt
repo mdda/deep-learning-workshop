@@ -7,10 +7,16 @@
 
 #theano>=0.7.0
 
+## This bundles theano in... (14.7Mb)
+##   It doesn't matter that it's the PyPI version, since we're going to be using the TensorFlow backend
+keras>=0.3.2 
 
-# Plotting of graphs
-bokeh>=0.11.0
-jsonschema
+# Plotting of graphs (dynamic, beautiful)
+#bokeh>=0.11.0
+#jsonschema
+
+# Plotting of graphs (simpler, but beautiful too)
+#seaborn
 
 # iPython Notebook 
 #ipython>=3.1.0
@@ -20,7 +26,7 @@ jupyter
 
 
 # Visualization of theano graphs
-pydot 
+#pydot 
 
 ## This is for Python word2vec
 #gensim
@@ -28,3 +34,5 @@ pydot
 ## This is a hd5 pickler (fast)
 #hickle
 
+## This is a Pythonic interface to the HDF5 binary data format (used for VGG16 weights reading)
+h5py>=2.5.0

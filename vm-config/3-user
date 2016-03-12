@@ -3,6 +3,8 @@
 mkdir /home/user
 mkdir /home/user/config
 
+mkdir /home/user/.keras
+
 # This is a configuration script to run when first booted
 # it makes use of /home/user/config/params 
 upload vm-guest/firstboot.bash:/home/user/config/
@@ -36,6 +38,9 @@ firstboot-command chmod 744 /home/user/run-tensorboard.bash
 
 # And the jupyter notebooks
 copy-in notebooks:/home/user/
+
+# And the keras configuration (NB: tensorflow)
+upload vm-config/keras.json:/home/user/.keras/
 
 
 # And the pre-trained NN data ::

@@ -1,5 +1,5 @@
 
-# Fedora system packages are much faster to install than build into the virtualenv
+# Fedora system packages are much faster to install from RPMs (pre-built binaries) than build/compile into a virtualenv
 
 # virtualenv installation
 install python,python-virtualenv,python-pip
@@ -14,8 +14,8 @@ install gcc,gcc-c++,python-devel,redhat-rpm-config
 # Super-useful
 install scipy,numpy,python-pandas,Cython
 
-# Good for iPython
-install pydot,libyaml 
+# Good for iPython / Jupyter, and also hdfs support:
+install pydot,libyaml,hdf5-devel
 
 
 # And add the systemd service definition files

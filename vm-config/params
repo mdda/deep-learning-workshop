@@ -24,3 +24,15 @@ port_tensorboard=8081
 
 notebook_dir=/home/user/notebooks
 tensorflow_dir=/home/user/tensorflow.logdir
+
+
+# Keras should use tensorflow as backend : This is now uploaded in the config file './vm-guest/keras.json'
+
+#KERAS_BACKEND=tensorflow
+#export KERAS_BACKEND
+
+# Or change ~/.keras/keras.json from:
+#   {"epsilon": 1e-07, "floatx": "float32", "backend": "theano"}
+# to:
+#   {"epsilon": 1e-07, "floatx": "float32", "backend": "tensorflow"}
+

@@ -88,31 +88,55 @@ More generally
   Google Inception network notebooks :
     https://github.com/google/inception
     
-
   Keras on TensorFlow (descriptions)
     *  http://blog.keras.io/how-convolutional-neural-networks-see-the-world.html
     *  TensorFlow backend for Keras is pretty functional : 
        *  http://blog.keras.io/keras-now-running-on-tensorflow.html
 
+  Keras MNIST:
+    *  98.40 : https://github.com/fchollet/keras/blob/master/examples/mnist_mlp.py  
+    *  99.25 : https://github.com/fchollet/keras/blob/master/examples/mnist_cnn.py
+
+  Keras MNIST transfer learning :
+    *  Learn features on {0,1,2,3,4} and then fine tune final dense layers against {5,6,7,8,9} 
+       *  https://github.com/fchollet/keras/blob/master/examples/mnist_transfer_cnn.py
+
+  Keras may have problems importing VGG16 into TensorFlow:
+    *  https://github.com/fchollet/keras/issues/1135
+
+  Show VGG16 layers :
+    *  https://github.com/fchollet/keras/blob/master/examples/conv_filter_visualization.py
+
 
   Something akin to DeepDream using Keras on TensorFlow :: Keras
     *  https://github.com/fchollet/keras/blob/master/examples/deep_dream.py
 
+  Neural Style transfer :
+    *  https://github.com/fchollet/keras/blob/master/examples/neural_style_transfer.py  
   
+  MAY BE PROBLEMATIC :  Code in C++
+    How to Classify Images with TensorFlow 
+      *  http://googleresearch.blogspot.sg/2015/12/how-to-classify-images-with-tensorflow.html
+        *  C++ Source :: https://github.com/tensorflow/tensorflow/tree/master/tensorflow/examples/label_image
+
+
+  How to Classify Images with TensorFlow (Python - but may be memory intensive, see below)
+     *  Python : https://github.com/tensorflow/models/tree/master/inception
+       *  Includes their library 'tf-slim'
+       *  Also : https://github.com/tensorflow/models/blob/master/inception/inception/inception_eval.py
+
   
-  How to Classify Images with TensorFlow 
-    *  http://googleresearch.blogspot.sg/2015/12/how-to-classify-images-with-tensorflow.html
-      *  C++ Source :: https://github.com/tensorflow/tensorflow/tree/master/tensorflow/examples/label_image
-  
-  Train your own image classifier with Inception in TensorFlow 
-    *  http://googleresearch.blogspot.sg/2016/03/train-your-own-image-classifier-with.html
-       *  Python : https://github.com/tensorflow/models/tree/master/inception
-         *  Includes their library 'tf-slim'
-         *  Also : https://github.com/tensorflow/models/blob/master/inception/inception/inception_eval.py
-    *  Note that the entire model architecture is predicated on a 299x299 image, 
-       *  thus if you wish to change the input image size, then you may need to redesign the entire model architecture.
-    *  We targeted a desktop with 128GB of CPU ram connected to 8 NVIDIA Tesla K40 GPU cards 
-       *  but we have run this on desktops with 32GB of CPU ram and 1 NVIDIA Tesla K40. 
+  MAY BE PROBLEMATIC :  Involves retraining Inception
+    Train your own image classifier with Inception in TensorFlow 
+      *  http://googleresearch.blogspot.sg/2016/03/train-your-own-image-classifier-with.html
+         *  Python : https://github.com/tensorflow/models/tree/master/inception
+           *  Includes their library 'tf-slim'
+           *  Also : https://github.com/tensorflow/models/blob/master/inception/inception/inception_eval.py
+      *  Note that the entire model architecture is predicated on a 299x299 image, 
+         *  thus if you wish to change the input image size, then you may need to redesign the entire model architecture.
+      *  We have tuned the model to employ about ~40GB of CPU memory. Thus, having access to 64 or 128 GB of CPU memory would be ideal.
+      *  We targeted a desktop with 128GB of CPU ram connected to 8 NVIDIA Tesla K40 GPU cards 
+         *  but we have run this on desktops with 32GB of CPU ram and 1 NVIDIA Tesla K40. 
     
     
 
