@@ -7,16 +7,21 @@ This repo will include the source to build a VM to be used for the Workshop part
 
 The VM itself will include (subject to change) : 
 
-* iPython
+* Jupyter (iPython's successor)
   * Running as a server available to the host machine's browser
 * Data
   * MNIST training and test sets
   * Trained model from one of the 'big' ImageNet winners
 * Tool chain (mostly Python-oriented)
-  * Theano / Lasagne
-  * Tensorflow
-  * (probably not Caffe)
+  * Choice 1 : Tensorflow / Keras
+  * Fallback : Theano / Lasagne / Keras (not Caffe)
 
+
+### Working 
+
+
+
+### Still TODO 
 
 
 

@@ -1,27 +1,29 @@
-##  Workshop of 1 or 2 hours  
-  Very tempting, except for the planning/time commitment
+##  Workshop of 2 hours  
   Michal loves the idea 
     and also thinks that DeepDream is a really interesting topic
   Thumbs up from organiser on DeepLearning idea
     Not too worried about track selection, etc - all a work-in-progress
 
 
-### Foundation : Python (or iPython)
+### Foundation : Python (based in Jupyter)
 
 Potential Toolsets : 
 
-*  TensorFlow?  (would require more work)
-*  Theano + Lasagne (standing on head)
+*  TensorFlow + Keras?  (requires more work)
+*  Theano + Lasagne (standing on head, but doesn't have TensorBoard, which would be sexy)
 
 Cannot rely on people having appropriate GPU installation (TensorFlow is particularly fussy version-wise).
 Therefore, must resign ourselves to CPU-based training.
+
+Decision : Run VirtualBox VMs
+
+
 
 
 
 ## How to implement workshop practicals
 
-
-Running iPython 
+Running iPython / Jupyter
 
 *  http://blog.ouseful.info/2014/12/12/seven-ways-of-running-ipython-notebooks/
    *  http://blog.ouseful.info/2015/05/18/kiteflying-around-containers-a-better-alternative-to-course-vms/
@@ -121,7 +123,10 @@ Background :
             *  Copying the VM directly really is the proper way of doing it.
          *  Exporting should be a last resort thing.
 
-        
+
+
+
+
   
 Successful installers could also open up their 'server' to access via WiFi, without risk :
 
