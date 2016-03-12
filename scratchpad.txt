@@ -5,6 +5,209 @@
     Not too worried about track selection, etc - all a work-in-progress
 
 
+    
+### Topics within Deep Learning     
+#### ConvNets:
+
+  Pros 
+    More materials available
+    Different angles : Art, Commerce
+    Can do some simple 'real' training (MNIST)
+    Can also use pre-built model (ImageNet / Inception-3)
+  Cons
+    'Simple stuff'
+    Overlap with potential customers?
+    Google DeepDreaming may not be ready : CHECK THIS
+  Ideas for progression :
+    Stanford Seminar - Oriol Vinyals of Google
+      https://youtu.be/UAq961jQjYg
+
+#### RNNs / NLP:
+
+  Pros 
+    More similar to current work
+  Cons
+    Difficult to set up satisfying motivation / experiments
+
+#### Reinforcement Learning:
+
+  Pros 
+    Go = VerySexy
+    
+  Cons
+    Not so clearly 'deep learning'
+    Very Difficult to set up satisfying motivation / experiments
+    Someone else might do it...
+
+
+
+
+
+More generally    
+
+  JS in the browser :
+    Pros
+      CPU-only
+      Single-threaded
+      Avoids thumb-drive distribution
+    Cons
+      Not Python
+      No GPU or multi-core - though this is (basically) same as with VM or docker
+      Not iPython 
+    Code
+      https://github.com/karpathy/convnetjs
+      https://github.com/karpathy/reinforcejs
+        There is a new paper in regards to deep reinforcements learning in continous spaces by deepmind. 
+        Continuous control with deep reinforcements learning. Is there plans to add this in code form. Many thanks Andrew.
+
+      http://cs.stanford.edu/people/karpathy/convnetjs/demo/image_regression.html
+        Cat picture reconstruction
+
+      http://cs.stanford.edu/people/karpathy/convnetjs/demo/mnist.html      
+        MNIST
+
+
+
+  iPython as a GUI
+    https://github.com/donnemartin/data-science-ipython-notebooks
+    Deep Dream (Caffe)
+      https://github.com/donnemartin/data-science-ipython-notebooks/blob/master/deep-learning/deep-dream/dream.ipynb
+        http://googleresearch.blogspot.sg/2015/07/deepdream-code-example-for-visualizing.html
+      http://www.pyimagesearch.com/2015/07/06/bat-country-an-extendible-lightweight-python-package-for-deep-dreaming-with-caffe-and-convolutional-neural-networks/#show_and_tell  
+        https://github.com/jrosebr1/bat-country/blob/master/demo.py
+
+
+  Tensorflow in iPython notebook :
+    https://github.com/pkmital/tensorflow_tutorials
+    MNIST:
+      https://github.com/pkmital/tensorflow_tutorials/blob/master/notebooks/05_basic_convnet.ipynb
+    TensorFlow
+      https://github.com/donnemartin/data-science-ipython-notebooks/blob/master/deep-learning/tensor-flow-exercises/5_word2vec.ipynb
+
+
+  Google Inception network notebooks :
+    https://github.com/google/inception
+    
+
+  Keras on TensorFlow (descriptions)
+    *  http://blog.keras.io/how-convolutional-neural-networks-see-the-world.html
+    *  TensorFlow backend for Keras is pretty functional : 
+       *  http://blog.keras.io/keras-now-running-on-tensorflow.html
+
+
+  Something akin to DeepDream using Keras on TensorFlow :: Keras
+    *  https://github.com/fchollet/keras/blob/master/examples/deep_dream.py
+
+  
+  
+  How to Classify Images with TensorFlow 
+    *  http://googleresearch.blogspot.sg/2015/12/how-to-classify-images-with-tensorflow.html
+      *  C++ Source :: https://github.com/tensorflow/tensorflow/tree/master/tensorflow/examples/label_image
+  
+  Train your own image classifier with Inception in TensorFlow 
+    *  http://googleresearch.blogspot.sg/2016/03/train-your-own-image-classifier-with.html
+       *  Python : https://github.com/tensorflow/models/tree/master/inception
+         *  Includes their library 'tf-slim'
+         *  Also : https://github.com/tensorflow/models/blob/master/inception/inception/inception_eval.py
+    *  Note that the entire model architecture is predicated on a 299x299 image, 
+       *  thus if you wish to change the input image size, then you may need to redesign the entire model architecture.
+    *  We targeted a desktop with 128GB of CPU ram connected to 8 NVIDIA Tesla K40 GPU cards 
+       *  but we have run this on desktops with 32GB of CPU ram and 1 NVIDIA Tesla K40. 
+    
+    
+
+  MAY BE PROBLEMATIC :
+    Image Analogies using Neural Networks (github.com) :: Keras
+      *  HN : https://news.ycombinator.com/item?id=11234793
+         *   Paper : https://github.com/awentzonline/image-analogies/
+      *  Similiar code : https://github.com/fchollet/keras/blob/master/examples/neural_style_transfer.py
+      *  http://ostagram.ru/static_pages/lenta?last_days=30
+      *  http://deepart.io/
+         *   Our algorithm uses a neural network based on the 19-layer VGG network by Karen Simonyan and Andrew Zisserman.
+         *   University of Tübingen has a pending patent application for the Neural Art technology.
+
+      *   There's also this: https://http://deepart.io/ - Not sure if it's the same thing but makes interesting pictures.
+         *   According to their about page, that site is using this algorithm http://arxiv.org/pdf/1508.06576.pdf 
+             *   whereas neural-image-analogies is a combination of http://www.mrl.nyu.edu/projects/image-analogies/index.html and http://arxiv.org/pdf/1601.04589v1.pdf
+         *   Basically you can do a few other things with image analogies, such as texture-by-numbers, that the neural style algo doesn't cover. 
+         *   In addition, the matching and blending covered in the Li and Wand paper provides more accurate style details.
+
+
+      *  Problem with image patches in image-analogies :: 
+         *   The current code uses images2neibs from theano to generate the image patches.
+             *   https://github.com/awentzonline/image-analogies/issues/3
+         *   This could be hugely simplified if patch_size==1
+
+  MAY BE PROBLEMATIC :
+    Turn your two-bit doodles into fine artworks with deep neural networks
+      *  https://news.ycombinator.com/item?id=11257566
+         *  https://github.com/alexjc/neural-doodle
+      *  For details, the research paper is linked on the GitHub page: http://arxiv.org/abs/1603.01768
+      *  For a video and higher-level overview see my article from yesterday: http://nucl.ai/blog/neural-doodles/
+      *  It's a pre-trained network on image classification dataset from 2014 called ImageNet. 
+         *  The network is called VGG, paper is here: http://arxiv.org/abs/1409.1556
+      *  There's no additional training apart from that. 
+         *  The neural network is used to extract patterns (grain/texture/style) 
+         *  and a separate optimization tries to reproduce them as appropriate.
+
+      *  Also uses theano-only function:
+         *  patches = theano.tensor.nnet.neighbours.images2neibs(f, (size, size), (stride, stride), mode='valid')
+
+            
+  neural-style :: Torch
+    *  https://github.com/jcjohnson/neural-style
+
+
+  AlphaGo : reimplementation in Kerase / theano (/ tensorflow?)
+    *  https://github.com/Rochester-NRT/AlphaGo  
+
+
+Models
+
+  Model Zoo ideas:
+    https://groups.google.com/a/tensorflow.org/forum/m/#!topic/discuss/BKOiAgKDxqM
+    But decent ImageNet model is ~60Mb => need ThumbDrives
+  Inception 3 :
+    https://www.tensorflow.org/versions/master/tutorials/image_recognition/index.html
+  Inception 3 / Deep Dream = Coming soon (bottom of page) :
+    https://www.tensorflow.org/versions/master/tutorials/index.html
+  Caffe :
+    http://caffe.berkeleyvision.org/gathered/examples/imagenet.html
+  Lasagne :
+    https://github.com/Lasagne/Recipes/tree/master/modelzoo
+
+  Microsoft Deep Residual Networks (with models, and Lasagne version link)
+    https://github.com/KaimingHe/deep-residual-networks
+    https://github.com/Lasagne/Recipes/tree/master/papers/deep_residual_learning
+  
+
+  Using Caffe models in Lasagne
+    https://github.com/Lasagne/Lasagne/issues/157
+
+
+Other courses
+
+  Udacity course from Google 
+    https://www.udacity.com/course/deep-learning--ud730
+      Lesson 1: From Machine Learning to Deep Learning
+      Lesson 2: Deep Neural Networks
+      Lesson 3: Convolutional Neural Networks
+      Lesson 4: Deep Models for Text and Sequences
+
+  
+  Other peoples'
+    http://www.slideshare.net/roelofp/deep-learning-as-a-catdog-detector
+
+
+
+
+
+
+
+
+
+
+
 ### Foundation : Python (based in Jupyter)
 
 Potential Toolsets : 
@@ -140,41 +343,6 @@ GPU?
    *  https://github.com/BVLC/caffe/issues/2749
   
 
-    
-### Topics within Deep Learning     
-#### ConvNets:
-
-  Pros 
-    More materials available
-    Different angles : Art, Commerce
-    Can do some simple 'real' training (MNIST)
-    Can also use pre-built model (ImageNet / Inception-3)
-  Cons
-    'Simple stuff'
-    Overlap with potential customers?
-    Google DeepDreaming may not be ready : CHECK THIS
-  Ideas for progression :
-    Stanford Seminar - Oriol Vinyals of Google
-      https://youtu.be/UAq961jQjYg
-
-#### RNNs / NLP:
-
-  Pros 
-    More similar to current work
-  Cons
-    Difficult to set up satisfying motivation / experiments
-
-#### Reinforcement Learning:
-
-  Pros 
-    Go=Sexy
-    
-  Cons
-    Not so clearly 'deep learning'
-    Very Difficult to set up satisfying motivation / experiments
-    Very Difficult to set up satisfying motivation / experiments
-    Someone else might do it...
-
 
 ## What environment to use?  
 
@@ -220,121 +388,6 @@ docker images?
 USB Live environments?  
 
 
-More generally    
-
-  iPython as a GUI
-    https://github.com/donnemartin/data-science-ipython-notebooks
-    Deep Dream (Caffe)
-      https://github.com/donnemartin/data-science-ipython-notebooks/blob/master/deep-learning/deep-dream/dream.ipynb
-        http://googleresearch.blogspot.sg/2015/07/deepdream-code-example-for-visualizing.html
-      http://www.pyimagesearch.com/2015/07/06/bat-country-an-extendible-lightweight-python-package-for-deep-dreaming-with-caffe-and-convolutional-neural-networks/#show_and_tell  
-        https://github.com/jrosebr1/bat-country/blob/master/demo.py
-    TensorFlow
-      https://github.com/donnemartin/data-science-ipython-notebooks/blob/master/deep-learning/tensor-flow-exercises/5_word2vec.ipynb
-
-  JS in the browser :
-    Pros
-      CPU-only
-      Single-threaded
-      Avoids thumb-drive distribution
-    Cons
-      Not Python
-      No GPU or multi-core - though this is (basically) same as with VM or docker
-      Not iPython 
-    Code
-      https://github.com/karpathy/convnetjs
-      https://github.com/karpathy/reinforcejs
-        There is a new paper in regards to deep reinforcements learning in continous spaces by deepmind. 
-        Continuous control with deep reinforcements learning. Is there plans to add this in code form. Many thanks Andrew.
-
-      http://cs.stanford.edu/people/karpathy/convnetjs/demo/image_regression.html
-        Cat picture reconstruction
-
-      http://cs.stanford.edu/people/karpathy/convnetjs/demo/mnist.html      
-        MNIST
-
-  Tensorflow in iPython notebook :
-    https://github.com/pkmital/tensorflow_tutorials
-    MNIST:
-      https://github.com/pkmital/tensorflow_tutorials/blob/master/notebooks/05_basic_convnet.ipynb
-
-  Google Inception network notebooks :
-    https://github.com/google/inception
-    
-
-  Something akin to DeepDream using Keras on TensorFlow :: Keras
-    *  http://blog.keras.io/how-convolutional-neural-networks-see-the-world.html
-    *  TensorFlow backend for Keras is pretty functional : 
-       *  http://blog.keras.io/keras-now-running-on-tensorflow.html
-    *  and :: https://github.com/fchollet/keras/blob/master/examples/deep_dream.py
-
-
-  Image Analogies using Neural Networks (github.com) :: Keras
-    *  HN : https://news.ycombinator.com/item?id=11234793
-       *   Paper : https://github.com/awentzonline/image-analogies/
-    *  Similiar code : https://github.com/fchollet/keras/blob/master/examples/neural_style_transfer.py
-    *  http://ostagram.ru/static_pages/lenta?last_days=30
-    *  http://deepart.io/
-       *   Our algorithm uses a neural network based on the 19-layer VGG network by Karen Simonyan and Andrew Zisserman.
-       *   University of Tübingen has a pending patent application for the Neural Art technology.
-
-    *   There's also this: https://http://deepart.io/ - Not sure if it's the same thing but makes interesting pictures.
-       *   According to their about page, that site is using this algorithm http://arxiv.org/pdf/1508.06576.pdf 
-           *   whereas neural-image-analogies is a combination of http://www.mrl.nyu.edu/projects/image-analogies/index.html and http://arxiv.org/pdf/1601.04589v1.pdf
-       *   Basically you can do a few other things with image analogies, such as texture-by-numbers, that the neural style algo doesn't cover. 
-       *   In addition, the matching and blending covered in the Li and Wand paper provides more accurate style details.
-
-
-  Turn your two-bit doodles into fine artworks with deep neural networks
-    *  https://news.ycombinator.com/item?id=11257566
-       *  https://github.com/alexjc/neural-doodle
-    *  For details, the research paper is linked on the GitHub page: http://arxiv.org/abs/1603.01768
-    *  For a video and higher-level overview see my article from yesterday: http://nucl.ai/blog/neural-doodles/
-    *  It's a pre-trained network on image classification dataset from 2014 called ImageNet. The network is called VGG, paper is here: http://arxiv.org/abs/1409.1556
-    *  There's no additional training apart from that. 
-      *  The neural network is used to extract patterns (grain/texture/style) 
-      *  and a separate optimization tries to reproduce them as appropriate.
-
-
-  neural-style :: Torch
-    *  https://github.com/jcjohnson/neural-style
-
-
-Models
-
-  Model Zoo ideas:
-    https://groups.google.com/a/tensorflow.org/forum/m/#!topic/discuss/BKOiAgKDxqM
-    But decent ImageNet model is ~60Mb => need ThumbDrives
-  Inception 3 :
-    https://www.tensorflow.org/versions/master/tutorials/image_recognition/index.html
-  Inception 3 / Deep Dream = Coming soon (bottom of page) :
-    https://www.tensorflow.org/versions/master/tutorials/index.html
-  Caffe :
-    http://caffe.berkeleyvision.org/gathered/examples/imagenet.html
-  Lasagne :
-    https://github.com/Lasagne/Recipes/tree/master/modelzoo
-
-  Microsoft Deep Residual Networks (with models, and Lasagne version link)
-    https://github.com/KaimingHe/deep-residual-networks
-    https://github.com/Lasagne/Recipes/tree/master/papers/deep_residual_learning
-  
-
-  Using Caffe models in Lasagne
-    https://github.com/Lasagne/Lasagne/issues/157
-
-
-Other courses
-
-  Udacity course from Google 
-    https://www.udacity.com/course/deep-learning--ud730
-      Lesson 1: From Machine Learning to Deep Learning
-      Lesson 2: Deep Neural Networks
-      Lesson 3: Convolutional Neural Networks
-      Lesson 4: Deep Models for Text and Sequences
-
-  
-  Other peoples'
-    http://www.slideshare.net/roelofp/deep-learning-as-a-catdog-detector
     
 
 Squid caching of RPM downloads?      
