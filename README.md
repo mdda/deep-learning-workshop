@@ -5,13 +5,14 @@
 
 This repo will include the source to build a VM to be used for the Workshop participants.
 
-The VM itself will include (subject to change) : 
+The VM itself will include (may change) : 
 
 * Jupyter (iPython's successor)
   * Running as a server available to the host machine's browser
 * Data
   * MNIST training and test sets
   * Trained model from one of the 'big' ImageNet winners
+  * Data directory will live inside image (heavy reliance on people being able to do VirtualBox)
 * Tool chain (mostly Python-oriented)
   * Choice 1 : Tensorflow / Keras
   * Fallback : Theano / Lasagne / Keras (not Caffe)
@@ -19,8 +20,10 @@ The VM itself will include (subject to change) :
 
 ### Working 
 
-*  Create working Fedora 23 installation inside VM
-*  Transform the VM into a VirtualBox appliance
+*  Scripts to create working Fedora 23 installation inside VM
+   *  Has working ```virtualenv``` with ```Jupyter``` and ```TensorFlow / TensorBoard```
+*  Script to transform the VM into a VirtualBox appliance
+   *  Exposing ```Jupyter``` and ```TensorBoard``` to host machine
 
 *  Tested out Convnet.js for :
    *  Demonstration of gradient descent
@@ -30,11 +33,6 @@ The VM itself will include (subject to change) :
 ### Still TODO 
 
 *  Buy thumb-drives for actual workshop
-*  Create rsync-able image :
-   *  VirtualBox appliance image
-   *  VirtualBox binaries for several likely platforms
-
-*  Data directory to live inside image (heavy reliance on people being able to do VirtualBox)
 
 *  Test workshop notebooks
    *  Tensorflow / Keras MNIST
@@ -42,6 +40,11 @@ The VM itself will include (subject to change) :
       +  Deep dream
       +  Style transfer
    *  Tensorflow "commercial application" : transfer learning
+
+*  Create rsync-able image containing :
+   *  VirtualBox appliance image
+      +  including data sets and pre-trained ImageNet model
+   *  VirtualBox binaries for several likely platforms
 
    
 
