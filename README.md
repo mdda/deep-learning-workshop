@@ -19,11 +19,31 @@ The VM itself will include (subject to change) :
 
 ### Working 
 
+*  Create working Fedora 23 installation inside VM
+*  Transform the VM into a VirtualBox appliance
+
+*  Tested out Convnet.js for :
+   *  Demonstration of gradient descent
+   *  Demonstration of MNIST learning
 
 
 ### Still TODO 
 
+*  Buy thumb-drives for actual workshop
+*  Create rsync-able image :
+   *  VirtualBox appliance image
+   *  VirtualBox binaries for several likely platforms
 
+*  Data directory to live inside image (heavy reliance on people being able to do VirtualBox)
+
+*  Test workshop notebooks
+   *  Tensorflow / Keras MNIST
+   *  Tensorflow / Keras image synthesis
+      +  Deep dream
+      +  Style transfer
+   *  Tensorflow "commercial application" : transfer learning
+
+   
 
 ### Notes : Git-friendly iPython Notebooks
 
