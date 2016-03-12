@@ -18,7 +18,9 @@ The VM itself will include (may change) :
   * Fallback : Theano / Lasagne / Keras (not Caffe)
 
 
-### Working 
+### Current Status
+
+#### Working 
 
 *  Scripts to create working Fedora 23 installation inside VM
    *  Has working ```virtualenv``` with ```Jupyter``` and ```TensorFlow / TensorBoard```
@@ -30,9 +32,11 @@ The VM itself will include (may change) :
    *  Demonstration of MNIST learning
 
 
-### Still TODO 
+#### Still TODO 
 
 *  Buy thumb-drives for actual workshop
+
+*  Ensure Conference Workshop announcement / blurb includes VirtualBox warning label
 
 *  Test workshop notebooks
    *  Tensorflow / Keras MNIST
@@ -48,7 +52,8 @@ The VM itself will include (may change) :
 
    
 
-### Notes : Git-friendly iPython Notebooks
+### Notes
+#### Git-friendly iPython Notebooks
 
 Using the code from : http://pascalbugnion.net/blog/ipython-notebooks-and-git.html (and
 https://gist.github.com/pbugnion/ea2797393033b54674af ), 
