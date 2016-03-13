@@ -17,7 +17,7 @@ def full_classifier(weights_path=None):
   model = Sequential()
   
   if True:
-    model.add(ZeroPadding2D((1,1), input_shape=(3,224,224)))
+    model.add(ZeroPadding2D((1,1), name='padding_1', input_shape=(3,224,224)))
     model.add(Convolution2D(64, 3, 3, activation='relu', name='conv1_1', input_shape=(3,226,226)))
   else:
     model.add(Convolution2D(64, 3, 3, activation='relu', name='conv1_1', border_mode='same'))
