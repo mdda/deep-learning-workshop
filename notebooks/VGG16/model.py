@@ -58,8 +58,8 @@ def full_classifier(weights_path=None):
   model.add(Convolution2D(512, 3, 3, activation='relu', name='conv5_3'))
   model.add(MaxPooling2D((2, 2), strides=(2, 2)))
 
-  model.add(Flatten())
-  #model.add(Flatten(input_shape=(512,7,7)))
+  #model.add(Flatten())
+  model.add(Flatten(input_shape=(512,7,7)))    # These dimensions set by examining output of model.summary() below
   
   model.add(Dense(4096, activation='relu'))
   model.add(Dropout(0.5))
