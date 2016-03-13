@@ -8,6 +8,7 @@
 #theano>=0.7.0
 
 # Better (required by keras, if we use the theano backend)
+# --no-deps 
 git+git://github.com/Theano/Theano.git#egg=theano
 
 
@@ -16,6 +17,7 @@ git+git://github.com/Theano/Theano.git#egg=theano
 #keras>=0.3.2 
 
 # Better (required if we use the tensorflow backend)
+# --no-deps 
 git+git://github.com/fchollet/keras.git
 
 
@@ -44,3 +46,7 @@ jupyter
 
 ## This is a Pythonic interface to the HDF5 binary data format (used for VGG16 weights reading)
 h5py>=2.5.0
+
+
+# OMP_NUM_THREADS=2        ??  No effect
+# OPENBLAS_NUM_THREADS=4   ??  No effect

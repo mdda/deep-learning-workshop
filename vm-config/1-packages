@@ -11,8 +11,8 @@ install joe,git
 #   and redhat-rpm-config is to help jupyter install (see : https://bugs.launchpad.net/ironic/+bug/1527614)
 install gcc,gcc-c++,python-devel,redhat-rpm-config
 
-# Super-useful (pillow is for PIL, the python imaging library)
-install scipy,numpy,python-pandas,Cython,python-pillow
+# Super-useful
+install scipy,numpy,python-pandas,Cython,openblas-devel
 
 # Good for iPython / Jupyter, and also hdfs support:
 install pydot,libyaml,hdf5-devel
