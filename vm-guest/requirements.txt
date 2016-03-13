@@ -7,9 +7,17 @@
 
 #theano>=0.7.0
 
+# Better (required by keras, if we use the theano backend)
+git+git://github.com/Theano/Theano.git#egg=theano
+
+
 ## This bundles theano in... (14.7Mb)
 ##   It doesn't matter that it's the PyPI version, since we're going to be using the TensorFlow backend
-keras>=0.3.2 
+#keras>=0.3.2 
+
+# Better (required if we use the tensorflow backend)
+git+git://github.com/fchollet/keras.git
+
 
 # Plotting of graphs (dynamic, beautiful)
 #bokeh>=0.11.0
