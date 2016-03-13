@@ -15,41 +15,48 @@ import scipy.misc
 
 def full_classifier(weights_path=None):
   model = Sequential()
-  model.add(ZeroPadding2D((1,1),input_shape=(3,224,224)))
-  model.add(Convolution2D(64, 3, 3, activation='relu'))
-  model.add(ZeroPadding2D((1,1)))
-  model.add(Convolution2D(64, 3, 3, activation='relu'))
-  model.add(MaxPooling2D((2,2), strides=(2,2)))
+  
+  if True:
+    model.add(ZeroPadding2D((1,1),input_shape=(3,224,224)))
+    model.add(Convolution2D(64, 3, 3, activation='relu', name='conv1_1'))
+  else:
+    model.add(Convolution2D(64, 3, 3, activation='relu', name='conv1_1', border_mode='same', input_shape=(3,224,224)))
+    
+  # See https://github.com/fchollet/keras/blob/master/examples/deep_dream.py for naming convention
+  #model.add(Convolution2D(64, 3, 3, activation='relu', name='conv1_1'))
+  model.add(ZeroPadding2D((1, 1)))
+  model.add(Convolution2D(64, 3, 3, activation='relu', name='conv1_2'))
+  model.add(MaxPooling2D((2, 2), strides=(2, 2)))
 
-  model.add(ZeroPadding2D((1,1)))
-  model.add(Convolution2D(128, 3, 3, activation='relu'))
-  model.add(ZeroPadding2D((1,1)))
-  model.add(Convolution2D(128, 3, 3, activation='relu'))
-  model.add(MaxPooling2D((2,2), strides=(2,2)))
+  model.add(ZeroPadding2D((1, 1)))
+  model.add(Convolution2D(128, 3, 3, activation='relu', name='conv2_1'))
+  model.add(ZeroPadding2D((1, 1)))
+  model.add(Convolution2D(128, 3, 3, activation='relu', name='conv2_2'))
+  model.add(MaxPooling2D((2, 2), strides=(2, 2)))
 
-  model.add(ZeroPadding2D((1,1)))
-  model.add(Convolution2D(256, 3, 3, activation='relu'))
-  model.add(ZeroPadding2D((1,1)))
-  model.add(Convolution2D(256, 3, 3, activation='relu'))
-  model.add(ZeroPadding2D((1,1)))
-  model.add(Convolution2D(256, 3, 3, activation='relu'))
-  model.add(MaxPooling2D((2,2), strides=(2,2)))
+  model.add(ZeroPadding2D((1, 1)))
+  model.add(Convolution2D(256, 3, 3, activation='relu', name='conv3_1'))
+  model.add(ZeroPadding2D((1, 1)))
+  model.add(Convolution2D(256, 3, 3, activation='relu', name='conv3_2'))
+  model.add(ZeroPadding2D((1, 1)))
+  model.add(Convolution2D(256, 3, 3, activation='relu', name='conv3_3'))
+  model.add(MaxPooling2D((2, 2), strides=(2, 2)))
 
-  model.add(ZeroPadding2D((1,1)))
-  model.add(Convolution2D(512, 3, 3, activation='relu'))
-  model.add(ZeroPadding2D((1,1)))
-  model.add(Convolution2D(512, 3, 3, activation='relu'))
-  model.add(ZeroPadding2D((1,1)))
-  model.add(Convolution2D(512, 3, 3, activation='relu'))
-  model.add(MaxPooling2D((2,2), strides=(2,2)))
+  model.add(ZeroPadding2D((1, 1)))
+  model.add(Convolution2D(512, 3, 3, activation='relu', name='conv4_1'))
+  model.add(ZeroPadding2D((1, 1)))
+  model.add(Convolution2D(512, 3, 3, activation='relu', name='conv4_2'))
+  model.add(ZeroPadding2D((1, 1)))
+  model.add(Convolution2D(512, 3, 3, activation='relu', name='conv4_3'))
+  model.add(MaxPooling2D((2, 2), strides=(2, 2)))
 
-  model.add(ZeroPadding2D((1,1)))
-  model.add(Convolution2D(512, 3, 3, activation='relu'))
-  model.add(ZeroPadding2D((1,1)))
-  model.add(Convolution2D(512, 3, 3, activation='relu'))
-  model.add(ZeroPadding2D((1,1)))
-  model.add(Convolution2D(512, 3, 3, activation='relu'))
-  model.add(MaxPooling2D((2,2), strides=(2,2)))
+  model.add(ZeroPadding2D((1, 1)))
+  model.add(Convolution2D(512, 3, 3, activation='relu', name='conv5_1'))
+  model.add(ZeroPadding2D((1, 1)))
+  model.add(Convolution2D(512, 3, 3, activation='relu', name='conv5_2'))
+  model.add(ZeroPadding2D((1, 1)))
+  model.add(Convolution2D(512, 3, 3, activation='relu', name='conv5_3'))
+  model.add(MaxPooling2D((2, 2), strides=(2, 2)))
 
   model.add(Flatten())
   model.add(Dense(4096, activation='relu'))
@@ -110,6 +117,7 @@ if __name__ == "__main__":
 
   image_files = [
     '../images/grumpy-cat_224x224.jpg',
+    #'../images/grumpy-kitten_224x224.jpg',
     '../images/sad-owl_224x224.jpg',
     '../images/cat-with-tongue_224x224.jpg',
     '../images/doge-wiki_224x224.jpg',
