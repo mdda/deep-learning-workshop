@@ -17,10 +17,10 @@ def full_classifier(weights_path=None):
   model = Sequential()
   
   if True:
-    model.add(ZeroPadding2D((1,1),input_shape=(3,224,224)))
-    model.add(Convolution2D(64, 3, 3, activation='relu', name='conv1_1'))
+    model.add(ZeroPadding2D((1,1), input_shape=(3,224,224)))
+    model.add(Convolution2D(64, 3, 3, activation='relu', name='conv1_1', input_shape=(3,226,226)))
   else:
-    model.add(Convolution2D(64, 3, 3, activation='relu', name='conv1_1', border_mode='same', input_shape=(3,224,224)))
+    model.add(Convolution2D(64, 3, 3, activation='relu', name='conv1_1', border_mode='same'))
     
   # See https://github.com/fchollet/keras/blob/master/examples/deep_dream.py for naming convention
   #model.add(Convolution2D(64, 3, 3, activation='relu', name='conv1_1'))
@@ -59,6 +59,8 @@ def full_classifier(weights_path=None):
   model.add(MaxPooling2D((2, 2), strides=(2, 2)))
 
   model.add(Flatten())
+  #model.add(Flatten(input_shape=(512,7,7)))
+  
   model.add(Dense(4096, activation='relu'))
   model.add(Dropout(0.5))
   model.add(Dense(4096, activation='relu'))
@@ -67,6 +69,8 @@ def full_classifier(weights_path=None):
   
   model.add(Dropout(0.5))
   model.add(Dense(1000, activation='softmax'))
+  
+  print(model.summary())
 
   if weights_path:
     print("  load_weights from '%s'" % (weights_path,))
