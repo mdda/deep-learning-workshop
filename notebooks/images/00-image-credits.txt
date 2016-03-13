@@ -1,0 +1,14 @@
+Image Sources
+
+
+images/cat-with-tongue_224x224.jpg
+  https://upload.wikimedia.org/wikipedia/commons/3/3f/Lil_Bub_2013_%28crop_for_thumb%29.jpg
+
+images/doge-wiki_224x224.jpg
+  https://en.wikipedia.org/wiki/Doge_%28meme%29#/media/File:Doge_homemade_meme.jpg
+
+images/grumpy-cat_224x224.jpg
+  http://xxspiritwolf2000xx.deviantart.com/art/Grumpy-cat-image-393382036
+  
+images/sad-owl_224x224.jpg
+  http://xxspiritwolf2000xx.deviantart.com/art/Grumpy-cat-image-393382036

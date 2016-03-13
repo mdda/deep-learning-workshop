@@ -199,6 +199,8 @@ Models
     http://caffe.berkeleyvision.org/gathered/examples/imagenet.html
   Lasagne :
     https://github.com/Lasagne/Recipes/tree/master/modelzoo
+    https://github.com/alexjc/neural-doodle
+      download this pre-trained neural network (VGG19, 80Mb)
 
   Microsoft Deep Residual Networks (with models, and Lasagne version link)
     https://github.com/KaimingHe/deep-residual-networks
@@ -208,6 +210,9 @@ Models
   Using Caffe models in Lasagne
     https://github.com/Lasagne/Lasagne/issues/157
 
+  VGG16 model for Keras
+    https://gist.github.com/baraldilorenzo/07d7802847aaad0a35d3
+    
 
 Other courses
 
