@@ -222,6 +222,40 @@ Models
     https://github.com/tensorflow/models/blob/master/inception/inception/slim/README.md
 
 
+Lasagne Recipes Examples :
+  -rw-rw-r--. 1 andrewsm andrewsm  970738 Mar 14 17:53 ImageNet Pretrained Network (VGG_S).ipynb
+    393Mb network (VGG_CNN_S)
+    
+  drwxrwxr-x. 2 andrewsm andrewsm    4096 Mar 14 17:53 styletransfer
+    VGG19 80Mb network
+    
+  -rw-rw-r--. 1 andrewsm andrewsm   68760 Mar 14 17:53 Using a Caffe Pretrained Network - CIFAR10.ipynb
+    Small CIFAR10 network (pickled version is ~10Mb only, and workbook includes model definition)
+  
+  -rw-rw-r--. 1 andrewsm andrewsm   10805 Mar 14 17:53 lstm_text_generation.py
+    Like Karpathy example
+    
+  
+  drwxrwxr-x. 2 andrewsm andrewsm    4096 Mar 14 17:53 variational_autoencoder
+  -rw-rw-r--. 1 andrewsm andrewsm  165138 Mar 14 17:53 Video features with C3D.ipynb
+  -rw-rw-r--. 1 andrewsm andrewsm 1043040 Mar 14 17:53 Saliency Maps and Guided Backpropagation.ipynb
+  -rw-rw-r--. 1 andrewsm andrewsm   72414 Mar 14 17:53 spatial_transformer_network.ipynb
+
+
+Lasagne Recipes ModelZoo :
+  -rw-rw-r--. 1 andrewsm andrewsm 4807 Mar 14 17:53 googlenet.py        ::   27Mb for full model  (unrestricted)
+  -rw-rw-r--. 1 andrewsm andrewsm 7308 Mar 14 17:53 inception_v3.py     ::   91Mb for full model  (Apache)  (299x299 RGB uint8 input)
+  -rw-rw-r--. 1 andrewsm andrewsm 2544 Mar 14 17:53 vgg16.py            ::  528Mb for full model  (non-commercial)
+  -rw-rw-r--. 1 andrewsm andrewsm 2817 Mar 14 17:53 vgg19.py            ::  548Mb for full model  (non-commercial)
+  -rw-rw-r--. 1 andrewsm andrewsm 2898 Mar 14 17:53 vgg_cnn_s.py        ::  393Mb for full model  (non-commercial)
+
+  -rw-rw-r--. 1 andrewsm andrewsm 6382 Mar 14 17:53 c3d.py              ::  AlexNet for 3d processing (video)
+  -rw-rw-r--. 1 andrewsm andrewsm 9779 Mar 14 17:53 caffe_reference.py 
+  -rw-rw-r--. 1 andrewsm andrewsm 2572 Mar 14 17:53 cifar10_nin.py      ::   11Mb for full model  (unknown)
+
+
+How about building the tensorflow inception-3 graph and saving it for viewing by TensorBoard?
+
 
 Other courses
 
