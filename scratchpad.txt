@@ -213,6 +213,15 @@ Models
   VGG16 model for Keras
     https://gist.github.com/baraldilorenzo/07d7802847aaad0a35d3
     
+  VGG16 model for Lasagne
+    model   : https://github.com/Lasagne/Recipes/blob/master/modelzoo/vgg16.py
+    weights :  https://s3.amazonaws.com/lasagne/recipes/pretrained/imagenet/vgg16.pkl
+    See also : https://github.com/Lasagne/Recipes/issues/20
+    
+  VGG16 model in Tensorflow-slim
+    https://github.com/tensorflow/models/blob/master/inception/inception/slim/README.md
+
+
 
 Other courses
 
