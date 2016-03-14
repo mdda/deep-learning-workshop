@@ -52,7 +52,8 @@ Plan
   
     demo of VM for ImageNet recognition
       TEST: Can lasagne load Inception3 in Jupyter inside 2Gb RAM ?
-
+      Picture of inception3 network included in : https://github.com/google/inception/blob/master/inception.ipynb
+      
     Commerce section
       demo of VM with ImageNet / cutoff == 'commercial'
         IMPLEMENT : logistic regression of several brand images (for instance)
@@ -78,6 +79,12 @@ Plan
         TEST : Can this be run in reasonable time?
     
     
+    
+    Deep Q-Learning
+      http://maciejjaskowski.github.io/2016/03/09/space-invaders.html
+      https://github.com/maciejjaskowski/deep-q-learning
+        -- theano / lasagne
+        -- needs non-free Atari ROM image
     
 ### Topics within Deep Learning     
 #### ConvNets:
