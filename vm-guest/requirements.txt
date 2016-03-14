@@ -1,5 +1,7 @@
 
-### Theano-HEAD from git 
+### Theano
+
+## Theano-HEAD from git 
 #
 #--allow-external theano
 #--allow-unverified theano
@@ -9,16 +11,36 @@
 
 # Better (required by keras, if we use the theano backend)
 # --no-deps 
-git+git://github.com/Theano/Theano.git#egg=theano
+#git+git://github.com/Theano/Theano.git#egg=theano
+
+# Try the Theano 'master'
+https://github.com/Theano/Theano/archive/master.zip
 
 
-## This bundles theano in... (14.7Mb)
+
+### Keras
+
 ##   It doesn't matter that it's the PyPI version, since we're going to be using the TensorFlow backend
+##     ...  except that TensorFlow eats RAM : theano is a better choice to workshop
+## This bundles theano in... (14.7Mb)
 #keras>=0.3.2 
 
 # Better (required if we use the tensorflow backend)
 # --no-deps 
 git+git://github.com/fchollet/keras.git
+
+
+
+### Lasagne
+
+## Lasagne 'master'
+https://github.com/Lasagne/Lasagne/archive/master.zip
+
+
+
+### Tensorflow 
+https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.7.1-cp27-none-linux_x86_64.whl
+
 
 
 # Plotting of graphs (dynamic, beautiful)
