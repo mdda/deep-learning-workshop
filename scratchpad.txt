@@ -4,6 +4,17 @@
   Thumbs up from organiser on DeepLearning idea
     Not too worried about track selection, etc - all a work-in-progress
 
+Plan
+  -- hand out VMs on sticks
+  NN intro
+  chain rule
+    demo with convnet.js cat picture
+  supervised learning
+    demo with convnet.js MNIST
+  
+  explain frontiers (eg: Futurists talk)
+
+
 
     
 ### Topics within Deep Learning     
