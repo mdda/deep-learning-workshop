@@ -8,7 +8,7 @@ vm-config/root-password
 vm-guest/cache/env
 
 vm-images/*.img
-#vm-images/*.ova
+vm-images/*.ova
 
 
 # Byte-compiled / optimized / DLL files
