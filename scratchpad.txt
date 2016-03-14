@@ -6,16 +6,78 @@
 
 Plan
   -- hand out VMs on sticks
+  
   NN intro
   chain rule
     demo with convnet.js cat picture
   supervised learning
     demo with convnet.js MNIST
   
-  explain frontiers (eg: Futurists talk)
+  network configurations
+    MLP
+    CNN
+    RNN
+  
+  merits of various software frameworks 
+    direct programming
+    meta-programming
+    meta-meta-programming
 
+  Concurrent with workshop hands-on:
+    explain frontiers (eg: Futurists talk)
+  
+  Concurrent with workshop hands-on:
+    merits of various software frameworks 
+      convnet.js (!)
+      caffe (C++)
+        python
+      torch
+        lua
+      theano (Python)
+        python, GPU + CPU
+      tensorflow (C++)
+        python and C++, GPUs + CPUs
+      
+      ease-of-use layers
+        keras
+        lasagne
+        tensorflow-slim
+        
+    demo of tensorboard 
+      IDEA : show tensorboard for MNIST ++ ?
+  
+    demo of Keras for MNIST
+    
+    demo of Keras for MNIST feature transfer
+  
+    demo of VM for ImageNet recognition
+      TEST: Can lasagne load Inception3 in Jupyter inside 2Gb RAM ?
 
+    Commerce section
+      demo of VM with ImageNet / cutoff == 'commercial'
+        IMPLEMENT : logistic regression of several brand images (for instance)
+  
+  
+    Art section : Intro : http://fastml.com/deep-nets-generating-stuff/
+      demo of VM with style-transfer == 'art' 
+        ==?== (lasagne ~deep-forger): http://www.kdnuggets.com/2015/12/deep-learning-art-forgery.html
+        TEST : Can this be run in reasonable time?
+        TEST : Does this look Ok with Inception3?
 
+      ?demo of VM with deep dream == 'art'
+        ?TEST : Can this be run in reasonable time 
+        ?TEST : Does this look Ok with Inception3?
+        Keras :
+          https://github.com/fchollet/keras/blob/master/examples/deep_dream.py
+        Lasagne :
+          https://github.com/317070/Twitch-plays-LSD-neural-net 
+          == https://317070.github.io/Dream/
+
+      demo of LSTM word thingy
+        IMPLEMENT : Need suitable text data
+        TEST : Can this be run in reasonable time?
+    
+    
     
 ### Topics within Deep Learning     
 #### ConvNets:
@@ -234,11 +296,12 @@ Models
 
 
 Lasagne Recipes Examples :
-  -rw-rw-r--. 1 andrewsm andrewsm  970738 Mar 14 17:53 ImageNet Pretrained Network (VGG_S).ipynb
-    393Mb network (VGG_CNN_S)
-    
   drwxrwxr-x. 2 andrewsm andrewsm    4096 Mar 14 17:53 styletransfer
-    VGG19 80Mb network
+    VGG19 80Mb network  (this must be a cut-off version)
+    
+  -rw-rw-r--. 1 andrewsm andrewsm  970738 Mar 14 17:53 ImageNet Pretrained Network (VGG_S).ipynb
+    393Mb network (VGG_CNN_S)  HUGE
+    IMPLEMENT : Do the same with Inception3?
     
   -rw-rw-r--. 1 andrewsm andrewsm   68760 Mar 14 17:53 Using a Caffe Pretrained Network - CIFAR10.ipynb
     Small CIFAR10 network (pickled version is ~10Mb only, and workbook includes model definition)
