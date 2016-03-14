@@ -13,6 +13,10 @@ source ./vm-config/params
 #total size is 6,442,450,944  speedup is 8.05
 # ->> Apparently the image is pretty empty inside...
 
+## Need to remove existing imported image (if any):
+# rm -rf /home/andrewsm/VirtualBoxVMs/fossasia_mdda/
+# ./8-create-VirtualBox-image.bash 
+
 ## Needs VirtualBox installed on the machine...
 
 
