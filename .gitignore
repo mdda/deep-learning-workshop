@@ -7,6 +7,8 @@ vm-config/root-password
 # cached versions of : the python env
 vm-guest/cache/env
 
+vm-images/*.img
+#vm-images/*.ova
 
 
 # Byte-compiled / optimized / DLL files

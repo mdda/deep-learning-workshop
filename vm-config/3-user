@@ -40,7 +40,8 @@ firstboot-command chmod 744 /home/user/run-tensorboard.bash
 copy-in notebooks:/home/user/
 
 # And the keras configuration (NB: tensorflow)
-upload vm-config/keras.json:/home/user/.keras/
+upload vm-guest/keras.json:/home/user/.keras/keras.json
+#upload vm-guest/keras-tensorflow.json:/home/user/.keras/keras.json
 
 
 # And the pre-trained NN data ::
