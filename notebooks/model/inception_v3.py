@@ -22,8 +22,13 @@ import numpy as np
 import scipy
 
 def imagefile_to_np(image_file):
-  image = scipy.misc.imread(image_file)
-  return preprocess(image)
+  im_uint8 = scipy.misc.imread(image_file)
+  #print(np.shape(im_uint8))
+  return resize_image(im_uint8)
+
+def resize_image(image):
+  return scipy.misc.imresize(image, (299, 299))
+
 
 def preprocess_orig(im):
   # Expected input: RGB uint8 image
@@ -246,7 +251,7 @@ if __name__ == "__main__":
   
   for i, f in enumerate(image_files):
     im = imagefile_to_np(f)
-    prob = np.array(lasagne.layers.get_output(output_layer, im, deterministic=True).eval())
+    prob = np.array(lasagne.layers.get_output(output_layer, preprocess(im), deterministic=True).eval())
 
     top5 = np.argsort(prob[0])[-1:-6:-1]    
     

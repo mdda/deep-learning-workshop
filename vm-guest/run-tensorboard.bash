@@ -7,3 +7,7 @@ source ./config/params
 
 . env/bin/activate
 tensorboard --host 0.0.0.0 --port $port_tensorboard --logdir $tensorflow_dir
+
+
+## defaults:
+# tensorboard --host 0.0.0.0 --port 8081 --logdir tensorflow.logdir

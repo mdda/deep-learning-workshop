@@ -12,3 +12,6 @@ source ./config/params
 
 ## New-style
 jupyter notebook --ip=0.0.0.0 --port=$port_jupyter --no-browser --notebook-dir=$notebook_dir
+
+## defaults:
+# jupyter notebook --ip=0.0.0.0 --port=8080 --no-browser --notebook-dir=./notebooks
