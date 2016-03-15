@@ -18,7 +18,12 @@ pip install -r ./config/requirements.txt
 
 # Once this ~/env is built, we can copy it out to the host machine for 'caching'
 
-# cp ./notebooks/images/logo.png /home/user/env/lib/python2.7/site-packages/IPython/html/static/base/images/
+# cp ./notebooks/images/logo.png ./env/lib/python2.7/site-packages/IPython/html/static/base/images/
+# cp ./notebooks/images/logo.png ./env/lib/python2.7/site-packages/notebook/static/base/images/  # original : 260x56
+
+logopath=./env/lib/python2.7/site-packages/notebook/static/base/images
+mv ${logopath}/logo.png ${logopath}/logo-orig_260x56.png
+cp cp ./notebooks/images/logo.png ${logopath}/
 
 # Create these directories safely, just so we know they're there
 mkdir -p $notebook_dir
