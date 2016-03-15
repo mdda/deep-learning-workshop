@@ -2,4 +2,10 @@
 floatX=float32
 
 [blas]
-ldflags = -lopenblas
+# This works, though no speed-up?
+#ldflags = -lopenblas
+
+# Cannot find -latlas
+#ldflags = -L/lib64/atlas -lsatlas -lgfortran 
+ldflags = -L/lib64/atlas -ltatlas -lgfortran 
+#-lf77blas 
