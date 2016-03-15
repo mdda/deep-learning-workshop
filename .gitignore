@@ -10,6 +10,10 @@ vm-guest/cache/env
 vm-images/*.img
 vm-images/*.ova
 
+notebooks/models/*.pkl
+notebooks/models/*.h5
+
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
