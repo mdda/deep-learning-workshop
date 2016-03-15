@@ -130,19 +130,17 @@ def build_network():
     net = {}
 
     net['input'] = InputLayer((None, 3, 299, 299))
-    net['conv'] = bn_conv(net['input'],
-                          num_filters=32, filter_size=3, stride=2)
-    net['conv_1'] = bn_conv(net['conv'], num_filters=32, filter_size=3)
-    net['conv_2'] = bn_conv(net['conv_1'],
-                            num_filters=64, filter_size=3, pad=1)
-    net['pool'] = Pool2DLayer(net['conv_2'], pool_size=3, stride=2, mode='max')
+    net['conv'] = bn_conv(net['input'],    num_filters=32, filter_size=3, stride=2)
+    net['conv_1'] = bn_conv(net['conv'],   num_filters=32, filter_size=3)
+    net['conv_2'] = bn_conv(net['conv_1'], num_filters=64, filter_size=3, pad=1)
+    net['pool'] = Pool2DLayer(net['conv_2'],   pool_size=3, stride=2, mode='max')
 
-    net['conv_3'] = bn_conv(net['pool'], num_filters=80, filter_size=1)
+    net['conv_3'] = bn_conv(net['pool'],   num_filters=80, filter_size=1)
 
     net['conv_4'] = bn_conv(net['conv_3'], num_filters=192, filter_size=3)
 
-    net['pool_1'] = Pool2DLayer(net['conv_4'],
-                                pool_size=3, stride=2, mode='max')
+    net['pool_1'] = Pool2DLayer(net['conv_4'], pool_size=3, stride=2, mode='max')
+    
     net['mixed/join'] = inceptionA(
         net['pool_1'], nfilt=((64,), (48, 64), (64, 96, 96), (32,)))
     net['mixed_1/join'] = inceptionA(
@@ -186,7 +184,6 @@ def build_network():
 
     net['pool3'] = GlobalPoolLayer(net['mixed_10/join'])
 
-    net['softmax'] = DenseLayer(
-        net['pool3'], num_units=1008, nonlinearity=softmax)
+    net['softmax'] = DenseLayer(net['pool3'], num_units=1008, nonlinearity=softmax)
 
     return net
