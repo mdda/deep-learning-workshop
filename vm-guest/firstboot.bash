@@ -23,7 +23,7 @@ pip install -r ./config/requirements.txt
 
 logopath=./env/lib/python2.7/site-packages/notebook/static/base/images
 mv ${logopath}/logo.png ${logopath}/logo-orig_260x56.png
-cp cp ./notebooks/images/logo.png ${logopath}/
+cp ./notebooks/images/logo.png ${logopath}/
 
 # Create these directories safely, just so we know they're there
 mkdir -p $notebook_dir
