@@ -10,9 +10,9 @@ vm-guest/cache/env
 vm-images/*.img
 vm-images/*.ova
 
-notebooks/models/*.pkl
-notebooks/models/*.h5
-
+notebooks/data/imagenet_synset_words.txt
+notebooks/data/VGG16/*.h5
+notebooks/data/inception3/*.pkl
 
 
 # Byte-compiled / optimized / DLL files
