@@ -1,3 +1,5 @@
 [global]
 floatX=float32
 
+[blas]
+ldflags = -lopenblas

@@ -34,7 +34,7 @@ popd
 mkdir -p ./notebooks/data/VGG16
 pushd ./notebooks/data/VGG16
 
-if [ ! -e "vgg16_weights.h5" ]; then
+if 0 && [ ! -e "vgg16_weights.h5" ]; then
   echo "*** ALERT ***"
   echo "YOU NEED TO DOWNLOAD THE VGG weights manually from Google Drive"
   echo "and save it in './notebooks/data/VGG16/vgg16_weights.h5' yourself"
