@@ -39,9 +39,12 @@ firstboot-command chmod 744 /home/user/run-tensorboard.bash
 # And the jupyter notebooks
 copy-in notebooks:/home/user/
 
-# And the keras configuration (NB: tensorflow)
-upload vm-guest/keras.json:/home/user/.keras/keras.json
+# And the keras configuration (NB: choose theano or tensorflow)
+upload vm-guest/keras-theano.json:/home/user/.keras/keras.json
 #upload vm-guest/keras-tensorflow.json:/home/user/.keras/keras.json
+
+# And the lasagne configuration (NB: CPU version)
+upload vm-guest/dot_theanorc:/home/user/.theanorc
 
 
 # And the pre-trained NN data ::

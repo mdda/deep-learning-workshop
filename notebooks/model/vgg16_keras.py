@@ -10,7 +10,6 @@ import numpy as np
 #from PIL import Image
 import scipy.misc
 
-
 # From : https://gist.github.com/baraldilorenzo/07d7802847aaad0a35d3
 
 def full_classifier(weights_path=None):
@@ -68,11 +67,6 @@ def full_classifier(weights_path=None):
   return model
 
 
-def get_synset(path='../data/imagenet_synset_words.txt'):
-  with open(path, 'r') as f:
-    # Strip off the first word (until space, maxsplit=1), then synset is remainder
-    return [ line.strip().split(' ', 1)[1] for line in f]
-
 def imagefile_to_np(image_file):
   if True:
     image = scipy.misc.imresize(scipy.misc.imread(image_file), (224, 224))
@@ -100,9 +94,9 @@ def imagefile_to_np(image_file):
 
 
 if __name__ == "__main__":
-  classes = get_synset()
+  import imagenet
+  classes = imagenet.get_synset()
   #print(classes[:10])
-  #exit()
   
   # Load pretrained model
   model = full_classifier('../data/VGG16/vgg16_weights.h5')
