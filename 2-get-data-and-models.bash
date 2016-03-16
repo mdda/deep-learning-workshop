@@ -66,6 +66,19 @@ fi
 popd
 
 
+## GoogLeNet model (Google)
+
+mkdir -p ./notebooks/data/googlenet
+pushd ./notebooks/data/googlenet
+
+if [ ! -e "blvc_googlenet.pkl" ]; then
+  # 27Mb
+  wget -N https://s3.amazonaws.com/lasagne/recipes/pretrained/imagenet/blvc_googlenet.pkl
+fi
+
+popd
+
+
 
 # MNIST dataset
 
