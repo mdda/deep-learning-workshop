@@ -3,7 +3,7 @@
 set -e
 set -x
 
-source ./vm-config/params
+source ./config/params
 
 ## See : https://developer.fedoraproject.org/tools/virt-builder/about.html
 
@@ -75,10 +75,10 @@ mkdir -p vm-guest/cache/env
 virt-builder \
   $guest_type \
   --output $image_file \
-  --root-password file:./vm-config/root-password \
-  --commands-from-file vm-config/0-init \
-  --commands-from-file vm-config/1-packages \
-  --commands-from-file vm-config/3-user \
+  --root-password file:./config-vm-host/root-password \
+  --commands-from-file config-vm-host/0-init \
+  --commands-from-file config-vm-host/1-packages \
+  --commands-from-file config-vm-host/3-user \
   --firstboot-command 'poweroff'
 
 #  --install /usr/bin/yum-builddep,/usr/bin/rpmbuild,@buildsys-build,@development-tools 

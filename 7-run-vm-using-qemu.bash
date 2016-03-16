@@ -3,7 +3,7 @@
 set -e
 set -x
 
-source ./vm-config/params
+source ./config/params
 
 # Run qemu directly.  Could also use virt-install --import here.
 

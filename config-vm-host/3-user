@@ -4,20 +4,21 @@ mkdir /home/user
 mkdir /home/user/config
 
 mkdir /home/user/.keras
+mkdir /home/user/.theano
 
 # This is a configuration script to run when first booted
 # it makes use of /home/user/config/params 
-upload vm-guest/firstboot.bash:/home/user/config/
+upload config/firstboot.bash:/home/user/config/
 
-# Actually copy the params file verbatim from vm-config - there is some host-specific stuff, but we'll just ignore that in the guest
-upload vm-config/params:/home/user/config/
+# Actually copy the params file verbatim from ./config/ - there is some host-specific stuff, but we'll just ignore that in the guest
+upload config/params:/home/user/config/
 
 
 # This is the requirements.txt to be installed into the python virtualenv
-upload vm-guest/requirements.txt:/home/user/config/
+upload config/requirements.txt:/home/user/config/
 
 # This is the (potentially empty) cache of the python env that we'll build (probably later)
-copy-in vm-guest/cache/env:/home/user/
+copy-in config/cache/env:/home/user/
 
 
 firstboot-command useradd --create-home --password "" user
@@ -29,10 +30,10 @@ firstboot-command su - user -c /home/user/config/firstboot.bash
 
 
 # And here are some more scripts for the home directory
-upload vm-guest/run-jupyter.bash:/home/user/
+upload config/run-jupyter.bash:/home/user/
 firstboot-command chmod 744 /home/user/run-jupyter.bash
 
-upload vm-guest/run-tensorboard.bash:/home/user/
+upload config/run-tensorboard.bash:/home/user/
 firstboot-command chmod 744 /home/user/run-tensorboard.bash
 
 
@@ -40,14 +41,13 @@ firstboot-command chmod 744 /home/user/run-tensorboard.bash
 copy-in notebooks:/home/user/
 
 # And the keras configuration (NB: choose theano or tensorflow)
-upload vm-guest/keras-theano.json:/home/user/.keras/keras.json
-#upload vm-guest/keras-tensorflow.json:/home/user/.keras/keras.json
+upload config/keras-theano.json:/home/user/.keras/keras.json
+#upload config/keras-tensorflow.json:/home/user/.keras/keras.json
 
 # And the lasagne configuration (NB: CPU version)
-upload vm-guest/dot_theanorc-cpu:/home/user/.theanorc
-
+upload config/dot_theanorc-cpu:/home/user/.theanorc
 ## And the lasagne configuration (NB: GPU version :: unlikely to work in a VM guest)
-#upload vm-guest/dot_theanorc-gpu:/home/user/.theanorc
+#upload config/dot_theanorc-gpu:/home/user/.theanorc
 
 
 # And the pre-trained NN data ::

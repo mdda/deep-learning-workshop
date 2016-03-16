@@ -3,7 +3,7 @@
 set -e
 set -x
 
-source ./vm-config/params
+source ./config/params
 
 ## rsync -avz --progress andrewsm@simlim:/home/andrewsm/OpenSource/fossasia-2016_deep-learning/vm-images/*.img ./vm-images/
 #receiving incremental file list

@@ -3,7 +3,7 @@
 set -e
 set -x
 
-source ./vm-config/params
+source ./config/params
 
 
 ## MNIST data
