@@ -7,7 +7,7 @@ floatX = float32
 ## OpenBLAS
 
 # This works, though no speed-up?
-#ldflags = -lopenblas
+ldflags = -lopenblas
 
 
 ## ATLAS
@@ -17,5 +17,5 @@ floatX = float32
 #ldflags = -L/lib64/atlas -lsatlas -lgfortran 
 
 # This works, though no speed-up?
-ldflags = -L/lib64/atlas -ltatlas -lgfortran 
+#ldflags = -L/lib64/atlas -ltatlas -lgfortran 
 #-lf77blas 
