@@ -94,6 +94,25 @@ popd
 
 
 
+# RNN corpus and pre-trained weights
+
+mkdir -p ./notebooks/data/RNN
+pushd ./notebooks/data/RNN
+
+if [ ! -e "claims.txt.gz" ]; then
+  # 7.3Mb
+  wget 'https://github.com/ebenolson/pydata2015/raw/master/4%20-%20Recurrent%20Networks/claims.txt.gz'
+fi
+
+if [ ! -e "gru_2layer_trained.pkl" ]; then
+  # 1.7Mb
+  wget 'https://github.com/ebenolson/pydata2015/raw/master/4%20-%20Recurrent%20Networks/gru_2layer_trained.pkl'
+fi
+
+popd
+
+
+
 
 
 
