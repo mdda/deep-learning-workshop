@@ -49,6 +49,7 @@ for epoch in range(15):
     val_loss /= N_VAL_BATCHES
     val_acc /= N_VAL_BATCHES
     
-    print('Epoch {}, Train (val) loss {:.03f} ({:.03f}) ratio {:.03f}'.format(
+    print('Epoch {:2d}, Train loss {:.03f}     (validation : {:.03f}) ratio {:.03f}'.format(
             epoch, train_loss, val_loss, val_loss/train_loss))
-    print('Train (val) accuracy {:.03f} ({:.03f})'.format(train_acc, val_acc))
+    print('          Train accuracy {:.03f} (validation : {:.03f})'.format(train_acc, val_acc))
+print("DONE")    
