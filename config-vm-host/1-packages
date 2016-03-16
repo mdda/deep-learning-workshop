@@ -12,7 +12,7 @@ install joe,git
 install gcc,gcc-c++,python-devel,redhat-rpm-config
 
 # Super-useful
-install scipy,numpy,python-pandas,Cython,openblas-devel
+install scipy,numpy,python-pandas,Cython,openblas-devel,python-pillow
 
 # Good for iPython / Jupyter, and also hdfs support:
 install pydot,libyaml,hdf5-devel

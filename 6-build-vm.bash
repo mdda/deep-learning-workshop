@@ -75,7 +75,7 @@ mkdir -p vm-guest/cache/env
 virt-builder \
   $guest_type \
   --output $image_file \
-  --root-password file:./config-vm-host/root-password \
+  --root-password file:config-vm-host/root-password \
   --commands-from-file config-vm-host/0-init \
   --commands-from-file config-vm-host/1-packages \
   --commands-from-file config-vm-host/3-user \

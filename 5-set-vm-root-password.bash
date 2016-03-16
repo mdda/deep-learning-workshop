@@ -5,5 +5,5 @@
 
 DIALOGTEXT="Please type in a root password for the VM"
 
-echo `zenity --title 'EncFS Password' --entry --hide-text --text "$DIALOGTEXT"` > ./vm-config/root-password
+echo `zenity --title 'EncFS Password' --entry --hide-text --text "$DIALOGTEXT"` > ./config-vm-host/root-password
 chmod 600 ./config-vm-host/root-password
