@@ -67,6 +67,22 @@ popd
 
 
 
+# MNIST dataset
+
+mkdir -p ./notebooks/data/MNIST
+pushd ./notebooks/data/MNIST
+
+if [ ! -e "mnist.pkl.gz" ]; then
+  # 15Mb
+  wget http://deeplearning.net/data/mnist/mnist.pkl.gz
+fi
+
+popd
+
+
+
+
+
 
 ## Suitable 'styles' : picasso, etc
 

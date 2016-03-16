@@ -13,6 +13,7 @@ install gcc,gcc-c++,python-devel,redhat-rpm-config
 
 # Super-useful
 install scipy,numpy,python-pandas,Cython,openblas-devel,python-pillow
+# May still need pydot (for dependencies :: Check whether 0-TheanoBasics works in Appliance)
 
 # Good for iPython / Jupyter, and also hdfs support:
 install libyaml,hdf5-devel

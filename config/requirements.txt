@@ -9,12 +9,12 @@
 
 #theano>=0.7.0
 
-# Better (required by keras, if we use the theano backend)
+# Better (required by keras, if we use the theano backend) - and fixes 'pool' problem
 # --no-deps 
-#git+git://github.com/Theano/Theano.git#egg=theano
+git+git://github.com/Theano/Theano.git#egg=theano
 
 # Try the Theano 'master'
-https://github.com/Theano/Theano/archive/master.zip
+#https://github.com/Theano/Theano/archive/master.zip
 
 
 
