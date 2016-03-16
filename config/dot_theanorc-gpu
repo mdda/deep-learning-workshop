@@ -4,5 +4,5 @@ floatX = float32
 
 mode=FAST_RUN
 
-# THEANO_FLAGS=mode=FAST_RUN,device=gpu \
+# THEANO_FLAGS=mode=FAST_RUN,device=gpu,floatX=float32 \
 #
