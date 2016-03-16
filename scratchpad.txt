@@ -51,7 +51,7 @@ Plan
     demo of Keras for MNIST feature transfer
   
     demo of VM for ImageNet recognition
-      TEST: Can lasagne load Inception3 in Jupyter inside 2Gb RAM ?
+      WORKS: lasagne can load+run Inception3 in Jupyter inside 2Gb RAM 
       Picture of inception3 network included in : https://github.com/google/inception/blob/master/inception.ipynb
       
     Commerce section
@@ -61,15 +61,19 @@ Plan
   
     Art section : Intro : http://fastml.com/deep-nets-generating-stuff/
       demo of VM with style-transfer == 'art' 
+        https://github.com/Lasagne/Recipes/blob/master/examples/styletransfer/Art%20Style%20Transfer.ipynb
         ==?== (lasagne ~deep-forger): http://www.kdnuggets.com/2015/12/deep-learning-art-forgery.html
         TEST : Can this be run in reasonable time?
         TEST : Does this look Ok with Inception3?
 
       ?demo of VM with deep dream == 'art'
+        Original Google article (Caffe) :
+          https://github.com/google/deepdream/blob/master/dream.ipynb
         ?TEST : Can this be run in reasonable time 
-        ?TEST : Does this look Ok with Inception3?
-        Keras :
+        Keras :  (tensorflow backend ~ 70secs,  theano ~ 570secs per iteration)
           https://github.com/fchollet/keras/blob/master/examples/deep_dream.py
+            :: http://i.imgur.com/FX6ROg9.jpg
+        ?TEST : Does this look Ok with Inception3?
         Lasagne :
           https://github.com/317070/Twitch-plays-LSD-neural-net 
           == https://317070.github.io/Dream/

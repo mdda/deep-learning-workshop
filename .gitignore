@@ -14,6 +14,8 @@ notebooks/data/imagenet_synset_words.txt
 notebooks/data/VGG16/*.h5
 notebooks/data/inception3/*.pkl
 
+xgit/
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
