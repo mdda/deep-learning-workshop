@@ -18,7 +18,7 @@ source ./vm-config/params
 # ./8-create-VirtualBox-image.bash 
 
 ## Needs VirtualBox installed on the machine...
-
+# dnf install VirtualBox
 
 # VBoxManage convertfromraw --format vmdk --variant Standard <source>.vmdk <destination>.vdi
 
