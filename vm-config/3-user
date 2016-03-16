@@ -44,9 +44,11 @@ upload vm-guest/keras-theano.json:/home/user/.keras/keras.json
 #upload vm-guest/keras-tensorflow.json:/home/user/.keras/keras.json
 
 # And the lasagne configuration (NB: CPU version)
-upload vm-guest/dot_theanorc:/home/user/.theanorc
+upload vm-guest/dot_theanorc-cpu:/home/user/.theanorc
+
+## And the lasagne configuration (NB: GPU version :: unlikely to work in a VM guest)
+#upload vm-guest/dot_theanorc-gpu:/home/user/.theanorc
 
 
 # And the pre-trained NN data ::
 ## TODO
-

@@ -31,12 +31,15 @@ The VM itself will include (may change) :
    *  Demonstration of gradient descent
    *  Demonstration of MNIST learning
 
-
-#### Still TODO 
-
 *  Buy thumb-drives for actual workshop
 
 *  Ensure Conference Workshop announcement / blurb includes VirtualBox warning label
+
+*  Create workshop notebooks
+   *  Lasagne / Theano ImageNet
+
+
+#### Still TODO 
 
 *  Test workshop notebooks
    *  Tensorflow / Keras MNIST
