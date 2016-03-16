@@ -13,8 +13,9 @@ source ./config/params
 ## New-style
 jupyter notebook --ip=0.0.0.0 --port=$port_jupyter --no-browser --notebook-dir=$notebook_dir
 
-## defaults running on CPU:
+## defaults for runnning outside VM:
 # jupyter notebook --ip=0.0.0.0 --port=8080 --no-browser --notebook-dir=./notebooks
 
-## defaults with GPU
-# THEANO_FLAGS=mode=FAST_RUN,device=gpu,floatX=float32 jupyter notebook --ip=0.0.0.0 --port=8080 --no-browser --notebook-dir=./notebooks
+## defaults for GPU:
+# export THEANO_FLAGS=mode=FAST_RUN,device=gpu,floatX=float32 
+# export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64
