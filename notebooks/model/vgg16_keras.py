@@ -99,7 +99,7 @@ if __name__ == "__main__":
   #print(classes[:10])
   
   # Load pretrained model
-  model = full_classifier('../data/VGG16/vgg16_weights.h5')
+  model = full_classifier('../data/VGG/vgg16_weights.h5')
   #exit()
 
   image_files = [

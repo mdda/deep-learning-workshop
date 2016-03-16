@@ -67,7 +67,7 @@ img_width,img_height = 300, 300
 
 # path to the model weights file.
 #weights_path = 'vgg16_weights.h5'
-weights_path = '../notebooks/data/VGG16/vgg16_weights.h5'
+weights_path = '../notebooks/data/VGG/vgg16_weights.h5'
 
 # some settings we found interesting
 saved_settings = {

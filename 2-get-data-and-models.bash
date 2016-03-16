@@ -28,18 +28,26 @@ fi
 popd
 
 
+mkdir -p ./notebooks/data/VGG
+pushd ./notebooks/data/VGG
+
 ## VGG16 model (converted from Caffee, importable into Keras)
 #   https://gist.github.com/baraldilorenzo/07d7802847aaad0a35d3
 
-mkdir -p ./notebooks/data/VGG16
-pushd ./notebooks/data/VGG16
-
+# This is/was for imagenet-VGG16-keras (HUGE)
 ## [ '' ] &&  :: disables the if statement
 if [ '' ] && [ ! -e "vgg16_weights.h5" ]; then
+  # 553Mb
   echo "*** ALERT ***"
-  echo "YOU NEED TO DOWNLOAD THE VGG weights manually from Google Drive"
+  echo "YOU NEED TO DOWNLOAD THE VGG weights (533Mb) manually from Google Drive"
   echo "and save it in './notebooks/data/VGG16/vgg16_weights.h5' yourself"
   echo "See link at : https://gist.github.com/baraldilorenzo/07d7802847aaad0a35d3"
+fi
+
+# This is for theano-lasagne-styletransfer
+if [ ! -e "vgg19_normalized.pkl" ]; then
+  # 80Mb
+  wget https://s3.amazonaws.com/lasagne/recipes/pretrained/imagenet/vgg19_normalized.pkl
 fi
 
 popd
@@ -51,6 +59,7 @@ mkdir -p ./notebooks/data/inception3
 pushd ./notebooks/data/inception3
 
 if [ ! -e "inception_v3.pkl" ]; then
+  # 95Mb
   wget https://s3.amazonaws.com/lasagne/recipes/pretrained/imagenet/inception_v3.pkl
 fi
 
