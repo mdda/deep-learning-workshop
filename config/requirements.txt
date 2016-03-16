@@ -58,7 +58,9 @@ jupyter
 
 
 # Visualization of theano graphs
-#pydot 
+pydot2
+## For explanation : http://stackoverflow.com/questions/15951748/pydot-and-graphviz-error-couldnt-import-dot-parser-loading-of-dot-files-will
+pyparsing==1.5.7
 
 ## This is for Python word2vec
 #gensim
@@ -68,7 +70,3 @@ jupyter
 
 ## This is a Pythonic interface to the HDF5 binary data format (used for VGG16 weights reading)
 h5py>=2.5.0
-
-
-# OMP_NUM_THREADS=2        ??  No effect
-# OPENBLAS_NUM_THREADS=4   ??  No effect

@@ -19,3 +19,7 @@ ldflags = -lopenblas
 # This works, though no speed-up?
 #ldflags = -L/lib64/atlas -ltatlas -lgfortran 
 #-lf77blas 
+
+
+# OMP_NUM_THREADS=2        ??  No effect
+# OPENBLAS_NUM_THREADS=4   ??  No effect
