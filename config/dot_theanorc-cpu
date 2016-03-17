@@ -14,23 +14,31 @@ floatX = float32
 
 ## OpenBLAS
 
-# This works, though no speed-up?
+# This "works", though no speed-up?
 #ldflags = -lopenblas
 
 
 ## ATLAS
 # Cannot find -latlas on its own : wierd path...
 
-# This works, though no speed-up?
+# This "works", though no speed-up?
 #ldflags = -L/lib64/atlas -lsatlas -lgfortran 
 
-# This works, though no speed-up?
+# This "works", though no speed-up?
 #ldflags = -L/lib64/atlas -ltatlas -lgfortran 
 #-lf77blas 
 
 
-## This is all a mystery
+## MAYBE something is clearing...  :: Ignore openblas - that seems to be a red-herring
+
+#  i.e.  leave all the blas options blank..., just install the packages : blas-devel,lapack-devel,atlas-devel
+
 #   and https://theano.readthedocs.org/en/latest/tutorial/multi_cores.html?highlight=blas
 
-# OMP_NUM_THREADS=2        ??  No effect
-# OPENBLAS_NUM_THREADS=4   ??  No effect
+# OMP_NUM_THREADS=1 python env/lib64/python2.7/site-packages/theano/misc/elemwise_openmp_speedup.py
+# OMP_NUM_THREADS=2 python env/lib64/python2.7/site-packages/theano/misc/elemwise_openmp_speedup.py
+# OMP_NUM_THREADS=4 python env/lib64/python2.7/site-packages/theano/misc/elemwise_openmp_speedup.py
+#Timed with vector of 200000 elements
+#Fast op time without openmp 0.000219s with openmp 0.000065s speedup 3.37
+#Fast op time without openmp 0.000219s with openmp 0.000065s speedup 3.37
+#Slow op time without openmp 0.014281s with openmp 0.003808s speedup 3.75
