@@ -1,5 +1,5 @@
 Image Sources
-
+===================
 
 cat-with-tongue_224x224.jpg
   https://upload.wikimedia.org/wikipedia/commons/3/3f/Lil_Bub_2013_%28crop_for_thumb%29.jpg
@@ -13,16 +13,12 @@ grumpy-cat_224x224.jpg
 sad-owl_224x224.jpg
   http://xxspiritwolf2000xx.deviantart.com/art/Grumpy-cat-image-393382036
 
-#images/grumpy-kitten_224x224.jpg
-#  https://upload.wikimedia.org/wikipedia/commons/e/ee/Grumpy_Cat_by_Gage_Skidmore.jpg
 
 
-
-Cars: 
+Cars (in ./cars) : 
+-------------------------------
 
 https://www.flickr.com/search/?license=2%2C3%2C4%2C5%2C6%2C9&text=sports%20car&advanced=1
-
-
 
 Classic:
 https://www.flickr.com/photos/exxodus/8063820319/

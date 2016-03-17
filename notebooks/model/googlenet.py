@@ -93,3 +93,40 @@ def build_model():
     net['prob'] = NonlinearityLayer(net['loss3/classifier'],
                                     nonlinearity=softmax)
     return net
+
+
+import numpy as np
+import scipy
+
+from lasagne.utils import floatX
+
+MEAN_VALUES = np.array([104, 117, 123]).reshape((3,1,1))
+
+def prep_image(im):
+    if len(im.shape) == 2:
+        im = im[:, :, np.newaxis]
+        im = np.repeat(im, 3, axis=2)
+    # Resize so smallest dim = 224, preserving aspect ratio
+    h, w, _ = im.shape
+    if h < w:
+        #im = skimage.transform.resize(im, (224, w*224/h), preserve_range=True)
+        im = scipy.misc.imresize(im, (224, w*224/h))
+        
+    else:
+        #im = skimage.transform.resize(im, (h*224/w, 224), preserve_range=True)
+        im = scipy.misc.imresize(im, (h*224/w, 224))
+
+    # Central crop to 224x224
+    h, w, _ = im.shape
+    im = im[h//2-112:h//2+112, w//2-112:w//2+112]
+    
+    rawim = np.copy(im).astype('uint8')
+    
+    # Shuffle axes to c01
+    im = np.swapaxes(np.swapaxes(im, 1, 2), 0, 1)
+    
+    # Convert to BGR
+    im = im[::-1, :, :]
+
+    im = im - MEAN_VALUES
+    return rawim, floatX(im[np.newaxis])

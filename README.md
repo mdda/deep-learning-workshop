@@ -25,34 +25,41 @@ The VM itself will include (may change) :
 *  Scripts to create working Fedora 23 installation inside VM
    *  Has working ```virtualenv``` with ```Jupyter``` and ```TensorFlow / TensorBoard```
 *  Script to transform the VM into a VirtualBox appliance
-   *  Exposing ```Jupyter``` and ```TensorBoard``` to host machine
+   *  Exposing ```Jupyter```, ```TensorBoard``` and ```ssh``` to host machine
 
 *  Tested out Convnet.js for :
    *  Demonstration of gradient descent
    *  Demonstration of MNIST learning
 
-*  Buy thumb-drives for actual workshop
-
 *  Ensure Conference Workshop announcement / blurb includes VirtualBox warning label
 
-*  Create workshop notebooks
-   *  Lasagne / Theano ImageNet
+*  Create workshop notebooks (Lasagne / Theano)
+   *  Basics 
+   *  MNIST
+   *  MNIST CNN
+   *  ImageNet : GoogLeNet
+   *  ImageNet : Inception 3
+   *  'Commerce' - repurpose a trained network to classify our stuff
+
+*  Create rsync-able image containing :
+   *  VirtualBox appliance image
+      +  including data sets and pre-trained models
+   *  VirtualBox binaries for several likely platforms
+
+*  Buy thumb-drives for actual workshop
 
 
 #### Still TODO 
 
-*  Test workshop notebooks
-   *  Tensorflow / Keras MNIST
+*  Create workshop notebooks
    *  Tensorflow / Keras image synthesis
       +  Deep dream
       +  Style transfer
-   *  Tensorflow "commercial application" : transfer learning
 
-*  Create rsync-able image containing :
-   *  VirtualBox appliance image
-      +  including data sets and pre-trained ImageNet model
-   *  VirtualBox binaries for several likely platforms
+*  Create tensorboard demo
 
+*  Workshop presentation materials
+   *  Will be short, to give time to play with the VMs...
    
 
 ### Notes
