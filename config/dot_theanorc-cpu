@@ -46,3 +46,6 @@ openmp=true
 #Fast op time without openmp 0.000219s with openmp 0.000065s speedup 3.37
 #Fast op time without openmp 0.000219s with openmp 0.000065s speedup 3.37
 #Slow op time without openmp 0.014281s with openmp 0.003808s speedup 3.75
+
+
+# But, somehow, this doesn't make it through to Jupyter clients...
