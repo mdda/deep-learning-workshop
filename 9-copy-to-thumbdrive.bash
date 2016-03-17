@@ -1,10 +1,13 @@
 #! /usr/bin/bash
 target=$1
 
-if [ "$target" -e "" ]; then
+if [ -z "$target" ]; then
   echo "Need to specify a target path"
-  exit(1)
+  exit 1
 fi
+
+echo "Target: '${target}/'"
+#exit 1
 
 # target ~ /run/media/andrewsm/591F-4AF0
 
