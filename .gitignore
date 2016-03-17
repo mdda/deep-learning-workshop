@@ -2,7 +2,7 @@
 .geany/
 
 # Password file
-vm-config/root-password
+config-vm-host/root-password
 
 # cached versions of : the python env
 vm-guest/cache/env
@@ -10,9 +10,12 @@ vm-guest/cache/env
 vm-images/*.img
 vm-images/*.ova
 
+notebooks/data/MNIST/mnist.pkl.gz
 notebooks/data/imagenet_synset_words.txt
-notebooks/data/VGG16/*.h5
-notebooks/data/inception3/*.pkl
+notebooks/data/googlenet/blvc_googlenet.pkl
+#notebooks/data/inception3/*.pkl
+notebooks/data/VGG/vgg16_weights.h5
+notebooks/data/VGG/vgg19_normalized.pkl
 
 xgit/
 
