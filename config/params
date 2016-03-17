@@ -21,6 +21,7 @@ vbox_appliance=./vm-images/${vbox_name}_`date +%F_%H-%M`.ova
 
 port_jupyter=8080
 port_tensorboard=8081
+port_ssh=8282
 
 notebook_dir=/home/user/notebooks
 tensorflow_dir=/home/user/tensorflow.logdir

@@ -86,6 +86,7 @@ VBoxManage createvm --name ${vbox_name} --ostype ${vbox_ostype} --register
 VBoxManage modifyvm ${vbox_name} --memory ${vbox_memory} --cpus ${vbox_cpus}
 VBoxManage modifyvm ${vbox_name} --natpf1 "jupyter,tcp,,${port_jupyter},,${port_jupyter}"
 VBoxManage modifyvm ${vbox_name} --natpf1 "tensorboard,tcp,,${port_tensorboard},,${port_tensorboard}"
+VBoxManage modifyvm ${vbox_name} --natpf1 "ssh,tcp,,${port_ssh},,22"
                                           
 # --acpi on                                          
 #       --nic1 bridged --bridgeadapter1 eth0  

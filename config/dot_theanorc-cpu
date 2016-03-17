@@ -8,10 +8,14 @@ floatX = float32
 
 [blas]
 
+## This is all a mystery
+# Trying to follow https://theano.readthedocs.org/en/latest/install_centos6.html?highlight=blas without any evidence of speed-up
+
+
 ## OpenBLAS
 
 # This works, though no speed-up?
-ldflags = -lopenblas
+#ldflags = -lopenblas
 
 
 ## ATLAS
@@ -24,6 +28,9 @@ ldflags = -lopenblas
 #ldflags = -L/lib64/atlas -ltatlas -lgfortran 
 #-lf77blas 
 
+
+## This is all a mystery
+#   and https://theano.readthedocs.org/en/latest/tutorial/multi_cores.html?highlight=blas
 
 # OMP_NUM_THREADS=2        ??  No effect
 # OPENBLAS_NUM_THREADS=4   ??  No effect
