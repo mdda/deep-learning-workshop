@@ -30,6 +30,9 @@ mkdir -p $notebook_dir
 mkdir -p $tensorflow_dir
 
 
+echo "OMP_NUM_THREADS=4" >> ~/.bashrc
+echo "export OMP_NUM_THREADS" >> ~/.bashrc
+
 # If we get this far, everything installed/initialised successfully.
 # This string is detected in the guest afterwards.
 echo '=== CONFIGURATION FINISHED OK ==='

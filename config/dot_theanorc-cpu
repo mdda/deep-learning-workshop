@@ -29,6 +29,10 @@ floatX = float32
 #-lf77blas 
 
 
+## Magic switch?
+openmp=true
+
+
 ## MAYBE something is clearing...  :: Ignore openblas - that seems to be a red-herring
 
 #  i.e.  leave all the blas options blank..., just install the packages : blas-devel,lapack-devel,atlas-devel
