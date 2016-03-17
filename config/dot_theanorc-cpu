@@ -1,3 +1,7 @@
+
+#http://deeplearning.net/software/theano/library/config.html
+# python -c 'import theano; print(theano.config)' | less
+
 [global]
 device = cpu
 floatX = float32
