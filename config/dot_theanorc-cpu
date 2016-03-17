@@ -6,6 +6,53 @@
 device = cpu
 floatX = float32
 
+## Magic switch?
+openmp=true
+openmp_elemwise_minsize=200000
+
+# Need to test whether this makes it through to Jupyter clients...  Here's a test cell to include:
+#import os
+#print("OMP_NUM_THREADS = ",os.environ['OMP_NUM_THREADS'])
+#
+#import theano
+#print("theano.config.blas = ",theano.config.blas.ldflags)
+#print("theano.config.openmp = ",theano.config.openmp)
+#print("theano.config.openmp_elemwise_minsize = ",theano.config.openmp_elemwise_minsize)
+
+
+
+## MAYBE something is clearing...  :: Ignore openblas - that seems to be a red-herring
+
+#  i.e.  leave all the blas options blank..., just install the packages : blas-devel,lapack-devel,atlas-devel
+
+#   and https://theano.readthedocs.org/en/latest/tutorial/multi_cores.html?highlight=blas
+
+# OMP_NUM_THREADS=1 python env/lib64/python2.7/site-packages/theano/misc/elemwise_openmp_speedup.py -N 200000 
+# OMP_NUM_THREADS=2 python env/lib64/python2.7/site-packages/theano/misc/elemwise_openmp_speedup.py -N 200000 
+# OMP_NUM_THREADS=4 python env/lib64/python2.7/site-packages/theano/misc/elemwise_openmp_speedup.py -N 200000 
+#Timed with vector of 200000 elements
+#Fast op time without openmp 0.000219s with openmp 0.000065s speedup 3.37
+#Fast op time without openmp 0.000219s with openmp 0.000065s speedup 3.37
+#Slow op time without openmp 0.014281s with openmp 0.003808s speedup 3.75
+
+# OMP_NUM_THREADS=4 python env/lib64/python2.7/site-packages/theano/misc/elemwise_openmp_speedup.py -N 100000 
+#Timed with vector of 100000 elements
+#Fast op time without openmp 0.000127s with openmp 0.000131s slowdown 1.03
+#Fast op time without openmp 0.000127s with openmp 0.000131s slowdown 1.03
+#Slow op time without openmp 0.007277s with openmp 0.007131s speedup 1.02
+
+
+# OMP_NUM_THREADS=4 python env/lib64/python2.7/site-packages/theano/misc/check_blas.py
+#We executed 10 calls to gemm with a and b matrices of shapes (5000, 5000) and (5000, 5000).
+#Total execution time: 155.67s on CPU (with direct Theano binding to blas).
+
+# OMP_NUM_THREADS=2 python env/lib64/python2.7/site-packages/theano/misc/check_blas.py
+#We executed 10 calls to gemm with a and b matrices of shapes (5000, 5000) and (5000, 5000).
+#Total execution time: 154.89s on CPU (with direct Theano binding to blas).
+
+
+
+
 [blas]
 
 ## This is all a mystery
@@ -27,25 +74,3 @@ floatX = float32
 # This "works", though no speed-up?
 #ldflags = -L/lib64/atlas -ltatlas -lgfortran 
 #-lf77blas 
-
-
-## Magic switch?
-openmp=true
-
-
-## MAYBE something is clearing...  :: Ignore openblas - that seems to be a red-herring
-
-#  i.e.  leave all the blas options blank..., just install the packages : blas-devel,lapack-devel,atlas-devel
-
-#   and https://theano.readthedocs.org/en/latest/tutorial/multi_cores.html?highlight=blas
-
-# OMP_NUM_THREADS=1 python env/lib64/python2.7/site-packages/theano/misc/elemwise_openmp_speedup.py
-# OMP_NUM_THREADS=2 python env/lib64/python2.7/site-packages/theano/misc/elemwise_openmp_speedup.py
-# OMP_NUM_THREADS=4 python env/lib64/python2.7/site-packages/theano/misc/elemwise_openmp_speedup.py
-#Timed with vector of 200000 elements
-#Fast op time without openmp 0.000219s with openmp 0.000065s speedup 3.37
-#Fast op time without openmp 0.000219s with openmp 0.000065s speedup 3.37
-#Slow op time without openmp 0.014281s with openmp 0.003808s speedup 3.75
-
-
-# But, somehow, this doesn't make it through to Jupyter clients...
