@@ -13,7 +13,7 @@ vbox_ostype=Fedora_64
 vbox_memory=2048
 vbox_cpus=4
 
-vbox_appliance=./vm-images/${vbox_name}_`date +%F_%T`.ova
+vbox_appliance=./vm-images/${vbox_name}_`date +%F_%H-%M`.ova
 
 
 

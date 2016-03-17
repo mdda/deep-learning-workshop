@@ -16,12 +16,12 @@ jupyter notebook --ip=0.0.0.0 --port=$port_jupyter --no-browser --notebook-dir=$
 ## defaults for runnning outside VM:
 # jupyter notebook --ip=0.0.0.0 --port=8080 --no-browser --notebook-dir=./notebooks
 
-## defaults for CPU:
-# export THEANO_FLAGS=mode=FAST_RUN,device=cpu,floatX=float32,blas.ldflags=-lopenblas
+## defaults for using the CPU:
+# export THEANO_FLAGS='mode=FAST_RUN,device=cpu,floatX=float32,blas.ldflags=-lopenblas'
 
-## defaults for GPU:
-# export THEANO_FLAGS=mode=FAST_RUN,device=gpu,floatX=float32 
-# export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64
+## defaults for using the GPU:
+# export THEANO_FLAGS='mode=FAST_RUN,device=gpu0,floatX=float32'
+# ??export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64
 
 
 #http://deeplearning.net/software/theano/library/config.html
