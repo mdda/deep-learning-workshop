@@ -70,3 +70,6 @@ pyparsing==1.5.7
 
 ## This is a Pythonic interface to the HDF5 binary data format (used for keras-VGG16 weights reading)
 h5py>=2.5.0
+
+## Requests is only used in the GPU chooser, which is a pity.  OTOH, it's a good library
+requests>=2.9.0
