@@ -1,0 +1,13 @@
+[Service]
+ExecStart=/usr/bin/bash -c "cd /home/user && ./run-tensorboard.bash"
+Restart=always
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=user-tensorboard
+User=user
+Group=user
+Environment=PYTHON_ENV=production PYTHONIOENCODING=utf_8
+WorkingDirectory=/home/user/
+
+[Install]
+WantedBy=multi-user.target

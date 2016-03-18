@@ -1,0 +1,13 @@
+[Service]
+ExecStart=/usr/bin/bash -c "cd /home/user && ./run-jupyter.bash"
+Restart=always
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=user-jupyter
+User=user
+Group=user
+Environment=PYTHON_ENV=production PYTHONIOENCODING=utf_8 OMP_NUM_THREADS=4
+WorkingDirectory=/home/user/
+
+[Install]
+WantedBy=multi-user.target
