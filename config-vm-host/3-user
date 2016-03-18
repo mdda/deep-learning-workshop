@@ -20,8 +20,10 @@ upload config/requirements.txt:/home/user/config/
 # This is the (potentially empty) cache of the python env that we'll build (probably later)
 copy-in config/cache/env:/home/user/
 
+## Set the user password to 'password' (without the quotes)
+# python -c "import crypt; print(crypt.crypt('password','00'))" #==# "00xQPHYlVDIw6"
 
-firstboot-command useradd --create-home --password "password" user
+firstboot-command useradd --create-home --password 00xQPHYlVDIw6 user
 firstboot-command cp -r /etc/skel/. /home/user
 firstboot-command chown -R user:user /home/user
 firstboot-command chmod 744 /home/user/config/firstboot.bash
