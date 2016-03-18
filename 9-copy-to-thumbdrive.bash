@@ -17,10 +17,12 @@ fi
 
 # target ~ /run/media/andrewsm/591F-4AF0
 
-rsync -avz --progress ${most_recent_ova} target/
+rsync -avz --progress ${most_recent_ova} ${target}/
 
 # Windows and OSX binaries
-rsync -avz --progress ./vm-images/VirtualBox-5* target/
+rsync -avz --progress ./vm-images/VirtualBox-5* ${target}/
 
 # Linux binaries (Fedora, and some Ubuntus)
-rsync -avz --progress ./vm-images/virtualbox-5* target/
+rsync -avz --progress ./vm-images/virtualbox-5* ${target}/
+
+ls -l ${target}/
