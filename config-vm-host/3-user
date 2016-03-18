@@ -21,7 +21,7 @@ upload config/requirements.txt:/home/user/config/
 copy-in config/cache/env:/home/user/
 
 
-firstboot-command useradd --create-home --password "" user
+firstboot-command useradd --create-home --password "password" user
 firstboot-command cp -r /etc/skel/. /home/user
 firstboot-command chown -R user:user /home/user
 firstboot-command chmod 744 /home/user/config/firstboot.bash
