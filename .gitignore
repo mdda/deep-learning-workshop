@@ -17,8 +17,8 @@ notebooks/data/inception3/inception_v3.pkl
 notebooks/data/VGG/vgg16_weights.h5
 notebooks/data/VGG/vgg19_normalized.pkl
 
-#data/RNN/claims.txt.gz
-#data/RNN/gru_2layer_trained.pkl
+notebooks/data/RNN/claims.txt.gz
+notebooks/data/RNN/gru_2layer_trained_claims.pkl
 
 
 xgit/
