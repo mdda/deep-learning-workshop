@@ -41,6 +41,10 @@ The VM itself will include (may change) :
    *  ImageNet : Inception 3
    *  'Commerce' - repurpose a trained network to classify our stuff
 
+*  Notebook Extras
+   *  X - BLAS configuration fiddle tool
+   *  Z - GPU chooser
+
 *  Create rsync-able image containing :
    *  VirtualBox appliance image
       +  including data sets and pre-trained models
@@ -55,6 +59,9 @@ The VM itself will include (may change) :
    *  Tensorflow / Keras image synthesis
       +  Deep dream
       +  Style transfer
+   *  RNN character-by-character 
+      +  Need interesting corpus
+      +  Check it works...
 
 *  Create tensorboard demo
 
