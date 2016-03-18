@@ -104,12 +104,31 @@ if [ ! -e "claims.txt.gz" ]; then
   wget 'https://github.com/ebenolson/pydata2015/raw/master/4%20-%20Recurrent%20Networks/claims.txt.gz'
 fi
 
+if [ ! -e "Shakespeare.poetry.txt.gz" ]; then
+  mkdir Shakespeare
+  cd Shakespeare/
+    # 20Mb
+    wget http://sydney.edu.au/engineering/it/~matty/Shakespeare/shakespeare.tar.gz
+    tar -xzf shakespeare.tar.gz 
+  cd ..
+
+  # NB: There are other folders here, but these are the simplest example sets
+  cat Shakespeare/comedies/* Shakespeare/histories/* Shakespeare/tragedies/* > Shakespeare.plays.txt
+  cat Shakespeare/poetry/* > Shakespeare.poetry.txt
+  
+  gzip Shakespeare.plays.txt   # 5Mb of text 
+  gzip Shakespeare.poetry.txt  # 700Kb of text
+
+  rm -rf Shakespeare/
+fi
+
 if [ ! -e "gru_2layer_trained.pkl" ]; then
   # 1.7Mb
   wget 'https://github.com/ebenolson/pydata2015/raw/master/4%20-%20Recurrent%20Networks/gru_2layer_trained.pkl'
 fi
 
 popd
+
 
 
 
