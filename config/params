@@ -8,12 +8,12 @@ guest_type=fedora-23
 image_file=./vm-images/${guest_type}.img
 vbox_disk=./vm-images/${guest_type}_fossasia.vmdk
 
-vbox_name=fossasia-mdda
+vbox_name=fossasia-mdda_`date +%F_%H-%M`
 vbox_ostype=Fedora_64
 vbox_memory=2048
 vbox_cpus=4
 
-vbox_appliance=./vm-images/${vbox_name}_`date +%F_%H-%M`.ova
+vbox_appliance=./vm-images/${vbox_name}.ova
 
 
 
