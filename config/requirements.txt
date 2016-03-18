@@ -68,5 +68,5 @@ pyparsing==1.5.7
 ## This is a hd5 pickler (fast)
 #hickle
 
-## This is a Pythonic interface to the HDF5 binary data format (used for VGG16 weights reading)
+## This is a Pythonic interface to the HDF5 binary data format (used for keras-VGG16 weights reading)
 h5py>=2.5.0
