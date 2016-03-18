@@ -43,20 +43,24 @@ Plan
         lasagne
         tensorflow-slim
         
-    demo of tensorboard 
+    TODO demo of tensorboard 
       IDEA : show tensorboard for MNIST ++ ?
   
-    demo of Keras for MNIST
+    demo of Lasagne for MNIST MLP
+      DONE
     
-    demo of Keras for MNIST feature transfer
-  
+    demo of Lasagne for MNIST CNN
+      DONE
+    
     demo of VM for ImageNet recognition
       WORKS: lasagne can load+run Inception3 in Jupyter inside 2Gb RAM 
-      Picture of inception3 network included in : https://github.com/google/inception/blob/master/inception.ipynb
+        Picture of inception3 network included in : https://github.com/google/inception/blob/master/inception.ipynb
+          Added to presentation
+      
       
     Commerce section
       demo of VM with ImageNet / cutoff == 'commercial'
-        IMPLEMENT : logistic regression of several brand images (for instance)
+        WORKS : logistic regression of several car images
   
   
     Art section : Intro : http://fastml.com/deep-nets-generating-stuff/
@@ -78,11 +82,11 @@ Plan
           https://github.com/fchollet/keras/blob/master/examples/deep_dream.py
             :: http://i.imgur.com/FX6ROg9.jpg
             
-            
         ?TEST : Does this look Ok with Inception3?
         Lasagne :
           https://github.com/317070/Twitch-plays-LSD-neural-net 
           == https://317070.github.io/Dream/
+
 
       demo of LSTM word thingy
         IMPLEMENT : Need suitable text data

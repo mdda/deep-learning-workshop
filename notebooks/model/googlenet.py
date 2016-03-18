@@ -41,14 +41,14 @@ def build_inception_module(name, input_layer, nfilters):
 def build_model():
     net = {}
     net['input'] = InputLayer((None, 3, None, None))
-    net['conv1/7x7_s2'] = ConvLayer(net['input'], 64, 7, stride=2, pad=3)
+    net['conv1/7x7_s2'] = ConvLayer(net['input'], 64, 7, stride=2, pad=3)     ## Style?
     net['pool1/3x3_s2'] = PoolLayer(net['conv1/7x7_s2'],
                                     pool_size=3,
                                     stride=2,
                                     ignore_border=False)
     net['pool1/norm1'] = LRNLayer(net['pool1/3x3_s2'], alpha=0.00002, k=1)
     net['conv2/3x3_reduce'] = ConvLayer(net['pool1/norm1'], 64, 1)
-    net['conv2/3x3'] = ConvLayer(net['conv2/3x3_reduce'], 192, 3, pad=1)
+    net['conv2/3x3'] = ConvLayer(net['conv2/3x3_reduce'], 192, 3, pad=1)      ## Style?
     net['conv2/norm2'] = LRNLayer(net['conv2/3x3'], alpha=0.00002, k=1)
     net['pool2/3x3_s2'] = PoolLayer(net['conv2/norm2'], pool_size=3, stride=2)
 
@@ -58,7 +58,7 @@ def build_model():
     net.update(build_inception_module('inception_3b',
                                       net['inception_3a/output'],
                                       [64, 128, 128, 192, 32, 96]))
-    net['pool3/3x3_s2'] = PoolLayer(net['inception_3b/output'],
+    net['pool3/3x3_s2'] = PoolLayer(net['inception_3b/output'],               ## Style?
                                     pool_size=3, stride=2)
 
     net.update(build_inception_module('inception_4a',
@@ -76,7 +76,7 @@ def build_model():
     net.update(build_inception_module('inception_4e',
                                       net['inception_4d/output'],
                                       [128, 256, 160, 320, 32, 128]))
-    net['pool4/3x3_s2'] = PoolLayer(net['inception_4e/output'],
+    net['pool4/3x3_s2'] = PoolLayer(net['inception_4e/output'],               ## Content?
                                     pool_size=3, stride=2)
 
     net.update(build_inception_module('inception_5a',
@@ -86,7 +86,7 @@ def build_model():
                                       net['inception_5a/output'],
                                       [128, 384, 192, 384, 48, 128]))
 
-    net['pool5/7x7_s1'] = GlobalPoolLayer(net['inception_5b/output'])
+    net['pool5/7x7_s1'] = GlobalPoolLayer(net['inception_5b/output'])         ## Style? == inception_5b/output ?
     net['loss3/classifier'] = DenseLayer(net['pool5/7x7_s1'],
                                          num_units=1000,
                                          nonlinearity=linear)
@@ -130,3 +130,15 @@ def prep_image(im):
 
     im = im - MEAN_VALUES
     return rawim, floatX(im[np.newaxis])
+
+
+def deprocess(x):
+    x = np.copy(x[0])
+    x += MEAN_VALUES
+
+    x = x[::-1]
+    x = np.swapaxes(np.swapaxes(x, 0, 1), 1, 2)
+    
+    x = np.clip(x, 0, 255).astype('uint8')
+    return x
+  
