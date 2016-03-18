@@ -67,6 +67,9 @@ Plan
         TEST : Can this be run in reasonable time?
         TEST : Does this look Ok with Inception3?
 
+        http://ostagram.ru/static_pages/lenta?last_days=30            
+
+
       ?demo of VM with deep dream == 'art'
         Original Google article (Caffe) :
           https://github.com/google/deepdream/blob/master/dream.ipynb
@@ -74,6 +77,7 @@ Plan
         Keras :  (tensorflow backend ~ 70secs, ~1.1Gb peak RAM,  theano ~ 570secs per iteration, ~?350Mb peak RAM)
           https://github.com/fchollet/keras/blob/master/examples/deep_dream.py
             :: http://i.imgur.com/FX6ROg9.jpg
+            
             
         ?TEST : Does this look Ok with Inception3?
         Lasagne :
@@ -84,6 +88,8 @@ Plan
         IMPLEMENT : Need suitable text data
         TEST : Can this be run in reasonable time?
     
+        https://github.com/ebenolson/pydata2015/blob/master/4%20-%20Recurrent%20Networks/RNN%20Character%20Model%20-%202%20Layer.ipynb
+        xgit : Recipes : examples : lstm_text_generation.py
     
     
     Deep Q-Learning
