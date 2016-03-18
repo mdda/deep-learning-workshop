@@ -6,19 +6,9 @@
 device = cpu
 floatX = float32
 
-## Magic switch?
+## Magic switch ( Jupyter notebook suggests not...)
 openmp=true
 openmp_elemwise_minsize=200000
-
-# Need to test whether this makes it through to Jupyter clients...  Here's a test cell to include:
-#import os
-#print("OMP_NUM_THREADS = ",os.environ['OMP_NUM_THREADS'])
-#
-#import theano
-#print("theano.config.blas = ",theano.config.blas.ldflags)
-#print("theano.config.openmp = ",theano.config.openmp)
-#print("theano.config.openmp_elemwise_minsize = ",theano.config.openmp_elemwise_minsize)
-
 
 
 ## MAYBE something is clearing...  :: Ignore openblas - that seems to be a red-herring
@@ -74,3 +64,6 @@ openmp_elemwise_minsize=200000
 # This "works", though no speed-up?
 #ldflags = -L/lib64/atlas -ltatlas -lgfortran 
 #-lf77blas 
+
+# This actually works
+ldflags = -L/lib64/atlas -ltatlas
