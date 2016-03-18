@@ -13,10 +13,10 @@ install gcc,gcc-c++,python-devel,redhat-rpm-config
 
 # Super-useful
 install scipy,numpy,python-scikit-learn,python-pandas,Cython,blas-devel,lapack-devel,atlas-devel,python-pillow
-# May still need pydot (for dependencies :: Check whether 0-TheanoBasics works in Appliance)
 
 # Good for iPython / Jupyter, and also hdfs support:
-install libyaml,hdf5-devel
+install graphviz,libyaml,hdf5-devel
+# graphviz needed for pydot(2)
 
 # And add the systemd service definition files
 ## TODO
