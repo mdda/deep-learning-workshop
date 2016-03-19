@@ -11,16 +11,15 @@ The VM itself includes :
   * Running as a server available to the host machine's browser
 * Data
   * MNIST training and test sets
-  * Trained model from one of the 'big' ImageNet winners
+  * Trained models from two of the 'big' ImageNet winners
   * Data directory will live inside image (heavy reliance on people being able to do VirtualBox)
 * Tool chain (mostly Python-oriented)
-  * Choice 1 : Tensorflow / Keras
-  * Fallback : Theano / Lasagne / Keras (not Caffe)
+  * Theano / Lasagne
+  * Keras / Tensorflow is included, but not really used
+    * Because Tensorflow demands far more RAM than Theano, and we can't assume that the VM will be allocated more than 2Gb
 
 
-
-
-### Current Status : Workshop WORKED!
+### Status : Workshop WORKED!
 
 #### Currently working well
 
