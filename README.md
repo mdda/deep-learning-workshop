@@ -2,8 +2,7 @@
 
 *  http://2016.fossasia.org/
 
-
-This repo will include the source to build a VM to be used for the Workshop participants.
+This repo includes all scripts required to build the VirtualBox VM to be used by the Deep Learing Workshop participants.
 
 The VM itself includes : 
 
