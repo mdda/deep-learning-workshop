@@ -5,7 +5,7 @@
 
 This repo will include the source to build a VM to be used for the Workshop participants.
 
-The VM itself will include (may change) : 
+The VM itself includes : 
 
 * Jupyter (iPython's successor)
   * Running as a server available to the host machine's browser
@@ -18,9 +18,11 @@ The VM itself will include (may change) :
   * Fallback : Theano / Lasagne / Keras (not Caffe)
 
 
-### Current Status
 
-#### Working 
+
+### Current Status : Workshop WORKED!
+
+#### Currently working well
 
 *  Scripts to create working Fedora 23 installation inside VM
    *  Has working ```virtualenv``` with ```Jupyter``` and ```TensorFlow / TensorBoard```
@@ -40,10 +42,12 @@ The VM itself will include (may change) :
    *  ImageNet : GoogLeNet
    *  ImageNet : Inception 3
    *  'Commerce' - repurpose a trained network to classify our stuff
+   *  'Art' - Style transfer with Lasange, but using GoogLeNet features for speed
+   *  RNN - Updated with Shakespeare text, and bugfix
 
 *  Notebook Extras
    *  X - BLAS configuration fiddle tool
-   *  Z - GPU chooser
+   *  Z - GPU chooser (needs Python's BeautifulSoup)
 
 *  Create rsync-able image containing :
    *  VirtualBox appliance image
@@ -52,21 +56,25 @@ The VM itself will include (may change) :
 
 *  Buy thumb-drives for actual workshop
 
+*  Workshop presentation materials
+   *  Fairly short, to give time to play with the VMs
+   *  Timings:
+      *  First hour : up to end of ConvNetJS, and explain ThenoBasics
+      *  Up to 1:30 : MNIST and ImageNet examples
+      *  15 mins each : 'Commerce' and 'Art-Style-Transfer'
 
-#### Still TODO 
+
+#### Still Work-in-Progress 
 
 *  Create workshop notebooks
-   *  Tensorflow / Keras image synthesis
+   *  Art
       +  Deep dream
-      +  Style transfer
-   *  RNN character-by-character 
-      +  Need interesting corpus
-      +  Check it works...
 
 *  Create tensorboard demo
 
 *  Workshop presentation materials
-   *  Will be short, to give time to play with the VMs...
+   *  Enhance, so that some examples are given as picture
+      *  Because lots of people just want to listen, not do
    
 
 ### Notes
