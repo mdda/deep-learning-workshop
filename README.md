@@ -1,8 +1,11 @@
-## FOSSASIA 2016 : Deep Learning Workshop
+## [FOSSASIA 2016](http://2016.fossasia.org/) : Deep Learning Workshop
 
-*  http://2016.fossasia.org/
+This repo includes all scripts required to build the VirtualBox 'Appliance' (an easy-to-install pre-configured VM) 
+to be used by the Deep Learning Workshop participants.
 
-This repo includes all scripts required to build the VirtualBox VM to be used by the Deep Learing Workshop participants.
+Slides for the talk are [here](http://redcatlabs.com/2016-03-19_FOSSASIA-Workshop/), and 
+will probably be updated after the event too, since participants who want to play with the 
+VirtualBox Appliance on their laptops when they get home might find a few more hints helpful.
 
 The VM itself includes : 
 
