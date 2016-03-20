@@ -5,10 +5,10 @@
 #set -e
 #set -x
 
-source ../config/params
+source ./config/params
 
-virtualenv --system-site-packages ../env
-. ../env/bin/activate
+virtualenv --system-site-packages ./env
+. ./env/bin/activate
 
 pip install --upgrade pip
 
@@ -19,7 +19,10 @@ pip install -r ./config/requirements.txt
 #cp ./notebooks/images/logo.png ${logopath}/
 
 # Create these directories safely, just so we know they're there
+notebook_dir=${notebook_dir/\/home\/user\//\./} 
 mkdir -p $notebook_dir
+
+tensorflow_dir=${tensorflow_dir/\/home\/user\//\./} 
 mkdir -p $tensorflow_dir
 
 #echo "OMP_NUM_THREADS=4" >> ~/.bashrc
