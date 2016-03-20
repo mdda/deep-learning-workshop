@@ -26,3 +26,6 @@ jupyter notebook --ip=0.0.0.0 --port=$port_jupyter --no-browser --notebook-dir=$
 
 #http://deeplearning.net/software/theano/library/config.html
 # python -c 'import theano; print(theano.config)' | less
+
+
+# rsync -avz -e 'ssh -p 8282' user@localhost:/home/user/notebooks/data/googlenet/*.pkl .
