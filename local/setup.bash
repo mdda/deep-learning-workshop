@@ -5,10 +5,10 @@
 #set -e
 #set -x
 
-source ./config/params
+source ../config/params
 
-virtualenv --system-site-packages env
-. env/bin/activate
+virtualenv --system-site-packages ../env
+. ../env/bin/activate
 
 pip install --upgrade pip
 

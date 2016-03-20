@@ -3,8 +3,15 @@
 # This runs locally, to set up a dev machine so that it can work with Jupyter notebooks, etc
 
 source ./config/params
+#echo ${port_jupyter}
+echo ${notebook_dir}
 
-. env/bin/activate
+## local hack
+notebook_dir=${notebook_dir/\/home\/user\//\./} 
+echo ${notebook_dir}
+#exit 0
+
+. ./env/bin/activate
 
 ## New-style
 jupyter notebook --ip=0.0.0.0 --port=$port_jupyter --no-browser --notebook-dir=$notebook_dir
