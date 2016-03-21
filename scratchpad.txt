@@ -72,6 +72,7 @@ Plan
         TEST : Does this look Ok with Inception3?
 
         http://ostagram.ru/static_pages/lenta?last_days=30            
+          ->  https://www.facebook.com/ostagram/
 
 
       ?demo of VM with deep dream == 'art'
