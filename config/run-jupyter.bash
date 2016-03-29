@@ -13,8 +13,6 @@ source ./config/params
 ## New-style
 jupyter notebook --ip=0.0.0.0 --port=$port_jupyter --no-browser --notebook-dir=$notebook_dir
 
-## defaults for runnning outside VM:
-# jupyter notebook --ip=0.0.0.0 --port=8080 --no-browser --notebook-dir=./notebooks
 
 ## defaults for using the CPU:
 # export THEANO_FLAGS='mode=FAST_RUN,device=cpu,floatX=float32,blas.ldflags=-lopenblas'
