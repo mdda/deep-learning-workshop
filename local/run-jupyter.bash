@@ -13,15 +13,20 @@ echo ${notebook_dir}
 
 . ./env/bin/activate
 
+## Try to do some basic GPU detection / CPU BLAS configuration
+if [ -z `lsmod | grep nvidia` ]; then\
+  echo "Configuring threaded Atlas as BLAS on CPU"
+  THEANO_FLAGS='mode=FAST_RUN,device=cpu,floatX=float32,blas.ldflags="-L/lib64/atlas -ltatlas"'
+else
+  echo "Configuring to use Nvidia GPU 0"
+  THEANO_FLAGS='mode=FAST_RUN,device=gpu0,floatX=float32'
+  # ??export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64
+fi
+
+export THEANO_FLAGS
+
 ## New-style
 jupyter notebook --ip=0.0.0.0 --port=$port_jupyter --no-browser --notebook-dir=$notebook_dir
-
-## defaults for theano using the CPU:
-# export THEANO_FLAGS='mode=FAST_RUN,device=cpu,floatX=float32,blas.ldflags=-lopenblas'
-
-## defaults for theano using the GPU:
-# export THEANO_FLAGS='mode=FAST_RUN,device=gpu0,floatX=float32'
-# ??export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64
 
 
 #http://deeplearning.net/software/theano/library/config.html

@@ -65,5 +65,5 @@ openmp_elemwise_minsize=200000
 #ldflags = -L/lib64/atlas -ltatlas -lgfortran 
 #-lf77blas 
 
-# This actually works
+# This *actually* works : Tested using the ./notebooks/X-Numerical-Library-Test.ipynb end-to-end test
 ldflags = -L/lib64/atlas -ltatlas
