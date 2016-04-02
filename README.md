@@ -48,14 +48,13 @@ The VM itself includes :
 
 *  Notebook Extras
    *  X - BLAS configuration fiddle tool
-   *  Z - GPU chooser (needs Python's BeautifulSoup)
+   *  Z - GPU chooser (needs Python's ```BeautifulSoup```)
 
 *  Create rsync-able image containing :
    *  VirtualBox appliance image
       +  including data sets and pre-trained models
    *  VirtualBox binaries for several likely platforms
-
-*  Buy thumb-drives for actual workshop
+   *  Write to thumb-drives for actual workshop
 
 *  Workshop presentation materials
    *  Fairly short, to give time to play with the VMs
@@ -70,15 +69,23 @@ The VM itself includes :
 *  Create workshop notebooks
    *  Art
       +  Deep dream
+      
+*  Create sync-to-latest-workbooks script to update existing (taken-home) VMs
 
 *  Create tensorboard demo
 
 *  Workshop presentation materials
-   *  Enhance, so that some examples are given as picture
+   *  Enhance, so that workshop module final results are given as pictures
       *  Because lots of people just want to listen, not do
    
 
 ### Notes
+
+#### Running the environment locally
+
+
+
+
 #### Git-friendly iPython Notebooks
 
 Using the code from : http://pascalbugnion.net/blog/ipython-notebooks-and-git.html (and
