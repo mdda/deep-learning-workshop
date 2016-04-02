@@ -20,6 +20,11 @@ The VM itself includes :
   * Keras / Tensorflow is included, but not really used
     * Because Tensorflow demands far more RAM than Theano, and we can't assume that the VM will be allocated more than 2Gb
 
+And this repo can itself be run in 'local mode', using scripts in ```./local/``` to :
+
+*  Set up the virtual environment correctly
+*  Run ```jupyter``` with the right flags, paths etc
+
 
 ### Status : Workshop WORKED!
 
