@@ -5,6 +5,35 @@
 #set -e
 #set -x
 
+# First, let's check we've got the right RPMs installed (assumes Fedora)
+rpms=`rpm -qa`
+rpms_extra=''
+for check in \
+  python python-virtualenv \
+  gcc gcc-c++ python-devel redhat-rpm-config \
+  scipy numpy python-scikit-learn python-pandas Cython blas-devel lapack-devel atlas-devel python-pillow \
+  graphviz
+do 
+  found=`echo $rpms | grep $check`
+  if [ -z "$found" ]
+  then
+    #echo "Need to install $check (using 'dnf install $check') before running this setup"
+    rpms_extra="$rpms_extra $check"
+  fi
+done
+
+if [ -z "$rpms_extra" ]
+then
+  echo "Required RPMs are installed"
+else
+  echo "Additional RPMs are required before this setup can proceed."
+  echo "###########################################################"
+  echo "Please run (as 'root') : "
+  echo "  dnf install$rpms_extra"
+  echo "###########################################################"
+  exit
+fi
+
 source ./config/params
 
 virtualenv --system-site-packages ./env
