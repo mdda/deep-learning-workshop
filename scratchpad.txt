@@ -95,13 +95,22 @@ Plan
     
         https://github.com/ebenolson/pydata2015/blob/master/4%20-%20Recurrent%20Networks/RNN%20Character%20Model%20-%202%20Layer.ipynb
         xgit : Recipes : examples : lstm_text_generation.py
-    
+        
+        Problem : Takes too long to train...
+
+      Alternative RNN ideas:        
+        http://jiwonkim.org/awesome-rnn/
+
     
     Deep Q-Learning
+      https://cs.stanford.edu/people/karpathy/convnetjs/demo/rldemo.html
       http://maciejjaskowski.github.io/2016/03/09/space-invaders.html
       https://github.com/maciejjaskowski/deep-q-learning
         -- theano / lasagne
         -- needs non-free Atari ROM image
+        
+      https://github.com/yandexdataschool/AgentNet
+    
     
 ### Topics within Deep Learning     
 #### ConvNets:
