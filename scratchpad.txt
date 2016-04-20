@@ -101,6 +101,11 @@ Plan
       Alternative RNN ideas:        
         http://jiwonkim.org/awesome-rnn/
 
+    Word Embedding
+      Arguable whether it's really Deep Learning
+      OTOH, it is a 'learned layer' that has arisen from DL research
+      Either : Need word corpus (and patience)
+      Or     : Precalculated vectors
     
     Deep Q-Learning
       https://cs.stanford.edu/people/karpathy/convnetjs/demo/rldemo.html
