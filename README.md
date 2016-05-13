@@ -86,7 +86,7 @@ And this repo can itself be run in 'local mode', using scripts in ```./local/```
 #### Ideas
 
 *  Reinforcement Learning demo
-   *  (```deer```)[http://deer.readthedocs.io/en/master/index.html] - ```theano```-based
+   *  [```deer```](http://deer.readthedocs.io/en/master/index.html) - ```theano```-based
 
 
 
