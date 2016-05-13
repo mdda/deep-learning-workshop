@@ -83,6 +83,13 @@ And this repo can itself be run in 'local mode', using scripts in ```./local/```
    *  Enhance, so that workshop module final results are given as pictures
       *  Because lots of people just want to listen, not do
    
+#### Ideas
+
+*  Reinforcement Learning demo
+   *  (```deer```)[http://deer.readthedocs.io/en/master/index.html] - ```theano```-based
+
+
+
 
 ### Notes
 
@@ -135,4 +142,3 @@ simply add to its metadata (Edit-Metadata) as a first-level entry (``true`` is t
 
 * [MathJax](http://nbviewer.ipython.org/github/olgabot/ipython/blob/master/examples/Notebook/Typesetting%20Math%20Using%20MathJax.ipynb)
 * [Bokeh](http://bokeh.pydata.org/en/latest/docs/quickstart.html)
-
