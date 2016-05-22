@@ -8,11 +8,6 @@ floatX = float32
 
 mode=FAST_RUN
 
-# THEANO_FLAGS=mode=FAST_RUN,device=gpu,floatX=float32 \
-#
-
-
-
 #ls -l  /usr/local/cuda/lib64/libcudnn.so*
 #-rwxr-xr-x. 1 root root 11172416 Nov 10 02:37 /usr/local/cuda/lib64/libcudnn.so
 #-rwxr-xr-x. 1 root root 11172416 Nov 10 02:37 /usr/local/cuda/lib64/libcudnn.so.6.5
@@ -31,6 +26,9 @@ mode=FAST_RUN
 
 # ldconfig
 
-
 #modprobe: FATAL: Module nvidia not found in directory /lib/modules/4.4.3-201.fc22.x86_64
 #WARNING:theano.sandbox.cuda:CUDA is installed, but device gpu is not available  (error: Unable to get the number of gpus available: no CUDA-capable device is detected)
+
+[nvcc]
+# Add for gcc 5.x ... (ABI defaults changed)
+flags=-D_GLIBCXX_USE_CXX11_ABI=0
