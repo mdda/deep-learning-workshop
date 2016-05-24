@@ -86,8 +86,10 @@ And this repo can itself be run in 'local mode', using scripts in ```./local/```
 #### Ideas
 
 *  Reinforcement Learning demo
-   *  [```deer```](http://deer.readthedocs.io/en/master/index.html) - ```theano```-based
-
+   *  [```DeeR```](http://deer.readthedocs.io/en/master/index.html) - ```theano```-based
+   *  [```AgentNet```](https://github.com/yandexdataschool/AgentNet) - ```theano + lasagne```-based
+      *  Examples include Atari space-invaders using OpenAI Gym
+      *  In iPython notebooks!
 
 
 
