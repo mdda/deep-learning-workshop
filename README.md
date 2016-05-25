@@ -85,6 +85,8 @@ And this repo can itself be run in 'local mode', using scripts in ```./local/```
    
 #### Ideas
 
+*  Run-down of [recent advances in the literature](http://jiwonkim.org/awesome-rnn/)
+
 *  Include javascript-based demos in the VM (or on the thumb-drive direction) to avoid "no-WiFi" show-stopper
 
 *  Reinforcement Learning demo (Python)
