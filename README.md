@@ -85,13 +85,26 @@ And this repo can itself be run in 'local mode', using scripts in ```./local/```
    
 #### Ideas
 
-*  Reinforcement Learning demo
+*  Include javascript-based demos in the VM (or on the thumb-drive direction) to avoid "no-WiFi" show-stopper
+
+*  Reinforcement Learning demo (Python)
    *  [```DeeR```](http://deer.readthedocs.io/en/master/index.html) - ```theano```-based
    *  [```AgentNet```](https://github.com/yandexdataschool/AgentNet) - ```theano + lasagne```-based
       *  Examples include Atari space-invaders using OpenAI Gym
       *  In iPython notebooks!
+   *  Need to understand whether OpenAI gym, ALE, or PLE can be seen from within non-X container 
+      
+*  Reinforcement Learning demo (Javascript)
+   *  [```ConvNetJS```](http://cs.stanford.edu/people/karpathy/convnetjs/demo/rldemo.html)
+   *  [```ReinforceJS```](http://cs.stanford.edu/people/karpathy/reinforcejs/)
+   
 
-
+*  Natural Language Processing
+   *  Character-wise RNN that's already included is very slow to converge
+   *  Probably limited by size of dictionary / corpus for learning
+   
+   
+   
 
 ### Notes
 
