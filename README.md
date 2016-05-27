@@ -94,7 +94,11 @@ And this repo can itself be run in 'local mode', using scripts in ```./local/```
    *  [```AgentNet```](https://github.com/yandexdataschool/AgentNet) - ```theano + lasagne```-based
       *  Examples include Atari space-invaders using OpenAI Gym
       *  In iPython notebooks!
-   *  Need to understand whether OpenAI gym, ALE, or PLE can be seen from within non-X container 
+   *  Need to understand whether OpenAI gym, ALE, or PLE (PyGame Learning Environment) can be seen from within non-X container 
+      *  ALE : Asteroids, Space Invaders, Ms Pacman, Pong, Demon Attack
+         *  More [programmer-centric](http://yavar.naddaf.name/ale/) details
+            *  And ```.bin``` [finding/installation](https://groups.google.com/forum/#!topic/arcade-learning-environment/WMCrtTZPE2A)
+         *  Can run with pipes, and save images every **x** frames (?dynamically loaded into Jupyter?)
       
 *  Reinforcement Learning demo (Javascript)
    *  [```ConvNetJS```](http://cs.stanford.edu/people/karpathy/convnetjs/demo/rldemo.html)
