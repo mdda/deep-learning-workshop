@@ -99,6 +99,9 @@ And this repo can itself be run in 'local mode', using scripts in ```./local/```
          *  More [programmer-centric](http://yavar.naddaf.name/ale/) details
             *  And ```.bin``` [finding/installation](https://groups.google.com/forum/#!topic/arcade-learning-environment/WMCrtTZPE2A)
          *  Can run with pipes, and save images every **x** frames (?dynamically loaded into Jupyter?)
+         *  [Native Python Interface](https://github.com/bbitmaster/ale_python_interface/wiki/Code-Tutorial)
+      * [CNN used as pre-processor](http://www.slideshare.net/johnstamford/atari-game-state-representation-using-convolutional-neural-networks) to get learning time within reasonable bounds
+      * [Blog posting about RL using Neon](http://www.nervanasys.com/deep-reinforcement-learning-with-neon/)
       
 *  Reinforcement Learning demo (Javascript)
    *  [```ConvNetJS```](http://cs.stanford.edu/people/karpathy/convnetjs/demo/rldemo.html)
