@@ -102,6 +102,12 @@ And this repo can itself be run in 'local mode', using scripts in ```./local/```
          *  [Native Python Interface](https://github.com/bbitmaster/ale_python_interface/wiki/Code-Tutorial)
       * [CNN used as pre-processor](http://www.slideshare.net/johnstamford/atari-game-state-representation-using-convolutional-neural-networks) to get learning time within reasonable bounds
       * [Blog posting about RL using Neon](http://www.nervanasys.com/deep-reinforcement-learning-with-neon/)
+   *  Potential to make Javascript renderer of Bubble Breaker
+      *  Host within Jupyter notebook (to display game-state, and potentially play interactively)
+      *  Game mechanics driven by Python backend
+      *  Interface similar (i.e. identical) to ALR or PLE
+      *  Learn to play using one-step look-ahead and deep-learned value function for boards
+         *  Possible to add Monte-Carlo depth search too
       
 *  Reinforcement Learning demo (Javascript)
    *  [```ConvNetJS```](http://cs.stanford.edu/people/karpathy/convnetjs/demo/rldemo.html)
