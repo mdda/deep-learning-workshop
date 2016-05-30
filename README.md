@@ -108,6 +108,15 @@ And this repo can itself be run in 'local mode', using scripts in ```./local/```
       *  Interface similar (i.e. identical) to ALR or PLE
       *  Learn to play using one-step look-ahead and deep-learned value function for boards
          *  Possible to add Monte-Carlo depth search too
+      *  Difficulty : How to deal with random additional columns 
+         *  Would prefer to limit time-horizon of game 
+            *  Perhaps have a 'grey column' added with fixed (high) value as a reward
+      *  Optimisation : Game symmetry under permutation of the colours
+         *  WOLOG, can assume colour in bottom right is colour '1'
+            *  But colouring in remainder still gives us 3*2*1 choices
+            *  So that 6x as many training examples available than without re-labelling
+            *  Perhaps enumerate off colours in bottom-to-top, right-to-left order for definiteness
+               *  Cuts down redundency in search space, but may open up 'strange holes' in knowledge
       
 *  Reinforcement Learning demo (Javascript)
    *  [```ConvNetJS```](http://cs.stanford.edu/people/karpathy/convnetjs/demo/rldemo.html)
