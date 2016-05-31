@@ -89,6 +89,8 @@ And this repo can itself be run in 'local mode', using scripts in ```./local/```
 
 *  Include javascript-based demos in the VM (or on the thumb-drive direction) to avoid "no-WiFi" show-stopper
 
+*  Add Google's Tensorflow/JS demo : http://playground.tensorflow.org/
+
 *  Reinforcement Learning demo (Python)
    *  [```DeeR```](http://deer.readthedocs.io/en/master/index.html) - ```theano```-based
    *  [```AgentNet```](https://github.com/yandexdataschool/AgentNet) - ```theano + lasagne```-based
