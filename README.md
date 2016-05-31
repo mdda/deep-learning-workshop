@@ -123,6 +123,7 @@ And this repo can itself be run in 'local mode', using scripts in ```./local/```
 *  Reinforcement Learning demo (Javascript)
    *  [```ConvNetJS```](http://cs.stanford.edu/people/karpathy/convnetjs/demo/rldemo.html)
    *  [```ReinforceJS```](http://cs.stanford.edu/people/karpathy/reinforcejs/)
+   *  [```RecurrentJS```](http://cs.stanford.edu/people/karpathy/recurrentjs/) - contains character RNN demo (PG essays)
    
 
 *  Natural Language Processing
