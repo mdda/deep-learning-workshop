@@ -113,6 +113,8 @@ And this repo can itself be run in 'local mode', using scripts in ```./local/```
       *  Difficulty : How to deal with random additional columns 
          *  Would prefer to limit time-horizon of game 
             *  Perhaps have a 'grey column' added with fixed (high) value as a reward
+         *  May need to customize reward function, since it is (in principle) unbounded
+            *  Whereas what's important is the relative value of the different actions (rather than their individual accuracy)
       *  Optimisation : Game symmetry under permutation of the colours
          *  WOLOG, can assume colour in bottom right is colour '1'
             *  But colouring in remainder still gives us 3*2*1 choices
@@ -124,6 +126,7 @@ And this repo can itself be run in 'local mode', using scripts in ```./local/```
    *  [```ConvNetJS```](http://cs.stanford.edu/people/karpathy/convnetjs/demo/rldemo.html)
    *  [```ReinforceJS```](http://cs.stanford.edu/people/karpathy/reinforcejs/)
    *  [```RecurrentJS```](http://cs.stanford.edu/people/karpathy/recurrentjs/) - contains character RNN demo (PG essays)
+   *  [...more Karpathy goodness](http://karpathy.github.io/2016/05/31/rl/) - in Python/numpy
    
 
 *  Natural Language Processing
