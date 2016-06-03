@@ -107,6 +107,8 @@ And this repo can itself be run in 'local mode', using scripts in ```./local/```
    *  Potential to make Javascript renderer of Bubble Breaker
       *  Host within Jupyter notebook (to display game-state, and potentially play interactively)
       *  Game mechanics driven by Python backend
+         *  [Python to Javascript](http://blog.thedataincubator.com/2015/08/embedding-d3-in-an-ipython-notebook/)
+         *  And Round-trip [Python ... Javascript](https://jakevdp.github.io/blog/2013/06/01/ipython-notebook-javascript-python-communication/)
       *  Interface similar (i.e. identical) to ALR or PLE
       *  Learn to play using one-step look-ahead and deep-learned value function for boards
          *  Possible to add Monte-Carlo depth search too
