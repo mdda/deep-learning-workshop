@@ -122,7 +122,7 @@ And this repo can itself be run in 'local mode', using scripts in ```./local/```
             *  Perhaps enumerate off colours in bottom-to-top, right-to-left order for definiteness
                *  Cuts down redundency in search space, but may open up 'strange holes' in knowledge
       
-*  Reinforcement Learning demo (Javascript)
+*  Reinforcement Learning demos (Karpathy, mostly in Javascript)
    *  [```ConvNetJS```](http://cs.stanford.edu/people/karpathy/convnetjs/demo/rldemo.html)
    *  [```ReinforceJS```](http://cs.stanford.edu/people/karpathy/reinforcejs/)
    *  [```RecurrentJS```](http://cs.stanford.edu/people/karpathy/recurrentjs/) - contains character RNN demo (PG essays)
@@ -133,7 +133,8 @@ And this repo can itself be run in 'local mode', using scripts in ```./local/```
    *  Character-wise RNN that's already included is very slow to converge
    *  Probably limited by size of dictionary / corpus for learning
    
-   
+*  Music example?
+   *  [Google's Magenta](http://magenta.tensorflow.org/welcome-to-magenta)
    
 
 ### Notes
