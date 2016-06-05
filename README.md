@@ -138,6 +138,9 @@ And this repo can itself be run in 'local mode', using scripts in ```./local/```
 *  Music example?
    *  [Google's Magenta](http://magenta.tensorflow.org/welcome-to-magenta)
    
+Ahh - but now I see that the PyCon has only scheduled 1h30 for the workshop, rather than the 3h00 they originally suggested.  
+There may be no time to do other fancy stuff...
+
 
 ### Notes
 
