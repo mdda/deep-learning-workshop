@@ -139,6 +139,16 @@ And this repo can itself be run in 'local mode', using scripts in ```./local/```
       *  Then an LSTM ending with a 1-hot region guess :
          *  { China, India, Thailand, Malaysia, Japanese, Philippines, "European" }
       *  This would (a) be useful for NER, (b) kind of fun, and (c) require far less data that a full langauge model
+      *  Potential References : 
+         *  http://research.microsoft.com/en-us/groups/speech/0100729.pdf
+            *   N-grams give about 73% accuracy
+            *   ~Syllables give about 74% accuracy
+            *   Ensemble is about 78% accuracy
+         *  http://lrec.elra.info/proceedings/lrec2010/pdf/763_Paper.pdf
+            *   Higher N-gram scores possible (MaxEnt-categorisation)
+            *   Our name corpus is built on top of the following two major sources: 
+                1) the LDC bilingual person name list and 
+                2) the "Person nach Staat" (Person according to state) category of Wikipedia, which contains person names written in English texts from different countries.
    
 *  Music example?
    *  [Google's Magenta](http://magenta.tensorflow.org/welcome-to-magenta)
