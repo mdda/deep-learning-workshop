@@ -134,6 +134,11 @@ And this repo can itself be run in 'local mode', using scripts in ```./local/```
 *  Natural Language Processing
    *  Character-wise RNN that's already included is very slow to converge
    *  Probably limited by size of dictionary / corpus for learning
+   *  Idea : How about a character-wise name recognition (by region)?
+      *  Initial step would be a character-embedding (Char2Vec)
+      *  Then an LSTM ending with a 1-hot region guess :
+         *  { China, India, Thailand, Malaysia, Japanese, Philippines, "European" }
+      *  This would (a) be useful for NER, (b) kind of fun, and (c) require far less data that a full langauge model
    
 *  Music example?
    *  [Google's Magenta](http://magenta.tensorflow.org/welcome-to-magenta)
