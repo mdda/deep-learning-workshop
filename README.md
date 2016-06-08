@@ -123,6 +123,8 @@ And this repo can itself be run in 'local mode', using scripts in ```./local/```
             *  So that 6x as many training examples available than without re-labelling
             *  Perhaps enumerate off colours in bottom-to-top, right-to-left order for definiteness
                *  Cuts down redundency in search space, but may open up 'strange holes' in knowledge
+      *  Idea for 'longer term' : Add this as an OpenAI Gym environment
+      
       
 *  Reinforcement Learning demos (Karpathy, mostly in Javascript)
    *  [```ConvNetJS```](http://cs.stanford.edu/people/karpathy/convnetjs/demo/rldemo.html)
