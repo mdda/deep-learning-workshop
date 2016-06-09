@@ -103,8 +103,12 @@ def after_move(board, h,v, n_colours):  # Returns (new board (copy), score)
   
 if __name__ == "__main__":
   np.random.seed(1)
-  n_colours = 3
-  b = new_board(6,17,n_colours)
+  
+  #n_colours = 3
+  #b = new_board(6,17,n_colours)  # Testing
+  
+  n_colours = 4
+  b = new_board(10,14,n_colours) # Same as portrait phone  1 screen~1k,  high-score~14k
   
   if False:
     b[0,0]=1
@@ -138,6 +142,7 @@ if __name__ == "__main__":
       print(c)
 
   if True:
+    score_total=0
     while True: 
       moves = potential_moves(b)
       
@@ -148,16 +153,20 @@ if __name__ == "__main__":
       i = np.random.randint( len(moves) )
       
       (h,v) = moves[i]
-      print("Move : ", (h,v))
+      print("Move : (%d,%d)" % (h,v))
       if True:
         d = b.copy()
         d[h,v] = -d[h,v]
         print(d)
       
-      b, score = after_move(b, h,v, -1)
+      #b, score = after_move(b, h,v, -1)
+      b, score = after_move(b, h,v, n_colours)
       
-      print("  score : ", score)
+      score_total += score
+      
+      print("  score : %d " % (score,))
       if True:
         d = b.copy()
         d[0,0] = -d[0,0]  # Fixes formatting
         print(d)
+    print("score_total = %d" % (score_total,))
