@@ -74,7 +74,7 @@ def potential_moves(b):
   # Go through the board, looking for non-zero cells to flood out of
   #   Check each cell : is anything to right-or-down of it (cannot be up or left, by construction)?
   #   If so, then this is a potential move, and should flood all adjoining cells with zero
-  moves=[]  # Will be filled with ( (h,v), score, board_after )
+  moves=[]  # Will be filled with (h,v) for each distinct scoring location/area
   
   c = b.copy() # We're going to destroy this
   for h in range(0, c.shape[0]):
@@ -83,7 +83,7 @@ def potential_moves(b):
         # if rightwards is a match or downwards is a match
         if (h<c.shape[0]-1 and c[h+1,v]==c[h,v]) or (v<c.shape[1]-1 and c[h,v+1]==c[h,v]):
           # Flood-fill from here
-          #   This is the copy for ourselves, which keeps track of 'used space'
+          #   This mutates our copy, and so keeps track of 'used space'
           flood_from(c, h, v) # Don't care about return values - only mutation of c
           
           moves.append( (h,v) )
@@ -120,7 +120,7 @@ if __name__ == "__main__":
     print("n_cols=%d" % (n_cols,) )
     print( b )
 
-  if True:
+  if False:
     moves = potential_moves(b)
 
     for (h,v) in moves:
@@ -136,3 +136,28 @@ if __name__ == "__main__":
       print("  score : ", score)
       c[0,0]=-9  # Fixes formatting
       print(c)
+
+  if True:
+    while True: 
+      moves = potential_moves(b)
+      
+      if len(moves)==0:
+        break
+        
+      # Choose a random move, and do it
+      i = np.random.randint( len(moves) )
+      
+      (h,v) = moves[i]
+      print("Move : ", (h,v))
+      if True:
+        d = b.copy()
+        d[h,v] = -d[h,v]
+        print(d)
+      
+      b, score = after_move(b, h,v, -1)
+      
+      print("  score : ", score)
+      if True:
+        d = b.copy()
+        d[0,0] = -d[0,0]  # Fixes formatting
+        print(d)
