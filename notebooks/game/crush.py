@@ -102,12 +102,12 @@ def after_move(board, h,v, n_colours):  # Returns (new board (copy), score)
 
   
 if __name__ == "__main__":
-  np.random.seed(1)
+  #np.random.seed(1)
   
   #n_colours = 3
   #b = new_board(6,17,n_colours)  # Testing
   
-  n_colours = 4
+  n_colours = 5
   b = new_board(10,14,n_colours) # Same as portrait phone  1 screen~1k,  high-score~14k
   
   if False:
