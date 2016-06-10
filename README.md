@@ -102,8 +102,11 @@ And this repo can itself be run in 'local mode', using scripts in ```./local/```
             *  And ```.bin``` [finding/installation](https://groups.google.com/forum/#!topic/arcade-learning-environment/WMCrtTZPE2A)
          *  Can run with pipes, and save images every **x** frames (?dynamically loaded into Jupyter?)
          *  [Native Python Interface](https://github.com/bbitmaster/ale_python_interface/wiki/Code-Tutorial)
-      * [CNN used as pre-processor](http://www.slideshare.net/johnstamford/atari-game-state-representation-using-convolutional-neural-networks) to get learning time within reasonable bounds
-      * [Blog posting about RL using Neon](http://www.nervanasys.com/deep-reinforcement-learning-with-neon/)
+      *  [CNN used as pre-processor](http://www.slideshare.net/johnstamford/atari-game-state-representation-using-convolutional-neural-networks) to get learning time within reasonable bounds
+      *  [Blog posting about RL using Neon](http://www.nervanasys.com/deep-reinforcement-learning-with-neon/)
+      *  [Asynchronous RL in Tensorflow + Keras + OpenAI's Gym](https://github.com/coreylynch/async-rl)
+         *  Optimising use of replay : [Prioritized Experience Replay](http://arxiv.org/pdf/1511.05952v4.pdf)
+         *  Without replay (and good introduction) : [Asynchronous Methods for Deep Reinforcement Learning](http://arxiv.org/pdf/1602.01783v1.pdf)
    *  Potential to make Javascript renderer of Bubble Breaker
       *  Host within Jupyter notebook (to display game-state, and potentially play interactively)
       *  Game mechanics driven by Python backend
@@ -124,9 +127,7 @@ And this repo can itself be run in 'local mode', using scripts in ```./local/```
             *  Perhaps enumerate off colours in bottom-to-top, right-to-left order for definiteness
                *  Cuts down redundency in search space, but may open up 'strange holes' in knowledge
       *  Idea for 'longer term' : Add this as an OpenAI Gym environment
-         *   [Asyncronous RL in Tensorflow + Keras + OpenAI's Gym](https://github.com/coreylynch/async-rl)
-             *   Optimising use of replay : [Prioritized Experience Replay](http://arxiv.org/pdf/1511.05952v4.pdf)
-             *   Without replay (and good introduction) : [Asynchronous Methods for Deep Reinforcement Learning](http://arxiv.org/pdf/1602.01783v1.pdf)
+            
       
       
 *  Reinforcement Learning demos (Karpathy, mostly in Javascript)
