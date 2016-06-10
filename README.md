@@ -124,6 +124,8 @@ And this repo can itself be run in 'local mode', using scripts in ```./local/```
             *  Perhaps enumerate off colours in bottom-to-top, right-to-left order for definiteness
                *  Cuts down redundency in search space, but may open up 'strange holes' in knowledge
       *  Idea for 'longer term' : Add this as an OpenAI Gym environment
+         *   [Asyncronous RL in Tensorflow + Keras + OpenAI's Gym](https://github.com/coreylynch/async-rl)
+         
       
       
 *  Reinforcement Learning demos (Karpathy, mostly in Javascript)
