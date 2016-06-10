@@ -125,6 +125,10 @@ And this repo can itself be run in 'local mode', using scripts in ```./local/```
                *  Cuts down redundency in search space, but may open up 'strange holes' in knowledge
       *  Idea for 'longer term' : Add this as an OpenAI Gym environment
          *   [Asyncronous RL in Tensorflow + Keras + OpenAI's Gym](https://github.com/coreylynch/async-rl)
+             *   Without replay : [Asynchronous Methods for Deep Reinforcement Learning](http://arxiv.org/pdf/1602.01783v1.pdf)
+             *   Better use of replay : [Prioritized Experience Replay](http://arxiv.org/pdf/1511.05952v4.pdf)
+             
+             
          
       
       
