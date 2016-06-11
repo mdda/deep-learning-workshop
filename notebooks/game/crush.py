@@ -142,9 +142,12 @@ if __name__ == "__main__":
       print(c)
 
   if True:
-    score_total=0
+    score_total, step = 0,0
+    moves_total = 0
     while True: 
       moves = potential_moves(b)
+      
+      moves_total += len(moves)
       
       if len(moves)==0:
         break
@@ -169,4 +172,9 @@ if __name__ == "__main__":
         d = b.copy()
         d[0,0] = -d[0,0]  # Fixes formatting
         print(d)
+      
+      step += 1
+      
+    print("steps = %d" % (step,))
+    print("average moves = %5.1f" % ( float(moves_total) / step, ) )
     print("score_total = %d" % (score_total,))
