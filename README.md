@@ -141,6 +141,7 @@ And this repo can itself be run in 'local mode', using scripts in ```./local/```
    *  [```ReinforceJS```](http://cs.stanford.edu/people/karpathy/reinforcejs/)
    *  [```RecurrentJS```](http://cs.stanford.edu/people/karpathy/recurrentjs/) - contains character RNN demo (PG essays)
    *  [...more Karpathy goodness](http://karpathy.github.io/2016/05/31/rl/) - in Python/numpy
+      *  With a ['100-lines' of Python gist](https://gist.github.com/karpathy/a4166c7fe253700972fcbc77e4ea32c5) 
    
 
 *  Natural Language Processing
