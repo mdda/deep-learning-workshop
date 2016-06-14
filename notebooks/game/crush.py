@@ -1,5 +1,6 @@
 import numpy as np
 
+print("Hello from crush.py")
 
 def new_board(horizontal, vertical, n_colours=4):
   # It's easier to work with the 'vertical flow' being along individual row vectors
