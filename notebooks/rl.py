@@ -17,7 +17,7 @@ def make_features(board):
   features.append( mask.reshape((-1,)) )
   
   # This works out whether each cell is the same as the cell 'above it'
-  for shift_up in range(1,4):
+  for shift_up in [1,2,3,]:
     #print("\n'UP' by %d:" % (shift_up,))
     # Actually, no need for np.pad, just choose the views appropriately
     sameness = np.equal(   board[:, :-shift_up], board[:, shift_up:] )
@@ -34,7 +34,7 @@ def make_features(board):
   #print(shifted_left)
   
   # This works out whether each cell is the same as the cell in to columns 'to the left of it'
-  for shift_left in range(1,3):
+  for shift_left in [1,2,]:
     #print("\n'LEFT' by %d:" % (shift_left,))
     sameness = np.equal(   board[:-shift_left, :], board[shift_left:, :] )
     #print(sameness * 1)
@@ -54,4 +54,10 @@ np.random.seed(1)
 n_colours = 5
 b = crush.new_board(10,14,n_colours) # Same as portrait phone  1 screen~1k,  high-score~14k
 
-print( make_features(b) )
+print( make_features(b).shape )
+
+# Now, create a simple ?fully-connected? network (MNIST-like sizing)
+
+# And train it to be Q(board) = R(realized,action*) + lambda*Q(realized_board, action*)
+#   where action* is chosen to maximise Q(state_after_action, action)
+
