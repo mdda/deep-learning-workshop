@@ -59,11 +59,18 @@ print( make_features(b).shape )
 # Now, create a simple ?fully-connected? network (MNIST-like sizing)
 
 # And train it to be Q(board) = R(realized,action*) + lambda*Q(realized_board, action*)
-#   where action* is chosen to maximise Q(state_after_action, action)
-#   ( small wrinkle is that Q(next_state) may include unknown column(s) if there has been a column clearance move)
+
+# At random (for a given percentage tending to chose (a) more and more of the time) :
+
+#   (a) action* is chosen to maximise Q(state_after_action, action)
+#       ( small wrinkle is that Q(next_state) may include unknown column(s) if there has been a column clearance move)
+
+#   (b) chose action* at random (or based on some novelty measure, for instance)
 
 # One question is whether we learn purely on-line, or in batches
 #   and if in batches, how do we store it up?  
 #   Most of representation stays constant across turns (intuitively), so the data is quite 'correlated'
 #   OTOH, the overall position changes much quicker than (say) chess, so perhaps it isn't too bad
 #     That being said, it's not changing as quickly as the pole balancing state-space, for instance
+
+# Perhaps just set a batchsize, and accumulate game states until it's full, then do backprop pass(es)
