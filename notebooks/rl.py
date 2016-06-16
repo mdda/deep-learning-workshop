@@ -80,3 +80,8 @@ print( make_features(b).shape )
 #     That being said, it's not changing as quickly as the pole balancing state-space, for instance
 
 # Perhaps just set a batchsize, and accumulate game states until it's full, then do backprop pass(es)
+#   In which case, need a 'play game in a loop' function
+#     accumulate stats too
+#     save state every 'n' batches
+#   Alternatively : Play 1 game until the end (yielding training examples as we go)
+
