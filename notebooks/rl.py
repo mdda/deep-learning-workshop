@@ -58,15 +58,20 @@ print( make_features(b).shape )
 
 # Now, create a simple ?fully-connected? network (MNIST-like sizing)
 
-# And train it to be Q(board) = R(realized,action*) + lambda*Q(realized_board, action*)
-#   Or, if there are no actions possible Q(board)=0
 
-# At random (for a given percentage tending to chose (a) more and more of the time) :
+# If there are no actions possible Q(board)=0
 
-#   (a) action* is chosen to maximise Q(state_after_action, action)
+# Otherwise, at random (for a given percentage tending to chose (a) more and more of the time) :
+
+#   (a) train it to be Q(board) = R(realized,action*) + lambda*Q(realized_board, action*)
+#       action* is chosen to maximise Q(state_after_action, action)
 #       ( small wrinkle is that Q(next_state) may include unknown column(s) if there has been a column clearance move)
 
 #   (b) chose action* at random (or based on some novelty measure, for instance)
+
+# Also, if columns are added, can train Q(realized_board) = Q(state_after_action, action*)
+#   so that projected boards converge to realized boards when there is a (random) extra column added
+
 
 # One question is whether we learn purely on-line, or in batches
 #   and if in batches, how do we store it up?  
