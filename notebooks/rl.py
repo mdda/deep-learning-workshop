@@ -59,6 +59,7 @@ print( make_features(b).shape )
 # Now, create a simple ?fully-connected? network (MNIST-like sizing)
 
 # And train it to be Q(board) = R(realized,action*) + lambda*Q(realized_board, action*)
+#   Or, if there are no actions possible Q(board)=0
 
 # At random (for a given percentage tending to chose (a) more and more of the time) :
 
