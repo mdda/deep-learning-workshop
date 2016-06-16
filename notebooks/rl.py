@@ -57,7 +57,8 @@ b = crush.new_board(10,14,n_colours) # Same as portrait phone  1 screen~1k,  hig
 print( make_features(b).shape )
 
 # Now, create a simple ?fully-connected? network (MNIST-like sizing)
-
+#    See : https://github.com/Lasagne/Lasagne/blob/master/examples/mnist.py
+#      Does it make sense to do dropout?  Perhaps learn over a batch a few times to 'average out' a little?
 
 # If there are no actions possible Q(board)=0
 
