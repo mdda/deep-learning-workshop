@@ -205,7 +205,7 @@ def play_game(game_id, model):
     #print("all_features.shape", all_features.shape)
     next_step_q = model_evaluate_features( all_features )
 
-    next_step_aggregate = np.array( next_step_score, dtype='float32' ) + next_step_q.flatten()
+    next_step_aggregate = np.array( next_step_score, dtype='float32') + next_step_q.flatten()
     #print( next_step_aggregate )
 
     i = np.argmax( next_step_aggregate )
@@ -265,6 +265,7 @@ for i in range(0, 2):
   
   print( np.asarray( training_data['board'] ).shape )
   
+  #err = model_train( np.array(training_data['board']), np.array(training_data['score'], dtype='float32') )
   err = model_train( training_data['board'], training_data['score'] )
   
   stats['model_err'] = err
