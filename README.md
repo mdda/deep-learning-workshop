@@ -1,11 +1,26 @@
-## [FOSSASIA 2016](http://2016.fossasia.org/) : Deep Learning Workshop
+## Deep Learning Workshop
 
-This repo includes all scripts required to build the VirtualBox 'Appliance' (an easy-to-install pre-configured VM) 
-to be used by the Deep Learning Workshop participants.
+This repo includes all scripts required to build a VirtualBox 'Appliance' (an easy-to-install pre-configured VM) 
+that can be used by Deep Learning Workshop participants.
 
-Slides for the talk are [here](http://redcatlabs.com/2016-03-19_FOSSASIA-Workshop/), and 
-will probably be updated after the event too, since participants who want to play with the 
-VirtualBox Appliance on their laptops when they get home might find a few more hints helpful.
+This workshop consists of an introduction to deep learning (from single layer networks-in-the-browser, 
+then using the VM/Jupyter setup to train networks using Theano/Lasagne, 
+and finally use pretrained state-of-the-art networks, such as GoogLeNet, in various applications) :
+
+* [FOSSASIA 2016](http://2016.fossasia.org/) : Deep Learning Workshop (2hrs)
+  *  Application : Generative art (~style transfer)
+  *  Application : Classifying unknown classes of images (~transfer learning)
+  *  Slides for the talk are [here](http://redcatlabs.com/2016-03-19_FOSSASIA-Workshop/)
+
+* [PyCon-SG 2016](http://2016.fossasia.org/) : Deep Learning Workshop (1.5hrs)
+  *  Unfortunately, due to 'demand' for speaker slots, PyCon has only scheduled 1h30 for the workshop, rather than the 3h00 they originally suggested...
+  *  Application-idea : (hopefully) Reinforcement Learning
+
+* [DataScienceSG MeetUp](http://2016.fossasia.org/) : 'Hardcore' session about Deep Learning (targeting 3 hours)
+  *  Application : Classifying unknown classes of images (~transfer learning)
+  *  Application-idea : Speech processing
+  *  Application-idea : Character-wise name origins (LSTM/NLP application)
+
 
 The VM itself includes : 
 
@@ -26,7 +41,7 @@ And this repo can itself be run in 'local mode', using scripts in ```./local/```
 *  Run ```jupyter``` with the right flags, paths etc
 
 
-### Status : Workshop WORKED!
+### Status : Workshop WORKS!
 
 #### Currently working well
 
@@ -48,7 +63,7 @@ And this repo can itself be run in 'local mode', using scripts in ```./local/```
    *  ImageNet : GoogLeNet
    *  ImageNet : Inception 3
    *  'Commerce' - repurpose a trained network to classify our stuff
-   *  'Art' - Style transfer with Lasange, but using GoogLeNet features for speed
+   *  'Art' - Style transfer with Lasagne, but using GoogLeNet features for speed
    *  RNN - Updated with Shakespeare text, and bugfix
 
 *  Notebook Extras
@@ -82,6 +97,7 @@ And this repo can itself be run in 'local mode', using scripts in ```./local/```
 *  Workshop presentation materials
    *  Enhance, so that workshop module final results are given as pictures
       *  Because lots of people just want to listen, not do
+   
    
 #### Ideas
 
@@ -166,8 +182,7 @@ And this repo can itself be run in 'local mode', using scripts in ```./local/```
 *  Music example?
    *  [Google's Magenta](http://magenta.tensorflow.org/welcome-to-magenta)
    
-Ahh - but now I see that the PyCon has only scheduled 1h30 for the workshop, rather than the 3h00 they originally suggested.  
-There may be no time to do other fancy stuff...
+
 
 
 ### Notes
