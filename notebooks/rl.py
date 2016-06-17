@@ -1,5 +1,7 @@
 import numpy as np
 
+
+
 from game import crush
 
 #print("Hello from rl.py")
@@ -93,9 +95,52 @@ print( make_features_in_layers(board_temp).shape )
 
 
 
+
+
 # Now, create a simple ?fully-connected? network (MNIST-like sizing)
 #    See : https://github.com/Lasagne/Lasagne/blob/master/examples/mnist.py
 #      Does it make sense to do dropout?  Perhaps learn over a batch a few times to 'average out' a little?
+def build_cnn(input_var=None):
+    # As a third model, we'll create a CNN of two convolution + pooling stages
+    # and a fully-connected hidden layer in front of the output layer.
+
+    # Input layer, as usual:
+    network = lasagne.layers.InputLayer(shape=(None, 1, 28, 28), input_var=input_var)
+    # No input dropout, as it tends to work less well for convolutional layers.
+
+    # Strided and padded convolutions are supported as well; see the docstring.
+    network = lasagne.layers.Conv2DLayer(
+      network, num_filters=32, filter_size=(5, 5),
+      nonlinearity=lasagne.nonlinearities.rectify,
+      W=lasagne.init.GlorotUniform(),
+    )
+    
+    # Max-pooling layer of factor 2 in both dimensions:
+    #network = lasagne.layers.MaxPool2DLayer(network, pool_size=(2, 2))
+
+    network = lasagne.layers.Conv2DLayer(
+      network, num_filters=32, filter_size=(5, 5),
+      nonlinearity=lasagne.nonlinearities.rectify,
+    )
+    #network = lasagne.layers.MaxPool2DLayer(network, pool_size=(2, 2))
+
+    # A fully-connected layer of 64 units with 50% dropout on its inputs:
+    network = lasagne.layers.DenseLayer(
+      lasagne.layers.dropout(network, p=.5),
+      num_units=64,
+      nonlinearity=lasagne.nonlinearities.rectify,
+    )
+
+    # And, finally, the output layer with 50% dropout on its inputs:
+    network = lasagne.layers.DenseLayer(
+      lasagne.layers.dropout(network, p=.5),
+      num_units=1,
+      nonlinearity=lasagne.nonlinearities.linear,  # Actually, expected score cannot be negative, but why exclude learning on one-half of plane?
+    )
+
+    return network
+
+
 
 # If there are no actions possible Q(board)=0
 
