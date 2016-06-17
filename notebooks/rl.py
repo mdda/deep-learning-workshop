@@ -1,6 +1,8 @@
 import numpy as np
 
-
+import theano
+#import theano.tensor as T
+import lasagne
 
 from game import crush
 
@@ -80,7 +82,8 @@ def make_features_in_layers(board):
 
     feature_layers.append( sameness )
   
-  return np.dstack( feature_layers )
+  stacked = np.dstack( feature_layers )
+  return np.rollaxis( stacked, 2, 0)
 
 
 width, height, n_colours = 10,14,5
@@ -91,11 +94,7 @@ board_temp = crush.new_board(width, height, n_colours) # Same as portrait phone 
 
 #print( make_features_variable_size(board_temp).shape )
 print( make_features_in_layers(board_temp).shape )
-
-
-
-
-
+#exit(0)
 
 # Now, create a simple ?fully-connected? network (MNIST-like sizing)
 #    See : https://github.com/Lasagne/Lasagne/blob/master/examples/mnist.py
@@ -110,7 +109,7 @@ def build_cnn(input_var=None):
 
     # Strided and padded convolutions are supported as well; see the docstring.
     network = lasagne.layers.Conv2DLayer(
-      network, num_filters=32, filter_size=(5, 5),
+      network, num_filters=32, filter_size=(3,3),
       nonlinearity=lasagne.nonlinearities.rectify,
       W=lasagne.init.GlorotUniform(),
     )
@@ -119,7 +118,7 @@ def build_cnn(input_var=None):
     #network = lasagne.layers.MaxPool2DLayer(network, pool_size=(2, 2))
 
     network = lasagne.layers.Conv2DLayer(
-      network, num_filters=32, filter_size=(5, 5),
+      network, num_filters=32, filter_size=(3,3),
       nonlinearity=lasagne.nonlinearities.rectify,
     )
     #network = lasagne.layers.MaxPool2DLayer(network, pool_size=(2, 2))
@@ -189,7 +188,7 @@ def play_game(game_id, model):
     i = np.random.randint( len(moves) )
     
     (h,v) = moves[i]
-    print("Move : (%d,%d)" % (h,v))
+    #print("Move : (%2d,%2d)" % (h,v))
     #crush.show_board(board, highlight=(h,v))
     
     #board, score = crush.after_move(board, h,v, -1)
@@ -197,8 +196,11 @@ def play_game(game_id, model):
     
     score_total += score
     
-    print("  score : %d " % (score,))
+    print("Move : (%2d,%2d) -> Score : %3d" % (h,v,score))
+    #print("  score : %d " % (score,))
     #crush.show_board(board, highlight=(0,0))
+
+    training_data.append( make_features_in_layers(board) )
     
     game_step += 1
     
@@ -208,12 +210,14 @@ def play_game(game_id, model):
 
 model=None
 stats_log=[]
-for i in range(0, 100):
+for i in range(0, 2):
   stats, training_data = play_game(i, model)
   
   print("steps = %d" % (stats['steps'],))
   print("average moves = %5.1f" % (stats['av_potential_moves'], ) )
   print("score_total = %d" % (stats['score'],))
+  
+  print( np.asarray( training_data ).shape )
   
   stats_log.append( stats )
 
