@@ -81,13 +81,17 @@ def make_features_in_layers(board):
   return np.dstack( feature_layers )
 
 
-np.random.seed(1)
+width, height, n_colours = 10,14,5
 
-n_colours = 5
-b = crush.new_board(10,14,n_colours) # Same as portrait phone  1 screen~1k,  high-score~14k
 
-#print( make_features_variable_size(b).shape )
-print( make_features_in_layers(b).shape )
+# Create a board for initial sizing only
+board_temp = crush.new_board(width, height, n_colours) # Same as portrait phone  1 screen~1k,  high-score~14k
+
+#print( make_features_variable_size(board_temp).shape )
+print( make_features_in_layers(board_temp).shape )
+
+
+
 
 # Now, create a simple ?fully-connected? network (MNIST-like sizing)
 #    See : https://github.com/Lasagne/Lasagne/blob/master/examples/mnist.py
@@ -118,4 +122,23 @@ print( make_features_in_layers(b).shape )
 #     accumulate stats too
 #     save state every 'n' batches
 #   Alternatively : Play 1 game until the end (yielding training examples as we go)
+
+
+# This returns both stats for the game played and new board positions / rewards to learn from 
+def play_game(game_id, model):
+  np.random.seed(game_id)
+  board = crush.new_board(width, height, n_colours) # Same as portrait phone  1 screen~1k,  high-score~14k
+
+  training_data = []
+
+  pass
+  
+  stats={}
+  return stats, training_data
+
+model=None
+for i in range(0, 10):
+  play_game(i, model)
+
+print("DONE")
 
