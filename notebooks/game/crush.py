@@ -101,6 +101,12 @@ def after_move(board, h,v, n_colours):  # Returns (new board (copy), score)
   
   return e, n_cells*(2 if n_cells<3 else (n_cells-1))
 
+def show_board(board, highlight=None):  # highlight=(0,0)
+  d = board.copy()
+  if highlight:
+    d[highlight[0], highlight[1]] = -d[highlight[0], highlight[1]]  # Fixes formatting
+  print(d)
+
   
 if __name__ == "__main__":
   #np.random.seed(1)

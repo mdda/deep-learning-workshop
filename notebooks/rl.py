@@ -126,19 +126,49 @@ print( make_features_in_layers(board_temp).shape )
 
 # This returns both stats for the game played and new board positions / rewards to learn from 
 def play_game(game_id, model):
+  training_data = []
+  
   np.random.seed(game_id)
   board = crush.new_board(width, height, n_colours) # Same as portrait phone  1 screen~1k,  high-score~14k
 
-  training_data = []
-
-  pass
-  
-  stats={}
+  score_total, moves_total, game_step = 0,0,0
+  while True: 
+    moves = crush.potential_moves(board)
+    
+    moves_total += len(moves)
+    
+    if len(moves)==0:
+      break
+      
+    # Choose a random move, and do it
+    i = np.random.randint( len(moves) )
+    
+    (h,v) = moves[i]
+    print("Move : (%d,%d)" % (h,v))
+    crush.show_board(board, highlight=(h,v))
+    
+    #board, score = crush.after_move(board, h,v, -1)
+    board, score = crush.after_move(board, h,v, n_colours)
+    
+    score_total += score
+    
+    print("  score : %d " % (score,))
+    crush.show_board(board, highlight=(0,0))
+    
+    game_step += 1
+    
+  stats=dict( steps=game_step, av_potential_moves=float(moves_total) / game_step, score=score_total )
   return stats, training_data
+
 
 model=None
 for i in range(0, 10):
-  play_game(i, model)
+  stats, training_data = play_game(i, model)
+  
+  print("steps = %d" % (stats['steps'],))
+  print("average moves = %5.1f" % ( stats['av_potential_moves'], ) )
+  print("score_total = %d" % (stats['score'],))
+  
 
 print("DONE")
 
