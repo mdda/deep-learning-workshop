@@ -77,7 +77,7 @@ def make_features_in_layers(board):
 
     feature_layers.append( sameness )
   
-  return np.stack( feature_layers, axis=0 )
+  return np.dstack( feature_layers )
 
 
 np.random.seed(1)
