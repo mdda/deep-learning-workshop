@@ -52,7 +52,7 @@ def make_features_variable_size(board):
 def make_features_in_layers(board):
   feature_layers = [] # These are effectively 'colours' for the CNN
 
-  print(board)
+  #print(board)
   
   #print("Board mask")
   mask     = np.greater( board[:, :], 0 )*1
@@ -60,20 +60,21 @@ def make_features_in_layers(board):
   
   # This works out whether each cell is the same as the cell 'above it'
   for shift_down in [1,2,3,]:
-    print("\n'DOWN' by %d:" % (shift_down,))
+    #print("\n'DOWN' by %d:" % (shift_down,))
     sameness = np.zeros_like(board)
     
-    # Actually, no need for np.pad, just choose the views appropriately
     sameness[:,:-shift_down] = np.equal( board[:, :-shift_down], board[:, shift_down:] )*1
-    print(sameness)
+    #print(sameness)
 
     feature_layers.append( sameness )
   
   # This works out whether each cell is the same as the cell in to columns 'to the left of it'
   for shift_right in [1,2,]:
-    print("\n'RIGHT' by %d:" % (shift_right,))
-    sameness[:-shift_right,:] = np.equal(   board[:-shift_right, :], board[shift_right:, :] )*1
-    print(sameness)
+    #print("\n'RIGHT' by %d:" % (shift_right,))
+    sameness = np.zeros_like(board)
+    
+    sameness[:-shift_right,:] = np.equal( board[:-shift_right, :], board[shift_right:, :] )*1
+    #print(sameness)
 
     feature_layers.append( sameness )
   
