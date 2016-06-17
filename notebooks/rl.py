@@ -200,13 +200,12 @@ def play_game(game_id, model):
       next_step_features.append( make_features_in_layers(b) )
       next_step_score.append( s )
       
-    # Now evaluate the Q() values of each outcome
-    all_features = np.array(next_step_features, dtype='float32')
+    # Now evaluate the Q() values of the resulting postion for each possible move in one go
+    all_features = np.array(next_step_features)  # , dtype='float32'
     #print("all_features.shape", all_features.shape)
-    
     next_step_q = model_evaluate_features( all_features )
 
-    next_step_aggregate = next_step_q.flatten() + np.array( next_step_score, dtype='float32' )
+    next_step_aggregate = np.array( next_step_score, dtype='float32' ) + next_step_q.flatten()
     #print( next_step_aggregate )
 
     i = np.argmax( next_step_aggregate )
@@ -218,7 +217,9 @@ def play_game(game_id, model):
     #print("Move : (%2d,%2d)" % (h,v))
     #crush.show_board(board, highlight=(h,v))
     
-    #board, score, new_cols = crush.after_move(board, h,v, -1)
+    training_data['board'].append( make_features_in_layers(board) )
+    training_data['score'].append( next_step_aggregate[i] )   # This is only looking at the 'blank cols', rather than the actuals, though
+    
     board, score, new_cols = crush.after_move(board, h,v, n_colours)  # Now we do the move 'for real'
     
     score_total += score
@@ -229,9 +230,6 @@ def play_game(game_id, model):
     #print("  score : %d " % (score,))
     #crush.show_board(board, highlight=(0,0))
 
-    training_data['board'].append( make_features_in_layers(board) )
-    training_data['score'].append( score )
-    
     game_step += 1
     
   stats=dict( steps=game_step, av_potential_moves=float(moves_total) / game_step, score=score_total, new_cols=new_cols_total )
@@ -267,11 +265,15 @@ for i in range(0, 2):
   
   print( np.asarray( training_data['board'] ).shape )
   
+  err = model_train( training_data['board'], training_data['score'] )
+  
+  stats['model_err'] = err
+  
   stats_log.append( stats )
 
 print("DONE")
 
-stats_cols = "steps av_potential_moves new_cols score".split()
+stats_cols = "steps av_potential_moves new_cols score model_err".split()
 stats_overall = np.array([ [s[c] for c in stats_cols] for s in stats_log ])
 
 print("Min  : ",zip(stats_cols, np.min(stats_overall, axis=0).tolist()) )
