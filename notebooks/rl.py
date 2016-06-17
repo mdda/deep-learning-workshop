@@ -194,7 +194,7 @@ def play_game(game_id, model):
     # Let's find the highest-scoring of those moves:  First, get all the features
     next_step_features = []
     next_step_score = []
-    for (h,v) in moves[0:2]:
+    for (h,v) in moves:  # [0:2]
       b, s, _ = crush.after_move(board, h,v, -1)  # Added columns are unknown
       
       next_step_features.append( make_features_in_layers(b) )
@@ -202,13 +202,12 @@ def play_game(game_id, model):
       
     # Now evaluate the Q() values of each outcome
     all_features = np.array(next_step_features, dtype='float32')
-    print("all_features.shape", all_features.shape)
+    #print("all_features.shape", all_features.shape)
     
     next_step_q = model_evaluate_features( all_features )
 
     next_step_aggregate = next_step_q.flatten() + np.array( next_step_score, dtype='float32' )
-    print( next_step_aggregate )
-    exit(0)
+    #print( next_step_aggregate )
 
     i = np.argmax( next_step_aggregate )
     
@@ -225,7 +224,8 @@ def play_game(game_id, model):
     score_total += score
     new_cols_total += new_cols
     
-    print("Move : (%2d,%2d) -> Score : %3d, new_cols=%1d" % (h,v,score, new_cols))
+    print("Move[%2d]=(%2d,%2d) -> Score : %3d, new_cols=%1d" % (i, h,v, score,new_cols))
+    #exit(0)
     #print("  score : %d " % (score,))
     #crush.show_board(board, highlight=(0,0))
 
