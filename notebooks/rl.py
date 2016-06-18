@@ -307,3 +307,6 @@ print("Mean : ",zip(stats_cols, ["%6.1f" % (v,) for v in np.mean(stats_overall, 
 #('Min  : ', [('steps', '  26.0'), ('av_potential_moves', '   6.1'), ('new_cols', '   0.0'), ('score', ' 212.0'), ('model_err', '   7.8')])
 #('Max  : ', [('steps', ' 139.0'), ('av_potential_moves', '  19.9'), ('new_cols', '  21.0'), ('score', '1150.0'), ('model_err', '15163.5')])
 #('Mean : ', [('steps', '  54.1'), ('av_potential_moves', '  12.2'), ('new_cols', '   3.4'), ('score', ' 469.0'), ('model_err', ' 221.5')])
+
+## AMD quad-core ('square') : 49s per 100 games
+## i7            ('simlim') : 29s per 100 games
