@@ -2,6 +2,10 @@ import numpy as np
 
 import theano
 #import theano.tensor as T
+
+#theano.config.optimizer='fast_compile'
+#theano.config.optimizer='None'
+
 import lasagne
 
 from game import crush
@@ -241,17 +245,19 @@ board_score = theano.tensor.vector('targets')
 
 np.random.seed(0) # This is for the initialisation inside the CNN
 model=build_cnn(board_input, features_shape)
-predict_q_value = lasagne.layers.get_output(model, deterministic=True)
 
+predict_q_value  = lasagne.layers.get_output(model, deterministic=True)
 estimate_q_value = lasagne.layers.get_output(model)
+
 model_squared_error = lasagne.objectives.squared_error(estimate_q_value, board_score).mean()
+model_squared_error.name = "MSE"
 
 model_params  = lasagne.layers.get_all_params(model, trainable=True)
-model_updates = lasagne.updates.nesterov_momentum( model_squared_error, model_params, learning_rate=0.01, momentum=0.9 )
-
+#model_updates = lasagne.updates.nesterov_momentum( model_squared_error, model_params, learning_rate=0.01, momentum=0.9 )
+model_updates = lasagne.updates.adam( model_squared_error, model_params )
 
 model_evaluate_features = theano.function([board_input], predict_q_value)
-model_train             = theano.function([board_input, board_score], model_squared_error, updates=model_updates)
+model_train             = theano.function([board_input, board_score], [model_squared_error], updates=model_updates)
 
   
 stats_log=[]
@@ -264,8 +270,10 @@ for i in range(0, 2):
   print("score_total = %d" % (stats['score'],))
   
   print( np.asarray( training_data['board'] ).shape )
+  print( np.asarray( training_data['score'] ).reshape( (1,-1) ).shape )
   
   #err = model_train( np.array(training_data['board']), np.array(training_data['score'], dtype='float32') )
+  #err = model_train( training_data['board'], np.array(training_data['score'], dtype='float32')) # .reshape( (1,-1) ) 
   err = model_train( training_data['board'], training_data['score'] )
   
   stats['model_err'] = err
