@@ -10,8 +10,6 @@ import lasagne
 
 from game import crush
 
-#print("Hello from rl.py")
-
 
 def make_features_variable_size(board):
   features = []
@@ -131,8 +129,8 @@ def build_cnn(input_var, features_shape):
 
     # A fully-connected layer of 64 units with 50% dropout on its inputs:
     network = lasagne.layers.DenseLayer(
-      #lasagne.layers.dropout(network, p=.5),
-      network,
+      lasagne.layers.dropout(network, p=.5),
+      #network,
       num_units=32,
       nonlinearity=lasagne.nonlinearities.rectify,
     )
@@ -271,7 +269,7 @@ def stats_aggregates(log, last=None):
 import datetime
 t0 = datetime.datetime.now()
 
-n_games=20*1000
+n_games=1*1000
 stats_log=[]
 for i in range(0, n_games):
   stats, training_data = play_game(i, model)
@@ -317,6 +315,11 @@ stats_aggregates(stats_log)
 #('Min  : ', [('steps', '  26.0'), ('av_potential_moves', '   6.1'), ('new_cols', '   0.0'), ('score', ' 212.0'), ('model_err', '   7.8')])
 #('Max  : ', [('steps', ' 139.0'), ('av_potential_moves', '  19.9'), ('new_cols', '  21.0'), ('score', '1150.0'), ('model_err', '15163.5')])
 #('Mean : ', [('steps', '  54.1'), ('av_potential_moves', '  12.2'), ('new_cols', '   3.4'), ('score', ' 469.0'), ('model_err', ' 221.5')])
+
+# Aggregate stats for 1000 games (played with learning + dropout : ADAM per game)
+#('Min  : ', [('steps', '  23.0'), ('av_potential_moves', '   5.7'), ('new_cols', '   0.0'), ('score', ' 218.0'), ('model_err', '  36.2')])
+#('Max  : ', [('steps', ' 180.0'), ('av_potential_moves', '  19.3'), ('new_cols', '  27.0'), ('score', '1346.0'), ('model_err', '8232.2')])
+#('Mean : ', [('steps', '  53.6'), ('av_potential_moves', '  12.1'), ('new_cols', '   3.3'), ('score', ' 453.5'), ('model_err', ' 274.2')])
 
 ## AMD quad-core ('square') : 49s per 100 games
 ## i7            ('simlim') : 29s per 100 games
