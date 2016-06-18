@@ -256,10 +256,22 @@ model_updates = lasagne.updates.adam( model_squared_error, model_params )
 model_evaluate_features = theano.function([board_input], predict_q_value)
 model_train             = theano.function([board_input, board_score], model_squared_error, updates=model_updates)
 
+def stats_aggregates(log, last=None):
+  stats_cols = "steps av_potential_moves new_cols score model_err".split()
+  if last:
+    stats_overall = np.array([ [s[c] for c in stats_cols] for s in log[-last:] ])
+  else:
+    stats_overall = np.array([ [s[c] for c in stats_cols] for s in log ])
+
+  print("Min  : ",zip(stats_cols, ["%6.1f" % (v,) for v in np.min(stats_overall, axis=0).tolist()]) )
+  print("Max  : ",zip(stats_cols, ["%6.1f" % (v,) for v in np.max(stats_overall, axis=0).tolist()]) )
+  print("Mean : ",zip(stats_cols, ["%6.1f" % (v,) for v in np.mean(stats_overall, axis=0).tolist()]) )
+  
+
 import datetime
 t0 = datetime.datetime.now()
 
-n_games=1000*20
+n_games=20*1000
 stats_log=[]
 for i in range(0, n_games):
   stats, training_data = play_game(i, model)
@@ -285,13 +297,11 @@ for i in range(0, n_games):
     t_end_projected = t0 + datetime.timedelta( seconds=n_games* (t_elapsed/i) )
     print("    100 games in %6.1f seconds, Projected end at : %s" % (100.*t_elapsed/i, t_end_projected.strftime("%H:%M"),))
     
+  if ((i+1) % 100)==0:
+    stats_aggregates(stats_log, last=1000)
 
-stats_cols = "steps av_potential_moves new_cols score model_err".split()
-stats_overall = np.array([ [s[c] for c in stats_cols] for s in stats_log ])
-
-print("Min  : ",zip(stats_cols, ["%6.1f" % (v,) for v in np.min(stats_overall, axis=0).tolist()]) )
-print("Max  : ",zip(stats_cols, ["%6.1f" % (v,) for v in np.max(stats_overall, axis=0).tolist()]) )
-print("Mean : ",zip(stats_cols, ["%6.1f" % (v,) for v in np.mean(stats_overall, axis=0).tolist()]) )
+print("\nFINAL, overall")
+stats_aggregates(stats_log)
 
 # Aggregate stats for 100 games (played randomly)
 #('Min  : ', [('steps', '  29.0'), ('av_potential_moves', '   7.9'), ('new_cols', '   0.0'), ('score', ' 246.0'), ('model_err', '  45.9')])
