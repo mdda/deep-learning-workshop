@@ -259,7 +259,7 @@ model_train             = theano.function([board_input, board_score], model_squa
 import datetime
 t0 = datetime.datetime.now()
 
-n_games=1000*100
+n_games=1000*20
 stats_log=[]
 for i in range(0, n_games):
   stats, training_data = play_game(i, model)
