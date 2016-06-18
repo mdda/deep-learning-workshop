@@ -249,7 +249,9 @@ model_squared_error = lasagne.objectives.squared_error(estimate_q_value.reshape(
 
 model_params  = lasagne.layers.get_all_params(model, trainable=True)
 #model_updates = lasagne.updates.nesterov_momentum( model_squared_error, model_params, learning_rate=0.01, momentum=0.9 )
-model_updates = lasagne.updates.adam( model_squared_error, model_params )
+
+#model_updates = lasagne.updates.adam( model_squared_error, model_params )
+model_updates = lasagne.updates.rmsprop( model_squared_error, model_params )
 
 model_evaluate_features = theano.function([board_input], predict_q_value)
 model_train             = theano.function([board_input, board_score], model_squared_error, updates=model_updates)
@@ -350,3 +352,8 @@ stats_aggregates(stats_log)
 #('Min  : ', [('steps', '  23.0'), ('av_potential_moves', '   7.2'), ('new_cols', '   0.0'), ('score', ' 246.0'), ('model_err', '  91.7')])
 #('Max  : ', [('steps', ' 174.0'), ('av_potential_moves', '  19.4'), ('new_cols', '  33.0'), ('score', '2046.0'), ('model_err', ' 194.8')])
 #('Mean : ', [('steps', '  53.8'), ('av_potential_moves', '  12.8'), ('new_cols', '   4.2'), ('score', ' 554.4'), ('model_err', ' 131.4')])
+
+# Aggregate stats for 1000 games (played with learning : ADAM per game - simlim, batchsize=1024, 8 iterations per game)
+#('Min  : ', [('steps', '  23.0'), ('av_potential_moves', '   7.4'), ('new_cols', '   0.0'), ('score', ' 232.0'), ('model_err', '  63.8')])
+#('Max  : ', [('steps', ' 290.0'), ('av_potential_moves', '  18.6'), ('new_cols', '  56.0'), ('score', '3286.0'), ('model_err', ' 582.0')])
+#('Mean : ', [('steps', '  69.0'), ('av_potential_moves', '  12.4'), ('new_cols', '   8.0'), ('score', ' 853.6'), ('model_err', ' 314.0')])
