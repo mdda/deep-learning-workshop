@@ -294,7 +294,8 @@ for i in range(0, n_games):
     training_data['board'] = training_data['board'][-batchsize:]
     training_data['score'] = training_data['score'][-batchsize:]
 
-  err = model_train( training_data['board'][-batchsize:], training_data['score'][-batchsize:] )
+  for iter in range(0,8):
+    err = model_train( training_data['board'][-batchsize:], training_data['score'][-batchsize:] )
   
   stats['model_err'] = err
   
@@ -343,3 +344,9 @@ stats_aggregates(stats_log)
 
 
 ## AMD quad-core ('square') : 140s per 100 games (batchsize=1024 steps ~ 20 games)
+## gtx760 gpu    ('anson')  :  15s per 100 games (batchsize=1024 steps ~ 20 games)
+
+# Aggregate stats for 1000 games (played with learning : ADAM per game - simlim, batchsize=1024)
+#('Min  : ', [('steps', '  23.0'), ('av_potential_moves', '   7.2'), ('new_cols', '   0.0'), ('score', ' 246.0'), ('model_err', '  91.7')])
+#('Max  : ', [('steps', ' 174.0'), ('av_potential_moves', '  19.4'), ('new_cols', '  33.0'), ('score', '2046.0'), ('model_err', ' 194.8')])
+#('Mean : ', [('steps', '  53.8'), ('av_potential_moves', '  12.8'), ('new_cols', '   4.2'), ('score', ' 554.4'), ('model_err', ' 131.4')])
