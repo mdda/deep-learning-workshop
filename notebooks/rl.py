@@ -250,8 +250,8 @@ model_squared_error = lasagne.objectives.squared_error(estimate_q_value.reshape(
 model_params  = lasagne.layers.get_all_params(model, trainable=True)
 #model_updates = lasagne.updates.nesterov_momentum( model_squared_error, model_params, learning_rate=0.01, momentum=0.9 )
 
-#model_updates = lasagne.updates.adam( model_squared_error, model_params )
-model_updates = lasagne.updates.rmsprop( model_squared_error, model_params )
+model_updates = lasagne.updates.adam( model_squared_error, model_params )
+#model_updates = lasagne.updates.rmsprop( model_squared_error, model_params ) # Seems much slower to converge
 
 model_evaluate_features = theano.function([board_input], predict_q_value)
 model_train             = theano.function([board_input, board_score], model_squared_error, updates=model_updates)
@@ -271,7 +271,7 @@ def stats_aggregates(log, last=None):
 import datetime
 t0 = datetime.datetime.now()
 
-n_games=1*1000
+n_games=100*1000
 batchsize=1024
 
 stats_log=[]
@@ -347,6 +347,7 @@ stats_aggregates(stats_log)
 
 ## AMD quad-core ('square') : 140s per 100 games (batchsize=1024 steps ~ 20 games)
 ## gtx760 gpu    ('anson')  :  15s per 100 games (batchsize=1024 steps ~ 20 games)
+## gtx760 gpu    ('anson')  :  27s per 100 games (batchsize=1024 steps ~ 20 games, 8 iterations per training)
 
 # Aggregate stats for 1000 games (played with learning : ADAM per game - simlim, batchsize=1024)
 #('Min  : ', [('steps', '  23.0'), ('av_potential_moves', '   7.2'), ('new_cols', '   0.0'), ('score', ' 246.0'), ('model_err', '  91.7')])
@@ -357,3 +358,10 @@ stats_aggregates(stats_log)
 #('Min  : ', [('steps', '  23.0'), ('av_potential_moves', '   7.4'), ('new_cols', '   0.0'), ('score', ' 232.0'), ('model_err', '  63.8')])
 #('Max  : ', [('steps', ' 290.0'), ('av_potential_moves', '  18.6'), ('new_cols', '  56.0'), ('score', '3286.0'), ('model_err', ' 582.0')])
 #('Mean : ', [('steps', '  69.0'), ('av_potential_moves', '  12.4'), ('new_cols', '   8.0'), ('score', ' 853.6'), ('model_err', ' 314.0')])
+
+
+
+# simlim 20k games : last 1000:
+#('Min  : ', [('steps', '  26.0'), ('av_potential_moves', '   6.8'), ('new_cols', '   0.0'), ('score', ' 336.0'), ('model_err', '  15.3')])
+#('Max  : ', [('steps', ' 339.0'), ('av_potential_moves', '  18.6'), ('new_cols', '  65.0'), ('score', '3572.0'), ('model_err', '1789.9')])
+#('Mean : ', [('steps', '  77.7'), ('av_potential_moves', '  10.8'), ('new_cols', '  10.2'), ('score', '1070.7'), ('model_err', '  88.0')])
