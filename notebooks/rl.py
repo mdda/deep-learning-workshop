@@ -270,9 +270,12 @@ import datetime
 t0 = datetime.datetime.now()
 
 n_games=1*1000
+batchsize=1024
+
 stats_log=[]
+training_data=dict( board=[], score=[])
 for i in range(0, n_games):
-  stats, training_data = play_game(i, model)
+  stats, training_data_new = play_game(i, model)
   
   print("game[%d]" % (i,))
   print("  steps         = %d" % (stats['steps'],))
@@ -282,8 +285,16 @@ for i in range(0, n_games):
   
   #print( np.asarray( training_data['board'] ).shape )
   #print( np.asarray( training_data['score'] ).reshape( (1,-1) ).shape )
-  
-  err = model_train( training_data['board'], training_data['score'] )
+
+  training_data['board'] += training_data_new['board']
+  training_data['score'] += training_data_new['score']
+
+  # This keeps the window from growing too big
+  if len(training_data['score'])>batchsize*2:
+    training_data['board'] = training_data['board'][-batchsize:]
+    training_data['score'] = training_data['score'][-batchsize:]
+
+  err = model_train( training_data['board'][-batchsize:], training_data['score'][-batchsize:] )
   
   stats['model_err'] = err
   
@@ -293,7 +304,7 @@ for i in range(0, n_games):
     t_now = datetime.datetime.now()
     t_elapsed = (t_now - t0).total_seconds()
     t_end_projected = t0 + datetime.timedelta( seconds=n_games* (t_elapsed/i) )
-    print("    100 games in %6.1f seconds, Projected end at : %s" % (100.*t_elapsed/i, t_end_projected.strftime("%H:%M"),))
+    print("    100 games in %6.1f seconds, Projected end at : %s, stored_data.length=%d" % (100.*t_elapsed/i, t_end_projected.strftime("%H:%M"), len(training_data['score']), ))
     
   if ((i+1) % 100)==0:
     stats_aggregates(stats_log, last=1000)
@@ -321,10 +332,14 @@ stats_aggregates(stats_log)
 #('Max  : ', [('steps', ' 180.0'), ('av_potential_moves', '  19.3'), ('new_cols', '  27.0'), ('score', '1346.0'), ('model_err', '8232.2')])
 #('Mean : ', [('steps', '  53.6'), ('av_potential_moves', '  12.1'), ('new_cols', '   3.3'), ('score', ' 453.5'), ('model_err', ' 274.2')])
 
-## AMD quad-core ('square') : 49s per 100 games
+## AMD quad-core ('square') : 49s per 100 games (batchsize=1 game)
 ## i7            ('simlim') : 29s per 100 games
+## gtx760 gpu    ('anson')  : 12.5s per 100 games
 
 # Aggregate stats for 1000 games (played with learning : ADAM per game - simlim)
 #('Min  : ', [('steps', '  24.0'), ('av_potential_moves', '   6.1'), ('new_cols', '   0.0'), ('score', ' 202.0'), ('model_err', '   5.6')])
 #('Max  : ', [('steps', ' 161.0'), ('av_potential_moves', '  18.8'), ('new_cols', '  23.0'), ('score', '1312.0'), ('model_err', '15164.2')])
 #('Mean : ', [('steps', '  53.6'), ('av_potential_moves', '  12.3'), ('new_cols', '   3.4'), ('score', ' 465.4'), ('model_err', ' 222.9')])
+
+
+## AMD quad-core ('square') : 140s per 100 games (batchsize=1024 steps ~ 20 games)
