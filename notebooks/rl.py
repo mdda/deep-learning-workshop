@@ -259,7 +259,7 @@ model_train             = theano.function([board_input, board_score], model_squa
 import datetime
 t0 = datetime.datetime.now()
 
-n_games=1000
+n_games=1000*100
 stats_log=[]
 for i in range(0, n_games):
   stats, training_data = play_game(i, model)
@@ -310,3 +310,8 @@ print("Mean : ",zip(stats_cols, ["%6.1f" % (v,) for v in np.mean(stats_overall, 
 
 ## AMD quad-core ('square') : 49s per 100 games
 ## i7            ('simlim') : 29s per 100 games
+
+# Aggregate stats for 1000 games (played with learning : ADAM per game - simlim)
+#('Min  : ', [('steps', '  24.0'), ('av_potential_moves', '   6.1'), ('new_cols', '   0.0'), ('score', ' 202.0'), ('model_err', '   5.6')])
+#('Max  : ', [('steps', ' 161.0'), ('av_potential_moves', '  18.8'), ('new_cols', '  23.0'), ('score', '1312.0'), ('model_err', '15164.2')])
+#('Mean : ', [('steps', '  53.6'), ('av_potential_moves', '  12.3'), ('new_cols', '   3.4'), ('score', ' 465.4'), ('model_err', ' 222.9')])
