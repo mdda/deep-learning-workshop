@@ -294,7 +294,7 @@ for i in range(0, n_games):
     training_data['board'] = training_data['board'][-batchsize:]
     training_data['target'] = training_data['target'][-batchsize:]
 
-  for iter in range(0,8):
+  for iter in range(0,1):
     err = model_train( training_data['board'][-batchsize:], training_data['target'][-batchsize:] )
   
   stats['model_err'] = err
@@ -359,11 +359,6 @@ stats_aggregates(stats_log)
 #('Max  : ', [('steps', ' 290.0'), ('av_potential_moves', '  18.6'), ('new_cols', '  56.0'), ('score', '3286.0'), ('model_err', ' 582.0')])
 #('Mean : ', [('steps', '  69.0'), ('av_potential_moves', '  12.4'), ('new_cols', '   8.0'), ('score', ' 853.6'), ('model_err', ' 314.0')])
 
-# simlim 1k games : last 1000:  (target = n_cols)
-#('Min  : ', [('steps', '  29.0'), ('av_potential_moves', '   7.8'), ('new_cols', '   0.0'), ('score', ' 210.0'), ('model_err', '   0.0')])
-#('Max  : ', [('steps', ' 217.0'), ('av_potential_moves', '  19.0'), ('new_cols', '  34.0'), ('score', '2074.0'), ('model_err', '   0.6')])
-#('Mean : ', [('steps', '  71.5'), ('av_potential_moves', '  12.8'), ('new_cols', '   7.4'), ('score', ' 669.1'), ('model_err', '   0.2')])
-
 
 # simlim 20k games : last 1000:
 #('Min  : ', [('steps', '  26.0'), ('av_potential_moves', '   6.8'), ('new_cols', '   0.0'), ('score', ' 336.0'), ('model_err', '  15.3')])
@@ -374,5 +369,17 @@ stats_aggregates(stats_log)
 #('Min  : ', [('steps', '  32.0'), ('av_potential_moves', '   8.4'), ('new_cols', '   0.0'), ('score', ' 242.0'), ('model_err', '1391.2')])
 #('Max  : ', [('steps', ' 390.0'), ('av_potential_moves', '  20.6'), ('new_cols', '  69.0'), ('score', '2994.0'), ('model_err', '3802.2')])
 #('Mean : ', [('steps', '  96.6'), ('av_potential_moves', '  13.7'), ('new_cols', '  10.7'), ('score', ' 731.2'), ('model_err', '2355.3')])
+
+
+# simlim 1k games : last 1000:  (target = n_cols)
+#('Min  : ', [('steps', '  29.0'), ('av_potential_moves', '   7.8'), ('new_cols', '   0.0'), ('score', ' 210.0'), ('model_err', '   0.0')])
+#('Max  : ', [('steps', ' 217.0'), ('av_potential_moves', '  19.0'), ('new_cols', '  34.0'), ('score', '2074.0'), ('model_err', '   0.6')])
+#('Mean : ', [('steps', '  71.5'), ('av_potential_moves', '  12.8'), ('new_cols', '   7.4'), ('score', ' 669.1'), ('model_err', '   0.2')])
+
+# simlim 20k games : last 1000: (target = n_cols)
+#('Min  : ', [('steps', '  28.0'), ('av_potential_moves', '   6.8'), ('new_cols', '   0.0'), ('score', ' 250.0'), ('model_err', '   0.3')])
+#('Max  : ', [('steps', ' 411.0'), ('av_potential_moves', '  17.5'), ('new_cols', '  79.0'), ('score', '3662.0'), ('model_err', '   3.8')])
+#('Mean : ', [('steps', '  81.9'), ('av_potential_moves', '  11.6'), ('new_cols', '   8.9'), ('score', ' 689.8'), ('model_err', '   0.8')])
+
 
 
