@@ -2,7 +2,7 @@ import numpy as np
 
 #print("Hello from crush.py")
 
-def new_board(horizontal, vertical, n_colours=4):
+def new_board(horizontal, vertical, n_colours=5):
   # It's easier to work with the 'vertical flow' being along individual row vectors
   # and in this case (in the numpy array), gravity is right-to-left, and pushes up the page
   return np.random.randint(low=1, high=n_colours+1, size=(horizontal, vertical))
@@ -106,6 +106,13 @@ def show_board(board, highlight=None):  # highlight=(0,0)
   if highlight:
     d[highlight[0], highlight[1]] = -d[highlight[0], highlight[1]]  # Fixes formatting
   print(d)
+
+def display_via_javascript(element_id, board):
+  a = [ "[%s]" % (','.join([ "%d" % (c,) for c in board[h].tolist() ]),) for h in range(0,board.shape[0]) ]
+  #for h in range(0, c.shape[0]):
+  #  for v in range(0, c.shape[1]):
+  return("""<script type="text/Javascript">display_board("%s",[%s])</script>""" % (element_id, ','.join(a),));
+  return("<b>HelloWorld</b>");
 
   
 if __name__ == "__main__":
