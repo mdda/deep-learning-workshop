@@ -348,6 +348,7 @@ stats_aggregates(stats_log)
 ## AMD quad-core ('square') : 140s per 100 games (batchsize=1024 steps ~ 20 games)
 ## gtx760 gpu    ('anson')  :  15s per 100 games (batchsize=1024 steps ~ 20 games)
 ## gtx760 gpu    ('anson')  :  27s per 100 games (batchsize=1024 steps ~ 20 games, 8 iterations per training)
+## Titan X gpu   ('simlim') :  27s per 100 games (batchsize=1024 steps ~ 20 games, 8 iterations per training)
 
 # Aggregate stats for 1000 games (played with learning : ADAM per game - simlim, batchsize=1024)
 #('Min  : ', [('steps', '  23.0'), ('av_potential_moves', '   7.2'), ('new_cols', '   0.0'), ('score', ' 246.0'), ('model_err', '  91.7')])
@@ -365,3 +366,9 @@ stats_aggregates(stats_log)
 #('Min  : ', [('steps', '  26.0'), ('av_potential_moves', '   6.8'), ('new_cols', '   0.0'), ('score', ' 336.0'), ('model_err', '  15.3')])
 #('Max  : ', [('steps', ' 339.0'), ('av_potential_moves', '  18.6'), ('new_cols', '  65.0'), ('score', '3572.0'), ('model_err', '1789.9')])
 #('Mean : ', [('steps', '  77.7'), ('av_potential_moves', '  10.8'), ('new_cols', '  10.2'), ('score', '1070.7'), ('model_err', '  88.0')])
+
+# simlim 100k games : last 1000:  ( interestingly, the scores peak with an average of ~1150 in 20k or so iterations)
+#('Min  : ', [('steps', '  32.0'), ('av_potential_moves', '   8.4'), ('new_cols', '   0.0'), ('score', ' 242.0'), ('model_err', '1391.2')])
+#('Max  : ', [('steps', ' 390.0'), ('av_potential_moves', '  20.6'), ('new_cols', '  69.0'), ('score', '2994.0'), ('model_err', '3802.2')])
+#('Mean : ', [('steps', '  96.6'), ('av_potential_moves', '  13.7'), ('new_cols', '  10.7'), ('score', ' 731.2'), ('model_err', '2355.3')])
+
