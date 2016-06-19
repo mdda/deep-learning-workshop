@@ -64,7 +64,8 @@ And this repo can itself be run in 'local mode', using scripts in ```./local/```
    *  ImageNet : Inception 3
    *  'Commerce' - repurpose a trained network to classify our stuff
    *  'Art' - Style transfer with Lasagne, but using GoogLeNet features for speed
-   *  RNN - Updated with Shakespeare text, and bugfix
+   *  'Reinforcement Learning' - learning to play "Bubble Breaker" 
+   *  ?RNN - Updated with Shakespeare text, and bugfix
 
 *  Notebook Extras
    *  X - BLAS configuration fiddle tool
@@ -79,9 +80,12 @@ And this repo can itself be run in 'local mode', using scripts in ```./local/```
 *  Workshop presentation materials
    *  Fairly short, to give time to play with the VMs
    *  Timings:
-      *  First hour : up to end of ConvNetJS, and explain ThenoBasics
+      *  First hour : up to end of ConvNetJS, and explain TheanoBasics
       *  Up to 1:30 : MNIST and ImageNet examples
-      *  15 mins each : 'Commerce' and 'Art-Style-Transfer'
+      *  15 mins for each of : 
+         *  'Commerce'
+         *  'Art'
+      *  30 mins for 'Reinforcement Learning'
 
 
 #### Still Work-in-Progress 
