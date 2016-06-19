@@ -272,7 +272,7 @@ def stats_aggregates(log, last=None):
 import datetime
 t0 = datetime.datetime.now()
 
-n_games=20*1000
+n_games=100*1000
 batchsize=1024
 
 stats_log=[]
