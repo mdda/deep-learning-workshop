@@ -107,12 +107,17 @@ def show_board(board, highlight=None):  # highlight=(0,0)
     d[highlight[0], highlight[1]] = -d[highlight[0], highlight[1]]  # Fixes formatting
   print(d)
 
-def display_via_javascript(element_id, board):
+def display_via_javascript_script(element_id, board):
+  print("display_via_javascript_script")
+  a = [ "[%s]" % (','.join([ "%d" % (c,) for c in board[h].tolist() ]),) for h in range(0,board.shape[0]) ]
+  return("""<script type="text/Javascript">display_board("%s",[%s])</script>""" % (element_id, ','.join(a),));
+  return("<b>HelloWorld</b>");
+
+def display_via_javascript_callback(board):
   a = [ "[%s]" % (','.join([ "%d" % (c,) for c in board[h].tolist() ]),) for h in range(0,board.shape[0]) ]
   #for h in range(0, c.shape[0]):
   #  for v in range(0, c.shape[1]):
-  return("""<script type="text/Javascript">display_board("%s",[%s])</script>""" % (element_id, ','.join(a),));
-  return("<b>HelloWorld</b>");
+  return("""[%s]""" % (','.join(a),));
 
   
 if __name__ == "__main__":
