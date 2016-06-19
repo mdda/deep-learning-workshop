@@ -15,6 +15,7 @@ install gcc,gcc-c++,python-devel,redhat-rpm-config
 install scipy,numpy,python-scikit-learn,python-pandas,Cython,blas-devel,lapack-devel,atlas-devel,python-pillow
 ## Not doing openblas, since atlas (with /lib64/atlas/tatlas) allows for multi-core operations
 
+# ? python-zmq for jupyter?
 
 # Good for iPython / Jupyter, and also hdfs support:
 install graphviz,libyaml,hdf5-devel
