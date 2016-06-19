@@ -333,6 +333,7 @@ stats_aggregates(stats_log)
 #('Max  : ', [('steps', ' 180.0'), ('av_potential_moves', '  19.3'), ('new_cols', '  27.0'), ('score', '1346.0'), ('model_err', '8232.2')])
 #('Mean : ', [('steps', '  53.6'), ('av_potential_moves', '  12.1'), ('new_cols', '   3.3'), ('score', ' 453.5'), ('model_err', ' 274.2')])
 
+
 ## AMD quad-core ('square') : 49s per 100 games (batchsize=1 game)
 ## i7            ('simlim') : 29s per 100 games
 ## gtx760 gpu    ('anson')  : 12.5s per 100 games
@@ -358,6 +359,10 @@ stats_aggregates(stats_log)
 #('Max  : ', [('steps', ' 290.0'), ('av_potential_moves', '  18.6'), ('new_cols', '  56.0'), ('score', '3286.0'), ('model_err', ' 582.0')])
 #('Mean : ', [('steps', '  69.0'), ('av_potential_moves', '  12.4'), ('new_cols', '   8.0'), ('score', ' 853.6'), ('model_err', ' 314.0')])
 
+# simlim 1k games : last 1000:  (target = n_cols)
+#('Min  : ', [('steps', '  29.0'), ('av_potential_moves', '   7.8'), ('new_cols', '   0.0'), ('score', ' 210.0'), ('model_err', '   0.0')])
+#('Max  : ', [('steps', ' 217.0'), ('av_potential_moves', '  19.0'), ('new_cols', '  34.0'), ('score', '2074.0'), ('model_err', '   0.6')])
+#('Mean : ', [('steps', '  71.5'), ('av_potential_moves', '  12.8'), ('new_cols', '   7.4'), ('score', ' 669.1'), ('model_err', '   0.2')])
 
 
 # simlim 20k games : last 1000:
@@ -369,4 +374,5 @@ stats_aggregates(stats_log)
 #('Min  : ', [('steps', '  32.0'), ('av_potential_moves', '   8.4'), ('new_cols', '   0.0'), ('score', ' 242.0'), ('model_err', '1391.2')])
 #('Max  : ', [('steps', ' 390.0'), ('av_potential_moves', '  20.6'), ('new_cols', '  69.0'), ('score', '2994.0'), ('model_err', '3802.2')])
 #('Mean : ', [('steps', '  96.6'), ('av_potential_moves', '  13.7'), ('new_cols', '  10.7'), ('score', ' 731.2'), ('model_err', '2355.3')])
+
 
