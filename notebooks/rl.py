@@ -175,8 +175,8 @@ def build_cnn(input_var, features_shape):
 
 
 # This returns both stats for the game played and new board positions / rewards to learn from 
-def play_game(game_id, model):
-  training_data = dict( board=[], score=[])
+def play_game(game_id, model, per_step_discount_factor=0.95):
+  training_data = dict( board=[], target=[])
   
   np.random.seed(game_id)
   board = crush.new_board(width, height, n_colours) # Same as portrait phone  1 screen~1k,  high-score~14k
@@ -189,25 +189,26 @@ def play_game(game_id, model):
     if len(moves)==0:
       # Need to add a training example : This is a zero-score outcome
       training_data['board'].append( make_features_in_layers(board) )
-      training_data['score'].append( 0. )
+      training_data['target'].append( 0. )
       
       break
 
     # Let's find the highest-scoring of those moves:  First, get all the features
     next_step_features = []
-    next_step_score = []
+    next_step_target = []
     for (h,v) in moves:  # [0:2]
-      b, s, _ = crush.after_move(board, h,v, -1)  # Added columns are unknown
+      b, score, n_cols = crush.after_move(board, h,v, -1)  # Added columns are unknown
       
       next_step_features.append( make_features_in_layers(b) )
-      next_step_score.append( s )
+      #next_step_target.append( score )
+      next_step_target.append( n_cols )
       
     # Now evaluate the Q() values of the resulting postion for each possible move in one go
     all_features = np.array(next_step_features)  # , dtype='float32'
     #print("all_features.shape", all_features.shape)
     next_step_q = model_evaluate_features( all_features )
 
-    next_step_aggregate = np.array( next_step_score, dtype='float32') + next_step_q.flatten()
+    next_step_aggregate = np.array( next_step_target, dtype='float32') + per_step_discount_factor * next_step_q.flatten()
     #print( next_step_aggregate )
 
     i = np.argmax( next_step_aggregate )
@@ -220,7 +221,7 @@ def play_game(game_id, model):
     #crush.show_board(board, highlight=(h,v))
     
     training_data['board'].append( make_features_in_layers(board) )
-    training_data['score'].append( next_step_aggregate[i] )   # This is only looking at the 'blank cols', rather than the actuals, though
+    training_data['target'].append( next_step_aggregate[i] )   # This is only looking at the 'blank cols', rather than the actuals, though
     
     board, score, new_cols = crush.after_move(board, h,v, n_colours)  # Now we do the move 'for real'
     
@@ -271,11 +272,11 @@ def stats_aggregates(log, last=None):
 import datetime
 t0 = datetime.datetime.now()
 
-n_games=100*1000
+n_games=1*1000
 batchsize=1024
 
 stats_log=[]
-training_data=dict( board=[], score=[])
+training_data=dict( board=[], target=[])
 for i in range(0, n_games):
   stats, training_data_new = play_game(i, model)
   
@@ -285,19 +286,16 @@ for i in range(0, n_games):
   print("  new_cols      = %d" % (stats['new_cols'],))
   print("  score_total   = %d" % (stats['score'],))
   
-  #print( np.asarray( training_data['board'] ).shape )
-  #print( np.asarray( training_data['score'] ).reshape( (1,-1) ).shape )
-
   training_data['board'] += training_data_new['board']
-  training_data['score'] += training_data_new['score']
+  training_data['target'] += training_data_new['target']
 
   # This keeps the window from growing too big
-  if len(training_data['score'])>batchsize*2:
+  if len(training_data['target'])>batchsize*2:
     training_data['board'] = training_data['board'][-batchsize:]
-    training_data['score'] = training_data['score'][-batchsize:]
+    training_data['target'] = training_data['target'][-batchsize:]
 
   for iter in range(0,8):
-    err = model_train( training_data['board'][-batchsize:], training_data['score'][-batchsize:] )
+    err = model_train( training_data['board'][-batchsize:], training_data['target'][-batchsize:] )
   
   stats['model_err'] = err
   
@@ -307,7 +305,7 @@ for i in range(0, n_games):
     t_now = datetime.datetime.now()
     t_elapsed = (t_now - t0).total_seconds()
     t_end_projected = t0 + datetime.timedelta( seconds=n_games* (t_elapsed/i) )
-    print("    100 games in %6.1f seconds, Projected end at : %s, stored_data.length=%d" % (100.*t_elapsed/i, t_end_projected.strftime("%H:%M"), len(training_data['score']), ))
+    print("    100 games in %6.1f seconds, Projected end at : %s, stored_data.length=%d" % (100.*t_elapsed/i, t_end_projected.strftime("%H:%M"), len(training_data['target']), ))
     
   if ((i+1) % 100)==0:
     stats_aggregates(stats_log, last=1000)
