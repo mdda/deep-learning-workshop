@@ -1,0 +1,717 @@
+<!doctype html>
+<html lang="en">
+
+ <head>
+  <meta charset="utf-8">
+
+  <title>PyConSG 2016 - Deep Learning Workshop</title>
+
+  <meta name="description" content="PyConSG 2016 - Deep Learning Workshop">
+  <meta name="author" content="Martin Andrews">
+
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <link rel="stylesheet" href="css/reveal.min.css">
+  <link rel="stylesheet" xhref="css/theme/default.css" href="css/theme/sky.css" id="theme">
+
+  <!-- For syntax highlighting -->
+  <link rel="stylesheet" href="lib/css/zenburn.css">
+
+  <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+  <script>
+   if( window.location.search.match( /print-pdf/gi ) ) {
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = 'css/print/pdf.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+   }
+  </script>
+
+  <!--[if lt IE 9]>
+  <script src="lib/js/html5shiv.js"></script>
+  <![endif]-->
+ </head>
+
+ <body>
+  <div class="reveal">
+   <!-- Any section element inside of this container is displayed as a slide -->
+   <div class="slides">
+    
+<style>
+table.table-fix {
+ margin-left:auto;  margin-right:auto; border-collapse:collapse; cell-padding:5px;
+ margin-top:20px;
+}
+.table-fix td,.table-fix th {
+ padding: 6px;
+}
+.table-fix th {
+ border-bottom:1pt solid black;
+}
+.fix-spacing li {
+ margin-bottom:16pt;
+}
+</style>
+
+<!--
+  Concurrent with workshop hands-on:
+    explain frontiers (eg: Futurists talk)
+
+  NN intro
+  chain rule
+    demo with convnet.js cat picture
+  supervised learning
+    demo with convnet.js MNIST
+  
+  
+  network configurations
+    MLP
+    CNN
+    RNN
+  
+  merits of various software frameworks 
+    direct programming
+    meta-programming
+    meta-meta-programming
+
+  
+  Concurrent with workshop hands-on:
+    merits of various software frameworks 
+      convnet.js (!)
+      caffe (C++)
+        python
+      torch
+        lua
+      theano (Python)
+        python, GPU + CPU
+      tensorflow (C++)
+        python and C++, GPUs + CPUs
+      
+      ease-of-use layers
+        keras
+        lasagne
+        tensorflow-slim
+
+!-->
+
+<section>
+ <h1>Deep Learning Workshop</h1>
+ <h3>PyConSG 2016</h3>
+ <p>
+  <small><a href="http://mdda.net">Martin Andrews</a> @ <a href="http://redcatlabs.com/">redcatlabs.com</a></small>
+ </p>
+ <p>
+  <small>23 June 2016</small>
+ </p>
+</section>
+
+<section>
+ <h2>About Me</h2>
+ <ul class="fix-spacing">
+  <li>Machine Intelligence / Startups / Finance</li>
+  <li style="list-style-type:none">
+    <ul>
+      <li>Moved to Singapore in Sep-2013</li>
+    </ul>
+  </li>
+  <li>2014 = 'fun' :</li>
+  <li style="list-style-type:none">
+    <ul>
+      <li>Machine Learning, Deep Learning, NLP</li>
+      <li>Robots, drones</li>
+      <li>"MeetUp Pro"</li>
+    </ul>
+  </li>
+  <li>Since 2015 = 'serious' :: NLP + deep learning</li>
+ </ul>
+</section>
+
+<section>
+  <section>
+   <h2>What can be done now</h2>
+   <ul class="fix-spacing">
+    <li>Speech recognition</li>
+    <li>Language translation </li>
+    <li>Vision : </li>
+    <li style="list-style-type:none">
+      <ul>
+        <li>Object recognition</li>
+        <li>Automatic captioning</li>
+      </ul>
+    </li>
+    <li>Reinforcement Learning</li>
+   </ul>
+  </section>
+
+  <section>
+   <h2>Speech Recognition</h2>
+   <p>Android feature since <a href="http://www.phonearena.com/news/The-secret-of-Googles-amazing-voice-recognition-revealed-it-works-like-a-brain_id39938" target="_blank">Jellybean (v4.3, 2012)</a> using Cloud</p>
+   <p>Trained in ~5 days on 800 machine cluster</p>
+   <img width="444" height="360" src="img/speech_444x360.png" alt="Speech Recognition" xstyle="border:none;box-shadow:none">
+   <p>Embedded in phone since Android <a href="http://googleresearch.blogspot.sg/2015/08/the-neural-networks-behind-google-voice.html" target="_blank">Lollipop (v5.0, 2014)</a></p>
+  </section>
+
+  <section>
+   <h2>Translation</h2>
+   <p>Google's <a href="http://googleresearch.blogspot.sg/2015/07/how-google-translate-squeezes-deep.html" target="_blank">Deep Models</a> are on the phone</p>
+   <img width="640" height="160" src="img/google-translate_640x160.png" alt="Google Translate" xstyle="border:none;box-shadow:none">
+   <p><i>"Use your camera to translate text instantly in 26 languages"</i></p>
+   <p><i>Translations for typed text in 90 languages</i></p>
+  </section>
+
+  <section>
+   <h2>House Numbers</h2>
+   <p>Google Street-View (and ReCaptchas)</p>
+   <img width="598" height="400" src="img/house-numbers_598x400.png" alt="House Numbers" xstyle="border:none;box-shadow:none">
+   <p><i>
+     <a href="http://arxiv.org/abs/1312.6082" target="_blank">Better</a> 
+     than 
+     <a href="http://www.geek.com/news/googles-neutral-networks-are-now-better-than-humans-at-reading-addresses-1581653/" target="_blank">human</a>
+  </i></p>
+  </section>
+
+  <section>
+   <h2>ImageNet Results</h2>
+   <img width="574" height="469" src="img/ImageNet-Results_574x469.png" alt="ImageNet Results" style="border:none;box-shadow:none">
+   <p><i>(now human competitive on ImageNet)</i></p>
+  </section>
+
+  <section>
+   <h2>Captioning Images</h2>
+   <img width="667" height="419" src="img/image-labelling-results_667x419.png" alt="Labelling Results" style="border:none;box-shadow:none">
+   <p><i>Some good, some not-so-good</i></p>
+  </section>
+  
+  <section>
+   <h2>Reinforcement Learning</h2>
+   <p>Google's DeepMind purchase</p>
+   <p>Learn to play games from the pixels alone</p>
+   <img width="562" height="466" src="img/deep-mind_562x466.jpg" alt="DeepMind Atari" style="border:none;box-shadow:none">
+   <p><i>Better than humans 2 hours after switching on</i></p>
+  </section>
+
+  <section>
+   <h2>Reinforcement Learning</h2>
+   <p>Google DeepMind's AlphaGo</p>
+   <p>Learn to play Go from (mostly) self-play</p>
+   <img width="902" height="337" src="img/AlphaGo-match5_902x337.png" alt="DeepMind AlphaGo Match 5" style="border:none;box-shadow:none">
+  </section>
+
+</section>
+
+<!--
+<section>
+  <section>
+   <h2>Deep Learning</h2>
+   <ul class="fix-spacing">
+    <li>Neural Networks</li>
+    <li>Multiple layers</li>
+    <li>Fed with lots of Data</li>
+   </ul>
+  </section>
+  <section>
+   <h2>History</h2>
+   <ul class="fix-spacing">
+    <li>1980+ : Lots of enthusiasm for NNs</li>
+    <li>1995+ : Disillusionment = A.I. Winter (v2+)</li>
+    <li>2005+ : Stepwise improvement : Depth</li>
+    <li>2010+ : GPU revolution : Data</li>
+   </ul>
+  </section>
+  <section>
+   <h2>Who is involved</h2>
+   <ul class="fix-spacing">
+    <li>Google - Hinton (Toronto)</li>
+    <li>Facebook - LeCun (NYC)</li>
+    <li>Baidu - Ng (Stanford)</li>
+    <li>... Apple (acquisitions), etc</li>
+    <li>Universities, eg: Montreal (Bengio)</li>
+   </ul>
+  </section>
+</section>
+!-->
+
+<section>
+  <section>
+   <h2>Basic Approach</h2>
+   <ul class="fix-spacing">
+    <li>Same as original Neural Networks in 1980s/1990s</li>
+    <li>Simple mathematical units ...</li>
+    <li style="list-style-type:none"> ... combine to compute a complex function</li>
+   </ul>
+  </section>
+
+  <section>
+   <h2>Single "Neuron"</h2>
+   <img width="602" height="381" src="img/one-neuron_602x381.png" alt="One Neuron" style="border:none;box-shadow:none">
+   <p>Change weights to change output function</p>
+  </section>
+
+  <section>
+   <h2>Multi-Layer</h2>
+   <p>Layers of neurons combine and <br/>can form more complex functions</p>
+   <img width="356" height="324" src="img/multi-layer_356x324.png" alt="Multi-Layer" style="border:none;box-shadow:none">
+  </section>
+
+  <section>
+   <h2>Supervised Learning</h2>
+   <ul class="fix-spacing">
+    <li><strong>while</strong> not done :</li>
+    <li style="list-style-type:none">
+      <ul>
+        <li>Pick a training case (<code>x</code> &rarr; <code>target_y</code>)</li>
+        <li>Evaluate <code>output_y</code> from the <code>x</code></li>
+        <li>Modify the weights so that <code>output_y</code> is closer to <code>target_y</code> for that <code>x</code></li>
+      </ul>
+    </li>
+   </ul>
+  </section>
+
+  <section>
+   <h2>Gradient Descent</h2>
+   <p>Follow the gradient of the error <br />w.r.t the connection weights</p>
+   <img width="364" height="306" src="img/gradient-descent_364x306.png" alt="Gradient-Descent" style="border:none;box-shadow:none">
+  </section>
+</section>
+
+<section>
+  <section>
+   <h2>Workshop : SGD</h2>
+    <li style="list-style-type:none">
+      <ul>
+        <li>Go to : <code>http://ConvNetJS.com/</code></li>
+        <li>Look for : "Image 'painting'"</li>
+      </ul>
+    </li>
+   </ul>
+   <ximg width="473" height="665" src="img/ConvNetJS-Painting_473x665.png" alt="ConvNetJS Image Painting" style="border:none;box-shadow:none">
+   <img width="844" height="418" src="img/ConvNetJS-Painting_844x418.png" alt="ConvNetJS Image Painting" style="border:none;box-shadow:none">
+  </section>
+  
+  <section>
+   <h2>Simple Network</h2>
+   <img width="574" height="435" src="img/ConvNetJS-Painting-5_574x435.png" alt="ConvNetJS Painting : 5" style="border:none;box-shadow:none">
+  </section>
+  <section>
+   <h2>Wider Network</h2>
+   <img width="573" height="443" src="img/ConvNetJS-Painting-20_573x443.png" alt="ConvNetJS Painting : 20" style="border:none;box-shadow:none">
+  </section>
+  <section>
+   <h2>Two-Ply Network</h2>
+   <img width="571" height="427" src="img/ConvNetJS-Painting-10-10_571x427.png" alt="ConvNetJS Painting : 10+10" style="border:none;box-shadow:none">
+  </section>
+  <section>
+   <h2>Deep Network and Time</h2>
+   <img width="575" height="435" src="img/ConvNetJS-Painting-7x20_575x435.png" alt="ConvNetJS Painting : 10x7" style="border:none;box-shadow:none">
+  </section>
+</section>
+
+<section>
+  <section>
+   <h2>"Hello World" &rarr; MNIST</h2>
+   <ul class="fix-spacing">
+    <li>Nice dataset from the late 1980s</li>
+    <li>Training set of 50,000 28x28 images</li>
+    <li>Now end-of-life as a useful benchmark</li>
+   </ul>
+   <br />
+   <img width="255" height="204" src="img/mnist_100_digits_255x204.png" alt="MNIST digits" style="border:none;box-shadow:none">
+  </section>
+
+  <section>
+   <h2>Simple Network</h2>
+   <img width="829" height="425" src="img/netvis-mnist-100S_829x425.png" alt="Multi-Layer" style="border:none;box-shadow:none">
+   <p><i>... around 2-3% error rate on the test set</i></p>
+  </section>
+  
+  <section>
+   <h2>Workshop : MNIST</h2>
+   <ul class="fix-spacing">
+    <li>Go to : <code>http://ConvNetJS.com/</code></li>
+    <li>Look for : "Classify MNIST"</li>
+    <li><i>... CNN approach (rather than MLP)</i></li>
+   </ul>
+   <img width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
+  </section>
+
+<!--
+  <section>
+   <h2>"LeNet"</h2>
+   <img width="759" height="209" src="img/lenet5_759x209.png" alt="LeNet5 Convolutional Layers" style="border:none;box-shadow:none">
+   <p><i>... around 0.8% error rate on the test set</i></p>
+  </section>
+!-->
+</section>
+
+<section>
+  <section>
+   <h2>Workshop : VirtualBox</h2>
+   <ul class="fix-spacing">
+    <li>Import Appliance '<code>fossasia ... .OVA</code>'</li>
+    <li>Start the Virtual Machine...</li>
+   </ul>
+   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
+  </section>
+  
+  <section>
+   <h2>VM : Console</h2>
+   <pre><code data-trim contenteditable>
+Login: user
+Password: password
+
+#...
+
+./run-jupyter.bash
+
+#....
+   </code></pre>
+  </section>
+  
+  <section>
+   <h2>Workshop : Jupyter</h2>
+   <ul class="fix-spacing">
+    <li>On your 'host' machine</li>
+    <li>Go to <code>http://localhost:8080/</code></li>
+   </ul>
+   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
+  </section>
+  
+  <section>
+   <h2>VM : SSH</h2>
+   <p>From your 'host' machine :</p>
+   <pre><code data-trim contenteditable>
+ssh -p 8282 user@localhost     
+   </code></pre>
+  </section>
+  
+  <section>
+   <h2>Workshop : TensorBoard</h2>
+   <ul class="fix-spacing">
+    <li>On your 'host' machine</li>
+    <li>Go to <code>http://localhost:8081/</code></li>
+   </ul>
+   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
+  </section>
+  
+</section>
+
+<section>
+  <section>
+   <h2>Theano</h2>
+   <ul class="fix-spacing">
+    <li>Optimised Numerical Computation in Python</li>
+    <li>Computation is <em>described</em> in Python code :</li>
+    <li style="list-style-type:none">
+      <ul>
+        <li>Theano operates on expression tree itself</li>
+        <li>Optimizes the tree for operations it knows</li>
+        <li>Makes use of <code>numpy</code> and <code>BLAS</code></li>
+        <li>Also writes <code>C/C++</code> or <code>CUDA</code> (or <code>OpenCL</code>)</li>
+      </ul>
+    </li>
+   </ul>
+  </section>
+  
+  <section>
+   <h2>0-TheanoBasics</h2>
+   <ul class="fix-spacing">
+    <li></li>
+   </ul>
+   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
+  </section>
+</section>
+
+<section>
+  <section>
+   <h2>1-MNIST-MLP</h2>
+   <ul class="fix-spacing">
+    <li></li>
+   </ul>
+   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
+  </section>
+</section>
+
+<section>
+  <section>
+   <h2>2-MNIST-CNN</h2>
+   <ul class="fix-spacing">
+    <li></li>
+   </ul>
+   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
+  </section>
+
+  <section>
+   <h2>Theano : detail</h2>
+   <img width="690" height="390" src="img/zoom-1_690x390.png" alt="Theano diagram x1" style="border:none;box-shadow:none">
+  </section>
+  
+  <section>
+   <h2>... zoom out</h2>
+   <img width="600" height="348" src="img/zoom-2_600x348.png" alt="Theano diagram x2" style="border:none;box-shadow:none">
+  </section>
+  
+  <section>
+   <h2>... zoom out</h2>
+   <img width="600" height="313" src="img/zoom-3_600x313.png" alt="Theano diagram x3" style="border:none;box-shadow:none">
+  </section>
+  
+  <section>
+   <h2>Theano : "Simple RNN"</h2>
+   <img width="241" height="500" src="img/zoom-4_241x500.png" alt="Theano diagram x4" style="border:none;box-shadow:none">
+  </section>
+
+
+</section>
+
+
+
+<section>
+  <section>
+   <h2>New Problems</h2>
+   <ul class="fix-spacing">
+    <li>ImageNet Competition</li>
+    <li>over 15 million labeled high-resolution images...</li>
+    <li style="list-style-type:none"> ... in over 22,000 categories</li>
+   </ul>
+   <br />
+   <img width="850" height="314" src="img/ilsvrc1_850x314.png" alt="ImageNet Karpathy" style="border:none;box-shadow:none">
+  </section>
+
+  <section>
+   <h2>More Complex Networks</h2>
+   <img width="614" height="286" src="img/googlenet-arch_1228x573.jpg" alt="Google ImageNet" style="border:none;box-shadow:none">
+   <p><i>GoogLeNet (2014)</i></p>
+  </section>
+  
+  <section>
+   <h2>3-ImageNet-googlenet</h2>
+   <ul class="fix-spacing">
+    <li>Play with a pre-trained network</li>
+   </ul>
+  </section>
+</section>
+
+<section>
+  <section>
+   <h2>... Even More Complex</h2>
+   <img width="800" height="299" src="img/inception03_800x299.png" alt="Google Inception v3" style="border:none;box-shadow:none">
+   <p><i>Google Inception-v3 (2015)</i></p>
+  </section>
+  
+  <section>
+   <h2>4-ImageNet-inception-v3</h2>
+   <ul class="fix-spacing">
+    <li>Play with a pre-trained network</li>
+    <li>NB: This may be painfully slow...</li>
+   </ul>
+   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
+  </section>
+  
+  <section>
+   <h2>Need for Speed</h2>
+   <img width="759" height="408" src="img/CPU-GPU_759x408.png" alt="CPU vs GPU" style="border:none;box-shadow:none">
+   <p><i>... need for GPU programmers</i></p>
+  </section>
+</section>
+
+<section>
+  <section>
+   <h2>5-Commerce</h2>
+   <ul class="fix-spacing">
+    <li></li>
+   </ul>
+   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
+  </section>
+</section>
+
+<section>
+  <section>
+   <h2>6-Visual-Art</h2>
+   <ul class="fix-spacing">
+    <li></li>
+   </ul>
+   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
+  </section>
+</section>
+
+<section>
+  <section>
+   <h2>LSTM Units</h2>
+   <img width="412" height="470" src="img/LSTM_412x470.png" alt="LSTM" style="border:none;box-shadow:none">
+  </section>
+
+  <section>
+   <h2>8-Natural-Language</h2>
+   <ul class="fix-spacing">
+    <li></li>
+   </ul>
+   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
+  </section>
+
+  <section>
+   <h2>Poetry : Epoch 1</h2>
+   <pre><code data-trim contenteditable>
+JDa&amp;g#sdWI&amp;MKW^gE)I}&amp;lt;UNK>f;6g)^5*|dXdBw6m\2&amp;XcXVy\ph8G&amp;lt;gAM&amp;>e4+mv5}OX8G*Yw9&amp;n3XW{h@&amp;T\Fk%BPMMI
+OV&amp;*C_] ._f$v4I~$@Z^&amp;[2
+mOVe`4W)"L-KClkO]wu]\$LCNadyo$h;>$jV7X$XK#4,T(y"sa6W0LWf\'_{\#XD]p%ck[;O`!Px\#E>/Or(.YZ|a]2}q|@a9.g3nV,U^qM	$+:nlk0sd;V-Z&amp;;7Y@Z "l-7P^C
+"xBF~~{n} n\ Pcbc9f?=y)FIc1h5kvjIi
+C&amp;lt;UNK>s	DWJr_$ZQtu"BTYm'|SMj-]Z&amp;lt;Vqj*.lh%IYW|q.GK:eNI"r>833?+RuUsOj_)a{\T}gH.zZR^(daC3mg5P0iFi]bqGo4?T|\>0_H&amp;g889voTh=~)^DDRYND46z1J]x;&amp;lt;U>>%eNIRckL)N8n&amp;lt;UNK>n3i)+Ln8
+?)9.#s7X]}$*sxZ"3tf ")
+@'HW.;I5)C.*%}&amp;lt;jcNLN+Z__RWoryOb#
+/`r
+   </code></pre>
+  </section>
+  
+  <section>
+   <h2>Poetry : Epoch 100</h2>
+   <pre><code data-trim contenteditable>
+Som the riscele his nreing the timest stordor hep pIs dach suedests her, so for farmauteds?
+By arnouy ig wore
+Thou hoasul dove he five grom ays he bare as bleen,
+The seend,
+And, an neeer,
+Whis with the rauk with, for be collenss ore his son froven faredure:
+Then andy bround'd the CowE nom shmlls everom thoy men ellone per in the lave ofpen the way ghiind, thour eyes in is ple gull heart sind, I I wild,
+Frreasuce anspeve, wrom fant beiver, not the afan
+And in thou' histwish a it wheme-tis lating ble the liveculd;
+Noorroint he fhallought, othelts.
+   </code></pre>
+  </section>
+  
+  <section>
+   <h2>Poetry : Epoch 1000</h2>
+   <pre><code data-trim contenteditable>
+AWhis grook my glass' to his sweet,
+Bub my fears liken?
+And of live every in seedher;
+A Lood stall,
+But tare tought than thencer sud earth,
+Use'st bee sechion,
+For all exprit' are a daud in heaven doth her infook perust the fork the tent.
+
+For maud,
+The pittent gover
+This and rimp,
+Who new
+  
+Thoir oldes and did hards, cound.
+   </code></pre>
+  </section>
+  
+  <section>
+   <h2>Plays : Epoch 338</h2>
+   <h3>Larger network...</h3>
+   <pre><code data-trim contenteditable>
+DEDENIUS	Why shoulmeying to to wife,
+	And thou say: and wall you teading for
+	that struke you down as sweet one.
+	With be more bornow, bly unjout on the account:
+	I duked you did four conlian unfortuned drausing-
+	to sicgia stranss, or not sleepplins his arms
+	Gentlemen? as write lord; gave sold.
+
+AENEMUUNS	Met that will knop unhian, where ever have
+	of the keep his jangst?icks he I love hide,
+	Jach heard which offen, sir!'
+
+	[Exit PATIIUS, MARGARUS arr	[Enter CLOTHUR]
+   </code></pre>
+  </section>
+
+</section>
+
+<section>
+
+  <section>
+   <h2>Image Labelling</h2>
+   <img width="642" height="484" src="img/image-labelling_642x484.png" alt="Image Labelling" style="border:none;box-shadow:none">
+  </section>
+
+  <section>
+   <h2>Image Labels</h2>
+   <img width="667" height="419" src="img/image-labelling-results_667x419.png" alt="Labelling Results" style="border:none;box-shadow:none">
+  </section>
+  
+</section>
+
+
+
+<section>
+ <h2>"A.I. Effect"</h2>
+ <ul class="fix-spacing">
+  <li><a href="https://en.wikipedia.org/wiki/AI_effect" target="_blank">A.I. is whatever hasn't been done yet</a></li>
+ </ul>
+</section>
+
+
+<section>
+ <h2>Wrap-up</h2>
+ <ul class="fix-spacing">
+  <li>Deep Learning may deserve some hype...</li>
+  <li>Getting the tools in one place is helpful</li>
+  <li>Having a GPU is VERY helpful</li>
+ </ul>
+ <img width="517" height="223" src="img/GitHub-mdda_517x223.png" alt="GitHub - mdda" style="border:none;box-shadow:none">
+ <p><small>* Please add a star... *</small></p>
+</section>
+
+
+<section>
+ <h1>- QUESTIONS -</h1>
+ <br>
+ <h3>Martin.Andrews @<br> RedCatLabs.com</h3>
+ <br>
+ <p>My blog : <a href="https://mdda.net/">http://mdda.net/</a></p>
+ <p>GitHub : <a href="https://github.com/mdda">mdda</a></p>
+</section>
+
+   </div>
+  </div>
+
+<div id="redcatlabs-logo" style="background: url(img/redcatlabs_logo1_280x39.png);
+                                  position: absolute;
+                                  bottom: 50px;
+                                  left: 50px;
+                                  width: 280px;
+                                  height: 39px;">
+</div>  
+
+  <script src="lib/js/head.min.js"></script>
+  <script src="js/reveal.min.js"></script>
+
+  <script>
+
+   // Full list of configuration options available here:
+   // https://github.com/hakimel/reveal.js#configuration
+   Reveal.initialize({
+    controls: true,
+    progress: true,
+    history: true,
+    center: true,
+
+    theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+    transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+    // Parallax scrolling
+    // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+    // parallaxBackgroundSize: '2100px 900px',
+
+    // Optional libraries used to extend on reveal.js
+    dependencies: [
+     { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+     { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+     { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+     { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+     { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+     { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+    ]
+   });
+
+  </script>
+
+ </body>
+</html>
