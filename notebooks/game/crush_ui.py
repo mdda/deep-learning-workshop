@@ -15,7 +15,7 @@ function create_board(board_id, horizontal, vertical, n_colours) {
             trs.push("<tr>"+tds.join('')+"</tr>");
         }
         $(board_id).append("<table border=0>"+trs.join('')+"</table>");
-        $(board_id).click(function(e) {
+        $(board_id+' table').click(function(e) {
             console.log("Cell clicked : ",e);
             
             function handle_output(out_type, out) {
@@ -44,16 +44,16 @@ function create_board(board_id, horizontal, vertical, n_colours) {
             var cmd1='board, score, n_cols=crush.after_move(board, 0,0, '+n_colours+')';
             console.log(cmd1);
             
-            kernel.execute(cmd1, {'output' : function(out_type, out) {
+            kernel.execute(cmd1, {iopub: {output: function(out_type, out) {
                     var cmd2='crush.display_via_javascript_callback(board)';
 
-                    kernel.execute(cmd2, {'output' : handle_output}, {silent:false});
+                    kernel.execute(cmd2, {iopub: {output: handle_output}}, {silent:false});
                     console.log(cmd2);
 
                     //var html_cmd2 = 'HTML('+cmd2+')';
                     //kernel.execute(html_cmd2);
                     //console.log(html_cmd2);
-                }}, {silent:false});
+                }}}, {silent:false});
             
         });
     }
@@ -73,3 +73,20 @@ function display_board(board_id,a) {
 </script>
 """
 
+javascript_test = """
+<script type="text/Javascript">
+var kernel = IPython.notebook.kernel;
+function handle_python_output(msg) {
+    //console.log(msg);
+    if( msg.msg_type == "error") {
+      console.log("Javascript received Python error : ", msg.content);
+    }
+    else {
+      var res = msg.content.data["text/plain"];
+      console.log("Javascript received Python Result : ", res);
+    }
+}
+var cmd='a=2+2;a+5';
+kernel.execute(cmd, {iopub: {output: handle_python_output}}, {silent:false});
+</script>
+"""
