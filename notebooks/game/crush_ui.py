@@ -1,4 +1,20 @@
 
+def display_via_javascript_script(element_id, board):
+  #print("display_via_javascript_script")
+  a = [ "[%s]" % (','.join([ "%d" % (c,) for c in board[h].tolist() ]),) for h in range(0,board.shape[0]) ]
+  return("""<script type="text/Javascript">display_board("%s",[%s])</script>""" % (element_id, ','.join(a),));
+  #return("<b>HelloWorld</b>")
+
+def display_via_javascript_callback(board):
+  return([ [ c for c in board[h].tolist() ] for h in range(0,board.shape[0]) ])
+  
+  #a = [ "[%s]" % (','.join([ "%d" % (c,) for c in board[h].tolist() ]),) for h in range(0,board.shape[0]) ]
+  #return("""[%s]""" % (','.join(a),))
+
+  #for h in range(0, c.shape[0]):
+  #  for v in range(0, c.shape[1]):
+
+
 javascript_base = """
 <script type="text/Javascript">
 var kernel = IPython.notebook.kernel;
@@ -76,3 +92,10 @@ var cmd='a=2+2;a+5';
 kernel.execute(cmd, {iopub: {output: handle_python_output}}, {silent:false});
 </script>
 """
+
+if __name__ == "__main__":
+  import crush
+  n_colours = 5
+  b = crush.new_board(10,14,n_colours) # Same as portrait phone  1 screen~1k,  high-score~14k
+  print( display_via_javascript_script("#board_id", b) )
+  
