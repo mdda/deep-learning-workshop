@@ -70,9 +70,10 @@ function create_board(board_id, horizontal, vertical, n_colours) {
   //$(board_id).append("<b>Hello</b>");
   //kernel.execute(command);
 }
-function display_board(board_id, matrix) {
+function display_board(board_id, matrix, score) {
   console.log("display_board("+board_id+","+JSON.stringify(matrix)+")");
   var col=['#fff','#00f','#0f0','#f00','#666','#aaa'];
+  $(board_id+' .score').text(score | 0);
   matrix.forEach(function(row,h) {
       row.forEach(function(c,v) {
           //console.log(board_id+' .i_'+h+'_'+v);
