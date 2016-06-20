@@ -48,11 +48,11 @@ function create_board(board_id, horizontal, vertical, n_colours) {
           }
           else {  // execute_result
             var res_str = msg.content.data["text/plain"];
-            console.log("Javascript received Python Result : ", res_str);
+            //console.log("Javascript received Python Result : ", res_str);
             var res_json=res_str.replace(/[\\']/g,'"');  // NASTY kludge python->json
-            console.log("ie : ", res_json);
+            //console.log("ie : ", res_json);
             var res=JSON.parse( res_json ); 
-            console.log("res = ", res);
+            //console.log("res = ", res);
             display_board(board_id, res.arr);
           }
         }
