@@ -57,7 +57,6 @@ def make_features_variable_size(board):
 
 def make_features_in_layers(board):
   feature_layers = [] # These are effectively 'colours' for the CNN
-
   #print(board)
   
   #print("Board mask")
@@ -129,8 +128,8 @@ def build_cnn(input_var, features_shape):
 
     # A fully-connected layer of 64 units with 50% dropout on its inputs:
     network = lasagne.layers.DenseLayer(
-      lasagne.layers.dropout(network, p=.5),
-      #network,
+      #lasagne.layers.dropout(network, p=.5),  # In big 'working' run, this dropout was enabled
+      network,
       num_units=32,
       nonlinearity=lasagne.nonlinearities.rectify,
     )
@@ -175,7 +174,7 @@ def build_cnn(input_var, features_shape):
 
 
 # This returns both stats for the game played and new board positions / rewards to learn from 
-def play_game(game_id, model, per_step_discount_factor=0.95):
+def play_game(game_id, model, per_step_discount_factor=0.95, prob_exploration=0.1):
   training_data = dict( board=[], target=[])
   
   np.random.seed(game_id)
@@ -206,22 +205,31 @@ def play_game(game_id, model, per_step_discount_factor=0.95):
     # Now evaluate the Q() values of the resulting postion for each possible move in one go
     all_features = np.array(next_step_features)  # , dtype='float32'
     #print("all_features.shape", all_features.shape)
-    next_step_q = model_evaluate_features( all_features )
-
-    next_step_aggregate = np.array( next_step_target, dtype='float32') + per_step_discount_factor * next_step_q.flatten()
-    #print( next_step_aggregate )
-
-    i = np.argmax( next_step_aggregate )
     
-    ## Choose a random move, and do it
-    #i = np.random.randint( len(moves) )
+    remember_training, i = False, -1
+    if prob_exploration<0:  # This is testing only - just need to pick the best move
+      next_step_q = model_evaluate_features_deterministic( all_features )
+    else:
+      if np.random.uniform(0.0, 1.0)<prob_exploration:
+        ## Choose a random move, and do it
+        i = np.random.randint( len(moves) )
+      else:
+        next_step_q = model_evaluate_features( all_features )
+        remember_training=True
+
+    if i<0:
+      next_step_aggregate = np.array( next_step_target, dtype='float32') + per_step_discount_factor * next_step_q.flatten()
+      #print( next_step_aggregate )
+      i = np.argmax( next_step_aggregate )
     
     (h,v) = moves[i]
+    
     #print("Move : (%2d,%2d)" % (h,v))
     #crush.show_board(board, highlight=(h,v))
     
-    training_data['board'].append( make_features_in_layers(board) )
-    training_data['target'].append( next_step_aggregate[i] )   # This is only looking at the 'blank cols', rather than the actuals, though
+    if remember_training:  # Only collect training data if not testing
+      training_data['board'].append( make_features_in_layers(board) )
+      training_data['target'].append( next_step_aggregate[i] )   # This value includes a Q() that looks at the 'blank cols', rather than the actuals
     
     board, score, new_cols = crush.after_move(board, h,v, n_colours)  # Now we do the move 'for real'
     
@@ -243,37 +251,59 @@ board_score = theano.tensor.vector('targets')
 np.random.seed(0) # This is for the initialisation inside the CNN
 model=build_cnn(board_input, features_shape)
 
-predict_q_value  = lasagne.layers.get_output(model, deterministic=True)
-estimate_q_value = lasagne.layers.get_output(model)
 
+# This is for running the model (training, etc)
+estimate_q_value = lasagne.layers.get_output(model)  # 'running'
+model_evaluate_features               = theano.function([board_input], estimate_q_value)
+
+
+# This is for repeatedly testing the model (deterministic)
+predict_q_value  = lasagne.layers.get_output(model, deterministic=True)
+model_evaluate_features_deterministic = theano.function([board_input], predict_q_value)
+
+
+# This is used for training
 model_squared_error = lasagne.objectives.squared_error(estimate_q_value.reshape( (-1,) ), board_score).mean()
 
 model_params  = lasagne.layers.get_all_params(model, trainable=True)
-#model_updates = lasagne.updates.nesterov_momentum( model_squared_error, model_params, learning_rate=0.01, momentum=0.9 )
 
+#model_updates = lasagne.updates.nesterov_momentum( model_squared_error, model_params, learning_rate=0.01, momentum=0.9 )
 model_updates = lasagne.updates.adam( model_squared_error, model_params )
 #model_updates = lasagne.updates.rmsprop( model_squared_error, model_params ) # Seems much slower to converge
 
-model_evaluate_features = theano.function([board_input], predict_q_value)
 model_train             = theano.function([board_input, board_score], model_squared_error, updates=model_updates)
 
-def stats_aggregates(log, last=None):
+
+def stats_aggregates(log, prefix, last=None):
   stats_cols = "steps av_potential_moves new_cols score model_err".split()
   if last:
     stats_overall = np.array([ [s[c] for c in stats_cols] for s in log[-last:] ])
   else:
     stats_overall = np.array([ [s[c] for c in stats_cols] for s in log ])
 
-  print("Min  : ",zip(stats_cols, ["%6.1f" % (v,) for v in np.min(stats_overall, axis=0).tolist()]) )
-  print("Max  : ",zip(stats_cols, ["%6.1f" % (v,) for v in np.max(stats_overall, axis=0).tolist()]) )
-  print("Mean : ",zip(stats_cols, ["%6.1f" % (v,) for v in np.mean(stats_overall, axis=0).tolist()]) )
+  print(prefix+" Min  : ", zip(stats_cols, ["%6.1f" % (v,) for v in np.min(stats_overall, axis=0).tolist()]) )
+  print(prefix+" Max  : ", zip(stats_cols, ["%6.1f" % (v,) for v in np.max(stats_overall, axis=0).tolist()]) )
+  print(prefix+" Mean : ", zip(stats_cols, ["%6.1f" % (v,) for v in np.mean(stats_overall, axis=0).tolist()]) )
   
+def run_test(i):
+  # Run a test set of 10 games (not in training examples
+  stats_test_log=[]
+  for j in range(0,10):
+    stats_test, _ = play_game(1000*1000*1000+j, model, prob_exploration=-1.0)  # Negative probability for deterministic...
+    stats_test['model_err'] = -999.
+    stats_test_log.append( stats_test )
+
+  stats_aggregates(stats_test_log, "=Test[%5d]" % (i,))
+
+# Initial, untrained network
+run_test(0)
+
 
 import datetime
-t0 = datetime.datetime.now()
+t0,i0 = datetime.datetime.now(),0
 
-n_games=100*1000
-batchsize=1024
+n_games=1*1000
+batchsize=512
 
 stats_log=[]
 training_data=dict( board=[], target=[])
@@ -304,14 +334,18 @@ for i in range(0, n_games):
   if ((i+1) % 10)==0:
     t_now = datetime.datetime.now()
     t_elapsed = (t_now - t0).total_seconds()
-    t_end_projected = t0 + datetime.timedelta( seconds=n_games* (t_elapsed/i) )
-    print("    100 games in %6.1f seconds, Projected end at : %s, stored_data.length=%d" % (100.*t_elapsed/i, t_end_projected.strftime("%H:%M"), len(training_data['target']), ))
+    t_end_projected = t0 + datetime.timedelta( seconds=(n_games-i0) * (t_elapsed/(i-i0)) )
+    print("    100 games in %6.1f seconds, Projected end at : %s, stored_data.length=%d" % 
+           (100.*t_elapsed/(i-i0), t_end_projected.strftime("%H:%M"), len(training_data['target']), ))
+    t0, i0 = datetime.datetime.now(), i
     
   if ((i+1) % 100)==0:
-    stats_aggregates(stats_log, last=1000)
+    stats_aggregates(stats_log, "Train[%5d]" % (i,), last=1000)
 
-print("\nFINAL, overall")
-stats_aggregates(stats_log)
+  if ((i+1) % 100)==0:
+    run_test(i)
+
+stats_aggregates(stats_log, "FINAL[%5d]" % (n_games,) )
 
 # Aggregate stats for 100 games (played randomly)
 #('Min  : ', [('steps', '  29.0'), ('av_potential_moves', '   7.9'), ('new_cols', '   0.0'), ('score', ' 246.0'), ('model_err', '  45.9')])

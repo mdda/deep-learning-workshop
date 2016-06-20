@@ -10,8 +10,8 @@ def new_board(horizontal, vertical, n_colours=5):
   
 def flood_from(board, start_h, start_v):  # Mutates board
   n_cells = 0
-  if board[h,v]==0: return board, n_cells
   colour = board[start_h, start_v]
+  if colour==0: return board, n_cells
   
   # This is done non-recursively, since that probably gives us more scope for optimisation later
   #   although it will repeatedly 'double back' to the cell it has just come from (because of the stack)
