@@ -297,6 +297,7 @@ def run_test(i):
 
 # Initial, untrained network
 run_test(0)
+#run_test(0) # Check for consistency : WORKS
 
 
 import datetime
