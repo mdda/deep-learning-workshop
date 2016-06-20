@@ -310,11 +310,12 @@ training_data=dict( board=[], target=[])
 for i in range(0, n_games):
   stats, training_data_new = play_game(i, model)
   
-  print("game[%d]" % (i,))
-  print("  steps         = %d" % (stats['steps'],))
-  print("  average moves = %5.1f" % (stats['av_potential_moves'], ) )
-  print("  new_cols      = %d" % (stats['new_cols'],))
-  print("  score_total   = %d" % (stats['score'],))
+  if False:
+    print("game[%d]" % (i,))
+    print("  steps         = %d" % (stats['steps'],))
+    print("  average moves = %5.1f" % (stats['av_potential_moves'], ) )
+    print("  new_cols      = %d" % (stats['new_cols'],))
+    print("  score_total   = %d" % (stats['score'],))
   
   training_data['board'] += training_data_new['board']
   training_data['target'] += training_data_new['target']
