@@ -88,7 +88,8 @@ def make_features_in_layers(board):
   return np.rollaxis( stacked, 2, 0 )
 
 
-width, height, n_colours = 10,14,5
+#width, height, n_colours = 10,14,5
+width, height, n_colours = 5,8,4
 
 
 # Create a board for initial sizing only
@@ -305,7 +306,8 @@ import datetime
 t0,i0 = datetime.datetime.now(),0
 t_start=t0
 
-n_games=50*1000
+#n_games=50*1000
+n_games=1*1000
 batchsize=512
 
 stats_log=[]

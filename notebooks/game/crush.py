@@ -99,8 +99,9 @@ def potential_moves(b):
 
 def after_move(board, h,v, n_colours):  # Returns (new board (copy), score)
   d, n_cells = flood_from(board.copy(), h, v)
+  if n_cells<=1:  # Nothing changed: Abort
+    return board, 0, 0
   e, n_cols  = apply_gravity(d, n_colours)
-  
   return e, (n_cells*(2 if n_cells<3 else (n_cells-1))), n_cols
 
 def show_board(board, highlight=None):  # highlight=(0,0)
