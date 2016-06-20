@@ -193,7 +193,16 @@ And this repo can itself be run in 'local mode', using scripts in ```./local/```
 
 #### Running the environment locally
 
+First, run the ```./local/setup.bash``` and follow the instructions (such as installing additional RPMs, for which you'll need ```root```):
+```
+./local/setup.bash 
+```
 
+Once that runs without complaint, the Jupyter notebook server can be run using :
+
+```
+./local/run-jupyter.bash 
+```
 
 
 #### Git-friendly iPython Notebooks
