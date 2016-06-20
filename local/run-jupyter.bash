@@ -14,7 +14,8 @@ echo ${notebook_dir}
 . ./env/bin/activate
 
 ## Try to do some basic GPU detection / CPU BLAS configuration
-if [ -z `lsmod | grep nvidia` ]; then\
+HAS_NVIDIA=`lsmod | grep nvidia`
+if [ -z "$HAS_NVIDIA" ]; then
   echo "Configuring threaded Atlas as BLAS on CPU"
   THEANO_FLAGS='mode=FAST_RUN,device=cpu,floatX=float32,blas.ldflags="-L/lib64/atlas -ltatlas"'
 else
