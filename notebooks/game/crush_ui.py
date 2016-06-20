@@ -6,10 +6,10 @@ def display_via_javascript_script(element_id, board):
   #return("<b>HelloWorld</b>")
 
 def display_via_javascript_callback(board):
-  a = [ "[%s]" % (','.join([ "%d" % (c,) for c in board[h].tolist() ]),) for h in range(0, board.shape[0]) ]
-  return("""[%s]""" % (','.join(a),))
+  return([ [ c for c in board[h].tolist() ] for h in range(0,board.shape[0]) ])
   
-  #return([ [ c for c in board[h].tolist() ] for h in range(0,board.shape[0]) ])
+  a = [ "[%s]" % (','.join([ "%d" % (c,) for c in board[h].tolist() ]),) for h in range(0, board.shape[0]) ]
+  return("""'[%s]'""" % (','.join(a),))
 
   #for h in range(0, c.shape[0]):
   #  for v in range(0, c.shape[1]):
@@ -42,23 +42,27 @@ function create_board(board_id, horizontal, vertical, n_colours) {
 
         // https://github.com/fluxtream/fluxtream-ipy/blob/master/Communication%20between%20kernel%20and%20javascript%20in%20iPython%202.0.ipynb
         function handle_python_output(msg) {
-          //console.log(msg);
-          if( msg.msg_type == "error") {
+          console.log(msg);
+          if( msg.msg_type == "error" ) {
             console.log("Javascript received Python error : ", msg.content);
           }
           else {  // execute_result
-            var res = msg.content.data["text/plain"];
-            console.log("Javascript received Python Result : ", res);
-            var arr = JSON.parse(res.arr);
+            var res_str = msg.content.data["text/plain"];
+            console.log("Javascript received Python Result : ", res_str);
+            var res_json=res_str.replace(/[\\']/g,'"');  // NASTY kludge python->json
+            console.log("ie : ", res_json);
+            var res=JSON.parse( res_json ); 
+            console.log("res = ", res);
+            display_board(board_id, res.arr);
           }
         }
         
         var cmd=[
           'board, score, n_cols=crush.after_move(board, '+h+','+v+', '+n_colours+')',
-          'a=crush.display_via_javascript_callback(board)',
-          'dict(arr=a,score=score,n_cols=n_cols)'
-        ]
-        console.log(cmd.join(';'));
+          'arr=crush_ui.display_via_javascript_callback(board)',
+          'dict(arr=arr,score=score,n_cols=n_cols)'
+        ].join(';');
+        console.log(cmd);
         
         kernel.execute(cmd, {iopub: {output: handle_python_output}}, {silent:false});
       });
@@ -84,8 +88,8 @@ javascript_test = """
 <script type="text/Javascript">
 var kernel = IPython.notebook.kernel;
 function handle_python_output(msg) {
-  //console.log(msg);
-  if( msg.msg_type == "error") {
+  console.log(msg);
+  if( msg.msg_type == "error" ) {
     console.log("Javascript received Python error : ", msg.content);
   }
   else {
@@ -93,7 +97,7 @@ function handle_python_output(msg) {
     console.log("Javascript received Python Result : ", res);
   }
 }
-var cmd='a=2+2;a+5';
+var cmd='a=5+2;a+5';
 kernel.execute(cmd, {iopub: {output: handle_python_output}}, {silent:false});
 </script>
 """
