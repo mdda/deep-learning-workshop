@@ -7,6 +7,7 @@ import theano
 #theano.config.optimizer='None'
 
 import lasagne
+import pickle
 
 from game import crush
 
@@ -302,8 +303,9 @@ run_test(0)
 
 import datetime
 t0,i0 = datetime.datetime.now(),0
+t_start=t0
 
-n_games=1*1000
+n_games=50*1000
 batchsize=512
 
 stats_log=[]
@@ -346,6 +348,16 @@ for i in range(0, n_games):
 
   if ((i+1) % 100)==0:
     run_test(i)
+    
+    # save state
+    param_values = lasagne.layers.get_all_param_values(model)
+    param_dictionary = dict(
+      param_values=param_values,
+      width=width, height=height, n_colours=n_colours,
+      batchsize=batchsize, i=i, 
+    )
+    with open('rl_%dx%dx%d_%s.%06d.pkl' % (width, height, n_colours, t_start.strftime("%Y-%m-%d_%H-%M"), i,), 'wb') as f:
+      pickle.dump(param_dictionary, f)
 
 stats_aggregates(stats_log, "FINAL[%5d]" % (n_games,) )
 
@@ -423,3 +435,15 @@ stats_aggregates(stats_log, "FINAL[%5d]" % (n_games,) )
 #('Max  : ', [('steps', ' 588.0'), ('av_potential_moves', '  19.9'), ('new_cols', ' 118.0'), ('score', '5434.0'), ('model_err', '   0.4')])
 #('Mean : ', [('steps', ' 129.1'), ('av_potential_moves', '  13.6'), ('new_cols', '  19.8'), ('score', '1226.8'), ('model_err', '   0.2')])
 
+# simlim 1k games : grep Test 1k.1xAdam.batch=512.target=cols.test.log | grep Mean
+#('=Test[    0] Mean : ', [('steps', '  52.4'), ('av_potential_moves', '  11.9'), ('new_cols', '   2.5'), ('score', ' 389.4'), ('model_err', '-999.0')])
+#('=Test[   99] Mean : ', [('steps', '  54.5'), ('av_potential_moves', '  13.4'), ('new_cols', '   3.4'), ('score', ' 491.2'), ('model_err', '-999.0')])
+#('=Test[  199] Mean : ', [('steps', '  74.8'), ('av_potential_moves', '  13.2'), ('new_cols', '   6.8'), ('score', ' 614.8'), ('model_err', '-999.0')])
+#('=Test[  299] Mean : ', [('steps', '  68.8'), ('av_potential_moves', '  13.0'), ('new_cols', '   6.1'), ('score', ' 584.6'), ('model_err', '-999.0')])
+#('=Test[  399] Mean : ', [('steps', '  74.1'), ('av_potential_moves', '  13.5'), ('new_cols', '   7.6'), ('score', ' 707.2'), ('model_err', '-999.0')])
+#('=Test[  499] Mean : ', [('steps', '  87.5'), ('av_potential_moves', '  12.7'), ('new_cols', '   9.9'), ('score', ' 816.6'), ('model_err', '-999.0')])
+#('=Test[  599] Mean : ', [('steps', '  79.3'), ('av_potential_moves', '  12.5'), ('new_cols', '   9.3'), ('score', ' 827.0'), ('model_err', '-999.0')])
+#('=Test[  699] Mean : ', [('steps', '  88.5'), ('av_potential_moves', '  13.3'), ('new_cols', '  10.4'), ('score', ' 825.0'), ('model_err', '-999.0')])
+#('=Test[  799] Mean : ', [('steps', '  76.1'), ('av_potential_moves', '  13.2'), ('new_cols', '   8.2'), ('score', ' 790.0'), ('model_err', '-999.0')])
+#('=Test[  899] Mean : ', [('steps', ' 105.7'), ('av_potential_moves', '  11.5'), ('new_cols', '  13.9'), ('score', '1000.6'), ('model_err', '-999.0')])
+#('=Test[  999] Mean : ', [('steps', '  78.2'), ('av_potential_moves', '  12.7'), ('new_cols', '   8.3'), ('score', ' 718.4'), ('model_err', '-999.0')])
