@@ -10,51 +10,37 @@ function create_board(board_id, horizontal, vertical, n_colours) {
         for(var v=0; v<vertical; v++) {
             var tds=[];
             for(var h=0; h<horizontal; h++) {
-                tds.push("<td width='20' height='20' class='i_"+(horizontal-h-1)+"_"+(vertical-v-1)+"'></td>");
+                //tds.push("<td width='20' height='20' class='i_"+(horizontal-h-1)+"_"+(vertical-v-1)+"'></td>");
+                tds.push("<td width='20' height='20' h='"+(horizontal-h-1)+"' v='"+(vertical-v-1)+"'></td>");
             }
             trs.push("<tr>"+tds.join('')+"</tr>");
         }
         $(board_id).append("<table border=0>"+trs.join('')+"</table>");
-        $(board_id+' table').click(function(e) {
-            console.log("Cell clicked : ",e);
-            
-            function handle_output(out_type, out) {
-                console.log(out_type);
-                console.log(out);
-                var res = null;
-                 // if output is a print statement
-                if(out_type == "stream"){
-                    res = out.data;
+        $(board_id+' table').click(function() {
+            var cell = $(this).closest('td');
+            console.log("Cell clicked : ", cell);
+            var h=cell.attr('h') | 0;
+            var v=cell.attr('v') | 0;
+            console.log("Cell(h,v)=("+h+","+v+")");
+
+            // https://github.com/fluxtream/fluxtream-ipy/blob/master/Communication%20between%20kernel%20and%20javascript%20in%20iPython%202.0.ipynb
+            function handle_python_output(msg) {
+                console.log(msg);
+                if( msg.msg_type == "error") {
+                  console.log("Javascript received Python error : ", msg.content);
                 }
-                // if output is a python object
-                else if(out_type === "pyout"){
-                    res = out.data["text/plain"];
+                else {  // execute_result
+                  var res = msg.content.data["text/plain"];
+                  console.log("Javascript received Python Result : ", res);
+                  var arr = JSON.parse(res.arr);
+                  
                 }
-                // if output is a python error
-                else if(out_type == "pyerr"){
-                    res = out.ename + ": " + out.evalue;
-                }
-                // if output is something we haven't thought of
-                else{
-                    res = "[out type not implemented]";   
-                }
-                document.getElementById("result_output").value = res;
             }
             
-            var cmd1='board, score, n_cols=crush.after_move(board, 0,0, '+n_colours+')';
-            console.log(cmd1);
+            var cmd='board, score, n_cols=crush.after_move(board, '+h+','+v+', '+n_colours+');a=crush.display_via_javascript_callback(board);dict(arr=a,score=score,n_cols=n_cols)';
+            console.log(cmd);
             
-            kernel.execute(cmd1, {iopub: {output: function(out_type, out) {
-                    var cmd2='crush.display_via_javascript_callback(board)';
-
-                    kernel.execute(cmd2, {iopub: {output: handle_output}}, {silent:false});
-                    console.log(cmd2);
-
-                    //var html_cmd2 = 'HTML('+cmd2+')';
-                    //kernel.execute(html_cmd2);
-                    //console.log(html_cmd2);
-                }}}, {silent:false});
-            
+            kernel.execute(cmd, {iopub: {output: handle_python_output}}, {silent:false});
         });
     }
     //$(board_id).append("<b>Hello</b>");
