@@ -272,8 +272,9 @@ table.table-fix {
 
   <section>
    <h2>Gradient Descent</h2>
-   <p>Follow the gradient of the error <br />w.r.t the connection weights</p>
+   <p>Follow the gradient of the error <br />vs the connection weights</p>
    <img width="364" height="306" src="img/gradient-descent_364x306.png" alt="Gradient-Descent" style="border:none;box-shadow:none">
+   <p>"Stochastic Gradient Descent" (SGD)</p>
   </section>
 </section>
 
@@ -306,7 +307,7 @@ table.table-fix {
   
   <section>
    <h2>Simple Network</h2>
-   <img width="574" height="435" src="img/ConvNetJS-Painting-5_574x435.png" alt="ConvNetJS Painting : 5" style="border:none;box-shadow:none">
+   <img width="574" height="435" src="img/ConvNetJS-Painting-5_574x435.png" alt="ConvNetJS Painting : 4" style="border:none;box-shadow:none">
   </section>
   <section>
    <h2>Wider Network</h2>
@@ -322,6 +323,111 @@ table.table-fix {
   </section>
 </section>
 
+
+<section>
+  <section>
+   <h2>Workshop : Features</h2>
+   <ul>
+    <li style="list-style-type:none">
+     <ul>
+      <li>Go to the Javascript Example : TensorFlow</li>
+     </ul>
+    </li>
+   </ul>
+   <img width="507" height="387" src="img/Tensorflow-PlayGound-local_507x387.png" alt="TensorFlow Playground" style="border:none;box-shadow:none">
+   <p><small>(or search online for TensorFlow Playground)</small></p>
+  </section>
+  
+  <section>
+   <h2>TensorFlow Playground</h2>
+   <img width="778" height="443" src="img/Tensorflow-PlayGound-layout_778x443.png" alt="TensorFlow Layout" style="border:none;box-shadow:none">
+  </section>
+</section>
+
+
+<section>
+  <section>
+   <h2>Workshop : VirtualBox</h2>
+   <ul class="fix-spacing">
+    <li>Import Appliance '<code>deep-learning ... .OVA</code>'</li>
+    <li>Start the Virtual Machine...</li>
+   </ul>
+   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
+  </section>
+  
+<!--  
+  <section>
+   <h2>VM : Console</h2>
+   <pre><code data-trim contenteditable>
+Login: user
+Password: password
+
+#...
+
+./run-jupyter.bash
+
+#....
+   </code></pre>
+  </section>
+!-->
+  
+  <section>
+   <h2>Workshop : Jupyter</h2>
+   <ul class="fix-spacing">
+    <li>On your 'host' machine</li>
+    <li>Go to <code>http://localhost:8080/</code></li>
+   </ul>
+   <img width="507" height="387" src="img/Jupyter-local_507x387.png" alt="Jupyter Local" style="border:none;box-shadow:none">
+  </section>
+  
+  <section>
+   <h2>VM : SSH</h2>
+   <p>From your 'host' machine :</p>
+   <pre><code data-trim contenteditable>
+ssh -p 8282 user@localhost     
+   </code></pre>
+  </section>
+
+<!--
+  <section>
+   <h2>Workshop : TensorBoard</h2>
+   <ul class="fix-spacing">
+    <li>On your 'host' machine</li>
+    <li>Go to <code>http://localhost:8081/</code></li>
+   </ul>
+   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
+  </section>
+!-->
+</section>
+
+<section>
+  <section>
+   <h2>Theano</h2>
+   <ul class="fix-spacing">
+    <li>Optimised Numerical Computation in Python</li>
+    <li>Computation is <em>described</em> in Python code :</li>
+    <li style="list-style-type:none">
+      <ul>
+        <li>Theano operates on expression tree itself</li>
+        <li>Optimizes the tree for operations it knows</li>
+        <li>Makes use of <code>numpy</code> and <code>BLAS</code></li>
+        <li>Also writes <code>C/C++</code> or <code>CUDA</code> (or <code>OpenCL</code>)</li>
+      </ul>
+    </li>
+   </ul>
+  </section>
+  
+  <section>
+   <h2>0-TheanoBasics</h2>
+   <ul class="fix-spacing">
+    <li></li>
+   </ul>
+   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
+  </section>
+</section>
+
+
+<!--
 <section>
   <section>
    <h2>"Hello World" &rarr; MNIST</h2>
@@ -350,92 +456,13 @@ table.table-fix {
    <img width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
   </section>
 
-<!--
   <section>
    <h2>"LeNet"</h2>
    <img width="759" height="209" src="img/lenet5_759x209.png" alt="LeNet5 Convolutional Layers" style="border:none;box-shadow:none">
    <p><i>... around 0.8% error rate on the test set</i></p>
   </section>
+</section>
 !-->
-</section>
-
-<section>
-  <section>
-   <h2>Workshop : VirtualBox</h2>
-   <ul class="fix-spacing">
-    <li>Import Appliance '<code>fossasia ... .OVA</code>'</li>
-    <li>Start the Virtual Machine...</li>
-   </ul>
-   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
-  </section>
-  
-  <section>
-   <h2>VM : Console</h2>
-   <pre><code data-trim contenteditable>
-Login: user
-Password: password
-
-#...
-
-./run-jupyter.bash
-
-#....
-   </code></pre>
-  </section>
-  
-  <section>
-   <h2>Workshop : Jupyter</h2>
-   <ul class="fix-spacing">
-    <li>On your 'host' machine</li>
-    <li>Go to <code>http://localhost:8080/</code></li>
-   </ul>
-   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
-  </section>
-  
-  <section>
-   <h2>VM : SSH</h2>
-   <p>From your 'host' machine :</p>
-   <pre><code data-trim contenteditable>
-ssh -p 8282 user@localhost     
-   </code></pre>
-  </section>
-  
-  <section>
-   <h2>Workshop : TensorBoard</h2>
-   <ul class="fix-spacing">
-    <li>On your 'host' machine</li>
-    <li>Go to <code>http://localhost:8081/</code></li>
-   </ul>
-   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
-  </section>
-  
-</section>
-
-<section>
-  <section>
-   <h2>Theano</h2>
-   <ul class="fix-spacing">
-    <li>Optimised Numerical Computation in Python</li>
-    <li>Computation is <em>described</em> in Python code :</li>
-    <li style="list-style-type:none">
-      <ul>
-        <li>Theano operates on expression tree itself</li>
-        <li>Optimizes the tree for operations it knows</li>
-        <li>Makes use of <code>numpy</code> and <code>BLAS</code></li>
-        <li>Also writes <code>C/C++</code> or <code>CUDA</code> (or <code>OpenCL</code>)</li>
-      </ul>
-    </li>
-   </ul>
-  </section>
-  
-  <section>
-   <h2>0-TheanoBasics</h2>
-   <ul class="fix-spacing">
-    <li></li>
-   </ul>
-   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
-  </section>
-</section>
 
 <section>
   <section>
