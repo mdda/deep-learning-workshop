@@ -17,7 +17,6 @@ Open in Chrome :
 Scheme, seeing the number of files included, probably simplest to :
 
 *  Create a copy the repo inside ```./presentation/reveal.js-2.6.2/```
-   *  ```git archive --format=tar --remote=<repository URL> HEAD | tar xf -```
 *  Add ```convnet.js.min``` in ```<CONVNET-REPO>/build```
 *  Add jQuery from source
 *  Add the required font
@@ -25,6 +24,16 @@ Scheme, seeing the number of files included, probably simplest to :
    *  Potentially need to copy in from another location (repos-within-repos problem)
 
 ```
+cd ../presentation/
+
+wget https://github.com/karpathy/convnetjs/archive/master.zip
+unzip master.zip
+cp -R convnetjs-master reveal.js-2.6.2/convnetjs
+rm master.zip
+
+
+
+
 #http://cs.stanford.edu/people/karpathy/convnetjs/demo/image_regression.html
 
 cd ../presentation/
