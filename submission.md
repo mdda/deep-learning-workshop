@@ -67,6 +67,28 @@ While parts of the content are definitely at the 'experienced' end of the spectr
 
 
 
-Ahh - now I see what happened.  I put in a proposal for a Workshop, then someone else changed it into a talk, and took off the notes section, approved it, and didn't notify me at all.
-I see (from the schedule) that this is allocated 90 minutes.  I've updated the description to emphasize that having VirtualBox pre-installed would be a huge win.
+
+
+
+Deep Learning is a hot topic, but has a steep initial learning curve. To ease the pain, a pre-configured virtual machine will be handed out, so that participants can run it on their own laptops using cross-platform open-source VirtualBox.  In order to get the most out of the talk, participants should install VirtualBox on their laptops beforehand.
+
+The workshop will start from the very basics (with a little mathematics), and quickly progress to getting hands-on with open source software including the training of deep networks on simple problems.
+
+This will be followed by a more in-depth portion, using a pre-built Virtual Machine, run within VirtualBox (which participants should have installed on their laptops *before the workshop*).  This section includes an introduction to Deep Reinforcement Learning : Specifically training a deep neural network to play 'Bubble Breaker' using 'Q-learning', similar in principle to Google's AlphaGo.
+
+While parts of this are very technical, the subject can be appreciated at different levels - and the models (inside the Virtual Machine) are all in Jupyter (fka iPython) notebooks, making interaction straightforward.
+
+
+
+
+Ahh - now I see what happened.  
+
+I put in a proposal for a Workshop, then someone else changed it into a talk; took off the notes section; approved it; and didn't notify me at all.
+
+Now I see (from the schedule) that this is allocated 90 minutes, which isn't long enough to do the content in the original Abstract.  
+
+So I've updated the abstract to reflect what will actually be talked about, and added to the description to emphasize how important having VirtualBox pre-installed is.
+
+See you on Thursday!
+
 

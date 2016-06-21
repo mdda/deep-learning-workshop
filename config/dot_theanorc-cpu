@@ -6,6 +6,9 @@
 device = cpu
 floatX = float32
 
+mode=FAST_RUN
+
+
 ## Magic switch ( Jupyter notebook suggests not...)
 openmp=true
 openmp_elemwise_minsize=200000
@@ -67,3 +70,33 @@ openmp_elemwise_minsize=200000
 
 # This *actually* works : Tested using the ./notebooks/X-Numerical-Library-Test.ipynb end-to-end test
 ldflags = -L/lib64/atlas -ltatlas
+
+
+
+## Settings just in case GPU usage is possible...
+
+[nvcc]
+# Add for gcc 5.x ... (ABI defaults changed)
+flags=-D_GLIBCXX_USE_CXX11_ABI=0
+
+#ls -l  /usr/local/cuda/lib64/libcudnn.so*
+#-rwxr-xr-x. 1 root root 11172416 Nov 10 02:37 /usr/local/cuda/lib64/libcudnn.so
+#-rwxr-xr-x. 1 root root 11172416 Nov 10 02:37 /usr/local/cuda/lib64/libcudnn.so.6.5
+#-rwxr-xr-x. 1 root root 11172416 Nov 10 02:37 /usr/local/cuda/lib64/libcudnn.so.6.5.48
+
+#(env)[root@simlim fossasia-2016_deep-learning]# rm /usr/local/cuda/lib64/libcudnn.so.6.5
+#(env)[root@simlim fossasia-2016_deep-learning]# rm /usr/local/cuda/lib64/libcudnn.so
+
+#(env)[root@simlim fossasia-2016_deep-learning]# ln -s /usr/local/cuda/lib64/libcudnn.so.6.5.48 /usr/local/cuda/lib64/libcudnn.so.6.5
+#(env)[root@simlim fossasia-2016_deep-learning]# ln -s /usr/local/cuda/lib64/libcudnn.so.6.5.48 /usr/local/cuda/lib64/libcudnn.so
+
+#(env)[root@simlim fossasia-2016_deep-learning]# ls -l  /usr/local/cuda/lib64/libcudnn.so*
+#lrwxrwxrwx. 1 root root       40 Mar 16 18:31 /usr/local/cuda/lib64/libcudnn.so -> /usr/local/cuda/lib64/libcudnn.so.6.5.48
+#lrwxrwxrwx. 1 root root       40 Mar 16 18:31 /usr/local/cuda/lib64/libcudnn.so.6.5 -> /usr/local/cuda/lib64/libcudnn.so.6.5.48
+#-rwxr-xr-x. 1 root root 11172416 Nov 10 02:37 /usr/local/cuda/lib64/libcudnn.so.6.5.48
+
+# ldconfig
+
+#modprobe: FATAL: Module nvidia not found in directory /lib/modules/4.4.3-201.fc22.x86_64
+#WARNING:theano.sandbox.cuda:CUDA is installed, but device gpu is not available  (error: Unable to get the number of gpus available: no CUDA-capable device is detected)
+

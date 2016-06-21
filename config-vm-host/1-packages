@@ -21,5 +21,3 @@ install scipy,numpy,python-scikit-learn,python-pandas,Cython,blas-devel,lapack-d
 install graphviz,libyaml,hdf5-devel
 # graphviz needed for pydot(2)
 
-# And add the systemd service definition files
-## TODO

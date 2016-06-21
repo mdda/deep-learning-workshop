@@ -6,7 +6,7 @@ edit /etc/selinux/config:\
       s/SELINUX=enforcing/SELINUX=permissive/
 
 # http://libguestfs.org/virt-builder.1.html#users-and-passwords
-#root-password password:fossasia
+#root-password password:deeplearning
 
 ## The following don't find the right file : seems to want to be in main
 ## command line...
@@ -17,3 +17,11 @@ edit /etc/selinux/config:\
 # Don't want the firewall, since we'd like to see services inside the guest from the host...
 firstboot-command systemctl stop firewalld
 firstboot-command systemctl disable firewalld
+
+
+# Add the systemd starting of jupyter
+upload config/_etc_systemd_system_jupyter.service:/etc/systemd/system/jupyter.service
+firstboot-command chmod 644 /etc/systemd/system/jupyter.service
+
+firstboot-command systemctl start jupyter.service
+firstboot-command systemctl enable jupyter.service
