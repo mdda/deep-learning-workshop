@@ -1,4 +1,10 @@
 
+## Helpful stuff :
+
+# https://jakevdp.github.io/blog/2013/06/01/ipython-notebook-javascript-python-communication/
+# https://github.com/fluxtream/fluxtream-ipy/
+#   blob/master/Communication%20between%20kernel%20and%20javascript%20in%20iPython%202.0.ipynb
+
 def display_via_javascript_script(element_id, board):
   #print("display_via_javascript_script")
   a = [ "[%s]" % (','.join([ "%d" % (c,) for c in board[h].tolist() ]),) for h in range(0, board.shape[0]) ]
