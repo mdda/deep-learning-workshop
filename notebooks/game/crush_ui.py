@@ -8,17 +8,25 @@
 def display_via_javascript_script(element_id, board):
   #print("display_via_javascript_script")
   a = [ "[%s]" % (','.join([ "%d" % (c,) for c in board[h].tolist() ]),) for h in range(0, board.shape[0]) ]
-  return("""<script type="text/Javascript">display_board("%s",[%s])</script>""" % (element_id, ','.join(a),))
+  return("""<script type="text/javascript">display_board("%s",[%s])</script>""" % (element_id, ','.join(a),))
   #return("<b>HelloWorld</b>")
 
 def display_via_javascript_callback(board):
   return([ [ c for c in board[h].tolist() ] for h in range(0,board.shape[0]) ])
   
-  a = [ "[%s]" % (','.join([ "%d" % (c,) for c in board[h].tolist() ]),) for h in range(0, board.shape[0]) ]
-  return("""'[%s]'""" % (','.join(a),))
+  #a = [ "[%s]" % (','.join([ "%d" % (c,) for c in board[h].tolist() ]),) for h in range(0, board.shape[0]) ]
+  #return("""'[%s]'""" % (','.join(a),))
 
   #for h in range(0, c.shape[0]):
   #  for v in range(0, c.shape[1]):
+
+def display_gameplay(element_id, boards, timing):
+  arr = []
+  for board in boards:
+    a = [ "[%s]" % (','.join([ "%d" % (c,) for c in board[h].tolist() ]),) for h in range(0, board.shape[0]) ]
+    arr.append( "[%s]" % (','.join(a),) )
+  return("""<script type="text/javascript">display_gameplay("%s",[%s], %f)</script>""" % (element_id, ','.join(arr), timing))
+
 
 
 javascript_base = """
@@ -87,6 +95,16 @@ function display_board(board_id, matrix, score) {
           $(board_id+' .i_'+h+'_'+v).css("background-color",col[c]);
         });
     });
+}
+function display_gameplay(board_id, boards, timing) {
+  function display_gameplay_step(board_i) {
+    if(board_i<boards.length) {
+      console.log(boards[board_i]);
+      display_board(board_id, boards[board_i], 0); // score == TODO
+      setTimeout( function() { display_gameplay_step(board_i+1); }, timing*1000);
+    }
+  }
+  display_gameplay_step(0);
 }
 </script>
 """
