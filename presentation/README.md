@@ -1,4 +1,4 @@
-### Building the Presentation
+## Building the Presentation
 
 ```
 cd ../presentation/
@@ -12,7 +12,7 @@ Open in Chrome :
 ```
 
 
-#### Adding ConvNetJS examples 
+### Adding ConvNetJS example(s) 
 
 Scheme, seeing the number of files included, probably simplest to :
 
@@ -37,21 +37,24 @@ CONVNET=${REVEAL}/convnetjs
 wget https://github.com/karpathy/convnetjs/archive/master.zip
 unzip master.zip
 cp -R convnetjs-master ${REVEAL}/convnetjs
+rm -rf convnetjs-master
 rm master.zip
 
 DEMO=${CONVNET}/demo
 KARPATHY=http://cs.stanford.edu/people/karpathy
+wget --directory-prefix=${DEMO}/../build/ ${KARPATHY}/convnetjs/build/convnet-min.js 
+
+//GONE wget --directory-prefix=${DEMO}/js/ ${KARPATHY}/convnetjs/demo/jquery-ui.min.js  # NB: This is relocated
+//GONE wget --directory-prefix=${DEMO}/css/ ${KARPATHY}/convnetjs/demo/jquery-ui.min.css  # NB: This is relocated
+
 mkdir -p ${DEMO}/imgs
 wget --directory-prefix=${DEMO}/imgs/ ${KARPATHY}/convnetjs/demo/imgs/cat.jpg
 wget --directory-prefix=${DEMO}/imgs/ ${KARPATHY}/convnetjs/demo/imgs/earth.jpg
 wget --directory-prefix=${DEMO}/imgs/ ${KARPATHY}/convnetjs/demo/imgs/pencils.png
 wget --directory-prefix=${DEMO}/imgs/ ${KARPATHY}/convnetjs/demo/imgs/starry.jpg
 
-//GONE wget --directory-prefix=${DEMO}/js/ ${KARPATHY}/convnetjs/demo/jquery-ui.min.js  # NB: This is relocated
-//GONE wget --directory-prefix=${DEMO}/css/ ${KARPATHY}/convnetjs/demo/jquery-ui.min.css  # NB: This is relocated
 
-wget --directory-prefix=${DEMO}/../build/ ${KARPATHY}/convnetjs/build/convnet-min.js 
-
+## But the MNIST example runs into a (larger) problem than even 'cat'
 
 mkdir -p reveal.js-2.6.2/convnetjs/demo/mnist
 wget --directory-prefix=${DEMO}/mnist/ ${KARPATHY}/convnetjs/demo/mnist/mnist_labels.js
@@ -59,11 +62,21 @@ wget --directory-prefix=${DEMO}/mnist/ ${KARPATHY}/convnetjs/demo/mnist/mnist_ba
 wget --directory-prefix=${DEMO}/mnist/ ${KARPATHY}/convnetjs/demo/mnist/mnist_batch_20.png
 ... MNIST has the same cross-origin security problem that we had to fix for 'cat' (see below)...
 
-
 ```
 
 #### To build : ```image_regression_custom_images.js```
 
 ```
 base64 --wrap=0 ${DEMO}/imgs/cat.jpg > cat.base64.txt
+```
+
+
+### Adding Tensorflow Playground
+
+```
+wget https://github.com/tensorflow/playground/archive/master.zip
+unzip  master.zip 
+cp -R playground-master/dist reveal.js-2.6.2/tensorflow-playground
+rm -rf playground-master
+rm master.zip
 ```
