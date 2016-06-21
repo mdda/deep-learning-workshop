@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+
+ <head>
+  <meta charset="utf-8">
+
+  <title>Deep Learning Workshop</title>
+
+  <meta name="description" content="Deep Learning Workshop">
+  <meta name="author" content="Martin Andrews">
+
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <link rel="stylesheet" href="css/reveal.min.css">
+  <link rel="stylesheet" xhref="css/theme/default.css" href="css/theme/sky.css" id="theme">
+
+  <!-- For syntax highlighting -->
+  <link rel="stylesheet" href="lib/css/zenburn.css">
+
+  <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+  <script>
+   if( window.location.search.match( /print-pdf/gi ) ) {
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = 'css/print/pdf.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+   }
+  </script>
+
+  <!--[if lt IE 9]>
+  <script src="lib/js/html5shiv.js"></script>
+  <![endif]-->
+ </head>
+
+ <body>
+  <div class="reveal">
+   <!-- Any section element inside of this container is displayed as a slide -->
+   <div class="slides">
+    
+<style>
+table.table-fix {
+ margin-left:auto;  margin-right:auto; border-collapse:collapse; cell-padding:5px;
+ margin-top:20px;
+}
+.table-fix td,.table-fix th {
+ padding: 6px;
+}
+.table-fix th {
+ border-bottom:1pt solid black;
+}
+.fix-spacing li {
+ margin-bottom:16pt;
+}
+</style>
+
+<!--
+
+This is just a cover page - with various essential instructions...
+
+!-->
+
+<section>
+ <h1>Deep Learning Workshop</h1>
+ <p>
+  <small><a href="http://mdda.net">Martin Andrews</a> @ <a href="http://redcatlabs.com/">redcatlabs.com</a></small>
+ </p>
+ <p>
+  <small>HELLO WORLD!</small>
+ </p>
+</section>
+
+<section>
+ <h2>Instructions</h2>
+ <ul class="fix-spacing">
+  <li>
+    <!-- <a href="./FOSSASIA-2016.html" target=_blank>FOSSASIA 2016</a> !-->
+    <a href="./PyConSG-2016.html" target=_blank>PyCon SG 2016</a>
+  </li>
+  <li>Javascript Examples :</li>
+  <li style="list-style-type:none">
+    <ul>
+      <li><a href="./painting.html" target=_blank>Deep Painting</a></li>
+    </ul>
+  </li>
+  <li>VirtualBox Appliance :</li>
+  <li style="list-style-type:none">
+    <ul>
+      <li><a href="http://localhost:8080/" target=_blank>Open Jupyter</a></li>
+      <li>SSH :  <code>ssh -p 8082 user@localhost</code> "password"</li>
+      <!-- <li><a href="http://localhost:8081/" target=_blank>Open Tensorboard</a></li>  !-->
+    </ul>
+  </li>
+ </ul>
+</section>
+
+
+<section>
+ <h1>- QUESTIONS -</h1>
+ <br>
+ <h3>Martin.Andrews @<br> RedCatLabs.com</h3>
+ <br>
+ <p>My blog : <a href="https://mdda.net/">http://mdda.net/</a></p>
+ <p>GitHub : <a href="https://github.com/mdda">mdda</a></p>
+</section>
+
+   </div>
+  </div>
+
+<div id="redcatlabs-logo" style="background: url(img/redcatlabs_logo1_280x39.png);
+                                  position: absolute;
+                                  bottom: 50px;
+                                  left: 50px;
+                                  width: 280px;
+                                  height: 39px;">
+</div>  
+
+  <script src="lib/js/head.min.js"></script>
+  <script src="js/reveal.min.js"></script>
+
+  <script>
+
+   // Full list of configuration options available here:
+   // https://github.com/hakimel/reveal.js#configuration
+   Reveal.initialize({
+    controls: true,
+    progress: true,
+    history: true,
+    center: true,
+
+    theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+    transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+    // Parallax scrolling
+    // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+    // parallaxBackgroundSize: '2100px 900px',
+
+    // Optional libraries used to extend on reveal.js
+    dependencies: [
+     { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+     { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+     { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+     { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+     { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+     { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+    ]
+   });
+
+  </script>
+
+ </body>
+</html>
