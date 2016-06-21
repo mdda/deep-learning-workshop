@@ -45,7 +45,7 @@ Deep Learning Hands-on Workshop
 
 ### Brief Description
 
-Deep Learning is a hot topic, but has a steep initial learning curve.  To ease the pain, a pre-configured virtual machine will be handed out, so that participants can run it on their own laptops using cross-platform open-source VirtualBox.
+Deep Learning is a hot topic, but has a steep initial learning curve.  To ease the pain, a pre-configured virtual machine will be handed out, so that participants can run it on their own laptops using cross-platform open-source VirtualBox.  In order to get the most out of the talk, participants should install VirtualBox on their laptops beforehand.
 
 
 ### Detailed Abstract
@@ -65,4 +65,8 @@ Since it includes a VirtualBox Appliance (a 1Gb image handed out via Thumb-drive
 
 While parts of the content are definitely at the 'experienced' end of the spectrum, the use of Jupyter notebooks to run all the code means that even non-Pythonists can click through the code, and upload new images / experiment for themselves.
 
+
+
+Ahh - now I see what happened.  I put in a proposal for a Workshop, then someone else changed it into a talk, and took off the notes section, approved it, and didn't notify me at all.
+I see (from the schedule) that this is allocated 90 minutes.  I've updated the description to emphasize that having VirtualBox pre-installed would be a huge win.
 
