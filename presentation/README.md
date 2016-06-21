@@ -26,18 +26,34 @@ Scheme, seeing the number of files included, probably simplest to :
 ```
 cd ../presentation/
 
+REVEAL=reveal.js-2.6.2
+CONVNET=${REVEAL}/convnetjs
+
 wget https://github.com/karpathy/convnetjs/archive/master.zip
 unzip master.zip
-cp -R convnetjs-master reveal.js-2.6.2/convnetjs
+cp -R convnetjs-master ${REVEAL}/convnetjs
 rm master.zip
 
+DEMO=${CONVNET}/demo
+KARPATHY=http://cs.stanford.edu/people/karpathy
+mkdir -p ${DEMO}/imgs
+wget --directory-prefix=${DEMO}/imgs/ ${KARPATHY}/convnetjs/demo/imgs/cat.jpg
+wget --directory-prefix=${DEMO}/imgs/ ${KARPATHY}/convnetjs/demo/imgs/earth.jpg
+wget --directory-prefix=${DEMO}/imgs/ ${KARPATHY}/convnetjs/demo/imgs/pencils.png
+wget --directory-prefix=${DEMO}/imgs/ ${KARPATHY}/convnetjs/demo/imgs/starry.jpg
 
+//GONE wget --directory-prefix=${DEMO}/js/ ${KARPATHY}/convnetjs/demo/jquery-ui.min.js  # NB: This is relocated
+//GONE wget --directory-prefix=${DEMO}/css/ ${KARPATHY}/convnetjs/demo/jquery-ui.min.css  # NB: This is relocated
 
+wget --directory-prefix=${DEMO}/../build/ ${KARPATHY}/convnetjs/build/convnet-min.js 
 
 #http://cs.stanford.edu/people/karpathy/convnetjs/demo/image_regression.html
 
 cd ../presentation/
 wget http://cs.stanford.edu/people/karpathy/convnetjs/build/convnet-min.js
+
+
+
 
 
 # Both need:
@@ -68,7 +84,10 @@ wget http://cs.stanford.edu/people/karpathy/convnetjs/build/convnet-min.js
 
 <script src="mnist/mnist_labels.js"></script>
 
-
-
 ```
 
+#### To build : ```image_regression_custom_images.js```
+
+```
+base64 --wrap=0 ${DEMO}/imgs/cat.jpg > cat.base64.txt
+```
