@@ -23,6 +23,11 @@ Scheme, seeing the number of files included, probably simplest to :
 *  Create copies (for customisation) of relevant pages and add to deep-learning repo
    *  Potentially need to copy in from another location (repos-within-repos problem)
 
+Examples to use : 
+*  http://cs.stanford.edu/people/karpathy/convnetjs/demo/image_regression.html
+*  http://cs.stanford.edu/people/karpathy/convnetjs/demo/mnist.html
+*  (instead of MNIST?) : http://cs.stanford.edu/people/karpathy/convnetjs/demo/classify2d.html
+
 ```
 cd ../presentation/
 
@@ -47,8 +52,6 @@ wget --directory-prefix=${DEMO}/imgs/ ${KARPATHY}/convnetjs/demo/imgs/starry.jpg
 
 wget --directory-prefix=${DEMO}/../build/ ${KARPATHY}/convnetjs/build/convnet-min.js 
 
-#http://cs.stanford.edu/people/karpathy/convnetjs/demo/image_regression.html
-
 
 mkdir -p reveal.js-2.6.2/convnetjs/demo/mnist
 wget --directory-prefix=${DEMO}/mnist/ ${KARPATHY}/convnetjs/demo/mnist/mnist_labels.js
@@ -56,36 +59,6 @@ wget --directory-prefix=${DEMO}/mnist/ ${KARPATHY}/convnetjs/demo/mnist/mnist_ba
 wget --directory-prefix=${DEMO}/mnist/ ${KARPATHY}/convnetjs/demo/mnist/mnist_batch_20.png
 ... MNIST has the same cross-origin security problem that we had to fix for 'cat' (see below)...
 
-
-
-
-# Both need:
-<link rel="stylesheet" href="css/style.css">
-
-<script src="js/jquery-1.8.3.min.js"></script>
-
-<script src="../build/convnet.js"></script>
-
-
-# image_regression needs : 
-<link href='http://fonts.googleapis.com/css?family=Cabin' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="css/jquery-ui.min.css">
-
-<script src="js/jquery-ui.min.js"></script>
-
-<script src="js/image_regression.js"></script>
-
-
-# MNIST needs :
-<link rel="stylesheet" href="css/style.css">
-
-<script src="../build/vis.js"></script>
-<script src="../build/util.js"></script>
-
-<script src="js/image-helpers.js"></script>
-<script src="js/pica.js"></script>
-
-<script src="mnist/mnist_labels.js"></script>
 
 ```
 
