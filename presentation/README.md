@@ -49,9 +49,12 @@ wget --directory-prefix=${DEMO}/../build/ ${KARPATHY}/convnetjs/build/convnet-mi
 
 #http://cs.stanford.edu/people/karpathy/convnetjs/demo/image_regression.html
 
-cd ../presentation/
-wget http://cs.stanford.edu/people/karpathy/convnetjs/build/convnet-min.js
 
+mkdir -p reveal.js-2.6.2/convnetjs/demo/mnist
+wget --directory-prefix=${DEMO}/mnist/ ${KARPATHY}/convnetjs/demo/mnist/mnist_labels.js
+wget --directory-prefix=${DEMO}/mnist/ ${KARPATHY}/convnetjs/demo/mnist/mnist_batch_0.png
+wget --directory-prefix=${DEMO}/mnist/ ${KARPATHY}/convnetjs/demo/mnist/mnist_batch_20.png
+... MNIST has the same cross-origin security problem that we had to fix for 'cat' (see below)...
 
 
 
