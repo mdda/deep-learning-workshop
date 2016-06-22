@@ -17,14 +17,17 @@ fi
 
 # target ~ /run/media/andrewsm/591F-4AF0
 
+${VBOXINSTALL}=${target}/virtualbox-install
+mkdir -p ${VBOXINSTALL}
+
 # Windows and OSX binaries
-rsync -avz --progress ./vm-images/VirtualBox-5* ${target}/
+rsync -avz --progress ./vm-images/VirtualBox-5* ${VBOXINSTALL}/
 
 # Linux binaries (Fedora, and some Ubuntus)
-rsync -avz --progress ./vm-images/virtualbox-5* ${target}/
+rsync -avz --progress ./vm-images/virtualbox-5* ${VBOXINSTALL}/
 
-mkdir -p ${target}/presentation
-rsync -avz --progress ./presentation/reveal.js-2.6.2/* ${target}/presentation/
+# Now the presentation materials
+rsync -avz --progress ./presentation ${target}/
 
 ls -l ${target}/
 
