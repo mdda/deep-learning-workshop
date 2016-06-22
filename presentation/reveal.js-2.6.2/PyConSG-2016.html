@@ -619,94 +619,68 @@ ssh -p 8282 user@localhost
 
 <section>
   <section>
-   <h2>5-Commerce</h2>
+   <h2>Using Pre-Built Networks</h2>
    <ul class="fix-spacing">
-    <li></li>
+    <li>Features learned for ImageNet are 'useful'</li>
+    <li>Apply same network to 'featurized' new images</li>
+    <li>Learn mapping from features to new classes</li>
+    <li>Only have to train a single layer!</li>
    </ul>
-   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
+  </section>
+
+  <section>
+   <h2>5-Commerce</h2>
+   <img width="590" height="369" src="img/Commerce-Cars_590x369.png" alt="'Commerce' Cars" style="border:none;box-shadow:none">
+   <p>Re-purpose a pretrained network</p>
   </section>
 </section>
 
 <section>
+  <section>
+   <h2>Abusing Pre-Built Networks</h2>
+   <ul class="fix-spacing">
+    <li>Visual features can also be used generatively</li>
+    <li>Alter images to maximise network response</li>
+    <li>...</li>
+   </ul>
+  </section>
+
+  <section>
+   <h2>"Deep Dreams"</h2>
+   <img width="768" height="572" src="img/DeepDream_768x572.jpg" alt="Deep Dream river" style="border:none;box-shadow:none">
+   <p>Careful! : Some images cannot be un-seen...</p>
+  </section>
+  
   <section>
    <h2>6-Visual-Art</h2>
-   <ul class="fix-spacing">
-    <li></li>
-   </ul>
-   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
+   <img width="595" height="395" src="img/Art-Style-Transfer_595x395.png" alt="Art Style-Transfer" style="border:none;box-shadow:none">
+   <p>Style-Transfer an artist : onto your photos</p>
   </section>
 </section>
 
-<section>
-  <section>
-   <h2>Reinforcement Learning</h2>
-   <ul class="fix-spacing">
-    <li>Atari</li>
-    <li>AlphaGo</li>
-   </ul>
-   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
-  </section>
-  
-  <section>
-   <h2>RL is difficult</h2>
-   <ul class="fix-spacing">
-    <li>Exploit vs Explore</li>
-    <li>Each choice leads to different choices</li>
-   </ul>
-   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
-  </section>
-  
-  <section>
-   <h2>Q-Learning 1</h2>
-   <ul class="fix-spacing">
-    <li>Estimate entire future from current state</li>
-    <li>Determine the 'best action' from estimates</li>
-   </ul>
-   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
-  </section>
-  
-  <section>
-   <h2>Q-Learning 2</h2>
-   <ul class="fix-spacing">
-    <li>... do the best action</li>
-    <li>Observe rewards, and new state</li>
-    <li>Update Q(now) to be closer to R+Q(next)</li>
-   </ul>
-   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
-  </section>
-  
-  <section>
-   <h2>Deep Q-Learning</h2>
-   <ul class="fix-spacing">
-    <li>The value of Q(now) is the output of a deep neural network</li>
-    <li>... trained from observed steps</li>
-    <li>... over *many* games</li>
-   </ul>
-   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
-  </section>
-  
-  <section>
-   <h2>7-Reinforcement-Learning</h2>
-   <ul class="fix-spacing">
-    <li>Bubble Breaker</li>
-   </ul>
-   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
-  </section>
-  
-</section>
+
 
 <section>
   <section>
-   <h2>LSTM Units</h2>
+   <h2>Language Processing?</h2>
+   <ul class="fix-spacing">
+    <li>Variable-length input doesn't fit easily</li>
+    <li>Apply a network iteratively over input</li>
+    <li>Internal state carried over</li>
+    <li>Everything still <i>differentiable</i></li>
+   </ul>
+  </section>
+
+  <section>
+   <h2>Recurrent Neural Networks</h2>
    <img width="412" height="470" src="img/LSTM_412x470.png" alt="LSTM" style="border:none;box-shadow:none">
+   <p>A Long Short-Term Memory (LSTM) Unit</p>
   </section>
 
   <section>
    <h2>8-Natural-Language</h2>
-   <ul class="fix-spacing">
-    <li></li>
-   </ul>
-   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
+   <img width="593" height="340" src="img/RNN-Characterwise_593x340.png" alt="RNN Characterwise" style="border:none;box-shadow:none">
+   <p>Still a work-in-progress (training takes too long)</p>
   </section>
 
   <section>
@@ -779,6 +753,12 @@ AENEMUUNS	Met that will knop unhian, where ever have
    </code></pre>
   </section>
 
+  <section>
+   <h2>Fancier Tricks</h2>
+   <img width="624" height="352" src="img/AttentionNetwork_624x352.png" alt="Attention Network" style="border:none;box-shadow:none">
+   <p>Differentiable &rarr; Training : Even crazy stuff works!</p>
+  </section>
+
 </section>
 
 <section>
@@ -790,6 +770,66 @@ AENEMUUNS	Met that will knop unhian, where ever have
   <section>
    <h2>Image Labels</h2>
    <img width="667" height="419" src="img/image-labelling-results_667x419.png" alt="Labelling Results" style="border:none;box-shadow:none">
+  </section>
+  
+</section>
+
+
+
+<section>
+  <section>
+   <h2>Reinforcement Learning</h2>
+   <ul class="fix-spacing">
+    <li>Atari</li>
+    <li>AlphaGo</li>
+   </ul>
+   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
+  </section>
+  
+  <section>
+   <h2>RL is difficult</h2>
+   <ul class="fix-spacing">
+    <li>Exploit vs Explore</li>
+    <li>Each choice leads to different choices</li>
+   </ul>
+   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
+  </section>
+  
+  <section>
+   <h2>Q-Learning 1</h2>
+   <ul class="fix-spacing">
+    <li>Estimate entire future from current state</li>
+    <li>Determine the 'best action' from estimates</li>
+   </ul>
+   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
+  </section>
+  
+  <section>
+   <h2>Q-Learning 2</h2>
+   <ul class="fix-spacing">
+    <li>... do the best action</li>
+    <li>Observe rewards, and new state</li>
+    <li>Update Q(now) to be closer to R+Q(next)</li>
+   </ul>
+   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
+  </section>
+  
+  <section>
+   <h2>Deep Q-Learning</h2>
+   <ul class="fix-spacing">
+    <li>The value of Q(now) is the output of a deep neural network</li>
+    <li>... trained from observed steps</li>
+    <li>... over *many* games</li>
+   </ul>
+   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
+  </section>
+  
+  <section>
+   <h2>7-Reinforcement-Learning</h2>
+   <ul class="fix-spacing">
+    <li>Bubble Breaker</li>
+   </ul>
+   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
   </section>
   
 </section>
