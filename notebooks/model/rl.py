@@ -358,7 +358,7 @@ for i in range(0, n_games):
       width=width, height=height, n_colours=n_colours,
       batchsize=batchsize, i=i, 
     )
-    with open('rl_%dx%dx%d_%s.%06d.pkl' % (width, height, n_colours, t_start.strftime("%Y-%m-%d_%H-%M"), i,), 'wb') as f:
+    with open('../data/game/crush/rl_%dx%dx%d_%s.%06d.pkl' % (width, height, n_colours, t_start.strftime("%Y-%m-%d_%H-%M"), i,), 'wb') as f:
       pickle.dump(param_dictionary, f)
 
 stats_aggregates(stats_log, "FINAL[%5d]" % (n_games,) )
