@@ -17,7 +17,7 @@ fi
 
 # target ~ /run/media/andrewsm/591F-4AF0
 
-INSTRUCTIONS=${target}/instructions.txt
+INSTRUCTIONS=${target}/_INSTRUCTIONS_.txt
 
 cat >${INSTRUCTIONS} <<'EOT'
 
@@ -36,7 +36,9 @@ Please follow the following steps :
     a) You should have read the workshop description more carefully;
     b) You can use the relevant installation file from the /virtualbox-install/ folder
 
-5) Pass the key to someone else who needs it - or back to the speaker...
+5) Launch a browser on your copy of /presentation/index.html
+
+6) Pass the key to someone else who needs it - or back to the speaker...
 
 EOT
 
