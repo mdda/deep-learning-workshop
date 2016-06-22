@@ -235,6 +235,14 @@ table.table-fix {
 !-->
 
 <section>
+ <h2>"A.I. Effect"</h2>
+ <ul class="fix-spacing">
+  <li><a href="https://en.wikipedia.org/wiki/AI_effect" target="_blank">A.I. is whatever hasn't been done yet</a></li>
+ </ul>
+</section>
+
+
+<section>
   <section>
    <h2>Basic Approach</h2>
    <ul class="fix-spacing">
@@ -663,8 +671,8 @@ ssh -p 8282 user@localhost
 <section>
   <section>
    <h2>Language Processing?</h2>
+   <h4>Variable-length input doesn't "fit"</h4>
    <ul class="fix-spacing">
-    <li>Variable-length input doesn't fit easily</li>
     <li>Apply a network iteratively over input</li>
     <li>Internal state carried over</li>
     <li>Everything still <i>differentiable</i></li>
@@ -833,8 +841,9 @@ AENEMUUNS	Met that will knop unhian, where ever have
   <section>
    <h2>Deep Q-Learning</h2>
    <ul class="fix-spacing">
-    <li>Q(now) is given by the output of a deep neural network</li>
-    <li>... trained from observed steps</li>
+    <li>Set Q() to be the output of a deep neural network</li>
+    <li>... where the input is the state</li>
+    <li>Train network input/ouput pairs from observed steps</li>
     <li>... over *many* games</li>
    </ul>
   </section>
@@ -864,13 +873,6 @@ AENEMUUNS	Met that will knop unhian, where ever have
 </section>
 
 
-
-<section>
- <h2>"A.I. Effect"</h2>
- <ul class="fix-spacing">
-  <li><a href="https://en.wikipedia.org/wiki/AI_effect" target="_blank">A.I. is whatever hasn't been done yet</a></li>
- </ul>
-</section>
 
 
 <section>
