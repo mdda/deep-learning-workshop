@@ -780,25 +780,35 @@ AENEMUUNS	Met that will knop unhian, where ever have
   <section>
    <h2>Reinforcement Learning</h2>
    <ul class="fix-spacing">
-    <li>Atari</li>
-    <li>AlphaGo</li>
+    <li>Learning to choose actions ...</li>
+    <li>... which cause environment to change</li>
    </ul>
    <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
   </section>
   
   <section>
-   <h2>RL is difficult</h2>
+   <h2>Google DeepMind's AlphaGo</h2>
+   <p></p>
+   <img width="902" height="337" src="img/AlphaGo-match5_902x337.png" alt="DeepMind AlphaGo Match 5" style="border:none;box-shadow:none">
+  </section>
+
+  <section>
+   <h2>Useful beyond games...</h2>
    <ul class="fix-spacing">
-    <li>Exploit vs Explore</li>
-    <li>Each choice leads to different choices</li>
+    <li>... advertising</li>
    </ul>
-   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
+  </section>
+
+  <section>
+   <h2>Agent Learning Set-Up</h2>
+   <img width="638" height="479" src="img/ReinforcementLearning-Flow_638x479.png" alt="Reinforcement Flow" style="border:none;box-shadow:none">
   </section>
   
   <section>
    <h2>Q-Learning 1</h2>
    <ul class="fix-spacing">
-    <li>Estimate entire future from current state</li>
+    <li>Estimate value of entire future from current state</li>
+    <li>... to estimate value of next state, for all possible actions</li>
     <li>Determine the 'best action' from estimates</li>
    </ul>
    <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
@@ -809,29 +819,48 @@ AENEMUUNS	Met that will knop unhian, where ever have
    <ul class="fix-spacing">
     <li>... do the best action</li>
     <li>Observe rewards, and new state</li>
-    <li>Update Q(now) to be closer to R+Q(next)</li>
+    <li><b>*</b> Update Q(now) to be closer to R+Q(next) <b>*</b></li>
    </ul>
    <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
   </section>
   
+  <section>
+   <h2>Q-Learning Diagram</h2>
+   <img width="507" height="558" src="img/Q-Learning-Diagram_507x558.png" alt="Q-Learning Diagram" style="border:none;box-shadow:none">
+   <p>Q is a measure of what we think about the future</p>
+  </section>
+
   <section>
    <h2>Deep Q-Learning</h2>
    <ul class="fix-spacing">
-    <li>The value of Q(now) is the output of a deep neural network</li>
+    <li>Q(now) is given by the output of a deep neural network</li>
     <li>... trained from observed steps</li>
     <li>... over *many* games</li>
    </ul>
-   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
+  </section>
+
+  <section>
+   <h2>Today's Strategy Game</h2>
+   <img width="563" height="489" src="img/BubbleBreaker-Android_563x489.png" alt="Bubble Breaker Android" style="border:none;box-shadow:none">
+   <p>Classic game : But no bells-and-whistles</p>
+  </section>
+
+  <section>
+   <h2>7-Reinforcement-Learning</h2>
+   <img width="593" height="334" src="img/BubbleBreaker-jupyter_593x334.png" alt="Bubble Breaker RL" style="border:none;box-shadow:none">
+   <p>Deep Reinforcement Learning for Bubble Breaker</p>
   </section>
   
   <section>
-   <h2>7-Reinforcement-Learning</h2>
+   <h2>AlphaGo Extras</h2>
    <ul class="fix-spacing">
-    <li>Bubble Breaker</li>
+    <li>Monte-Carlo Tree Search</li>
+    <li>Policy Network to hone search space</li>
+    <li>Self-play</li>
+    <li>... and running on 1202 CPUs and 176 GPUs!</li>
    </ul>
-   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
   </section>
-  
+
 </section>
 
 

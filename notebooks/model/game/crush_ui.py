@@ -89,7 +89,7 @@ function create_board(board_id, horizontal, vertical, n_colours) {
   //kernel.execute(command);
 }
 function display_board(board_id, matrix, score, score_inc) {
-  console.log("display_board("+board_id+","+JSON.stringify(matrix).substr(0,37)+"... ,"++score+","+score_inc+")");
+  console.log("display_board("+board_id+","+JSON.stringify(matrix).substr(0,37)+"... ,"+score+","+score_inc+")");
   var col=['#fff','#00f','#0f0','#f00','#666','#aaa'];
   if( typeof score == 'undefined' ) {
     score = $(board_id+' .score').text() |0;
