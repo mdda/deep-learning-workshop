@@ -24,17 +24,18 @@ cat >${INSTRUCTIONS} <<'EOT'
 Deep-Learning-Workshop "Hands-on" Materials
 -------------------------------------------
 
-Please follow the following steps :
+Please do each of the following steps :
 
 1) Create a new folder on your laptop's hard drive
 
-2) Copy the /presentation/ folder on the USB drive into your new folder
+2) Copy the /presentation folder on the USB drive into your new folder
 
 3) Copy the '.ova' file  on the USB drive into your new folder
 
 4) If you *don't* have VirtualBox installed : 
-    a) You should have read the workshop description more carefully;
-    b) You can use the relevant installation file from the /virtualbox-install/ folder
+    a) You should have read the workshop description more carefully; 
+    b) You might be able to use an installation file from the /virtualbox-install/ folder; and
+    c) Good luck...
 
 5) Launch a browser on your copy of /presentation/index.html
 
