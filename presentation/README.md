@@ -1,3 +1,10 @@
+## Welcome to "deep-learning-workshop"
+
+Please browse to "index.html" in this folder - it's a lot easier to navigate from there.
+
+
+------------------------------
+
 ## Building the Presentation
 
 ```
