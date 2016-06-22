@@ -56,10 +56,9 @@ rsync -avz --progress ./vm-images/virtualbox-5* ${VBOXINSTALL}/
 # Now the presentation materials
 rsync -avz --progress ./presentation ${target}/
 
-ls -l ${target}/
-
-rm ${target}/*.ova
-exit 1
+#ls -l ${target}/
+#rm ${target}/*.ova
+#exit 1
 
 rsync -avz --progress ${most_recent_ova} ${target}/
 ls -l ${target}/
