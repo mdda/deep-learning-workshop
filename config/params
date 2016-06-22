@@ -8,7 +8,7 @@ guest_type=fedora-23
 image_file=./vm-images/${guest_type}.img
 vbox_disk=./vm-images/${guest_type}_fossasia.vmdk
 
-vbox_name=fossasia-mdda_`date +%F_%H-%M`
+vbox_name=deep-learning-workshop_`date +%F_%H-%M`
 vbox_ostype=Fedora_64
 vbox_memory=2048
 vbox_cpus=4
