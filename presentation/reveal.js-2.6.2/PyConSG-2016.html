@@ -274,11 +274,24 @@ table.table-fix {
    <h2>Gradient Descent</h2>
    <p>Follow the gradient of the error <br />vs the connection weights</p>
    <img width="364" height="306" src="img/gradient-descent_364x306.png" alt="Gradient-Descent" style="border:none;box-shadow:none">
-   <p>"Stochastic Gradient Descent" (SGD)</p>
   </section>
 </section>
 
 <section>
+  <section>
+   <h2>Training a Neural Network</h2>
+   <ul>
+    <li>Time to play with : </li>
+    <li style="list-style-type:none">
+     <ul>
+      <li>Layers of different widths</li>
+      <li>Layers of different depths</li>
+     </ul>
+    </li>
+    <li>"Stochastic Gradient Descent" (SGD)</li>
+   </ul>
+  </section>
+  
   <section>
    <h2>Workshop : SGD (local=BEST)</h2>
    <ul>
@@ -326,7 +339,21 @@ table.table-fix {
 
 <section>
   <section>
-   <h2>Workshop : Features</h2>
+   <h2>What's Going On Inside?</h2>
+   <ul>
+    <li>Time to look at : </li>
+    <li style="list-style-type:none">
+     <ul>
+      <li>Input features</li>
+      <li>What each neuron is learning</li>
+      <li>How the training converges</li>
+     </ul>
+    </li>
+   </ul>
+  </section>
+  
+  <section>
+   <h2>Workshop : Internals</h2>
    <ul>
     <li style="list-style-type:none">
      <ul>
@@ -402,6 +429,23 @@ ssh -p 8282 user@localhost
 
 <section>
   <section>
+   <h2>Frameworks</h2>
+   <ul class="fix-spacing">
+    <li>Want to express networks at a higher level</li>
+    <li>Map network operations onto cores</li>
+    <li>Most common frameworks : </li>
+    <li style="list-style-type:none">
+      <ul>
+        <li>Caffe - C++ ~ Berkeley</li>
+        <li>Torch - lua ~ Facebook/Twitter</li>
+        <li>Theano - Python ~ Montreal</li>
+        <li>TensorFlow - C++ ~ Google</li>
+      </ul>
+    </li>
+   </ul>
+  </section>
+  
+  <section>
    <h2>Theano</h2>
    <ul class="fix-spacing">
     <li>Optimised Numerical Computation in Python</li>
@@ -419,10 +463,8 @@ ssh -p 8282 user@localhost
   
   <section>
    <h2>0-TheanoBasics</h2>
-   <ul class="fix-spacing">
-    <li></li>
-   </ul>
-   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
+   <img width="594" height="395" src="img/TheanoBasics_594x395.png" alt="Theano Basics" style="border:none;box-shadow:none">
+   <p>Use the 'play' button to walk through the workbook</p>
   </section>
 </section>
 
@@ -458,6 +500,9 @@ ssh -p 8282 user@localhost
 
   <section>
    <h2>"LeNet"</h2>
+   <ul class="fix-spacing">
+    <li></li>
+   </ul>
    <img width="759" height="209" src="img/lenet5_759x209.png" alt="LeNet5 Convolutional Layers" style="border:none;box-shadow:none">
    <p><i>... around 0.8% error rate on the test set</i></p>
   </section>
@@ -468,22 +513,40 @@ ssh -p 8282 user@localhost
 
   <section>
    <h2>1-MNIST-MLP</h2>
-   <ul class="fix-spacing">
-    <li></li>
-   </ul>
-   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
+   <img width="591" height="352" src="img/MNIST-MLP_591x352.png" alt="MNIST MLP" style="border:none;box-shadow:none">
+   <p>We using <code>lasagne</code> as an additional layer <i>on top of</i> <code>Theano</code></p>
   </section>
 </section>
 
 <section>
   <section>
-   <h2>2-MNIST-CNN</h2>
+   <h2>Convolution Neural Networks</h2>
    <ul class="fix-spacing">
-    <li></li>
+    <li>Pixels in an images are 'organised' : </li>
+    <li style="list-style-type:none">
+      <ul>
+        <li>Up/down left/right</li>
+        <li>Translational invariance</li>
+      </ul>
+    </li>
+    <li>Can apply a 'convolutional filter'</li>
+    <li>Use same parameters over whole image</li>
    </ul>
-   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
+  </section>
+  
+  <section>
+   <h2>CNN Filter</h2>
+   <img width="464" height="358" src="img/CNN-diagram_464x358.png" alt="CNN Diagram" style="border:none;box-shadow:none">
   </section>
 
+  <section>
+   <h2>2-MNIST-CNN</h2>
+   <img width="594" height="326" src="img/MNIST-CNN_594x326.png" alt="CNN MNIST" style="border:none;box-shadow:none">
+   <p>Three filter layers - nice visual interpretation</p>
+  </section>
+
+
+<!--
   <section>
    <h2>Theano : detail</h2>
    <img width="690" height="390" src="img/zoom-1_690x390.png" alt="Theano diagram x1" style="border:none;box-shadow:none">
@@ -503,7 +566,7 @@ ssh -p 8282 user@localhost
    <h2>Theano : "Simple RNN"</h2>
    <img width="241" height="500" src="img/zoom-4_241x500.png" alt="Theano diagram x4" style="border:none;box-shadow:none">
   </section>
-
+!-->
 
 </section>
 
@@ -529,9 +592,8 @@ ssh -p 8282 user@localhost
   
   <section>
    <h2>3-ImageNet-googlenet</h2>
-   <ul class="fix-spacing">
-    <li>Play with a pre-trained network</li>
-   </ul>
+   <img width="595" height="381" src="img/ImageNet-GoogLeNet_595x381.png" alt="Google ImageNet" style="border:none;box-shadow:none">
+   <p>Play with a ~2014 pre-trained network</p>
   </section>
 </section>
 
@@ -544,11 +606,8 @@ ssh -p 8282 user@localhost
   
   <section>
    <h2>4-ImageNet-inception-v3</h2>
-   <ul class="fix-spacing">
-    <li>Play with a pre-trained network</li>
-    <li>NB: This may be painfully slow...</li>
-   </ul>
-   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
+   <img width="590" height="320" src="img/ImageNet-Inception3_590x320.png" alt="Google Inception v3" style="border:none;box-shadow:none">
+   <p>Play with a ~2015 pre-trained network</p>
   </section>
   
   <section>
