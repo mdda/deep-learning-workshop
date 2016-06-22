@@ -17,7 +17,7 @@ fi
 
 # target ~ /run/media/andrewsm/591F-4AF0
 
-${INSTRUCTIONS}=${target}/instructions.txt
+INSTRUCTIONS=${target}/instructions.txt
 
 cat >${INSTRUCTIONS} <<'EOT'
 
@@ -41,7 +41,7 @@ Please follow the following steps :
 EOT
 
 
-${VBOXINSTALL}=${target}/virtualbox-install
+VBOXINSTALL=${target}/virtualbox-install
 mkdir -p ${VBOXINSTALL}
 
 # Windows and OSX binaries
