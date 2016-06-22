@@ -103,6 +103,6 @@ rm -f ${vbox_appliance}
 VBoxManage export ${vbox_name} --output ${vbox_appliance} --ovf10 \
    --vsys 0 \
    --vendor "Red Cat Labs" --vendorurl "http://www.redcatlabs.com/" \
-   --description "Deep Learning Workshop at FOSSASIA 2016 (Singapore)"
+   --description "Deep Learning Workshop pre-configured VM"
 
 VBoxManage unregistervm ${vbox_name} --delete
