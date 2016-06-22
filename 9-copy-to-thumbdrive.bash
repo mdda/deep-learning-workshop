@@ -17,6 +17,30 @@ fi
 
 # target ~ /run/media/andrewsm/591F-4AF0
 
+${INSTRUCTIONS}=${target}/instructions.txt
+
+cat >${INSTRUCTIONS} <<'EOT'
+
+Deep-Learning-Workshop "Hands-on" Materials
+-------------------------------------------
+
+Please follow the following steps :
+
+1) Create a new folder on your laptop's hard drive
+
+2) Copy the /presentation/ folder on the USB drive into your new folder
+
+3) Copy the '.ova' file  on the USB drive into your new folder
+
+4) If you *don't* have VirtualBox installed : 
+    a) You should have read the workshop description more carefully;
+    b) You can use the relevant installation file from the /virtualbox-install/ folder
+
+5) Pass the key to someone else who needs it - or back to the speaker...
+
+EOT
+
+
 ${VBOXINSTALL}=${target}/virtualbox-install
 mkdir -p ${VBOXINSTALL}
 
@@ -32,11 +56,8 @@ rsync -avz --progress ./presentation ${target}/
 ls -l ${target}/
 
 rm ${target}/*.ova
-
 exit 1
 
-
 rsync -avz --progress ${most_recent_ova} ${target}/
-
 ls -l ${target}/
 
