@@ -17,7 +17,7 @@ fi
 
 # target ~ /run/media/andrewsm/591F-4AF0
 
-INSTRUCTIONS=${target}/_INSTRUCTIONS_.txt
+INSTRUCTIONS=${target}/0_INSTRUCTIONS.txt
 
 cat >${INSTRUCTIONS} <<'EOT'
 
