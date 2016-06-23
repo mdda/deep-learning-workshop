@@ -23,6 +23,8 @@ and finally use pretrained state-of-the-art networks, such as GoogLeNet, in vari
   *  Application-idea : Character-wise name origins (LSTM/NLP application)
 
 
+**NB : Ensure Conference Workshop announcement / blurb includes VirtualBox warning label**
+
 The VM itself includes : 
 
 * Jupyter (iPython's successor)
@@ -30,7 +32,7 @@ The VM itself includes :
 * Data
   * MNIST training and test sets
   * Trained models from two of the 'big' ImageNet winners
-  * Data directory will live inside image (heavy reliance on people being able to do VirtualBox)
+  * Test Images for both recognition, 'e-commerce' and style-transfer modules
 * Tool chain (mostly Python-oriented)
   * Theano / Lasagne
   * Keras / Tensorflow is included, but not really used
@@ -51,11 +53,12 @@ And this repo can itself be run in 'local mode', using scripts in ```./local/```
 *  Script to transform the VM into a VirtualBox appliance
    *  Exposing ```Jupyter```, ```TensorBoard``` and ```ssh``` to host machine
 
-*  Tested out Convnet.js for :
-   *  Demonstration of gradient descent
-   *  Demonstration of MNIST learning
+*  Locally hosted Convnet.js for :
+   *  Demonstration of gradient descent ('painting')
 
-*  Ensure Conference Workshop announcement / blurb includes VirtualBox warning label
+*  Locally hosted TensorFlow Playground  for :
+   *  Visualising hidden layer, and effect of features, etc
+
 
 *  Create workshop notebooks (Lasagne / Theano)
    *  Basics 
@@ -91,17 +94,11 @@ And this repo can itself be run in 'local mode', using scripts in ```./local/```
 
 #### Still Work-in-Progress 
 
-*  Create workshop notebooks
-   *  Art
-      +  Deep dream
-      
 *  Create sync-to-latest-workbooks script to update existing (taken-home) VMs
 
-*  Create tensorboard demo
+*  Create additional 'applications' modules (some ideas are given below)
 
-*  Workshop presentation materials
-   *  Enhance, so that workshop module final results are given as pictures
-      *  Because lots of people just want to listen, not do
+*  Create tensorboard demo
    
    
 #### Ideas
