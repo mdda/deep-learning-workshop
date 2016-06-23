@@ -14,7 +14,8 @@ and finally use pretrained state-of-the-art networks, such as GoogLeNet, in vari
 
 * [PyCon-SG 2016](https://pycon.sg/schedule/presentation/94/) : Deep Learning Workshop (1.5hrs)
   *  Unfortunately, due to 'demand' for speaker slots, PyCon has only scheduled 1h30 for the workshop, rather than the 3h00 they originally suggested...
-  *  Application-idea : (hopefully) Reinforcement Learning
+  *  Application : Reinforcement Learning
+  *  Slides for the talk are [here](http://redcatlabs.com/2016-06-23_PyConSG-Workshop/)
 
 * [DataScienceSG MeetUp](http://www.meetup.com/DataScience-SG-Singapore/) : 'Hardcore' session about Deep Learning (targeting 3 hours)
   *  Application : Classifying unknown classes of images (~transfer learning)
