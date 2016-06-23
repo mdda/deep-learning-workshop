@@ -6,7 +6,7 @@ guest_type=fedora-23
 
 # The file extensions may be important - so leave the .xyz alone!
 image_file=./vm-images/${guest_type}.img
-vbox_disk=./vm-images/${guest_type}_fossasia.vmdk
+vbox_disk=./vm-images/${guest_type}_deep-learning.vmdk
 
 vbox_name=deep-learning-workshop_`date +%F_%H-%M`
 vbox_ostype=Fedora_64
