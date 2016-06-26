@@ -191,6 +191,18 @@ And this repo can itself be run in 'local mode', using scripts in ```./local/```
    *  On MNIST somehow?
 
 
+*  Anomaly detection
+   *  Very promising auto-encoder approach : [code for MNIST](https://github.com/h2oai/h2o-training-book/blob/master/hands-on_training/anomaly_detection.md)
+   *  [video](http://www.mathtube.org/lecture/video/deep-learning-image-anomaly-detection)
+   *  [Light on details : Slides 6+](http://www.slideshare.net/agibsonccc/anomaly-detection-in-deep-learning-62473913)
+   
+
+
+*  Image Captioning...
+   *   https://github.com/mjhucla/TF-mRNN
+       *  Accepts VGG or Inception3 image features
+
+
 ### Notes
 
 #### Running the environment locally
