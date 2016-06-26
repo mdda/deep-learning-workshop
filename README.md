@@ -184,7 +184,11 @@ And this repo can itself be run in 'local mode', using scripts in ```./local/```
 *  Music example?
    *  [Google's Magenta](http://magenta.tensorflow.org/welcome-to-magenta)
    
-
+*  Generative Adversarial Networks (GANs) ?
+   *  [Original Paper - Goodfellow, 2014](http://arxiv.org/abs/1406.2661)
+   *  [Overview](http://soumith.ch/eyescream/)
+   *  [Karpathy illustrates instability issues](http://cs.stanford.edu/people/karpathy/gan/)
+   *  On MNIST somehow?
 
 
 ### Notes
