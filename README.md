@@ -189,6 +189,7 @@ And this repo can itself be run in 'local mode', using scripts in ```./local/```
    *  [Overview](http://soumith.ch/eyescream/)
    *  [Karpathy illustrates instability issues](http://cs.stanford.edu/people/karpathy/gan/)
    *  On MNIST somehow?
+      *  [Vectorizing MNIST](http://blog.otoro.net/2016/04/01/generating-large-images-from-latent-vectors/)
 
 
 *  Anomaly detection
