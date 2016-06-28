@@ -186,12 +186,16 @@ And this repo can itself be run in 'local mode', using scripts in ```./local/```
    
 *  Generative Adversarial Networks (GANs) ?
    *  [Original Paper - Goodfellow, 2014](http://arxiv.org/abs/1406.2661)
+   *  [Upper bound](https://github.com/Newmu/dcgan_code) performance-wise (for inspiration?)
    *  [Overview](http://soumith.ch/eyescream/)
    *  [Karpathy illustrates instability issues](http://cs.stanford.edu/people/karpathy/gan/)
    *  On MNIST somehow?
       *  [Vectorizing MNIST](http://blog.otoro.net/2016/04/01/generating-large-images-from-latent-vectors/)
-
-
+   *  Very helpful [Reddit](https://www.reddit.com/r/MachineLearning/comments/3yuwyj/tutorial_on_generative_adversarial_networks_in/) posting
+      *  [Helpful hints](http://torch.ch/blog/2015/11/13/gan.html) on Torch version 
+      *  [MNIST using GAN and Adversarial Autoencoder](https://github.com/igul222/mnist_generative) in Theano + Lasagne
+   
+   
 *  Anomaly detection
    *  Very promising auto-encoder approach : [code for MNIST](https://github.com/h2oai/h2o-training-book/blob/master/hands-on_training/anomaly_detection.md)
    *  [video](http://www.mathtube.org/lecture/video/deep-learning-image-anomaly-detection)
