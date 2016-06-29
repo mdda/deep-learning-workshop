@@ -6,19 +6,11 @@
 #   blob/master/Communication%20between%20kernel%20and%20javascript%20in%20iPython%202.0.ipynb
 
 def display_via_javascript_script(element_id, board):
-  #print("display_via_javascript_script")
   a = [ "[%s]" % (','.join([ "%d" % (c,) for c in board[h].tolist() ]),) for h in range(0, board.shape[0]) ]
   return("""<script type="text/javascript">display_board("%s",[%s])</script>""" % (element_id, ','.join(a),))
-  #return("<b>HelloWorld</b>")
 
 def render_to_json(board):
   return([ [ c for c in board[h].tolist() ] for h in range(0,board.shape[0]) ])
-  
-  #a = [ "[%s]" % (','.join([ "%d" % (c,) for c in board[h].tolist() ]),) for h in range(0, board.shape[0]) ]
-  #return("""'[%s]'""" % (','.join(a),))
-
-  #for h in range(0, c.shape[0]):
-  #  for v in range(0, c.shape[1]):
 
 def display_gameplay(element_id, boards, scores, timing):
   b_arr = []
@@ -34,7 +26,6 @@ javascript_base = """
 <script type="text/Javascript">
 var kernel = IPython.notebook.kernel;
 function create_board(board_id, horizontal, vertical, n_colours) {
-  //var board_id="#board_"+horizontal+"_"+vertical;
   if($(board_id).children().length==0) {
     console.log("Adding table to "+board_id);
     var trs=[];
@@ -53,7 +44,6 @@ function create_board(board_id, horizontal, vertical, n_colours) {
       .off('click')
       .on('click', 'td', function(ev) {
         var cell = $(this);
-        //console.log("Cell clicked : ", cell);
         var h=cell.attr('h') - 0;
         var v=cell.attr('v') - 0;
         console.log("Cell(h,v)=("+h+","+v+")");
@@ -68,9 +58,7 @@ function create_board(board_id, horizontal, vertical, n_colours) {
             var res_str = msg.content.data["text/plain"];
             //console.log("Javascript received Python Result : ", res_str);
             var res_json=res_str.replace(/[\\']/g,'"');  // NASTY kludge python->json
-            //console.log("ie : ", res_json);
             var res=JSON.parse( res_json ); 
-            //console.log("res = ", res);
             display_board(board_id, res.arr, undefined, res.score_inc);
           }
         }
@@ -80,14 +68,13 @@ function create_board(board_id, horizontal, vertical, n_colours) {
           'arr=crush_ui.render_to_json(board)',
           'dict(arr=arr,score_inc=score_inc,n_cols=n_cols)'
         ].join(';');
-        //console.log(cmd);
         
         kernel.execute(cmd, {iopub: {output: handle_python_output}}, {silent:false});
       });
   }
   //$(board_id).append("<b>Hello</b>");
-  //kernel.execute(command);
 }
+
 function display_board(board_id, matrix, score, score_inc) {
   console.log("display_board("+board_id+","+JSON.stringify(matrix).substr(0,37)+"... ,"+score+","+score_inc+")");
   var col=['#fff','#00f','#0f0','#f00','#666','#aaa'];
@@ -98,8 +85,6 @@ function display_board(board_id, matrix, score, score_inc) {
   $(board_id+' .score').text(score | 0);
   matrix.forEach(function(row,h) {
       row.forEach(function(c,v) {
-          //console.log(board_id+' .i_'+h+'_'+v);
-          //$(board_id+' .i_'+h+'_'+v).html(c);
           $(board_id+' .i_'+h+'_'+v).css("background-color",col[c]);
         });
     });
