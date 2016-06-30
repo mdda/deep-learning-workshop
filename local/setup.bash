@@ -44,8 +44,6 @@ else
   exit
 fi
 
-exit
-
 source ./config/params
 
 virtualenv --system-site-packages ./env
