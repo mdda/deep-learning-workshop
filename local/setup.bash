@@ -8,22 +8,32 @@
 # First, let's check we've got the right RPMs installed (assumes Fedora)
 rpms=`rpm -qa`
 rpms_extra=''
-for check in \
-  python python-virtualenv \
-  gcc gcc-c++ python-devel redhat-rpm-config \
-  scipy numpy python-scikit-learn python-pandas Cython blas-devel lapack-devel atlas-devel python-pillow \
-  graphviz
+
+rpms_required="python python2-virtualenv"
+rpms_required="${rpms_required} gcc gcc-c++ python-devel redhat-rpm-config"
+rpms_required="${rpms_required} scipy numpy Cython blas-devel lapack-devel atlas-devel"
+
+FC_VER=`uname -r`
+if [ "${FC_VER/.fc23.}" != "${FC_VER}" ]; then
+  echo "Fedora 23"
+  rpms_required="${rpms_required} python-scikit-learn python-pandas"
+else
+  echo "Fedora 24+"
+  rpms_required="${rpms_required} python2-scikit-learn python2-pandas"
+fi
+rpms_required="${rpms_required} python-pillow graphviz"
+
+
+for check in ${rpms_require}
 do 
   found=`echo $rpms | grep $check`
-  if [ -z "$found" ]
-  then
+  if [ -z "$found" ]; then
     #echo "Need to install $check (using 'dnf install $check') before running this setup"
     rpms_extra="$rpms_extra $check"
   fi
 done
 
-if [ -z "$rpms_extra" ]
-then
+if [ -z "$rpms_extra" ]; then
   echo "Required RPMs are installed"
 else
   echo "Additional RPMs are required before this setup can proceed."
@@ -33,6 +43,8 @@ else
   echo "###########################################################"
   exit
 fi
+
+exit
 
 source ./config/params
 
