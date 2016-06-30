@@ -24,7 +24,7 @@ fi
 rpms_required="${rpms_required} python-pillow graphviz"
 
 
-for check in ${rpms_require}
+for check in ${rpms_required}
 do 
   found=`echo $rpms | grep $check`
   if [ -z "$found" ]; then
