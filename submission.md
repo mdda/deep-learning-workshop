@@ -92,3 +92,25 @@ So I've updated the abstract to reflect what will actually be talked about, and 
 See you on Thursday!
 
 
+
+
+
+## DataScience SG 2016 (23 July 2016)
+
+### Title
+
+Deep Learning Hands-on Workshop (Hard Core)
+
+
+### Brief Description
+
+Deep Learning is a hot topic, but has a steep initial learning curve.  There will be code.  Lots of code.  To ease the pain, a pre-configured virtual machine will be handed out, so that participants can run it on their own laptops using cross-platform open-source VirtualBox.  Bring a laptop with VirtualBox installed!
+
+
+### Detailed Abstract
+
+The workshop will start from the very basics (with a little mathematics), and quickly progress to getting hands-on with open source software including the training of a deep network on simple problems.
+
+This will be followed by a more in-depth portion : Using a pre-built Virtual Machine, run within VirtualBox, participants will experiment with a much larger pre-trained models, and get an understanding of two application areas relevant to datascientists (expected to be : image classification and anamoly detection). 
+
+While parts of this are very technical, the models (inside the Virtual Machine) are all in Jupyter (fka iPython) notebooks, making interaction straightforward.  However, participants should install VirtualBox on their laptops beforehand, or expect to be mocked...
