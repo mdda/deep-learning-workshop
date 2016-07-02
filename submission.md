@@ -94,18 +94,13 @@ See you on Thursday!
 
 ## talk.js
 
-I've created a trimmed-down example of the Javascript<->Python workbook here : 
+I've created a trimmed-down example of the Javascript<->Python workbook here : https://github.com/mdda/deep-learning-workshop/blob/master/notebooks/work-in-progress/py-js-py-js%20demo.ipynb
 
-https://github.com/mdda/deep-learning-workshop/blob/master/notebooks/work-in-progress/py-js-py-js%20demo.ipynb
+If you're interested in the content of the workshop itself, links to the presentation and code are here : http://blog.mdda.net/ai/2016/06/23/workshop-at-pycon-sg-2016
 
+There's also the possibility of me doing another (similar, but different) workshop for DataScience SG (http://www.meetup.com/DataScience-SG-Singapore/) sometime soon.  
 
-If you're interested in the content of the workshop itself, links to the presentation are here : 
-
-http://blog.mdda.net/ai/2016/06/23/workshop-at-pycon-sg-2016
-
-There's also the possibility of me doing another (similiar, but different) workshop for DataScience SG (http://www.meetup.com/DataScience-SG-Singapore/) sometime soon.  
-
-For those wanting to whet their appetites with Javacript deep learning (in the browser), have a look at http://cs.stanford.edu/people/karpathy/convnetjs/ and http://playground.tensorflow.org/
+For those wanting to whet their appetites with Javascript deep learning (in the browser), have a look at http://cs.stanford.edu/people/karpathy/convnetjs/ and http://playground.tensorflow.org/
 
 
 
@@ -113,7 +108,7 @@ For those wanting to whet their appetites with Javacript deep learning (in the b
 
 ### Title
 
-Deep Learning Hands-on Workshop (Hard Core)
+Deep Learning Workshop (July hardcore bonus meetup)
 
 
 ### Brief Description
