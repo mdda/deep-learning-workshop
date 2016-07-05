@@ -126,12 +126,68 @@ While parts of this are very technical, the models (inside the Virtual Machine) 
 
 
 
-## Fifth Elephant - Bangalore, India (27 July 2016 ?)
 
-### Title
 
-Deep Learning Workshop (3 (or 6) hours hands-on)
+## Fifth Elephant - Bangalore, India (27 July 2016)
 
+
+###    What is the maximum number of participants you normally accept for your workshop?
+
+The workshop includes a VirtualBox Appliance to be handed out (which is ~1.3Gb),
+and the practical solution is to pass around USB keys with (a) the appliance file; 
+and (b) a folder with some web pages (including javascript examples that don't need VirtualBox installed).
+The idea of a WiFi-download is probably a non-starter, because any normal venue's WiFi
+would be brought to its knees by the traffic...
+
+Since each key takes <5mins to copy, it's just a question of having enough starter USB 
+keys - and keeping up the 'pressure' to copy-and-pass-along.
+
+So far, I've had audiences of ~100 with no problem.  But apart from the logistics of the install, 
+there is little that requires limiting the audience size 
+(assuming that people are willing to help their neighbours, etc).
+
+
+###    Title of the workshop. 
+
+Deep Learning Workshop (Hands-on)
+
+
+###    Who should attend your workshop, i.e., the target audience?
+
+Developers.  And people that are keen to understand the underlying technology / thinking.
+
+This isn't a 'strategic' talk for 'big thinkers' : This is actual hard-core.
+
+
+###    Background criteria and knowledge participants should possess in order to attend your workshop. 
+
+Participants need a laptop with VirtualBox installed (this is cross-platform, and open source).
+At minimum, the laptop should have 2Gb of RAM and 8Gb of HD available.  No platform preference.
+
+
+###    Software / packages they must install before coming to your workshop. 
+
+VirtualBox (https://www.virtualbox.org/wiki/Downloads) is essential.  Chrome (or Firefox) would be good-to-have too.
+
+
+###    Links to background reading material that participants should read before coming to your workshop. 
+
+It's not essential to read anything in particular before coming.  
+
+The workshop materials are mainly in Python (in Jupyter/iPython notebooks), and the code works 'as-is'.
+
+
+###    What participants can expect to learn from your workshop?
+
+*  An understanding of several state-of-the-art Deep Learning techniques
+
+*  Hands-on experience of training deep neural network models on their own machines
+
+*  An appreciation of the speed of progress in the Deep Learning field
+
+
+
+## Other info :
 
 ### Brief Description
 
@@ -142,7 +198,16 @@ Deep Learning is a hot topic, but has a steep initial learning curve.  There wil
 
 The workshop will start from the very basics (with a little mathematics), and quickly progress to getting hands-on with open source software including the training of a deep network on simple problems.
 
-This will be followed by a more in-depth portion : Using a pre-built Virtual Machine, run within VirtualBox, participants will experiment with a much larger pre-trained models, and get an understanding of two application areas relevant to datascientists (expected to be : image classification and anamoly detection). 
+This will be followed by several deeper dives using a pre-built Virtual Machine, running within VirtualBox.  Participants will experiment with a much larger pre-trained models, and get an understanding of several application areas, among which are : 
+
+  *  Anomaly detection
+
+  *  Applying a pre-trained model to classify images into previously unseen classes
+
+  *  Art 'Style-Transfer'
+
+  *  Reinforcement Learning (inspired by AlphaGo)
+
 
 While parts of this are very technical, the models (inside the Virtual Machine) are all in Jupyter (fka iPython) notebooks, making interaction straightforward.  However, participants should install VirtualBox on their laptops beforehand, or expect to be mocked...
 
