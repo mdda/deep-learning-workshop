@@ -207,6 +207,10 @@ And this repo can itself be run in 'local mode', using scripts in ```./local/```
    *   https://github.com/mjhucla/TF-mRNN
        *  Accepts VGG or Inception3 image features
 
+*  Res-Net
+   *   Original (Microsoft Research, ImageNet end-2015) : https://github.com/KaimingHe/deep-residual-networks
+   *   https://github.com/Lasagne/Recipes/blob/master/papers/deep_residual_learning/Deep_Residual_Learning_CIFAR-10.py
+
 
 ### Notes
 
