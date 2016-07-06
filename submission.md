@@ -230,4 +230,7 @@ The Python libraries that are used are Theano and Lasagne (both on GitHub).
 To a large extent, though, understanding each individual line of code isn't important.  So I'm not sure whether there's any particular materials I can recommend.
 
 
+>> I'd also like to introduce you to my colleague Hari who coordinates workshops and does community outreach at HasGeek. 
+>> Hari will be in touch with you from now on regarding preparing for your workshop in terms of getting the workshop details up on https://fifthelephant.talkfunnel.com/2016/, publishing workshop details on the website, working with you on the schedule of the workshop (when to have tea and lunch breaks during the session), communicating requirements to participants and setup at the venue (if you have specific asks such as WiFi, white board and markers, etc.)
+
 
