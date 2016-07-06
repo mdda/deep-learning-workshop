@@ -131,25 +131,18 @@ While parts of this are very technical, the models (inside the Virtual Machine) 
 ## Fifth Elephant - Bangalore, India (27 July 2016)
 
 
-###    What is the maximum number of participants you normally accept for your workshop?
-
-The workshop includes a VirtualBox Appliance to be handed out (which is ~1.3Gb),
-and the practical solution is to pass around USB keys with (a) the appliance file; 
-and (b) a folder with some web pages (including javascript examples that don't need VirtualBox installed).
-The idea of a WiFi-download is probably a non-starter, because any normal venue's WiFi
-would be brought to its knees by the traffic...
-
-Since each key takes <5mins to copy, it's just a question of having enough starter USB 
-keys - and keeping up the 'pressure' to copy-and-pass-along.
-
-So far, I've had audiences of ~100 with no problem.  But apart from the logistics of the install, 
-there is little that requires limiting the audience size 
-(assuming that people are willing to help their neighbours, etc).
-
-
 ###    Title of the workshop. 
 
 Deep Learning Workshop (Hands-on)
+
+
+###    What is the maximum number of participants you normally accept for your workshop?
+
+The workshop includes a VirtualBox Appliance to be handed out (which is ~1.3Gb), and the practical solution is to pass around USB keys with (a) the appliance file; and (b) a folder with some web pages (including javascript examples that don't need VirtualBox installed).  The idea of a WiFi-download is probably a non-starter, because any normal venue's WiFi would be brought to its knees by the traffic...
+
+Since each key takes <5mins to copy, it's just a question of having enough starter USB keys - and keeping up the 'pressure' to copy-and-pass-along.
+
+So far, I've had audiences of ~100 with no problem.  But apart from the logistics of the install, there is little that requires limiting the audience size (assuming that people are willing to help their neighbours, etc).  One thing to consider : since the workshop will be long, it would make sense to have some way for people to work on their laptops comfortably (fold-out table on each chair, for instance).
 
 
 ###    Who should attend your workshop, i.e., the target audience?
@@ -210,6 +203,31 @@ This will be followed by several deeper dives using a pre-built Virtual Machine,
 
 
 While parts of this are very technical, the models (inside the Virtual Machine) are all in Jupyter (fka iPython) notebooks, making interaction straightforward.  However, participants should install VirtualBox on their laptops beforehand, or expect to be mocked...
+
+
+1 : Maximum Number
+
+As I outlined in my previous email, it's mainly dependent on USB drives being copied efficiently.  If you had a download site for people to get the 1.3Gb Appliance file from before the event (and a ZIP of the presentation+JS materials), we could even stream-line that.  It's not practical to have people downloading at the event though, since it will saturate your WiFi.
+
+100 people is no problem with manual copying.  For larger numbers, it would be good to have a couple of designated 'helpers' (for instance the two people who previously went to my PyCon talk) so that that problems/delays that the audience has can be dealt with by someone other than me.  We could figure it out nearer the event. 
+
+Another concern (as the audience grows) is that people will be generally more distant, and perhaps some of the 'energy' (aka hand-waving) regarding what I'm talking about would be missed.  It's probably best to ask the PyCon attendees what they think : I don't have any particular limit in mind.
+
+
+2.  Math and ML Requirements
+
+Here are a few things that are to be expected (though, since this is a data science conference...  I don't think people should have much of a problem) :
+
+*  some matrix mathematics (Google : "matrix and vector multiplication");
+*  the idea of using derivatives to minimise functions (Google : "differentiate to find minimum");
+*  images being composed of pixels - and what a Photoshop filter does (Google : "Photoshop custom filter maths"); and
+*  training data vs test data  (Google : "training set test set difference");
+
+Those who want to 'get ahead' could Google : "Neural network backpropagation", and beyond that come terms (all of which will be explained in the workshop) such as "imagenet competition", "convolutional neural network", "recurrent neural network", "deepmind alphago", "reinforcement learning" and "q-learning".
+
+The Python libraries that are used are Theano and Lasagne (both on GitHub).
+
+To a large extent, though, understanding each individual line of code isn't important.  So I'm not sure whether there's any particular materials I can recommend.
 
 
 
