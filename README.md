@@ -180,6 +180,9 @@ And this repo can itself be run in 'local mode', using scripts in ```./local/```
             *   Our name corpus is built on top of the following two major sources: 
                 1) the LDC bilingual person name list and 
                 2) the "Person nach Staat" (Person according to state) category of Wikipedia, which contains person names written in English texts from different countries.
+   *  How about learning to generate names?  e.g : Adversarial RNNs
+      *   https://archive.org/details/india-names-dataset
+      
    
 *  Music example?
    *  [Google's Magenta](http://magenta.tensorflow.org/welcome-to-magenta)
