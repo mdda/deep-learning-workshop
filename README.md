@@ -182,6 +182,7 @@ And this repo can itself be run in 'local mode', using scripts in ```./local/```
                 2) the "Person nach Staat" (Person according to state) category of Wikipedia, which contains person names written in English texts from different countries.
    *  How about learning to generate names?  e.g : Adversarial RNNs
       *   https://archive.org/details/india-names-dataset
+          *   ```grep '^1994' ap-names.txt | sort -k2,2nr | head -50```
       
    
 *  Music example?
