@@ -186,6 +186,8 @@ And this repo can itself be run in 'local mode', using scripts in ```./local/```
       *   More traditional corpus to vocabulary (with counts, pre-sorted) :
           *   ```andrewsm@holland:/mnt/data/home/andrewsm/OpenSource/Levy/1-billion-sgns/counts.words.vocab```
           *   ```rsync -avz andrewsm@holland:/mnt/data/home/andrewsm/OpenSource/billion-placeholder/data/2-glove/ALL_1-vocab.txt ./notebooks/data/RNN/```
+             *   ```wc ALL_1-vocab.txt  # 511438 1022864 6223250 ALL_1-vocab.txt```
+
 
       
    
