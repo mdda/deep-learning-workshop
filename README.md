@@ -183,6 +183,10 @@ And this repo can itself be run in 'local mode', using scripts in ```./local/```
    *  How about learning to generate names?  e.g : Adversarial RNNs
       *   https://archive.org/details/india-names-dataset
           *   ```grep '^1994' ap-names.txt | sort -k2,2nr | head -50```
+      *   More traditional corpus to vocabulary (with counts, pre-sorted) :
+          *   ```andrewsm@holland:/mnt/data/home/andrewsm/OpenSource/Levy/1-billion-sgns/counts.words.vocab```
+          *   ```rsync -avz andrewsm@holland:/mnt/data/home/andrewsm/OpenSource/billion-placeholder/data/2-glove/ALL_1-vocab.txt ./notebooks/data/RNN/```
+
       
    
 *  Music example?
