@@ -108,8 +108,10 @@ mv *.ttf reveal.js-2.6.2/tensorflow-playground/fonts/
 
 And finally, substitute the font 'pull' : 
 ```
-https://fonts.googleapis.com/css?family=Roboto:300,400,500|Material+Icons
-fonts/material-icons.css
+#  Change : https://fonts.googleapis.com/css?family=Roboto:300,400,500|Material+Icons
+#  to     : fonts/material-icons.css
+
+perl -pi.orig -e 's{https://fonts.googleapis.com/css\?family=Roboto:300,400,500\|Material\+Icons}{fonts/material-icons.css}' reveal.js-2.6.2/tensorflow-playground/index.html
 
 ```
 
