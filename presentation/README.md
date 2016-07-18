@@ -87,3 +87,34 @@ cp -R playground-master/dist reveal.js-2.6.2/tensorflow-playground
 rm -rf playground-master
 rm master.zip
 ```
+
+But also need to fix up some of the fonts, since we may need to run completely disconnected from WiFi :
+
+This is the font link that needs re-jigging:
+```
+wget 'https://fonts.googleapis.com/css?family=Roboto:300,400,500|Material+Icons'
+```
+
+```
+mkdir -p reveal.js-2.6.2/tensorflow-playground/fonts/
+
+wget https://fonts.gstatic.com/s/materialicons/v17/2fcrYFNaTjcS6g4U3t-Y5StnKWgpfO2iSkLzTz-AABg.ttf
+wget https://fonts.gstatic.com/s/roboto/v15/Hgo13k-tfSpn0qi1SFdUfaCWcynf_cDxXwCLxiixG1c.ttf
+wget https://fonts.gstatic.com/s/roboto/v15/zN7GBFwfMP4uA6AR0HCoLQ.ttf
+wget https://fonts.gstatic.com/s/roboto/v15/RxZJdnzeo3R5zSexge8UUaCWcynf_cDxXwCLxiixG1c.ttf
+
+mv *.ttf reveal.js-2.6.2/tensorflow-playground/fonts/
+```
+
+And finally, substitute the font 'pull' : 
+```
+https://fonts.googleapis.com/css?family=Roboto:300,400,500|Material+Icons
+fonts/material-icons.css
+
+```
+
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500|Material+Icons" rel="stylesheet" type="text/css">
+  <link href="fonts/material-icons.css" rel="stylesheet" type="text/css">
+
+
