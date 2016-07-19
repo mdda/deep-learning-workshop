@@ -21,3 +21,5 @@ install scipy,numpy,python-scikit-learn,python-pandas,Cython,blas-devel,lapack-d
 install graphviz,libyaml,hdf5-devel
 # graphviz needed for pydot(2)
 
+# Needed for linux dictionary (~189k words, used for RNN-Fun, for instance)
+install words
