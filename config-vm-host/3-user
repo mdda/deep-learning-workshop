@@ -12,6 +12,7 @@ upload config/firstboot.bash:/home/user/config/
 
 # Actually copy the params file verbatim from ./config/ - there is some host-specific stuff, but we'll just ignore that in the guest
 upload config/params:/home/user/config/
+upload config/vbox_name:/home/user/config/
 
 
 # This is the requirements.txt to be installed into the python virtualenv

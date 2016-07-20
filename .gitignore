@@ -4,6 +4,10 @@
 # Password file
 config-vm-host/root-password
 
+# VirtualBox VM build name (for date-stamp)
+##  echo "deep-learning-workshop_`date +%F_%H-%M`" > config/vbox_name
+config/vbox_name
+
 # cached versions of : the python env
 vm-guest/cache/env
 

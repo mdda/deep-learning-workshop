@@ -72,6 +72,8 @@ export LIBGUESTFS_MEMSIZE=4096
 # Ensure that the python env cache exists
 mkdir -p vm-guest/cache/env
 
+echo ${vbox_name} > ./config/vbox_name
+
 virt-builder \
   $guest_type \
   --output $image_file \
