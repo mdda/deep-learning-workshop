@@ -88,16 +88,9 @@ And this repo can itself be run in 'local mode', using scripts in ```./local/```
       +  including data sets and pre-trained models
    *  VirtualBox binaries for several likely platforms
    *  Write to thumb-drives for actual workshop
+      *  and/or upload to DropBox
 
 *  Workshop presentation materials
-   *  Fairly short, to give time to play with the VMs
-   *  Timings:
-      *  First hour : up to end of ConvNetJS, and explain TheanoBasics
-      *  Up to 1:30 : MNIST and ImageNet examples
-      *  15 mins for each of : 
-         *  'Commerce'
-         *  'Art'
-      *  30 mins for 'Reinforcement Learning'
 
 
 #### Still Work-in-Progress 
@@ -106,7 +99,7 @@ And this repo can itself be run in 'local mode', using scripts in ```./local/```
 
 *  Create additional 'applications' modules (see 'ideas.md')
 
-*  Create tensorboard demo
+*  Monitor TensorBoard - to see whether it reduces its memory footprint enough to switch from Theano...
    
    
 
