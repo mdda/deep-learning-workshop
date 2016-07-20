@@ -31,6 +31,9 @@ and finally use pretrained state-of-the-art networks, such as GoogLeNet, in vari
 
 **NB : Ensure Conference Workshop announcement / blurb includes VirtualBox warning label**
 
+*  Also : for the Art (and potentially other image-focussed) modules, having a few 'personal' images available might be entertaining *
+
+
 The VM itself includes : 
 
 * Jupyter (iPython's successor)
