@@ -24,6 +24,8 @@ notebooks/data/VGG/vgg19_normalized.pkl
 notebooks/data/RNN/claims.txt.gz
 notebooks/data/RNN/gru_2layer_trained_claims.pkl
 
+# This is a file that is downloaded dynamically from the latest repo by U-for-Upgrade
+notebooks/model/updates_current.py
 
 xgit/
 
