@@ -122,11 +122,37 @@ if [ ! -e "Shakespeare.poetry.txt.gz" ]; then
   rm -rf Shakespeare/
 fi
 
-if [ ! -e "gru_2layer_trained.pkl" ]; then
+if [ ! -e "gru_2layer_trained_claims.pkl" ]; then
   # 1.7Mb
   wget 'https://github.com/ebenolson/pydata2015/raw/master/4%20-%20Recurrent%20Networks/gru_2layer_trained.pkl'
   mv gru_2layer_trained.pkl gru_2layer_trained_claims.pkl
 fi
+
+
+if [ ! -e "india.names.1990-5.txt.gz" ]; then
+  mkdir -p india-names
+  cd india-names/
+    # 20Mb
+    if [ ! -e "ap-names.txt" ]; then
+      if [ ! -e "ap-names.txt.gz" ]; then
+        wget https://archive.org/download/india-names-dataset/ap-names.txt.gz
+      fi
+      gunzip ap-names.txt.gz
+    fi
+    grep '^199[01234]' ap-names.txt | sort -k2,2nr | head -250000 > ../india.names.1990-5.txt
+  cd ..
+
+  gzip india.names.1990-5.txt  # 700Kb of text
+
+  rm -rf india-names/
+fi
+
+if [ ! -e "ALL_1-vocab.txt.gz" ]; then
+ # Retrieve ALL_1-vocab.txt from somewhere (1-billion-corpus)...
+ gzip ALL_1-vocab.txt
+fi
+
+
 
 popd
 
