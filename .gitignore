@@ -11,8 +11,10 @@ config/vbox_name
 # cached versions of : the python env
 vm-guest/cache/env
 
+vm-images/
 vm-images/*.img
 vm-images/*.ova
+
 
 notebooks/data/MNIST/mnist.pkl.gz
 notebooks/data/imagenet_synset_words.txt
