@@ -76,10 +76,12 @@ table.table-fix {
     TensorFlow Playground : Actual learning process
 
   15 mins:
+    Booting the VM
     CNN intro
     CNN : Real model
 
   5 mins:
+    What's in the VM
     What's coming up
 
   Pre-break wrap-up
@@ -146,6 +148,36 @@ newbie - casual - core - hardcore.
   </li>
   <li>Since 2015 = 'serious' :: NLP + deep learning</li>
  </ul>
+</section>
+
+<section>
+  <section>
+   <h2>Deep Learning</h2>
+   <ul class="fix-spacing">
+    <li>Neural Networks</li>
+    <li>Multiple layers</li>
+    <li>Fed with lots of Data</li>
+   </ul>
+  </section>
+  <section>
+   <h2>History</h2>
+   <ul class="fix-spacing">
+    <li>1980+ : Lots of enthusiasm for NNs</li>
+    <li>1995+ : Disillusionment = A.I. Winter (v2+)</li>
+    <li>2005+ : Stepwise improvement : Depth</li>
+    <li>2010+ : GPU revolution : Data</li>
+   </ul>
+  </section>
+  <section>
+   <h2>Who is involved</h2>
+   <ul class="fix-spacing">
+    <li>Google - Hinton (Toronto)</li>
+    <li>Facebook - LeCun (NYC)</li>
+    <li>Baidu - Ng (Stanford)</li>
+    <li>... Apple (acquisitions), etc</li>
+    <li>Universities, eg: Montreal (Bengio)</li>
+   </ul>
+  </section>
 </section>
 
 <section>
@@ -221,38 +253,6 @@ newbie - casual - core - hardcore.
   </section>
 
 </section>
-
-<!--
-<section>
-  <section>
-   <h2>Deep Learning</h2>
-   <ul class="fix-spacing">
-    <li>Neural Networks</li>
-    <li>Multiple layers</li>
-    <li>Fed with lots of Data</li>
-   </ul>
-  </section>
-  <section>
-   <h2>History</h2>
-   <ul class="fix-spacing">
-    <li>1980+ : Lots of enthusiasm for NNs</li>
-    <li>1995+ : Disillusionment = A.I. Winter (v2+)</li>
-    <li>2005+ : Stepwise improvement : Depth</li>
-    <li>2010+ : GPU revolution : Data</li>
-   </ul>
-  </section>
-  <section>
-   <h2>Who is involved</h2>
-   <ul class="fix-spacing">
-    <li>Google - Hinton (Toronto)</li>
-    <li>Facebook - LeCun (NYC)</li>
-    <li>Baidu - Ng (Stanford)</li>
-    <li>... Apple (acquisitions), etc</li>
-    <li>Universities, eg: Montreal (Bengio)</li>
-   </ul>
-  </section>
-</section>
-!-->
 
 <section>
  <h2>"A.I. Effect"</h2>
@@ -449,96 +449,16 @@ ssh -p 8282 user@localhost
 
 <section>
   <section>
-   <h2>Frameworks</h2>
+   <h2>New Problems</h2>
    <ul class="fix-spacing">
-    <li>Want to express networks at a higher level</li>
-    <li>Map network operations onto cores</li>
-    <li>Most common frameworks : </li>
-    <li style="list-style-type:none">
-      <ul>
-        <li>Caffe - C++ ~ Berkeley</li>
-        <li>Torch - lua ~ Facebook/Twitter</li>
-        <li>Theano - Python ~ Montreal Lab</li>
-        <li>TensorFlow - C++ ~ Google</li>
-      </ul>
-    </li>
-   </ul>
-  </section>
-  
-  <section>
-   <h2>Theano</h2>
-   <ul class="fix-spacing">
-    <li>Optimised Numerical Computation in Python</li>
-    <li>Computation is <em>described</em> in Python code :</li>
-    <li style="list-style-type:none">
-      <ul>
-        <li>Theano operates on expression tree itself</li>
-        <li>Optimizes the tree for operations it knows</li>
-        <li>Makes use of <code>numpy</code> and <code>BLAS</code></li>
-        <li>Also writes <code>C/C++</code> or <code>CUDA</code> (or <code>OpenCL</code>)</li>
-      </ul>
-    </li>
-   </ul>
-  </section>
-  
-  <section>
-   <h2>0-TheanoBasics</h2>
-   <img width="594" height="395" src="img/TheanoBasics_594x395.png" alt="Theano Basics" style="border:none;box-shadow:none">
-   <p>Use the 'play' button to walk through the workbook</p>
-  </section>
-</section>
-
-
-<section>
-  <section>
-   <h2>"Hello World" &rarr; MNIST</h2>
-   <ul class="fix-spacing">
-    <li>Nice dataset from the late 1980s</li>
-    <li>Training set of 50,000 28x28 images</li>
-    <li>Now end-of-life as a useful benchmark</li>
+    <li>ImageNet Competition</li>
+    <li>over 15 million labeled high-resolution images...</li>
+    <li style="list-style-type:none"> ... in over 22,000 categories</li>
    </ul>
    <br />
-   <img width="255" height="204" src="img/mnist_100_digits_255x204.png" alt="MNIST digits" style="border:none;box-shadow:none">
+   <img width="850" height="314" src="img/ilsvrc1_850x314.png" alt="ImageNet Karpathy" style="border:none;box-shadow:none">
   </section>
 
-  <section>
-   <h2>Simple Network</h2>
-   <img width="829" height="425" src="img/netvis-mnist-100S_829x425.png" alt="Multi-Layer" style="border:none;box-shadow:none">
-   <p><i>... around 2-3% error rate on the test set</i></p>
-  </section>
-  
-<!--
-  <section>
-   <h2>Workshop : MNIST</h2>
-   <ul class="fix-spacing">
-    <li>Go to : <code>http://ConvNetJS.com/</code></li>
-    <li>Look for : "Classify MNIST"</li>
-    <li><i>... CNN approach (rather than MLP)</i></li>
-   </ul>
-   <img width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
-  </section>
-
-  <section>
-   <h2>"LeNet"</h2>
-   <ul class="fix-spacing">
-    <li></li>
-   </ul>
-   <img width="759" height="209" src="img/lenet5_759x209.png" alt="LeNet5 Convolutional Layers" style="border:none;box-shadow:none">
-   <p><i>... around 0.8% error rate on the test set</i></p>
-  </section>
-</section>
-
-<section>
-!-->
-
-  <section>
-   <h2>1-MNIST-MLP</h2>
-   <img width="591" height="352" src="img/MNIST-MLP_591x352.png" alt="MNIST MLP" style="border:none;box-shadow:none">
-   <p>We using <code>lasagne</code> as an additional layer <i>on top of</i> <code>Theano</code></p>
-  </section>
-</section>
-
-<section>
   <section>
    <h2>Convolution Neural Networks</h2>
    <ul class="fix-spacing">
@@ -559,51 +479,9 @@ ssh -p 8282 user@localhost
    <img width="464" height="358" src="img/CNN-diagram_464x358.png" alt="CNN Diagram" style="border:none;box-shadow:none">
   </section>
 
-  <section>
-   <h2>2-MNIST-CNN</h2>
-   <img width="594" height="326" src="img/MNIST-CNN_594x326.png" alt="CNN MNIST" style="border:none;box-shadow:none">
-   <p>Three filter layers - nice visual interpretation</p>
-  </section>
-
-
-<!--
-  <section>
-   <h2>Theano : detail</h2>
-   <img width="690" height="390" src="img/zoom-1_690x390.png" alt="Theano diagram x1" style="border:none;box-shadow:none">
-  </section>
-  
-  <section>
-   <h2>... zoom out</h2>
-   <img width="600" height="348" src="img/zoom-2_600x348.png" alt="Theano diagram x2" style="border:none;box-shadow:none">
-  </section>
-  
-  <section>
-   <h2>... zoom out</h2>
-   <img width="600" height="313" src="img/zoom-3_600x313.png" alt="Theano diagram x3" style="border:none;box-shadow:none">
-  </section>
-  
-  <section>
-   <h2>Theano : "Simple RNN"</h2>
-   <img width="241" height="500" src="img/zoom-4_241x500.png" alt="Theano diagram x4" style="border:none;box-shadow:none">
-  </section>
-!-->
-
 </section>
 
-
-
 <section>
-  <section>
-   <h2>New Problems</h2>
-   <ul class="fix-spacing">
-    <li>ImageNet Competition</li>
-    <li>over 15 million labeled high-resolution images...</li>
-    <li style="list-style-type:none"> ... in over 22,000 categories</li>
-   </ul>
-   <br />
-   <img width="850" height="314" src="img/ilsvrc1_850x314.png" alt="ImageNet Karpathy" style="border:none;box-shadow:none">
-  </section>
-
   <section>
    <h2>More Complex Networks</h2>
    <img width="614" height="286" src="img/googlenet-arch_1228x573.jpg" alt="Google ImageNet" style="border:none;box-shadow:none">
@@ -615,7 +493,22 @@ ssh -p 8282 user@localhost
    <img width="595" height="381" src="img/ImageNet-GoogLeNet_595x381.png" alt="Google ImageNet" style="border:none;box-shadow:none">
    <p>Play with a ~2014 pre-trained network</p>
   </section>
+
+  <section>
+   <h2>Need for Speed</h2>
+   <img width="759" height="408" src="img/CPU-GPU_759x408.png" alt="CPU vs GPU" style="border:none;box-shadow:none">
+   <p><i>... need for GPU programmers</i></p>
+  </section>
 </section>
+
+
+
+
+<section>
+
+</section>
+
+
 
 <section>
   <section>
@@ -628,30 +521,6 @@ ssh -p 8282 user@localhost
    <h2>4-ImageNet-inception-v3</h2>
    <img width="590" height="320" src="img/ImageNet-Inception3_590x320.png" alt="Google Inception v3" style="border:none;box-shadow:none">
    <p>Play with a ~2015 pre-trained network</p>
-  </section>
-  
-  <section>
-   <h2>Need for Speed</h2>
-   <img width="759" height="408" src="img/CPU-GPU_759x408.png" alt="CPU vs GPU" style="border:none;box-shadow:none">
-   <p><i>... need for GPU programmers</i></p>
-  </section>
-</section>
-
-<section>
-  <section>
-   <h2>Using Pre-Built Networks</h2>
-   <ul class="fix-spacing">
-    <li>Features learned for ImageNet are 'useful'</li>
-    <li>Apply same network to 'featurized' new images</li>
-    <li>Learn mapping from features to new classes</li>
-    <li>Only have to train a single layer!</li>
-   </ul>
-  </section>
-
-  <section>
-   <h2>5-Commerce</h2>
-   <img width="590" height="369" src="img/Commerce-Cars_590x369.png" alt="'Commerce' Cars" style="border:none;box-shadow:none">
-   <p>Re-purpose a pretrained network</p>
   </section>
 </section>
 
@@ -698,6 +567,7 @@ ssh -p 8282 user@localhost
    <p>A Long Short-Term Memory (LSTM) Unit</p>
   </section>
 
+<!--
   <section>
    <h2>8-Natural-Language</h2>
    <img width="593" height="340" src="img/RNN-Characterwise_593x340.png" alt="RNN Characterwise" style="border:none;box-shadow:none">
@@ -773,6 +643,7 @@ AENEMUUNS	Met that will knop unhian, where ever have
 	[Exit PATIIUS, MARGARUS arr	[Enter CLOTHUR]
    </code></pre>
   </section>
+!-->
 
   <section>
    <h2>Fancier Tricks</h2>
@@ -780,9 +651,12 @@ AENEMUUNS	Met that will knop unhian, where ever have
    <p>Differentiable &rarr; Training : Even crazy stuff works!</p>
   </section>
 
+<!--
 </section>
 
 <section>
+!-->
+
   <section>
    <h2>Image Labelling</h2>
    <h4>We have the components now</h4>
@@ -795,7 +669,6 @@ AENEMUUNS	Met that will knop unhian, where ever have
   </section>
   
 </section>
-
 
 
 <section>
@@ -886,6 +759,29 @@ AENEMUUNS	Met that will knop unhian, where ever have
 
 </section>
 
+<section>
+  <section>
+   <h2>Coming up in Part 2</h2>
+   <h4>Hands on ...</h4>
+   <ul class="fix-spacing">
+    <li>Building networks using a Framework</li>
+    <li>Doing one (or two) more advanced examples</li>
+   </ul>
+  </section>
+  
+  <section>
+   <h2>8-Anomaly-Detection</h2>
+   <ximg width="590" height="369" src="img/Commerce-Cars_590x369.png" alt="'Commerce' Cars" style="border:none;box-shadow:none">
+   <p>MNIST again...</p>
+  </section>
+
+  <section>
+   <h2>5-Commerce</h2>
+   <img width="590" height="369" src="img/Commerce-Cars_590x369.png" alt="'Commerce' Cars" style="border:none;box-shadow:none">
+   <p>Re-purpose a pretrained network</p>
+  </section>
+  
+</section>
 
 
 
@@ -898,6 +794,190 @@ AENEMUUNS	Met that will knop unhian, where ever have
  </ul>
  <img width="517" height="223" src="img/GitHub-mdda_517x223.png" alt="GitHub - mdda" style="border:none;box-shadow:none">
  <p><small>* Please add a star... *</small></p>
+</section>
+
+<section>
+ <h1>- QUESTIONS -</h1>
+ <br>
+ <h3>Martin.Andrews @<br> RedCatLabs.com</h3>
+ <br>
+ <p>My blog : <a href="https://mdda.net/">http://mdda.net/</a></p>
+ <p>GitHub : <a href="https://github.com/mdda">mdda</a></p>
+</section>
+
+
+
+
+
+
+
+
+<section>
+  <section>
+   <h2>Frameworks</h2>
+   <ul class="fix-spacing">
+    <li>Want to express networks at a higher level</li>
+    <li>Map network operations onto cores</li>
+    <li>Most common frameworks : </li>
+    <li style="list-style-type:none">
+      <ul>
+        <li>Caffe - C++ ~ Berkeley</li>
+        <li>Torch - lua ~ Facebook/Twitter</li>
+        <li>Theano - Python ~ Montreal Lab</li>
+        <li>TensorFlow - C++ ~ Google</li>
+      </ul>
+    </li>
+   </ul>
+  </section>
+  
+  <section>
+   <h2>Theano</h2>
+   <ul class="fix-spacing">
+    <li>Optimised Numerical Computation in Python</li>
+    <li>Computation is <em>described</em> in Python code :</li>
+    <li style="list-style-type:none">
+      <ul>
+        <li>Theano operates on expression tree itself</li>
+        <li>Optimizes the tree for operations it knows</li>
+        <li>Makes use of <code>numpy</code> and <code>BLAS</code></li>
+        <li>Also writes <code>C/C++</code> or <code>CUDA</code> (or <code>OpenCL</code>)</li>
+      </ul>
+    </li>
+   </ul>
+  </section>
+  
+
+<!--
+  <section>
+   <h2>Theano : detail</h2>
+   <img width="690" height="390" src="img/zoom-1_690x390.png" alt="Theano diagram x1" style="border:none;box-shadow:none">
+  </section>
+  
+  <section>
+   <h2>... zoom out</h2>
+   <img width="600" height="348" src="img/zoom-2_600x348.png" alt="Theano diagram x2" style="border:none;box-shadow:none">
+  </section>
+  
+  <section>
+   <h2>... zoom out</h2>
+   <img width="600" height="313" src="img/zoom-3_600x313.png" alt="Theano diagram x3" style="border:none;box-shadow:none">
+  </section>
+  
+  <section>
+   <h2>Theano : "Simple RNN"</h2>
+   <img width="241" height="500" src="img/zoom-4_241x500.png" alt="Theano diagram x4" style="border:none;box-shadow:none">
+  </section>
+!-->
+
+  <section>
+   <h2>0-TheanoBasics</h2>
+   <img width="594" height="395" src="img/TheanoBasics_594x395.png" alt="Theano Basics" style="border:none;box-shadow:none">
+   <p>Use the 'play' button to walk through the workbook</p>
+  </section>
+</section>
+
+
+<section>
+  <section>
+   <h2>"Hello World" &rarr; MNIST</h2>
+   <ul class="fix-spacing">
+    <li>Nice dataset from the late 1980s</li>
+    <li>Training set of 50,000 28x28 images</li>
+    <li>Now end-of-life as a useful benchmark</li>
+   </ul>
+   <br />
+   <img width="255" height="204" src="img/mnist_100_digits_255x204.png" alt="MNIST digits" style="border:none;box-shadow:none">
+  </section>
+
+  <section>
+   <h2>Simple Network</h2>
+   <img width="829" height="425" src="img/netvis-mnist-100S_829x425.png" alt="Multi-Layer" style="border:none;box-shadow:none">
+   <p><i>... around 2-3% error rate on the test set</i></p>
+  </section>
+  
+<!--
+  <section>
+   <h2>Workshop : MNIST</h2>
+   <ul class="fix-spacing">
+    <li>Go to : <code>http://ConvNetJS.com/</code></li>
+    <li>Look for : "Classify MNIST"</li>
+    <li><i>... CNN approach (rather than MLP)</i></li>
+   </ul>
+   <img width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
+  </section>
+
+  <section>
+   <h2>"LeNet"</h2>
+   <ul class="fix-spacing">
+    <li></li>
+   </ul>
+   <img width="759" height="209" src="img/lenet5_759x209.png" alt="LeNet5 Convolutional Layers" style="border:none;box-shadow:none">
+   <p><i>... around 0.8% error rate on the test set</i></p>
+  </section>
+</section>
+
+<section>
+!-->
+
+  <section>
+   <h2>1-MNIST-MLP</h2>
+   <img width="591" height="352" src="img/MNIST-MLP_591x352.png" alt="MNIST MLP" style="border:none;box-shadow:none">
+   <p>We using <code>lasagne</code> as an additional layer <i>on top of</i> <code>Theano</code></p>
+  </section>
+
+  <section>
+   <h2>2-MNIST-CNN</h2>
+   <img width="594" height="326" src="img/MNIST-CNN_594x326.png" alt="CNN MNIST" style="border:none;box-shadow:none">
+   <p>Three filter layers - nice visual interpretation</p>
+  </section>
+
+</section>
+
+
+<section>
+  <section>
+   <h2>Anomaly Detection</h2>
+   <h4>How do we detect outliers?</h4>
+   <ul class="fix-spacing">
+    <li>Learning what 'good' data looks like</li>
+    <li>See whether new data looks the same</li>
+    <li>... if it doesn't : complain</li>
+   </ul>
+  </section>
+
+  <section>
+   <h2>Autoencoders</h2>
+   <ul class="fix-spacing">
+    <li>Since we only have one 'label'</li>
+    <li>... train a network to reproduce its input</li>
+    <li>Learning compressed representation</li>
+    <li>... is a biproduct</li>
+   </ul>
+  </section>
+
+  <section>
+   <h2>8-Anomaly-Detection</h2>
+   <img width="590" height="369" src="img/Commerce-Cars_590x369.png" alt="'Commerce' Cars" style="border:none;box-shadow:none">
+   <p>Re-purpose a pretrained network</p>
+  </section>
+</section>
+
+<section>
+  <section>
+   <h2>Using Pre-Built Networks</h2>
+   <ul class="fix-spacing">
+    <li>Features learned for ImageNet are 'useful'</li>
+    <li>Apply same network to 'featurized' new images</li>
+    <li>Learn mapping from features to new classes</li>
+    <li>Only have to train a single layer!</li>
+   </ul>
+  </section>
+
+  <section>
+   <h2>5-Commerce</h2>
+   <img width="590" height="369" src="img/Commerce-Cars_590x369.png" alt="'Commerce' Cars" style="border:none;box-shadow:none">
+   <p>Re-purpose a pretrained network</p>
+  </section>
 </section>
 
 
