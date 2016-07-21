@@ -125,6 +125,29 @@ This will be followed by a more in-depth portion : Using a pre-built Virtual Mac
 While parts of this are very technical, the models (inside the Virtual Machine) are all in Jupyter (fka iPython) notebooks, making interaction straightforward.  However, participants should install VirtualBox on their laptops beforehand, or expect to be mocked...
 
 
+##### Pre-Event setup notes (into MeetUp comment section)
+
+http://www.meetup.com/DataScience-SG-Singapore/events/232577187/
+
+---
+
+(Posting as a top-level message to avoid getting covered up)
+
+The workshop involves a VirtualBox Appliance (to be used on your laptop).  One of the benefits of using a VirtualBox Appliance is that it doesn't need configuration once it boots up in VirtualBox, and the appliance is self-contained, so shouldn't experience any software compatibility issues during the workshop.
+
+While there will be USB sticks containing the VM passed around at the event, you can save yourself some time (and anxiety) by downloading it beforehand.
+
+--- 
+
+DropBox direct download link : https://dl.dropboxusercontent.com/u/21610393/deep-learning-workshop_2016-07-21_18-06.ova
+
+Download via torrent (via dropbox) : https://dl.dropboxusercontent.com/u/21610393/deep-learning-workshop_2016-07-21_18-06.ova.torrent
+
+Since the torrent file only contains Open Source materials, there is no harm in staying connected and helping others to download too.
+
+Jupyter should start automatically when you boot the VM (after doing a VirtualBox Install Appliance...), and should be accessible at http://localhost:8080/ 
+
+
 
 
 
