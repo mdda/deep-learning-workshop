@@ -8,6 +8,13 @@ fi
 
 echo "Target: '${target}/'"
 
+## As user :
+# id -a
+## As root :
+# mkdir /media/usbdrive
+# mount -o uid=1000,gid=1000 /dev/sdb1 /media/usbdrive/
+# umount /media/usbdrive/
+
 most_recent_ova=`ls ./vm-images/*.ova | tail -1`
 if [ -z "$most_recent_ova" ]; then
   echo "Need to have created a .ova file first"
