@@ -89,6 +89,12 @@
           *   ```rsync -avz andrewsm@holland:/mnt/data/home/andrewsm/OpenSource/billion-placeholder/data/2-glove/ALL_1-vocab.txt ./notebooks/data/RNN/```
              *   ```wc ALL_1-vocab.txt  # 511438 1022864 6223250 ALL_1-vocab.txt```
           *   ```/usr/share/dict/linux.words``` for an alphabetical dictionary
+
+   *  Or dual RNNs for NER (which I know 'cold')
+      *    219554  818268 3281528 /home/andrewsm/SEER/external/CoNLL2003/ner/eng.train  == pretty small CoNLL training set
+      *    https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/models/word2vec_sample.zip  50Mb
+      *    http://www.nltk.org/api/nltk.corpus.reader.html#module-nltk.corpus.reader.conll
+
    
 *  Music example?
    *  [Google's Magenta](http://magenta.tensorflow.org/welcome-to-magenta)
@@ -104,12 +110,10 @@
       *  [Helpful hints](http://torch.ch/blog/2015/11/13/gan.html) on Torch version 
       *  [MNIST using GAN and Adversarial Autoencoder](https://github.com/igul222/mnist_generative) in Theano + Lasagne
    
-   
 *  Anomaly detection
    *  Very promising auto-encoder approach : [code for MNIST](https://github.com/h2oai/h2o-training-book/blob/master/hands-on_training/anomaly_detection.md)
    *  [video](http://www.mathtube.org/lecture/video/deep-learning-image-anomaly-detection)
    *  [Light on details : Slides 6+](http://www.slideshare.net/agibsonccc/anomaly-detection-in-deep-learning-62473913)
-   
 
 
 *  Image Captioning...
