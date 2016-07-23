@@ -1,0 +1,1028 @@
+<!doctype html>
+<html lang="en">
+
+ <head>
+  <meta charset="utf-8">
+
+  <title>FifthElephant 2016 - Deep Learning Workshop</title>
+
+  <meta name="description" content="FifthElephant 2016 - Deep Learning Workshop">
+  <meta name="author" content="Martin Andrews">
+
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <link rel="stylesheet" href="css/reveal.min.css">
+  <link rel="stylesheet" xhref="css/theme/default.css" href="css/theme/sky.css" id="theme">
+
+  <!-- For syntax highlighting -->
+  <link rel="stylesheet" href="lib/css/zenburn.css">
+
+  <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+  <script>
+   if( window.location.search.match( /print-pdf/gi ) ) {
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = 'css/print/pdf.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+   }
+  </script>
+
+  <!--[if lt IE 9]>
+  <script src="lib/js/html5shiv.js"></script>
+  <![endif]-->
+ </head>
+
+ <body>
+  <div class="reveal">
+   <!-- Any section element inside of this container is displayed as a slide -->
+   <div class="slides">
+    
+<style>
+table.table-fix {
+ margin-left:auto;  margin-right:auto; border-collapse:collapse; cell-padding:5px;
+ margin-top:20px;
+}
+.table-fix td,.table-fix th {
+ padding: 6px;
+}
+.table-fix th {
+ border-bottom:1pt solid black;
+}
+.fix-spacing li {
+ margin-bottom:16pt;
+}
+</style>
+
+<!--
+08:45AM - 09:30AM  Check-in and Breakfast = 45mins
+
+09:30AM - 11:00AM  = 1.5hr
+
+11:00AM - 11:15PM  COFFEE = 15mins
+
+11:15AM - 12:45PM  = 1.5hr
+
+12:45PM - 01:45PM  LUNCH = 1hr
+
+01:45PM - 03:30PM  = 1.75hr
+
+03:30PM - 03:45PM  TEA = 15mins
+
+03:45PM - 05:00PM  = 1.25hr
+
+!-->
+
+<section>
+ <h1>Deep Learning Workshop</h1>
+ <h3>FifthElephant 2016</h3>
+ <p>
+  <small><a href="http://mdda.net">Martin Andrews</a> @ <a href="http://redcatlabs.com/">redcatlabs.com</a></small>
+ </p>
+ <p>
+  <small>30 July 2016</small>
+ </p>
+</section>
+
+<section>
+ <h2>About Me</h2>
+ <ul class="fix-spacing">
+  <li>Machine Intelligence / Startups / Finance</li>
+  <li style="list-style-type:none">
+    <ul>
+      <li>Moved to Singapore in Sep-2013</li>
+    </ul>
+  </li>
+  <li>2014 = 'fun' :</li>
+  <li style="list-style-type:none">
+    <ul>
+      <li>Machine Learning, Deep Learning, NLP</li>
+      <li>Robots, drones</li>
+      <li>"MeetUp Pro"</li>
+    </ul>
+  </li>
+  <li>Since 2015 = 'serious' :: NLP + deep learning</li>
+ </ul>
+</section>
+
+<section>
+  <section>
+   <h2>Deep Learning</h2>
+   <ul class="fix-spacing">
+    <li>Neural Networks</li>
+    <li>Multiple layers</li>
+    <li>Fed with lots of Data</li>
+   </ul>
+  </section>
+  <section>
+   <h2>History</h2>
+   <ul class="fix-spacing">
+    <li>1980+ : Lots of enthusiasm for NNs</li>
+    <li>1995+ : Disillusionment = A.I. Winter (v2+)</li>
+    <li>2005+ : Stepwise improvement : Depth</li>
+    <li>2010+ : GPU revolution : Data</li>
+   </ul>
+  </section>
+  <section>
+   <h2>Who is involved</h2>
+   <ul class="fix-spacing">
+    <li>Google - Hinton (Toronto)</li>
+    <li>Facebook - LeCun (NYC)</li>
+    <li>Baidu - Ng (Stanford)</li>
+    <li>... Apple (acquisitions), etc</li>
+    <li>Universities, eg: Montreal (Bengio)</li>
+   </ul>
+  </section>
+</section>
+
+<section>
+  <section>
+   <h2>Deep Learning Now</h2>
+   <h4>in production in 2016</h4>
+   <ul class="fix-spacing">
+    <li>Speech recognition</li>
+    <li>Language translation </li>
+    <li>Vision : </li>
+    <li style="list-style-type:none">
+      <ul>
+        <li>Object recognition</li>
+        <li>Automatic captioning</li>
+      </ul>
+    </li>
+    <li>Reinforcement Learning</li>
+   </ul>
+  </section>
+
+  <section>
+   <h2>Speech Recognition</h2>
+   <p>Android feature since <a href="http://www.phonearena.com/news/The-secret-of-Googles-amazing-voice-recognition-revealed-it-works-like-a-brain_id39938" target="_blank">Jellybean (v4.3, 2012)</a> using Cloud</p>
+   <p>Trained in ~5 days on 800 machine cluster</p>
+   <img width="444" height="360" src="img/speech_444x360.png" alt="Speech Recognition" xstyle="border:none;box-shadow:none">
+   <p>Embedded in phone since Android <a href="http://googleresearch.blogspot.sg/2015/08/the-neural-networks-behind-google-voice.html" target="_blank">Lollipop (v5.0, 2014)</a></p>
+  </section>
+
+  <section>
+   <h2>Translation</h2>
+   <p>Google's <a href="http://googleresearch.blogspot.sg/2015/07/how-google-translate-squeezes-deep.html" target="_blank">Deep Models</a> are on the phone</p>
+   <img width="640" height="160" src="img/google-translate_640x160.png" alt="Google Translate" xstyle="border:none;box-shadow:none">
+   <p><i>"Use your camera to translate text instantly in 26 languages"</i></p>
+   <p><i>Translations for typed text in 90 languages</i></p>
+  </section>
+
+  <section>
+   <h2>House Numbers</h2>
+   <p>Google Street-View (and ReCaptchas)</p>
+   <img width="598" height="400" src="img/house-numbers_598x400.png" alt="House Numbers" xstyle="border:none;box-shadow:none">
+   <p><i>
+     <a href="http://arxiv.org/abs/1312.6082" target="_blank">Better</a> 
+     than 
+     <a href="http://www.geek.com/news/googles-neutral-networks-are-now-better-than-humans-at-reading-addresses-1581653/" target="_blank">human</a>
+  </i></p>
+  </section>
+
+  <section>
+   <h2>ImageNet Results</h2>
+   <img width="574" height="469" src="img/ImageNet-Results_574x469.png" alt="ImageNet Results" style="border:none;box-shadow:none">
+   <p><i>(now human competitive on ImageNet)</i></p>
+  </section>
+
+  <section>
+   <h2>Captioning Images</h2>
+   <img width="667" height="419" src="img/image-labelling-results_667x419.png" alt="Labelling Results" style="border:none;box-shadow:none">
+   <p><i>Some good, some not-so-good</i></p>
+  </section>
+  
+  <section>
+   <h2>Reinforcement Learning</h2>
+   <p>Google's DeepMind purchase</p>
+   <p>Learn to play games from the pixels alone</p>
+   <img width="562" height="466" src="img/deep-mind_562x466.jpg" alt="DeepMind Atari" style="border:none;box-shadow:none">
+   <p><i>Better than humans 2 hours after switching on</i></p>
+  </section>
+
+  <section>
+   <h2>Reinforcement Learning</h2>
+   <p>Google DeepMind's AlphaGo</p>
+   <p>Learn to play Go from (mostly) self-play</p>
+   <img width="902" height="337" src="img/AlphaGo-match5_902x337.png" alt="DeepMind AlphaGo Match 5" style="border:none;box-shadow:none">
+  </section>
+
+</section>
+
+<section>
+ <h2>"A.I. Effect"</h2>
+ <ul class="fix-spacing">
+  <li><a href="https://en.wikipedia.org/wiki/AI_effect" target="_blank">A.I. is whatever hasn't been done yet</a></li>
+ </ul>
+</section>
+
+
+<section>
+  <section>
+   <h2>Basic Foundation</h2>
+   <ul class="fix-spacing">
+    <li>Same as original Neural Networks in 1980s/1990s</li>
+    <li>Simple mathematical units ...</li>
+    <li style="list-style-type:none"> ... combine to compute a complex function</li>
+   </ul>
+  </section>
+
+  <section>
+   <h2>Single "Neuron"</h2>
+   <img width="602" height="381" src="img/one-neuron_602x381.png" alt="One Neuron" style="border:none;box-shadow:none">
+   <p>Change weights to change output function</p>
+  </section>
+
+  <section>
+   <h2>Multi-Layer</h2>
+   <p>Layers of neurons combine and <br/>can form more complex functions</p>
+   <img width="356" height="324" src="img/multi-layer_356x324.png" alt="Multi-Layer" style="border:none;box-shadow:none">
+  </section>
+
+  <section>
+   <h2>Supervised Learning</h2>
+   <ul class="fix-spacing">
+    <li><strong>while</strong> not done :</li>
+    <li style="list-style-type:none">
+      <ul>
+        <li>Pick a training case (<code>x</code> &rarr; <code>target_y</code>)</li>
+        <li>Evaluate <code>output_y</code> from the <code>x</code></li>
+        <li>Modify the weights so that <code>output_y</code> is closer to <code>target_y</code> for that <code>x</code></li>
+      </ul>
+    </li>
+   </ul>
+  </section>
+
+  <section>
+   <h2>Gradient Descent</h2>
+   <p>Follow the gradient of the error <br />vs the connection weights</p>
+   <img width="364" height="306" src="img/gradient-descent_364x306.png" alt="Gradient-Descent" style="border:none;box-shadow:none">
+  </section>
+</section>
+
+<section>
+  <section>
+   <h2>Training a Neural Network</h2>
+   <ul>
+    <li>Time to play with : </li>
+    <li style="list-style-type:none">
+     <ul>
+      <li>Layers of different widths</li>
+      <li>Layers of different depths</li>
+     </ul>
+    </li>
+    <li>"Stochastic Gradient Descent" (SGD)</li>
+   </ul>
+  </section>
+  
+  <section>
+   <h2>Workshop : SGD (local=BEST)</h2>
+   <ul>
+    <li style="list-style-type:none">
+     <ul>
+      <li>Go to the Javascript Painting Example</li>
+     </ul>
+    </li>
+   </ul>
+   <ximg width="507" height="387" src="img/ConvNetJS-Painting-local_507x387.png" alt="ConvNetJS Image Painting" style="border:none;box-shadow:none">
+   <img width="507" height="387" src="img/ConvNetJS-Painting-local-outlined_507x387.png" alt="ConvNetJS Image Painting" style="border:none;box-shadow:none">
+  </section>
+  
+  <section>
+   <h2>Workshop : SGD (online)</h2>
+   <ul>
+    <li style="list-style-type:none">
+     <ul>
+      <li>Go to : <code>http://ConvNetJS.com/</code></li>
+      <li>Look for : "Image 'painting'"</li>
+     </ul>
+    </li>
+   </ul>
+   <img width="844" height="418" src="img/ConvNetJS-Painting_844x418.png" alt="ConvNetJS Image Painting" style="border:none;box-shadow:none">
+  </section>
+  
+  <section>
+   <h2>Simple Network</h2>
+   <img width="574" height="435" src="img/ConvNetJS-Painting-5_574x435.png" alt="ConvNetJS Painting : 4" style="border:none;box-shadow:none">
+  </section>
+  <section>
+   <h2>Wider Network</h2>
+   <img width="573" height="443" src="img/ConvNetJS-Painting-20_573x443.png" alt="ConvNetJS Painting : 20" style="border:none;box-shadow:none">
+  </section>
+  <section>
+   <h2>Two-Ply Network</h2>
+   <img width="571" height="427" src="img/ConvNetJS-Painting-10-10_571x427.png" alt="ConvNetJS Painting : 10+10" style="border:none;box-shadow:none">
+  </section>
+  <section>
+   <h2>Deep Network and Time</h2>
+   <img width="575" height="435" src="img/ConvNetJS-Painting-7x20_575x435.png" alt="ConvNetJS Painting : 10x7" style="border:none;box-shadow:none">
+  </section>
+</section>
+
+
+<section>
+  <section>
+   <h2>What's Going On Inside?</h2>
+   <ul>
+    <li>Time to look at : </li>
+    <li style="list-style-type:none">
+     <ul>
+      <li>Input features</li>
+      <li>What each neuron is learning</li>
+      <li>How the training converges</li>
+     </ul>
+    </li>
+   </ul>
+  </section>
+  
+  <section>
+   <h2>Workshop : Internals</h2>
+   <ul>
+    <li style="list-style-type:none">
+     <ul>
+      <li>Go to the Javascript Example : TensorFlow</li>
+     </ul>
+    </li>
+   </ul>
+   <img width="507" height="387" src="img/Tensorflow-PlayGound-local_507x387.png" alt="TensorFlow Playground" style="border:none;box-shadow:none">
+   <p><small>(or search online for TensorFlow Playground)</small></p>
+  </section>
+  
+  <section>
+   <h2>TensorFlow Playground</h2>
+   <img width="778" height="443" src="img/Tensorflow-PlayGound-layout_778x443.png" alt="TensorFlow Layout" style="border:none;box-shadow:none">
+  </section>
+
+  <section>
+   <h2>Things to Do</h2>
+   <ul>
+    <li>Investigate : </li>
+    <li style="list-style-type:none">
+     <ul>
+      <li>Minimal set of features</li>
+      <li>Minimal # of layers</li>
+      <li>Minimal widths</li>
+      <li>Effect of going less-minimal...</li>
+     </ul>
+    </li>
+   </ul>
+  </section>
+</section>
+
+
+<section>
+  <section>
+   <h2>Image Classification</h2>
+   <ul class="fix-spacing">
+    <li>ImageNet Competition</li>
+    <li>over 15 million labeled high-resolution images...</li>
+    <li style="list-style-type:none"> ... in over 22,000 categories</li>
+   </ul>
+   <br />
+   <img width="850" height="314" src="img/ilsvrc1_850x314.png" alt="ImageNet Karpathy" style="border:none;box-shadow:none">
+  </section>
+
+  <section>
+   <h2>Convolution Neural Networks</h2>
+   <ul class="fix-spacing">
+    <li>Pixels in an images are 'organised' : </li>
+    <li style="list-style-type:none">
+      <ul>
+        <li>Up/down left/right</li>
+        <li>Translational invariance</li>
+      </ul>
+    </li>
+    <li>Can apply a 'convolutional filter'</li>
+    <li>Use same parameters over whole image</li>
+   </ul>
+  </section>
+  
+  <section>
+   <h2>CNN Filter</h2>
+   <img width="464" height="358" src="img/CNN-diagram_464x358.png" alt="CNN Diagram" style="border:none;box-shadow:none">
+  </section>
+
+</section>
+
+
+<section>
+  <section>
+   <h2>Workshop : VirtualBox</h2>
+   <ul class="fix-spacing">
+    <li>Import Appliance '<code>deep-learning ... .OVA</code>'</li>
+    <li>Start the Virtual Machine...</li>
+   </ul>
+   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
+  </section>
+
+  <section>
+   <h2>Workshop : Jupyter</h2>
+   <ul class="fix-spacing">
+    <li>On your 'host' machine</li>
+    <li>Go to <code>http://localhost:8080/</code></li>
+   </ul>
+   <img width="507" height="387" src="img/Jupyter-local_507x387.png" alt="Jupyter Local" style="border:none;box-shadow:none">
+  </section>
+  
+  <section>
+   <h2>Other VM Features</h2>
+   <ul class="fix-spacing">
+    <li>There is no need to <code>ssh</code> - it should Just Work</li>
+    <li>But if you want to have a poke around...</li>
+    <li>From your 'host' machine :</li>
+   </ul>
+   <pre><code data-trim contenteditable>
+ssh -p 8282 user@localhost     
+# password=password
+   </code></pre>
+   <ul class="fix-spacing">
+    <li>or have a look at the <a href="https://github.com/mdda/deep-learning-workshop" target=_blank>code on GitHub</a>...</li>
+   </ul>
+  </section>
+
+<!--
+  <section>
+   <h2>Workshop : TensorBoard</h2>
+   <ul class="fix-spacing">
+    <li>On your 'host' machine</li>
+    <li>Go to <code>http://localhost:8081/</code></li>
+   </ul>
+   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
+  </section>
+!-->
+</section>
+
+<section>
+  <section>
+   <h2>Complex Network Example</h2>
+   <img width="614" height="286" src="img/googlenet-arch_1228x573.jpg" alt="Google ImageNet" style="border:none;box-shadow:none">
+   <p><i>GoogLeNet (2014)</i></p>
+  </section>
+  
+  <section>
+   <h2>3-ImageNet-googlenet</h2>
+   <img width="595" height="381" src="img/ImageNet-GoogLeNet_595x381.png" alt="Google ImageNet" style="border:none;box-shadow:none">
+   <p>Play with a ~2014 pre-trained network</p>
+  </section>
+
+  <section>
+   <h2>Need for Speed</h2>
+   <img width="759" height="408" src="img/CPU-GPU_759x408.png" alt="CPU vs GPU" style="border:none;box-shadow:none">
+   <p><i>... need for GPU programmers</i></p>
+  </section>
+</section>
+
+
+
+
+<section>
+  <section>
+   <h2>Quick Overview of VM</h2>
+   <p>Quick Overview of VM</p>
+  </section>
+</section>
+
+<section>
+  <section>
+   <h2>Coming up in Part 2</h2>
+   <h4>Hands on ...</h4>
+   <ul class="fix-spacing">
+    <li>Building networks using a Framework</li>
+    <li>Doing one (or two) more advanced examples</li>
+   </ul>
+  </section>
+  
+  <section>
+   <h2>8-Anomaly-Detection</h2>
+   <img width="590" height="369" src="img/Anomaly-Detection_590x369.png" alt="Anomaly Detection" style="border:none;box-shadow:none">
+   <p>MNIST again...</p>
+  </section>
+
+  <section>
+   <h2>5-Commerce</h2>
+   <img width="590" height="369" src="img/Commerce-Cars_590x369.png" alt="'Commerce' Cars" style="border:none;box-shadow:none">
+   <p>Re-purpose a pretrained network</p>
+  </section>
+</section>
+
+
+<section>
+  <section>
+   <h2>... Even More Complex Network</h2>
+   <img width="800" height="299" src="img/inception03_800x299.png" alt="Google Inception v3" style="border:none;box-shadow:none">
+   <p><i>Google Inception-v3 (2015)</i></p>
+  </section>
+  
+  <section>
+   <h2>4-ImageNet-inception-v3</h2>
+   <img width="590" height="320" src="img/ImageNet-Inception3_590x320.png" alt="Google Inception v3" style="border:none;box-shadow:none">
+   <p>Play with a ~2015 pre-trained network</p>
+  </section>
+</section>
+
+<section>
+  <section>
+   <h2>Abusing Pre-Built Networks</h2>
+   <ul class="fix-spacing">
+    <li>Visual features can also be used generatively</li>
+    <li>Alter images to maximise network response</li>
+    <li>...</li>
+    <li>Art?</li>
+   </ul>
+  </section>
+
+  <section>
+   <h2>"Deep Dreams"</h2>
+   <img width="768" height="572" src="img/DeepDream_768x572.jpg" alt="Deep Dream river" style="border:none;box-shadow:none">
+   <p>Careful! : Some images cannot be un-seen...</p>
+  </section>
+  
+  <section>
+   <h2>6-Visual-Art</h2>
+   <img width="595" height="395" src="img/Art-Style-Transfer_595x395.png" alt="Art Style-Transfer" style="border:none;box-shadow:none">
+   <p>Style-Transfer an artist onto your photos</p>
+  </section>
+</section>
+
+
+
+<section>
+  <section>
+   <h2>Language Processing?</h2>
+   <h4>Variable-length input doesn't "fit"</h4>
+   <ul class="fix-spacing">
+    <li>Apply a network iteratively over input</li>
+    <li>Internal state carried forward step-wise</li>
+    <li>Everything is still <i>differentiable</i></li>
+   </ul>
+  </section>
+
+  <section>
+   <h2>Recurrent Neural Networks</h2>
+   <img width="412" height="470" src="img/LSTM_412x470.png" alt="LSTM" style="border:none;box-shadow:none">
+   <p>A Long Short-Term Memory (LSTM) Unit</p>
+  </section>
+
+  <section>
+   <h2>8-Natural-Language</h2>
+   <img width="593" height="340" src="img/RNN-Characterwise_593x340.png" alt="RNN Characterwise" style="border:none;box-shadow:none">
+   <p>Still a work-in-progress (training takes too long)</p>
+  </section>
+
+  <section>
+   <h2>Poetry : Epoch 1</h2>
+   <pre><code data-trim contenteditable>
+JDa&amp;g#sdWI&amp;MKW^gE)I}&amp;lt;UNK>f;6g)^5*|dXdBw6m\2&amp;XcXVy\ph8G&amp;lt;gAM&amp;>e4+mv5}OX8G*Yw9&amp;n3XW{h@&amp;T\Fk%BPMMI
+OV&amp;*C_] ._f$v4I~$@Z^&amp;[2
+mOVe`4W)"L-KClkO]wu]\$LCNadyo$h;>$jV7X$XK#4,T(y"sa6W0LWf\'_{\#XD]p%ck[;O`!Px\#E>/Or(.YZ|a]2}q|@a9.g3nV,U^qM	$+:nlk0sd;V-Z&amp;;7Y@Z "l-7P^C
+"xBF~~{n} n\ Pcbc9f?=y)FIc1h5kvjIi
+C&amp;lt;UNK>s	DWJr_$ZQtu"BTYm'|SMj-]Z&amp;lt;Vqj*.lh%IYW|q.GK:eNI"r>833?+RuUsOj_)a{\T}gH.zZR^(daC3mg5P0iFi]bqGo4?T|\>0_H&amp;g889voTh=~)^DDRYND46z1J]x;&amp;lt;U>>%eNIRckL)N8n&amp;lt;UNK>n3i)+Ln8
+?)9.#s7X]}$*sxZ"3tf ")
+@'HW.;I5)C.*%}&amp;lt;jcNLN+Z__RWoryOb#
+/`r
+   </code></pre>
+  </section>
+  
+  <section>
+   <h2>Poetry : Epoch 100</h2>
+   <pre><code data-trim contenteditable>
+Som the riscele his nreing the timest stordor hep pIs dach suedests her, so for farmauteds?
+By arnouy ig wore
+Thou hoasul dove he five grom ays he bare as bleen,
+The seend,
+And, an neeer,
+Whis with the rauk with, for be collenss ore his son froven faredure:
+Then andy bround'd the CowE nom shmlls everom thoy men ellone per in the lave ofpen the way ghiind, thour eyes in is ple gull heart sind, I I wild,
+Frreasuce anspeve, wrom fant beiver, not the afan
+And in thou' histwish a it wheme-tis lating ble the liveculd;
+Noorroint he fhallought, othelts.
+   </code></pre>
+  </section>
+  
+  <section>
+   <h2>Poetry : Epoch 1000</h2>
+   <pre><code data-trim contenteditable>
+AWhis grook my glass' to his sweet,
+Bub my fears liken?
+And of live every in seedher;
+A Lood stall,
+But tare tought than thencer sud earth,
+Use'st bee sechion,
+For all exprit' are a daud in heaven doth her infook perust the fork the tent.
+
+For maud,
+The pittent gover
+This and rimp,
+Who new
+  
+Thoir oldes and did hards, cound.
+   </code></pre>
+  </section>
+  
+  <section>
+   <h2>Plays : Epoch 338</h2>
+   <h3>Larger network...</h3>
+   <pre><code data-trim contenteditable>
+DEDENIUS	Why shoulmeying to to wife,
+	And thou say: and wall you teading for
+	that struke you down as sweet one.
+	With be more bornow, bly unjout on the account:
+	I duked you did four conlian unfortuned drausing-
+	to sicgia stranss, or not sleepplins his arms
+	Gentlemen? as write lord; gave sold.
+
+AENEMUUNS	Met that will knop unhian, where ever have
+	of the keep his jangst?icks he I love hide,
+	Jach heard which offen, sir!'
+
+	[Exit PATIIUS, MARGARUS arr	[Enter CLOTHUR]
+   </code></pre>
+  </section>
+<!--
+!-->
+</section>
+
+
+<section>
+  <section>
+   <h2>Reinforcement Learning</h2>
+   <ul class="fix-spacing">
+    <li>Learning to choose actions ...</li>
+    <li>... which cause environment to change</li>
+   </ul>
+   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
+  </section>
+  
+  <section>
+   <h2>Google DeepMind's AlphaGo</h2>
+   <p></p>
+   <img width="902" height="337" src="img/AlphaGo-match5_902x337.png" alt="DeepMind AlphaGo Match 5" style="border:none;box-shadow:none">
+  </section>
+
+<!--
+  <section>
+   <h2>Useful beyond games...</h2>
+   <ul class="fix-spacing">
+    <li>... advertising</li>
+   </ul>
+  </section>
+
+  <section>
+   <h2>Agent Learning Set-Up</h2>
+   <img width="638" height="479" src="img/ReinforcementLearning-Flow_638x479.png" alt="Reinforcement Flow" style="border:none;box-shadow:none">
+  </section>
+  
+  <section>
+   <h2>Q-Learning 1</h2>
+   <ul class="fix-spacing">
+    <li>Estimate value of entire future from current state</li>
+    <li>... to estimate value of next state, for all possible actions</li>
+    <li>Determine the 'best action' from estimates</li>
+   </ul>
+   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
+  </section>
+  
+  <section>
+   <h2>Q-Learning 2</h2>
+   <ul class="fix-spacing">
+    <li>... do the best action</li>
+    <li>Observe rewards, and new state</li>
+    <li><b>*</b> Update Q(now) to be closer to R+Q(next) <b>*</b></li>
+   </ul>
+   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
+  </section>
+  
+  <section>
+   <h2>Q-Learning Diagram</h2>
+   <img width="507" height="558" src="img/Q-Learning-Diagram_507x558.png" alt="Q-Learning Diagram" style="border:none;box-shadow:none">
+   <p>Q is a measure of what we think about the future</p>
+  </section>
+
+  <section>
+   <h2>Deep Q-Learning</h2>
+   <ul class="fix-spacing">
+    <li>Set Q() to be the output of a deep neural network</li>
+    <li>... where the input is the state</li>
+    <li>Train network input/ouput pairs from observed steps</li>
+    <li>... over *many* games</li>
+   </ul>
+  </section>
+
+  <section>
+   <h2>Today's Strategy Game</h2>
+   <img width="563" height="489" src="img/BubbleBreaker-Android_563x489.png" alt="Bubble Breaker Android" style="border:none;box-shadow:none">
+   <p>Classic game : But no bells-and-whistles</p>
+  </section>
+!-->
+
+  <section>
+   <h2>7-Reinforcement-Learning</h2>
+   <img width="593" height="334" src="img/BubbleBreaker-jupyter_593x334.png" alt="Bubble Breaker RL" style="border:none;box-shadow:none">
+   <p>Deep Reinforcement Learning for Bubble Breaker</p>
+  </section>
+<!--  
+  <section>
+   <h2>AlphaGo Extras</h2>
+   <ul class="fix-spacing">
+    <li>Monte-Carlo Tree Search</li>
+    <li>Policy Network to hone search space</li>
+    <li>Self-play</li>
+    <li>... and running on 1202 CPUs and 176 GPUs</li>
+   </ul>
+  </section>
+!-->
+</section>
+
+
+<section>
+ <h2>Pre-Break Wrap-up</h2>
+ <ul class="fix-spacing">
+  <li>Deep Learning may deserve some hype...</li>
+  <li>Next bit will be hands on</li>
+  <li>There's lots more in the VM</li>
+ </ul>
+ <img width="517" height="223" src="img/GitHub-mdda_517x223.png" alt="GitHub - mdda" style="border:none;box-shadow:none">
+ <p><small>* Please add a star... *</small></p>
+</section>
+
+<section>
+ <h1>- BREAK -</h1>
+ <br>
+ <h3>Martin.Andrews @<br> RedCatLabs.com</h3>
+ <br>
+ <p>My blog : <a href="https://mdda.net/">http://mdda.net/</a></p>
+ <p>GitHub : <a href="https://github.com/mdda">mdda</a></p>
+</section>
+
+
+<!--  Coffee Break   !-->
+
+
+<section>
+  <section>
+   <h2>Frameworks</h2>
+   <ul class="fix-spacing">
+    <li>Want to express networks at a higher level</li>
+    <li>Map network operations onto cores</li>
+    <li>Most common frameworks : </li>
+    <li style="list-style-type:none">
+      <ul>
+        <li>Caffe - C++ ~ Berkeley</li>
+        <li>Torch - lua ~ Facebook/Twitter</li>
+        <li>Theano - Python ~ Montreal Lab</li>
+        <li>TensorFlow - C++ ~ Google</li>
+      </ul>
+    </li>
+   </ul>
+  </section>
+  
+  <section>
+   <h2>Theano</h2>
+   <ul class="fix-spacing">
+    <li>Optimised Numerical Computation in Python</li>
+    <li>Computation is <em>described</em> in Python code :</li>
+    <li style="list-style-type:none">
+      <ul>
+        <li>Theano operates on expression tree itself</li>
+        <li>Optimizes the tree for operations it knows</li>
+        <li>Makes use of <code>numpy</code> and <code>BLAS</code></li>
+        <li>Also writes <code>C/C++</code> or <code>CUDA</code> (or <code>OpenCL</code>)</li>
+      </ul>
+    </li>
+   </ul>
+  </section>
+  
+
+<!--
+  <section>
+   <h2>Theano : detail</h2>
+   <img width="690" height="390" src="img/zoom-1_690x390.png" alt="Theano diagram x1" style="border:none;box-shadow:none">
+  </section>
+  
+  <section>
+   <h2>... zoom out</h2>
+   <img width="600" height="348" src="img/zoom-2_600x348.png" alt="Theano diagram x2" style="border:none;box-shadow:none">
+  </section>
+  
+  <section>
+   <h2>... zoom out</h2>
+   <img width="600" height="313" src="img/zoom-3_600x313.png" alt="Theano diagram x3" style="border:none;box-shadow:none">
+  </section>
+  
+  <section>
+   <h2>Theano : "Simple RNN"</h2>
+   <img width="241" height="500" src="img/zoom-4_241x500.png" alt="Theano diagram x4" style="border:none;box-shadow:none">
+  </section>
+!-->
+
+  <section>
+   <h2>0-TheanoBasics</h2>
+   <img width="594" height="395" src="img/TheanoBasics_594x395.png" alt="Theano Basics" style="border:none;box-shadow:none">
+   <p>Use the 'play' button to walk through the workbook</p>
+  </section>
+</section>
+
+
+<section>
+  <section>
+   <h2>"Hello World" &rarr; MNIST</h2>
+   <ul class="fix-spacing">
+    <li>Nice dataset from the late 1980s</li>
+    <li>Training set of 50,000 28x28 images</li>
+    <li>Now end-of-life as a useful benchmark</li>
+   </ul>
+   <br />
+   <img width="255" height="204" src="img/mnist_100_digits_255x204.png" alt="MNIST digits" style="border:none;box-shadow:none">
+  </section>
+
+  <section>
+   <h2>Simple Network</h2>
+   <img width="829" height="425" src="img/netvis-mnist-100S_829x425.png" alt="Multi-Layer" style="border:none;box-shadow:none">
+   <p><i>... around 2-3% error rate on the test set</i></p>
+  </section>
+  
+<!--
+  <section>
+   <h2>Workshop : MNIST</h2>
+   <ul class="fix-spacing">
+    <li>Go to : <code>http://ConvNetJS.com/</code></li>
+    <li>Look for : "Classify MNIST"</li>
+    <li><i>... CNN approach (rather than MLP)</i></li>
+   </ul>
+   <img width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
+  </section>
+
+  <section>
+   <h2>"LeNet"</h2>
+   <ul class="fix-spacing">
+    <li></li>
+   </ul>
+   <img width="759" height="209" src="img/lenet5_759x209.png" alt="LeNet5 Convolutional Layers" style="border:none;box-shadow:none">
+   <p><i>... around 0.8% error rate on the test set</i></p>
+  </section>
+</section>
+
+<section>
+!-->
+
+  <section>
+   <h2>1-MNIST-MLP</h2>
+   <img width="591" height="352" src="img/MNIST-MLP_591x352.png" alt="MNIST MLP" style="border:none;box-shadow:none">
+   <p>We using <code>lasagne</code> as an additional layer <i>on top of</i> <code>Theano</code></p>
+  </section>
+
+  <section>
+   <h2>2-MNIST-CNN</h2>
+   <img width="594" height="326" src="img/MNIST-CNN_594x326.png" alt="CNN MNIST" style="border:none;box-shadow:none">
+   <p>Three filter layers - nice visual interpretation</p>
+  </section>
+
+</section>
+
+
+<section>
+  <section>
+   <h2>Anomaly Detection</h2>
+   <h4>How do we detect outliers?</h4>
+   <ul class="fix-spacing">
+    <li>Learning what 'good' data looks like</li>
+    <li>See whether new data looks the same</li>
+    <li>... if it doesn't : complain</li>
+   </ul>
+  </section>
+
+  <section>
+   <h2>Autoencoders</h2>
+   <ul class="fix-spacing">
+    <li>Since we only have one 'label'</li>
+    <li>... train a network to reproduce its input</li>
+    <li>Learning compressed representation</li>
+    <li>... is a biproduct</li>
+   </ul>
+  </section>
+
+  <section>
+   <h2>8-Anomaly-Detection</h2>
+   <img width="590" height="369" src="img/Anomaly-Detection_590x369.png" alt="Anomaly Detection" style="border:none;box-shadow:none">
+   <p>Using an Autoencoder</p>
+  </section>
+
+  <section>
+   <h2>Network Picture</h2>
+   <img width="562" height="556" src="img/autoencoder-network_562x556.png" alt="Autoencoder" style="border:none;box-shadow:none">
+  </section>
+</section>
+
+<section>
+  <section>
+   <h2>Using Pre-Built Networks</h2>
+   <ul class="fix-spacing">
+    <li>Features learned for ImageNet are 'useful'</li>
+    <li>Apply same network to 'featurized' new images</li>
+    <li>Learn mapping from features to new classes</li>
+    <li>Only have to train a single layer!</li>
+   </ul>
+  </section>
+
+  <section>
+   <h2>5-Commerce</h2>
+   <img width="590" height="369" src="img/Commerce-Cars_590x369.png" alt="'Commerce' Cars" style="border:none;box-shadow:none">
+   <p>Re-purpose a pretrained network</p>
+  </section>
+  
+  <section>
+   <h2>Network Picture</h2>
+   <img width="628" height="555" src="img/commerce-network_628x555.png" alt="Repurposed Network" style="border:none;box-shadow:none">
+  </section>
+</section>
+
+<section>
+  <section>
+   <h2>Fancier Tricks</h2>
+   <img width="624" height="352" src="img/AttentionNetwork_624x352.png" alt="Attention Network" style="border:none;box-shadow:none">
+   <p>Differentiable &rarr; Training : Even crazy stuff works!</p>
+  </section>
+
+  <section>
+   <h2>Image Labelling</h2>
+   <h4>We have the components now</h4>
+   <img width="642" height="484" src="img/image-labelling_642x484.png" alt="Image Labelling" style="border:none;box-shadow:none">
+  </section>
+
+  <section>
+   <h2>Image Labels</h2>
+   <img width="667" height="419" src="img/image-labelling-results_667x419.png" alt="Labelling Results" style="border:none;box-shadow:none">
+  </section>
+</section>
+
+<section>
+ <h2>Wrap-up</h2>
+ <ul class="fix-spacing">
+  <li>Deep Learning may deserve some hype...</li>
+  <li>Getting the tools in one place is helpful</li>
+  <li>Having a GPU is VERY helpful</li>
+ </ul>
+ <img width="517" height="223" src="img/GitHub-mdda_517x223.png" alt="GitHub - mdda" style="border:none;box-shadow:none">
+ <p><small>* Please add a star... *</small></p>
+</section>
+
+
+
+<section>
+ <h1>- QUESTIONS -</h1>
+ <br>
+ <h3>Martin.Andrews @<br> RedCatLabs.com</h3>
+ <br>
+ <p>My blog : <a href="https://mdda.net/">http://mdda.net/</a></p>
+ <p>GitHub : <a href="https://github.com/mdda">mdda</a></p>
+</section>
+
+   </div>
+  </div>
+
+<div id="redcatlabs-logo" style="background: url(img/redcatlabs_logo1_280x39.png);
+                                  position: absolute;
+                                  bottom: 50px;
+                                  left: 50px;
+                                  width: 280px;
+                                  height: 39px;">
+</div>  
+
+  <script src="lib/js/head.min.js"></script>
+  <script src="js/reveal.min.js"></script>
+
+  <script>
+
+   // Full list of configuration options available here:
+   // https://github.com/hakimel/reveal.js#configuration
+   Reveal.initialize({
+    controls: true,
+    progress: true,
+    history: true,
+    center: true,
+
+    theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+    transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+    // Parallax scrolling
+    // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+    // parallaxBackgroundSize: '2100px 900px',
+
+    // Optional libraries used to extend on reveal.js
+    dependencies: [
+     { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+     { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+     { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+     { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+     { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+     { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+    ]
+   });
+
+  </script>
+
+ </body>
+</html>

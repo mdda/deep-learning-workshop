@@ -62,8 +62,9 @@
 *  Natural Language Processing
    *  Character-wise RNN that's already included is very slow to converge
    *  Probably limited by size of dictionary / corpus for learning
+   
    *  Idea : How about a character-wise name recognition (by region)?
-      *  Initial step would be a character-embedding (Char2Vec)
+      *  Initial step would be a character-embedding (?Char2Vec)
       *  Then an LSTM ending with a 1-hot region guess :
          *  { China, India, Thailand, Malaysia, Japanese, Philippines, "European" }
       *  This would (a) be useful for NER, (b) kind of fun, and (c) require far less data that a full langauge model
@@ -77,9 +78,12 @@
             *   Our name corpus is built on top of the following two major sources: 
                 1) the LDC bilingual person name list and 
                 2) the "Person nach Staat" (Person according to state) category of Wikipedia, which contains person names written in English texts from different countries.
+                
    *  How about learning to generate names?  e.g : Adversarial RNNs
       *   https://archive.org/details/india-names-dataset
           *   ```grep '^1994' ap-names.txt | sort -k2,2nr | head -50```
+          
+   *  How about learning to generate English dictionary words?  e.g : Adversarial RNNs
       *   More traditional corpus to vocabulary (with counts, pre-sorted) :
           *   ```andrewsm@holland:/mnt/data/home/andrewsm/OpenSource/Levy/1-billion-sgns/counts.words.vocab```
           *   ```rsync -avz andrewsm@holland:/mnt/data/home/andrewsm/OpenSource/billion-placeholder/data/2-glove/ALL_1-vocab.txt ./notebooks/data/RNN/```
