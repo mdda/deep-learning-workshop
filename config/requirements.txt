@@ -73,3 +73,7 @@ h5py>=2.5.0
 
 ## Requests is only used in the GPU chooser, which is a pity.  OTOH, it's a good library
 requests>=2.9.0
+
+## This is for Punkt and TreeBank tokenizers
+nltk>=3.2.1
+

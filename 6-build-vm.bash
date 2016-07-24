@@ -14,38 +14,9 @@ source ./config/params
 
 
 ## Running this script the first time takes an extra ~10mins to download 
-##   http://libguestfs.org/download/builder/fedora-23.xz
-
-
-# virt-builder: error: libguestfs error: bridge 'virbr0' not found.  Try 
-# running:  brctl show
-
-# If libvirt is being used then the appliance will connect to "virbr0"
-#  (can be overridden by setting "LIBGUESTFS_BACKEND_SETTINGS=network_bridge=<some_bridge>").  
-#  This enables full-featured network connections, with working ICMP, ping and so on.
-#     ->> suggests that libvirt is not cooperating, somehow
-
-## Try : LIBGUESTFS_BACKEND=direct
-# LIBGUESTFS_BACKEND=direct; export LIBGUESTFS_BACKEND
-
-## Easier to use libvirt properly (doesn't require LIBGUESTFS_BACKEND setting above), by configuring virtual networks using virtsh :
-
-# virsh net-list --all
-# virsh net-define /usr/share/libvirt/networks/default.xml
-# virsh net-autostart default
-# virsh net-start default
-# brctl show
-
-
-
-
-# The build script.
-#build_script=/tmp/build-it.sh
-# Because virt-builder copies the build script permissions too.
-#chmod +x $build_script
+##   http://libguestfs.org/download/builder/fedora-24.xz
 
 # target location :: <REPO>/vm-images/
-
 
 # How much guest memory we need for the build:
 export LIBGUESTFS_MEMSIZE=4096
@@ -83,10 +54,8 @@ virt-builder \
   --commands-from-file config-vm-host/3-user \
   --firstboot-command 'poweroff'
 
-#  --install /usr/bin/yum-builddep,/usr/bin/rpmbuild,@buildsys-build,@development-tools 
-#  --run-command "yum-builddep -y /home/build/$srpm" 
-
 # Run qemu directly.  Could also use virt-install --import here.
+#   This is done right here so that 'first-boot' takes place on the constructing machine
 
 # Documentation : http://dev.man-online.org/man1/qemu-system-x86_64/
 qemu-system-x86_64 \
@@ -104,15 +73,6 @@ qemu-system-x86_64 \
 # The build ran OK if this contains the magic string (see the build script ./vm-guest/configure-vm.bash) :
 virt-cat -a $image_file /root/virt-sysprep-firstboot.log
 
-# Copy out the SRPMs & RPMs.
-#rm -rf /tmp/result
-#mkdir /tmp/result
-#virt-copy-out -a $image_file /home/build/RPMS /home/build/SRPMS /tmp/result
-
 # Copy out the ~/env directory - so that it's cached between builds
 #rm -rf ./vm-guest/cache/env
 #virt-copy-out -a $image_file /home/env ./vm-guest/cache/
-
-# Leave the guest around so you can examine the /home/build dir if you want.
-# Or you could delete it.
-#rm $image_file

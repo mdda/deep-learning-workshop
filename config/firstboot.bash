@@ -16,6 +16,8 @@ pip install --upgrade pip
 
 pip install -r ./config/requirements.txt 
 
+python -m nltk.downloader punkt
+
 # Once this ~/env is built, we can copy it out to the host machine for 'caching'
 
 # cp ./notebooks/images/logo.png ./env/lib/python2.7/site-packages/IPython/html/static/base/images/

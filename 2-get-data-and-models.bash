@@ -152,6 +152,13 @@ if [ ! -e "ALL_1-vocab.txt.gz" ]; then
  gzip ALL_1-vocab.txt
 fi
 
+if [ ! -e "en.wikipedia.2010.100K.txt" ]; then
+  # Retrieve wikipedia dump
+  wget http://corpora2.informatik.uni-leipzig.de/downloads/eng_wikipedia_2010_100K-text.tar.gz
+  tar -xzf eng_wikipedia_2010_100K-text.tar.gz
+  mv eng_wikipedia_2010_100K-sentences.txt en.wikipedia.2010.100K.txt
+  rm eng_wikipedia*
+fi
 
 
 popd

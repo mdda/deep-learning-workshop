@@ -68,6 +68,13 @@
       *   Instead : Let's install spacy (and shout out to honnibal) and a 'bunch of text' for it to annotate
           *   Except : that's 500Mb of data...  
           *   Perhaps just use its POS (in NLTK) : 
+              *   ```pip install nltk  # from nltk.tag.perceptron import PerceptronTagger```
+      *   And an [English language](http://corpora2.informatik.uni-leipzig.de/download.html) : 
+          *   ```wget http://corpora2.informatik.uni-leipzig.de/downloads/eng_wikipedia_2007_100K-text.tar.gz```
+          *   ```wget http://corpora2.informatik.uni-leipzig.de/downloads/eng_wikipedia_2010_100K-text.tar.gz```
+          *   ```wget http://corpora2.informatik.uni-leipzig.de/downloads/eng_news_2015_100K.tar.gz```
+      *   ```nltk.tokenize.punkt```
+      
 
 
 
