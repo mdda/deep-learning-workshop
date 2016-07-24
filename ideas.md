@@ -2,10 +2,6 @@
 
 *  Run-down of [recent advances in the literature](http://jiwonkim.org/awesome-rnn/)
 
-*  Include javascript-based demos in the VM (or on the thumb-drive direction) to avoid "no-WiFi" show-stopper
-
-*  Add Google's Tensorflow/JS demo : http://playground.tensorflow.org/
-
 *  Reinforcement Learning demo (Python)
    *  [```DeeR```](http://deer.readthedocs.io/en/master/index.html) - ```theano```-based
    *  [```AgentNet```](https://github.com/yandexdataschool/AgentNet) - ```theano + lasagne```-based
@@ -63,6 +59,11 @@
    *  Character-wise RNN that's already included is very slow to converge
    *  Probably limited by size of dictionary / corpus for learning
    
+   *  Idea : Dual RNNs for NER (which I know 'cold')
+      *    219554  818268 3281528 /home/andrewsm/SEER/external/CoNLL2003/ner/eng.train  == pretty small CoNLL training set
+      *    https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/models/word2vec_sample.zip  50Mb
+      *    http://www.nltk.org/api/nltk.corpus.reader.html#module-nltk.corpus.reader.conll
+
    *  Idea : How about a character-wise name recognition (by region)?
       *  Initial step would be a character-embedding (?Char2Vec)
       *  Then an LSTM ending with a 1-hot region guess :
@@ -90,10 +91,6 @@
              *   ```wc ALL_1-vocab.txt  # 511438 1022864 6223250 ALL_1-vocab.txt```
           *   ```/usr/share/dict/linux.words``` for an alphabetical dictionary
 
-   *  Or dual RNNs for NER (which I know 'cold')
-      *    219554  818268 3281528 /home/andrewsm/SEER/external/CoNLL2003/ner/eng.train  == pretty small CoNLL training set
-      *    https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/models/word2vec_sample.zip  50Mb
-      *    http://www.nltk.org/api/nltk.corpus.reader.html#module-nltk.corpus.reader.conll
 
    
 *  Music example?
