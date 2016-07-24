@@ -77,3 +77,5 @@ requests>=2.9.0
 ## This is for Punkt and TreeBank tokenizers
 nltk>=3.2.1
 
+## This is for the GloVE word embedding package :: https://github.com/maciejkula/glove-python
+glove_python>=0.1.0
