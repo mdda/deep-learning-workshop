@@ -26,6 +26,9 @@ fi
 
 export THEANO_FLAGS
 
+## set auto-save interval...
+# https://www.webucator.com/blog/2016/03/change-default-autosave-interval-in-ipython-notebook/
+
 ## New-style
 jupyter notebook --ip=0.0.0.0 --port=$port_jupyter --no-browser --notebook-dir=$notebook_dir
 

@@ -25,8 +25,8 @@ and finally use pretrained state-of-the-art networks, such as GoogLeNet, in vari
   *  Application : Anomaly Detection (mis-shaped MNIST digits)
   *  Application : Classifying unknown classes of images (~transfer learning)
   *  Application : Generative art (~style transfer)
-  *  Application : Reinforcement Learning
   *  Application : RNN Fun
+  *  Application : Reinforcement Learning
 
 
 **NB : Ensure Conference Workshop announcement / blurb includes VirtualBox warning label**
