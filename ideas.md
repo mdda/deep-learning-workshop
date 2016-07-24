@@ -66,6 +66,8 @@
       *   https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/models/word2vec_sample.zip  50Mb
       
       *   Instead : Let's install spacy (and shout out to honnibal) and a 'bunch of text' for it to annotate
+          *   Except : that's 500Mb of data...  
+          *   Perhaps just use its POS (in NLTK) : 
 
 
 
