@@ -60,9 +60,14 @@
    *  Probably limited by size of dictionary / corpus for learning
    
    *  Idea : Dual RNNs for NER (which I know 'cold')
-      *    219554  818268 3281528 /home/andrewsm/SEER/external/CoNLL2003/ner/eng.train  == pretty small CoNLL training set
-      *    https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/models/word2vec_sample.zip  50Mb
-      *    http://www.nltk.org/api/nltk.corpus.reader.html#module-nltk.corpus.reader.conll
+      *   219554  818268 3281528 /home/andrewsm/SEER/external/CoNLL2003/ner/eng.train  == pretty small CoNLL training set
+          *   BUT : The text for CoNLL-2003 isn't open source (needs Reuters agreement) - so that is out
+          
+      *   https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/models/word2vec_sample.zip  50Mb
+      
+      *   Instead : Let's install spacy (and shout out to honnibal) and a 'bunch of text' for it to annotate
+
+
 
    *  Idea : How about a character-wise name recognition (by region)?
       *  Initial step would be a character-embedding (?Char2Vec)
