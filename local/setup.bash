@@ -53,6 +53,9 @@ pip install --upgrade pip
 
 pip install -r ./config/requirements.txt 
 
+python -m nltk.downloader punkt
+python -m nltk.downloader averaged_perceptron_tagger
+
 #logopath=./env/lib/python2.7/site-packages/notebook/static/base/images
 #mv ${logopath}/logo.png ${logopath}/logo-orig_260x56.png
 #cp ./notebooks/images/logo.png ${logopath}/
