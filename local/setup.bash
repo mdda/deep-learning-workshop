@@ -9,17 +9,17 @@
 rpms=`rpm -qa`
 rpms_extra=''
 
-rpms_required="python python2-virtualenv"
+rpms_required="python"
 rpms_required="${rpms_required} gcc gcc-c++ python-devel redhat-rpm-config"
 rpms_required="${rpms_required} scipy numpy Cython blas-devel lapack-devel atlas-devel"
 
 FC_VER=`uname -r`
 if [ "${FC_VER/.fc23.}" != "${FC_VER}" ]; then
   echo "Fedora 23"
-  rpms_required="${rpms_required} python-scikit-learn python-pandas"
+  rpms_required="${rpms_required} python-virtualenv python-scikit-learn python-pandas"
 else
   echo "Fedora 24+"
-  rpms_required="${rpms_required} python2-scikit-learn python2-pandas"
+  rpms_required="${rpms_required} python2-virtualenv python2-scikit-learn python2-pandas"
 fi
 rpms_required="${rpms_required} python-pillow graphviz"
 
@@ -41,7 +41,7 @@ else
   echo "Please run (as 'root') : "
   echo "  dnf install$rpms_extra"
   echo "###########################################################"
-  exit
+  exit 1
 fi
 
 source ./config/params

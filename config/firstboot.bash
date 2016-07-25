@@ -17,6 +17,7 @@ pip install --upgrade pip
 pip install -r ./config/requirements.txt 
 
 python -m nltk.downloader punkt
+python -m nltk.downloader averaged_perceptron_tagger
 
 # Once this ~/env is built, we can copy it out to the host machine for 'caching'
 
