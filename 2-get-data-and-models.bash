@@ -160,6 +160,13 @@ if [ ! -e "en.wikipedia.2010.100K.txt" ]; then
   rm eng_wikipedia*
 fi
 
+if [ ! -e "glove.first-100k.6B.50d.txt" ]; then
+  # Retrieve Glove data
+  wget http://nlp.stanford.edu/data/glove.6B.zip
+  unzip glove.6B.zip
+  head -100000 glove.6B.50d.txt > glove.first-100k.6B.50d.txt
+  rm glove.6B.*
+fi
 
 popd
 
