@@ -776,14 +776,36 @@ ssh -p 8282 user@localhost
    <img width="464" height="358" src="img/CNN-diagram_464x358.png" alt="CNN Diagram" style="border:none;box-shadow:none">
   </section>
 
+  <section>
+   <h2>Advantages</h2>
+   <ul class="fix-spacing">
+    <li>Only have to train a single layer!</li>
+   </ul>
+  </section>
+
 </section>
 
 
 <section>
   <section>
+   <h2>MNIST Example</h2>
+   <ul class="fix-spacing">
+    <li>Use only 3 convolutional layers</li>
+    <li>Can then visualise as {R,B,G}</li>
+    <li>Lower error rate</li>
+   </ul>
+  </section>
+
+  <section>
    <h2>2-MNIST-CNN</h2>
    <img width="594" height="326" src="img/MNIST-CNN_594x326.png" alt="CNN MNIST" style="border:none;box-shadow:none">
    <p>Three filter layers - nice visual interpretation</p>
+  </section>
+
+  <section>
+   <h2>Network Picture</h2>
+   <ximg width="628" height="555" src="img/commerce-network_628x555.png" alt="Repurposed Network" style="border:none;box-shadow:none">
+   <p>After convolution layers, use dense/softmax as before</p>
   </section>
 
 </section>
@@ -916,7 +938,7 @@ ssh -p 8282 user@localhost
 
 <section>
   <section>
-   <h2>Language Processing?</h2>
+   <h2>Networks on Sequences</h2>
    <h4>Variable-length input doesn't "fit"</h4>
    <ul class="fix-spacing">
     <li>Apply a network iteratively over input</li>
@@ -927,8 +949,121 @@ ssh -p 8282 user@localhost
 
   <section>
    <h2>Recurrent Neural Networks</h2>
+   <ul class="fix-spacing">
+    <li>Process each timestep</li>
+    <li>... with the same network</li>
+    <li>But 'pass along' internal state</li>
+   </ul>
+  </section>
+  
+  <section>
+   <h2>Basic RNN</h2>
+   <ximg width="412" height="470" src="img/LSTM_412x470.png" alt="LSTM" style="border:none;box-shadow:none">
+   <p>Chain-gang picture</p>
+  </section>
+
+  <section>
+   <h2>Chaining State</h2>
+   <ul class="fix-spacing">
+    <li>Each node 'knows' history</li>
+    <li>... all weights are 'tied'</li>
+    <li>Network depth is time-wise</li>
+   </ul>
+  </section>
+  
+  <section>
+   <h2>GRU Units</h2>
+   <ximg width="412" height="470" src="img/LSTM_412x470.png" alt="LSTM" style="border:none;box-shadow:none">
+   <p>A GRU</p>
+  </section>
+
+  <section>
+   <h2>LSTM Units</h2>
    <img width="412" height="470" src="img/LSTM_412x470.png" alt="LSTM" style="border:none;box-shadow:none">
    <p>A Long Short-Term Memory (LSTM) Unit</p>
+  </section>
+
+  <section>
+   <h2>Deeper too</h2>
+   <ul class="fix-spacing">
+    <li>Can also pile up layers</li>
+    <li>and run forwards and backwards</li>
+   </ul>
+  </section>
+  
+</section>
+
+<section>
+  <section>
+   <h2>Natural Language Processing</h2>
+   <h4>Variable-length input doesn't "fit"</h4>
+   <ul class="fix-spacing">
+    <li></li>
+   </ul>
+  </section>
+
+</section>
+
+<section>
+  <section>
+   <h2>Word Embeddings</h2>
+   <h4>Variable-length input doesn't "fit"</h4>
+   <ul class="fix-spacing">
+    <li>Apply a network iteratively over input</li>
+    <li>Internal state carried forward step-wise</li>
+    <li>Everything is still <i>differentiable</i></li>
+   </ul>
+  </section>
+
+</section>
+
+<section>
+  <section>
+   <h2>Learning Named Entity Recognition</h2>
+   <ul class="fix-spacing">
+    <li>Visual features can also be used generatively</li>
+    <li>Alter images to maximise network response</li>
+    <li>...</li>
+    <li>Art?</li>
+   </ul>
+  </section>
+
+  <section>
+   <h2>9-RNN-Tagger</h2>
+   <ximg width="595" height="395" src="img/Art-Style-Transfer_595x395.png" alt="Art Style-Transfer" style="border:none;box-shadow:none">
+   <p>Learning to tag sentences</p>
+  </section>
+
+  <section>
+   <h2>Network Picture</h2>
+   <ximg width="628" height="555" src="img/commerce-network_628x555.png" alt="Repurposed Network" style="border:none;box-shadow:none">
+  </section>
+
+</section>
+
+
+<section>
+  <section>
+   <h2>Chaining Outputs</h2>
+   <ul class="fix-spacing">
+    <li>Each node outputs vector</li>
+    <li>Can softmax-choose 'answer'</li>
+    <li>Feed that 'answer' in as next <i>input</i></li>
+   </ul>
+  </section>
+  
+  <section>
+   <h2>Chaining Outputs</h2>
+   <ximg width="412" height="470" src="img/LSTM_412x470.png" alt="LSTM" style="border:none;box-shadow:none">
+   <p>Self-feed to generate</p>
+  </section>
+
+</section>
+
+
+<section>
+  <section>
+   <h2>Learning Character Sequences</h2>
   </section>
 
   <section>
@@ -1010,7 +1145,29 @@ AENEMUUNS	Met that will knop unhian, where ever have
 !-->
 </section>
 
+<section>
+  <section>
+   <h2>RNN Discrimination</h2>
+   <ul class="fix-spacing">
+    <li>Visual features can also be used generatively</li>
+    <li>Alter images to maximise network response</li>
+    <li>...</li>
+    <li>Art?</li>
+   </ul>
+  </section>
 
+  <section>
+   <h2>9-RNN-Fun</h2>
+   <ximg width="595" height="395" src="img/Art-Style-Transfer_595x395.png" alt="Art Style-Transfer" style="border:none;box-shadow:none">
+   <p>Style-Transfer an artist onto your photos</p>
+  </section>
+
+  <section>
+   <h2>Network Picture</h2>
+   <ximg width="628" height="555" src="img/commerce-network_628x555.png" alt="Repurposed Network" style="border:none;box-shadow:none">
+  </section>
+
+</section>
 
 
 
