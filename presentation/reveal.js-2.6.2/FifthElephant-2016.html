@@ -58,6 +58,9 @@ table.table-fix {
 .fix-spacing li {
  margin-bottom:16pt;
 }
+#all-sessions li span {
+   width:100px;
+}
 </style>
 
 <!--
@@ -140,16 +143,16 @@ Discuss :
     <li>Four sessions</li>
     <li>Each about 90 minutes</li>
     <li>Different subject areas</li>
-    <li>But interrelated</li>
+    <li>... but interrelated</li>
    </ul>
   </section>
   <section>
    <h2>Sessions</h2>
-   <ul class="fix-spacing">
-    <li>9:30-11:00 : Intro &amp; warm-up</li>
-    <li>11:15-12:45 : CNNs ~ images</li>
-    <li>1:45-3:30 : RNNs ~ language</li>
-    <li>3:45-5:00 : RL ~ games &amp; wrap-up</li>
+   <ul class="fix-spacing" id="all-sessions">
+    <li><span>9:30-11:00 </span>: Intro &amp; warm-up</li>
+    <li><span>11:15-12:45 </span>: CNNs ~ images</li>
+    <li><span>1:45-3:30 </span>: RNNs ~ language</li>
+    <li><span>3:45-5:00 </span>: RL ~ games &amp; wrap-up</li>
    </ul>
   </section>
   <section>
@@ -164,8 +167,8 @@ Discuss :
    <h2>Questions</h2>
    <ul class="fix-spacing">
     <li>Please ask as-and-when</li>
-    <li>May only get a vague answer</li>
-    <li>Don't get stuck...</li>
+    <li>... may only get a vague answer</li>
+    <li>Also : Don't hide being stuck!</li>
    </ul>
   </section>
 </section>
@@ -177,8 +180,8 @@ Discuss :
     <li>A little history</li>
     <li>What deep-learning can do</li>
     <li>A little mathematics</li>
-    <li>Hands on in Javascript</li>
-    <li>Hands on with VM</li>
+    <li>Hands-on in Javascript</li>
+    <li>Hands-on in VM</li>
     <li>Workshop : Anomaly Detection</li>
    </ul>
   </section>
@@ -190,7 +193,7 @@ Discuss :
   <li>Machine Intelligence / Startups / Finance</li>
   <li style="list-style-type:none">
     <ul>
-      <li>Moved to Singapore in Sep-2013</li>
+      <li>Moved from NYC to Singapore in Sep-2013</li>
     </ul>
   </li>
   <li>2014 = 'fun' :</li>
@@ -716,9 +719,9 @@ ssh -p 8282 user@localhost
 <section>
  <h2>Pre-Break Wrap-up</h2>
  <ul class="fix-spacing">
-  <li>Deep Learning may deserve some hype...</li>
-  <li>Next bit will be hands on</li>
-  <li>There's lots more in the VM</li>
+  <li>This was a taster</li>
+  <li>Heavier examples coming up</li>
+  <li>If your VM isn't working : FIX IT NOW!</li>
  </ul>
  <img width="517" height="223" src="img/GitHub-mdda_517x223.png" alt="GitHub - mdda" style="border:none;box-shadow:none">
  <p><small>* Please add a star... *</small></p>
@@ -745,6 +748,7 @@ ssh -p 8282 user@localhost
     <li>MNIST example</li>
     <li>ImageNet models</li>
     <li>Workshop : Repurposing a CNN</li>
+    <li>Workshop : Art with a CNN</li>
    </ul>
   </section>
 </section>
