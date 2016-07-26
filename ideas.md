@@ -74,8 +74,8 @@
           *   ```wget http://corpora2.informatik.uni-leipzig.de/downloads/eng_wikipedia_2010_100K-text.tar.gz```
           *   ```wget http://corpora2.informatik.uni-leipzig.de/downloads/eng_news_2015_100K.tar.gz```
       *   ```nltk.tokenize.punkt```
-      
 
+      *   Main thing to learn : NER (i.e. NNP) for single-case text
 
 
    *  Idea : How about a character-wise name recognition (by region)?
