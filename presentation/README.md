@@ -13,6 +13,26 @@ wget https://github.com/hakimel/reveal.js/archive/2.6.2.tar.gz
 tar -xzf 2.6.2.tar.gz --exclude=index.html
 ```
 
+
+```
+cd ../presentation/
+
+REVEAL=reveal.js-2.6.2
+
+wget https://fonts.gstatic.com/s/quicksand/v5/sKd0EMYPAh5PYCRKSryvW6CWcynf_cDxXwCLxiixG1c.ttf
+
+wget https://fonts.gstatic.com/s/opensans/v13/cJZKeOuBrn4kERxqtaUH3aCWcynf_cDxXwCLxiixG1c.ttf
+wget https://fonts.gstatic.com/s/opensans/v13/k3k702ZOKiLJc3WVjuplzInF5uFdDttMLvmWuJdhhgs.ttf
+wget https://fonts.gstatic.com/s/opensans/v13/xjAJXh38I15wypJXxuGMBp0EAVxt0G0biEntp43Qt6E.ttf
+wget https://fonts.gstatic.com/s/opensans/v13/PRmiXeptR36kaC0GEAetxp_TkvowlIOtbR7ePgFOpF4.ttf
+
+mkdir -r ${REVEAL}/fonts
+mv *.ttf ${REVEAL}/fonts/
+```
+
+
+
+
 Open in Chrome : 
 ```
 <PATH-TO-REPO>/presentation/index.html
