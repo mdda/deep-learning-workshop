@@ -14,6 +14,10 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
+  <!-- For local-loading of fonts (see README for TTF download instructions) -->
+  <!-- Load before theme, so that if connected, 'genuine' fonts are downloaded -->
+  <link rel="stylesheet" href="fonts/local.css">
+
   <link rel="stylesheet" href="css/reveal.min.css">
   <link rel="stylesheet" xhref="css/theme/default.css" href="css/theme/sky.css" id="theme">
 
@@ -42,9 +46,6 @@
    <div class="slides">
     
 <style>
-@import url(https://fonts.googleapis.com/css?family=Quicksand:400,700,400italic,700italic);
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700);
-
 table.table-fix {
  margin-left:auto;  margin-right:auto; border-collapse:collapse; cell-padding:5px;
  margin-top:20px;

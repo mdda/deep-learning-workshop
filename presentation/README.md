@@ -26,7 +26,7 @@ wget https://fonts.gstatic.com/s/opensans/v13/k3k702ZOKiLJc3WVjuplzInF5uFdDttMLv
 wget https://fonts.gstatic.com/s/opensans/v13/xjAJXh38I15wypJXxuGMBp0EAVxt0G0biEntp43Qt6E.ttf
 wget https://fonts.gstatic.com/s/opensans/v13/PRmiXeptR36kaC0GEAetxp_TkvowlIOtbR7ePgFOpF4.ttf
 
-mkdir -r ${REVEAL}/fonts
+mkdir -p ${REVEAL}/fonts
 mv *.ttf ${REVEAL}/fonts/
 ```
 
