@@ -1026,7 +1026,7 @@ ssh -p 8282 user@localhost
    <h2>Deeper too</h2>
    <ul class="fix-spacing">
     <li>Can also pile up layers</li>
-    <li>and run forwards and backwards</li>
+    <li>... and run forwards and backwards</li>
    </ul>
   </section>
   
@@ -1035,8 +1035,16 @@ ssh -p 8282 user@localhost
 <section>
   <section>
    <h2>Natural Language Processing</h2>
-   <h4>Variable-length input doesn't "fit"</h4>
    <ul class="fix-spacing">
+    <li>Work with text input</li>
+    <li>Applications in </li>
+    <li style="list-style-type:none">
+      <ul>
+        <li>Text Analysis</li>
+        <li>Translation</li>
+        <li>Knowledge Extraction</li>
+      </ul>
+    </li>
     <li></li>
    </ul>
   </section>
@@ -1045,7 +1053,29 @@ ssh -p 8282 user@localhost
 
 <section>
   <section>
+   <h2>Handling Words</h2>
+   <ul class="fix-spacing">
+    <li>English ~100k words</li>
+    <li>A 'one-hot' input seems wasteful</li>
+    <li>Learn about word inter-relationships from corpus?</li>
+   </ul>
+  </section>
+  
+  <section>
    <h2>Word Embeddings</h2>
+   <ul class="fix-spacing">
+    <li>Major advances : word2vec &amp; GloVe</li>
+    <li>Basic idea : assign each word a vector (~300d)</li>
+    <li>If words in corpus 'close', vectors should be closer</li>
+    <li>... gradient descent until finished</li>
+   </ul>
+  </section>
+
+</section>
+
+<section>
+  <section>
+   <h2>RNNs for NLP</h2>
    <h4>Variable-length input doesn't "fit"</h4>
    <ul class="fix-spacing">
     <li>Apply a network iteratively over input</li>
