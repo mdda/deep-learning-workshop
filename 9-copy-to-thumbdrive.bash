@@ -66,10 +66,12 @@ rsync -avz --progress ./presentation ${target}/
 
 # Clean out old VMs
 rm ${target}/deep-learning-workshop_2016-06-23*.ova
+rm ${target}/deep-learning-workshop_2016-07-21*.ova
 
 # And ensure the new one is there
 rsync -avz --progress ${most_recent_ova} ${target}/
 ls -l ${target}/
 
-echo "5da875cf8e0df504e5edcccf3382630f  vm-images/deep-learning-workshop_2016-07-21_18-06.ova"
+#echo "5da875cf8e0df504e5edcccf3382630f  vm-images/deep-learning-workshop_2016-07-21_18-06.ova"
+echo "6f5d8259872b6cae9d2b23be8012fc4d  vm-images/deep-learning-workshop_2016-07-28_11-40.ova"
 md5sum ${target}/*.ova 
