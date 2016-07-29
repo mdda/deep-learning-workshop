@@ -362,7 +362,19 @@ Discuss :
   
   <section>
    <h2>Backpropagation</h2>
-   <p>Chain rule...</p>
+   <ul class="fix-spacing">
+    <li>How much 'blame' to assign to a weight?</li>
+    <li>If it is connected to an output : Easy</li>
+    <li>Otherwise, calculate :</li>
+    <li style="list-style-type:none">
+      <ul>
+        <li>Blame to assign to each neuron in layer before output</li>
+        <li>Treat each of these errors as a 'new output'</li>
+        <li>Walk back through network</li>
+      </ul>
+    </li>
+    <li>Same complexity as forward pass</li>
+   </ul>
   </section>
 </section>
 
@@ -1248,6 +1260,7 @@ AENEMUUNS	Met that will knop unhian, where ever have
   <section>
    <h2>9-RNN-Fun</h2>
    <img width="581" height="293" src="img/RNN-Fun_581x293.png" alt="RNN-Fun" style="border:none;box-shadow:none">
+   <p>RNN Discriminator &amp; more</p>
   </section>
 
   <section>
