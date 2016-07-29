@@ -16,9 +16,9 @@
    version="1.1"
    inkscape:version="0.91 r13725"
    sodipodi:docname="RNN-output-to-input-chaining.svg"
-   inkscape:export-filename="/home/andrewsm/OpenSource/deep-learning-workshop/presentation/mnist-dense-network_510x309.png"
-   inkscape:export-xdpi="149.79041"
-   inkscape:export-ydpi="149.79041">
+   inkscape:export-filename="/home/andrewsm/OpenSource/deep-learning-workshop/presentation/RNN-output-to-input-chaining_675x483.png"
+   inkscape:export-xdpi="100.03369"
+   inkscape:export-ydpi="100.03369">
   <defs
      id="defs4">
     <marker
@@ -332,7 +332,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.2058353"
-     inkscape:cx="365.16504"
+     inkscape:cx="324.94396"
      inkscape:cy="759.80096"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
