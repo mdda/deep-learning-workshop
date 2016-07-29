@@ -571,7 +571,7 @@ ssh -p 8282 user@localhost
 </section>
 
 <section>
- <h3>- QUESTIONS -</h3>
+ <h3>- PAUSE -</h3>
 </section>
 
 <section>
@@ -655,17 +655,17 @@ ssh -p 8282 user@localhost
   </section>
 
   <section>
-   <h2>Simple Network</h2>
-   <img width="829" height="425" src="img/netvis-mnist-100S_829x425.png" alt="Multi-Layer" style="border:none;box-shadow:none">
-   <p><i>... around 2-3% error rate on the test set</i></p>
-  </section>
-  
-  <section>
    <h2>1-MNIST-MLP</h2>
    <img width="591" height="352" src="img/MNIST-MLP_591x352.png" alt="MNIST MLP" style="border:none;box-shadow:none">
    <p>We using <code>lasagne</code> as an additional layer <i>on top of</i> <code>Theano</code></p>
   </section>
 
+  <section>
+   <h2>Network Picture</h2>
+   <ximg width="562" height="556" src="img/autoencoder-network_562x556.png" alt="Autoencoder" style="border:none;box-shadow:none">
+   <p><i>... around 8-9% error rate on the test set</i></p>
+  </section>
+  
 </section>
 
 <section>
@@ -804,7 +804,19 @@ ssh -p 8282 user@localhost
   <section>
    <h2>Advantages</h2>
    <ul class="fix-spacing">
-    <li>Only have to train a single layer!</li>
+    <li>Features are known to be relevant</li>
+    <li>Preserves the picture-like quality of input</li>
+    <li>Only have to train small number of parameters</li>
+    <li>Well suited to GPU computation</li>
+    <li>Makes the impossible <i>possible</i></li>
+   </ul>
+  </section>
+
+  <section>
+   <h2>Disadvantages</h2>
+   <ul class="fix-spacing">
+    <li>Shows Deep Learning isn't pure magic</li>
+    <li>GPU becomes more important</li>
    </ul>
   </section>
 
@@ -1045,7 +1057,6 @@ ssh -p 8282 user@localhost
         <li>Knowledge Extraction</li>
       </ul>
     </li>
-    <li></li>
    </ul>
   </section>
 
@@ -1076,7 +1087,7 @@ ssh -p 8282 user@localhost
 <section>
   <section>
    <h2>RNNs for NLP</h2>
-   <h4>Variable-length input doesn't "fit"</h4>
+   <h4>Sentences are Variable-length</h4>
    <ul class="fix-spacing">
     <li>Apply a network iteratively over input</li>
     <li>Internal state carried forward step-wise</li>
@@ -1090,10 +1101,16 @@ ssh -p 8282 user@localhost
   <section>
    <h2>Learning Named Entity Recognition</h2>
    <ul class="fix-spacing">
-    <li>Visual features can also be used generatively</li>
-    <li>Alter images to maximise network response</li>
-    <li>...</li>
-    <li>Art?</li>
+    <li>Can we train an RNN to do 'NER'?</li>
+    <li>Human annotated Corpora are difficult to distribute :</li>
+    <li style="list-style-type:none">
+      <ul>
+        <li>Use NLTK to annotate Wikipedia</li>
+        <li>Train RNN on machine annotations</li>
+        <li>Look at performance vs NLTK</li>
+      </ul>
+    </li>
+    <li>Twist : Restrict RNN input to single case text</li>
    </ul>
   </section>
 
@@ -1136,6 +1153,7 @@ ssh -p 8282 user@localhost
 <section>
   <section>
    <h2>Learning Character Sequences</h2>
+   <p>... work-in-progress ...</p>
   </section>
 
   <section>
@@ -1221,21 +1239,24 @@ AENEMUUNS	Met that will knop unhian, where ever have
   <section>
    <h2>RNN Discrimination</h2>
    <ul class="fix-spacing">
-    <li>Visual features can also be used generatively</li>
-    <li>Alter images to maximise network response</li>
-    <li>...</li>
-    <li>Art?</li>
+    <li>Can we train an RNN to detect known/unknown words?</li>
+    <li>Corpus : 100k word dictionary</li>
+    <li>Twist : Perhaps we can generate words too...</li>
    </ul>
   </section>
 
   <section>
    <h2>9-RNN-Fun</h2>
    <ximg width="595" height="395" src="img/Art-Style-Transfer_595x395.png" alt="Art Style-Transfer" style="border:none;box-shadow:none">
-   <p>Style-Transfer an artist onto your photos</p>
   </section>
 
   <section>
-   <h2>Network Picture</h2>
+   <h2>Discriminator Network</h2>
+   <ximg width="628" height="555" src="img/commerce-network_628x555.png" alt="Repurposed Network" style="border:none;box-shadow:none">
+  </section>
+
+  <section>
+   <h2>Generator Network</h2>
    <ximg width="628" height="555" src="img/commerce-network_628x555.png" alt="Repurposed Network" style="border:none;box-shadow:none">
   </section>
 
@@ -1295,6 +1316,9 @@ AENEMUUNS	Met that will knop unhian, where ever have
    <h2>Useful beyond games...</h2>
    <ul class="fix-spacing">
     <li>... advertising</li>
+    <li>... </li>
+    <li>... </li>
+    <li>... and data center cooling</li>
    </ul>
   </section>
 
@@ -1390,28 +1414,48 @@ AENEMUUNS	Met that will knop unhian, where ever have
   <section>
    <h2>Board &rarr; Features</h2>
    <ul class="fix-spacing">
-    <li></li>
+    <li>Using colours of blobs as features is possible</li>
+    <li>... but wasteful, due to symmetry</li>
+    <li>Encode position as several feature layers:</li>
+    <li style="list-style-type:none">
+      <ul>
+        <li>Board silhouette</li>
+        <li>colour[i,j] == colour[i+a,j]</li>
+        <li>colour[i,j] == colour[i,j+b]</li>
+      </ul>
+    </li>
    </ul>
   </section>
 
   <section>
    <h2>Choice of Move</h2>
    <ul class="fix-spacing">
-    <li></li>
+    <li>Game code can 'run' an action against the board</li>
+    <li>Evaluate each separate resulting board</li>
+    <li>Choose from ranked list :</li>
+    <li style="list-style-type:none">
+      <ul>
+        <li>Exploit : Choose best move</li>
+        <li>Explore : Choose random move</li>
+      </ul>
+    </li>
    </ul>
   </section>
 
   <section>
    <h2>Reward Function</h2>
    <ul class="fix-spacing">
-    <li></li>
+    <li>Pros/cons of using 'change in score'</li>
    </ul>
   </section>
 
   <section>
    <h2>Batch Learning</h2>
    <ul class="fix-spacing">
-    <li></li>
+    <li>Normally, networks train on same data repeatedly</li>
+    <li>But past actions become irrelevant training</li>
+    <li>Retain some memory of previous actions</li>
+    <li>But 'roll forward' with newer examples continuously</li>
    </ul>
   </section>
 
@@ -1419,6 +1463,11 @@ AENEMUUNS	Met that will knop unhian, where ever have
    <h2>7-Reinforcement-Learning</h2>
    <img width="593" height="334" src="img/BubbleBreaker-jupyter_593x334.png" alt="Bubble Breaker RL" style="border:none;box-shadow:none">
    <p>Deep Reinforcement Learning for Bubble Breaker</p>
+  </section>
+
+  <section>
+   <h2>Network Picture</h2>
+   <ximg width="628" height="555" src="img/commerce-network_628x555.png" alt="Repurposed Network" style="border:none;box-shadow:none">
   </section>
 
 </section>
@@ -1485,8 +1534,8 @@ AENEMUUNS	Met that will knop unhian, where ever have
  <h2>Conclusion</h2>
  <ul class="fix-spacing">
   <li>Deep Learning may deserve some hype...</li>
-  <li>Getting the tools in one place is helpful</li>
-  <li>Having a GPU is VERY helpful</li>
+  <li>It's not actually magic</li>
+  <li>But it is experimental</li>
  </ul>
  <img width="517" height="223" src="img/GitHub-mdda_517x223.png" alt="GitHub - mdda" style="border:none;box-shadow:none">
  <p><small>* Please add a star... *</small></p>
