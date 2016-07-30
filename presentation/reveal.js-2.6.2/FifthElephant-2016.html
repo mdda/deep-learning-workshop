@@ -1542,7 +1542,15 @@ AENEMUUNS	Met that will knop unhian, where ever have
   <section>
    <h2>Batch Normalization</h2>
    <ul class="fix-spacing">
-    <li></li>
+    <li>Networks learn better if features are of a similar scale</li>
+    <li style="list-style-type:none">
+      <ul>
+        <li>~ N(0,1) for instance</li>
+      </ul>
+    </li>
+    <li>Find mean and variance of all samples in a batch</li>
+    <li>Rescale the batch so that all values reasonable</li>
+    <li>Approximation works if batch is 'typical' (likely)</li>
    </ul>
   </section>
 
