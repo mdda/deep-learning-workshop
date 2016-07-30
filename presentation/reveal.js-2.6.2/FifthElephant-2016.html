@@ -828,7 +828,7 @@ ssh -p 8282 user@localhost
    <h2>Disadvantages</h2>
    <ul class="fix-spacing">
     <li>Shows Deep Learning isn't pure magic</li>
-    <li>GPU becomes more important</li>
+    <li>GPU becomes essential for training</li>
    </ul>
   </section>
 
@@ -1097,7 +1097,7 @@ ssh -p 8282 user@localhost
    <ul class="fix-spacing">
     <li>Major advances : word2vec &amp; GloVe</li>
     <li>Basic idea : assign each word a vector (~300d)</li>
-    <li>If words in corpus 'close', vectors should be closer</li>
+    <li>If words in window 'close', vectors should be closer</li>
     <li>... gradient descent until finished</li>
    </ul>
   </section>
@@ -1390,7 +1390,7 @@ AENEMUUNS	Met that will knop unhian, where ever have
    <ul class="fix-spacing">
     <li>Set Q() to be the output of a deep neural network</li>
     <li>... where the input is the state</li>
-    <li>Train network input/ouput pairs from observed steps</li>
+    <li>Train network input/output pairs from observed steps</li>
     <li>... over *many* games</li>
    </ul>
   </section>
@@ -1481,7 +1481,7 @@ AENEMUUNS	Met that will knop unhian, where ever have
    <h2>Batch Learning</h2>
    <ul class="fix-spacing">
     <li>Normally, networks train on same data repeatedly</li>
-    <li>But past actions become irrelevant training</li>
+    <li>But past actions may become irrelevant to training</li>
     <li>Retain some memory of previous actions</li>
     <li>But 'roll forward' with newer examples continuously</li>
    </ul>
