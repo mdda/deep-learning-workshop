@@ -22,10 +22,11 @@ and finally use pretrained state-of-the-art networks, such as GoogLeNet, in vari
   *  Application : Classifying unknown classes of images (~transfer learning)
 
 * [Fifth Elephant, India](https://fifthelephant.in/2016/) : Deep Learning Workshop (targeting 6 hours)
-  *  Application : Anomaly Detection (mis-shaped MNIST digits)
   *  Application : Classifying unknown classes of images (~transfer learning)
   *  Application : Generative art (~style transfer)
-  *  Application : RNN Fun
+  *  Application : RNN Tagger
+  *  Application : RNN Fun (work-in-progress)
+  *  Application : Anomaly Detection (mis-shaped MNIST digits)
   *  Application : Reinforcement Learning
 
 
@@ -42,6 +43,7 @@ The VM itself includes :
   * MNIST training and test sets
   * Trained models from two of the 'big' ImageNet winners
   * Test Images for both recognition, 'e-commerce' and style-transfer modules
+  * Corpuses and pretrained GloVe for the language examples
 * Tool chain (mostly Python-oriented)
   * Theano / Lasagne
   * Keras / Tensorflow is included, but not really used
@@ -79,7 +81,7 @@ And this repo can itself be run in 'local mode', using scripts in ```./local/```
    *  'Commerce' - repurpose a trained network to classify our stuff
    *  'Art' - Style transfer with Lasagne, but using GoogLeNet features for speed
    *  'Reinforcement Learning' - learning to play "Bubble Breaker" 
-   *  'RNN-Fun' - Discriminative and Generative RNNs
+   *  'RNN-Tagger' - Processing text, and learning to do case-less Named Entity Recognition
 
 *  Notebook Extras
    *  U - VM Upgrade tool
@@ -104,6 +106,7 @@ And this repo can itself be run in 'local mode', using scripts in ```./local/```
 
 *  Monitor TensorBoard - to see whether it reduces its memory footprint enough to switch from Theano...
    
+*  'RNN-Fun' - Discriminative and Generative RNNs
    
 
 ### Notes
