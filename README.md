@@ -20,14 +20,16 @@ and finally use pretrained state-of-the-art networks, such as GoogLeNet, in vari
 * [DataScienceSG MeetUp](http://www.meetup.com/DataScience-SG-Singapore/) : 'Hardcore' session about Deep Learning (targeting 2.5 hours)
   *  Application : Anomaly Detection (mis-shaped MNIST digits)
   *  Application : Classifying unknown classes of images (~transfer learning)
+  *  Slides for the talk are [here](http://redcatlabs.com/2016-07-23_DataScienceSG-DeepLearning-Workshop/)
 
-* [Fifth Elephant, India](https://fifthelephant.in/2016/) : Deep Learning Workshop (targeting 6 hours)
+* [Fifth Elephant, India](https://fifthelephant.in/2016/) : Deep Learning Workshop (6 hours : 4x 1.5hr classes in one day)
   *  Application : Classifying unknown classes of images (~transfer learning)
   *  Application : Generative art (~style transfer)
   *  Application : RNN Tagger
   *  Application : RNN Fun (work-in-progress)
   *  Application : Anomaly Detection (mis-shaped MNIST digits)
   *  Application : Reinforcement Learning
+  *  Slides for the talk are [here](http://redcatlabs.com/2016-07-30_FifthElephant-DeepLearning-Workshop/)
 
 
 **NB : Ensure Conference Workshop announcement / blurb includes VirtualBox warning label**
