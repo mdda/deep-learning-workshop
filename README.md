@@ -7,20 +7,20 @@ This workshop consists of an introduction to deep learning (from single layer ne
 then using the VM/Jupyter setup to train networks using Theano/Lasagne, 
 and finally use pretrained state-of-the-art networks, such as GoogLeNet, in various applications) :
 
-* [FOSSASIA 2016](http://2016.fossasia.org/) : Deep Learning Workshop (2hrs)
+* [FOSSASIA 2016](http://2016.fossasia.org/) : Deep Learning Workshop (2 hours)
   *  Application : Generative art (~style transfer)
   *  Application : Classifying unknown classes of images (~transfer learning)
-  *  Slides for the talk are [here](http://redcatlabs.com/2016-03-19_FOSSASIA-Workshop/)
+  *  Slides for the talk are [here](http://redcatlabs.com/2016-03-19_FOSSASIA-Workshop/), and a [blog post](http://blog.mdda.net/ai/2016/03/19/workshop-at-fossasia-2016)
 
-* [PyCon-SG 2016](https://pycon.sg/schedule/presentation/94/) : Deep Learning Workshop (1.5hrs)
+* [PyCon-SG 2016](https://pycon.sg/schedule/presentation/94/) : Deep Learning Workshop (1.5 hours)
   *  Unfortunately, due to 'demand' for speaker slots, PyCon has only scheduled 1h30 for the workshop, rather than the 3h00 they originally suggested...
   *  Application : Reinforcement Learning
-  *  Slides for the talk are [here](http://redcatlabs.com/2016-06-23_PyConSG-Workshop/)
+  *  Slides for the talk are [here](http://redcatlabs.com/2016-06-23_PyConSG-Workshop/), and a [blog post](http://blog.mdda.net/ai/2016/06/23/workshop-at-pycon-sg-2016)
 
-* [DataScienceSG MeetUp](http://www.meetup.com/DataScience-SG-Singapore/) : 'Hardcore' session about Deep Learning (targeting 2.5 hours)
+* [DataScienceSG MeetUp](http://www.meetup.com/DataScience-SG-Singapore/) : 'Hardcore' session about Deep Learning (2.5 hours)
   *  Application : Anomaly Detection (mis-shaped MNIST digits)
   *  Application : Classifying unknown classes of images (~transfer learning)
-  *  Slides for the talk are [here](http://redcatlabs.com/2016-07-23_DataScienceSG-DeepLearning-Workshop/)
+  *  Slides for the talk are [here](http://redcatlabs.com/2016-07-23_DataScienceSG-DeepLearning-Workshop/), and a [blog post](http://blog.mdda.net/ai/2016/07/23/datascience-sg-workshop)
 
 * [Fifth Elephant, India](https://fifthelephant.in/2016/) : Deep Learning Workshop (6 hours : 4x 1.5hr classes in one day)
   *  Application : Classifying unknown classes of images (~transfer learning)
@@ -29,7 +29,7 @@ and finally use pretrained state-of-the-art networks, such as GoogLeNet, in vari
   *  Application : RNN Fun (work-in-progress)
   *  Application : Anomaly Detection (mis-shaped MNIST digits)
   *  Application : Reinforcement Learning
-  *  Slides for the talk are [here](http://redcatlabs.com/2016-07-30_FifthElephant-DeepLearning-Workshop/)
+  *  Slides for the talk are [here](http://redcatlabs.com/2016-07-30_FifthElephant-DeepLearning-Workshop/), and a [blog post](http://blog.mdda.net/ai/2016/07/30/workshop-at-fifth-elephant-2016)
 
 
 **NB : Ensure Conference Workshop announcement / blurb includes VirtualBox warning label**
