@@ -2,58 +2,9 @@
 
 *  Run-down of [recent advances in the literature](http://jiwonkim.org/awesome-rnn/)
 
-*  Reinforcement Learning demo (Python)
-   *  [```DeeR```](http://deer.readthedocs.io/en/master/index.html) - ```theano```-based
-   *  [```AgentNet```](https://github.com/yandexdataschool/AgentNet) - ```theano + lasagne```-based
-      *  Examples include Atari space-invaders using OpenAI Gym
-      *  In iPython notebooks!
-   *  Need to understand whether OpenAI gym, ALE, or PLE (PyGame Learning Environment) can be seen from within non-X container 
-      *  ALE : Asteroids, Space Invaders, Ms Pacman, Pong, Demon Attack
-         *  More [programmer-centric](http://yavar.naddaf.name/ale/) details
-            *  And ```.bin``` [finding/installation](https://groups.google.com/forum/#!topic/arcade-learning-environment/WMCrtTZPE2A)
-         *  Can run with pipes, and save images every **x** frames (?dynamically loaded into Jupyter?)
-         *  [Native Python Interface](https://github.com/bbitmaster/ale_python_interface/wiki/Code-Tutorial)
-      *  [CNN used as pre-processor](http://www.slideshare.net/johnstamford/atari-game-state-representation-using-convolutional-neural-networks) to get learning time within reasonable bounds
-      *  [Blog posting about RL using Neon](http://www.nervanasys.com/deep-reinforcement-learning-with-neon/)
-      *  [Asynchronous RL in Tensorflow + Keras + OpenAI's Gym](https://github.com/coreylynch/async-rl)
-         *  Optimising use of replay : [Prioritized Experience Replay](https://arxiv.org/abs/1511.05952)
-         *  Without replay (and good introduction) : [Asynchronous Methods for Deep Reinforcement Learning](https://arxiv.org/abs/1602.01783)
-   *  Potential to make Javascript renderer of Bubble Breaker written in Python
-      *  Host within Jupyter notebook (to display game-state, and potentially play interactively)
-      *  Game mechanics driven by Python backend
-         *  [Python to Javascript](http://blog.thedataincubator.com/2015/08/embedding-d3-in-an-ipython-notebook/)
-         *  And Round-trip [Python ... Javascript](https://jakevdp.github.io/blog/2013/06/01/ipython-notebook-javascript-python-communication/)
-      *  Interface similar (i.e. identical) to ALR or PLE
-         *  Idea for 'longer term' : Add this as an OpenAI Gym environment
-      *  Learn to play using one-step look-ahead and deep-learned value function for boards
-         *  Possible to add Monte-Carlo depth search too
-      *  Difficulty : How to deal with random additional columns 
-         *  Would prefer to limit time-horizon of game 
-            *  Perhaps have a 'grey column' added with fixed (high) value as a reward
-         *  May need to customize reward function, since it is (in principle) unbounded
-            *  Whereas what's important is the relative value of the different actions (rather than their individual accuracy)
-      *  Optimisation : Game symmetry under permutation of the colours
-         *  WOLOG, can assume colour in bottom right is colour '1'
-            *  But colouring in remainder still gives us 3*2*1 choices
-            *  So that 6x as many training examples available than without re-labelling
-            *  Perhaps enumerate off colours in bottom-to-top, right-to-left order for definiteness
-               *  Cuts down redundency in search space, but may open up 'strange holes' in knowledge
-      *  Should consider what a 'minibatch' would look like
-         *  Training of batches of samples looks like experience replay
-         *  Selection of next move requires 'a bunch' of feed-forward evaluations - number unknown
-            *  Find average # of moves available during a game
-            *  Find average # of steps played during a game
-      *  Simple rules to follow:
-         *  Select next move at random from list of available areas, equally weighted
-         *  Select next move at random from list of available areas, weighted by score (or simply cell-count)
-      
-*  Reinforcement Learning demos (Karpathy, mostly in Javascript)
-   *  [```ConvNetJS```](http://cs.stanford.edu/people/karpathy/convnetjs/demo/rldemo.html)
-   *  [```ReinforceJS```](http://cs.stanford.edu/people/karpathy/reinforcejs/)
-   *  [```RecurrentJS```](http://cs.stanford.edu/people/karpathy/recurrentjs/) - contains character RNN demo (PG essays)
-   *  [...more Karpathy goodness](http://karpathy.github.io/2016/05/31/rl/) - in Python/numpy
-      *  With a ['100-lines' of Python gist](https://gist.github.com/karpathy/a4166c7fe253700972fcbc77e4ea32c5) 
-   
+*  Image Completion
+   *  [http://bamos.github.io/2016/08/09/deep-completion/](On TensorFlow)
+   *  https://news.ycombinator.com/item?id=12260853
 
 *  Natural Language Processing
    *  Character-wise RNN that's already included is very slow to converge
@@ -133,11 +84,8 @@
       *  https://github.com/osh/KerasGAN/blob/master/MNIST_CNN_GAN_v2.ipynb
    
    
-*  Anomaly detection
-   *  Very promising auto-encoder approach : [code for MNIST](https://github.com/h2oai/h2o-training-book/blob/master/hands-on_training/anomaly_detection.md)
-   *  [video](http://www.mathtube.org/lecture/video/deep-learning-image-anomaly-detection)
-   *  [Light on details : Slides 6+](http://www.slideshare.net/agibsonccc/anomaly-detection-in-deep-learning-62473913)
-
+*  Anomaly detection II
+   *  Something more comprehensive than the MNIST+Auto-encoder example
 
 *  Image Captioning...
    *   https://github.com/mjhucla/TF-mRNN
@@ -146,4 +94,69 @@
 *  Res-Net
    *   Original (Microsoft Research, ImageNet end-2015) : https://github.com/KaimingHe/deep-residual-networks
    *   https://github.com/Lasagne/Recipes/blob/master/papers/deep_residual_learning/Deep_Residual_Learning_CIFAR-10.py
+
+
+
+
+
+-------------------
+# DONE
+
+*  Reinforcement Learning demo (Python)
+   *  [```DeeR```](http://deer.readthedocs.io/en/master/index.html) - ```theano```-based
+   *  [```AgentNet```](https://github.com/yandexdataschool/AgentNet) - ```theano + lasagne```-based
+      *  Examples include Atari space-invaders using OpenAI Gym
+      *  In iPython notebooks!
+   *  Need to understand whether OpenAI gym, ALE, or PLE (PyGame Learning Environment) can be seen from within non-X container 
+      *  ALE : Asteroids, Space Invaders, Ms Pacman, Pong, Demon Attack
+         *  More [programmer-centric](http://yavar.naddaf.name/ale/) details
+            *  And ```.bin``` [finding/installation](https://groups.google.com/forum/#!topic/arcade-learning-environment/WMCrtTZPE2A)
+         *  Can run with pipes, and save images every **x** frames (?dynamically loaded into Jupyter?)
+         *  [Native Python Interface](https://github.com/bbitmaster/ale_python_interface/wiki/Code-Tutorial)
+      *  [CNN used as pre-processor](http://www.slideshare.net/johnstamford/atari-game-state-representation-using-convolutional-neural-networks) to get learning time within reasonable bounds
+      *  [Blog posting about RL using Neon](http://www.nervanasys.com/deep-reinforcement-learning-with-neon/)
+      *  [Asynchronous RL in Tensorflow + Keras + OpenAI's Gym](https://github.com/coreylynch/async-rl)
+         *  Optimising use of replay : [Prioritized Experience Replay](https://arxiv.org/abs/1511.05952)
+         *  Without replay (and good introduction) : [Asynchronous Methods for Deep Reinforcement Learning](https://arxiv.org/abs/1602.01783)
+   *  Potential to make Javascript renderer of Bubble Breaker written in Python
+      *  Host within Jupyter notebook (to display game-state, and potentially play interactively)
+      *  Game mechanics driven by Python backend
+         *  [Python to Javascript](http://blog.thedataincubator.com/2015/08/embedding-d3-in-an-ipython-notebook/)
+         *  And Round-trip [Python ... Javascript](https://jakevdp.github.io/blog/2013/06/01/ipython-notebook-javascript-python-communication/)
+      *  Interface similar (i.e. identical) to ALR or PLE
+         *  Idea for 'longer term' : Add this as an OpenAI Gym environment
+      *  Learn to play using one-step look-ahead and deep-learned value function for boards
+         *  Possible to add Monte-Carlo depth search too
+      *  Difficulty : How to deal with random additional columns 
+         *  Would prefer to limit time-horizon of game 
+            *  Perhaps have a 'grey column' added with fixed (high) value as a reward
+         *  May need to customize reward function, since it is (in principle) unbounded
+            *  Whereas what's important is the relative value of the different actions (rather than their individual accuracy)
+      *  Optimisation : Game symmetry under permutation of the colours
+         *  WOLOG, can assume colour in bottom right is colour '1'
+            *  But colouring in remainder still gives us 3*2*1 choices
+            *  So that 6x as many training examples available than without re-labelling
+            *  Perhaps enumerate off colours in bottom-to-top, right-to-left order for definiteness
+               *  Cuts down redundency in search space, but may open up 'strange holes' in knowledge
+      *  Should consider what a 'minibatch' would look like
+         *  Training of batches of samples looks like experience replay
+         *  Selection of next move requires 'a bunch' of feed-forward evaluations - number unknown
+            *  Find average # of moves available during a game
+            *  Find average # of steps played during a game
+      *  Simple rules to follow:
+         *  Select next move at random from list of available areas, equally weighted
+         *  Select next move at random from list of available areas, weighted by score (or simply cell-count)
+      
+*  Reinforcement Learning demos (Karpathy, mostly in Javascript)
+   *  [```ConvNetJS```](http://cs.stanford.edu/people/karpathy/convnetjs/demo/rldemo.html)
+   *  [```ReinforceJS```](http://cs.stanford.edu/people/karpathy/reinforcejs/)
+   *  [```RecurrentJS```](http://cs.stanford.edu/people/karpathy/recurrentjs/) - contains character RNN demo (PG essays)
+   *  [...more Karpathy goodness](http://karpathy.github.io/2016/05/31/rl/) - in Python/numpy
+      *  With a ['100-lines' of Python gist](https://gist.github.com/karpathy/a4166c7fe253700972fcbc77e4ea32c5) 
+   
+*  Anomaly detection
+   *  Very promising auto-encoder approach : [code for MNIST](https://github.com/h2oai/h2o-training-book/blob/master/hands-on_training/anomaly_detection.md)
+   *  [video](http://www.mathtube.org/lecture/video/deep-learning-image-anomaly-detection)
+   *  [Light on details : Slides 6+](http://www.slideshare.net/agibsonccc/anomaly-detection-in-deep-learning-62473913)
+
 
