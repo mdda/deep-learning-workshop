@@ -30,17 +30,14 @@ git+git://github.com/Theano/Theano.git#egg=theano
 git+git://github.com/fchollet/keras.git
 
 
-
 ### Lasagne
 
 ## Lasagne 'master'
 https://github.com/Lasagne/Lasagne/archive/master.zip
 
 
-
 ### Tensorflow 
 https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.7.1-cp27-none-linux_x86_64.whl
-
 
 
 # Plotting of graphs (dynamic, beautiful)
@@ -49,9 +46,6 @@ https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.7.1-cp27-none-l
 
 # Plotting of graphs (simpler, but beautiful too)
 #seaborn
-
-# iPython Notebook 
-#ipython>=3.1.0
 
 # Jupyter (the new new thing)
 jupyter
@@ -71,11 +65,14 @@ pyparsing==1.5.7
 ## This is a Pythonic interface to the HDF5 binary data format (used for keras-VGG16 weights reading)
 h5py>=2.5.0
 
-## Requests is only used in the GPU chooser, which is a pity.  OTOH, it's a good library
-requests>=2.9.0
-
 ## This is for Punkt and TreeBank tokenizers
 nltk>=3.2.1
 
 ## This is for the GloVE word embedding package :: https://github.com/maciejkula/glove-python
 glove_python>=0.1.0
+
+## Requests is only used in the GPU chooser, which is a pity.  OTOH, it's a good library
+requests>=2.9.0
+
+## Beautiful soup : Useful for parsing web pages (specifically for the GPU-chooser notebook)
+bs4
