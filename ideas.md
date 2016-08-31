@@ -96,8 +96,10 @@
    *   https://github.com/Lasagne/Recipes/blob/master/papers/deep_residual_learning/Deep_Residual_Learning_CIFAR-10.py
 
 
+-------------------
+# NEXT VENUES...
 
-
+*  Ideas : http://www.kdnuggets.com/meetings/
 
 -------------------
 # DONE
