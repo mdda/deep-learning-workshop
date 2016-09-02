@@ -108,7 +108,8 @@ if [ ! -e "Shakespeare.poetry.txt.gz" ]; then
   mkdir Shakespeare
   cd Shakespeare/
     # 20Mb
-    wget http://sydney.edu.au/engineering/it/~matty/Shakespeare/shakespeare.tar.gz
+    #wget http://sydney.edu.au/engineering/it/~matty/Shakespeare/shakespeare.tar.gz
+    wget http://www.cs.usyd.edu.au/~matty/Shakespeare/shakespeare.tar.gz
     tar -xzf shakespeare.tar.gz 
   cd ..
 
