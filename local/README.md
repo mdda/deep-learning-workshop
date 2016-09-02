@@ -1,12 +1,32 @@
 ## Running the environment locally
 
-### Fedora (versions 23 &amp; 24)
-First, run the ```./local/setup.bash``` and follow the instructions (such as installing additional RPMs, for which you'll need ```root```):
+### Package Installation
+
+Choose the script relevant to your machine from the sections below.  
+
+*NB:  New contributions welcome.*
+
+
+
+#### Fedora (versions 23 &amp; 24) 
+Run the ```bash``` script and follow the instructions (such as installing additional RPMs, for which you'll need ```root```):
 ```
-./local/setup.bash 
+./local/setup_fedora.bash 
 ```
 
-Once that runs without complaint, the Jupyter notebook server can be run using :
+
+#### MacOSX Darwin
+
+Run the ```bash``` script and follow the instructions (such as installing ```brew```, etc):
+```
+./local/setup_mac.bash 
+```
+
+
+
+### Next Step : Running Jupyter
+
+Once the ```setup``` runs without complaint, the Jupyter notebook server can be run using :
 
 ```
 ./local/run-jupyter.bash 
