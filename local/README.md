@@ -2,7 +2,7 @@
 
 ### Package Installation
 
-Choose the script relevant to your machine from the sections below.  
+Choose the script relevant to your machine from the sections below, and then run Jupyter (or just run a Python REPL, for instance) using the instructions in the last section.
 
 *NB:  New contributions welcome.*
 
