@@ -5,11 +5,10 @@ set -x
 
 source ./config/params
 
+RCL_BASE=http://redcatlabs.com/deep-learning-workshop/notebooks/data
 
 ## MNIST data
 # ready for Keras
-
-
 
 ## ImageNet synset words
 
@@ -126,6 +125,9 @@ fi
 if [ ! -e "gru_2layer_trained_claims.pkl" ]; then
   # 1.7Mb
   wget 'https://github.com/ebenolson/pydata2015/raw/master/4%20-%20Recurrent%20Networks/gru_2layer_trained.pkl'
+  if [ ! -e "gru_2layer_trained.pkl" ]; then
+    # Get from back-up location...
+  fi
   mv gru_2layer_trained.pkl gru_2layer_trained_claims.pkl
 fi
 
@@ -149,8 +151,9 @@ if [ ! -e "india.names.1990-5.txt.gz" ]; then
 fi
 
 if [ ! -e "ALL_1-vocab.txt.gz" ]; then
- # Retrieve ALL_1-vocab.txt from somewhere (1-billion-corpus)...
- gzip ALL_1-vocab.txt
+  # Retrieve ALL_1-vocab.txt.gz from somewhere (1-billion-corpus)...
+  
+  #gzip ALL_1-vocab.txt
 fi
 
 if [ ! -e "en.wikipedia.2010.100K.txt" ]; then
