@@ -165,6 +165,10 @@ fi
 if [ ! -e "en.wikipedia.2010.100K.txt" ]; then
   # Retrieve wikipedia dump
   wget http://corpora2.informatik.uni-leipzig.de/downloads/eng_wikipedia_2010_100K-text.tar.gz
+  if [ ! -e "eng_wikipedia_2010_100K-text.tar.gz" ]; then
+    # Fall-back source of the same data
+    wget ${RCL_BASE}/RNN/eng_wikipedia_2010_100K-text.tar.gz
+  fi
   tar -xzf eng_wikipedia_2010_100K-text.tar.gz
   mv eng_wikipedia_2010_100K-sentences.txt en.wikipedia.2010.100K.txt
   rm eng_wikipedia*
