@@ -5,7 +5,9 @@ set -x
 
 source ./config/params
 
-RCL_BASE=http://redcatlabs.com/deep-learning-workshop/notebooks/data
+# http://redcatlabs.com/downloads/deep-learning-workshop/LICENSE
+RCL_BASE=http://redcatlabs.com/downloads/deep-learning-workshop/notebooks/data
+
 
 ## MNIST data
 # ready for Keras
@@ -151,7 +153,11 @@ if [ ! -e "india.names.1990-5.txt.gz" ]; then
 fi
 
 if [ ! -e "ALL_1-vocab.txt.gz" ]; then
-  # Retrieve ALL_1-vocab.txt.gz from somewhere (1-billion-corpus)...
+  # Retrieve ALL_1-vocab.txt.gz from fall-back data store (file was derived from 1-billion-corpus)...
+  wget ${RCL_BASE}/RNN/ALL_1-vocab.txt.gz
+  
+  # Uploaded using...
+  #rsync -avz ALL_1-vocab.txt.gz user@example.com:~/deep-learning-workshop/notebooks/data/RNN/
   
   #gzip ALL_1-vocab.txt
 fi
