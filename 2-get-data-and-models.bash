@@ -180,6 +180,11 @@ if [ ! -e "glove.first-100k.6B.50d.txt" ]; then
   unzip glove.6B.zip
   head -100000 glove.6B.50d.txt > glove.first-100k.6B.50d.txt
   rm glove.6B.*
+  
+  if [ ! -e "glove.first-100k.6B.50d.txt" ]; then
+    # Fall-back source of the same data
+    wget ${RCL_BASE}/RNN/glove.first-100k.6B.50d.txt
+  fi
 fi
 
 popd
