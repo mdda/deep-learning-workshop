@@ -137,10 +137,14 @@ fi
 if [ ! -e "india.names.1990-5.txt.gz" ]; then
   mkdir -p india-names
   cd india-names/
-    # 20Mb
+    # 50Mb
     if [ ! -e "ap-names.txt" ]; then
       if [ ! -e "ap-names.txt.gz" ]; then
         wget https://archive.org/download/india-names-dataset/ap-names.txt.gz
+      fi
+      if [ ! -e "ap-names.txt.gz" ]; then
+        # Fall-back source
+        wget ${RCL_BASE}/RNN/ap-names.txt.gz
       fi
       gunzip ap-names.txt.gz
     fi
@@ -157,7 +161,7 @@ if [ ! -e "ALL_1-vocab.txt.gz" ]; then
   wget ${RCL_BASE}/RNN/ALL_1-vocab.txt.gz
   
   # Uploaded using...
-  #rsync -avz ALL_1-vocab.txt.gz user@example.com:~/deep-learning-workshop/notebooks/data/RNN/
+  #rsync -avz --progress ALL_1-vocab.txt.gz user@example.com:~/deep-learning-workshop/notebooks/data/RNN/
   
   #gzip ALL_1-vocab.txt
 fi
