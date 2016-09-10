@@ -2,6 +2,8 @@
 
 *  Run-down of [recent advances in the literature](http://jiwonkim.org/awesome-rnn/)
 
+*  Fancy RNN methods : [Attention and Augmented Recurrent Neural Networks](http://distill.pub/2016/augmented-rnns/)
+
 *  Image Completion
    *  [http://bamos.github.io/2016/08/09/deep-completion/](On TensorFlow)
    *  https://news.ycombinator.com/item?id=12260853
