@@ -4,6 +4,17 @@
 
 *  Fancy RNN methods : [Attention and Augmented Recurrent Neural Networks](http://distill.pub/2016/augmented-rnns/)
 
+*  [Cocktail party problem](https://indico.io/blog/biased-debrief-of-the-boston-deep-learning-conference/)
+  *  Signal processing problem where multiple speech signals are mixed in a single channel, 
+     and the challenge is to separate the individual components (i.e., speakers) from the mix. 
+  *  John Hershey from Mitsubishi Electric Research Labs talked through their solution using embedding vectors, then played samples that sounded really good! 
+  *  Speech is just one of many kinds of noisy sequence, and it could be fun to explore other signal separation problems using a similar method. 
+
+*  Andrew McCallum: structured knowledge graphs + neural networks
+  *  Prof. McCallum was instrumental in developing conditional random fields. 
+  *  He talked about a universal schema using structured knowledge bases, a neat take on helping models exploit "what is known" about the world to make better predictions. 
+  *  He also talked about traversing graph structures as a sequence, and feeding that to sequence models like LSTM/recurrent neural networks—a known tactic that probably doesn’t get enough attention given the amount of knowledge locked in knowledge graphs.
+
 *  Image Completion
    *  [http://bamos.github.io/2016/08/09/deep-completion/](On TensorFlow)
    *  https://news.ycombinator.com/item?id=12260853
