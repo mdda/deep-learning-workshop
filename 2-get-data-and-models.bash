@@ -128,7 +128,8 @@ if [ ! -e "gru_2layer_trained_claims.pkl" ]; then
   # 1.7Mb
   wget 'https://github.com/ebenolson/pydata2015/raw/master/4%20-%20Recurrent%20Networks/gru_2layer_trained.pkl'
   if [ ! -e "gru_2layer_trained.pkl" ]; then
-    # Get from back-up location...
+    # Fall-back source
+    wget ${RCL_BASE}/RNN/gru_2layer_trained.pkl
   fi
   mv gru_2layer_trained.pkl gru_2layer_trained_claims.pkl
 fi
