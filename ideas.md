@@ -4,6 +4,8 @@
 
 *  Fancy RNN methods : [Attention and Augmented Recurrent Neural Networks](http://distill.pub/2016/augmented-rnns/)
 
+*  [WaveNet: A Generative Model for Raw Audio](https://deepmind.com/blog/wavenet-generative-model-raw-audio/)
+
 *  [Cocktail party problem](https://indico.io/blog/biased-debrief-of-the-boston-deep-learning-conference/)
   *  Signal processing problem where multiple speech signals are mixed in a single channel, 
      and the challenge is to separate the individual components (i.e., speakers) from the mix. 
