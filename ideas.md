@@ -113,7 +113,8 @@
 
 *  To what extent should this remain Theano/Lasagne?
    *   Main thrust away from TensorFlow was size of Keras/VGG model
-   *   Have a look at TFSlim, and see whether RNN things are there
+   *   Have a look at TFSlim : 
+       *   Unfortunately, its RNN 'story' is "we're looking into it", which is doubly disappointing
    *   Alternatively, just code some new notebooks in Tensorflow so that workshop can be 'dual'
    *   Look at Kadenze(?) course on ~'TensorFlow with style'
 
