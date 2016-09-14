@@ -111,6 +111,12 @@
    *   https://github.com/Lasagne/Recipes/blob/master/papers/deep_residual_learning/Deep_Residual_Learning_CIFAR-10.py
 
 
+*  To what extent should this remain Theano/Lasagne?
+   *   Main thrust away from TensorFlow was size of Keras/VGG model
+   *   Have a look at TFSlim, and see whether RNN things are there
+   *   Alternatively, just code some new notebooks in Tensorflow so that workshop can be 'dual'
+   *   Look at Kadenze(?) course on ~'TensorFlow with style'
+
 -------------------
 # NEXT VENUES...
 
