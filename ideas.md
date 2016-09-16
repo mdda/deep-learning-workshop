@@ -5,6 +5,10 @@
 *  Fancy RNN methods : [Attention and Augmented Recurrent Neural Networks](http://distill.pub/2016/augmented-rnns/)
 
 *  [WaveNet: A Generative Model for Raw Audio](https://deepmind.com/blog/wavenet-generative-model-raw-audio/)
+   *  Except that (according to Keras implementation), for 1 second of audio, using a downsized model (4000hz vs 16000 sampling rate, 16 filters v/s 256, 2 stacks vs ??):
+      *  A Tesla K80 needs around ~4 minutes.
+      *  A recent macbook pro needs around ~15 minutes. 
+   *  Deepmind has reported that generating one second of audio with their model takes about 90 minutes.
 
 *  [Cocktail party problem](https://indico.io/blog/biased-debrief-of-the-boston-deep-learning-conference/)
   *  Signal processing problem where multiple speech signals are mixed in a single channel, 
