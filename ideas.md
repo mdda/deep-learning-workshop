@@ -10,6 +10,12 @@
       *  A recent macbook pro needs around ~15 minutes. 
    *  Deepmind has reported that generating one second of audio with their model takes about 90 minutes.
 
+*  Investigate the real-ness of :
+   *  [PCANet](https://arxiv.org/abs/1404.3606v2); and 
+   *  [SARM](https://arxiv.org/abs/1608.04062v1) :: Ohh, there's already a retraction : (https://arxiv.org/pdf/1608.04062v2.pdf)
+      *  In all, while it is all possible to construct a SARM-VGG model in hours, by choosing all subsets randomly, the performance will not be guaranteed. 
+      *  The current implementation for SARM-VGG will bring in dramatically higher complexity and can take multiple days.
+
 *  [Cocktail party problem](https://indico.io/blog/biased-debrief-of-the-boston-deep-learning-conference/)
   *  Signal processing problem where multiple speech signals are mixed in a single channel, 
      and the challenge is to separate the individual components (i.e., speakers) from the mix. 
