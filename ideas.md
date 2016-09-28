@@ -10,7 +10,8 @@
       *  A recent macbook pro needs around ~15 minutes. 
    *  Deepmind has reported that generating one second of audio with their model takes about 90 minutes.
 
-*  [Neural Photo Editor](https://github.com/ajbrock/Neural-Photo-Editor) - updated to work through a notebook
+*  [Neural Photo Editor](https://github.com/ajbrock/Neural-Photo-Editor)  
+   *  Updated to work through a notebook?  - except that that's mainly a Javascript exercise, with little DL content
 
 *  Investigate the real-ness of :
    *  [PCANet](https://arxiv.org/abs/1404.3606v2); and 
