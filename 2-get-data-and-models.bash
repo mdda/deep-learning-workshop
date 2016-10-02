@@ -195,8 +195,17 @@ fi
 popd
 
 
+# Game pre-trained weights
 
+mkdir -p ./notebooks/data/game/crush
+pushd ./notebooks/data/game/crush
 
+# This is for Bubble Breaker
+if [ ! -e "rl_10x14x5_2016-06-21_03-27.049999.pkl" ]; then
+ wget ${RCL_BASE}/game/crush/rl_10x14x5_2016-06-21_03-27.049999.pkl
+fi
+
+popd
 
 
 
