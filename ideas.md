@@ -4,6 +4,8 @@
 
 *  Fancy RNN methods : [Attention and Augmented Recurrent Neural Networks](http://distill.pub/2016/augmented-rnns/)
 
+*  [More reinforcement learning](http://www.wildml.com/2016/10/learning-reinforcement-learning/)
+
 *  [WaveNet: A Generative Model for Raw Audio](https://deepmind.com/blog/wavenet-generative-model-raw-audio/)
    *  Except that (according to Keras implementation), for 1 second of audio, using a downsized model (4000hz vs 16000 sampling rate, 16 filters v/s 256, 2 stacks vs ??):
       *  A Tesla K80 needs around ~4 minutes.
