@@ -208,17 +208,17 @@ fi
 popd
 
 
-# Fall-back locations for the gloVe embedding
-if [ '' ] && [ ! -e "glove.6B.300d.hkl" ]; then
-  # Files in : ${RCL_BASE}/research/ICONIP-2016/
-  #   507.206.240 Oct 25  2015 glove.6B.300d.hkl
+## Fall-back locations for the gloVe embedding
+#if [ '' ] && [ ! -e "glove.6B.300d.hkl" ]; then
+  ## Files in : ${RCL_BASE}/research/ICONIP-2016/
+  ##   507.206.240 Oct 25  2015 glove.6B.300d.hkl
   
-  # Files in : ${RCL_BASE}/research/ICONIP-2016/  :: These are originals - citation desired...
-  #    53.984.642 May 15 14:13 sparse.6B.300d_S-21_2n-shuf-noise-after-norm_.2.01_6-75_4000_GPU-sparse_matrix.hkl
-  #   122.248.980 May  2 13:09 sparse.6B.300d_T-21_3500.1024@0.05-GPU-sparse_matrix.hkl
-  #   447.610.336 May  2 13:04 sparse.6B.300d_T-21_3500.1024@0.05-GPU-sparsity_recreate.hkl
-  #   160.569.440 May 14 14:57 vectors.2-17.hkl
-fi
+  ## Files in : ${RCL_BASE}/research/ICONIP-2016/  :: These are originals - citation desired...
+  ##    53.984.642 May 15 14:13 sparse.6B.300d_S-21_2n-shuf-noise-after-norm_.2.01_6-75_4000_GPU-sparse_matrix.hkl
+  ##   122.248.980 May  2 13:09 sparse.6B.300d_T-21_3500.1024@0.05-GPU-sparse_matrix.hkl
+  ##   447.610.336 May  2 13:04 sparse.6B.300d_T-21_3500.1024@0.05-GPU-sparsity_recreate.hkl
+  ##   160.569.440 May 14 14:57 vectors.2-17.hkl
+#fi
 
 ## Suitable 'styles' : picasso, etc
 
