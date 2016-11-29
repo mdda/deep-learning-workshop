@@ -11,8 +11,18 @@
    *  [Explanation of history of CNN models since LeNet](https://culurciello.github.io/tech/2016/06/04/nets.html)
    
 *  [TensorFlow Resources](https://github.com/jtoy/awesome-tensorflow#)
-   *  [Various DNNs in TensorFlow](https://chatbotslife.com/resnets-highwaynets-and-densenets-oh-my-9bb15918ee32)
+   *  [Various DNNs in TensorFlow](https://chatbotslife.com/resnets-highwaynets-and-densenets-oh-my-9bb15918ee32) using TF-slim
+   *  and the [corresponding repository](https://github.com/awjuliani/TF-Tutorials) of code, including :
+      *  DCGAN - An implementation of Deep Convolutional Generative Adversarial Network.
+      *  InfoGAN An implementation of InfoGAN: Interpretable representation learning by information maximizing generative adversarial nets
+      *  Deep Layer Visualization - Tutorial on visualizing intermediate layer activation during MNIST classification.
+      *  Deep Network Comparison - Implementations of ResNet, HighwayNet, and DenseNet, for CIFAR10 classification.
+      *  RNN-TF - Tutorial on implementing basic RNN in tensorflow.
+      *  t-SNE Tutorial - Tutorial on using t-SNE to visualize intermediate layer representation during MNIST classification task.
 
+*  Deciding on TensorFlow sugar :
+   *  [CNN MNIST Rosetta stone](http://blog.mdda.net/ai/2016/11/26/layers-on-top-of-tensorflow)
+   
 *  [WaveNet: A Generative Model for Raw Audio](https://deepmind.com/blog/wavenet-generative-model-raw-audio/)
    *  Except that (according to Keras implementation), for 1 second of audio, using a downsized model (4000hz vs 16000 sampling rate, 16 filters v/s 256, 2 stacks vs ??):
       *  A Tesla K80 needs around ~4 minutes.
