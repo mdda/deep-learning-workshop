@@ -76,3 +76,10 @@ requests>=2.9.0
 
 ## Beautiful soup : Useful for parsing web pages (specifically for the GPU-chooser notebook)
 bs4
+
+## CPU-only TensorFlow
+https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.12.0rc0-cp27-none-linux_x86_64.whl
+
+## GPU-only TensorFlow : Requires CUDA toolkit 8.0 and CuDNN v5
+#https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow_gpu-0.12.0rc0-cp27-none-linux_x86_64.whl
+
