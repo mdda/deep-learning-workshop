@@ -45,6 +45,13 @@ if [ '' ] && [ ! -e "vgg16_weights.h5" ]; then
   echo "See link at : https://gist.github.com/baraldilorenzo/07d7802847aaad0a35d3"
 fi
 
+if [ '' ] && [ ! -e "vgg_16.ckpt" ]; then
+  # 490Mb
+  wget http://download.tensorflow.org/models/vgg_16_2016_08_28.tar.gz
+  tar -xzf vgg_16_2016_08_28.tar.gz
+  rm vgg_16_2016_08_28.tar.gz
+fi
+
 # This is for theano-lasagne-styletransfer
 if [ ! -e "vgg19_normalized.pkl" ]; then
   # 80Mb

@@ -9,6 +9,9 @@
    
 *  Re-check TensorFlow memory usage fror VGG16 / Inception3(or4), since TensorFlow seems to be in higher demand, frankly
    *  [Explanation of history of CNN models since LeNet](https://culurciello.github.io/tech/2016/06/04/nets.html)
+   *  [TF-Slim model zoo](https://github.com/tensorflow/models/tree/master/slim)
+      *  [VGG16 model](http://download.tensorflow.org/models/vgg_16_2016_08_28.tar.gz)
+      *  [VGG16 code](https://github.com/tensorflow/models/blob/master/slim/nets/vgg.py)
    
 *  [TensorFlow Resources](https://github.com/jtoy/awesome-tensorflow#)
    *  [Various DNNs in TensorFlow](https://chatbotslife.com/resnets-highwaynets-and-densenets-oh-my-9bb15918ee32) using TF-slim
