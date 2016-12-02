@@ -11,7 +11,7 @@ notebook_dir=${notebook_dir/\/home\/user\//\./}
 echo ${notebook_dir}
 #exit 0
 
-. ./env/bin/activate
+. ./env3/bin/activate
 
 ## Try to do some basic GPU detection / CPU BLAS configuration
 HAS_NVIDIA=`lsmod | grep nvidia`

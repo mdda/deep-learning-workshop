@@ -8,8 +8,11 @@ set -x
 cd /home/user
 source ./config/params
 
-virtualenv --system-site-packages env
-. env/bin/activate
+#virtualenv --system-site-packages env
+#. env/bin/activate
+
+virtualenv -p python3 --system-site-packages ./env3
+. ./env3/bin/activate
 
 pip install --upgrade pip
 #pip install https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.7.1-cp27-none-linux_x86_64.whl
@@ -24,7 +27,8 @@ python -m nltk.downloader averaged_perceptron_tagger
 # cp ./notebooks/images/logo.png ./env/lib/python2.7/site-packages/IPython/html/static/base/images/
 # cp ./notebooks/images/logo.png ./env/lib/python2.7/site-packages/notebook/static/base/images/  # original : 260x56
 
-logopath=./env/lib/python2.7/site-packages/notebook/static/base/images
+#logopath=./env/lib/python2.7/site-packages/notebook/static/base/images
+logopath=./env3/lib/python3.5/site-packages/notebook/static/base/images
 mv ${logopath}/logo.png ${logopath}/logo-orig_260x56.png
 cp ./notebooks/images/logo.png ${logopath}/
 

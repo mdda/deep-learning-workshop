@@ -9,19 +9,28 @@
 rpms=`rpm -qa`
 rpms_extra=''
 
-rpms_required="python"
-rpms_required="${rpms_required} gcc gcc-c++ python-devel redhat-rpm-config"
-rpms_required="${rpms_required} scipy numpy Cython blas-devel lapack-devel atlas-devel"
+#rpms_required="python python-devel python2-virtualenv python-pip"
+#rpms_required="${rpms_required} python2-scipy python2-numpy python2-Cython"
+
+rpms_required="python3 python3-devel python3-virtualenv python3-pip"
+rpms_required="${rpms_required} python3-scipy python3-numpy python3-Cython"
+
+rpms_required="${rpms_required} gcc gcc-c++ redhat-rpm-config"
+rpms_required="${rpms_required} blas-devel lapack-devel atlas-devel"
 
 FC_VER=`uname -r`
-if [ "${FC_VER/.fc23.}" != "${FC_VER}" ]; then
-  echo "Fedora 23"
-  rpms_required="${rpms_required} python-virtualenv python-scikit-learn python-pandas"
-else
-  echo "Fedora 24+"
-  rpms_required="${rpms_required} python2-virtualenv python2-scikit-learn python2-pandas"
-fi
-rpms_required="${rpms_required} python-pillow graphviz"
+#if [ "${FC_VER/.fc23.}" != "${FC_VER}" ]; then
+#  echo "Fedora 23"
+#  rpms_required="${rpms_required} python-scikit-learn python-pandas python-pillow"
+#else
+
+echo "Fedora 25"
+#rpms_required="${rpms_required} python2-scikit-learn python2-pandas python2-pillow"
+rpms_required="${rpms_required} python3-scikit-learn python3-pandas python3-pillow"
+
+#fi
+
+rpms_required="${rpms_required} graphviz"
 
 
 for check in ${rpms_required}
@@ -46,8 +55,10 @@ fi
 
 source ./config/params
 
-virtualenv --system-site-packages ./env
-. ./env/bin/activate
+#virtualenv --system-site-packages ./env2
+
+virtualenv -p python3 --system-site-packages ./env3
+. ./env3/bin/activate
 
 pip install --upgrade pip
 
@@ -56,7 +67,8 @@ pip install -r ./config/requirements.txt
 python -m nltk.downloader punkt
 python -m nltk.downloader averaged_perceptron_tagger
 
-#logopath=./env/lib/python2.7/site-packages/notebook/static/base/images
+##logopath=./env/lib/python2.7/site-packages/notebook/static/base/images
+#logopath=./env3/lib/python3.5/site-packages/notebook/static/base/images
 #mv ${logopath}/logo.png ${logopath}/logo-orig_260x56.png
 #cp ./notebooks/images/logo.png ${logopath}/
 

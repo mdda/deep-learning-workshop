@@ -2,6 +2,8 @@
 
 # This runs locally, to set up a dev machine so that it can work with Jupyter notebooks, etc
 
+echo "May need to revise this to get Python3 rather than Python 2.7..."
+
 #set -e
 #set -x
 

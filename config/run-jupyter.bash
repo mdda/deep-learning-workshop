@@ -5,7 +5,7 @@
 cd /home/user
 source ./config/params
 
-. env/bin/activate
+. env3/bin/activate
 
 ## Old-style
 #ipython --matplotlib=notebook

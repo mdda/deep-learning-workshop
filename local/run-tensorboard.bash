@@ -11,5 +11,5 @@ tensorflow_dir=${tensorflow_dir/\/home\/user\//\./}
 echo ${tensorflow_dir}
 #exit 0
 
-. ./env/bin/activate
+. ./env3/bin/activate
 tensorboard --host 0.0.0.0 --port $port_tensorboard --logdir $tensorflow_dir
