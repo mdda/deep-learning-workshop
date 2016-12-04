@@ -12,6 +12,7 @@
    *  [TF-Slim model zoo](https://github.com/tensorflow/models/tree/master/slim)
       *  [VGG16 model](http://download.tensorflow.org/models/vgg_16_2016_08_28.tar.gz)
       *  [VGG16 code](https://github.com/tensorflow/models/blob/master/slim/nets/vgg.py)
+      *  [VGG19 model](http://download.tensorflow.org/models/vgg_19_2016_08_28.tar.gz) - 509MB tar, 549MB checkpoint
    
 *  [TensorFlow Resources](https://github.com/jtoy/awesome-tensorflow#)
    *  [Various DNNs in TensorFlow](https://chatbotslife.com/resnets-highwaynets-and-densenets-oh-my-9bb15918ee32) using TF-slim
