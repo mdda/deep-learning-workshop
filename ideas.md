@@ -8,11 +8,22 @@
    *  https://github.com/dennybritz/reinforcement-learning
    
 *  Re-check TensorFlow memory usage fror VGG16 / Inception3(or4), since TensorFlow seems to be in higher demand, frankly
+   *  Just a moment, VGG seems like the largest model, but isn't the earliest nor the latest ... Timeline :
+      *   AlexNet (2012 ImageNet = 15.4% Top5) became 
+      *   ZFNet (2013 ImageNet = 14.8% Top5)
+      *   GoogLeNet (2014 ImageNet = 6.67% Top5): 
+          [Blog posting](http://joelouismarino.github.io/blog_posts/blog_googlenet_keras.html), 
+          [Code in Keras](https://gist.github.com/joelouismarino/a2ede9ab3928f999575423b9887abd14), 
+          and uses [googlenet_weights.h5 in Model.zip](http://joelouismarino.github.io/blog_posts/googlenet.zip) - 50Mb
+      *   ResNet (2015 ImageNet = 3.57% Top5)
+      *   Google's Inception-v3 (unofficial ImageNet = 3.46% Top5)
+      *   Chinese Ensembles (2016 ImageNet = 2.99%? Top5)
+      
    *  [Explanation of history of CNN models since LeNet](https://culurciello.github.io/tech/2016/06/04/nets.html)
    *  [TF-Slim model zoo](https://github.com/tensorflow/models/tree/master/slim)
-      *  [VGG16 model](http://download.tensorflow.org/models/vgg_16_2016_08_28.tar.gz)
+      *  [VGG16 model](http://download.tensorflow.org/models/vgg_16_2016_08_28.tar.gz) - 490MB download
       *  [VGG16 code](https://github.com/tensorflow/models/blob/master/slim/nets/vgg.py)
-      *  [VGG19 model](http://download.tensorflow.org/models/vgg_19_2016_08_28.tar.gz) - 509MB tar, 549MB checkpoint
+      *  [VGG19 model](http://download.tensorflow.org/models/vgg_19_2016_08_28.tar.gz) - 509MB download, 549MB checkpoint
    
 *  [TensorFlow Resources](https://github.com/jtoy/awesome-tensorflow#)
    *  [Various DNNs in TensorFlow](https://chatbotslife.com/resnets-highwaynets-and-densenets-oh-my-9bb15918ee32) using TF-slim
