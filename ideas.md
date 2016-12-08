@@ -15,6 +15,7 @@
           [Blog posting](http://joelouismarino.github.io/blog_posts/blog_googlenet_keras.html), 
           [Code in Keras](https://gist.github.com/joelouismarino/a2ede9ab3928f999575423b9887abd14), 
           and uses [googlenet_weights.h5 in Model.zip](http://joelouismarino.github.io/blog_posts/googlenet.zip) - 50Mb
+          *   VGG also appeared this year (7.3% Top5)
       *   ResNet (2015 ImageNet = 3.57% Top5)
       *   Google's Inception-v3 (unofficial ImageNet = 3.46% Top5)
       *   Chinese Ensembles (2016 ImageNet = 2.99%? Top5)
