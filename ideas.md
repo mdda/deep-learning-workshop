@@ -22,6 +22,7 @@
       
    *  [Explanation of history of CNN models since LeNet](https://culurciello.github.io/tech/2016/06/04/nets.html)
    *  [TF-Slim model zoo](https://github.com/tensorflow/models/tree/master/slim)
+      *  [Code for many generations of CNN models](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/slim/python/slim/nets)
       *  [VGG16 model](http://download.tensorflow.org/models/vgg_16_2016_08_28.tar.gz) - 490MB download
       *  [VGG16 code](https://github.com/tensorflow/models/blob/master/slim/nets/vgg.py)
       *  [VGG19 model](http://download.tensorflow.org/models/vgg_19_2016_08_28.tar.gz) - 509MB download, 549MB checkpoint
