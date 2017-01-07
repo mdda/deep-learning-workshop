@@ -31,6 +31,9 @@ and finally use pretrained state-of-the-art networks, such as GoogLeNet, in vari
   *  Application : Reinforcement Learning
   *  Slides for the talk are [here](http://redcatlabs.com/2016-07-30_FifthElephant-DeepLearning-Workshop/), and a [blog post](http://blog.mdda.net/ai/2016/07/30/workshop-at-fifth-elephant-2016)
 
+* [PyDataSG MeetUp](https://www.meetup.com/PyData-SG/events/235981761/) : Just a talk on RNNs and NLP (WIP)
+  *  Application : RNN Tagger
+
 
 **NB : Ensure Conference Workshop announcement / blurb includes VirtualBox warning label**
 
