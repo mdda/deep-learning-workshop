@@ -31,7 +31,8 @@ and finally use pretrained state-of-the-art networks, such as GoogLeNet, in vari
   *  Application : Reinforcement Learning
   *  Slides for the talk are [here](http://redcatlabs.com/2016-07-30_FifthElephant-DeepLearning-Workshop/), and a [blog post](http://blog.mdda.net/ai/2016/07/30/workshop-at-fifth-elephant-2016)
 
-* [PyDataSG MeetUp](https://www.meetup.com/PyData-SG/events/235981761/) : Just a talk on RNNs and NLP (WIP)
+* [PyDataSG MeetUp](https://www.meetup.com/PyData-SG/events/235981761/) : Talk on RNNs and NLP (1.5 hours)
+  *  (Work in Progress)
   *  Application : RNN Tagger
 
 
@@ -49,10 +50,11 @@ The VM itself includes :
   * Trained models from two of the 'big' ImageNet winners
   * Test Images for both recognition, 'e-commerce' and style-transfer modules
   * Corpuses and pretrained GloVe for the language examples
-* Tool chain (mostly Python-oriented)
+* Tool chain (Python-oriented)
   * Theano / Lasagne
-  * Keras / Tensorflow is included, but not really used
-    * Because Tensorflow demands far more RAM than Theano, and we can't assume that the VM will be allocated more than 2Gb
+  * Tensorflow is included, and will become more prominent going forward
+    * (In the past ?) Tensorflow demanded far more RAM than Theano, and we can't assume that the VM will be allocated more than 2Gb
+    * Keras, plus other 'sugars', are also installed
 
 And this repo can itself be run in 'local mode', using scripts in ```./local/``` to :
 
