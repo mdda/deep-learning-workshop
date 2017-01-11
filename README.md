@@ -4,8 +4,8 @@ This repo includes all scripts required to build a VirtualBox 'Appliance' (an ea
 that can be used by Deep Learning Workshop participants.
 
 This workshop consists of an introduction to deep learning (from single layer networks-in-the-browser, 
-then using the VM/Jupyter setup to train networks using Theano/Lasagne, 
-and finally use pretrained state-of-the-art networks, such as GoogLeNet, in various applications) :
+then using the VM/Jupyter setup to train networks using both Theano (+Lasagne for model components) and Tensorflow (+some sugar layers).
+The modules also include pretrained state-of-the-art networks, such as GoogLeNet, in various applications) :
 
 * [FOSSASIA 2016](http://2016.fossasia.org/) : Deep Learning Workshop (2 hours)
   *  Application : Generative art (~style transfer)
