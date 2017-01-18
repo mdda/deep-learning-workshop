@@ -19,7 +19,7 @@ upload config/vbox_name:/home/user/config/
 upload config/requirements.txt:/home/user/config/
 
 # This is the (potentially empty) cache of the python env that we'll build (probably later)
-copy-in config/cache/env:/home/user/
+copy-in config/cache/env3:/home/user/
 
 ## Set the user password to 'password' (without the quotes)
 # python -c "import crypt; print(crypt.crypt('password','00'))" #==# "00xQPHYlVDIw6"
