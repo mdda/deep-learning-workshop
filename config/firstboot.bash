@@ -11,7 +11,7 @@ source ./config/params
 #virtualenv --system-site-packages env
 #. env/bin/activate
 
-virtualenv -p python3 --system-site-packages ./env3
+virtualenv-3 -p python3 --system-site-packages ./env3
 . ./env3/bin/activate
 
 pip install --upgrade pip
