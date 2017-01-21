@@ -13,6 +13,10 @@ edit /etc/selinux/config:\
 #root-password file:./root-password 
 #root-password file:./vm-config/root-password 
 
+# echo 'LANG="en_US.UTF-8"' > /etc/locale.conf
+# ?? echo 'LC_ALL=en_US.utf-8' >> /etc/locale.conf
+# ?? echo 'LC_ALL=en_US.UTF-8' >> /etc/locale.conf
+
 
 # Don't want the firewall, since we'd like to see services inside the guest from the host...
 firstboot-command systemctl stop firewalld
