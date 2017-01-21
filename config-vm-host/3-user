@@ -6,6 +6,8 @@ mkdir /home/user/config
 mkdir /home/user/.keras
 mkdir /home/user/.theano
 
+mkdir /home/user/.jupyter
+
 # This is a configuration script to run when first booted
 # it makes use of /home/user/config/params 
 upload config/firstboot.bash:/home/user/config/
@@ -44,14 +46,16 @@ firstboot-command chmod 744 /home/user/run-tensorboard.bash
 copy-in notebooks:/home/user/
 
 # And the keras configuration (NB: choose theano or tensorflow)
-upload config/keras-theano.json:/home/user/.keras/keras.json
-#upload config/keras-tensorflow.json:/home/user/.keras/keras.json
+#upload config/keras-theano.json:/home/user/.keras/keras.json
+upload config/keras-tensorflow.json:/home/user/.keras/keras.json
 
 # And the lasagne configuration (NB: CPU version)
 upload config/dot_theanorc-cpu:/home/user/.theanorc
 ## And the lasagne configuration (NB: GPU version :: unlikely to work in a VM guest)
 #upload config/dot_theanorc-gpu:/home/user/.theanorc
 
+# And the jupyter configuration (NB: includes a default password now)
+upload config/dot_jupyter_jupyter_notebook_config.py:/home/user/.jupyter/jupyter_notebook_config.py
 
 # And the pre-trained NN data ::
 ## TODO

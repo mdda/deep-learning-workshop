@@ -156,6 +156,7 @@
 
 ## The IP address the notebook server will listen on.
 #c.NotebookApp.ip = 'localhost'
+c.NotebookApp.ip = '0.0.0.0'
 
 ## Supply extra arguments that will be passed to Jinja environment.
 #c.NotebookApp.jinja_environment_options = {}
@@ -194,6 +195,7 @@
 #c.NotebookApp.nbserver_extensions = {}
 
 ## The directory to use for notebooks and kernels.
+#c.NotebookApp.notebook_dir = ''
 c.NotebookApp.notebook_dir = 'notebooks'
 
 ## Whether to open in a browser after starting. The specific browser used is
@@ -201,6 +203,7 @@ c.NotebookApp.notebook_dir = 'notebooks'
 #  module, unless it is overridden using the --browser (NotebookApp.browser)
 #  configuration option.
 #c.NotebookApp.open_browser = True
+c.NotebookApp.open_browser = False
 
 ## Hashed password to use for web authentication.
 #  
@@ -209,9 +212,11 @@ c.NotebookApp.notebook_dir = 'notebooks'
 #    from notebook.auth import passwd; passwd()
 #  
 #  The string should be of the form type:salt:hashed-password.
+#c.NotebookApp.password = ''
 c.NotebookApp.password = 'sha1:443bcfefbc89:71e6588fe5512e34aa529b5c138aea38b347963b'
 
 ## The port the notebook server will listen on.
+#c.NotebookApp.port = 8888
 c.NotebookApp.port = 8080
 
 ## The number of additional ports to try if the specified port is not available.
