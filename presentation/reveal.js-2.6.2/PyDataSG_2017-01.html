@@ -539,7 +539,18 @@ Wrap up
 
 <section>
   <section>
-   <h2>Chaining Outputs to Inputs</h2>
+   <h2>More Exotic</h2>
+   <ul class="fix-spacing">
+    <li>Sentences as Input == Working</li>
+    <li>Can we Output sentences too?</li>
+    <li>Where can this lead?</li>
+   </ul>
+  </section>
+</section>
+  
+<section>
+  <section>
+   <h2>Feed Outputs to Inputs</h2>
    <ul class="fix-spacing">
     <li>Each node outputs vector</li>
     <li>Can softmax-choose 'answer'</li>
@@ -551,15 +562,6 @@ Wrap up
    <h2>Network Picture</h2>
    <img width="675" height="483" src="img/RNN-output-to-input-chaining_675x483.png" alt="RNN Output to Input Chaining" style="border:none;box-shadow:none">
    <p>Each output becomes the next input</p>
-  </section>
-
-</section>
-
-
-<section>
-  <section>
-   <h2>Learning Character Sequences</h2>
-   <p>... work-in-progress ...</p>
   </section>
 
   <section>
@@ -641,6 +643,7 @@ AENEMUUNS	Met that will knop unhian, where ever have
 !-->
 </section>
 
+<!--
 <section>
   <section>
    <h2>RNN Discrimination</h2>
@@ -668,6 +671,36 @@ AENEMUUNS	Met that will knop unhian, where ever have
   </section>
 
 </section>
+!-->
+
+
+<section>
+  <section>
+   <h2>Image Labelling</h2>
+   <h4>We have the components now</h4>
+   <img width="642" height="484" src="img/image-labelling_642x484.png" alt="Image Labelling" style="border:none;box-shadow:none">
+  </section>
+
+  <section>
+   <h2>Image Labels</h2>
+   <img width="667" height="419" src="img/image-labelling-results_667x419.png" alt="Labelling Results" style="border:none;box-shadow:none">
+  </section>
+
+  <section>
+   <h2>Sequence-to-Sequence</h2>
+   <img width="754" height="166" src="img/basic-seq2seq_754x166.png" alt="Sequence-to-Sequence" style="border:none;box-shadow:none">
+   <p>Encoder Network feeds hidden state to Decoder Network</p>
+  </section>
+
+  <section>
+   <h2>Attention Network</h2>
+   <img width="624" height="352" src="img/AttentionNetwork_624x352.png" alt="Attention Network" style="border:none;box-shadow:none">
+   <p>Differentiable &rarr; Training : Even crazy stuff works!</p>
+  </section>
+</section>
+
+
+
 
 <section>
  <h3>- QUESTIONS -</h3>
