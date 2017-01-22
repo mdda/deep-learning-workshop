@@ -65,13 +65,16 @@ rsync -avz --progress ./vm-images/virtualbox-5* ${VBOXINSTALL}/
 rsync -avz --progress ./presentation ${target}/
 
 # Clean out old VMs
-rm ${target}/deep-learning-workshop_2016-06-23*.ova
-rm ${target}/deep-learning-workshop_2016-07-21*.ova
+#rm ${target}/deep-learning-workshop_2016-06-23*.ova
+#rm ${target}/deep-learning-workshop_2016-07-21*.ova
+rm ${target}/deep-learning-workshop_2016-*.ova
 
 # And ensure the new one is there
 rsync -avz --progress ${most_recent_ova} ${target}/
 ls -l ${target}/
 
 #echo "5da875cf8e0df504e5edcccf3382630f  vm-images/deep-learning-workshop_2016-07-21_18-06.ova"
-echo "6f5d8259872b6cae9d2b23be8012fc4d  vm-images/deep-learning-workshop_2016-07-28_11-40.ova"
+#echo "6f5d8259872b6cae9d2b23be8012fc4d  vm-images/deep-learning-workshop_2016-07-28_11-40.ova"
+echo "2605356947c87cd1052e782ebe163016  vm-images/deep-learning-workshop_2017-01-23_00-12.ova"
+
 md5sum ${target}/*.ova 
