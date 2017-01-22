@@ -336,8 +336,8 @@ Wrap up
    <ul class="fix-spacing">
     <li>Major advances : word2vec &amp; GloVe</li>
     <li>Basic idea : assign a vector (~300d) to each word</li>
-    <li>If words in window 'close', vectors should be closer</li>
-    <li>... gradient descent until finished</li>
+    <li>If words co-occur in sliding window across text, vectors should be close too</li>
+    <li>Keep iterating until 'good enough'</li>
    </ul>
   </section>
 
@@ -380,18 +380,18 @@ Wrap up
    <h2>Networks on Sequences</h2>
    <h4>Variable-length input doesn't "fit"</h4>
    <ul class="fix-spacing">
-    <li>Apply a network iteratively over input</li>
-    <li>Internal state carried forward step-wise</li>
-    <li>Everything is still <i>differentiable</i></li>
+    <li>Process each timestep</li>
+    <li>... with the same network</li>
+    <li>But 'pass along' internal state</li>
    </ul>
   </section>
 
   <section>
    <h2>Recurrent Neural Networks</h2>
    <ul class="fix-spacing">
-    <li>Process each timestep</li>
-    <li>... with the same network</li>
-    <li>But 'pass along' internal state</li>
+    <li>Apply a network iteratively over input</li>
+    <li>Internal state carried forward step-wise</li>
+    <li>Everything is still <i>differentiable</i></li>
    </ul>
   </section>
   
@@ -414,11 +414,11 @@ Wrap up
   <section>
    <h2>Basic RNN</h2>
    <img width="645" height="243" src="img/RNN-Simple_645x243.png" alt="Simple RNN" style="border:none;box-shadow:none">
-   <p>Simplest RNN ~ gradient problem</p>
+   <p>Simplest RNN (but has gradient problem)</p>
   </section>
 
   <section>
-   <h2>GRU Units</h2>
+   <h2>Gated Recurrent Units</h2>
    <img width="651" height="251" src="img/RNN-GRU_651x251.png" alt="GRU" style="border:none;box-shadow:none">
    <p>A GRU</p>
    <!-- https://www.opendatascience.com/conferences/recurrent-neural-networks-for-text-analysis-alec-radford/ !-->
@@ -435,6 +435,15 @@ Wrap up
    <ul class="fix-spacing">
     <li>Can also pile up layers</li>
     <li>... and run forwards and backwards</li>
+   </ul>
+  </section>
+  
+  <section>
+   <h2>Key Point</h2>
+   <ul class="fix-spacing">
+    <li>Everything is still <i>differentiable</i></li>
+    <li>So : RNNs can be trained</li>
+    <li>So : RNNs can learn to do NLP</li>
    </ul>
   </section>
   
@@ -477,6 +486,20 @@ Wrap up
    <h2>Learning Named Entity Recognition</h2>
    <ul class="fix-spacing">
     <li>Can we train an RNN to do 'NER'?</li>
+    <li>Steps :</li>
+    <li style="list-style-type:none">
+      <ul>
+        <li>Create a word embedding</li>
+        <li>Get an annotated dataset</li>
+        <li>Train an RNN on the dataset</li>
+      </ul>
+    </li>
+   </ul>
+  </section>
+
+  <section>
+   <h2>Choosing a Dataset</h2>
+   <ul class="fix-spacing">
     <li>Human annotated Corpora are difficult to distribute :</li>
     <li style="list-style-type:none">
       <ul>
@@ -485,6 +508,12 @@ Wrap up
         <li>Look at performance vs NLTK</li>
       </ul>
     </li>
+   </ul>
+  </section>
+
+  <section>
+   <h2>Let's Make it "Interesting"</h2>
+   <ul class="fix-spacing">
     <li><b>Twist : Restrict RNN input to single case text</b></li>
    </ul>
   </section>
