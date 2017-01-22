@@ -156,13 +156,224 @@ Wrap up
   <section>
    <h2>RNNs for NLP</h2>
    <ul class="fix-spacing">
-    <li>Recurrent Neural Networks</li>
     <li>Natural Language Processing</li>
-    <li>Word Embeddings</li>
+    <li>Neural Networks</li>
+    <li style="list-style-type:none">
+      <ul>
+        <li>Basics</li>
+        <li>Word Embeddings</li>
+        <li>Recurrent Neural Networks</li>
+      </ul>
+    </li>
     <li>Workshop : UPPER-CASE NER</li>
+    <li>More exotic examples</li>
    </ul>
   </section>
 </section>
+
+<section>
+  <section>
+   <h2>Natural Language Processing</h2>
+   <ul class="fix-spacing">
+    <li>Work with text input</li>
+    <li>Applications in :</li>
+    <li style="list-style-type:none">
+      <ul>
+        <li>Text Analysis</li>
+        <li>Translation</li>
+        <li>Knowledge Extraction</li>
+      </ul>
+    </li>
+   </ul>
+  </section>
+</section>
+
+<section>
+  <section>
+   <h2>Digression : Basic Neural Networks</h2>
+   <ul class="fix-spacing">
+    <li>Basic building blocks are not magical</li>
+    <li>Simple mathematical units ...</li>
+    <li style="list-style-type:none"> ... combine to compute a complex function</li>
+   </ul>
+  </section>
+
+  <section>
+   <h2>Single "Neuron"</h2>
+   <img width="602" height="381" src="img/one-neuron_602x381.png" alt="One Neuron" style="border:none;box-shadow:none">
+   <p>Change weights to change output function</p>
+  </section>
+
+  <section>
+   <h2>Multi-Layer</h2>
+   <p>Layers of neurons combine to<br/>form more complex functions</p>
+   <img width="356" height="324" src="img/multi-layer_356x324.png" alt="Multi-Layer" style="border:none;box-shadow:none">
+  </section>
+
+  <section>
+   <h2>Supervised Learning</h2>
+   <ul class="fix-spacing">
+    <li><strong>while</strong> not done :</li>
+    <li style="list-style-type:none">
+      <ul>
+        <li>Pick a training case (<code>x</code> &rarr; <code>target_y</code>)</li>
+        <li>Evaluate <code>output_y</code> from the <code>x</code></li>
+        <li>Modify the weights so that <code>output_y</code> is closer to <code>target_y</code> for that <code>x</code></li>
+      </ul>
+    </li>
+   </ul>
+  </section>
+
+<!--
+  <section>
+   <h2>Gradient Descent</h2>
+   <p>Follow the gradient of the error <br />vs the connection weights</p>
+   <img width="364" height="306" src="img/gradient-descent_364x306.png" alt="Gradient-Descent" style="border:none;box-shadow:none">
+  </section>
+!-->
+  
+  <section>
+   <h2>Backpropagation</h2>
+   <ul class="fix-spacing">
+    <li>How much 'blame' to assign to a weight?</li>
+    <li>If it is connected to an output : Easy</li>
+    <li>Otherwise, calculate :</li>
+    <li style="list-style-type:none">
+      <ul>
+        <li>Blame to assign to each neuron in layer before output</li>
+        <li>Treat each of these errors as a source of error signal</li>
+        <li>Walk back through network</li>
+      </ul>
+    </li>
+    <li>Same complexity as forward pass</li>
+   </ul>
+  </section>
+</section>
+
+<section>
+  <section>
+   <h2>What's Going On Inside?</h2>
+   <ul>
+    <li>Time to look at : </li>
+    <li style="list-style-type:none">
+     <ul>
+      <li>Input features</li>
+      <li>What each neuron is learning</li>
+      <li>How the training converges</li>
+     </ul>
+    </li>
+   </ul>
+  </section>
+  
+  <section>
+   <h2>Workshop : Internals</h2>
+   <ul>
+    <li style="list-style-type:none">
+     <ul>
+      <li>Go to the Javascript Example : TensorFlow</li>
+     </ul>
+    </li>
+   </ul>
+   <img width="507" height="387" src="img/Tensorflow-PlayGound-local_507x387.png" alt="TensorFlow Playground" style="border:none;box-shadow:none">
+   <p><small>(or search online for TensorFlow Playground)</small></p>
+  </section>
+  
+  <section>
+   <h2>TensorFlow Playground</h2>
+   <img width="778" height="443" src="img/Tensorflow-PlayGound-layout_778x443.png" alt="TensorFlow Layout" style="border:none;box-shadow:none">
+  </section>
+
+<!--
+  <section>
+   <h2>Things to Do</h2>
+   <ul>
+    <li>Investigate : </li>
+    <li style="list-style-type:none">
+     <ul>
+      <li>Minimal set of features</li>
+      <li>Minimal # of layers</li>
+      <li>Minimal widths</li>
+      <li>Effect of going less-minimal...</li>
+     </ul>
+    </li>
+   </ul>
+  </section>
+!-->
+</section>
+
+
+<section>
+  <section>
+   <h2>NNs for Images</h2>
+   <ul class="fix-spacing">
+    <li>Add 'convolutions' and depth</li>
+    <li>Can map images to classes</li>
+   </ul>
+  </section>
+  
+  <section>
+   <h2>NNs for NLP?</h2>
+   <ul class="fix-spacing">
+    <li>Problem : Is a word a feature?</li>
+    <li>Problem : How long is a sentence?</li>
+   </ul>
+  </section>
+</section>
+
+
+<section>
+  <section>
+   <h2>Handling Words</h2>
+   <ul class="fix-spacing">
+    <li>English ~100k words</li>
+    <li>A 'one-hot' input seems wasteful</li>
+    <li>Learn about word inter-relationships from corpus?</li>
+   </ul>
+  </section>
+  
+  <section>
+   <h2>Word Embeddings</h2>
+   <ul class="fix-spacing">
+    <li>Major advances : word2vec &amp; GloVe</li>
+    <li>Basic idea : assign a vector (~300d) to each word</li>
+    <li>If words in window 'close', vectors should be closer</li>
+    <li>... gradient descent until finished</li>
+   </ul>
+  </section>
+
+  <section>
+   <h2>Word Embedding</h2>
+   <ul class="fix-spacing">
+    <li>A map from <code>"token"</code> &rarr; <code>Float[100]</code></li>
+    <li>Train over corpus on windows of words</li>
+    <li>Self-organizes...</li>
+   </ul>
+   <img width="462" height="174" src="img/embedding_462x174.png" alt="Word Similarity" style="border:none;box-shadow:none">
+   <p><small>(eg: <code>word2vec</code> or <code>GloVe</code>)</small></p>
+  </section>
+
+  <section>
+   <h2>Embedding Visualisation</h2>
+   <img width="753" height="264" src="img/Word-Analogies_753x264.png" alt="Word Analogies" style="border:none;box-shadow:none">
+   <p>Highlighting Analogies</p>
+  </section>
+
+</section>
+
+<!--
+<section>
+  <section>
+   <h2>RNNs for NLP</h2>
+   <h4>Sentences are Variable-length</h4>
+   <ul class="fix-spacing">
+    <li>Apply a network iteratively over input</li>
+    <li>Internal state carried forward step-wise</li>
+    <li>Everything is still <i>differentiable</i></li>
+   </ul>
+  </section>
+
+</section>
+!-->
 
 <section>
   <section>
@@ -220,7 +431,7 @@ Wrap up
   </section>
 
   <section>
-   <h2>Deeper too</h2>
+   <h2>Piled Higher and Deeper</h2>
    <ul class="fix-spacing">
     <li>Can also pile up layers</li>
     <li>... and run forwards and backwards</li>
@@ -230,65 +441,38 @@ Wrap up
 </section>
 
 <section>
+ <h3>- QUESTIONS -</h3>
+</section>
+
+<section>
   <section>
-   <h2>Natural Language Processing</h2>
+   <h2>NER : Motivation</h2>
    <ul class="fix-spacing">
-    <li>Work with text input</li>
-    <li>Applications in </li>
+    <li>Build a quality NLP system for a Singapore startup</li>
+    <li>Essential component : Named Entity Recognition (NER)</li>
+    <li>Cannot use most existing NLP/NER systems</li>
+    <li>Cannot use expensive data</li>
+   </ul>
+  </section>
+  
+  <section>
+   <h2>NER : Quick Example</h2>
+   <ul class="fix-spacing">
+    <li>Transform :</li>
     <li style="list-style-type:none">
       <ul>
-        <li>Text Analysis</li>
-        <li>Translation</li>
-        <li>Knowledge Extraction</li>
+        <li>Soon after his graduation, Jim Soon became Managing Director of Lam Soon.</li>
+      </ul>
+    </li>
+    <li>Into :</li>
+    <li style="list-style-type:none">
+      <ul>
+        <li>Soon after his graduation, <code>Jim_Soon<small> PER</small></code> became Managing Director of <code>Lam_Soon<small> ORG</small></code>.</li>
       </ul>
     </li>
    </ul>
   </section>
 
-</section>
-
-<section>
-  <section>
-   <h2>Handling Words</h2>
-   <ul class="fix-spacing">
-    <li>English ~100k words</li>
-    <li>A 'one-hot' input seems wasteful</li>
-    <li>Learn about word inter-relationships from corpus?</li>
-   </ul>
-  </section>
-  
-  <section>
-   <h2>Word Embeddings</h2>
-   <ul class="fix-spacing">
-    <li>Major advances : word2vec &amp; GloVe</li>
-    <li>Basic idea : assign each word a vector (~300d)</li>
-    <li>If words in window 'close', vectors should be closer</li>
-    <li>... gradient descent until finished</li>
-   </ul>
-  </section>
-
-  <section>
-   <h2>Embedding Visualisation</h2>
-   <img width="753" height="264" src="img/Word-Analogies_753x264.png" alt="Word Analogies" style="border:none;box-shadow:none">
-   <p>Highlighting Analogies</p>
-  </section>
-
-</section>
-
-<section>
-  <section>
-   <h2>RNNs for NLP</h2>
-   <h4>Sentences are Variable-length</h4>
-   <ul class="fix-spacing">
-    <li>Apply a network iteratively over input</li>
-    <li>Internal state carried forward step-wise</li>
-    <li>Everything is still <i>differentiable</i></li>
-   </ul>
-  </section>
-
-</section>
-
-<section>
   <section>
    <h2>Learning Named Entity Recognition</h2>
    <ul class="fix-spacing">
@@ -301,9 +485,10 @@ Wrap up
         <li>Look at performance vs NLTK</li>
       </ul>
     </li>
-    <li>Twist : Restrict RNN input to single case text</li>
+    <li><b>Twist : Restrict RNN input to single case text</b></li>
    </ul>
   </section>
+
 
   <section>
    <h2>9-RNN-Tagger</h2>
