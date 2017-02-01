@@ -236,3 +236,19 @@
    *  [Light on details : Slides 6+](http://www.slideshare.net/agibsonccc/anomaly-detection-in-deep-learning-62473913)
 
 
+### Next potential venue : FOSSASIA - (2017-03-17 - 19)
+
+I gave a Deep Learning talk last year at FOSSASIA.  This was followed by more talks within the same subject at PyConSG and FifthElephant (India).
+
+Since the last FOSSASIA, the Deep Learning Workshop repo (on mdda's GitHub) has been extended substantially.  
+Depending on the time allotted, we'll be able to tackle 1 or 2 'cutting edge' topics in Deep Learning.  
+Participants will be able to install the working examples on their own machines, and tweak and extend them for themselves.  
+
+Like last year, the Virtual Box Appliances will be distributed on USB drives : The set-up has been proven to work well.  
+Since this is hands-on, some familiarity with installing, running and playing with software will be assumed.  
+Depending on demand, I can also do a quick intro about Deep Learning itself, 
+though that would be pretty well-trodden ground that people who are interested would have seen several times before.
+
+
+
+
