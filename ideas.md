@@ -249,6 +249,11 @@ Since this is hands-on, some familiarity with installing, running and playing wi
 Depending on demand, I can also do a quick intro about Deep Learning itself, 
 though that would be pretty well-trodden ground that people who are interested would have seen several times before.
 
+The Debate :
+
+*   20 mins
+*   1hr
+*   2hr
 
 
 
