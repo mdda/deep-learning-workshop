@@ -236,7 +236,22 @@
    *  [Light on details : Slides 6+](http://www.slideshare.net/agibsonccc/anomaly-detection-in-deep-learning-62473913)
 
 
-### Next potential venue : FOSSASIA - (2017-03-17 - 19)
+### Next talk venue : TensorFlow and Deep Learning Singapore - (2017-02-16)
+
+https://github.com/tensorflow/models/tree/master/slim
+
+*  GoogLeNet = inception1 (2014)
+
+*  inception3 (2015)
+   *  wget http://download.tensorflow.org/models/inception_v3_2016_08_28.tar.gz
+
+*  inception4 (2016)
+   *  wget http://download.tensorflow.org/models/inception_v4_2016_09_09.tar.gz
+
+
+
+
+### Next potential workshop venue : FOSSASIA - (2017-03-17 - 19)
 
 I gave a Deep Learning talk last year at FOSSASIA.  This was followed by more talks within the same subject at PyConSG and FifthElephant (India).
 
@@ -254,6 +269,5 @@ The Debate :
 *   20 mins
 *   1hr
 *   2hr
-
 
 
