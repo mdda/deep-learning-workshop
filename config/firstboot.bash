@@ -36,6 +36,11 @@ cp ./notebooks/images/logo.png ${logopath}/
 mkdir -p $notebook_dir
 mkdir -p $tensorflow_dir
 
+# Download the latest tensorflow-slim-modelzoo 
+mkdir -p $notebook_dir/model/tensorflow_zoo
+cd $notebook_dir/model/tensorflow_zoo
+git clone https://github.com/tensorflow/models/
+
 
 echo "OMP_NUM_THREADS=4" >> ~/.bashrc
 echo "export OMP_NUM_THREADS" >> ~/.bashrc
