@@ -36,6 +36,11 @@ cp ./notebooks/images/logo.png ${logopath}/
 mkdir -p $notebook_dir
 mkdir -p $tensorflow_dir
 
+# Create a softlink to the presentation image directory
+pushd $notebook_dir/images
+ln -s ../../presentation/reveal.js-2.6.2/img presentation
+popd
+
 # Download the latest tensorflow-slim-modelzoo 
 mkdir -p $notebook_dir/model/tensorflow_zoo
 cd $notebook_dir/model/tensorflow_zoo
