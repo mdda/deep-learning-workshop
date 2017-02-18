@@ -21,7 +21,7 @@ git+git://github.com/Theano/Theano.git#egg=theano
 ### Keras
 
 ##   It doesn't matter that it's the PyPI version, since we're going to be using the TensorFlow backend
-##     ...  except that TensorFlow eats RAM : theano is a better choice to workshop
+##     ...  except that TensorFlow eats RAM : theano is/was a better choice to workshop
 ## This bundles theano in... (14.7Mb)
 #keras>=0.3.2 
 
