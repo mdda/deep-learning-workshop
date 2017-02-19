@@ -11,7 +11,7 @@
    *  Just a moment, VGG seems like the largest model, but isn't the earliest nor the latest ... Timeline :
       *   AlexNet (2012 ImageNet = 15.4% Top5) became 
       *   ZFNet (2013 ImageNet = 14.8% Top5)
-      *   GoogLeNet (2014 ImageNet = 6.67% Top5): 
+      *   GoogLeNet (2014 ImageNet = 6.67% Top5) == Inception-v1: 
           [Blog posting](http://joelouismarino.github.io/blog_posts/blog_googlenet_keras.html), 
           [Code in Keras](https://gist.github.com/joelouismarino/a2ede9ab3928f999575423b9887abd14), 
           and uses [googlenet_weights.h5 in Model.zip](http://joelouismarino.github.io/blog_posts/googlenet.zip) - 50Mb
@@ -266,7 +266,6 @@ though that would be pretty well-trodden ground that people who are interested w
 
 The Debate :
 
-*   20 mins
 *   1hr
 *   2hr
 
