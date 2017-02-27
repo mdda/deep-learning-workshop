@@ -236,7 +236,7 @@
    *  [Light on details : Slides 6+](http://www.slideshare.net/agibsonccc/anomaly-detection-in-deep-learning-62473913)
 
 
-### Next talk venue : TensorFlow and Deep Learning Singapore - (2017-02-16)
+### TensorFlow and Deep Learning Singapore - (2017-02-16) DONE
 
 https://github.com/tensorflow/models/tree/master/slim
 
@@ -251,7 +251,7 @@ https://github.com/tensorflow/models/tree/master/slim
 
 
 
-### Next potential workshop venue : FOSSASIA - (2017-03-17 - 19)
+### Next workshop venue : FOSSASIA - (2017-03-17 to -19)  1hr
 
 I gave a Deep Learning talk last year at FOSSASIA.  This was followed by more talks within the same subject at PyConSG and FifthElephant (India).
 
@@ -266,7 +266,9 @@ though that would be pretty well-trodden ground that people who are interested w
 
 The Debate :
 
-*   1hr
+*   1hr <--- This is what they've asked for
 *   2hr
 
+This looks interesting ::
+  https://aiexperiments.withgoogle.com/ai-duet
 
