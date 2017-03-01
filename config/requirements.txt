@@ -67,8 +67,9 @@ tensorflow>=1.0.0
 jupyter
 
 
-# Visualization of theano graphs
-pydot2
+# Visualization of theano graphs (now updated for Python3)
+pydot
+
 ## For explanation : http://stackoverflow.com/questions/15951748/pydot-and-graphviz-error-couldnt-import-dot-parser-loading-of-dot-files-will
 #pyparsing==1.5.7
 
