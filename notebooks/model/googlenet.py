@@ -110,11 +110,11 @@ def prep_image(im):
     h, w, _ = im.shape
     if h < w:
         #im = skimage.transform.resize(im, (224, w*224/h), preserve_range=True)
-        im = scipy.misc.imresize(im, (224, w*224/h))
+        im = scipy.misc.imresize(im, (224, int(w*224/h)))
         
     else:
         #im = skimage.transform.resize(im, (h*224/w, 224), preserve_range=True)
-        im = scipy.misc.imresize(im, (h*224/w, 224))
+        im = scipy.misc.imresize(im, (int(h*224/w), 224))
 
     # Central crop to 224x224
     h, w, _ = im.shape
