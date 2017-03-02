@@ -10,10 +10,18 @@ echo "Target: '${target}/'"
 
 ## As user :
 # id -a
+
 ## As root :
 # mkdir /media/usbdrive
 # mount -o uid=1000,gid=1000 /dev/sdb1 /media/usbdrive/
+
+## As user :
+# ./9-copy-to-thumbdrive.bash /media/usbdrive/
+
+## Finally, as root :
 # umount /media/usbdrive/
+
+## and repeat the cycle for each key required...
 
 most_recent_ova=`ls ./vm-images/*.ova | tail -1`
 if [ -z "$most_recent_ova" ]; then
@@ -75,6 +83,7 @@ ls -l ${target}/
 
 #echo "5da875cf8e0df504e5edcccf3382630f  vm-images/deep-learning-workshop_2016-07-21_18-06.ova"
 #echo "6f5d8259872b6cae9d2b23be8012fc4d  vm-images/deep-learning-workshop_2016-07-28_11-40.ova"
-echo "2605356947c87cd1052e782ebe163016  vm-images/deep-learning-workshop_2017-01-23_00-12.ova"
+#echo "2605356947c87cd1052e782ebe163016  vm-images/deep-learning-workshop_2017-01-23_00-12.ova"
+echo "e81531f2d3fcaa99fb74a21199e9974c  /media/usbdrive//deep-learning-workshop_2017-03-03_01-09.ova"
 
 md5sum ${target}/*.ova 
