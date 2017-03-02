@@ -213,7 +213,8 @@ c.NotebookApp.open_browser = False
 #  
 #  The string should be of the form type:salt:hashed-password.
 #c.NotebookApp.password = ''
-c.NotebookApp.password = 'sha1:443bcfefbc89:71e6588fe5512e34aa529b5c138aea38b347963b'
+## This is the string for 'password' itself
+#c.NotebookApp.password = 'sha1:443bcfefbc89:71e6588fe5512e34aa529b5c138aea38b347963b'
 
 ## The port the notebook server will listen on.
 #c.NotebookApp.port = 8888
@@ -248,6 +249,8 @@ c.NotebookApp.port = 8080
 #  Setting to an empty string disables authentication altogether, which is NOT
 #  RECOMMENDED.
 #c.NotebookApp.token = '<generated>'
+## Disable the token (and the passwording) :
+c.NotebookApp.token = u''
 
 ## Supply overrides for the tornado.web.Application that the Jupyter notebook
 #  uses.
