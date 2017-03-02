@@ -271,4 +271,9 @@ The Debate :
 
 This looks interesting ::
   https://aiexperiments.withgoogle.com/ai-duet
-
+Also ::
+  Drawing from edges (cats?)
+  
+  
+  
+  
