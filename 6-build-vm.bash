@@ -14,7 +14,7 @@ source ./config/params
 
 
 ## Running this script the first time takes an extra ~10mins to download 
-##   http://libguestfs.org/download/builder/fedora-24.xz
+##   http://libguestfs.org/download/builder/fedora-25.xz
 
 # target location :: <REPO>/vm-images/
 
@@ -29,7 +29,7 @@ export LIBGUESTFS_MEMSIZE=4096
 # virt-builder: error: images cannot be shrunk, the output size is too small 
 # for this image.  Requested size = 4.0G, minimum size = 6.0G
 
-## Filesystem with fedora-23 installed is actually mostly empty :
+## Filesystem with fedora-25 installed is actually mostly empty :
 # Filesystem      Size  Used Avail Use% Mounted on
 # devtmpfs        994M     0  994M   0% /dev
 # tmpfs          1001M     0 1001M   0% /dev/shm
