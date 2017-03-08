@@ -38,12 +38,12 @@ The modules also include pretrained state-of-the-art networks, such as GoogLeNet
 * [PyDataSG MeetUp](https://www.meetup.com/PyData-SG/events/235981761/) : Talk on RNNs and NLP (1.5 hours)
   *  Application : RNN Tagger (cleaned up a little)
   *  Slides for the talk are [here](http://redcatlabs.com/2017-01-23_PyDataSG_RNNs-for-NLP/), 
-     with an accompanying [blog post](http://blog.mdda.net/ai/2017/01/23/presentation-at-pydata), with a video link
+     with an accompanying [blog post](http://blog.mdda.net/ai/2017/01/23/presentation-at-pydata), which includes a video link
 
 * [TensorFlow &amp; Deep Learning MeetUp](https://www.meetup.com/TensorFlow-and-Deep-Learning-Singapore/events/237032130/) : Talk on tranfser learning (0.5 hours)
   *  Application : Classifying unknown classes of images (~transfer learning)  *in TensorFlow*
   *  Slides for the talk are [here](http://redcatlabs.com/2017-02-16_TFandDL_TransferLearning/#/), 
-     with an accompanying [blog post](http://blog.mdda.net/ai/2017/02/16/presentation-at-tensorflow), with a video link
+     with an accompanying [blog post](http://blog.mdda.net/ai/2017/02/16/presentation-at-tensorflow), which includes a video link
 
 
 **NB : Ensure Conference Workshop announcement / blurb includes VirtualBox warning label**
