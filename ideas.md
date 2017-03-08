@@ -251,7 +251,7 @@ https://github.com/tensorflow/models/tree/master/slim
 
 
 
-### Next workshop venue : FOSSASIA - (2017-03-17 to -19)  1hr
+### Next workshop venue : FOSSASIA - (2017-03-18 @16:55)  1hr
 
 I gave a Deep Learning talk last year at FOSSASIA.  This was followed by more talks within the same subject at PyConSG and FifthElephant (India).
 
@@ -264,10 +264,7 @@ Since this is hands-on, some familiarity with installing, running and playing wi
 Depending on demand, I can also do a quick intro about Deep Learning itself, 
 though that would be pretty well-trodden ground that people who are interested would have seen several times before.
 
-The Debate :
-
 *   1hr <--- This is what they've asked for
-*   2hr
 
 This looks interesting ::
   https://aiexperiments.withgoogle.com/ai-duet
@@ -275,5 +272,12 @@ Also ::
   Drawing from edges (cats?)
   
   
+### Next TensorFlow talk - (2017-03-21)  30mins
   
-  
+Details TBD, but hopefully : 
+
+*   Intro to CNNs
+*   Description of difference between old and new style TensorFlow ```Evaluator()``` calling
+*   CNN for MNIST
+*   Adversarial images
+*   Auto-encoders
