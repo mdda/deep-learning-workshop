@@ -17,13 +17,13 @@ The modules also include pretrained state-of-the-art networks, such as GoogLeNet
   *  Unfortunately, due to 'demand' for speaker slots, PyCon has only scheduled 1h30 for the workshop, rather than the 3h00 they originally suggested...
   *  Application : Reinforcement Learning
   *  Slides for the talk are [here](http://redcatlabs.com/2016-06-23_PyConSG-Workshop/), 
-     with an accompanying [blog post](http://blog.mdda.net/ai/2016/06/23/workshop-at-pycon-sg-2016)
+     with an accompanying [blog post](http://blog.mdda.net/ai/2016/06/23/workshop-at-pycon-sg-2016), which includes a video link
 
 * [DataScienceSG MeetUp](http://www.meetup.com/DataScience-SG-Singapore/) : 'Hardcore' session about Deep Learning (2.5 hours)
   *  Application : Anomaly Detection (mis-shaped MNIST digits)
   *  Application : Classifying unknown classes of images (~transfer learning)
   *  Slides for the talk are [here](http://redcatlabs.com/2016-07-23_DataScienceSG-DeepLearning-Workshop/), 
-     with an accompanying [blog post](http://blog.mdda.net/ai/2016/07/23/datascience-sg-workshop)
+     with an accompanying [blog post](http://blog.mdda.net/ai/2016/07/23/datascience-sg-workshop), which includes a video link
 
 * [Fifth Elephant, India](https://fifthelephant.in/2016/) : Deep Learning Workshop (6 hours : 4x 1.5hr classes in one day)
   *  Application : Classifying unknown classes of images (~transfer learning)
