@@ -271,6 +271,12 @@ This looks interesting ::
 Also ::
   Drawing from edges (cats?)
   
+Also :: seq2seq ?
+  http://cs.mcgill.ca/~rlowe1/interspeech_2016_final.pdf
+  https://www.cs.cornell.edu/~cristian/Cornell_Movie-Dialogs_Corpus.html
+  wget https://people.mpi-sws.org/~cristian/data/cornell_movie_dialogs_corpus.zip
+
+  
   
 ### Next TensorFlow talk - (2017-03-21)  30mins
   
