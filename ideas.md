@@ -272,11 +272,61 @@ Also ::
   Drawing from edges (cats?)
   
 Also :: seq2seq ?
+  https://research.fb.com/downloads/babi/
+  
   http://cs.mcgill.ca/~rlowe1/interspeech_2016_final.pdf
   https://www.cs.cornell.edu/~cristian/Cornell_Movie-Dialogs_Corpus.html
   wget https://people.mpi-sws.org/~cristian/data/cornell_movie_dialogs_corpus.zip
 
+Or speech recognition? : 
+  https://github.com/llSourcell/tensorflow_speech_recognition_demo
+    https://www.youtube.com/watch?v=u9FPqkuoEJ8
+
+    TIMIT 
+      http://www.cstr.ed.ac.uk/research/projects/artic/mocha.html
+      http://academictorrents.com/details/34e2b78745138186976cbc27939b1b34d18bd5b3/tech&dllist=1
+      https://catalog.ldc.upenn.edu/ldc93s1
   
+  https://github.com/buriburisuri/speech-to-text-wavenet
+    36,395 sentences in the VCTK corpus with a length of more than 5 seconds to prevent CTC loss errors. 
+    VCTK corpus can be downloaded from http://homepages.inf.ed.ac.uk/jyamagis/release/VCTK-Corpus.tar.gz. 
+    After downloading, extract the 'VCTK-Corpus.tar.gz' file to the 'asset/data/' directory.
+      10Gb of WAVs
+      
+  https://svail.github.io/mandarin/
+
+  http://www.visbamu.in/viswaDataset.html
+  
+  2006 NIST Spoken Term Detection Evaluation Set
+  
+  ASpIRE Audio 
+  
+  Standard ASR Test Sets   Size 
+    Wall Street Journal 80 hrs 
+    TED-LIUM 118 hrs 
+    Switchboard 300 hrs 
+    Libri Speech 960 hrs 
+    Fisher English 1800 hrs 
+    ASpIRE (Fisher Training) 1800 hrs
+  
+  TI46 isolated-word corpus
+  
+  english isolated word speech dataset
+    RM1
+    TIMIT Acoustic-Phonetic Continuous Speech Corpus (NIST Speech Disc 1-1)
+    Nationwide Speech Project (NSP) corpus : http://www.ling.ohio-state.edu/~clopper.1/nsp/
+      CVC Words (N=76) 	mice, dome, bait
+      Targeted Interview Speech (N=10 target words) sleep, shoes, math
+    NYNEX PhoneBook: a phonetically-rich isolated-word telephone-speech database
+    Medium Vocabulary Urdu Isolated Words Balanced Corpus for Automatic Speech Recognition
+    ICSI Meeting Recorder Digits Corpus
+    CCW17 Corpus (WUW Corpus)	
+  
+  https://oscaar.ci.northwestern.edu/overview.php
+    Huge list of (requestable) downloads
+  
+  Corpus Information.ppt - My FIT (my.fit.edu)
+    https://www.google.com.sg/url?sa=t&rct=j&q=&esrc=s&source=web&cd=32&ved=0ahUKEwi867ie0NHSAhVFp48KHaqUDAo4HhAWCBswAQ&url=http%3A%2F%2Fmy.fit.edu%2F~vkepuska%2Fece5526%2FCorpus%2520Information.ppt&usg=AFQjCNGDQQNq-QWNXrU0K0UvXPlz6LfYow&sig2=MpKylZ7SVSFPzIEHJ2aeSg&bvm=bv.149397726,d.c2I
   
 ### Next TensorFlow talk - (2017-03-21)  30mins
   
