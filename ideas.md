@@ -327,6 +327,16 @@ Or speech recognition? :
   
   Corpus Information.ppt - My FIT (my.fit.edu)
     https://www.google.com.sg/url?sa=t&rct=j&q=&esrc=s&source=web&cd=32&ved=0ahUKEwi867ie0NHSAhVFp48KHaqUDAo4HhAWCBswAQ&url=http%3A%2F%2Fmy.fit.edu%2F~vkepuska%2Fece5526%2FCorpus%2520Information.ppt&usg=AFQjCNGDQQNq-QWNXrU0K0UvXPlz6LfYow&sig2=MpKylZ7SVSFPzIEHJ2aeSg&bvm=bv.149397726,d.c2I
+
+  Several useful datasets cited here :
+    OLD : https://github.com/pannous/caffe-speech-recognition  (has dataset links)
+    NEW : https://github.com/pannous/tensorflow-speech-recognition/
+      https://github.com/pannous/tensorflow-speech-recognition/issues/33  :: spoken_words_wav.tar 
+      http://pannous.net/files/spoken_words
+
+  https://sourceforge.net/projects/currennt/
+  
+  
   
 ### Next TensorFlow talk - (2017-03-21)  30mins
   
