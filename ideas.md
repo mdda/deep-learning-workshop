@@ -284,43 +284,61 @@ Or speech recognition? :
 
     TIMIT 
       http://www.cstr.ed.ac.uk/research/projects/artic/mocha.html
-      http://academictorrents.com/details/34e2b78745138186976cbc27939b1b34d18bd5b3/tech&dllist=1
+      http://academictorrents.com/details/34e2b78745138186976cbc27939b1b34d18bd5b3
       https://catalog.ldc.upenn.edu/ldc93s1
+      http://en.pudn.com/downloads329/doc/detail1449116_en.html
   
   https://github.com/buriburisuri/speech-to-text-wavenet
     36,395 sentences in the VCTK corpus with a length of more than 5 seconds to prevent CTC loss errors. 
     VCTK corpus can be downloaded from http://homepages.inf.ed.ac.uk/jyamagis/release/VCTK-Corpus.tar.gz. 
     After downloading, extract the 'VCTK-Corpus.tar.gz' file to the 'asset/data/' directory.
-      10Gb of WAVs
+      10Gb of WAVs : DOWNLOADING
       
   https://svail.github.io/mandarin/
 
   http://www.visbamu.in/viswaDataset.html
   
+  http://www.speech.cs.cmu.edu/comp.speech/Section1/Data/ldc.html
+  
   2006 NIST Spoken Term Detection Evaluation Set
   
   ASpIRE Audio 
   
+  http://www.repository.voxforge1.org/downloads/SpeechCorpus/Trunk/Audio/Main/8kHz_16bit/
+  
+  http://forcedalignment.blogspot.sg/2015/06/building-acoustic-models-using-kaldi.html
+  
   Standard ASR Test Sets   Size 
     Wall Street Journal 80 hrs 
     TED-LIUM 118 hrs 
+      http://www.openslr.org/7/
     Switchboard 300 hrs 
     Libri Speech 960 hrs 
     Fisher English 1800 hrs 
     ASpIRE (Fisher Training) 1800 hrs
   
   TI46 isolated-word corpus
+    The 46-word vocabulary consists of two sub-vocabularies: 
+    (1) the TI 20-word vocabulary (consisting of the digits zero through nine 
+        plus the words "enter," "erase," "go," "help," "no," "rubout," "repeat," "stop," "start," and "yes" as well as 
+    (2) the TI 26-word "alphabet set" (consisting of the letters "a" through "z").
   
   english isolated word speech dataset
     RM1
     TIMIT Acoustic-Phonetic Continuous Speech Corpus (NIST Speech Disc 1-1)
     Nationwide Speech Project (NSP) corpus : http://www.ling.ohio-state.edu/~clopper.1/nsp/
-      CVC Words (N=76) 	mice, dome, bait
+      CVC Words (N=76) 	mice, dome, bait  (== Consonant-Vowel-Consonant words)
       Targeted Interview Speech (N=10 target words) sleep, shoes, math
     NYNEX PhoneBook: a phonetically-rich isolated-word telephone-speech database
     Medium Vocabulary Urdu Isolated Words Balanced Corpus for Automatic Speech Recognition
     ICSI Meeting Recorder Digits Corpus
     CCW17 Corpus (WUW Corpus)	
+  
+  LibriSpeech
+    http://www.openslr.org/12/
+  
+  http://www.openslr.org/resources.php
+    
   
   https://oscaar.ci.northwestern.edu/overview.php
     Huge list of (requestable) downloads
@@ -331,12 +349,34 @@ Or speech recognition? :
   Several useful datasets cited here :
     OLD : https://github.com/pannous/caffe-speech-recognition  (has dataset links)
     NEW : https://github.com/pannous/tensorflow-speech-recognition/
-      https://github.com/pannous/tensorflow-speech-recognition/issues/33  :: spoken_words_wav.tar 
-      http://pannous.net/files/spoken_words
+      https://github.com/pannous/tensorflow-speech-recognition/issues/33  :: Need to generate spoken_words_wav.tar on Mac
+      http://pannous.net/files/
+        http://pannous.net/files/?C=S;O=A
 
   https://sourceforge.net/projects/currennt/
   
+  https://www.quora.com/As-of-2016-which-is-the-best-text-to-speech-application-available-for-Linux
   
+  is there a text that covers the entire english phonetic range
+    https://www.quora.com/Is-there-a-text-that-covers-the-entire-English-phonetic-range/answer/Sheetal-Srivastava-1
+    http://linguistics.stackexchange.com/questions/9315/does-sample-text-exist-that-includes-most-sounds-represented-by-the-internationa
+      https://en.wikipedia.org/wiki/The_North_Wind_and_the_Sun
+      http://videoweb.nie.edu.sg/phonetic/courses/aae103-web/wolf.html
+    Phoneme set:
+      http://www.auburn.edu/~murraba/spellings.html
+  
+    
+  TTS : 
+    Festival (plus other voices) :
+      https://www.quora.com/Is-there-any-more-soothing-speech-synthesis-program-for-Linux
+    Merlin :
+      http://jrmeyer.github.io/merlin/2017/02/14/Installing-Merlin.html
+      http://www.cstr.ed.ac.uk/downloads/publications/2010/king_hmm_tutorial.pdf
+    Microsoft API :
+      https://www.microsoft.com/cognitive-services/en-us/speech-api
+    NeoVoice.com
+    Google TTS?
+
   
 ### Next TensorFlow talk - (2017-03-21)  30mins
   
@@ -347,3 +387,6 @@ Details TBD, but hopefully :
 *   CNN for MNIST
 *   Adversarial images
 *   Auto-encoders
+
+See:
+*  https://adeshpande3.github.io/adeshpande3.github.io/A-Beginner's-Guide-To-Understanding-Convolutional-Neural-Networks/
