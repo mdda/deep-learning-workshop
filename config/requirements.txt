@@ -94,3 +94,5 @@ requests>=2.9.0
 ## Beautiful soup : Useful for parsing web pages (specifically for the GPU-chooser notebook)
 bs4
 
+## For the speech module (MFCC, etc)
+python_speech_features
