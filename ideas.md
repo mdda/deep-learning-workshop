@@ -377,7 +377,17 @@ Or speech recognition? :
     NeoVoice.com
     Google TTS?
 
-  
+  MFCC
+    http://www.practicalcryptography.com/miscellaneous/machine-learning/guide-mel-frequency-cepstral-coefficients-mfccs/
+    https://github.com/jameslyons/python_speech_features
+    https://github.com/cmusphinx/sphinxtrain/blob/master/python/cmusphinx/mfcc.py
+    
+    Plus generative (GREAT notebook example): 
+      https://timsainb.github.io/spectrograms-mfccs-and-inversion-in-python.html
+    
+    And Dynamic Time warping:
+      http://nbviewer.jupyter.org/github/crawles/dtw/blob/master/Speech_Recognition_DTW.ipynb
+      
 ### Next TensorFlow talk - (2017-03-21)  30mins
   
 Details TBD, but hopefully : 
