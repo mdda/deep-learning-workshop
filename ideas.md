@@ -379,14 +379,33 @@ Or speech recognition? :
 
   MFCC
     http://www.practicalcryptography.com/miscellaneous/machine-learning/guide-mel-frequency-cepstral-coefficients-mfccs/
-    https://github.com/jameslyons/python_speech_features
-    https://github.com/cmusphinx/sphinxtrain/blob/master/python/cmusphinx/mfcc.py
     
+    python_speech_features : Dedicated functionality
+      https://github.com/jameslyons/python_speech_features
+      pip install python_speech_features
+    
+    https://github.com/cmusphinx/sphinxtrain/blob/master/python/cmusphinx/mfcc.py
+
+    talkbox : UNMAINTAINED 
+      http://scikits.appspot.com/talkbox
+      https://github.com/cournape/talkbox
+
+    librosa (has a 'beat-detection' talents too):
+      https://github.com/librosa/librosa
+      http://librosa.github.io/librosa/feature.html    
+  
+    pyAudioAnalysis - collection of files...
+      https://github.com/tyiannak/pyAudioAnalysis
+  
+    "Bob" - kitchen sink signal processing research project
+      https://www.idiap.ch/software/bob/docs/releases/last/sphinx/html/index.html#
+  
     Plus generative (GREAT notebook example): 
       https://timsainb.github.io/spectrograms-mfccs-and-inversion-in-python.html
     
     And Dynamic Time warping:
       http://nbviewer.jupyter.org/github/crawles/dtw/blob/master/Speech_Recognition_DTW.ipynb
+
       
 ### Next TensorFlow talk - (2017-03-21)  30mins
   
