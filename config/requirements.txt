@@ -97,5 +97,5 @@ bs4
 ## For the speech module (MFCC, etc)
 python_speech_features
 
-## For the OGG/WAV (etc?) reader
+## For the OGG/WAV (++?) reader
 soundfile
