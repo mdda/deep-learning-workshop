@@ -367,13 +367,14 @@ Or speech recognition? :
   
     
   TTS : 
-    Festival (plus other voices) :
+    Festival (plus other voices) : = Pretty old tech, piled high...
       https://www.quora.com/Is-there-any-more-soothing-speech-synthesis-program-for-Linux
-    Merlin :
+    Merlin : = Newer approach from Edinburgh
       http://jrmeyer.github.io/merlin/2017/02/14/Installing-Merlin.html
       http://www.cstr.ed.ac.uk/downloads/publications/2010/king_hmm_tutorial.pdf
     Microsoft API :
       https://www.microsoft.com/cognitive-services/en-us/speech-api
+        Have 0-9 in all en-* voices
     NeoVoice.com
     Google TTS?
 
