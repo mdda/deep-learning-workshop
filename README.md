@@ -46,6 +46,10 @@ The modules also include pretrained state-of-the-art networks, such as GoogLeNet
      with an accompanying [blog post](http://blog.mdda.net/ai/2017/02/16/presentation-at-tensorflow), which includes a video link
 
 
+* [FOSSASIA 2017](http://2017.fossasia.org/) : Deep Learning Workshop (1 hour)
+  *  Application : Speech Recognition using a CNN
+  
+
 **NB : Ensure Conference Workshop announcement / blurb includes VirtualBox warning label**
 
 *  Also : for the Art (and potentially other image-focussed) modules, having a few 'personal' images available might be entertaining *
