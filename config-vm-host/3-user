@@ -45,6 +45,13 @@ firstboot-command chmod 744 /home/user/run-tensorboard.bash
 # And the jupyter notebooks
 copy-in notebooks:/home/user/
 
+# And the presentations folder (for the images)
+copy-in presentation:/home/user/
+
+# maybe instead : (but need to rename the folder...)
+# copy-in presentation/reveal.js-2.6.2/img:/home/user/notebooks/images/presentation
+
+
 # And the keras configuration (NB: choose theano or tensorflow)
 #upload config/keras-theano.json:/home/user/.keras/keras.json
 upload config/keras-tensorflow.json:/home/user/.keras/keras.json

@@ -408,13 +408,17 @@ Or speech recognition? :
       http://nbviewer.jupyter.org/github/crawles/dtw/blob/master/Speech_Recognition_DTW.ipynb
 
   TODO : 
-    Have function to pull whole of dataset predictions into plain array
-      Collect output of iterator into plain array
-    Graphical/heatmap display of probs
-    Graphical/heatmap display of logits
-    animals_ dataset and test set
+    DONE  Have function to pull whole of dataset predictions into plain array
+    DONE    Collect output of iterator into plain array
+    DONE  Graphical/heatmap display of probs
+    DONE  animals_ dataset and test set
+    DONE  copy into VM : presentations folder 
     
-    copy into VM : presentations folder 
+    Graphical/heatmap display of logits
+    
+    animals training data SVM trick
+    animals-test heatmap etc
+    
     search through VM, looking for files/directories to kill with 'clean-up' script
     
       
