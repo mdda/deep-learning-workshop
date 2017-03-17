@@ -419,8 +419,11 @@ Or speech recognition? :
     DONE  animals-test heatmap etc
     DONE  animals training data SVM trick
     
-    search through VM, looking for files/directories to kill with 'clean-up' script
+    OKAY search through VM, looking for files/directories to kill with 'clean-up' script
     
+    ConvNetJS: MNIST problem fix
+      // IDEA : http://stackoverflow.com/questions/6150289/how-to-convert-image-into-base64-string-using-javascript
+
       
 ### Next TensorFlow talk - (2017-03-21)  30mins
   
