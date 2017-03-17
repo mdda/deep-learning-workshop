@@ -399,17 +399,13 @@ table.table-fix {
 <section>
   <section>
    <h2>Image Classification</h2>
-   <ul class="fix-spacing">
-    <li>ImageNet Competition</li>
-    <li>over 15 million labeled high-resolution images...</li>
-    <li style="list-style-type:none"> ... in over 22,000 categories</li>
-   </ul>
    <br />
    <img width="850" height="314" src="img/ilsvrc1_850x314.png" alt="ImageNet Karpathy" style="border:none;box-shadow:none">
+   <p>In 2012, Deep Learning started to beat other approaches...</p>
   </section>
 
   <section>
-   <h2>Convolution Neural Networks</h2>
+   <h2>What is a CNN?</h2>
    <ul class="fix-spacing">
     <li>Pixels in an images are 'organised' : </li>
     <li style="list-style-type:none">
@@ -418,19 +414,61 @@ table.table-fix {
         <li>Translational invariance</li>
       </ul>
     </li>
-    <li>Idea : change 'Photoshop filter' parameters</li>
+    <li>Idea : Use whole image as feature</li>
     <li style="list-style-type:none">
       <ul>
-        <li>Use same parameters over whole image</li>
+        <li>Update parameters of 'Photoshop filters'</li>
       </ul>
     </li>
     <li>Mathematical term : 'convolutional filter'</li>
+    <li style="list-style-type:none">
+      <ul>
+        <li>CNN = Convolution Neural Network</li>
+      </ul>
+    </li>
    </ul>
   </section>
   
   <section>
    <h2>CNN Filter</h2>
    <img width="464" height="358" src="img/CNN-diagram_464x358.png" alt="CNN Diagram" style="border:none;box-shadow:none">
+  </section>
+
+  <section>
+   <h2>Play with a Filter</h2>
+   <img width="600" height="452" src="img/CNN-demo_600x452.png" alt="Convolution Demo" style="border:none;box-shadow:none">
+  </section>
+
+  <section>
+   <h2>CNN Flow</h2>
+   <img width="800" height="383" src="img/CNN-car-to-label_800x383.png" alt="CNN flow" style="border:none;box-shadow:none">
+  </section>
+</section>
+
+
+<section>
+  <section>
+   <h2>Image Competition</h2>
+   <ul class="fix-spacing">
+    <li>ImageNet aka ILSVRC</li>
+    <li>over 15 million labeled high-resolution images...</li>
+    <li style="list-style-type:none"> ... in over 22,000 categories</li>
+   </ul>
+   <br />
+   <img width="850" height="314" src="img/ilsvrc1_850x314.png" alt="ImageNet Karpathy" style="border:none;box-shadow:none">
+  </section>
+
+  <section>
+   <h2>More Complex Networks</h2>
+   <img width="614" height="286" src="img/googlenet-arch_1228x573.jpg" alt="Google ImageNet" style="border:none;box-shadow:none">
+   <p><i>GoogLeNet (2014)</i></p>
+  </section>
+  
+  <section>
+   <h2>3-ImageNet-googlenet</h2>
+   <ul class="fix-spacing">
+    <li>Play with a pre-trained network</li>
+   </ul>
   </section>
 
 </section>
@@ -490,122 +528,20 @@ ssh -p 8282 user@localhost
 
 <section>
   <section>
-   <h2>Theano</h2>
-   <ul class="fix-spacing">
-    <li>Optimised Numerical Computation in Python</li>
-    <li>Computation is <em>described</em> in Python code :</li>
-    <li style="list-style-type:none">
-      <ul>
-        <li>Theano operates on expression tree itself</li>
-        <li>Optimizes the tree for operations it knows</li>
-        <li>Makes use of <code>numpy</code> and <code>BLAS</code></li>
-        <li>Also writes <code>C/C++</code> or <code>CUDA</code> (or <code>OpenCL</code>)</li>
-      </ul>
-    </li>
-   </ul>
-  </section>
-  
-  <section>
-   <h2>0-TheanoBasics</h2>
-   <ul class="fix-spacing">
-    <li></li>
-   </ul>
-   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
-  </section>
-</section>
-
-<section>
-  <section>
-   <h2>1-MNIST-MLP</h2>
-   <ul class="fix-spacing">
-    <li></li>
-   </ul>
-   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
-  </section>
-</section>
-
-<section>
-  <section>
-   <h2>2-MNIST-CNN</h2>
-   <ul class="fix-spacing">
-    <li></li>
-   </ul>
-   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
-  </section>
-
-  <section>
-   <h2>Theano : detail</h2>
-   <img width="690" height="390" src="img/zoom-1_690x390.png" alt="Theano diagram x1" style="border:none;box-shadow:none">
-  </section>
-  
-  <section>
-   <h2>... zoom out</h2>
-   <img width="600" height="348" src="img/zoom-2_600x348.png" alt="Theano diagram x2" style="border:none;box-shadow:none">
-  </section>
-  
-  <section>
-   <h2>... zoom out</h2>
-   <img width="600" height="313" src="img/zoom-3_600x313.png" alt="Theano diagram x3" style="border:none;box-shadow:none">
-  </section>
-  
-  <section>
-   <h2>Theano : "Simple RNN"</h2>
-   <img width="241" height="500" src="img/zoom-4_241x500.png" alt="Theano diagram x4" style="border:none;box-shadow:none">
-  </section>
-
-
-</section>
-
-
-
-<section>
-  <section>
-   <h2>New Problems</h2>
-   <ul class="fix-spacing">
-    <li>ImageNet Competition</li>
-    <li>over 15 million labeled high-resolution images...</li>
-    <li style="list-style-type:none"> ... in over 22,000 categories</li>
-   </ul>
-   <br />
-   <img width="850" height="314" src="img/ilsvrc1_850x314.png" alt="ImageNet Karpathy" style="border:none;box-shadow:none">
-  </section>
-
-  <section>
-   <h2>More Complex Networks</h2>
-   <img width="614" height="286" src="img/googlenet-arch_1228x573.jpg" alt="Google ImageNet" style="border:none;box-shadow:none">
-   <p><i>GoogLeNet (2014)</i></p>
-  </section>
-  
-  <section>
-   <h2>3-ImageNet-googlenet</h2>
-   <ul class="fix-spacing">
-    <li>Play with a pre-trained network</li>
-   </ul>
-  </section>
-</section>
-
-<section>
-  <section>
    <h2>... Even More Complex</h2>
    <img width="800" height="299" src="img/inception03_800x299.png" alt="Google Inception v3" style="border:none;box-shadow:none">
    <p><i>Google Inception-v3 (2015)</i></p>
   </section>
   
   <section>
-   <h2>4-ImageNet-inception-v3</h2>
-   <ul class="fix-spacing">
-    <li>Play with a pre-trained network</li>
-    <li>NB: This may be painfully slow...</li>
-   </ul>
-   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
+   <h2>... and Deeper</h2>
+   <img width="756" height="443" src="img/RevolutionOfDepth_756x443.png" alt="Revolution of Depth" style="border:none;box-shadow:none">
+   <p><i>Microsoft ResNet (2015)</i></p>
   </section>
   
-  <section>
-   <h2>Need for Speed</h2>
-   <img width="759" height="408" src="img/CPU-GPU_759x408.png" alt="CPU vs GPU" style="border:none;box-shadow:none">
-   <p><i>... need for GPU programmers</i></p>
-  </section>
 </section>
+
+
 
 <section>
   <section>

@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en">
+
+ <head>
+  <meta charset="utf-8">
+
+  <title>Deep Learning Workshop</title>
+
+  <meta name="description" content="Deep Learning Workshop">
+  <meta name="author" content="Martin Andrews">
+
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <!-- For local-loading of fonts (see README for TTF download instructions) -->
+  <!-- Load before theme, so that if connected, 'genuine' fonts are downloaded -->
+  <link rel="stylesheet" href="fonts/local.css">
+
+  <link rel="stylesheet" href="css/reveal.min.css">
+  <link rel="stylesheet" xhref="css/theme/default.css" href="css/theme/sky.css" id="theme">
+
+  <!-- For syntax highlighting -->
+  <link rel="stylesheet" href="lib/css/zenburn.css">
+
+  <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+  <script>
+   if( window.location.search.match( /print-pdf/gi ) ) {
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = 'css/print/pdf.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+   }
+  </script>
+
+  <!--[if lt IE 9]>
+  <script src="lib/js/html5shiv.js"></script>
+  <![endif]-->
+ </head>
+
+ <body>
+  <div class="reveal">
+   <!-- Any section element inside of this container is displayed as a slide -->
+   <div class="slides">
+    
+<style>
+table.table-fix {
+ margin-left:auto;  margin-right:auto; border-collapse:collapse; cell-padding:5px;
+ margin-top:20px;
+}
+.table-fix td,.table-fix th {
+ padding: 6px;
+}
+.table-fix th {
+ border-bottom:1pt solid black;
+}
+.fix-spacing li {
+ margin-bottom:16pt;
+}
+</style>
+
+<!--
+
+
+!-->
+
+<section>
+ <h1>Convolution</h1>
+ <br>
+ <!-- https://www.html5rocks.com/en/tutorials/canvas/imagefilters/ !-->
+ <table style="width:900px; margin: 10px auto 10px; border:1px solid black">
+   <tr>
+     <td><img id="image_input" style="background:none; border:none; box-shadow:none; margin:0"/></td>
+     <td id="customMatrix"  style="text-align:center;vertical-align: middle;">
+        <p>Filter parameters</p>
+        <input type="text" value="1" size="3" onkeyup="custom();">
+        <input type="text" value="1" size="3" onkeyup="custom();">
+        <input type="text" value="1" size="3" onkeyup="custom();">
+        <br>
+        <input type="text" value="1" size="3" onkeyup="custom();">
+        <input type="text" value="0.7" size="3" onkeyup="custom();">
+        <input type="text" value="-1" size="3" onkeyup="custom();">
+        <br>
+        <input type="text" value="-1" size="3" onkeyup="custom();">
+        <input type="text" value="-1" size="3" onkeyup="custom();">
+        <input type="text" value="-1" size="3" onkeyup="custom();">
+        <p>&rarr;</p>
+     </td>
+     <td><canvas id="image_filtered" style="background:none; border:none; box-shadow:none; margin:0; float:right;"></canvas></td>
+   </tr>
+ </table>
+</section>
+
+   </div>
+  </div>
+
+<div id="redcatlabs-logo" style="background: url(img/redcatlabs_logo1_280x39.png);
+                                  position: absolute;
+                                  bottom: 50px;
+                                  left: 50px;
+                                  width: 280px;
+                                  height: 39px;">
+</div>  
+
+  <script src="lib/js/head.min.js"></script>
+  <script src="js/reveal.min.js"></script>
+
+  <script type="text/javascript">
+
+   // Full list of configuration options available here:
+   // https://github.com/hakimel/reveal.js#configuration
+   Reveal.initialize({
+    controls: true,
+    progress: true,
+    history: true,
+    center: true,
+
+    theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+    transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+    // Parallax scrolling
+    // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+    // parallaxBackgroundSize: '2100px 900px',
+
+    // Optional libraries used to extend on reveal.js
+    dependencies: [
+     { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+     { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+     { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+     { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+     { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+     { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+    ]
+   });
+
+  </script>
+
+  <script src="convnetjs/demo/image_regression_custom_images.js"></script>
+  <script type="text/javascript">
+  
+  Filters = {};
+  Filters.getPixels = function(img) {
+    var c,ctx;
+    if (img.getContext) {
+      c = img;
+      try { ctx = c.getContext('2d'); } catch(e) {}
+    }
+    if (!ctx) {
+      c = this.getCanvas(img.width, img.height);
+      ctx = c.getContext('2d');
+      ctx.drawImage(img, 0, 0);
+    }
+    return ctx.getImageData(0,0,c.width,c.height);
+  };
+
+  Filters.getCanvas = function(w,h) {
+    var c = document.createElement('canvas');
+    c.width = w;
+    c.height = h;
+    return c;
+  };
+
+  Filters.filterImage = function(filter, image, var_args) {
+    var args = [this.getPixels(image)];
+    for (var i=2; i<arguments.length; i++) {
+      args.push(arguments[i]);
+    }
+    return filter.apply(null, args);
+  };
+
+  Filters.grayscale = function(pixels, args) {
+    var d = pixels.data;
+    for (var i=0; i<d.length; i+=4) {
+      var r = d[i];
+      var g = d[i+1];
+      var b = d[i+2];
+      // CIE luminance for the RGB
+      var v = 0.2126*r + 0.7152*g + 0.0722*b;
+      d[i] = d[i+1] = d[i+2] = v
+    }
+    return pixels;
+  };
+
+  Filters.brightness = function(pixels, adjustment) {
+    var d = pixels.data;
+    for (var i=0; i<d.length; i+=4) {
+      d[i] += adjustment;
+      d[i+1] += adjustment;
+      d[i+2] += adjustment;
+    }
+    return pixels;
+  };
+
+  Filters.threshold = function(pixels, threshold) {
+    var d = pixels.data;
+    for (var i=0; i<d.length; i+=4) {
+      var r = d[i];
+      var g = d[i+1];
+      var b = d[i+2];
+      var v = (0.2126*r + 0.7152*g + 0.0722*b >= threshold) ? 255 : 0;
+      d[i] = d[i+1] = d[i+2] = v
+    }
+    return pixels;
+  };
+
+  Filters.tmpCanvas = document.createElement('canvas');
+  Filters.tmpCtx = Filters.tmpCanvas.getContext('2d');
+
+  Filters.createImageData = function(w,h) {
+    return this.tmpCtx.createImageData(w,h);
+  };
+
+  Filters.convolute = function(pixels, weights, opaque) {
+    var side = Math.round(Math.sqrt(weights.length));
+    var halfSide = Math.floor(side/2);
+
+    var src = pixels.data;
+    var sw = pixels.width;
+    var sh = pixels.height;
+
+    var w = sw;
+    var h = sh;
+    var output = Filters.createImageData(w, h);
+    var dst = output.data;
+
+    var alphaFac = opaque ? 1 : 0;
+
+    for (var y=0; y<h; y++) {
+      for (var x=0; x<w; x++) {
+        var sy = y;
+        var sx = x;
+        var dstOff = (y*w+x)*4;
+        var r=0, g=0, b=0, a=0;
+        for (var cy=0; cy<side; cy++) {
+          for (var cx=0; cx<side; cx++) {
+            var scy = Math.min(sh-1, Math.max(0, sy + cy - halfSide));
+            var scx = Math.min(sw-1, Math.max(0, sx + cx - halfSide));
+            var srcOff = (scy*sw+scx)*4;
+            var wt = weights[cy*side+cx];
+            r += src[srcOff] * wt;
+            g += src[srcOff+1] * wt;
+            b += src[srcOff+2] * wt;
+            a += src[srcOff+3] * wt;
+          }
+        }
+        dst[dstOff] = r;
+        dst[dstOff+1] = g;
+        dst[dstOff+2] = b;
+        dst[dstOff+3] = a + alphaFac*(255-a);
+      }
+    }
+    return output;
+  };
+
+  if (!window.Float32Array) {
+    Float32Array = Array;
+  }
+
+  Filters.convoluteFloat32 = function(pixels, weights, opaque) {
+    var side = Math.round(Math.sqrt(weights.length));
+    var halfSide = Math.floor(side/2);
+
+    var src = pixels.data;
+    var sw = pixels.width;
+    var sh = pixels.height;
+
+    var w = sw;
+    var h = sh;
+    var output = {
+      width: w, height: h, data: new Float32Array(w*h*4)
+    };
+    var dst = output.data;
+
+    var alphaFac = opaque ? 1 : 0;
+
+    for (var y=0; y<h; y++) {
+      for (var x=0; x<w; x++) {
+        var sy = y;
+        var sx = x;
+        var dstOff = (y*w+x)*4;
+        var r=0, g=0, b=0, a=0;
+        for (var cy=0; cy<side; cy++) {
+          for (var cx=0; cx<side; cx++) {
+            var scy = Math.min(sh-1, Math.max(0, sy + cy - halfSide));
+            var scx = Math.min(sw-1, Math.max(0, sx + cx - halfSide));
+            var srcOff = (scy*sw+scx)*4;
+            var wt = weights[cy*side+cx];
+            r += src[srcOff] * wt;
+            g += src[srcOff+1] * wt;
+            b += src[srcOff+2] * wt;
+            a += src[srcOff+3] * wt;
+          }
+        }
+        dst[dstOff] = r;
+        dst[dstOff+1] = g;
+        dst[dstOff+2] = b;
+        dst[dstOff+3] = a + alphaFac*(255-a);
+      }
+    }
+    return output;
+  };
+
+  var img = document.getElementById('image_input');
+  img.src = encoded_images.cat;
+  
+  //var cm = document.getElementById('customMatrix');
+  
+  
+  img.addEventListener('load', function() {
+
+    /*
+    var canvases = document.getElementsByTagName('canvas');
+    for (var i=0; i<canvases.length; i++) {
+      var c = canvases[i];
+      c.parentNode.insertBefore(img.cloneNode(true), c);
+      c.style.display = 'none';
+    }
+    */
+
+    function runFilter(id, filter, arg1, arg2, arg3) {
+      /*
+      var c = document.getElementById(id);
+      var s = c.previousSibling.style;
+      var b = c.parentNode.getElementsByTagName('button')[0];
+      if (b.originalText == null) {
+        b.originalText = b.textContent;
+      }
+      if (s.display == 'none') {
+        s.display = 'inline';
+        c.style.display = 'none';
+        b.textContent = b.originalText;
+      } else {
+        var idata = Filters.filterImage(filter, img, arg1, arg2, arg3);
+        c.width = idata.width;
+        c.height = idata.height;
+        var ctx = c.getContext('2d');
+        ctx.putImageData(idata, 0, 0);
+        s.display = 'none';
+        c.style.display = 'inline';
+        b.textContent = 'Restore original image';
+      }
+      */
+      var c = document.getElementById('image_filtered');
+      var idata = Filters.filterImage(filter, img, arg1, arg2, arg3);
+      c.width = idata.width;
+      c.height = idata.height;
+      var ctx = c.getContext('2d');
+      ctx.putImageData(idata, 0, 0);
+    }
+
+    grayscale = function() {
+      runFilter('grayscale', Filters.grayscale);
+    }
+
+    brightness = function() {
+      runFilter('brightness', Filters.brightness, 40);
+    }
+
+    threshold = function() {
+      runFilter('threshold', Filters.threshold, 128);
+    }
+
+    sharpen = function() {
+      runFilter('sharpen', Filters.convolute,
+        [ 0, -1,  0,
+         -1,  5, -1,
+          0, -1,  0]);
+    }
+
+    blurC = function() {
+      runFilter('blurC', Filters.convolute,
+        [ 1/9, 1/9, 1/9,
+          1/9, 1/9, 1/9,
+          1/9, 1/9, 1/9 ]);
+    }
+
+    sobel = function() {
+      runFilter('sobel', function(px) {
+        px = Filters.grayscale(px);
+        var vertical = Filters.convoluteFloat32(px,
+          [-1,-2,-1,
+            0, 0, 0,
+            1, 2, 1]);
+        var horizontal = Filters.convoluteFloat32(px,
+          [-1,0,1,
+           -2,0,2,
+           -1,0,1]);
+        var id = Filters.createImageData(vertical.width, vertical.height);
+        for (var i=0; i<id.data.length; i+=4) {
+          var v = Math.abs(vertical.data[i]);
+          id.data[i] = v;
+          var h = Math.abs(horizontal.data[i]);
+          id.data[i+1] = h
+          id.data[i+2] = (v+h)/4;
+          id.data[i+3] = 255;
+        }
+        return id;
+      });
+    }
+
+    custom = function() {
+      var inputs = document.getElementById('customMatrix').getElementsByTagName('input');
+      var arr = [];
+      for (var i=0; i<inputs.length; i++) {
+        arr.push(parseFloat(inputs[i].value) || 0);
+      }
+      runFilter('custom', Filters.convolute, arr, true);
+    }
+    
+    //grayscale();
+    custom();
+  }, false); 
+  </script>
+ </body>
+</html>
