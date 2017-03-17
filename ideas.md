@@ -407,6 +407,16 @@ Or speech recognition? :
     And Dynamic Time warping:
       http://nbviewer.jupyter.org/github/crawles/dtw/blob/master/Speech_Recognition_DTW.ipynb
 
+  TODO : 
+    Have function to pull whole of dataset predictions into plain array
+      Collect output of iterator into plain array
+    Graphical/heatmap display of probs
+    Graphical/heatmap display of logits
+    animals_ dataset and test set
+    
+    copy into VM : presentations folder 
+    search through VM, looking for files/directories to kill with 'clean-up' script
+    
       
 ### Next TensorFlow talk - (2017-03-21)  30mins
   
