@@ -423,6 +423,7 @@ Or speech recognition? :
     
     ConvNetJS: MNIST problem fix
       // IDEA : http://stackoverflow.com/questions/6150289/how-to-convert-image-into-base64-string-using-javascript
+      // Or : http://stackoverflow.com/questions/16918602/how-to-base64-encode-image-in-linux-bash-shell
 
       
 ### Next TensorFlow talk - (2017-03-21)  30mins
