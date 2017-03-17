@@ -414,10 +414,10 @@ Or speech recognition? :
     DONE  animals_ dataset and test set
     DONE  copy into VM : presentations folder 
     
-    Graphical/heatmap display of logits
+    DONE  Graphical/heatmap display of logits
     
-    animals training data SVM trick
-    animals-test heatmap etc
+    DONE  animals-test heatmap etc
+    DONE  animals training data SVM trick
     
     search through VM, looking for files/directories to kill with 'clean-up' script
     
