@@ -42,9 +42,13 @@ ln -s ../../presentation/reveal.js-2.6.2/img presentation
 popd
 
 # Download the latest tensorflow-slim-modelzoo 
-mkdir -p $notebook_dir/model/tensorflow_zoo
-cd $notebook_dir/model/tensorflow_zoo
-git clone https://github.com/tensorflow/models/
+if [ ! -d "$notebook_dir/model/tensorflow_zoo/models" ]; then
+  mkdir -p $notebook_dir/model/tensorflow_zoo
+  pushd $notebook_dir/model/tensorflow_zoo
+  git clone https://github.com/tensorflow/models/
+  popd
+fi
+
 
 
 echo "OMP_NUM_THREADS=4" >> ~/.bashrc
