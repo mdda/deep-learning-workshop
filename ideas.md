@@ -428,6 +428,9 @@ Or speech recognition? :
     Hat-tip to :
       https://www.html5rocks.com/en/tutorials/canvas/imagefilters/
       
+     rsync -avz --progress --exclude 'vm-images*' --exclude 'env3*' --exclude 'VCTK-Corpus*' andrewsm@simlim:~/OpenSource/deep-learning-workshop .
+ 
+      
 ### Next TensorFlow talk - (2017-03-21)  30mins
   
 Details TBD, but hopefully : 
