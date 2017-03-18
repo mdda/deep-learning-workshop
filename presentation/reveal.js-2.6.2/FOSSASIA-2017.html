@@ -485,20 +485,6 @@ table.table-fix {
   </section>
   
   <section>
-   <h2>VM : Console</h2>
-   <pre><code data-trim contenteditable>
-Login: user
-Password: password
-
-#...
-
-./run-jupyter.bash
-
-#....
-   </code></pre>
-  </section>
-  
-  <section>
    <h2>Workshop : Jupyter</h2>
    <ul class="fix-spacing">
     <li>On your 'host' machine</li>
@@ -512,6 +498,20 @@ Password: password
    <p>From your 'host' machine :</p>
    <pre><code data-trim contenteditable>
 ssh -p 8282 user@localhost     
+   </code></pre>
+  </section>
+  
+  <section>
+   <h2>VM : Console</h2>
+   <pre><code data-trim contenteditable>
+Login: user
+Password: password
+
+#...
+
+./run-jupyter.bash
+
+#....
    </code></pre>
   </section>
   
@@ -567,7 +567,18 @@ ssh -p 8282 user@localhost
   <section>
    <h2>CNN Speech Recognition</h2>
    <ximg width="484" height="344" src="img/CNN-for-speech_data_484x344.png" alt="speech/SpeechRecognition_Dat" style="border:none;box-shadow:none">
+    
    <code>'speech/SpeechRecognition_Learn.ipynb'</code>
+     
+<pre>stamps.shape: (31, 64, 32)
+labels.shape: (31,)
+batch_input_fn sizing :  (31, 64, 32, 1)
+
+INFO:tensorflow:Starting evaluation at 2017-03-18-04:31:04
+INFO:tensorflow:Evaluation [1/1]
+INFO:tensorflow:Finished evaluation at 2017-03-18-04:31:05
+{'accuracy': 1.0, 'loss': 0.0068151536, 'global_step': 3830}
+</pre>
   </section>
   
 </section>
