@@ -305,43 +305,10 @@ table.table-fix {
   var img = document.getElementById('image_input');
   img.src = encoded_images.cat;
   
-  //var cm = document.getElementById('customMatrix');
-  
   
   img.addEventListener('load', function() {
 
-    /*
-    var canvases = document.getElementsByTagName('canvas');
-    for (var i=0; i<canvases.length; i++) {
-      var c = canvases[i];
-      c.parentNode.insertBefore(img.cloneNode(true), c);
-      c.style.display = 'none';
-    }
-    */
-
     function runFilter(id, filter, arg1, arg2, arg3) {
-      /*
-      var c = document.getElementById(id);
-      var s = c.previousSibling.style;
-      var b = c.parentNode.getElementsByTagName('button')[0];
-      if (b.originalText == null) {
-        b.originalText = b.textContent;
-      }
-      if (s.display == 'none') {
-        s.display = 'inline';
-        c.style.display = 'none';
-        b.textContent = b.originalText;
-      } else {
-        var idata = Filters.filterImage(filter, img, arg1, arg2, arg3);
-        c.width = idata.width;
-        c.height = idata.height;
-        var ctx = c.getContext('2d');
-        ctx.putImageData(idata, 0, 0);
-        s.display = 'none';
-        c.style.display = 'inline';
-        b.textContent = 'Restore original image';
-      }
-      */
       var c = document.getElementById('image_filtered');
       var idata = Filters.filterImage(filter, img, arg1, arg2, arg3);
       c.width = idata.width;
