@@ -45,9 +45,9 @@ The modules also include pretrained state-of-the-art networks, such as GoogLeNet
   *  Slides for the talk are [here](http://redcatlabs.com/2017-02-16_TFandDL_TransferLearning/#/), 
      with an accompanying [blog post](http://blog.mdda.net/ai/2017/02/16/presentation-at-tensorflow), which includes a video link
 
-
 * [FOSSASIA 2017](http://2017.fossasia.org/) : Deep Learning Workshop (1 hour)
   *  Application : Speech Recognition using a CNN
+
   
 
 **NB : Ensure Conference Workshop announcement / blurb includes VirtualBox warning label**
