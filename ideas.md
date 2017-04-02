@@ -431,15 +431,39 @@ Or speech recognition? :
      rsync -avz --progress --exclude 'vm-images*' --exclude 'env3*' --exclude 'VCTK-Corpus*' andrewsm@simlim:~/OpenSource/deep-learning-workshop .
  
       
-### Next TensorFlow talk - (2017-03-21)  30mins
+### TensorFlow and Deep Learning MeetUp talk - (2017-03-21)  30mins
   
-Details TBD, but hopefully : 
+Intro to CNNs : 
 
-*   Intro to CNNs
+*  Re-work the FOSSASIA presentation to integrate more demo per minute...
+
+
+See:
+*  https://adeshpande3.github.io/adeshpande3.github.io/A-Beginner's-Guide-To-Understanding-Convolutional-Neural-Networks/
+
+
+#### Do soon :
+
 *   Description of difference between old and new style TensorFlow ```Evaluator()``` calling
 *   CNN for MNIST
 *   Adversarial images
 *   Auto-encoders
 
-See:
-*  https://adeshpande3.github.io/adeshpande3.github.io/A-Beginner's-Guide-To-Understanding-Convolutional-Neural-Networks/
+
+### TensorFlow and Deep Learning MeetUp talk - (2017-04-13)  30mins
+
+Focus is on GANs.  Essentially, 'my turn' to do advanced topic.
+  
+*  Would be cool to link in Tacomatic paper to Stamp speech thing somehow.   
+*  Using Keras
+
+
+### TensorFlow and Deep Learning MeetUp talk - (2017-05-25)  30mins
+
+Focus is on Text.  Essentially, 'my turn' to do beginner topic.
+
+Perhaps :
+
+*  Rework the NER thing to TensorFlow (or Keras); or
+*  Make the adversarial dictionary word generator/detector thing work
+
