@@ -458,6 +458,25 @@ Focus is on GANs.  Essentially, 'my turn' to do advanced topic.
 *  Using Keras
 
 
+### Microsoft Conference "APAC Machine Learning & Data Science Community Summit" (Seoul) - (2017-05-20)  45mins
+
+The audience is ordinary community members or developers who are interested in the area of ML and DS. 
+They may be beginners to practitioners who uses DS and ML in their day job.
+
+Would appreciate a 45 mins session "regular talk" on Deep Learning and we would love for you to show code. 
+There will be 5 mins at the end of your session for Q&A.  
+The audience is diverse so we don"t necessarily have to zero in on Tensorflow. 
+I think using AlphaGo to bring out reinforcement learning and how it can be applied to things 
+beyond games would be a hit for the audience. 
+Live demo and codes are critical elements to excite the audience for sure.
+
+ 
+
+I hope the input is useful. If you need additional information, please do not hesitate to let us know.
+
+Please do feel free to propose your session title and synopsis. We look forward to having you with us in Seoul!
+
+
 ### TensorFlow and Deep Learning MeetUp talk - (2017-05-25)  30mins
 
 Focus is on Text.  Essentially, 'my turn' to do beginner topic.
