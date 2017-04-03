@@ -460,6 +460,8 @@ Focus is on GANs.  Essentially, 'my turn' to do advanced topic.
 
 ### Microsoft Conference "APAC Machine Learning & Data Science Community Summit" (Seoul) - (2017-05-20)  45mins
 
+This is a 500 Pax multi-track public event co-organized by 5 leading Machine Learning and Data Science related communities in Korea. 
+
 The audience is ordinary community members or developers who are interested in the area of ML and DS. 
 They may be beginners to practitioners who uses DS and ML in their day job.
 
