@@ -488,3 +488,4 @@ Perhaps :
 *  Rework the NER thing to TensorFlow (or Keras); or
 *  Make the adversarial dictionary word generator/detector thing work
 
+https://www.reddit.com/r/MachineLearning/comments/62c1on/r_tacotron_a_fully_endtoend_texttospeech/
