@@ -17,7 +17,7 @@ RCL_BASE=http://redcatlabs.com/downloads/deep-learning-workshop/notebooks/data
 mkdir -p ./notebooks/data
 pushd ./notebooks/data
 
-## thousand lines with synset IDs and names 
+## One thousand lines with synset IDs and names 
 if [ ! -e "imagenet_synset_words.txt" ]; then
   wget http://dl.caffe.berkeleyvision.org/caffe_ilsvrc12.tar.gz
   gunzip caffe_ilsvrc12.tar.gz 
@@ -29,8 +29,8 @@ fi
 popd
 
 
-mkdir -p ./notebooks/data/VGG
-pushd ./notebooks/data/VGG
+mkdir -p ./notebooks/data/imagenet-theano
+pushd ./notebooks/data/imagenet-theano
 
 ## VGG16 model (converted from Caffee, importable into Keras)
 #   https://gist.github.com/baraldilorenzo/07d7802847aaad0a35d3
@@ -61,10 +61,24 @@ fi
 popd
 
 
+
+## GoogLeNet model (Google)
+
+mkdir -p ./notebooks/data/imagenet-theano
+pushd ./notebooks/data/imagenet-theano
+
+if [ ! -e "blvc_googlenet.pkl" ]; then
+  # 27Mb
+  wget -N https://s3.amazonaws.com/lasagne/recipes/pretrained/imagenet/blvc_googlenet.pkl
+fi
+
+popd
+
+
 ## inception_v3 model (Google)
 
-mkdir -p ./notebooks/data/inception3
-pushd ./notebooks/data/inception3
+mkdir -p ./notebooks/data/imagenet-theano
+pushd ./notebooks/data/imagenet-theano
 
 if [ ! -e "inception_v3.pkl" ]; then
   # 95Mb
@@ -73,18 +87,6 @@ fi
 
 popd
 
-
-## GoogLeNet model (Google)
-
-mkdir -p ./notebooks/data/googlenet
-pushd ./notebooks/data/googlenet
-
-if [ ! -e "blvc_googlenet.pkl" ]; then
-  # 27Mb
-  wget -N https://s3.amazonaws.com/lasagne/recipes/pretrained/imagenet/blvc_googlenet.pkl
-fi
-
-popd
 
 
 

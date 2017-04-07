@@ -489,3 +489,31 @@ Perhaps :
 *  Make the adversarial dictionary word generator/detector thing work
 
 https://www.reddit.com/r/MachineLearning/comments/62c1on/r_tacotron_a_fully_endtoend_texttospeech/
+  Kyle Kastner is in the Montreal lab, and worked on char2wav there : https://github.com/sotelo/parrot
+  
+Need to go from mel spectrogram -> pure spectrogram
+  EXCEPT : SOME PARTS ARE MSR-LA License :: DO NOT READ
+    https://timsainb.github.io/spectrograms-mfccs-and-inversion-in-python.html
+    https://gist.github.com/kastnerkyle/179d6e9a88202ab0a2fe#file-audio_tools-py-L3923  # License: BSD 3-clause
+  GPL3 
+    http://ltfat.github.io/
+  Thesis including psuedo-code
+    http://iem.kug.ac.at/fileadmin/media/iem/projects/2012/hollomey.pdf
+    http://ant-s4.unibw-hamburg.de/dafx/paper-archive/2016/dafxpapers/03-DAFx-16_paper_02-PN.pdf
+      - links to LTFat
+    http://perraudin.info/publications/perraudin-note-002.pdf    
+      - FGLA
+      - links to LTFat
+    http://dsp.stackexchange.com/questions/2757/inverse-short-time-fourier-transform-algorithm-described-in-words
+      - has some code (MatLab)
+
+  Looks VERY relevant : https://dmitryulyanov.github.io/audio-texture-synthesis-and-style-transfer/
+    https://github.com/DmitryUlyanov/neural-style-audio-tf      
+    
+  python_speech_features  (only featurisation) :
+    https://github.com/jameslyons/python_speech_features/blob/master/python_speech_features/base.py#L35
+    
+  librosa has STFT and iSTFT
+    https://github.com/librosa/librosa/blob/master/librosa/core/spectrum.py#L181
+  
+  
