@@ -495,17 +495,28 @@ Need to go from mel spectrogram -> pure spectrogram
   EXCEPT : SOME PARTS ARE MSR-LA License :: DO NOT READ
     https://timsainb.github.io/spectrograms-mfccs-and-inversion-in-python.html
     https://gist.github.com/kastnerkyle/179d6e9a88202ab0a2fe#file-audio_tools-py-L3923  # License: BSD 3-clause
-  GPL3 
-    http://ltfat.github.io/
-  Thesis including psuedo-code
-    http://iem.kug.ac.at/fileadmin/media/iem/projects/2012/hollomey.pdf
+
+    
+
+  spectrum -> WAV
+    Griffin & Lim 1984 :
+      https://pdfs.semanticscholar.org/14bc/876fae55faf5669beb01667a4f3bd324a4f1.pdf
+    
+    Thesis including psuedo-code
+      http://iem.kug.ac.at/fileadmin/media/iem/projects/2012/hollomey.pdf
+    
     http://ant-s4.unibw-hamburg.de/dafx/paper-archive/2016/dafxpapers/03-DAFx-16_paper_02-PN.pdf
-      - links to LTFat
+      - links to LTFat (GPL3 )
+        http://ltfat.github.io/
+
     http://perraudin.info/publications/perraudin-note-002.pdf    
       - FGLA
       - links to LTFat
     http://dsp.stackexchange.com/questions/2757/inverse-short-time-fourier-transform-algorithm-described-in-words
       - has some code (MatLab)
+      
+    http://lonce.org/home/Publications/publications/2007_RealtimeSignalReconstruction.pdf
+    
 
   Looks VERY relevant : https://dmitryulyanov.github.io/audio-texture-synthesis-and-style-transfer/
     https://github.com/DmitryUlyanov/neural-style-audio-tf      
@@ -516,4 +527,11 @@ Need to go from mel spectrogram -> pure spectrogram
   librosa has STFT and iSTFT
     https://github.com/librosa/librosa/blob/master/librosa/core/spectrum.py#L181
   
+  https://github.com/jameslyons/python_speech_features/blob/master/python_speech_features/base.py
+  https://github.com/jameslyons/python_speech_features/blob/master/python_speech_features/sigproc.py
+  
+  https://github.com/librosa/librosa/blob/master/librosa/core/spectrum.py
+  
+  https://www.reddit.com/r/MachineLearning/comments/5668yr/for_generative_modelling_on_audio_spectrograms/
+  https://github.com/vadim-v-lebedev/audio_style_tranfer/blob/master/audio_style_transfer.ipynb
   
