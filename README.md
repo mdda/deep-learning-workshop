@@ -52,7 +52,7 @@ The modules also include pretrained state-of-the-art networks, such as GoogLeNet
 
 * [TensorFlow &amp; Deep Learning MeetUp](https://www.meetup.com/TensorFlow-and-Deep-Learning-Singapore/events/237860964/) : Talk on CNNs (0.5 hours)
   *  Application : Speech Recognition using a CNN (non-workshop version)
-  *  Slides for the talk are [here](redcatlabs.com/2017-03-20_TFandDL_IntroToCNNs/#/), 
+  *  Slides for the talk are [here]((http://redcatlabs.com/2017-03-20_TFandDL_IntroToCNNs/#/), 
      with an accompanying [blog post](http://blog.mdda.net/ai/2017/02/16/presentation-at-tensorflow), which includes a video link
 
 * [TensorFlow &amp; Deep Learning MeetUp](https://www.meetup.com/TensorFlow-and-Deep-Learning-Singapore/events/238584480/) : Generative Art : Style-Transfer (0.5 hours)
@@ -91,8 +91,8 @@ And this repo can itself be run in 'local mode', using scripts in ```./local/```
 
 #### Currently working well
 
-*  Scripts to create working Fedora 23 installation inside VM
-   *  Has working ```virtualenv``` with ```Jupyter``` and ```TensorFlow / TensorBoard```
+*  Scripts to create working Fedora 25 installation inside VM
+   *  Has working ```Python3.x``` ```virtualenv``` with ```Jupyter``` and ```TensorFlow / TensorBoard```
 *  Script to transform the VM into a VirtualBox appliance
    *  Exposing ```Jupyter```, ```TensorBoard``` and ```ssh``` to host machine
 
@@ -102,13 +102,17 @@ And this repo can itself be run in 'local mode', using scripts in ```./local/```
 *  Locally hosted TensorFlow Playground  for :
    *  Visualising hidden layer, and effect of features, etc
 
+*  Locally hosted cnn demo for :
+   *  Demonstration of how a single CNN 3x3 filter works
 
-*  Create workshop notebooks (Lasagne / Theano)
+
+*  Existing workshop notebooks :
    *  Basics 
    *  MNIST
    *  MNIST CNN
    *  ImageNet : GoogLeNet
    *  ImageNet : Inception 3
+   *  CNN for simple Voice Recognition
    *  'Anomaly Detection' - identifying mis-shaped MNIST digits
    *  'Commerce' - repurpose a trained network to classify our stuff
    *  'Art' - Style transfer with Lasagne, but using GoogLeNet features for speed
