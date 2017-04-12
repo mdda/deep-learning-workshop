@@ -40,15 +40,26 @@ The modules also include pretrained state-of-the-art networks, such as GoogLeNet
   *  Slides for the talk are [here](http://redcatlabs.com/2017-01-23_PyDataSG_RNNs-for-NLP/), 
      with an accompanying [blog post](http://blog.mdda.net/ai/2017/01/23/presentation-at-pydata), which includes a video link
 
-* [TensorFlow &amp; Deep Learning MeetUp](https://www.meetup.com/TensorFlow-and-Deep-Learning-Singapore/events/237032130/) : Talk on tranfser learning (0.5 hours)
+* [TensorFlow &amp; Deep Learning MeetUp](https://www.meetup.com/TensorFlow-and-Deep-Learning-Singapore/events/237032130/) : Talk on transfer learning (0.5 hours)
   *  Application : Classifying unknown classes of images (~transfer learning)  *in TensorFlow*
   *  Slides for the talk are [here](http://redcatlabs.com/2017-02-16_TFandDL_TransferLearning/#/), 
      with an accompanying [blog post](http://blog.mdda.net/ai/2017/02/16/presentation-at-tensorflow), which includes a video link
 
 * [FOSSASIA 2017](http://2017.fossasia.org/) : Deep Learning Workshop (1 hour)
   *  Application : Speech Recognition using a CNN
+  *  Slides for the talk are [here](http://redcatlabs.com/2017-03-18_FOSSASIA-Workshop/#/), 
+     with an accompanying [blog post](http://blog.mdda.net/ai/2017/03/18/presentation-at-FOSSASIA), which includes a video link
 
-  
+* [TensorFlow &amp; Deep Learning MeetUp](https://www.meetup.com/TensorFlow-and-Deep-Learning-Singapore/events/237860964/) : Talk on CNNs (0.5 hours)
+  *  Application : Speech Recognition using a CNN (non-workshop version)
+  *  Slides for the talk are [here](redcatlabs.com/2017-03-20_TFandDL_IntroToCNNs/#/), 
+     with an accompanying [blog post](http://blog.mdda.net/ai/2017/02/16/presentation-at-tensorflow), which includes a video link
+
+* [TensorFlow &amp; Deep Learning MeetUp](https://www.meetup.com/TensorFlow-and-Deep-Learning-Singapore/events/238584480/) : Generative Art : Style-Transfer (0.5 hours)
+  *  Application : Generative Art (Style-Transfer)
+
+
+
 
 **NB : Ensure Conference Workshop announcement / blurb includes VirtualBox warning label**
 
