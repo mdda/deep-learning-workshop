@@ -488,6 +488,13 @@ Perhaps :
 *  Rework the NER thing to TensorFlow (or Keras); or
 *  Make the adversarial dictionary word generator/detector thing work
 
+
+### TODO : Implement googlenet in Keras?
+http://joelouismarino.github.io/blog_posts/blog_googlenet_keras.html
+
+
+### Future idea : Tacotron as inspiration...
+
 https://www.reddit.com/r/MachineLearning/comments/62c1on/r_tacotron_a_fully_endtoend_texttospeech/
   Kyle Kastner is in the Montreal lab, and worked on char2wav there : https://github.com/sotelo/parrot
   
