@@ -492,6 +492,11 @@ Perhaps :
 ### TODO : Implement googlenet in Keras?
 http://joelouismarino.github.io/blog_posts/blog_googlenet_keras.html
 
+Read Googlenet slim saved model 
+  wget http://download.tensorflow.org/models/inception_v1_2016_08_28.tar.gz
+  tar -xzf inception_v1_2016_08_28.tar.gz
+  http://stackoverflow.com/questions/40118062/how-to-read-weights-saved-in-tensorflow-checkpoint-file
+
 
 ### Future idea : Tacotron as inspiration...
 
