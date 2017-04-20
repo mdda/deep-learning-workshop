@@ -497,6 +497,8 @@ Read Googlenet slim saved model
   tar -xzf inception_v1_2016_08_28.tar.gz
   http://stackoverflow.com/questions/40118062/how-to-read-weights-saved-in-tensorflow-checkpoint-file
 
+(or, potentially, DenseNet)
+
 
 ### Future idea : Tacotron as inspiration...
 
