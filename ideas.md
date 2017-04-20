@@ -498,7 +498,8 @@ Read Googlenet slim saved model
   http://stackoverflow.com/questions/40118062/how-to-read-weights-saved-in-tensorflow-checkpoint-file
 
 (or, potentially, DenseNet)
-
+  https://github.com/liuzhuang13/DenseNet
+  
 
 ### Future idea : Tacotron as inspiration...
 
