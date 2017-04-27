@@ -557,9 +557,24 @@ Need to go from mel spectrogram -> pure spectrogram
   
 
 Find papers for :
-  Eggcarton minima
   Shape of 1-d profile from start to minimum and beyond
+    _LIVE/Backprop/GoodFellow-2015_Optimisation-is-StraightLine_1412.6544v5.pdf 
+    
+  Eggcarton minima
+    The Loss Surfaces of Multilayer Networks
+    _INBOX/_LossSurfaceOfDeepNets_1412.0233.pdf 
+      We show that for large-size decoupled networks the lowest critical values of the random loss function form 
+      a layered structure and they are located in a well-defined band lower-bounded by the global minimum.
+    
   Rethinking generalisation
+    Understanding Deep Learning Requires Re-Thinking Generalization
+    _INBOX/_RethinkingGeneralisation_a667dbd533e9f018c023e21d1e3efd86cd61c365.pdf 
+
+  Information of Layers
+    Opening the Black Box of Deep Neural Networks via Information
+    _INBOX/_TwoPhasesOfSGD_1703.00810.pdf 
+    _INBOX/_NN-InformationTheory-SGD_1703.00810.pdf 
+  
   
   Spatial pyramid pooling
   
