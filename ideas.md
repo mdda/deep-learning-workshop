@@ -489,16 +489,21 @@ Perhaps :
 *  Make the adversarial dictionary word generator/detector thing work
 
 
-### TODO : Implement googlenet in Keras?
-http://joelouismarino.github.io/blog_posts/blog_googlenet_keras.html
+### DONE : Implement googlenet in Keras for model zoo
+  Good post, but requires new BN layer def, etc
+    http://joelouismarino.github.io/blog_posts/blog_googlenet_keras.html
 
-Read Googlenet slim saved model 
-  wget http://download.tensorflow.org/models/inception_v1_2016_08_28.tar.gz
-  tar -xzf inception_v1_2016_08_28.tar.gz
-  http://stackoverflow.com/questions/40118062/how-to-read-weights-saved-in-tensorflow-checkpoint-file
+  Use Googlenet slim saved model into pure Keras version
+    wget http://download.tensorflow.org/models/inception_v1_2016_08_28.tar.gz
+    tar -xzf inception_v1_2016_08_28.tar.gz
+    http://stackoverflow.com/questions/40118062/how-to-read-weights-saved-in-tensorflow-checkpoint-file
 
-(or, potentially, DenseNet)
-  https://github.com/liuzhuang13/DenseNet
+  PR : https://github.com/fchollet/deep-learning-models/pull/59
+  
+  
+
+### TODO : Implement DenseNet in Keras for model zoo
+    https://github.com/liuzhuang13/DenseNet
   
 
 ### Future idea : Tacotron as inspiration...
@@ -549,4 +554,12 @@ Need to go from mel spectrogram -> pure spectrogram
   
   https://www.reddit.com/r/MachineLearning/comments/5668yr/for_generative_modelling_on_audio_spectrograms/
   https://github.com/vadim-v-lebedev/audio_style_tranfer/blob/master/audio_style_transfer.ipynb
+  
+
+Find papers for :
+  Eggcarton minima
+  Shape of 1-d profile from start to minimum and beyond
+  Rethinking generalisation
+  
+  Spatial pyramid pooling
   
