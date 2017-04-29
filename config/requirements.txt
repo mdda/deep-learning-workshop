@@ -28,7 +28,9 @@ git+git://github.com/Theano/Theano.git#egg=theano
 # Better (required if we use the tensorflow backend)
 # --no-deps 
 #git+git://github.com/fchollet/keras.git
-keras>=2.0.0
+#keras>=2.0.0
+
+# And now Keras is *inside* TensorFlow...
 
 
 ### Lasagne
@@ -55,7 +57,8 @@ https://github.com/Lasagne/Lasagne/archive/master.zip
 # Requires CUDA toolkit 8.0 and CuDNN v5.
 #https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow_gpu-0.12.1-cp35-cp35m-linux_x86_64.whl
 
-tensorflow>=1.0.0
+#tensorflow>=1.0.0
+tensorflow>=1.1.0
 
 # Plotting of graphs (dynamic, beautiful)
 #bokeh>=0.11.0

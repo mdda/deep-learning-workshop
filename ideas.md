@@ -565,16 +565,30 @@ Find papers for :
     _INBOX/_LossSurfaceOfDeepNets_1412.0233.pdf 
       We show that for large-size decoupled networks the lowest critical values of the random loss function form 
       a layered structure and they are located in a well-defined band lower-bounded by the global minimum.
+      
+    Qualitatively characterizing neural network optimization problems  (Goodfellow+ 2014)
+      https://arxiv.org/abs/1412.6544
     
-  Rethinking generalisation
-    Understanding Deep Learning Requires Re-Thinking Generalization
-    _INBOX/_RethinkingGeneralisation_a667dbd533e9f018c023e21d1e3efd86cd61c365.pdf 
-
   Information of Layers
     Opening the Black Box of Deep Neural Networks via Information
     _INBOX/_TwoPhasesOfSGD_1703.00810.pdf 
     _INBOX/_NN-InformationTheory-SGD_1703.00810.pdf 
   
+  Rethinking generalisation
+    Understanding Deep Learning Requires Re-Thinking Generalization
+    _INBOX/_RethinkingGeneralisation_a667dbd533e9f018c023e21d1e3efd86cd61c365.pdf 
+    Hmm : 
+      https://www.reddit.com/r/MachineLearning/comments/5utu1p/d_a_paper_from_bengios_lab_contradicts_rethinking/
+      https://openreview.net/pdf?id=rJv6ZgHYg
+
+      An empirical analysis of the optimization of deep network loss surfaces
+        https://arxiv.org/abs/1612.04010
+      
+      Qualitatively characterizing neural network optimization problems by Ian J. Goodfellow, Oriol Vinyals, Andrew M. Saxe
+        https://arxiv.org/abs/1412.6544
+    
+      Flat Minima (1997)
+        http://www.bioinf.jku.at/publications/older/3304.pdf
   
   Spatial pyramid pooling
   
