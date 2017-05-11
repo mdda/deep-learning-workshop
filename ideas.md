@@ -478,6 +478,29 @@ I hope the input is useful. If you need additional information, please do not he
 
 Please do feel free to propose your session title and synopsis. We look forward to having you with us in Seoul!
 
+Learning Korean from 'Frozen':
+  # https://github.com/ajinkyakulkarni14/How-I-Extracted-TED-talks-for-parallel-Corpus-
+  # https://github.com/ajinkyakulkarni14/TED-Multilingual-Parallel-Corpus
+
+  # Dual Subtitles as Parallel Corpora
+  # http://www.cs.cmu.edu/~lingwang/papers/lrec2014.pdf
+
+  # Idea for significantly reduced corpus
+  # https://cs224d.stanford.edu/reports/GreensteinEric.pdf
+
+CIFAR10:
+  square:
+    Train Epoch: 1 [   200/ 50000 (0%)]	Loss: 2.3028	t_epoch: 4748.06secs
+    Train Epoch: 1 [  4200/ 50000 (8%)]	Loss: 2.1638	t_epoch: 4526.70secs
+
+
+
+
+
+
+
+
+
 
 ### TensorFlow and Deep Learning MeetUp talk - (2017-05-25)  30mins
 
