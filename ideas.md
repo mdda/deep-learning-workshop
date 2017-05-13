@@ -489,6 +489,7 @@ Learning Korean :
 
   Learning Japanese (extra) :
     https://pypi.python.org/pypi/tinysegmenter
+      https://git.tuxfamily.org/tinysegmente/tinysegmenter.git/tree/src/tinysegmenter.py
     
   From 'Frozen':
     # Dual Subtitles as Parallel Corpora
