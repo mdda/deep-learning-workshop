@@ -478,23 +478,32 @@ I hope the input is useful. If you need additional information, please do not he
 
 Please do feel free to propose your session title and synopsis. We look forward to having you with us in Seoul!
 
-Learning Korean from 'Frozen':
-  # https://github.com/ajinkyakulkarni14/How-I-Extracted-TED-talks-for-parallel-Corpus-
-  # https://github.com/ajinkyakulkarni14/TED-Multilingual-Parallel-Corpus
+Learning Korean :
+  From TED: 
+    # https://github.com/ajinkyakulkarni14/TED-Multilingual-Parallel-Corpus
+    # https://github.com/ajinkyakulkarni14/How-I-Extracted-TED-talks-for-parallel-Corpus-
+      * https://www.ted.com/talks?sort=newest&q=ai
+        * https://www.ted.com/talks/daniel_wolpert_the_real_reason_for_brains/transcript?language=en
+        * https://www.ted.com/talks/daniel_wolpert_the_real_reason_for_brains/transcript?language=ko
+        * https://www.ted.com/talks/daniel_wolpert_the_real_reason_for_brains/transcript?language=ja
 
-  # Dual Subtitles as Parallel Corpora
-  # http://www.cs.cmu.edu/~lingwang/papers/lrec2014.pdf
+  Learning Japanese (extra) :
+    https://pypi.python.org/pypi/tinysegmenter
+    
+  From 'Frozen':
+    # Dual Subtitles as Parallel Corpora
+    # http://www.cs.cmu.edu/~lingwang/papers/lrec2014.pdf
 
-  # Idea for significantly reduced corpus
-  # https://cs224d.stanford.edu/reports/GreensteinEric.pdf
+    # Idea for significantly reduced corpus
+    # https://cs224d.stanford.edu/reports/GreensteinEric.pdf
+
 
 CIFAR10:
   square:
     Train Epoch: 1 [   200/ 50000 (0%)]	Loss: 2.3028	t_epoch: 4748.06secs
     Train Epoch: 1 [  4200/ 50000 (8%)]	Loss: 2.1638	t_epoch: 4526.70secs
 
-
-
+  Meh - I can't get it to overlearn...
 
 
 
@@ -614,4 +623,10 @@ Find papers for :
         http://www.bioinf.jku.at/publications/older/3304.pdf
   
   Spatial pyramid pooling
+
+
+## TODO : Keras introductory example
+  https://medium.com/towards-data-science/stupid-tensorflow-tricks-3a837194b7a0
+    https://github.com/thoppe/tf_thomson_charges
+    
   
