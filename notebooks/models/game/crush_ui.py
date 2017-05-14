@@ -25,7 +25,7 @@ def display_gameplay(element_id, boards, scores, timing):
 javascript_base = """
 <script type="text/Javascript">
 var kernel = IPython.notebook.kernel;
-function create_board(board_id, horizontal, vertical, n_colours) {
+function create_board(board_id, horizontal, vertical, n_colours, board_py) {
   if($(board_id).children().length==0) {
     console.log("Adding table to "+board_id);
     var trs=[];
@@ -64,8 +64,9 @@ function create_board(board_id, horizontal, vertical, n_colours) {
         }
         
         var cmd=[
-          'board, score_inc, n_cols=crush.after_move(board, '+h+','+v+', '+n_colours+')',
-          'arr=crush_ui.render_to_json(board)',
+          //'board, score_inc, n_cols=crush.after_move(board, '+h+','+v+', '+n_colours+')',
+          ''+board_py+', score_inc, n_cols=crush.after_move('+board_py+', '+h+','+v+', '+n_colours+')',
+          'arr=crush_ui.render_to_json('+board_py+')',
           'dict(arr=arr,score_inc=score_inc,n_cols=n_cols)'
         ].join(';');
         
