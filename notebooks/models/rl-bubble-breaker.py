@@ -449,3 +449,6 @@ stats_aggregates(stats_log, "FINAL[%5d]" % (n_games,) )
 #('=Test[  799] Mean : ', [('steps', '  76.1'), ('av_potential_moves', '  13.2'), ('new_cols', '   8.2'), ('score', ' 790.0'), ('model_err', '-999.0')])
 #('=Test[  899] Mean : ', [('steps', ' 105.7'), ('av_potential_moves', '  11.5'), ('new_cols', '  13.9'), ('score', '1000.6'), ('model_err', '-999.0')])
 #('=Test[  999] Mean : ', [('steps', '  78.2'), ('av_potential_moves', '  12.7'), ('new_cols', '   8.3'), ('score', ' 718.4'), ('model_err', '-999.0')])
+
+
+# https://github.com/mdda/deep-learning-workshop/blob/e4437c95c0ca18ae9df11fc06ab74cbcef86cab3/notebooks/7-Reinforcement-Learning.ipynb
