@@ -30,6 +30,11 @@ rpms_required="${rpms_required} python3-scikit-learn python3-pandas python3-pill
 
 #fi
 
+### GPU installation:  
+# For TensorFlow 1.1 : cudnn v5 supported.  v6+ are NOT!
+# dnf install cuda-cudnn5.1-devel
+### GPU installation
+
 rpms_required="${rpms_required} graphviz"
 
 
@@ -61,6 +66,19 @@ virtualenv -p python3 --system-site-packages ./env3
 . ./env3/bin/activate
 
 pip install --upgrade pip
+
+### GPU installation:
+#pip install tensorflow-gpu
+#python -c "import tensorflow as tf;sess=tf.Session(config=tf.ConfigProto(log_device_placement=True))" | grep name
+# or (maybe) :
+#python -c "import tensorflow as tf;with tf.device('/gpu:0'):a=tf.constant([1.0]);tf.Session().run(a)"
+### GPU installation
+
+### GPU installation:  
+#pip install http://download.pytorch.org/whl/cu80/torch-0.1.12.post2-cp35-cp35m-linux_x86_64.whl
+#python -c "import torch;print(torch.cuda.is_available())"
+### GPU installation
+
 
 pip install -r ./config/requirements.txt 
 
