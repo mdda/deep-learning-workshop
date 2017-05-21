@@ -57,8 +57,13 @@ The modules also include pretrained state-of-the-art networks, such as GoogLeNet
 
 * [TensorFlow &amp; Deep Learning MeetUp](https://www.meetup.com/TensorFlow-and-Deep-Learning-Singapore/events/238584480/) : Generative Art : Style-Transfer (0.5 hours)
   *  Application : Generative Art (Style-Transfer)
+  *  Slides for the talk are [here](http://redcatlabs.com/2017-04-13_TFandDL_ArtStyleTransfer/#/)
 
+* [APAC Machine Learning &amp; Data Science Community Summit](http://m.onoffmix.com/event/97444/content) : In the news : AlphaGo and Reinforcement Learning (0.75 hours)
+  *  Application : Bubble-Breaker in TensorFlow / Keras
 
+* [TensorFlow &amp; Deep Learning MeetUp](https://www.meetup.com/TensorFlow-and-Deep-Learning-Singapore/events/239252636/) : Text : Embeddings, RNNs and NER (0.5 hours)
+  *  Application : BiDirectional RNNs for Case-Insensitive NER
 
 
 **NB : Ensure Conference Workshop announcement / blurb includes VirtualBox warning label**
