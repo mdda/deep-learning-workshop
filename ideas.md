@@ -509,7 +509,8 @@ CIFAR10:
 
 Text output:
   Want to look at the words-from-indices idea 
-    Japanese paper here...
+    Neural Machine Translation via Binary Code Prediction
+      https://arxiv.org/abs/1704.06918
   Can test using input of features-of-picture-to-be-captioned
     Flickr30k Flickr8k MOCO
   Want to see which has faster training (and smaller networks)
