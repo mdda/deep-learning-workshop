@@ -507,7 +507,16 @@ CIFAR10:
   Meh - I can't get it to overlearn...
 
 
-
+Text output:
+  Want to look at the words-from-indices idea 
+    Japanese paper here...
+  Can test using input of features-of-picture-to-be-captioned
+    Flickr30k Flickr8k MOCO
+  Want to see which has faster training (and smaller networks)
+    Output standard 1-hot LSTM
+    Output 511 top words and rest as a word index (possibly with error-correction)
+    Output 511 top words and rest as a word embedding, and look for closest match
+  
 
 
 
