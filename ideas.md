@@ -511,8 +511,32 @@ Text output:
   Want to look at the words-from-indices idea 
     Neural Machine Translation via Binary Code Prediction
       https://arxiv.org/abs/1704.06918
+      
   Can test using input of features-of-picture-to-be-captioned
-    Flickr30k Flickr8k MOCO
+    Overview
+      http://bengio.abracadoudou.com/publications/pdf/vinyals_2016_pami.pdf
+        Has standard capitioning image (should re-screenshot this)
+      http://sidgan.me/technical/2016/01/09/Exploring-Datasets
+      
+    Flickr30k
+      Filled in form at :  https://illinois.edu/fb/sec/229675
+    Flickr8k 
+    MS-COCO
+      Seems to feature 'mixed action' images (no obvious subject)
+      http://mscoco.org/dataset/#download
+      https://github.com/pdollar/coco
+      
+  Pre-built one-hot models (for adaptation) :
+    https://github.com/tensorflow/models/tree/master/im2txt/im2txt
+      This is the reference implementation for vinyals_2016_pami.pdf
+      Pure im2seq
+    https://github.com/LemonATsu/Keras-Image-Caption
+      SOTA results (for some competition)
+      Has attention too
+      MSCOCO
+    https://github.com/jazzsaxmafia/show_and_tell.tensorflow/blob/master/Readme.md
+      flickr30k 
+      
   Want to see which has faster training (and smaller networks)
     Output standard 1-hot LSTM
     Output 511 top words and rest as a word index (possibly with error-correction)
