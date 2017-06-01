@@ -535,13 +535,18 @@ Text output:
   Pre-built one-hot models (for adaptation) :
     https://github.com/tensorflow/models/tree/master/im2txt/im2txt
       This is the reference implementation for vinyals_2016_pami.pdf
-      Pure im2seq
-    https://github.com/LemonATsu/Keras-Image-Caption
-      SOTA results (for some competition)
-      Has attention too
-      MSCOCO
+      Pure im2seq (by the paper authors)
     https://github.com/jazzsaxmafia/show_and_tell.tensorflow/blob/master/Readme.md
       flickr30k 
+      Pure TF
+      No attention
+      Expects VGG-16 as featurisations
+    https://github.com/LemonATsu/Keras-Image-Caption
+      MSCOCO
+      SOTA results (for a 2016/17 competition)
+      Has attention too
+      Expects Inception-V3 as featurisations @ tensor_name='pool_3:0'
+      Used GloVe 6bn 100d embeddings 
       
   Rather than LSTM processing, try for aCNN over the text (like Facebook)
     Except that attention doesn't seem to be necessary
