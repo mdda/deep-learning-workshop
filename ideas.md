@@ -520,6 +520,12 @@ Text output:
       
     Flickr30k
       Filled in form at :  https://illinois.edu/fb/sec/229675
+      Downloaded .tar : 4.4Gb
+        Problem  : Can't be stored on vfat thumb-drive
+        Solution : tar -xf *.tar ; rsync -avz 
+                   But this takes quite a long time...
+      Next steps : 
+        Run this through inception_v3 (?) to create features
     Flickr8k 
     MS-COCO
       Seems to feature 'mixed action' images (no obvious subject)
@@ -537,10 +543,14 @@ Text output:
     https://github.com/jazzsaxmafia/show_and_tell.tensorflow/blob/master/Readme.md
       flickr30k 
       
+  Rather than LSTM processing, try for aCNN over the text (like Facebook)
+    Except that attention doesn't seem to be necessary
+  
   Want to see which has faster training (and smaller networks)
-    Output standard 1-hot LSTM
-    Output 511 top words and rest as a word index (possibly with error-correction)
-    Output 511 top words and rest as a word embedding, and look for closest match
+    In each case feed back embedding as next input :
+      Output standard 1-hot encoding 
+      Output 511 top words and rest as a word index (possibly with error-correction)
+      Output 511 top words and rest as a word embedding, and look for closest match
   
 
 
