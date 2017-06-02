@@ -550,6 +550,12 @@ Text output:
       
   Rather than LSTM processing, try for aCNN over the text (like Facebook)
     Except that attention doesn't seem to be necessary
+    https://medium.com/@TalPerry/convolutional-methods-for-text-d5260fd5675f
+    
+    CNN for decoding : 
+      https://github.com/paarthneekhara/byteNet-tensorflow
+      https://github.com/Kyubyong/bytenet_translation
+    
   
   Want to see which has faster training (and smaller networks)
     In each case feed back embedding as next input :
@@ -557,8 +563,13 @@ Text output:
       Output 511 top words and rest as a word index (possibly with error-correction)
       Output 511 top words and rest as a word embedding, and look for closest match
   
+  LSTM-versions:  ( https://github.com/jonsafari/nmt-list )
+    https://github.com/lvapeab/nmt-keras
+    https://github.com/farizrahman4u/seq2seq  # Understandable code
 
 
+  CNN sentiment classification (Keras)
+    https://github.com/alexander-rakhlin/CNN-for-Sentence-Classification-in-Keras
 
 
 ### TensorFlow and Deep Learning MeetUp talk - (2017-05-25)  30mins
@@ -636,6 +647,8 @@ Need to go from mel spectrogram -> pure spectrogram
   
   https://www.reddit.com/r/MachineLearning/comments/5668yr/for_generative_modelling_on_audio_spectrograms/
   https://github.com/vadim-v-lebedev/audio_style_tranfer/blob/master/audio_style_transfer.ipynb
+  
+  https://github.com/Kyubyong/tacotron
   
 
 Find papers for :
