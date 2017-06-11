@@ -28,9 +28,9 @@ git+git://github.com/Theano/Theano.git#egg=theano
 # Better (required if we use the tensorflow backend)
 # --no-deps 
 #git+git://github.com/fchollet/keras.git
-#keras>=2.0.0
+keras>=2.0.4
 
-# And now Keras is *inside* TensorFlow...
+# And now Keras is *inside* TensorFlow...  BUT THIS LAGS...
 
 
 ### Lasagne
