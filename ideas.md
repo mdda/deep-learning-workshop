@@ -406,6 +406,9 @@ Or speech recognition? :
     
     And Dynamic Time warping:
       http://nbviewer.jupyter.org/github/crawles/dtw/blob/master/Speech_Recognition_DTW.ipynb
+      
+      
+    https://keunwoochoi.wordpress.com/2016/11/18/for-beginners-writing-a-custom-keras-layer/      
 
   TODO : 
     DONE  Have function to pull whole of dataset predictions into plain array
