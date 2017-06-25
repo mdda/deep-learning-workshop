@@ -64,10 +64,13 @@ The modules also include pretrained state-of-the-art networks, such as GoogLeNet
   *  Slides for the talk are [here](http://redcatlabs.com/2017-05-20_APAC-Summit/)
      with an accompanying [blog post](http://blog.mdda.net/ai/2017/05/20/presentation-in-korea)
 
-* [TensorFlow &amp; Deep Learning MeetUp](https://www.meetup.com/TensorFlow-and-Deep-Learning-Singapore/events/239252636/) : Text : Embeddings, RNNs and NER (0.5 hours)
+* [TensorFlow &amp; Deep Learning MeetUp](https://www.meetup.com/TensorFlow-and-Deep-Learning-Singapore/events/239252636/) : Text : Embeddings, RNNs and NER (~1 hour)
   *  Application : BiDirectional RNNs for Case-Insensitive NER
   *  Slides for the talk (including a more general introduction to NLP) are [here](http://redcatlabs.com/2017-05-25_TFandDL_TextAndRNNs/#/)
      with an accompanying [blog post](http://blog.mdda.net/ai/2017/05/25/presentation-at-tensorflow), which includes a video link
+
+* [TensorFlow &amp; Deep Learning MeetUp](https://www.meetup.com/TensorFlow-and-Deep-Learning-Singapore/events/240386386/) : Advanced Text and Language (0.75 hours)
+  *  Application : Image Captioning (Flickr30k)
 
 
 **NB : Ensure Conference Workshop announcement / blurb includes VirtualBox warning label**
