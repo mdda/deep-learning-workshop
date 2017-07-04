@@ -695,6 +695,12 @@ Find papers for :
     PyTorch implementation :
       Implementation of "Sort-of-CLEVR"
       https://github.com/kimhc6028/relational-networks
+    bAbI : 
+      Keras   : http://smerity.com/articles/2015/keras_qa.html
+      PyTorch : https://github.com/thomlake/pytorch-notebooks/blob/master/mann-babi.ipynb
+      
+      
+      
 
 
 ## TODO : Keras introductory example
