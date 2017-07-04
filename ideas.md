@@ -690,6 +690,12 @@ Find papers for :
   
   Spatial pyramid pooling
 
+## For PyTorch :
+  DeepMind Relational-Networks : 
+    PyTorch implementation :
+      Implementation of "Sort-of-CLEVR"
+      https://github.com/kimhc6028/relational-networks
+
 
 ## TODO : Keras introductory example
   https://medium.com/towards-data-science/stupid-tensorflow-tricks-3a837194b7a0
