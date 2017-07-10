@@ -690,21 +690,33 @@ Find papers for :
   
   Spatial pyramid pooling
 
-## For PyTorch :
-  DeepMind Relational-Networks : 
-    PyTorch implementation :
-      Implementation of "Sort-of-CLEVR"
-      https://github.com/kimhc6028/relational-networks
-    bAbI : 
-      Keras   : http://smerity.com/articles/2015/keras_qa.html
-      PyTorch : https://github.com/thomlake/pytorch-notebooks/blob/master/mann-babi.ipynb
-      
-      
+## For PyTorch (2017-07-06) :
+  DeepMind Relation-Networks ("RN"): 
+    https://arxiv.org/abs/1706.01427
+  PyTorch implementation :
+    Implementation of "Sort-of-CLEVR"
+    https://github.com/kimhc6028/relational-networks
+    https://github.com/mdda/relational-networks
+  bAbI : 
+    Keras   : http://smerity.com/articles/2015/keras_qa.html
+    PyTorch : https://github.com/thomlake/pytorch-notebooks/blob/master/mann-babi.ipynb
       
 
 
 ## TODO : Keras introductory example
   https://medium.com/towards-data-science/stupid-tensorflow-tricks-3a837194b7a0
     https://github.com/thoppe/tf_thomson_charges
-    
+
+
+## For TF&DL (2017-07-20) "Tips and Tricks":
+  Whole span of stuff (in Keras?)
+    Beginner, day-to-day, research
+  Define model once, with a parameter or two to vary
+  Run v. small examples with co-prime dimensionality
+  Building model, include a 'probe' in the output vector
+    remove once model is done
+  Is preprocessing 'finite'
+    Do most preprocessing and save to SSD ahead of time (even if multi-GB)
+      Rather than do it on-the-fly in Python 
+  Check on GPU occupancy : Low : batchsize
   
