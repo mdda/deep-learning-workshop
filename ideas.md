@@ -718,5 +718,10 @@ Find papers for :
   Is preprocessing 'finite'
     Do most preprocessing and save to SSD ahead of time (even if multi-GB)
       Rather than do it on-the-fly in Python 
+  Keras : the point of fit_generator 
   Check on GPU occupancy : Low : batchsize
+  NumPy constant into Keras trick
+  Converting Slim to Keras (notebook)
+  
+  
   
