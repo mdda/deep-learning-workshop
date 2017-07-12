@@ -725,7 +725,8 @@ Find papers for :
   Clean batching (chaining of generators)
   
   Use DropOut ('free' generalisation enabler)
-  Use BatchNorm (or 'cleaner' LayerNorm)
+  Use BatchNorm (or 'cleaner' LayerNorm)  or SELU?
+    WeightNorm (W_normalized = W/norm(W), no learned scale or bias, overall norm as opposed to channel-wise norm)
   RMSProp is ~BatchNorm for gradients
     - self scaling FTW (or Adam, etc)
   Hyperparameter search?  Needs a lot of justification, IMHO
