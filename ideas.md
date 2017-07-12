@@ -722,6 +722,14 @@ Find papers for :
   Check on GPU occupancy : Low : batchsize
   NumPy constant into Keras trick
   Converting Slim to Keras (notebook)
+  Clean batching (chaining of generators)
+  
+  Use DropOut ('free' generalisation enabler)
+  Use BatchNorm (or 'cleaner' LayerNorm)
+  RMSProp is ~BatchNorm for gradients
+    - self scaling FTW (or Adam, etc)
+  Hyperparameter search?  Needs a lot of justification, IMHO
+  
   
   
   
