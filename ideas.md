@@ -711,8 +711,9 @@ Find papers for :
 ## For TF&DL (2017-07-20) "Tips and Tricks":
   Whole span of stuff (in Keras?)
     Beginner, day-to-day, research
+    
   Define model once, with a parameter or two to vary
-  Run v. small examples with co-prime dimensionality
+  Run very small examples with co-prime dimensionality
   Building model, include a 'probe' in the output vector
     remove once model is done
   Is preprocessing 'finite'
@@ -723,6 +724,13 @@ Find papers for :
   NumPy constant into Keras trick
   Converting Slim to Keras (notebook)
   Clean batching (chaining of generators)
+  
+  Network sizing
+    baseline
+    back-of-envelope complexity
+    3x factors
+    No hyper-parameter search 
+      Instead move from DNN to CNN for MNIST
   
   Use DropOut ('free' generalisation enabler)
   Use BatchNorm (or 'cleaner' LayerNorm)  or SELU?
