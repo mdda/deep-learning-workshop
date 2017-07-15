@@ -711,34 +711,44 @@ Find papers for :
 ## For TF&DL (2017-07-20) "Tips and Tricks":
   Whole span of stuff (in Keras?)
     Beginner, day-to-day, research
+
+  
+  Sam may cover : 
+    Is preprocessing 'finite'
+      Do most preprocessing and save to SSD ahead of time (even if multi-GB)
+        Rather than do it on-the-fly in Python 
+
+  Beginner :
+    Use other people's models
+    Try and understand whether they are well written or not
+
+    Network sizing
+      baseline
+      back-of-envelope complexity
+      3x factors
+      No hyper-parameter search 
+        Instead move from DNN to CNN for MNIST
+      
+  Day-to-day :
+    Run very small examples with co-prime dimensionality
+    Building model, include a 'probe' in the output vector
+      remove once model is done
+      
+    Keras : the point of fit_generator 
+      Clean batching (chaining of generators)
     
-  Define model once, with a parameter or two to vary
-  Run very small examples with co-prime dimensionality
-  Building model, include a 'probe' in the output vector
-    remove once model is done
-  Is preprocessing 'finite'
-    Do most preprocessing and save to SSD ahead of time (even if multi-GB)
-      Rather than do it on-the-fly in Python 
-  Keras : the point of fit_generator 
-  Check on GPU occupancy : Low : batchsize
-  NumPy constant into Keras trick
-  Converting Slim to Keras (notebook)
-  Clean batching (chaining of generators)
+    Check on GPU occupancy : Low : batchsize
+    
+    NumPy constant into Keras trick
+    
+    Converting Slim to Keras (notebook)
   
-  Network sizing
-    baseline
-    back-of-envelope complexity
-    3x factors
-    No hyper-parameter search 
-      Instead move from DNN to CNN for MNIST
+    Use DropOut ('free' generalisation enabler)
+    Use BatchNorm (or 'cleaner' LayerNorm)  or SELU?
+      WeightNorm (W_normalized = W/norm(W), no learned scale or bias, overall norm as opposed to channel-wise norm)
+    RMSProp is ~BatchNorm for gradients
+      - self scaling FTW (or Adam, etc)
+    Hyperparameter search?  Needs a lot of justification, IMHO
   
-  Use DropOut ('free' generalisation enabler)
-  Use BatchNorm (or 'cleaner' LayerNorm)  or SELU?
-    WeightNorm (W_normalized = W/norm(W), no learned scale or bias, overall norm as opposed to channel-wise norm)
-  RMSProp is ~BatchNorm for gradients
-    - self scaling FTW (or Adam, etc)
-  Hyperparameter search?  Needs a lot of justification, IMHO
-  
-  
-  
-  
+  Research-y :
+    Define model once, with a parameter or two to vary
