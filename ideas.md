@@ -717,6 +717,8 @@ Find papers for :
     Is preprocessing 'finite'
       Do most preprocessing and save to SSD ahead of time (even if multi-GB)
         Rather than do it on-the-fly in Python 
+    Semi-automatic labelling and relabeling of data
+    
 
   Beginner :
     Use other people's models
