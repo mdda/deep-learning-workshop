@@ -721,8 +721,9 @@ Find papers for :
     
 
   Beginner :
-    Use other people's models
-    Try and understand whether they are well written or not
+    Start out with something that *works*
+      Use other people's models
+      Try and understand whether they are well written or not
 
     Network sizing
       baseline
@@ -733,6 +734,7 @@ Find papers for :
       
   Day-to-day :
     Run very small examples with co-prime dimensionality
+      Powers-of-two not so important
     Building model, include a 'probe' in the output vector
       remove once model is done
       
