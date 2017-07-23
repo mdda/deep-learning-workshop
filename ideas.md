@@ -709,16 +709,16 @@ Find papers for :
 
 
 ## For TF&DL (2017-07-20) "Tips and Tricks":
-  Whole span of stuff (in Keras?)
-    Beginner, day-to-day, research
-
-  
-  Sam may cover : 
-    Is preprocessing 'finite'
+  Sam will cover : 
+    If preprocessing 'finite' :
       Do most preprocessing and save to SSD ahead of time (even if multi-GB)
         Rather than do it on-the-fly in Python 
     Semi-automatic labelling and relabeling of data
-    
+    Keras Callbacks
+
+
+  Whole span of stuff (in Keras?)
+    Beginner, day-to-day, research
 
   Beginner :
     Start out with something that *works*
@@ -741,12 +741,6 @@ Find papers for :
     Keras : the point of fit_generator 
       Clean batching (chaining of generators)
     
-    Check on GPU occupancy : Low : batchsize
-    
-    NumPy constant into Keras trick
-    
-    Converting Slim to Keras (notebook)
-  
     Use DropOut ('free' generalisation enabler)
     Use BatchNorm (or 'cleaner' LayerNorm)  or SELU?
       WeightNorm (W_normalized = W/norm(W), no learned scale or bias, overall norm as opposed to channel-wise norm)
@@ -754,5 +748,12 @@ Find papers for :
       - self scaling FTW (or Adam, etc)
     Hyperparameter search?  Needs a lot of justification, IMHO
   
+    # Not covered : 
+      Converting Slim to Keras (notebook)
+      NumPy constant into Keras trick
+      Check on GPU occupancy : Low : batchsize
+      
   Research-y :
     Define model once, with a parameter or two to vary
+    Be bold
+    
