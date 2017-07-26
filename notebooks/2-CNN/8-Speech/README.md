@@ -19,29 +19,30 @@ adversarially.
 
 ### Layout of Data
 
-*  notebooks.ipynb
-*  data/
-   *   num/ (digits get sorted into separate subdirectories here)
-       *   one/
-       *   two/
-       *   three/
+```REPO/notebooks/2-CNN/8-Speech/```
+*  ```notebooks.ipynb```
+*  ```data/```
+   *   ```num/``` (digits get sorted into separate subdirectories here)
+       *   ```one/```
+       *   ```two/```
+       *   ```three/```
        *   ...
-   *  num_ABC.wav  (these files have digits 0,1,2,3,...9 in order in it)
-   *  num_XYZ.ogg
+   *  ```num_ABC.wav```  (these files have digits 0,1,2,3,...9 in order in it)
+   *  ```num_XYZ.ogg```
    
-   *  num-test.pkl
-   *  num.pkl
+   *  ```num-test.pkl```
+   *  ```num.pkl```
        
-   *   animals/  (animals get sorted into separate subdirectories here)
-       *   cat
-       *   dog
-       *   fox
+   *   ```animals/```  (animals get sorted into separate subdirectories here)
+       *   ```cat```
+       *   ```dog```
+       *   ```fox```
        *   ...
-   *  animals_ABC.wav  (these files have 'cat dog fox bird' in them)
-   *  animals_XYZ.ogg
+   *  ```animals_ABC.wav```  (these files have 'cat dog fox bird' in them)
+   *  ```animals_XYZ.ogg```
 
-   *  animals-test.pkl
-   *  animals.pkl
+   *  ```animals-test.pkl```
+   *  ```animals.pkl```
        
 Using the illustration above, the ```data``` directory starts with sound files 
 with a series of silence-separated words in them.  These are then normalised, chopped up,
@@ -67,12 +68,13 @@ These can be downloaded from the Red Cat Labs server.
 
 Sound files (simply recorded on my Android phone using ```Voice Recorder``` in the Android store):
 
-
+*  <a href="http://redcatlabs.com/downloads/deep-learning-workshop/notebooks/2-CNN/8-Speech/data-num-sounds.tar.gz">```data-num-sounds.tar.gz```</a>
+*  <a href="http://redcatlabs.com/downloads/deep-learning-workshop/notebooks/2-CNN/8-Speech/data-animals-sounds.tar.gz">```data-animals-sounds.tar.gz```</a>
 
 and the corresponding processed pickle files (for the really lazy):
 
+*  <a href="http://redcatlabs.com/downloads/deep-learning-workshop/notebooks/2-CNN/8-Speech/data-num-pkl.tar.gz">```data-num-pkl.tar.gz```</a>
+*  <a href="http://redcatlabs.com/downloads/deep-learning-workshop/notebooks/2-CNN/8-Speech/data-animals-pkl.tar.gz">```data-animals-pkl.tar.gz```</a>
 
-
-
-
+These should be unpacked (```tar -xzf XYZ.tar.gz```) in the ```REPO/notebooks/2-CNN/8-Speech/``` directory.
 
