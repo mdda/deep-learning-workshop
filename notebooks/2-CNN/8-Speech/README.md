@@ -78,3 +78,40 @@ and the corresponding processed pickle files (for the really lazy):
 
 These should be unpacked (```tar -xzf XYZ.tar.gz```) in the ```REPO/notebooks/2-CNN/8-Speech/``` directory.
 
+
+### Training Process
+
+The ```SpeechRecognition_Data.ipynb``` notebook has several parts : 
+
+*  Play with the normalization and segmentation of specific files in the ```data/``` directory
+*  Normalize and split into individual words all sound files with a specific prefix (eg: ```num_```) in the ```data/``` directory
+*  For all the words now in their individual directories (eg: ```data/num/six/```), 
+   form the spectrograms (also called 'stamps' here, since they look like stamp-sized pictures), and 
+   bundle them together in datasets as ```.pkl``` files
+
+This process happens for both ```num_``` and ```animals_``` data.
+
+If you'd like to record your own sound files (or different words, etc), 
+just have a look/listen to some of the examples.  It is a deliberately low-tech setup.
+
+Having generated the ```.pkl``` files, you can switch attention to  ```SpeechRecognition_Learn.ipynb```.
+
+In this notebook, a simple CNN (adapted from something that works for MNIST) is trained up on the numbers.  And
+then tested to make sure the digits are recognised accurately.  Note that then number of training examples
+is *extremely* low (around 20 examples of each digit, of which ~2 are withheld for the test set).
+
+Having accomplished the main 'aha' learning, there's an extra trick in the next section : Instead of 
+just recognising the digits, let's use the network trained on the numbers to recognise other words.
+
+The way this is done is by 'featurising' some additional word examples, by passing the stamps through the
+digit recogniser, and then looking at the logit outputs *as if* they were digits.  Then, using those 
+outputs as features, training a separate classifier, and seeing whether that classifier can be used to
+correctly recognise (in this case) animal words.
+
+Again, the amount of data is really low (perhaps 4-5 examples of each animal).  So the main take-away should be
+that this technique works surprisingly well (i.e. we should be surprised that it works at all).
+
+
+
+
+
