@@ -756,4 +756,11 @@ Find papers for :
   Research-y :
     Define model once, with a parameter or two to vary
     Be bold
-    
+
+## For TF&DL (2017-08-24) "Mobile":
+  How to slim down networks
+    Approaches
+  Current state-of-the-art
+  Models available in model zoos
+  
+
