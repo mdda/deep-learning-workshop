@@ -779,3 +779,38 @@ Find papers for :
   Models available in model zoos
   
 
+
+
+## Record MeetUps
+  Headset Microphones
+    https://www.aliexpress.com/item/UHF-PRO-WIRELESS-MICROPHONE-SYSTEM-SLX-14-SLX-2-SLX-24-Cordless-Lapel-headset-Mic-for/32813937831.html
+    https://www.aliexpress.com/item/Free-Shipping-USB-FM-Wireless-Microphone-System-Headworn-Headset-Mic-For-BodyPack-Transmitter-Speaking-Teaching-Singing/32456086993.html
+
+    https://www.aliexpress.com/item/2-4G-Wireless-Microphone-Headset-Megaphone-Radio-Mic-For-Speech-Loudspeaker-New/32815057953.html
+    
+    https://www.aliexpress.com/item/UHF-PRO-SLX24-SLX14-BETA58-WIRELESS-MICROPHONE-SYSTEM-Handheld-Lapel-headset-Mic-for-Stage/32820151972.html
+    
+    https://www.aliexpress.com/item/Free-Shipping-Quality-Male-Screw-Thread-Lock-3-5-mm-Jack-Plug-Invisible-Flesh-Color-Microphone/1884401898.html
+    https://www.aliexpress.com/item/Invisible-Colour-Male-Screw-Thread-Lock-3-5-mm-3-5mm-Jack-Plug-Connector-Headset-Microphone/32819715919.html
+    
+    https://www.aliexpress.com/item/Wireless-Microphones-Headset-Microphone-System-Mic-with-USB-receiver-For-Loudspeaker-Teaching-Meeting-Tour-Guide-Stage/32825351696.html
+  
+  HDMI recording
+    https://www.aliexpress.com/item/ezcap280-HD-Video-Game-Capture-1080P-HDMI-YPbPr-Recorder-into-USB-Disk-For-XBOX-One-360/32757589937.html
+    https://www.aliexpress.com/item/ezcap284-HD-Video-Game-Capture-1080P-HDMI-YPbPr-Component-or-Composite-Recorder-into-USB-Disk-SD/32796854045.html
+  
+    https://www.aliexpress.com/item/HD-Game-Video-Capture-1080P-HDMI-YPBPR-Recorder-US-Plug-for-Game-Lovers-with-One-Click/32791354958.html
+    
+  Webcam-to-SDcard  
+    https://www.aliexpress.com/item/Andoer-HDV-Z20-WiFi-Portable-Camcorder-24MP-16x-1080P-Full-HD-Digital-Video-Camera-3-0/32788721599.html
+    NP-40 Lithium Battery
+    
+    https://www.aliexpress.com/item/MD80-Mini-DV-Camcorder-DVR-Video-Camera-Webcam-Support-32GB-HD-Cam-Sports-Helmet-Bike-Motorbike/32703849402.html
+    https://www.aliexpress.com/item/ORDRO-HDV-D395-Portable-Camcorders-Full-HD-1080P-18X-3-0-Touch-Screen-Digital-Video-Camera/32822270939.html
+    https://www.aliexpress.com/item/ORDRO-HDV-Z20-1080P-Full-HD-Digital-Video-Camera-Camcorder-24MP-16X-Zoom-3-0-LCD/32794500537.html
+    
+    https://www.aliexpress.com/item/Newest-Fashion-G601-Mini-720-Video-Camera-HD-Panoramic-wifi-Panorama-VR-Camera-Dual-360-Video/32811820019.html
+    
+    
+    
+
