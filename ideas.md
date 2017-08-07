@@ -758,8 +758,23 @@ Find papers for :
     Be bold
 
 ## For TF&DL (2017-08-24) "Mobile":
+  Network performance / sizing
+    Due to its depth and number of fully-connected nodes, VGG is over 533MB for VGG16 and 574MB for VGG19.
+    VGG16, Resnet, Inception, Xception
+    SqueezeNet : (arXiv 1602.07360, <0.5MB model size)
+      https://github.com/DeepScale/SqueezeNet
+      https://github.com/DT42/squeezenet_demo
+      https://github.com/rcmalli/keras-squeezenet/tree/master
+    DarkNet
+      https://pjreddie.com/darknet/tiny-darknet/
+    MobileNets  (depth-wise separable convolutions)
+      https://research.googleblog.com/2017/06/mobilenets-open-source-models-for.html
+        16 pre-trained ImageNet classification checkpoints for use in mobile projects of all sizes.
+      https://arxiv.org/abs/1704.04861
   How to slim down networks
-    Approaches
+    Approaches : 
+      Typical
+      Up-and-coming
   Current state-of-the-art
   Models available in model zoos
   
