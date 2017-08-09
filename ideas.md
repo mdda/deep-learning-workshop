@@ -778,6 +778,13 @@ Find papers for :
   Current state-of-the-art
   Models available in model zoos
   
+  
+  
+## For PyTorch (2017-09-??) "TTS"
+  Voice Synthesis for in-the-Wild Speakers via a Phonological Loop
+    https://ytaigman.github.io/loop/
+    Paper : https://arxiv.org/abs/1707.06588
+    Code? : https://github.com/ytaigman/loop  (follow author to get an alert)
 
 
 
