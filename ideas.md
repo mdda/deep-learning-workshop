@@ -786,8 +786,38 @@ Find papers for :
     Paper : https://arxiv.org/abs/1707.06588
     Code? : https://github.com/ytaigman/loop  (follow author to get an alert)
 
+    WORLD Vocoder
+      Base : Masanori Morise, Fumiya Yokomori, and Kenji Ozawa. World: A vocoder-based high-quality speech synthesis system for real-time applications. IEICE TRANSACTIONS on Information and Systems, 99(7):1877–1884, 2016
+        Paper   : https://www.jstage.jst.go.jp/article/transinf/E99.D/7/E99.D_2015EDP7457/_pdf
+        Website : http://ml.cs.yamanashi.ac.jp/world/english/introductions.html
+      D4c  : Masanori Morise. D4c, a band-aperiodicity estimator for high-quality speech synthesis. Speech Communication, 84:57–65, 2016.
+        Paper: https://ecantorix.moe/synthesis/mbrola/mmorise_d4c.pdf
+        Code : https://github.com/mmorise/World (BSD : See : http://ml.cs.yamanashi.ac.jp/world/english/faq.html)
+        Code : https://github.com/JeremyCCHsu/Python-Wrapper-for-World-Vocoder
 
+    Merlin Toolkit
+      Zhizheng Wu, Oliver Watts, and Simon King.  Merlin: An Open Source Neural Network Speech Synthesis System, pages 218–223. 9 2016.
+        Paper   : http://ssw9.net/papers/ssw9_PS2-13_Wu.pdf
+        Code    : https://github.com/CSTR-Edinburgh/merlin  (Apache 2.0)
+        Project : http://www.cstr.ed.ac.uk/projects/merlin/
+        Sample  : (output via ?WORLD) https://cstr-edinburgh.github.io/merlin/demo.html
+        
+    SampleRNN
+      Website : http://www.josesotelo.com/speechsynthesis/  (though actual samples seem to be missing)
+      Paper   : https://openreview.net/forum?id=B1VWyySKx
+      Code    : https://github.com/soroushmehr/sampleRNN_ICLR2017  (MIT)  
+      Code    : https://github.com/sotelo/parrot - RNN-based generative models for speech. 
 
+    Graves attention model 
+      Alex Graves. Generating sequences with recurrent neural networks. arXiv preprint arXiv:1308.0850, 2013
+        https://arxiv.org/abs/1308.0850  (43 pages)
+          Handwriting example - has incremental window, defined on p26/corner26
+          Effects of 'priming' for handwriting synthesis, shown p37/corner37 onwards
+        
+    
+    
+    
+    
 ## Record MeetUps
   Headset Microphones
     https://www.aliexpress.com/item/UHF-PRO-WIRELESS-MICROPHONE-SYSTEM-SLX-14-SLX-2-SLX-24-Cordless-Lapel-headset-Mic-for/32813937831.html
