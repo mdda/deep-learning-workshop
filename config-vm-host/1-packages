@@ -1,8 +1,7 @@
 
 # Fedora system packages are much faster to install from RPMs (pre-built binaries) than build/compile into a virtualenv
 
-# virtualenv installation
-#install python,python-devel,python2-virtualenv,python-pip
+# virtualenv installation  - now move to python-3.x only
 install python3,python3-devel,python3-virtualenv,python3-pip
 
 # editor and git (for ?theano / ?keras repo download)
@@ -13,8 +12,6 @@ install joe,git
 install gcc,gcc-c++,redhat-rpm-config
 
 # Super-useful
-#install scipy,numpy,python-scikit-learn,python-pandas,Cython,python-pillow
-#install python2-scipy,python2-numpy,python2-scikit-learn,python2-pandas,python2-Cython,python2-pillow
 install python3-scipy,python3-numpy,python3-scikit-learn,python3-pandas,python3-Cython,python3-pillow
 
 install blas-devel,lapack-devel,atlas-devel

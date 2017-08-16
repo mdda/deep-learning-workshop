@@ -8,14 +8,11 @@ set -x
 cd /home/user
 source ./config/params
 
-#virtualenv --system-site-packages env
-#. env/bin/activate
-
+# Move to python-3.x exclusively
 virtualenv-3.6 -p python3 --system-site-packages ./env3
 . ./env3/bin/activate
 
 pip install --upgrade pip
-#pip install https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.7.1-cp27-none-linux_x86_64.whl
 
 pip install -r ./config/requirements.txt 
 

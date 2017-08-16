@@ -1,6 +1,6 @@
 #!/bin/bash -
 
-# This runs inside the guest, as 'user', driven as a systemd service (TBA)
+# This runs inside the guest, as 'user', driven as a systemd service
 
 cd /home/user
 source ./config/params

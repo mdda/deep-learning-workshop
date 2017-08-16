@@ -1,16 +1,12 @@
 #!/bin/bash -
 
-# This runs inside the guest, as 'user', driven as a systemd service (TBA)
+# This runs inside the guest, as 'user', driven as a systemd service
 
 cd /home/user
 source ./config/params
 
 . env3/bin/activate
 
-## Old-style
-#ipython --matplotlib=notebook
-
-## New-style
 jupyter notebook --ip=0.0.0.0 --port=$port_jupyter --no-browser --notebook-dir=$notebook_dir
 
 
