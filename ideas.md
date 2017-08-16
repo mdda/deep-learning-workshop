@@ -794,6 +794,7 @@ Find papers for :
         Paper: https://ecantorix.moe/synthesis/mbrola/mmorise_d4c.pdf
         Code : https://github.com/mmorise/World (BSD : See : http://ml.cs.yamanashi.ac.jp/world/english/faq.html)
         Code : https://github.com/JeremyCCHsu/Python-Wrapper-for-World-Vocoder
+      TEST:  Does round-trip of parameters work?
 
     Merlin Toolkit
       Zhizheng Wu, Oliver Watts, and Simon King.  Merlin: An Open Source Neural Network Speech Synthesis System, pages 218–223. 9 2016.
@@ -815,7 +816,9 @@ Find papers for :
           Effects of 'priming' for handwriting synthesis, shown p37/corner37 onwards
         
     
-    
+## Papers
+  - Embeddings on graphs
+  - ImageNet as an attention game
     
     
 ## Record MeetUps
