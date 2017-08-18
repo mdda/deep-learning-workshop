@@ -771,6 +771,7 @@ Find papers for :
       https://research.googleblog.com/2017/06/mobilenets-open-source-models-for.html
         16 pre-trained ImageNet classification checkpoints for use in mobile projects of all sizes.
       https://arxiv.org/abs/1704.04861
+      TF 1.3 : Added Mobilenet support to TensorFlow for Poets training script.
   How to slim down networks
     Approaches : 
       Typical
