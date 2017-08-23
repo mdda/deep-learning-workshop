@@ -761,6 +761,7 @@ Find papers for :
   Network performance / sizing
     Due to its depth and number of fully-connected nodes, VGG is over 533MB for VGG16 and 574MB for VGG19.
     VGG16, Resnet, Inception, Xception
+  Graph of various Keras model-zoo sizing
     SqueezeNet : (arXiv 1602.07360, <0.5MB model size)
       https://github.com/DeepScale/SqueezeNet
       https://github.com/DT42/squeezenet_demo
@@ -771,6 +772,7 @@ Find papers for :
       https://research.googleblog.com/2017/06/mobilenets-open-source-models-for.html
         16 pre-trained ImageNet classification checkpoints for use in mobile projects of all sizes.
       https://arxiv.org/abs/1704.04861
+      https://www.reddit.com/r/MachineLearning/comments/6jjegv/p_mobilenets_in_keras/
       TF 1.3 : Added Mobilenet support to TensorFlow for Poets training script.
   How to slim down networks
     Approaches : 
@@ -779,7 +781,7 @@ Find papers for :
   Current state-of-the-art
   Models available in model zoos
   
-  
+
   
 ## For PyTorch (2017-09-??) "TTS"
   Voice Synthesis for in-the-Wild Speakers via a Phonological Loop
