@@ -870,6 +870,17 @@ Find papers for :
       Richard S. Zemel
       Yoshua Bengio  *
 
+   https://github.com/atulkum/paper_implementation  in TensorFlow
+     Recurrent Models of Visual Attention https://arxiv.org/abs/1406.6247
+     Multiple Object Recognition with Visual Attention https://arxiv.org/abs/1412.7755
+     Show, Attend and Tell: Neural Image Caption Generation with Visual Attention https://arxiv.org/abs/1502.03044
+
+   Recurrent Attention in Computer Vision
+     https://netsprawl.wordpress.com/2016/07/26/recurrent-attention/
+       https://github.com/jrbtaylor/visual-attention  (unfinished)
+   
+
+
 
 ## Record MeetUps
   Headset Microphones
