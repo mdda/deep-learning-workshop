@@ -824,6 +824,53 @@ Find papers for :
   - ImageNet as an attention game
     
     
+    
+### ImageNet as an attention game
+  2017 overview
+    https://medium.com/towards-data-science/visual-attention-model-in-deep-learning-708813c2912c
+    https://github.com/tianyu-tristan/Visual-Attention-Model
+
+  Recurrent Models of Visual Attention  (DeepMind)
+    https://arxiv.org/abs/1406.6247
+      Volodymyr Mnih  *
+      Nicolas Heess
+      Alex Graves
+      Koray Kavukcuoglu
+  Multiple Object Recognitions with Visual Attention (ICLR 2015, DeepMind)
+    https://arxiv.org/pdf/1412.7755.pdf
+      Jimmy Lei Ba
+      Volodymyr Mnih  *
+      Koray Kavukcuoglu  
+  Spatial Transformer Networks (DeepMind)
+    https://arxiv.org/pdf/1506.02025.pdf
+      Max Jaderberg
+      Karen Simonyan
+      Andrew Zisserman
+      Koray Kavukcuoglu
+      
+  Attend, Infer, Repeat: Fast Scene Understanding with Generative Models
+    https://arxiv.org/pdf/1603.08575.pdf
+      S. M. Ali Eslami
+      Nicolas Heess
+      Theophane Weber
+      Yuval Tassa
+      David Szepesvari
+      Koray Kavukcuoglu
+      Geoffrey E. Hinton
+    
+      
+  Show, Attend and Tell: Neural Image Caption Generation with Visual Attention
+    https://arxiv.org/pdf/1502.03044.pdf
+      Kelvin Xu
+      Jimmy Lei Ba     (DeepMind?)
+      Ryan Kiros
+      Kyunghyun Cho
+      Aaron Courville  *
+      Ruslan Salakhutdinov *
+      Richard S. Zemel
+      Yoshua Bengio  *
+
+
 ## Record MeetUps
   Headset Microphones
     https://www.aliexpress.com/item/UHF-PRO-WIRELESS-MICROPHONE-SYSTEM-SLX-14-SLX-2-SLX-24-Cordless-Lapel-headset-Mic-for/32813937831.html
