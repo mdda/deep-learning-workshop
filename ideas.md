@@ -836,17 +836,27 @@ Find papers for :
       Nicolas Heess
       Alex Graves
       Koray Kavukcuoglu
+    Issues:
+      Glimpse size?
   Multiple Object Recognitions with Visual Attention (ICLR 2015, DeepMind)
     https://arxiv.org/pdf/1412.7755.pdf
       Jimmy Lei Ba
       Volodymyr Mnih  *
       Koray Kavukcuoglu  
   Spatial Transformer Networks (DeepMind)
-    https://arxiv.org/pdf/1506.02025.pdf
-      Max Jaderberg
-      Karen Simonyan
-      Andrew Zisserman
-      Koray Kavukcuoglu
+    Paper:
+      https://arxiv.org/abs/1506.02025
+      https://arxiv.org/pdf/1506.02025.pdf
+        Max Jaderberg
+        Karen Simonyan
+        Andrew Zisserman
+        Koray Kavukcuoglu
+    Blog posts:
+      https://kevinzakka.github.io/2017/01/10/stn-part1/
+      https://kevinzakka.github.io/2017/01/18/stn-part2/
+    Implementations:
+      https://github.com/qassemoquab/stnbhwd (torch)
+      https://github.com/kevinzakka/spatial_transformer_network  (TF)
       
   Attend, Infer, Repeat: Fast Scene Understanding with Generative Models
     https://arxiv.org/pdf/1603.08575.pdf
