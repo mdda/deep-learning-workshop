@@ -899,18 +899,32 @@ Find papers for :
 
     https://www.aliexpress.com/item/2-4G-Wireless-Microphone-Headset-Megaphone-Radio-Mic-For-Speech-Loudspeaker-New/32815057953.html
     
-    https://www.aliexpress.com/item/UHF-PRO-SLX24-SLX14-BETA58-WIRELESS-MICROPHONE-SYSTEM-Handheld-Lapel-headset-Mic-for-Stage/32820151972.html
-    
     https://www.aliexpress.com/item/Free-Shipping-Quality-Male-Screw-Thread-Lock-3-5-mm-Jack-Plug-Invisible-Flesh-Color-Microphone/1884401898.html
     https://www.aliexpress.com/item/Invisible-Colour-Male-Screw-Thread-Lock-3-5-mm-3-5mm-Jack-Plug-Connector-Headset-Microphone/32819715919.html
     
+    # UHF may be a problem in SG
+    https://www.aliexpress.com/item/UHF-PRO-SLX24-SLX14-BETA58-WIRELESS-MICROPHONE-SYSTEM-Handheld-Lapel-headset-Mic-for-Stage/32820151972.html
+    
     https://www.aliexpress.com/item/Wireless-Microphones-Headset-Microphone-System-Mic-with-USB-receiver-For-Loudspeaker-Teaching-Meeting-Tour-Guide-Stage/32825351696.html
+  
+    # 2.4GHz : 
+    http://www.rode.com/wireless/filmmaker  # Used by engineers.sg
+    http://shop.reddotphoto.com.sg/en/Rode-RodeLink-Wireless-Filmmaker-Kit
+    
+    # Buy : 
+    https://www.aliexpress.com/item/3-5mm-pro-2-4GHZ-Dual-Channel-Wireless-Stereo-Microphone-mic-Charger-for-canon-nikon-pentax/32803946777.html
+    
   
   HDMI recording
     https://www.aliexpress.com/item/ezcap280-HD-Video-Game-Capture-1080P-HDMI-YPbPr-Recorder-into-USB-Disk-For-XBOX-One-360/32757589937.html
+    https://www.aliexpress.com/item/HD-Game-Video-Capture-1080P-HDMI-YPBPR-Recorder-US-Plug-for-Game-Lovers-with-One-Click/32791354958.html
+    
+    # Record sound at same time as HDMI: (?) 
     https://www.aliexpress.com/item/ezcap284-HD-Video-Game-Capture-1080P-HDMI-YPbPr-Component-or-Composite-Recorder-into-USB-Disk-SD/32796854045.html
   
-    https://www.aliexpress.com/item/HD-Game-Video-Capture-1080P-HDMI-YPBPR-Recorder-US-Plug-for-Game-Lovers-with-One-Click/32791354958.html
+    # Buy : 
+    https://www.aliexpress.com/item/Ezcap-284-Video-Game-Capture-1080P-Full-HD-HDMI-YPbpr-Recorder-Box-For-PS3-PS4-Xbox/32811012535.html
+    
     
   Webcam-to-SDcard  
     https://www.aliexpress.com/item/Andoer-HDV-Z20-WiFi-Portable-Camcorder-24MP-16x-1080P-Full-HD-Digital-Video-Camera-3-0/32788721599.html
