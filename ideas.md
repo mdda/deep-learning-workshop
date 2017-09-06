@@ -788,6 +788,7 @@ Find papers for :
     https://ytaigman.github.io/loop/
     Paper : https://arxiv.org/abs/1707.06588
     Code? : https://github.com/ytaigman/loop  (follow author to get an alert)
+    Code  : https://github.com/facebookresearch/loop
 
     WORLD Vocoder
       Base : Masanori Morise, Fumiya Yokomori, and Kenji Ozawa. World: A vocoder-based high-quality speech synthesis system for real-time applications. IEICE TRANSACTIONS on Information and Systems, 99(7):1877–1884, 2016
@@ -938,4 +939,10 @@ Find papers for :
     
     
     
-
+### Restructuring REPO
+  Individual projects should go into their own repos to increase discoverability
+  eg:
+    BubbleBreaker
+    CNN for Voice Stamps
+    
+  
