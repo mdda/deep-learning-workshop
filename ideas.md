@@ -944,5 +944,12 @@ Find papers for :
   eg:
     BubbleBreaker
     CNN for Voice Stamps
-    
+    Keras GoogLeNet (including slim-to-keras)
+    Transfer Learning with SVM
+    Captioning (including AIAYN)
+    ChooseGPU
+  and then pull in these repos suitably for the main VM creation
+  Also : 
+    Add RPM proxy mechanism
+    /or/ think about doing it via docker and a wrapper...
   
