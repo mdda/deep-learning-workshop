@@ -831,19 +831,67 @@ Find papers for :
     https://medium.com/towards-data-science/visual-attention-model-in-deep-learning-708813c2912c
     https://github.com/tianyu-tristan/Visual-Attention-Model
 
+  Learning to combine foveal glimpses with a third-order Boltzmann machine
+    https://papers.nips.cc/paper/4089-learning-to-combine-foveal-glimpses-with-a-third-order-boltzmann-machine
+      Hugo Larochelle
+      Geoffrey Hinton
+    Issues:
+      RBM approach
+      Very retina-like field of view
+
+  Learning where to Attend with Deep Architectures for Image Tracking
+    https://arxiv.org/abs/1109.3737
+    v. early 
+    More like tracking
+    Some Bayesian elements
+      Misha Denil
+      Loris Bazzani
+      Hugo Larochelle
+      Nando de Freitas
+    Issues:
+    
   Recurrent Models of Visual Attention  (DeepMind)
     https://arxiv.org/abs/1406.6247
       Volodymyr Mnih  *
       Nicolas Heess
       Alex Graves
       Koray Kavukcuoglu
+    Blog Post:
+      http://torch.ch/blog/2015/09/21/rmva.html
+        This shows that each 8x8 pixel glimpse of 28x28 MNIST is individually tricky
     Issues:
-      Glimpse size?
+      Glimpse size can be quite large 
+        28x28 regular    MNIST sampled with 1 to 7 steps of 8x8 patches
+        60x60 translated MNIST sampled with 1 to 3 steps of 8x8 patches, but covering up to 8*2*2=32x32
+        p6 claims that a single 8x8 is insufficient to classify MNIST digits
+        p9 shows that digits are clearly recognisable from 1 3-step glimpse patch
+        
+  On Learning Where To Look
+    https://arxiv.org/abs/1405.5488
+      Marc'Aurelio Ranzato (Google)
+    Issues:
+      1.  train N0 and N1
+      2.  train N2, fixing N0 and N1
+      3.  train N3, fixing N0, N1 and N2
+      Help from : Hinton (xStudent?)
+      
   Multiple Object Recognitions with Visual Attention (ICLR 2015, DeepMind)
     https://arxiv.org/pdf/1412.7755.pdf
       Jimmy Lei Ba
       Volodymyr Mnih  *
       Koray Kavukcuoglu  
+    Blog Post:
+      https://netsprawl.wordpress.com/2016/07/26/recurrent-attention/
+      https://github.com/jrbtaylor/visual-attention
+        Ultimately, I decided to abandon this track of research. 
+        There may be some applications with extremely large images, 
+          like microscopy, where a hard attention mechanism is necessary for now (until GPU memory can hold the images), 
+        but otherwise the policy learning is so much slower than the convnet that the trade-off never works out.
+    Issues:
+      SVHN dataset (multiple digits recognised)
+      Attention model took ~3 days on 'a' GPU
+      Help from : Geoffrey Hinton, Nando de Freitas and Chris Summerfield
+      
   Spatial Transformer Networks (DeepMind)
     Paper:
       https://arxiv.org/abs/1506.02025
@@ -858,7 +906,7 @@ Find papers for :
     Implementations:
       https://github.com/qassemoquab/stnbhwd (torch)
       https://github.com/kevinzakka/spatial_transformer_network  (TF)
-      
+
   Attend, Infer, Repeat: Fast Scene Understanding with Generative Models
     https://arxiv.org/pdf/1603.08575.pdf
       S. M. Ali Eslami
@@ -942,7 +990,7 @@ Find papers for :
 ### Restructuring REPO
   Individual projects should go into their own repos to increase discoverability
   eg:
-    BubbleBreaker
+    BubbleBreaker << in-process
     CNN for Voice Stamps
     Keras GoogLeNet (including slim-to-keras)
     Transfer Learning with SVM
