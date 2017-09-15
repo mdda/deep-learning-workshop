@@ -1001,3 +1001,50 @@ Find papers for :
     Add RPM proxy mechanism
     /or/ think about doing it via docker and a wrapper...
   
+
+
+### Interesting GoogleBrain AMA
+Two questions:
+  1) Everyone talks about successes in the field of ML/AI/DL. Could you talk about some of the failures, or pain points you have encountered in trying to solve problems (research or real-world) using DL. Bonus if they are in the large scale supervised learning space, where existing DL methods are expected to work.
+  2) What is the brain team's take on state of unsupervised methods today? Do you anticipate major conceptual strides in the next few years
+  
+  
+vincentvanhoucke : GoogleBrain
+  Fails: 
+    a few of us tried to train a neural caption generator on New Yorker cartoons in collaboration with Bob Mankoff, 
+    the cartoon editor of the New Yorker (who I just saw has a NIPS paper this year). 
+    It didn’t work well. It wasn’t even accidentally funny. 
+    We didn’t have much data by DL standards, though we could pre-train the visual representation on other types of cartoons. 
+    I still hope to win the contest one day, but it may have to be the old-fashioned way. 
+  
+  Unsupervised learning: 
+    I think people are finally getting that autoencoding is a Bad Idea, 
+    and that the difference between unsupervised learning that works (e.g. language models) 
+    and unsupervised learning that doesn’t is generally about predicting 
+    the causal future (next word, next frame) instead of the present (autoencoding). 
+    
+    I'm very happy to see how many people have started benchmarking their 'future prediction' work 
+    on the push dataset we open-sourced last year, that was quite unexpected.
+
+    ?? Could you elaborate? Bad idea in some specific context or just in general?
+    
+    In general. 
+    
+    Take NLP for example: the most basic form of autoencoding in that space 
+    is linear bottleneck representations like LSA and LDA, 
+    and those are being completely displaced by Word2Vec and the like, 
+    which are still linear but which use context as the supervisory signal. 
+    
+    In acoustic modeling, we spent a lot of time trying to weigh the benefits of 
+    autoencoding audio representations to model signals, 
+    and all of that is being destroyed by LSTMs, which, again, 
+    use causal prediction as the supervisory signal. 
+    
+    Even Yann LeCun has amended his 'cherry vs cake' statement to no longer be 
+    about unsupervised learning, but about predictive learning. 
+    
+    That's essentially the same message. 
+    Autoencoders bad. 
+    Future-self predictors good.
+    
+    
