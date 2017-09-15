@@ -1003,48 +1003,181 @@ Find papers for :
   
 
 
-### Interesting GoogleBrain AMA
-Two questions:
-  1) Everyone talks about successes in the field of ML/AI/DL. Could you talk about some of the failures, or pain points you have encountered in trying to solve problems (research or real-world) using DL. Bonus if they are in the large scale supervised learning space, where existing DL methods are expected to work.
-  2) What is the brain team's take on state of unsupervised methods today? Do you anticipate major conceptual strides in the next few years
-  
-  
-vincentvanhoucke : GoogleBrain
-  Fails: 
-    a few of us tried to train a neural caption generator on New Yorker cartoons in collaboration with Bob Mankoff, 
-    the cartoon editor of the New Yorker (who I just saw has a NIPS paper this year). 
-    It didn’t work well. It wasn’t even accidentally funny. 
-    We didn’t have much data by DL standards, though we could pre-train the visual representation on other types of cartoons. 
-    I still hope to win the contest one day, but it may have to be the old-fashioned way. 
-  
-  Unsupervised learning: 
-    I think people are finally getting that autoencoding is a Bad Idea, 
-    and that the difference between unsupervised learning that works (e.g. language models) 
-    and unsupervised learning that doesn’t is generally about predicting 
-    the causal future (next word, next frame) instead of the present (autoencoding). 
+### Interesting GoogleBrain AMA questions
+  Failures in DL:   (dexter89_kp)
+    Everyone talks about successes in the field of ML/AI/DL. 
+    Could you talk about some of the failures, or pain points you have encountered 
+    in trying to solve problems (research or real-world) using DL. 
+    Bonus if they are in the large scale supervised learning space, 
+    where existing DL methods are expected to work.
     
-    I'm very happy to see how many people have started benchmarking their 'future prediction' work 
-    on the push dataset we open-sourced last year, that was quite unexpected.
+    vincentvanhoucke : GoogleBrain
+      a few of us tried to train a neural caption generator on New Yorker cartoons in collaboration with Bob Mankoff, 
+      the cartoon editor of the New Yorker (who I just saw has a NIPS paper this year). 
+      It didn’t work well. It wasn’t even accidentally funny. 
+      We didn’t have much data by DL standards, though we could pre-train the visual representation on other types of cartoons. 
+      I still hope to win the contest one day, but it may have to be the old-fashioned way. 
+      
+    gcorrado : GoogleBrain    
+      I’m always nervous about definitively claiming that DL “doesn’t work” for such-and-such. 
+      For example, we tried pretty hard to make DL work for machine translation in 2012 and couldn’t get a good lift... 
+      fast forward four years and it’s a big win. 
+      We try something one way, and if it doesn’t work we step back, take a breath, 
+      and maybe try again with another angle. 
+      
+      You’re right that shoehorning the problem into a large scale supervised learning problem is half the magic. 
+      From there its data science, model architecture, and a touch of good luck. 
+      But some problems can’t really ever be captured as supervised learning over an available data set -- 
+      in which case, DL probably isn’t the right hammer.
 
-    ?? Could you elaborate? Bad idea in some specific context or just in general?
+
+  Unsupervised learning:    (dexter89_kp)
+    What is the brain team's take on state of unsupervised methods today? 
+    Do you anticipate major conceptual strides in the next few years
     
-    In general. 
-    
-    Take NLP for example: the most basic form of autoencoding in that space 
-    is linear bottleneck representations like LSA and LDA, 
-    and those are being completely displaced by Word2Vec and the like, 
-    which are still linear but which use context as the supervisory signal. 
-    
-    In acoustic modeling, we spent a lot of time trying to weigh the benefits of 
-    autoencoding audio representations to model signals, 
-    and all of that is being destroyed by LSTMs, which, again, 
-    use causal prediction as the supervisory signal. 
-    
-    Even Yann LeCun has amended his 'cherry vs cake' statement to no longer be 
-    about unsupervised learning, but about predictive learning. 
-    
-    That's essentially the same message. 
-    Autoencoders bad. 
-    Future-self predictors good.
-    
-    
+    vincentvanhoucke : GoogleBrain
+      I think people are finally getting that autoencoding is a Bad Idea, 
+      and that the difference between unsupervised learning that works (e.g. language models) 
+      and unsupervised learning that doesn’t is generally about predicting 
+      the causal future (next word, next frame) instead of the present (autoencoding). 
+      
+      I'm very happy to see how many people have started benchmarking their 'future prediction' work 
+      on the push dataset we open-sourced last year, that was quite unexpected.
+
+      ?? Could you elaborate? Bad idea in some specific context or just in general?
+      
+      In general. 
+      
+      Take NLP for example: the most basic form of autoencoding in that space 
+      is linear bottleneck representations like LSA and LDA, 
+      and those are being completely displaced by Word2Vec and the like, 
+      which are still linear but which use context as the supervisory signal. 
+      
+      In acoustic modeling, we spent a lot of time trying to weigh the benefits of 
+      autoencoding audio representations to model signals, 
+      and all of that is being destroyed by LSTMs, which, again, 
+      use causal prediction as the supervisory signal. 
+      
+      Even Yann LeCun has amended his 'cherry vs cake' statement to no longer be 
+      about unsupervised learning, but about predictive learning. 
+      
+      That's essentially the same message. 
+      Autoencoders bad. 
+      Future-self predictors good.
+
+    gcorrado : GoogleBrain    
+      I don’t think we’ve really broken through on unsupervised learning. 
+      There’s a huge amount of information and structure in the unconditioned data distribution, 
+      and it seems like there should be some way for a learning algorithm to benefit from that. 
+      
+      I’m betting some bright mind will crack it, but I’m not sure when. 
+      Personally, I wonder if the right algorithmic approach might depend on the availability 
+      of one or two orders of magnitude more compute. 
+      Time will tell.
+
+
+  Biggest hurdles (bmacswag)
+    What are the next biggest hurdles you think face the field?
+
+    vincentvanhoucke : GoogleBrain
+      Making deep networks amenable to (stable!) online updates 
+      from weakly supervised data is still a huge problem. 
+      Solving it would enable true lifelong learning and open up many applications. 
+      
+      Another huge hurdle is that many of the most exciting developments in the field, 
+      like GANs or Deep RL, have yet to have their ‘batch normalization’ moment: 
+      the moment when suddenly everything ‘wants to train’ by default 
+      as opposed to having to fight the model one hyperparameter at a time. 
+      
+      They still lack the maturity that turns them from an interesting research direction 
+      into a technology that we can rely on; 
+      right now we can’t train these models predictably without a ton of precise tuning, 
+      and it makes it difficult to incorporate them into more elaborate systems.
+
+
+  NonStandard ideas (Dizastr)
+    Are there any non-standard (or not popular) approaches to A.I / Machine Learning 
+    that you are researching or believe are worth exploring further?
+
+    vincentvanhoucke : GoogleBrain
+      Feedback! It's insane to me that we've gotten this far with pure feedforward approaches. 
+      Dynamical systems are very efficient, adaptive learning machines.
+      
+      ?? Do you have specific examples of what you mean? RNNs are pretty popular, as is reinforcement learning, 
+         but I get the impression you aren't talking about those?
+
+      RNNs are not 'loopy', they still propagate information only in one direction: 
+      if there is any feedback, it comes from outside the learner. 
+      Contrast e.g. with Markov nets, where information is propagated in both directions within the model.
+
+
+  Google's deep pockets (EdwardRaff )
+    With companies like Google putting billions into AI/ML research, 
+    some of it comes out using resources that others have no hope of matching -- 
+    AlphaGo being one of the highest profile examples. 
+    The paper noted nearly 300 GPUs being used to train the model. 
+    Considering that the first model likely wasn't the one that worked, 
+    and parameter searches when it takes 300 GPUs to train a single model, 
+    we are talking about experiments with 1000s of GPUs for a single item of research. 
+    ...
+
+    vincentvanhoucke : GoogleBrain
+      I published something a bit rant-y on the topic here : 
+      
+        I often hear researchers complaining how Google tends to publish a lot about large-scale, 
+        comparatively dumb approaches to solving problems. 
+        Guilty as charged: think about ProdLM and 'stupid backoff', or the 'billion neuron' cat paper, 
+        AlphaGo, the more recent work on obscenely large mixture of experts or the large-scale learning-to-learn papers.
+        
+        The charges levied against this line of work is that they're inefficiently using large amounts of resources, 
+        not being 'clever', and that nobody else can reproduce them as a result. 
+        But that's exactly the point!! 
+        The marginal benefit of us exploring the computational regimes that every other academic lab 
+        can do just as well is inherently limited. 
+        Better explore the frontier that few others have the resources to explore: 
+        what happens when we go all out; 
+        try the simple stuff first, 
+        and then if it looks promising we can work backwards and make it more efficient. 
+        
+        ProdLM gave us the focus on data for machine translation that made production-grade neural MT possible. 
+        The 'cat paper' gave us DistBelief and eventually TensorFlow. 
+        That's not waste, that's progress.
+
+      Many great developments started as crazy expensive research, 
+      and became within everyone’s reach once people knew what was possible and started optimizing them. 
+      The first deep net to ever go into production at Google (for speech recognition) took months to train, 
+      and was 100x too slow to run. 
+      
+      Then we found tricks to speed it up, improved (and open-sourced) our deep learning infrastructure, 
+      and now everybody in the field uses them. SmartReply was crazy expensive, until it wasn’t. 
+      
+      The list goes on. 
+      
+      It’s important for us to explore the envelope of what’s possible, 
+      because the ultimate goal isn’t to win at benchmarks, it’s to make science progress.
+
+
+  Importance of Data (MithrandirGr)
+    Arguably, Deep Learning owes its success to the abundance of data and computing power 
+    most companies such as Google, Facebook, Twitter, etc. have access to. 
+    Does this fact discourage the democratization of Deep Learning research? 
+    And, if yes, would you consider bridging this gap in the future by investing 
+    more in the few-shot learning part of research?
+  
+    gcorrado : GoogleBrain    
+      More data rarely hurts, but it’s a game of diminishing returns. 
+      Depending on the problem you are trying to solve (and how you’re solving it) 
+      there’s some critical volume of data to get to pretty good performance...  
+      from there redoubling your data only asymptotically bumps prediction accuracy. 
+      
+      For example, in our paper on detecting diabetic retinopathy we published 
+      this curve which shows that for our technique, 
+      prediction accuracy maxed out at a data set that was 50k images -- 
+      big for sure, but not massive. 
+      
+      The take home should be that data alone isn’t an effective barrier to entry on most ML problems. 
+      And the good news is that data efficiency and transfer learning are only moving these curves to the right -- 
+      fewer examples to get to the same quality. 
+      
+      New model architectures, new problem framings, 
+      and new application ideas are where the real action is going to be, IMHO.
