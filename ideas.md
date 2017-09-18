@@ -1031,50 +1031,6 @@ Find papers for :
       in which case, DL probably isn’t the right hammer.
 
 
-  Unsupervised learning:    (dexter89_kp)
-    What is the brain team's take on state of unsupervised methods today? 
-    Do you anticipate major conceptual strides in the next few years
-    
-    vincentvanhoucke : GoogleBrain
-      I think people are finally getting that autoencoding is a Bad Idea, 
-      and that the difference between unsupervised learning that works (e.g. language models) 
-      and unsupervised learning that doesn’t is generally about predicting 
-      the causal future (next word, next frame) instead of the present (autoencoding). 
-      
-      I'm very happy to see how many people have started benchmarking their 'future prediction' work 
-      on the push dataset we open-sourced last year, that was quite unexpected.
-
-      ?? Could you elaborate? Bad idea in some specific context or just in general?
-      
-      In general. 
-      
-      Take NLP for example: the most basic form of autoencoding in that space 
-      is linear bottleneck representations like LSA and LDA, 
-      and those are being completely displaced by Word2Vec and the like, 
-      which are still linear but which use context as the supervisory signal. 
-      
-      In acoustic modeling, we spent a lot of time trying to weigh the benefits of 
-      autoencoding audio representations to model signals, 
-      and all of that is being destroyed by LSTMs, which, again, 
-      use causal prediction as the supervisory signal. 
-      
-      Even Yann LeCun has amended his 'cherry vs cake' statement to no longer be 
-      about unsupervised learning, but about predictive learning. 
-      
-      That's essentially the same message. 
-      Autoencoders bad. 
-      Future-self predictors good.
-
-    gcorrado : GoogleBrain    
-      I don’t think we’ve really broken through on unsupervised learning. 
-      There’s a huge amount of information and structure in the unconditioned data distribution, 
-      and it seems like there should be some way for a learning algorithm to benefit from that. 
-      
-      I’m betting some bright mind will crack it, but I’m not sure when. 
-      Personally, I wonder if the right algorithmic approach might depend on the availability 
-      of one or two orders of magnitude more compute. 
-      Time will tell.
-
 
   Biggest hurdles (bmacswag)
     What are the next biggest hurdles you think face the field?
@@ -1109,6 +1065,8 @@ Find papers for :
       RNNs are not 'loopy', they still propagate information only in one direction: 
       if there is any feedback, it comes from outside the learner. 
       Contrast e.g. with Markov nets, where information is propagated in both directions within the model.
+
+
 
 
   Google's deep pockets (EdwardRaff )
@@ -1181,3 +1139,183 @@ Find papers for :
       
       New model architectures, new problem framings, 
       and new application ideas are where the real action is going to be, IMHO.
+
+
+
+
+
+## hinton_says_we_should_scrap_back_propagation
+  https://www.reddit.com/r/MachineLearning/comments/70e4ex/n_hinton_says_we_should_scrap_back_propagation/
+
+  [–]Optrode 136 points 2 days ago 
+
+>So, I'm gonna offer a sort of outside perspective, 
+which is the perspective of a neuroscience researcher who has only a basic understanding of ML. 
+>
+>I can see differences between how information is processed in the brain and in ANNs, 
+but of course the caveat is that I have no clue which (if any) of those differences represent opportunities for improvement via biomimicry.
+>
+>That said, the notable differences I see between brains and deep learning models are:
+>
+>*    Sensory systems in the brain usually have a great deal of top down modulation 
+(think early layers receiving recurrent input from later layers). 
+There aren't really any sensory or motor systems in the brain that AREN'T recurrent.
+>
+>*    Sensory systems in the brain also tend to have a lot of lateral inhibition (i.e. neurons inhibiting other neurons in the same layer).
+>
+>*    Brain sensory systems tend to separate information into channels. 
+e.g. at all levels of the visual system, there are separate pathways for high and low spatial frequency content 
+(outline &amp; movement vs. texture), and color information.
+>
+>*    Particularly with regard to the visual system, inputs are always scanned in a dynamic fashion. 
+When a person views a picture, only a very small subsection of the image 
+(see: fovea, saccade) is seen at high detail at any instant. 
+The "high detail zone" skips around the image, lingering on salient points.
+>
+>*    Obviously, there's STDP. 
+STDP essentially pushes neurons to predict the future, 
+and I think that unsupervised training methods that focus on predicting the future 
+(this came up in the recent AMA, as I recall) obtain some of the same benefits as STDP.
+>
+>*    I've seen several comments in this thread on how reducing the number of weights per node (e.g. CNN, QRNN) is beneficial, 
+and this resembles the state of affairs in the brain. 
+There is no such thing as a fully connected layer in the brain, 
+connectivity is usually sparse (though not random). 
+This usually is related to the segregation of different channels of information.
+>
+>*    Lastly, most information processing / discrimination in the brain is assisted by semantic information. 
+If you see a person in a hospital gown, you are primed to see a nurse or doctor. 
+This remains true for a while afterwards, since we rarely use our sensory facilities to view collections of random, unrelated photos.
+>
+>
+>    I read the wiki for STDP but didn't quite get a full understanding. Would you be able to talk a bit about it?
+
+>Sure! It's actually pretty simple.
+>
+>Suppose we have two neurons, A and B. A synapses onto B ( A->B ). 
+The STDP rule states that if A fires and B fires after a short delay, 
+the synapse will be potentiated (i.e. B will increase the 'weight' assigned to inputs from A in the future).
+>
+>The magnitude of the weight increase is inversely proportional to the delay between A firing and B firing. 
+So, if A fires and then B fires ten seconds later, the weight change will be essentially zero. 
+But if A fires and B fires ten milliseconds later, the weight update will be more substantial.
+>
+>The reverse also applies. 
+If B fires first, then A, then the synapse will weaken, and the size of the change is again inversely proportional to the delay.
+>
+>ELI5 version: STDP is a rule that encourages neurons to 'pay more attention' to inputs that predict excitation. 
+Suppose you usually only bring an umbrella if you have reasons to think it will rain (weather report, you see rain outside, etc.). 
+Then you notice that if you see your neighbor carrying an umbrella, 
+even though you haven't seen any rain in the forecast, 
+but sure enough, a few minutes later you see an updated forecast (or it starts raining). 
+This happens a few times, and you get the idea: Your neighbor seems to be getting this information (whether it is going to rain) 
+before your current sources. 
+So in the future, you pay more attention to what your neighbor is doing.
+
+
+      [–]cbeak 2 points 16 hours ago 
+
+      I think when taking the brain as inspiration, the main question is which kinds of neural computations are necessary 
+      and which are merely biological artifacts/spandrels. 
+      
+      Superficially, short-term plasticity strikes me as an artifact because it results from neurotransmitter depletion. 
+      
+      Spikes are necessary to avoid noise build-up, and depletion seems to be basically an artifact of this adaptation. 
+      And even if depletion is evolved to be more pronounced and useful for computations such as gain-control 
+      (down-regulating high-frequency inputs and up-regulating low-frequency input) and high- or low-band-filtering (which it appears to be), 
+      it remains a question whether one would lose important computations if one leaves out such details. 
+      
+      I could image that each additional kind of computation will make a suitable learning rule more complicated 
+      because each kind comes with its own set of hyper-parameters (e.g. gain, band specifications and kernel sizes), 
+      each of which must probably be balanced in just the right way to avoid positive feedback-loops and catastrophic forgetting. 
+      
+      I could also imagine that several different priors expressed in the kernel sizes are necessary such that 
+      different neurons can efficiently extract temporal information that is interesting in real-world data 
+      (basically from the milliseconds to the seconds scale). 
+      
+      It generally seems like we need 
+      (1) plenty of different kinds of computations, 
+      (2) a connectome with a stochastic but a fairly simple connection scheme, 
+      (3) a free energy minimizing learning rule where the energy is measured by sparse and delayed rewards and prediction errors. 
+      
+      Among those computations will likely be multiple kinds of non-linearities, 
+      spatial and temporal clustering, modulation, normalization, lateral inhibition, 
+      plenty of modulatory feedback connections. 
+      
+      The last step might be a massive hyper-parameter search by evolution of embodied agents in a resource-constrained sim. 
+      That's what I would bet my money on.
+
+
+
+###  More explicit description of comms
+
+[–]deathofamorty 1 point 1 day ago 
+
+How is it that neurons A and B know when each other fires? Is there a special type of synapse or something?
+
+[–]Optrode 6 points 23 hours ago 
+
+>Well, assuming that A synapses onto B but there is no reciprocal connection, A does not know when B fires. 
+B, the post-synaptic neuron, knows A fired because it receives synaptic input from that synapses when A fires. 
+Altering that synaptic weight is (in the most common cases) something that B does. 
+A does not have to actively participate, beyond simply having fired at the appropriate time (which B detects).
+>
+>The exact mechanism for the synaptic potentiation is not clear...  
+We know what some of the mechanisms in some cases are. 
+There is a type of glutamate receptor, the NMDA receptor, that is well known for its role in long term synaptic potentiation (LTP). 
+The NMDA receptor acts as a coincidence detector: 
+it will only allow calcium ions into the postsynaptic neuron if a synaptic signal is received 
+when the postsynaptic neuron is already depolarized to a positive voltage (i.e. activated).
+>
+>Mind you, that's extremely ELI5. 
+There's a lot more to it, such as the fact that what actually matters is whether 
+the DENDRITE (input structure of the neuron) is depolarized, not the whole cell, 
+and those don't necessarily go hand in hand. 
+Exactly how strongly the depolarization of the neuron's cell body depolarizes any particular dendrite branch will 
+depend on the structure of the branch, and this can make it so that certain other synaptic inputs 
+(a neuron has an average of 7000) may have a greater effect on whether synapses on a 
+particular dendrite are in a state to be strengthened by LTP.
+>
+>Dendrites also have other cool properties, like how it's possible for a certain type of inhibitory input (Cl- channel mediated inhibition, as opposed to K+ channel mediated inhibition) to be capable of canceling out only certain excitatory inputs, but not others, as well as controlling how readily the neuron can be excited by repeated excitatory inputs (vs. requiring all the excitatory input to arrive at once).
+>
+>Which kind demonstrates another important difference between artificial neural networks and real neurons.. The "neurons" in an ANN are mostly linear, they just have a nonlinear activation function. Inputs are linearly summed. Real neurons do not linearly sun their inputs, the whole process of receiving input is nonlinear as fuck.
+
+
+
+[–]timtom85 2 points 9 hours ago 
+
+>I also checked out STDP after reading this and what caught my attention was the weakening of the weight if an input fires slightly after the neuron does. It seems very important to me because it can effectively get rid of spurious correlations, it can suppress feedback loops, and it can weed out unnecessary connections.
+
+
+
+
+[–]CireNeikual 5 points 2 days ago 
+
+What about TargetProp? It works without differentiable functions, it can be used with STDP/Hebbian learning (with appropriate discrete timesteps Hebbian and STDP can be equivalent).
+
+I personally like revisting old methods and seeing how they fair with some new upgrades. Adaptive Resonance Theory, Self-Organizing Maps, or any other kind of vector quantizer. When in an appropriate architecture, they can do some interesting things. Interestingly, as soon as one abandons the need for differentiable functions and embraces sparsity, online/lifelong/incremental learning becomes much easier. This also leads to a performance boost, as one doesn't need many decorrelated replay samples in order to update. Further, with sparsity, sparse updates are possible, giving a further performance boost.
+
+The human brain is quite sparse (it's the function of inhibitory neurons), so I feel like this is the right direction to take. Sparsity leads to low processing power use, something I feel this field desperately needs, with all the big projects taking fat GPU-filled server racks.
+
+    permalinkembedsaveparentreportgive goldreply
+
+[–]nobackprop 1 point 1 day ago 
+
+I'll repeat here what I wrote elsewhere in this thread.
+
+There is only one viable solution to unsupervised learning, the one used by the brain. It is based on spike timing. The cortex tries to find order in sensory discrete signals or spikes. The only type of order that can be found in spikes is temporal order. Here is the clincher: spikes are either concurrent or sequential. I and others have been saying this for years. Here's a link, if you are interested:
+
+Why Deep Learning Is a Hindrance to Progress Toward True AI
+
+It's all about timing.
+
+    permalinkembedsaveparentreportgive goldreply
+
+[–]mindbleach 0 points 1 day ago 
+
+Train another network to guess future coefficients. So basically, still backprop at heart, but faster and more chaotic. Leap blindly downhill on gradient descent.
+
+Early on, maybe keep the shitty random values, but change the connections.
+
+
+
