@@ -1,5 +1,7 @@
 ## CNNs for Speech Recognition
 
+* NB:  Development has moved to [a separate GitHub repo](https://github.com/mdda/cnn-speech-mnist) *
+
 The steps for running this example are : 
 
 *  Record some sound files that you want to categories (the idea here being an MNIST-for-speech)
@@ -8,13 +10,6 @@ The steps for running this example are :
 *  Train an SVM layer added on the digits model to learn to classify animal (or whatever) words as an example of transfer learning
 
 The first two steps above are addressed in ```SpeechRecognition_Data.ipynb```, while the training part is in ```SpeechRecognition_Learn.ipynb```.
-
-So far, the ```SpeechSynthesis_Test.ipynb``` isn't in a useable state - 
-but the idea is to make something related to Tacotron, starting with simplifying the 
-output stage.  The current notebook explores whether sounds can be decently reconstructed
-from spectrograms.  Since that seems to work (but by a nasty iterative FFT method), the
-next step is to learn to do the transformation via a network, potentially trained
-adversarially.
 
 
 ### Layout of Data
@@ -111,6 +106,15 @@ correctly recognise (in this case) animal words.
 Again, the amount of data is really low (perhaps 4-5 examples of each animal).  So the main take-away should be
 that this technique works surprisingly well (i.e. we should be surprised that it works at all).
 
+
+## Speech Synthesis (in progress)
+
+So far, the ```SpeechSynthesis_Test.ipynb``` isn't in a useable state - 
+but the idea is to make something related to Tacotron, starting with simplifying the 
+output stage.  The current notebook explores whether sounds can be decently reconstructed
+from spectrograms.  Since that seems to work (but by a nasty iterative FFT method), the
+next step is to learn to do the transformation via a network, potentially trained
+adversarially.
 
 
 
