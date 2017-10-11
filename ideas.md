@@ -622,5 +622,5 @@ Early on, maybe keep the shitty random values, but change the connections.
   - Neural learning depends on dwelling on useful stuff...
     - Think about STDP : Isn't it more obvious what's going on?
     
-  
+  - Conversational agents as magician master chess players
     
