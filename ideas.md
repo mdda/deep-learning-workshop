@@ -614,6 +614,13 @@ Early on, maybe keep the shitty random values, but change the connections.
 
 
 ## Papers
-  - Embeddings on graphs
+  - Embeddings on graphs (Meh?)
+  
   - ImageNet as an attention game
+    - (same as :) Relationships from a Stream
+  
+  - Neural learning depends on dwelling on useful stuff...
+    - Think about STDP : Isn't it more obvious what's going on?
+    
+  
     
