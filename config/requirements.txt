@@ -1,4 +1,7 @@
 
+
+
+
 ### Theano
 
 ## Theano-HEAD from git 
@@ -28,7 +31,7 @@ git+git://github.com/Theano/Theano.git#egg=theano
 # Better (required if we use the tensorflow backend)
 # --no-deps 
 #git+git://github.com/fchollet/keras.git
-keras>=2.0.4
+#keras>=2.0.4
 
 # Even though Keras is *inside* TensorFlow...  IT LAGS BADLY...
 
@@ -42,10 +45,10 @@ https://github.com/Lasagne/Lasagne/archive/master.zip
 ### TensorFlow
 
 # CPU version
-tensorflow>=1.3.0
+tensorflow>=1.4.0
 
 # If you're running locally, this needs CUDA toolkit 8.0 and CuDNN v6
-#tensorflow-gpu>=1.3.0
+#tensorflow-gpu>=1.4.0
 
 # Plotting of graphs (dynamic, beautiful)
 #bokeh>=0.11.0

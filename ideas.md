@@ -435,6 +435,10 @@ Find papers for :
     Add RPM proxy mechanism
     /or/ think about doing it via docker and a wrapper...
   
+  Now : 
+    Migrate off Theano fully
+    Contemplate installing PyTorch
+    Or, instead, making use of tf.eager
 
 
 ## hinton_says_we_should_scrap_back_propagation
