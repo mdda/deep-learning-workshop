@@ -628,3 +628,8 @@ Early on, maybe keep the shitty random values, but change the connections.
     
   - Conversational agents as magician master chess players
     
+
+  -  SignOut (distributional arguement as extension to DropOut)
+  -  MNIST-oneshot
+     -  NAS-like structure opt
+     -  one-shot on MNST examples
