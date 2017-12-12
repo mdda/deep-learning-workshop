@@ -633,3 +633,6 @@ Early on, maybe keep the shitty random values, but change the connections.
   -  MNIST-oneshot
      -  NAS-like structure opt
      -  one-shot on MNST examples
+     
+  -  Speech/audio to phonemes / emotion / speaker-id at different time scales
+  
