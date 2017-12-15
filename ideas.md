@@ -638,8 +638,11 @@ Early on, maybe keep the shitty random values, but change the connections.
   -  Speech/audio to phonemes / emotion / speaker-id at different time scales
   
   -  Word-order game instead of translation for embedding-in-context a la Socher
-     -  Or word-substitution
-     -  Or phrase-deletion
+       -  Or word-substitution
+       -  Or phrase-deletion
+     -  Sentence discriminator should use k=~3 CNN layers to construct 'extra' embedding with which to reason
+       -  Then use same extra embedding to train dependency, NER or POS models like Socher
      
-
+  -  Word dependencies within sentences via 'plates'
+     -  Defined on a lattice, or via a MTCS-like game tree
   
