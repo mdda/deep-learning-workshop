@@ -618,21 +618,28 @@ Early on, maybe keep the shitty random values, but change the connections.
 
 
 ## Papers
-  - Embeddings on graphs (Meh?)
+  -  Embeddings on graphs (Meh?)
   
-  - ImageNet as an attention game
-    - (same as :) Relationships from a Stream
+  -  ImageNet as an attention game
+    -  (same as :) Relationships from a Stream
   
-  - Neural learning depends on dwelling on useful stuff...
-    - Think about STDP : Isn't it more obvious what's going on?
+  -  Neural learning depends on dwelling on useful stuff...
+    -  Think about STDP : Isn't it more obvious what's going on?
     
-  - Conversational agents as magician master chess players
+  -  Conversational agents as magician master chess players
     
 
   -  SignOut (distributional arguement as extension to DropOut)
+  
   -  MNIST-oneshot
      -  NAS-like structure opt
      -  one-shot on MNST examples
      
   -  Speech/audio to phonemes / emotion / speaker-id at different time scales
+  
+  -  Word-order game instead of translation for embedding-in-context a la Socher
+     -  Or word-substitution
+     -  Or phrase-deletion
+     
+
   
