@@ -618,24 +618,12 @@ Early on, maybe keep the shitty random values, but change the connections.
 
 
 ## Papers
-  -  Embeddings on graphs (Meh?)
-  
+  -  PriorOut (distributional arguement as extension to DropOut)
+     -  SignOut (discarded)
+     -  Replace DropOut(==0) with (==N(0,1)), for instance
+
   -  ImageNet as an attention game
     -  (same as :) Relationships from a Stream
-  
-  -  Neural learning depends on dwelling on useful stuff...
-    -  Think about STDP : Isn't it more obvious what's going on?
-    
-  -  Conversational agents as magician master chess players
-    
-
-  -  SignOut (distributional arguement as extension to DropOut)
-  
-  -  MNIST-oneshot
-     -  NAS-like structure opt
-     -  one-shot on MNST examples
-     
-  -  Speech/audio to phonemes / emotion / speaker-id at different time scales
   
   -  Word-order game instead of translation for embedding-in-context a la Socher
        -  Or word-substitution
@@ -645,4 +633,21 @@ Early on, maybe keep the shitty random values, but change the connections.
      
   -  Word dependencies within sentences via 'plates'
      -  Defined on a lattice, or via a MTCS-like game tree
+     -  Perhaps have k=~3 CNN layer(s) where channels denote not just 'chose me', but :
+        -  chose left/right neighbour 
+        -  my expected neighbourhood is +/- ...  (like SSD)
+           -  No need to make the choice unique - channels/positions can support each other
+  
+  -  Embeddings on graphs (Meh?)
+  
+  -  Neural learning depends on dwelling on useful stuff...
+    -  Think about STDP : Isn't it more obvious what's going on?
+    
+  -  Conversational agents as magician master chess players
+    
+  -  MNIST-oneshot
+     -  NAS-like structure opt
+     -  one-shot on MNST examples
+     
+  -  Speech/audio to phonemes / emotion / speaker-id at different time scales
   
