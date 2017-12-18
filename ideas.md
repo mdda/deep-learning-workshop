@@ -631,6 +631,7 @@ Early on, maybe keep the shitty random values, but change the connections.
        -  Or phrase-deletion
      -  Sentence discriminator should use k=~3 CNN layers to construct 'extra' embedding with which to reason
        -  Then use same extra embedding to train dependency, NER or POS models like Socher
+       -  Test environment? : http://allennlp.org/papers/AllenNLP_white_paper.pdf
      
   -  Word dependencies within sentences via 'plates'
      -  Defined on a lattice, or via a MTCS-like game tree
@@ -639,14 +640,14 @@ Early on, maybe keep the shitty random values, but change the connections.
         -  my expected neighbourhood is +/- ...  (like SSD)
            -  No need to make the choice unique - channels/positions can support each other
   
+  -  Speech/audio to phonemes / emotion / speaker-id at different time scales
+  
   -  ImageNet as an attention game
     -  (same as :) Relationships from a Stream
   
   -  Neural learning depends on dwelling on useful stuff...
     -  Think about STDP : Isn't it more obvious what's going on?
     
-  -  Speech/audio to phonemes / emotion / speaker-id at different time scales
-  
   -  Embeddings on graphs (Meh?)
   
   -  Conversational agents as magician master chess players
