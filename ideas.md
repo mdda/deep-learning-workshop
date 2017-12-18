@@ -630,6 +630,7 @@ Early on, maybe keep the shitty random values, but change the connections.
        -  Or phrase-deletion
      -  Sentence discriminator should use k=~3 CNN layers to construct 'extra' embedding with which to reason
        -  Then use same extra embedding to train dependency, NER or POS models like Socher
+       -  Test environment? : http://allennlp.org/papers/AllenNLP_white_paper.pdf
      
   -  Word dependencies within sentences via 'plates'
      -  Defined on a lattice, or via a MTCS-like game tree
@@ -637,6 +638,8 @@ Early on, maybe keep the shitty random values, but change the connections.
         -  chose left/right neighbour 
         -  my expected neighbourhood is +/- ...  (like SSD)
            -  No need to make the choice unique - channels/positions can support each other
+  
+  
   
   -  Embeddings on graphs (Meh?)
   
