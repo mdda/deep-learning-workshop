@@ -618,9 +618,11 @@ Early on, maybe keep the shitty random values, but change the connections.
 
 
 ## Papers
-  -  PriorOut (distributional arguement as extension to DropOut)
+  -  PriorOut (distributional argument as extension to DropOut)
      -  SignOut (discarded)
      -  Replace DropOut(==0) with (==N(0,1)), for instance
+        -  No need for BatchNorm
+        -  Possibly encourage distributional independence too (in N() are IID)
 
   -  MNIST-oneshot
      -  NAS-like structure opt
