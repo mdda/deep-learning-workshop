@@ -623,6 +623,12 @@ Early on, maybe keep the shitty random values, but change the connections.
      -  Replace DropOut(==0) with (==N(0,1)), for instance
         -  No need for BatchNorm
         -  Possibly encourage distributional independence too (in N() are IID)
+     -  Look into : 
+        -  ShakeOut
+           -  https://www.reddit.com/r/MachineLearning/comments/4rn6dq/shakeout_a_new_regularized_deep_neural_network/
+           -  https://www.aaai.org/ocs/index.php/AAAI/AAAI16/paper/view/11840
+        -  WhiteOut
+           -  https://arxiv.org/abs/1612.01490
 
   -  MNIST-oneshot
      -  NAS-like structure opt
