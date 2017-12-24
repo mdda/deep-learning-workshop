@@ -655,6 +655,7 @@ Early on, maybe keep the shitty random values, but change the connections.
            -  No need to make the choice unique - channels/positions can support each other
   
   -  Speech/audio to phonemes / emotion / speaker-id at different time scales
+     =  Could music fingerprinting ideas be used to segment speech?
   
   -  ImageNet as an attention game
     -  (same as :) Relationships from a Stream
