@@ -629,7 +629,13 @@ Early on, maybe keep the shitty random values, but change the connections.
            -  https://www.aaai.org/ocs/index.php/AAAI/AAAI16/paper/view/11840
         -  WhiteOut
            -  https://arxiv.org/abs/1612.01490
-
+     -  More generally, perhaps adding noise with specific distribution/correlation could
+        be used to encourage similar behaviours in intermediate representations 
+        -  eg : Add noise to representation layer before doing discrimination on it
+           -   Prevent discriminator overfitting
+           -   Encourage representation to self-organise so that Gaussian noise (say) is reasonable
+           -   May implicitly encourage a 'reasonable' norm over the representation
+      
   -  MNIST-oneshot
      -  NAS-like structure opt
      -  one-shot on MNST examples
