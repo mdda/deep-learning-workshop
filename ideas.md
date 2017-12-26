@@ -653,6 +653,10 @@ Early on, maybe keep the shitty random values, but change the connections.
         -  chose left/right neighbour 
         -  my expected neighbourhood is +/- ...  (like SSD)
            -  No need to make the choice unique - channels/positions can support each other
+     -  Apparently just joint POS and DP works well
+        -  https://github.com/datquocnguyen/jPTDP  (GPL2)
+        -  Graph-maximisaton algorithm works well - no need to recursively group phrases :
+           -  http://demo.clab.cs.cmu.edu/fa2015-11711/images/6/66/Graph-based.pdf )
   
   -  Speech/audio to phonemes / emotion / speaker-id at different time scales
      =  Could music fingerprinting ideas be used to segment speech?
@@ -666,4 +670,5 @@ Early on, maybe keep the shitty random values, but change the connections.
   -  Embeddings on graphs (Meh?)
   
   -  Conversational agents as magician master chess players
+     -  This is more of a business idea, really
     
