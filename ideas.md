@@ -640,6 +640,16 @@ Early on, maybe keep the shitty random values, but change the connections.
      -  NAS-like structure opt
      -  one-shot on MNST examples
      
+  -  Sentence segmentation for TTS training
+     -  Tacotron2 trains WaveNet on intermediate Mel-Spectrogram with :
+        -  50ms Hann windows, 12.5ms offsets
+        -  80 coeffs spanning 125Hz - 7.6KHz
+        -  Filterbank output magnitudes dtsbilised to a floor of 0.01
+        -  Followed by log dynamic range compression 
+     -  Use this as base representation for VQ-VAE algorithm to discretize the audio content
+     -  Compare (somehow) with the words in sentences (add #OES markers according to punkt)
+        -  Aim is to accurately split the input text at the #OES markers
+     
   -  Word-order game instead of translation for embedding-in-context a la Socher
        -  Or word-substitution
        -  Or phrase-deletion
