@@ -637,7 +637,11 @@ Early on, maybe keep the shitty random values, but change the connections.
            -   May implicitly encourage a 'reasonable' norm over the representation
       
   -  MNIST-oneshot
-     -  NAS-like structure opt
+     -  NAS-like structure opt 
+        -  Need to evaluate performance per parameter
+           -  otherwise very large numbers of hidden units would dominate
+           -  or smallest network for a given level of performance
+           -  or lowest total weight l2 (or l0...)
      -  one-shot on MNST examples
      
   -  Sentence segmentation for TTS training
@@ -647,6 +651,8 @@ Early on, maybe keep the shitty random values, but change the connections.
         -  Filterbank output magnitudes dtsbilised to a floor of 0.01
         -  Followed by log dynamic range compression 
      -  Use this as base representation for VQ-VAE algorithm to discretize the audio content
+        -  https://scazlab.yale.edu/sites/default/files/files/Gold-CogSci-06.pdf
+        -  https://www.cc.gatech.edu/~isbell/reading/papers/oates.pdf
      -  Compare (somehow) with the words in sentences (add #OES markers according to punkt)
         -  Aim is to accurately split the input text at the #OES markers
      
