@@ -655,6 +655,9 @@ Early on, maybe keep the shitty random values, but change the connections.
         -  https://www.cc.gatech.edu/~isbell/reading/papers/oates.pdf
      -  Compare (somehow) with the words in sentences (add #OES markers according to punkt)
         -  Aim is to accurately split the input text at the #OES markers
+        -  Create an embedding for something like byte-encoded letter groups
+        -  Simple map will omit time dimension : Need to retrofit somehow
+        -  Having a good idea will clearly fit into 'representation' theme of ICLR
      
   -  Word-order game instead of translation for embedding-in-context a la Socher
        -  Or word-substitution
