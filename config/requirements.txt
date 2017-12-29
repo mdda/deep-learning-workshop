@@ -76,11 +76,27 @@ pydot
 ## This is a Pythonic interface to the HDF5 binary data format (used for keras-VGG16 weights reading)
 h5py>=2.5.0
 
+
+### Potentially replace these with spaCy
 ## This is for Punkt and TreeBank tokenizers
 nltk>=3.2.1
 
 ## This is for the GloVE word embedding package :: https://github.com/maciejkula/glove-python
 glove_python>=0.1.0
+
+### spaCy alternative to nltk/glove (except that raw embeddings not parseable (?)
+# Defeat cuda include directory detection in the thinc installer ...
+# CUDA_HOME=IGNORE_CUDA pip install -U thinc
+
+#spacy>=2.0.5,<3.0.0
+#https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.0.0/en_core_web_sm-2.0.0.tar.gz#en_core_web_sm
+
+# To directly download the english corpus for spaCy >2, also need to do 
+#   (no longer Makefile, since the requirement line above should do the same thing) :
+# python -m spacy download en_core_web_sm
+
+#  Try : python -m spacy validate
+
 
 ## Requests is only used in the GPU chooser, which is a pity.  OTOH, it's a good library
 requests>=2.9.0
