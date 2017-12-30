@@ -658,6 +658,27 @@ Early on, maybe keep the shitty random values, but change the connections.
         -  Create an embedding for something like byte-pair-encoded letter groups (https://en.wikipedia.org/wiki/Byte_pair_encoding)
         -  Simple map will omit time dimension : Need to retrofit somehow
         -  Having a good idea will clearly fit into 'representation' theme of ICLR
+     -  Interesting aside (and 2 ICLR workshop extended abstracts):
+        -  http://colinraffel.com/blog/my-year-at-brain.html
+        -  http://colinraffel.com/blog/online-and-linear-time-attention-by-enforcing-monotonic-alignments.html
+        -  TRAINING A SUBSAMPLING MECHANISM IN EXPECTATION
+           -  https://arxiv.org/pdf/1702.06914.pdf
+        -  EXPLAINING THE LEARNING DYNAMICS OF DIRECT FEEDBACK ALIGNMENT
+           -  https://openreview.net/pdf?id=HkXKUTVFl
+     -  Alternative approaches
+        -  DTW (Dynamic Time Warping)
+           -  http://nbviewer.jupyter.org/github/markdregan/K-Nearest-Neighbors-with-Dynamic-Time-Warping/blob/master/K_Nearest_Neighbor_Dynamic_Time_Warping.ipynb
+           -  http://www.cs.ucr.edu/~eamonn/UCRsuite.html
+           -  http://www.cs.ucr.edu/~eamonn/SIGKDD_trillion.pdf
+        -  Finding "Motifs" in time series data
+           -  https://link.springer.com/chapter/10.1007/978-3-642-53737-0_8
+           -  http://www.cs.ucr.edu/~eamonn/PID4481997_extend_Matrix%20Profile_I.pdf
+           -  http://www.cs.ucr.edu/~eamonn/Motif_Discovery_ICDM.pdf
+              -   mSTAMP project site. https://sites.google.com/view/mstamp/ 
+              -   https://github.com/mcyeh/mstamp
+
+
+    
      
   -  Word-order game instead of translation for embedding-in-context a la Socher
        -  Or word-substitution
