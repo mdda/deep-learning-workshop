@@ -700,6 +700,11 @@ Early on, maybe keep the shitty random values, but change the connections.
   
   -  Speech/audio to phonemes / emotion / speaker-id at different time scales
      =  Could music fingerprinting ideas be used to segment speech?
+     -  Interesting release from FB (in pure Torch==lua rather than PyTorch) :
+        -  https://github.com/facebookresearch/wav2letter
+        -  Includes pretrained models (Librispeach)
+        -  For reading of audio file: Libsndfile
+        -  For standard speech features: FFTW
   
   -  ImageNet as an attention game
     -  (same as :) Relationships from a Stream
