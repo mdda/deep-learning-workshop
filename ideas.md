@@ -646,7 +646,7 @@ Early on, maybe keep the shitty random values, but change the connections.
      
   -  Sentence segmentation for TTS training
      -  Tacotron2 trains ?24KHz? WaveNet on intermediate Mel-Spectrogram with :
-        -  50ms Hann windows, 12.5ms offsets (librosa?)
+        -  50ms Hann windows (~1200 samples... which FFT window size?), 12.5ms offsets (librosa?)
         -  80 coeffs spanning 125Hz - 7.6KHz (librosa?)
         -  Filterbank output magnitudes dtsbilised to a floor of 0.01
         -  Followed by log dynamic range compression 
