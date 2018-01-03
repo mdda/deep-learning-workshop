@@ -645,12 +645,17 @@ Early on, maybe keep the shitty random values, but change the connections.
      -  one-shot on MNST examples
      
   -  Sentence segmentation for TTS training
-     -  Tacotron2 trains WaveNet on intermediate Mel-Spectrogram with :
+     -  Tacotron2 trains ?24KHz? WaveNet on intermediate Mel-Spectrogram with :
         -  50ms Hann windows, 12.5ms offsets (librosa?)
         -  80 coeffs spanning 125Hz - 7.6KHz (librosa?)
         -  Filterbank output magnitudes dtsbilised to a floor of 0.01
         -  Followed by log dynamic range compression 
      -  Use this as base representation for VQ-VAE algorithm to discretize the audio content
+        -  2_DeepMind_NeuralDiscreteRepresentationLearning__1711.00937.pdf
+           -  the encoder has 6 strided convolutions with stride 2 and window-size 4
+           -  output is 64x smaller than the original waveform ( discrete space is 512-dimensional )
+           -  Also : "Chunks of 40960 timesteps (2.56 seconds) == 16KHz
+           -          which yields 320 latent timesteps (at 128 samples per timestep = 8ms)."
         -  https://scazlab.yale.edu/sites/default/files/files/Gold-CogSci-06.pdf
         -  https://www.cc.gatech.edu/~isbell/reading/papers/oates.pdf
      -  Compare (somehow) with the words in sentences (add #OES markers according to punkt)
