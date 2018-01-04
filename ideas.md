@@ -648,7 +648,7 @@ Early on, maybe keep the shitty random values, but change the connections.
      -  Tacotron2 trains ?24KHz? WaveNet on intermediate Mel-Spectrogram with :
         -  50ms Hann windows (~1200 samples... which FFT window size?), 12.5ms offsets (librosa?)
         -  80 coeffs spanning 125Hz - 7.6KHz (librosa?)
-        -  Filterbank output magnitudes dtsbilised to a floor of 0.01
+        -  Filterbank output magnitudes stabilised to a floor of 0.01
         -  Followed by log dynamic range compression 
      -  Use this as base representation for VQ-VAE algorithm to discretize the audio content
         -  2_DeepMind_NeuralDiscreteRepresentationLearning__1711.00937.pdf
