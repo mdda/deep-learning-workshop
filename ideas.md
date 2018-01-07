@@ -666,9 +666,14 @@ Early on, maybe keep the shitty random values, but change the connections.
         -  Having a good idea will clearly fit into 'representation' theme of ICLR
      -  Map words to mel-word-detectors has the problem that # distinct words >> # distinct phonemes
         -  OTOH, very few words are required to uniquely disambiguate sentences (and thus infer the #EOS timing)
-        -  Supposes we can do silence detection reasonably well (simple training cycle, though)
+        -  Supposes we can do silence detection reasonably well (simple to make per-frame training examples, though)
+           -  Would need a manual clean-up into silence-onset and sound-onset signals, though
+              -  Since we care about the length of the silences to more accurately guess which ones are the EOS tags
+           -  Could use raw silence detector to give 'start of potential EOS' signals to learn from 
+              -  Need to see how many potential EOS candidates are produced, to see whether rationing on invention is required
         -  But if we have silences, plus (say) 10-50 distinct words, does that give us a sequence we can do vector-DTW on?
            - Benefit of words over phonemes is that we have words-in-sentence-i directly
+        -  Some words have several readings (even short ones : and, of, a, the)
      -  Alternative approaches
         -  DTW (Dynamic Time Warping)
            -  http://nbviewer.jupyter.org/github/markdregan/K-Nearest-Neighbors-with-Dynamic-Time-Warping/blob/master/K_Nearest_Neighbor_Dynamic_Time_Warping.ipynb
