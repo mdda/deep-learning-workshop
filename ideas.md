@@ -692,8 +692,12 @@ Early on, maybe keep the shitty random values, but change the connections.
            -  https://arxiv.org/pdf/1702.06914.pdf
         -  EXPLAINING THE LEARNING DYNAMICS OF DIRECT FEEDBACK ALIGNMENT
            -  https://openreview.net/pdf?id=HkXKUTVFl
-
-
+     -  Start software journey from VQ-VAE in TensorFlow (ideally)
+        -  Probably need to convert from image version to WaveNet
+           -  
+        -  Need to find WaveNet encode/decode pair in TensorFlow
+           -  
+ 
     
      
   -  Word-order game instead of translation for embedding-in-context a la Socher
