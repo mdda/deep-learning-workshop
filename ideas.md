@@ -696,7 +696,10 @@ Early on, maybe keep the shitty random values, but change the connections.
         -  Probably need to convert from image version to WaveNet
            -  
         -  Need to find WaveNet encode/decode pair in TensorFlow
-           -  
+           -  https://github.com/ibab/tensorflow-wavenet (perhaps over-kill)
+           -  https://github.com/basveeling/wavenet (keras!)
+           -  https://github.com/buriburisuri/speech-to-text-wavenet (Hmmm==recognition, needs sugartensor)
+           -  https://github.com/tomlepaine/fast-wavenet (uses queues, so not really relevant here)
  
     
      
