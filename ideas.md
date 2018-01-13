@@ -693,13 +693,25 @@ Early on, maybe keep the shitty random values, but change the connections.
         -  EXPLAINING THE LEARNING DYNAMICS OF DIRECT FEEDBACK ALIGNMENT
            -  https://openreview.net/pdf?id=HkXKUTVFl
      -  Start software journey from VQ-VAE in TensorFlow (ideally)
+        -  https://avdnoord.github.io/homepage/vqvae/
         -  Probably need to convert from image version to WaveNet
-           -  
+           -  https://github.com/hiwonjoon/tf-vqvae (seems to work well on CIFAR and MNIST, gets shout-outs from others)
+           -  https://github.com/nadavbh12/VQ-VAE (PyTorch 'minimalist')
+           -  https://github.com/nakosung/VQ-VAE (PyTorch version, with additional GAN focus)
         -  Need to find WaveNet encode/decode pair in TensorFlow
+           -  Official WaveNet decoder (in Magenta) :
+              -  https://github.com/tensorflow/magenta/blob/master/magenta/models/nsynth/wavenet/h512_bo16.py#L66
            -  https://github.com/ibab/tensorflow-wavenet (perhaps over-kill)
            -  https://github.com/basveeling/wavenet (keras!)
            -  https://github.com/buriburisuri/speech-to-text-wavenet (Hmmm==recognition, needs sugartensor)
            -  https://github.com/tomlepaine/fast-wavenet (uses queues, so not really relevant here)
+        -  FWIW : TensorFlow Griffin-Lim : 
+           -  https://github.com/tensorflow/magenta/blob/master/magenta/models/nsynth/utils.py#L263
+        -  FWIW : TensorFlow 2D-Conv with optional batch_norm, gating, residual.
+           -  https://github.com/tensorflow/magenta/blob/master/magenta/models/nsynth/utils.py#L710
+        -  FWIW : TensorFlow Applies dilated convolution using queues.
+           -  https://github.com/tensorflow/magenta/blob/master/magenta/models/nsynth/utils.py#L821
+           -  SLOW?  the model we released should generate around two seconds of audio every minute (batch size 16).
  
     
      
