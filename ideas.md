@@ -696,10 +696,12 @@ Early on, maybe keep the shitty random values, but change the connections.
         -  https://avdnoord.github.io/homepage/vqvae/
         -  Probably need to convert from image version to WaveNet
            -  https://github.com/hiwonjoon/tf-vqvae (seems to work well on CIFAR and MNIST, gets shout-outs from others)
+              -  https://github.com/hiwonjoon/tf-vqvae/blob/master/model.py#L115 (May still benfit from some cleanup)
            -  https://github.com/nadavbh12/VQ-VAE (PyTorch 'minimalist')
+              -  https://github.com/nadavbh12/VQ-VAE/blob/master/nearest_embed.py#L51 (May be semi-ready)
            -  https://github.com/nakosung/VQ-VAE (PyTorch version, with additional GAN focus)
         -  Need to find WaveNet encode/decode pair in TensorFlow
-           -  Official WaveNet decoder (in Magenta) :
+           -  WaveNet decoder (in Magenta - so somewhat official, I guess) :
               -  https://github.com/tensorflow/magenta/blob/master/magenta/models/nsynth/wavenet/h512_bo16.py#L66
            -  https://github.com/ibab/tensorflow-wavenet (perhaps over-kill)
            -  https://github.com/basveeling/wavenet (keras!)
