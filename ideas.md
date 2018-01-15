@@ -665,15 +665,16 @@ Early on, maybe keep the shitty random values, but change the connections.
         -  Simple map will omit time dimension : Need to retrofit somehow
         -  Having a good idea will clearly fit into 'representation' theme of ICLR
      -  Map words to mel-word-detectors has the problem that # distinct words >> # distinct phonemes
-        -  OTOH, very few words are required to uniquely disambiguate sentences (and thus infer the #EOS timing)
+        -  OTOH, (probably) very few words are required to uniquely disambiguate sentences (and thus infer the #EOS timing)
         -  Supposes we can do silence detection reasonably well (simple to make per-frame training examples, though)
            -  Would need a manual clean-up into silence-onset and sound-onset signals, though
               -  Since we care about the length of the silences to more accurately guess which ones are the EOS tags
            -  Could use raw silence detector to give 'start of potential EOS' signals to learn from 
               -  Need to see how many potential EOS candidates are produced, to see whether rationing on invention is required
         -  But if we have silences, plus (say) 10-50 distinct words, does that give us a sequence we can do vector-DTW on?
-           - Benefit of words over phonemes is that we have words-in-sentence-i directly
+           -  Benefit of words over phonemes is that we have words-in-sentence-i directly
         -  Some words have several readings (even short ones : and, of, a, the)
+           -  Need to select 'mid-range' of frequency for words for best info-per-training measure
      -  Alternative approaches
         -  DTW (Dynamic Time Warping)
            -  http://nbviewer.jupyter.org/github/markdregan/K-Nearest-Neighbors-with-Dynamic-Time-Warping/blob/master/K_Nearest_Neighbor_Dynamic_Time_Warping.ipynb
@@ -694,12 +695,14 @@ Early on, maybe keep the shitty random values, but change the connections.
            -  https://openreview.net/pdf?id=HkXKUTVFl
      -  Start software journey from VQ-VAE in TensorFlow (ideally)
         -  https://avdnoord.github.io/homepage/vqvae/
+        
         -  Probably need to convert from image version to WaveNet
            -  https://github.com/hiwonjoon/tf-vqvae (seems to work well on CIFAR and MNIST, gets shout-outs from others)
               -  https://github.com/hiwonjoon/tf-vqvae/blob/master/model.py#L115 (May still benfit from some cleanup)
            -  https://github.com/nadavbh12/VQ-VAE (PyTorch 'minimalist')
               -  https://github.com/nadavbh12/VQ-VAE/blob/master/nearest_embed.py#L51 (May be semi-ready)
            -  https://github.com/nakosung/VQ-VAE (PyTorch version, with additional GAN focus)
+           
         -  Need to find WaveNet encode/decode pair in TensorFlow
            -  WaveNet decoder (in Magenta - so somewhat official, I guess) :
               -  https://github.com/tensorflow/magenta/blob/master/magenta/models/nsynth/wavenet/h512_bo16.py#L66
@@ -707,13 +710,15 @@ Early on, maybe keep the shitty random values, but change the connections.
            -  https://github.com/basveeling/wavenet (keras!)
            -  https://github.com/buriburisuri/speech-to-text-wavenet (Hmmm==recognition, needs sugartensor)
            -  https://github.com/tomlepaine/fast-wavenet (uses queues, so not really relevant here)
-        -  FWIW : TensorFlow Griffin-Lim : 
-           -  https://github.com/tensorflow/magenta/blob/master/magenta/models/nsynth/utils.py#L263
-        -  FWIW : TensorFlow 2D-Conv with optional batch_norm, gating, residual.
-           -  https://github.com/tensorflow/magenta/blob/master/magenta/models/nsynth/utils.py#L710
-        -  FWIW : TensorFlow Applies dilated convolution using queues.
-           -  https://github.com/tensorflow/magenta/blob/master/magenta/models/nsynth/utils.py#L821
-           -  SLOW?  the model we released should generate around two seconds of audio every minute (batch size 16).
+           
+        -  FWIW : Interesting/relevant snippets from Google's TensorFlow Magenta codebase :
+           -  Griffin-Lim : 
+              -  https://github.com/tensorflow/magenta/blob/master/magenta/models/nsynth/utils.py#L263
+           -  2D-Conv with optional batch_norm, gating, residual.
+              -  https://github.com/tensorflow/magenta/blob/master/magenta/models/nsynth/utils.py#L710
+           -  Applies dilated convolution using queues.
+              -  https://github.com/tensorflow/magenta/blob/master/magenta/models/nsynth/utils.py#L821
+              -  SLOW?  the model we released should generate around two seconds of audio every minute (batch size 16).
  
     
      
