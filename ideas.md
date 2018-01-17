@@ -719,6 +719,14 @@ Early on, maybe keep the shitty random values, but change the connections.
            -  Applies dilated convolution using queues.
               -  https://github.com/tensorflow/magenta/blob/master/magenta/models/nsynth/utils.py#L821
               -  SLOW?  the model we released should generate around two seconds of audio every minute (batch size 16).
+        -  And audio processing as Keras layers : 
+           -  https://github.com/keunwoochoi/kapre
+           
+        -  Phase estimation for speech : 
+           -  Phase estimation in speech enhancement — Unimportant, important, or impossible? 
+              -  https://www.uni-oldenburg.de/fileadmin/user_upload/mediphysik/ag/speech/download/paper/gerkmann_krawczyk_rehr_phaseInSpeechEnhancement_eilat2012.pdf
+           -  Phase estimation in single-channel speech enhancement using phase invariance constraints
+              -  https://pdfs.semanticscholar.org/ace7/e7a918e3360af7c536a262d55df8d0dddffc.pdf
  
     
      
