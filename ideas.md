@@ -727,7 +727,15 @@ Early on, maybe keep the shitty random values, but change the connections.
               -  https://www.uni-oldenburg.de/fileadmin/user_upload/mediphysik/ag/speech/download/paper/gerkmann_krawczyk_rehr_phaseInSpeechEnhancement_eilat2012.pdf
            -  Phase estimation in single-channel speech enhancement using phase invariance constraints
               -  https://pdfs.semanticscholar.org/ace7/e7a918e3360af7c536a262d55df8d0dddffc.pdf
- 
+           -  Message on Google Groups from Dan Ellis (1-May-2017) - NB: tacotron2 'proves' that mel is not too underspecified... :
+              - You can try Griffin-Lim (iterative inverse STFT, STFT, then imposing target magnitude). It converges very slowly. 
+              - Probably some more modern scheme for predicting phase (phase-advance, I guess) along with the spectrum is more appropriate. 
+              - The fact is that Mel-spectrum is a heavily underspecified representation, particularly in the high frequency. 
+                Perhaps you also need something better than a pseudoinverse to predict FFT bins from the Mel magnitudes. 
+              - The point about the phase is that it will have an arbitrary rotation if you just look at the current frame's magnitude. 
+                But if you also look at the per-bin phases from the previous frames, or equivalently attempt to predict 
+                only the phase difference for each bin relative to the preceding frame, it should be much better behaved statistically. 
+           
     
      
   -  Word-order game instead of translation for embedding-in-context a la Socher
