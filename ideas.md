@@ -635,6 +635,7 @@ Early on, maybe keep the shitty random values, but change the connections.
            -   Prevent discriminator overfitting
            -   Encourage representation to self-organise so that Gaussian noise (say) is reasonable
            -   May implicitly encourage a 'reasonable' norm over the representation
+     -  Generic background : https://www.quora.com/Why-exactly-does-dropout-in-deep-learning-work
       
   -  MNIST-oneshot
      -  NAS-like structure opt 
