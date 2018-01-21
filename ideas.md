@@ -659,6 +659,8 @@ Early on, maybe keep the shitty random values, but change the connections.
            -          which yields 320 latent timesteps (at 128 samples per timestep = 8ms)."
         -  https://scazlab.yale.edu/sites/default/files/files/Gold-CogSci-06.pdf
         -  https://www.cc.gatech.edu/~isbell/reading/papers/oates.pdf
+        -  Blizzard 2013 dataset is good according to kkestner, but non-commercial use only
+           -  http://www.cstr.ed.ac.uk/projects/blizzard/2013/lessac_blizzard2013/
      -  Compare (somehow) with the words in sentences (add #OES markers according to punkt)
         -  Aim is to accurately split the input text at the #OES markers
      -  Map embeddings of mels and words into same space
