@@ -653,12 +653,18 @@ Early on, maybe keep the shitty random values, but change the connections.
         -  Followed by log dynamic range compression 
      -  Use this as base representation for VQ-VAE algorithm to discretize the audio content
         -  2_DeepMind_NeuralDiscreteRepresentationLearning__1711.00937.pdf
-           -  the encoder has 6 strided convolutions with stride 2 and window-size 4
            -  output is 64x smaller than the original waveform ( discrete space is 512-dimensional )
            -  Also : "Chunks of 40960 timesteps (2.56 seconds) == 16KHz
            -          which yields 320 latent timesteps (at 128 samples per timestep = 8ms)."
            -  Three different experiments explained
-              -  (PLACEHOLDER)
+              -  #1 : Extract long-term info
+                 -   the *encoder* has 6 strided convolutions with stride 2 and window-size 4, discrete space 512-d
+                    - Diagram TBA  == 64x
+              -  #2 : Unconditional samples 
+                 -   128x compression to discrete space
+              -  #3 : Phoneme sequence comparison
+                 -   128-d space run at 25Hz (sample_rate=16KHz => 64 samples per tick)
+              
         -  https://scazlab.yale.edu/sites/default/files/files/Gold-CogSci-06.pdf
         -  https://www.cc.gatech.edu/~isbell/reading/papers/oates.pdf
         -  Blizzard 2013 dataset is good according to kkestner, but non-commercial use only
