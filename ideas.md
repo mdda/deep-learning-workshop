@@ -657,6 +657,8 @@ Early on, maybe keep the shitty random values, but change the connections.
            -  output is 64x smaller than the original waveform ( discrete space is 512-dimensional )
            -  Also : "Chunks of 40960 timesteps (2.56 seconds) == 16KHz
            -          which yields 320 latent timesteps (at 128 samples per timestep = 8ms)."
+           -  Three different experiments explained
+              -  (PLACEHOLDER)
         -  https://scazlab.yale.edu/sites/default/files/files/Gold-CogSci-06.pdf
         -  https://www.cc.gatech.edu/~isbell/reading/papers/oates.pdf
         -  Blizzard 2013 dataset is good according to kkestner, but non-commercial use only
