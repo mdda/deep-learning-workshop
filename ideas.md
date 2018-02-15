@@ -664,17 +664,17 @@ Early on, maybe keep the shitty random values, but change the connections.
                  -   128x compression to discrete space
               -  #3 : Phoneme sequence comparison
                  -   128-d space run at 25Hz (sample_rate=16KHz => 64 samples per tick)
-              
         -  https://scazlab.yale.edu/sites/default/files/files/Gold-CogSci-06.pdf
         -  https://www.cc.gatech.edu/~isbell/reading/papers/oates.pdf
         -  Blizzard 2013 dataset is good according to kkestner, but non-commercial use only
            -  http://www.cstr.ed.ac.uk/projects/blizzard/2013/lessac_blizzard2013/
-     -  Compare (somehow) with the words in sentences (add #OES markers according to punkt)
-        -  Aim is to accurately split the input text at the #OES markers
+     -  Compare (somehow) with the words in sentences (add #EOS markers according to punkt or spaCy)
+        -  Aim is to accurately split the input text at the #EOS markers
      -  Map embeddings of mels and words into same space
         -  Create an embedding for something like byte-pair-encoded letter groups (https://en.wikipedia.org/wiki/Byte_pair_encoding)
         -  Simple map will omit time dimension : Need to retrofit somehow
         -  Having a good idea will clearly fit into 'representation' theme of ICLR
+        -  BUT : Probably not enough data to do a good mapping
      -  Map words to mel-word-detectors has the problem that # distinct words >> # distinct phonemes
         -  OTOH, (probably) very few words are required to uniquely disambiguate sentences (and thus infer the #EOS timing)
         -  Supposes we can do silence detection reasonably well (simple to make per-frame training examples, though)
@@ -682,9 +682,12 @@ Early on, maybe keep the shitty random values, but change the connections.
               -  Since we care about the length of the silences to more accurately guess which ones are the EOS tags
            -  Could use raw silence detector to give 'start of potential EOS' signals to learn from 
               -  Need to see how many potential EOS candidates are produced, to see whether rationing on invention is required
+              -  This turns out to be easy : The VQ-VAE process gives us just 1 'silence' symbol
         -  But if we have silences, plus (say) 10-50 distinct words, does that give us a sequence we can do vector-DTW on?
            -  Benefit of words over phonemes is that we have words-in-sentence-i directly
-        -  Some words have several readings (even short ones : and, of, a, the)
+           -  OTOH, 10% error bars around text length mean ~60secs of content for middle words in 10min clip
+              -  So, word embeddings v. diluted/noisy
+        -  Some words have several readings (often short ones : and, of, a, the)
            -  Need to select 'mid-range' of frequency for words for best info-per-training measure
      -  Alternative approaches
         -  DTW (Dynamic Time Warping)
@@ -697,13 +700,7 @@ Early on, maybe keep the shitty random values, but change the connections.
            -  http://www.cs.ucr.edu/~eamonn/Motif_Discovery_ICDM.pdf
               -   mSTAMP project site. https://sites.google.com/view/mstamp/ 
               -   https://github.com/mcyeh/mstamp
-     -  Interesting aside (and 2 ICLR workshop extended abstracts):
-        -  http://colinraffel.com/blog/my-year-at-brain.html
-        -  http://colinraffel.com/blog/online-and-linear-time-attention-by-enforcing-monotonic-alignments.html
-        -  TRAINING A SUBSAMPLING MECHANISM IN EXPECTATION
-           -  https://arxiv.org/pdf/1702.06914.pdf
-        -  EXPLAINING THE LEARNING DYNAMICS OF DIRECT FEEDBACK ALIGNMENT
-           -  https://openreview.net/pdf?id=HkXKUTVFl
+              
      -  Start software journey from VQ-VAE in TensorFlow (ideally)
         -  https://avdnoord.github.io/homepage/vqvae/
         
@@ -732,22 +729,31 @@ Early on, maybe keep the shitty random values, but change the connections.
               -  SLOW?  the model we released should generate around two seconds of audio every minute (batch size 16).
         -  And audio processing as Keras layers : 
            -  https://github.com/keunwoochoi/kapre
-           
-        -  Phase estimation for speech : 
-           -  Phase estimation in speech enhancement — Unimportant, important, or impossible? 
-              -  https://www.uni-oldenburg.de/fileadmin/user_upload/mediphysik/ag/speech/download/paper/gerkmann_krawczyk_rehr_phaseInSpeechEnhancement_eilat2012.pdf
-           -  Phase estimation in single-channel speech enhancement using phase invariance constraints
-              -  https://pdfs.semanticscholar.org/ace7/e7a918e3360af7c536a262d55df8d0dddffc.pdf
-           -  Message on Google Groups from Dan Ellis (1-May-2017) - NB: tacotron2 'proves' that mel is not too underspecified... :
-              - You can try Griffin-Lim (iterative inverse STFT, STFT, then imposing target magnitude). It converges very slowly. 
-              - Probably some more modern scheme for predicting phase (phase-advance, I guess) along with the spectrum is more appropriate. 
-              - The fact is that Mel-spectrum is a heavily underspecified representation, particularly in the high frequency. 
-                Perhaps you also need something better than a pseudoinverse to predict FFT bins from the Mel magnitudes. 
-              - The point about the phase is that it will have an arbitrary rotation if you just look at the current frame's magnitude. 
-                But if you also look at the per-bin phases from the previous frames, or equivalently attempt to predict 
-                only the phase difference for each bin relative to the preceding frame, it should be much better behaved statistically. 
-           
-    
+
+     -  Interesting aside (and 2 ICLR workshop extended abstracts):
+        -  http://colinraffel.com/blog/my-year-at-brain.html
+        -  http://colinraffel.com/blog/online-and-linear-time-attention-by-enforcing-monotonic-alignments.html
+        -  TRAINING A SUBSAMPLING MECHANISM IN EXPECTATION
+           -  https://arxiv.org/pdf/1702.06914.pdf
+        -  EXPLAINING THE LEARNING DYNAMICS OF DIRECT FEEDBACK ALIGNMENT
+           -  https://openreview.net/pdf?id=HkXKUTVFl
+
+
+  -  Phase estimation for speech : 
+     -  This is an important component of 'superresolution' for the mel->audio task
+     -  Phase estimation in speech enhancement — Unimportant, important, or impossible? 
+        -  https://www.uni-oldenburg.de/fileadmin/user_upload/mediphysik/ag/speech/download/paper/gerkmann_krawczyk_rehr_phaseInSpeechEnhancement_eilat2012.pdf
+     -  Phase estimation in single-channel speech enhancement using phase invariance constraints
+        -  https://pdfs.semanticscholar.org/ace7/e7a918e3360af7c536a262d55df8d0dddffc.pdf
+     -  Message on Google Groups from Dan Ellis (1-May-2017) - NB: tacotron2 'proves' that mel is not too underspecified... :
+        - You can try Griffin-Lim (iterative inverse STFT, STFT, then imposing target magnitude). It converges very slowly. 
+        - Probably some more modern scheme for predicting phase (phase-advance, I guess) along with the spectrum is more appropriate. 
+        - The fact is that Mel-spectrum is a heavily underspecified representation, particularly in the high frequency. 
+          Perhaps you also need something better than a pseudoinverse to predict FFT bins from the Mel magnitudes. 
+        - The point about the phase is that it will have an arbitrary rotation if you just look at the current frame's magnitude. 
+          But if you also look at the per-bin phases from the previous frames, or equivalently attempt to predict 
+          only the phase difference for each bin relative to the preceding frame, it should be much better behaved statistically. 
+
      
   -  Word-order game instead of translation for embedding-in-context a la Socher
        -  Or word-substitution
