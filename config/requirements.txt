@@ -1,8 +1,5 @@
 
-
-
-
-### Theano
+### Theano - actually : NO, it's being phased out
 
 ## Theano-HEAD from git 
 #
@@ -14,7 +11,7 @@
 
 # Better (required by keras, if we use the theano backend) - and fixes 'pool' problem
 # --no-deps 
-git+git://github.com/Theano/Theano.git#egg=theano
+#git+git://github.com/Theano/Theano.git#egg=theano
 
 # Try the Theano 'master'
 #https://github.com/Theano/Theano/archive/master.zip
@@ -36,10 +33,10 @@ git+git://github.com/Theano/Theano.git#egg=theano
 # Even though Keras is *inside* TensorFlow...  IT LAGS BADLY...
 
 
-### Lasagne
+### Lasagne - NOPE, this is/was a Theano thing
 
 ## Lasagne 'master'
-https://github.com/Lasagne/Lasagne/archive/master.zip
+#https://github.com/Lasagne/Lasagne/archive/master.zip
 
 
 ### TensorFlow
@@ -57,12 +54,12 @@ tensorflow>=1.4.0
 # Plotting of graphs (simpler, but beautiful too)
 #seaborn
 
-# Jupyter (the new new thing)
+# Jupyter (previously iPython)
 jupyter
 
 
 # Visualization of theano graphs (now updated for Python3)
-pydot
+#pydot
 
 ## For explanation : http://stackoverflow.com/questions/15951748/pydot-and-graphviz-error-couldnt-import-dot-parser-loading-of-dot-files-will
 #pyparsing==1.5.7
