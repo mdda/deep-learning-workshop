@@ -796,11 +796,15 @@ Early on, maybe keep the shitty random values, but change the connections.
 ## FOSSASIA Ideas
   - Meta-Learning
     + Reptile (OpenAI)
-      - Has nice webpage/blog-post
+      - Has nice webpage/blog-post : https://blog.openai.com/reptile/
         -  Minimal effort required to get going - includes known-good model
       - But : This builds a network that is as-retrainable-as-possible,
               rather than solving a single problem as well as possible.
               ie : less 'delightfull' than a single good result.
+    + ENAS is also a tempting idea
+      - Overall number of back-prop steps would be similar
+        -  But need to have structure updates
+        -  Possible to do in PyTorch or TensorFlow eager...
     
   - Word-Embeddings
     + Translation via alignment of word embeddings in 2+ languages
@@ -811,3 +815,5 @@ Early on, maybe keep the shitty random values, but change the connections.
         -  Evolutionary-style improvement (combo-deal for teaching)
 
 
+  - Speech Generation
+  
