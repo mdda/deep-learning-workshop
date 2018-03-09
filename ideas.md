@@ -792,3 +792,22 @@ Early on, maybe keep the shitty random values, but change the connections.
   -  Conversational agents as magician master chess players
      -  This is more of a business idea, really
     
+
+## FOSSASIA Ideas
+  - Meta-Learning
+    + Reptile (OpenAI)
+      - Has nice webpage/blog-post
+        -  Minimal effort required to get going - includes known-good model
+      - But : This builds a network that is as-retrainable-as-possible,
+              rather than solving a single problem as well as possible.
+              ie : less 'delightfull' than a single good result.
+    
+  - Word-Embeddings
+    + Translation via alignment of word embeddings in 2+ languages
+      - Possibilities : 
+        -  Matrix inversion (quickest case, if it works)
+        -  Iterative improvement (easiest to implement)
+        -  Adversarial improvement (pretty exciting)
+        -  Evolutionary-style improvement (combo-deal for teaching)
+
+
