@@ -814,6 +814,9 @@ Early on, maybe keep the shitty random values, but change the connections.
         -  Adversarial improvement (pretty exciting)
         -  Evolutionary-style improvement (combo-deal for teaching)
 
-
   - Speech Generation
+    + r9k9 has a nice page of speech-related stuff, but perhaps it's too specific
+      -  Also, it may not be Deep Learning _per se_.
+      
+      
   
