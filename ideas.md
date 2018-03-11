@@ -813,6 +813,10 @@ Early on, maybe keep the shitty random values, but change the connections.
         -  Iterative improvement (easiest to implement)
         -  Adversarial improvement (pretty exciting)
         -  Evolutionary-style improvement (combo-deal for teaching)
+      - fasttext2 is apparently quite an improvement
+        -  Potential to replace GloVe in workshop notebooks 
+      - If multi-language, need to make sure that fonts + IME are installed
+      
 
   - Speech Generation
     + r9k9 has a nice page of speech-related stuff, but perhaps it's too specific
