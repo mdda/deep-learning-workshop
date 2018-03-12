@@ -805,6 +805,10 @@ Early on, maybe keep the shitty random values, but change the connections.
       - Overall number of back-prop steps would be similar
         -  But need to have structure updates
         -  Possible to do in PyTorch or TensorFlow eager...
+    + Or a variation to explore the large, but sparse model idea of WaveRNN
+      - Not clear what a toy problem should look like
+      - Nor clear whether sparseness can be 'discovered from below' or
+        requires a large model, and discovered redundency
     
   - Word-Embeddings
     + Translation via alignment of word embeddings in 2+ languages
