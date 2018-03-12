@@ -818,8 +818,15 @@ Early on, maybe keep the shitty random values, but change the connections.
         -  Adversarial improvement (pretty exciting)
         -  Evolutionary-style improvement (combo-deal for teaching)
       - fasttext2 is apparently quite an improvement
+        -  Downloadable under : Creative Commons Attribution-Share-Alike License 3.0: 
+           + English (clearly most-worked-on)
+             https://fasttext.cc/docs/en/english-vectors.html
+           + 157 languages : includes Tamil, Hindi, Indonesian, Malaysian and "Chinese"
+             https://fasttext.cc/docs/en/crawl-vectors.html
+        -  Need to consider word segmentation in Chinese (for instance)
         -  Potential to replace GloVe in workshop notebooks 
       - If multi-language, need to make sure that fonts + IME are installed
+      
       
 
   - Speech Generation
