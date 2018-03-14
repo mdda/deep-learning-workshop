@@ -826,7 +826,8 @@ Early on, maybe keep the shitty random values, but change the connections.
         -  Need to consider word segmentation in Chinese (for instance)
         -  Potential to replace GloVe in workshop notebooks 
       - If multi-language, need to make sure that fonts + IME are installed
-      
+      - One issue is that this will really require the USB VirtualBox install
+        -  Reduces options regarding using (for instance) Collab
       
 
   - Speech Generation
