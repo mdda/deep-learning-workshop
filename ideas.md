@@ -821,10 +821,19 @@ Early on, maybe keep the shitty random values, but change the connections.
         -  Downloadable under : Creative Commons Attribution-Share-Alike License 3.0: 
            + English (clearly most-worked-on)
              https://fasttext.cc/docs/en/english-vectors.html
+             -  English 651Mb .gz
+                https://s3-us-west-1.amazonaws.com/fasttext-vectors/wiki-news-300d-1M.vec.zip
+             -  English 958Mb .gz (with subword hinting)
+                https://s3-us-west-1.amazonaws.com/fasttext-vectors/wiki-news-300d-1M-subword.vec.zip
            + 157 languages : includes Tamil, Hindi, Indonesian, Malaysian and "Chinese"
              https://fasttext.cc/docs/en/crawl-vectors.html
+             -  Malay 678M .gz
+                https://s3-us-west-1.amazonaws.com/fasttext-vectors/word-vectors-v2/cc.ms.300.vec.gz
+             -  Chinese 1.3G .gz
+                https://s3-us-west-1.amazonaws.com/fasttext-vectors/word-vectors-v2/cc.zh.300.vec.gz
         -  Need to consider word segmentation in Chinese (for instance)
         -  Potential to replace GloVe in workshop notebooks 
+           + Useful starter blog : https://blog.manash.me/how-to-use-pre-trained-word-vectors-from-facebooks-fasttext-a71e6d55f27
       - If multi-language, need to make sure that fonts + IME are installed
       - One issue is that this will really require the USB VirtualBox install
         -  Reduces options regarding using (for instance) Collab
