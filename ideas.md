@@ -816,6 +816,10 @@ Early on, maybe keep the shitty random values, but change the connections.
            - either do masking on a large matrix; or explicitly construct everything on-the-fly
       - Nor clear whether sparseness can be 'discovered from below' or
         requires a large model, and discovered redundency
+      - Interesting papers : 
+        -  Sparse Persistent RNNs: Squeezing Large Recurrent Networks On-Chip 
+           + https://openreview.net/pdf?id=HkxF5RgC-
+        
     
   - Word-Embeddings
     + Translation via alignment of word embeddings in 2+ languages
