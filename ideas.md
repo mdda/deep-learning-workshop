@@ -812,6 +812,8 @@ Early on, maybe keep the shitty random values, but change the connections.
     + Or a variation to explore the large, but sparse model idea of WaveRNN
       - Not clear what a toy problem should look like
         -  Would be great to do something with attention, or RNN
+        -  One issue is how to keep track of the derivatives
+           - either do masking on a large matrix; or explicitly construct everything on-the-fly
       - Nor clear whether sparseness can be 'discovered from below' or
         requires a large model, and discovered redundency
     
