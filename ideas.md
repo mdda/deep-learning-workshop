@@ -798,15 +798,20 @@ Early on, maybe keep the shitty random values, but change the connections.
     + Reptile (OpenAI)
       - Has nice webpage/blog-post : https://blog.openai.com/reptile/
         -  Minimal effort required to get going - includes known-good model
+           -  Now have working example in Jupyter (with better comments/variable-names)
       - But : This builds a network that is as-retrainable-as-possible,
               rather than solving a single problem as well as possible.
               ie : less 'delightfull' than a single good result.
+        -  OTOH, the 3 boxes classification is fun as JS, and the Sine-wave example makes it pretty clear
+        
     + ENAS is also a tempting idea
       - Overall number of back-prop steps would be similar
         -  But need to have structure updates
         -  Possible to do in PyTorch or TensorFlow eager...
+        
     + Or a variation to explore the large, but sparse model idea of WaveRNN
       - Not clear what a toy problem should look like
+        -  Would be great to do something with attention, or RNN
       - Nor clear whether sparseness can be 'discovered from below' or
         requires a large model, and discovered redundency
     
