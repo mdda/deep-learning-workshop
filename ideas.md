@@ -844,7 +844,8 @@ Early on, maybe keep the shitty random values, but change the connections.
       - If multi-language, need to make sure that fonts + IME are installed
       - One issue is that this will really require the USB VirtualBox install
         -  Reduces options regarding using (for instance) Collab
-      
+      - More important issue : The cross-language embedding tricks *don't seem to work*
+        -  Significantly reduces the attractiveness of teaching the topic 'hands-on'...
 
   - Speech Generation
     + r9k9 has a nice page of speech-related stuff, but perhaps it's too specific
