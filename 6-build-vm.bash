@@ -12,6 +12,7 @@ source ./config/params
 # ->> libguestfs-1.30.6-2.fc22.x86_64 ...
 # ->> without the libvirt-daemon-config-network, the bridging network thing doesn't get set up properly
 
+# Into /etc/dnf/dnf.conf add : "keepcache=1" (test this)
 
 ## Running this script the first time takes an extra ~10mins to download 
 ##   http://libguestfs.org/download/builder/fedora-25.xz
