@@ -1,8 +1,5 @@
 
-
-
-
-### Theano
+### Theano - actually : NO, it's being phased out
 
 ## Theano-HEAD from git 
 #
@@ -14,11 +11,10 @@
 
 # Better (required by keras, if we use the theano backend) - and fixes 'pool' problem
 # --no-deps 
-git+git://github.com/Theano/Theano.git#egg=theano
+#git+git://github.com/Theano/Theano.git#egg=theano
 
 # Try the Theano 'master'
 #https://github.com/Theano/Theano/archive/master.zip
-
 
 
 ### Keras
@@ -36,39 +32,52 @@ git+git://github.com/Theano/Theano.git#egg=theano
 # Even though Keras is *inside* TensorFlow...  IT LAGS BADLY...
 
 
-### Lasagne
+### Lasagne - NOPE, this is/was a Theano thing
 
 ## Lasagne 'master'
-https://github.com/Lasagne/Lasagne/archive/master.zip
+#https://github.com/Lasagne/Lasagne/archive/master.zip
 
 
 ### TensorFlow
 
 # CPU version
-tensorflow>=1.4.0
+tensorflow>=1.6.0
 
-# If you're running locally, this needs CUDA toolkit 8.0 and CuDNN v6
-#tensorflow-gpu>=1.4.0
+# If you're running locally, this needs CUDA toolkit 9.0 and CuDNN v7
+#tensorflow-gpu>=1.6.0
 
-# Plotting of graphs (dynamic, beautiful)
-#bokeh>=0.11.0
-#jsonschema
 
-# Plotting of graphs (simpler, but beautiful too)
-#seaborn
-
-# Jupyter (the new new thing)
+# Jupyter (previously iPython)
 jupyter
 
 
+### PyTorch (NEW!)
+# CPU version
+http://download.pytorch.org/whl/cpu/torch-0.3.1-cp36-cp36m-linux_x86_64.whl 
+
+# GPU version  CUDA 9.0
+#http://download.pytorch.org/whl/cu90/torch-0.3.1-cp36-cp36m-linux_x86_64.whl 
+
+
+## Requests is only used in the GPU chooser, which is a pity.  OTOH, it's a good library
+requests>=2.9.0
+
+## Beautiful soup : Useful for parsing web pages (specifically for the GPU-chooser notebook)
+bs4
+
+## For the speech module (MFCC, etc)
+python_speech_features
+
+## For the OGG/WAV (++?) reader
+soundfile
+
+
+
 # Visualization of theano graphs (now updated for Python3)
-pydot
+#pydot
 
 ## For explanation : http://stackoverflow.com/questions/15951748/pydot-and-graphviz-error-couldnt-import-dot-parser-loading-of-dot-files-will
 #pyparsing==1.5.7
-
-## This is for Python word2vec
-#gensim
 
 ## This is a hd5 pickler (fast)
 #hickle
@@ -77,12 +86,18 @@ pydot
 h5py>=2.5.0
 
 
+
 ### Potentially replace these with spaCy
 ## This is for Punkt and TreeBank tokenizers
 nltk>=3.2.1
 
 ## This is for the GloVE word embedding package :: https://github.com/maciejkula/glove-python
 glove_python>=0.1.0
+
+## This is for Python word2vec
+gensim
+
+
 
 ### spaCy alternative to nltk/glove (except that raw embeddings not parseable (?)
 # Defeat cuda include directory detection in the thinc installer ...
@@ -98,14 +113,11 @@ glove_python>=0.1.0
 #  Try : python -m spacy validate
 
 
-## Requests is only used in the GPU chooser, which is a pity.  OTOH, it's a good library
-requests>=2.9.0
 
-## Beautiful soup : Useful for parsing web pages (specifically for the GPU-chooser notebook)
-bs4
 
-## For the speech module (MFCC, etc)
-python_speech_features
+# Plotting of graphs (dynamic, beautiful)
+#bokeh>=0.11.0
+#jsonschema
 
-## For the OGG/WAV (++?) reader
-soundfile
+# Plotting of graphs (simpler, but beautiful too)
+#seaborn

@@ -653,20 +653,28 @@ Early on, maybe keep the shitty random values, but change the connections.
         -  Followed by log dynamic range compression 
      -  Use this as base representation for VQ-VAE algorithm to discretize the audio content
         -  2_DeepMind_NeuralDiscreteRepresentationLearning__1711.00937.pdf
-           -  the encoder has 6 strided convolutions with stride 2 and window-size 4
            -  output is 64x smaller than the original waveform ( discrete space is 512-dimensional )
            -  Also : "Chunks of 40960 timesteps (2.56 seconds) == 16KHz
            -          which yields 320 latent timesteps (at 128 samples per timestep = 8ms)."
+           -  Three different experiments explained
+              -  #1 : Extract long-term info
+                 -   the *encoder* has 6 strided convolutions with stride 2 and window-size 4, discrete space 512-d
+                    - Diagram TBA  == 64x
+              -  #2 : Unconditional samples 
+                 -   128x compression to discrete space
+              -  #3 : Phoneme sequence comparison
+                 -   128-d space run at 25Hz (sample_rate=16KHz => 64 samples per tick)
         -  https://scazlab.yale.edu/sites/default/files/files/Gold-CogSci-06.pdf
         -  https://www.cc.gatech.edu/~isbell/reading/papers/oates.pdf
         -  Blizzard 2013 dataset is good according to kkestner, but non-commercial use only
            -  http://www.cstr.ed.ac.uk/projects/blizzard/2013/lessac_blizzard2013/
-     -  Compare (somehow) with the words in sentences (add #OES markers according to punkt)
-        -  Aim is to accurately split the input text at the #OES markers
+     -  Compare (somehow) with the words in sentences (add #EOS markers according to punkt or spaCy)
+        -  Aim is to accurately split the input text at the #EOS markers
      -  Map embeddings of mels and words into same space
         -  Create an embedding for something like byte-pair-encoded letter groups (https://en.wikipedia.org/wiki/Byte_pair_encoding)
         -  Simple map will omit time dimension : Need to retrofit somehow
         -  Having a good idea will clearly fit into 'representation' theme of ICLR
+        -  BUT : Probably not enough data to do a good mapping
      -  Map words to mel-word-detectors has the problem that # distinct words >> # distinct phonemes
         -  OTOH, (probably) very few words are required to uniquely disambiguate sentences (and thus infer the #EOS timing)
         -  Supposes we can do silence detection reasonably well (simple to make per-frame training examples, though)
@@ -674,9 +682,12 @@ Early on, maybe keep the shitty random values, but change the connections.
               -  Since we care about the length of the silences to more accurately guess which ones are the EOS tags
            -  Could use raw silence detector to give 'start of potential EOS' signals to learn from 
               -  Need to see how many potential EOS candidates are produced, to see whether rationing on invention is required
+              -  This turns out to be easy : The VQ-VAE process gives us just 1 'silence' symbol
         -  But if we have silences, plus (say) 10-50 distinct words, does that give us a sequence we can do vector-DTW on?
            -  Benefit of words over phonemes is that we have words-in-sentence-i directly
-        -  Some words have several readings (even short ones : and, of, a, the)
+           -  OTOH, 10% error bars around text length mean ~60secs of content for middle words in 10min clip
+              -  So, word embeddings v. diluted/noisy
+        -  Some words have several readings (often short ones : and, of, a, the)
            -  Need to select 'mid-range' of frequency for words for best info-per-training measure
      -  Alternative approaches
         -  DTW (Dynamic Time Warping)
@@ -689,13 +700,7 @@ Early on, maybe keep the shitty random values, but change the connections.
            -  http://www.cs.ucr.edu/~eamonn/Motif_Discovery_ICDM.pdf
               -   mSTAMP project site. https://sites.google.com/view/mstamp/ 
               -   https://github.com/mcyeh/mstamp
-     -  Interesting aside (and 2 ICLR workshop extended abstracts):
-        -  http://colinraffel.com/blog/my-year-at-brain.html
-        -  http://colinraffel.com/blog/online-and-linear-time-attention-by-enforcing-monotonic-alignments.html
-        -  TRAINING A SUBSAMPLING MECHANISM IN EXPECTATION
-           -  https://arxiv.org/pdf/1702.06914.pdf
-        -  EXPLAINING THE LEARNING DYNAMICS OF DIRECT FEEDBACK ALIGNMENT
-           -  https://openreview.net/pdf?id=HkXKUTVFl
+              
      -  Start software journey from VQ-VAE in TensorFlow (ideally)
         -  https://avdnoord.github.io/homepage/vqvae/
         
@@ -724,22 +729,31 @@ Early on, maybe keep the shitty random values, but change the connections.
               -  SLOW?  the model we released should generate around two seconds of audio every minute (batch size 16).
         -  And audio processing as Keras layers : 
            -  https://github.com/keunwoochoi/kapre
-           
-        -  Phase estimation for speech : 
-           -  Phase estimation in speech enhancement — Unimportant, important, or impossible? 
-              -  https://www.uni-oldenburg.de/fileadmin/user_upload/mediphysik/ag/speech/download/paper/gerkmann_krawczyk_rehr_phaseInSpeechEnhancement_eilat2012.pdf
-           -  Phase estimation in single-channel speech enhancement using phase invariance constraints
-              -  https://pdfs.semanticscholar.org/ace7/e7a918e3360af7c536a262d55df8d0dddffc.pdf
-           -  Message on Google Groups from Dan Ellis (1-May-2017) - NB: tacotron2 'proves' that mel is not too underspecified... :
-              - You can try Griffin-Lim (iterative inverse STFT, STFT, then imposing target magnitude). It converges very slowly. 
-              - Probably some more modern scheme for predicting phase (phase-advance, I guess) along with the spectrum is more appropriate. 
-              - The fact is that Mel-spectrum is a heavily underspecified representation, particularly in the high frequency. 
-                Perhaps you also need something better than a pseudoinverse to predict FFT bins from the Mel magnitudes. 
-              - The point about the phase is that it will have an arbitrary rotation if you just look at the current frame's magnitude. 
-                But if you also look at the per-bin phases from the previous frames, or equivalently attempt to predict 
-                only the phase difference for each bin relative to the preceding frame, it should be much better behaved statistically. 
-           
-    
+
+     -  Interesting aside (and 2 ICLR workshop extended abstracts):
+        -  http://colinraffel.com/blog/my-year-at-brain.html
+        -  http://colinraffel.com/blog/online-and-linear-time-attention-by-enforcing-monotonic-alignments.html
+        -  TRAINING A SUBSAMPLING MECHANISM IN EXPECTATION
+           -  https://arxiv.org/pdf/1702.06914.pdf
+        -  EXPLAINING THE LEARNING DYNAMICS OF DIRECT FEEDBACK ALIGNMENT
+           -  https://openreview.net/pdf?id=HkXKUTVFl
+
+
+  -  Phase estimation for speech : 
+     -  This is an important component of 'superresolution' for the mel->audio task
+     -  Phase estimation in speech enhancement — Unimportant, important, or impossible? 
+        -  https://www.uni-oldenburg.de/fileadmin/user_upload/mediphysik/ag/speech/download/paper/gerkmann_krawczyk_rehr_phaseInSpeechEnhancement_eilat2012.pdf
+     -  Phase estimation in single-channel speech enhancement using phase invariance constraints
+        -  https://pdfs.semanticscholar.org/ace7/e7a918e3360af7c536a262d55df8d0dddffc.pdf
+     -  Message on Google Groups from Dan Ellis (1-May-2017) - NB: tacotron2 'proves' that mel is not too underspecified... :
+        - You can try Griffin-Lim (iterative inverse STFT, STFT, then imposing target magnitude). It converges very slowly. 
+        - Probably some more modern scheme for predicting phase (phase-advance, I guess) along with the spectrum is more appropriate. 
+        - The fact is that Mel-spectrum is a heavily underspecified representation, particularly in the high frequency. 
+          Perhaps you also need something better than a pseudoinverse to predict FFT bins from the Mel magnitudes. 
+        - The point about the phase is that it will have an arbitrary rotation if you just look at the current frame's magnitude. 
+          But if you also look at the per-bin phases from the previous frames, or equivalently attempt to predict 
+          only the phase difference for each bin relative to the preceding frame, it should be much better behaved statistically. 
+
      
   -  Word-order game instead of translation for embedding-in-context a la Socher
        -  Or word-substitution
@@ -778,3 +792,68 @@ Early on, maybe keep the shitty random values, but change the connections.
   -  Conversational agents as magician master chess players
      -  This is more of a business idea, really
     
+
+## FOSSASIA Ideas
+  - Meta-Learning
+    + Reptile (OpenAI)
+      - Has nice webpage/blog-post : https://blog.openai.com/reptile/
+        -  Minimal effort required to get going - includes known-good model
+           -  Now have working example in Jupyter (with better comments/variable-names)
+      - But : This builds a network that is as-retrainable-as-possible,
+              rather than solving a single problem as well as possible.
+              ie : less 'delightfull' than a single good result.
+        -  OTOH, the 3 boxes classification is fun as JS, and the Sine-wave example makes it pretty clear
+        
+    + ENAS is also a tempting idea
+      - Overall number of back-prop steps would be similar
+        -  But need to have structure updates
+        -  Possible to do in PyTorch or TensorFlow eager...
+        
+    + Or a variation to explore the large, but sparse model idea of WaveRNN
+      - Not clear what a toy problem should look like
+        -  Would be great to do something with attention, or RNN
+        -  One issue is how to keep track of the derivatives
+           - either do masking on a large matrix; or explicitly construct everything on-the-fly
+      - Nor clear whether sparseness can be 'discovered from below' or
+        requires a large model, and discovered redundency
+      - Interesting papers : 
+        -  Sparse Persistent RNNs: Squeezing Large Recurrent Networks On-Chip 
+           + https://openreview.net/pdf?id=HkxF5RgC-
+        
+    
+  - Word-Embeddings
+    + Translation via alignment of word embeddings in 2+ languages
+      - Possibilities : 
+        -  Matrix inversion (quickest case, if it works)
+        -  Iterative improvement (easiest to implement)
+        -  Adversarial improvement (pretty exciting)
+        -  Evolutionary-style improvement (combo-deal for teaching)
+      - fasttext2 is apparently quite an improvement
+        -  Downloadable under : Creative Commons Attribution-Share-Alike License 3.0: 
+           + English (clearly most-worked-on)
+             https://fasttext.cc/docs/en/english-vectors.html
+             -  English 651Mb .gz
+                https://s3-us-west-1.amazonaws.com/fasttext-vectors/wiki-news-300d-1M.vec.zip
+             -  English 958Mb .gz (with subword hinting)
+                https://s3-us-west-1.amazonaws.com/fasttext-vectors/wiki-news-300d-1M-subword.vec.zip
+           + 157 languages : includes Tamil, Hindi, Indonesian, Malaysian and "Chinese"
+             https://fasttext.cc/docs/en/crawl-vectors.html
+             -  Malay 678M .gz
+                https://s3-us-west-1.amazonaws.com/fasttext-vectors/word-vectors-v2/cc.ms.300.vec.gz
+             -  Chinese 1.3G .gz
+                https://s3-us-west-1.amazonaws.com/fasttext-vectors/word-vectors-v2/cc.zh.300.vec.gz
+        -  Need to consider word segmentation in Chinese (for instance)
+        -  Potential to replace GloVe in workshop notebooks 
+           + Useful starter blog : https://blog.manash.me/how-to-use-pre-trained-word-vectors-from-facebooks-fasttext-a71e6d55f27
+      - If multi-language, need to make sure that fonts + IME are installed
+      - One issue is that this will really require the USB VirtualBox install
+        -  Reduces options regarding using (for instance) Collab
+      - More important issue : The cross-language embedding tricks *don't seem to work*
+        -  Significantly reduces the attractiveness of teaching the topic 'hands-on'...
+
+  - Speech Generation
+    + r9k9 has a nice page of speech-related stuff, but perhaps it's too specific
+      -  Also, it may not be Deep Learning _per se_.
+      
+      
+  
