@@ -860,5 +860,9 @@ Early on, maybe keep the shitty random values, but change the connections.
 ## Jack and PulseAudio
   - Write up how to make it work
     +  First step : Make it work!
+    +  3hrs later : Audio appears...
+  - Now to document what happened (and the minimal steps to repeat)
+    +  Sadly, it seemed to require reboots, which is annoying
+    
     
     
