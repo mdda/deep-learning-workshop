@@ -857,3 +857,8 @@ Early on, maybe keep the shitty random values, but change the connections.
       
       
   
+## Jack and PulseAudio
+  - Write up how to make it work
+    +  First step : Make it work!
+    
+    
