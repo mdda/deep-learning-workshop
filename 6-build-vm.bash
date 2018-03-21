@@ -47,6 +47,7 @@ mkdir -p vm-guest/cache/env
 echo ${vbox_name} > ./config/vbox_name
 
 virt-builder \
+  --verbose \
   $guest_type \
   --output $image_file \
   --root-password file:config-vm-host/root-password \

@@ -5,6 +5,14 @@ delete /.autorelabel
 edit /etc/selinux/config:\
       s/SELINUX=enforcing/SELINUX=permissive/
 
+# http://libguestfs.org/virt-builder.1.html # These use perl expression(s)
+#  Need to set tinyproxy to allow requests from 192.168.122.91
+edit /etc/yum.repos.d/fedora.repo:\
+       s{.*enabled=1}{enabled=1\nproxy=http://192.168.2.130:8888}
+
+edit /etc/yum.repos.d/fedora-updates.repo:\
+       s{.*enabled=1}{enabled=1\nproxy=http://192.168.2.130:8888}
+
 # http://libguestfs.org/virt-builder.1.html#users-and-passwords
 #root-password password:deeplearning
 
