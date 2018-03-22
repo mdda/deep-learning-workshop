@@ -43,7 +43,8 @@ firstboot-command chmod 744 /home/user/run-tensorboard.bash
 
 
 # And the jupyter notebooks
-copy-in notebooks:/home/user/
+#copy-in notebooks:/home/user/
+copy-in clean/notebooks:/home/user/
 delete /home/user/notebooks/data/cache
 
 # And the presentations folder (for the images)

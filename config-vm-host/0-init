@@ -5,13 +5,28 @@ delete /.autorelabel
 edit /etc/selinux/config:\
       s/SELINUX=enforcing/SELINUX=permissive/
 
+
+# Settings from standard FC27 distribution :
+##baseurl=http://download.fedoraproject.org/pub/fedora/linux/releases/$releasever/Everything/$basearch/os/
+#metalink=https://mirrors.fedoraproject.org/metalink?repo=fedora-$releasever&arch=$basearch
+#         http://mirror.0x.sg/fedora/linux/
+
 # http://libguestfs.org/virt-builder.1.html # These use perl expression(s)
 #  Need to set tinyproxy to allow requests from 192.168.122.91
 edit /etc/yum.repos.d/fedora.repo:\
-       s{.*enabled=1}{enabled=1\nproxy=http://192.168.2.130:8888}
+       s{.*enabled=1}{enabled=1\nproxy=http://192.168.2.130:3128};\
+       s{^#baseurl=http://download.fedoraproject.org/pub/}{baseurl=http://mirror.0x.sg/};\
+       s{^metalink}{#metalink};\
+       print
 
 edit /etc/yum.repos.d/fedora-updates.repo:\
-       s{.*enabled=1}{enabled=1\nproxy=http://192.168.2.130:8888}
+       s{.*enabled=1}{enabled=1\nproxy=http://192.168.2.130:3128};\
+       s{^#baseurl=http://download.fedoraproject.org/pub/}{baseurl=http://mirror.0x.sg/};\
+       s{^metalink}{#metalink};\
+       print
+
+#       s{.*enabled=1}{enabled=1\nproxy=http://192.168.1.18:3128};\
+#
 
 # http://libguestfs.org/virt-builder.1.html#users-and-passwords
 #root-password password:deeplearning
