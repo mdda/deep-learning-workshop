@@ -24,6 +24,12 @@
   <!-- For syntax highlighting -->
   <link rel="stylesheet" href="lib/css/zenburn.css">
 
+
+  <!-- This is for the reptile code itself -->
+  <link rel="stylesheet" href="reptile/style.css" type="text/css">
+  <script src="reptile/app.js"></script>
+  
+
   <!-- If the query includes 'print-pdf', include the PDF print sheet -->
   <script>
    if( window.location.search.match( /print-pdf/gi ) ) {
@@ -63,80 +69,18 @@ table.table-fix {
 
 <!--
 
-This is just a cover page - with various essential instructions...
 
 !-->
 
 <section>
- <h1>Deep Learning Workshop</h1>
- <p>
-  <small><a href="http://mdda.net">Martin Andrews</a> @ <a href="http://redcatlabs.com/">redcatlabs.com</a></small>
- </p>
- <p>
-  <xsmall>Copy the USB key...  And pass it on!</xsmall>
- </p>
- <p>
-  <small>When you start the VM, there's no need to log in</small>
- </p>
+  <h2>Learning-to-Learn</h2>
+  <br>
+  
+  <p>
+    <div id="reptile" class="few-shot-container"></div>
+  </p>
+  
 </section>
-
-<section>
- <h2>Instructions</h2>
- <ul class="fix-spacing">
-  <li>
-    <!-- <a href="./FOSSASIA-2016.html" target=_blank> !-->
-    <!-- <a href="./PyConSG-2016.html" target=_blank> !-->
-    <!-- <a href="./DataScienceSG-2016.html" target=_blank> !-->
-    <!-- <a href="./FifthElephant-2016.html" target=_blank> !-->
-    <!-- <a href="./PyDataSG_2017-01.html" target=_blank> !-->
-    <!-- <a href="./FOSSASIA-2017.html" target=_blank> !-->
-    <a href="./FOSSASIA-2018.html" target=_blank>
-      Main Presentation
-    </a>
-  </li>
-  <li>Browser-based examples :</li>
-  <li style="list-style-type:none">
-    <!--
-    <ul>
-      <li><a href="./convnetjs/demo/image_regression_custom.html" target=_blank>Cat Painting</a> - Breadth vs. Depth</li>
-    </ul>
-    !-->
-    <ul>
-      <!-- <li><a href="./convnetjs/demo/mnist_custom.html" target=_blank>MNIST</a></li> !-->
-      <!-- <li><a href="http://cs.stanford.edu/people/karpathy/convnetjs/demo/mnist.html" target=_blank>MNIST</a></li> !-->
-      <!-- <li><a href="./tensorflow-playground/index.html" target=_blank>TensorFlow</a> - Features and Training</li> !-->
-      <li><a href="./tensorflow-playground/index.html#activation=tanh&batchSize=10&dataset=gauss&regDataset=reg-plane&learningRate=0.03&regularizationRate=0&noise=0&networkShape=&seed=0.90010&showTestData=false&discretize=false&percTrainData=50&x=true&y=true&xTimesY=false&xSquared=false&ySquared=false&cosX=false&sinX=false&cosY=false&sinY=false&collectStats=false&problem=classification&initZero=false" target=_blank>TensorFlow</a> - Features and Training</li>
-    </ul>
-    <ul>
-      <li><a href="./CNN-demo.html" target=_blank>Convolution Demo</a> - Adjustable Filter</li>
-    </ul>
-    <ul>
-      <li><a href="./MetaLearning-demo.html" target=_blank>Meta-Learning Demo</a> - '3 boxes'</li>
-    </ul>
-  </li>
-  <li>VirtualBox / Jupyter examples :</li>
-  <li style="list-style-type:none">
-    <ul>
-      <li>Import Appliance : <br />'<code>deep-learning ... .OVA</code>'</li>
-      <li><a href="http://localhost:8080/" target=_blank>Open Jupyter</a></li>
-      <!-- <li><a href="http://127.0.0.1:8080/" target=_blank>Open Jupyter (password = <code>password</code>)</a></li>  !-->
-      <!-- <li><code>ssh -p 8282 user@localhost</code> <span style="font-size:0.5em;">password=password</span></li>  !-->
-      <!-- <li><a href="http://localhost:8081/" target=_blank>Open Tensorboard</a></li>  !-->
-    </ul>
-  </li>
- </ul>
-</section>
-
-
-<section>
- <h1>- QUESTIONS -</h1>
- <br>
- <h3>Martin.Andrews @<br> RedCatLabs.com</h3>
- <br>
- <p>My blog : <a href="https://mdda.net/">http://mdda.net/</a></p>
- <p>GitHub : <a href="https://github.com/mdda">mdda</a></p>
-</section>
-
 
    </div>
   </div>
@@ -182,5 +126,10 @@ This is just a cover page - with various essential instructions...
 
   </script>
 
+  <-script src="convnetjs/demo/image_regression_custom_images.js"></script>
+  <script type="text/javascript">
+    
+    
+  </script>
  </body>
 </html>

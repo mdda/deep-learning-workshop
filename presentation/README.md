@@ -140,3 +140,17 @@ perl -pi.orig -e 's{https://fonts.googleapis.com/css\?family=Roboto:300,400,500\
   <link href="fonts/material-icons.css" rel="stylesheet" type="text/css">
 
 
+
+### Adding Reptile '3 boxes' JS example
+
+Code has been taken from the [OpenAI Reptile repo](https://github.com/openai/supervised-reptile/tree/master/web) - 
+which is MIT-licensed.  
+
+```
+git clone https://github.com/openai/supervised-reptile
+cd supervised-reptile/
+cd web/
+sh build.sh 
+```
+This creates a ```model.js``` file, and semi-compressed JS files in new directory 'build/'
+
