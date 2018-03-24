@@ -52,7 +52,7 @@ delete /home/user/notebooks/data/cache
 copy-in clean/.keras:/home/user/
 
 # And the presentations folder (for the images)
-copy-in presentation:/home/user/
+copy-in clean/presentation:/home/user/
 
 # maybe instead : (but need to rename the folder...)
 # copy-in presentation/reveal.js-2.6.2/img:/home/user/notebooks/images/presentation
