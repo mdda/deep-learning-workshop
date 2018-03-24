@@ -11,16 +11,19 @@ edit /etc/selinux/config:\
 #metalink=https://mirrors.fedoraproject.org/metalink?repo=fedora-$releasever&arch=$basearch
 #         http://mirror.0x.sg/fedora/linux/
 
+
+#       s{.*enabled=1}{enabled=1\nproxy=http://192.168.2.130:3128};
+
 # http://libguestfs.org/virt-builder.1.html # These use perl expression(s)
 #  Need to set tinyproxy to allow requests from 192.168.122.91
 edit /etc/yum.repos.d/fedora.repo:\
-       s{.*enabled=1}{enabled=1\nproxy=http://192.168.2.130:3128};\
+       s{.*enabled=1}{enabled=1\nproxy=http://192.168.1.18:3128};\
        s{^#baseurl=http://download.fedoraproject.org/pub/}{baseurl=http://mirror.0x.sg/};\
        s{^metalink}{#metalink};\
        print
 
 edit /etc/yum.repos.d/fedora-updates.repo:\
-       s{.*enabled=1}{enabled=1\nproxy=http://192.168.2.130:3128};\
+       s{.*enabled=1}{enabled=1\nproxy=http://192.168.1.18:3128};\
        s{^#baseurl=http://download.fedoraproject.org/pub/}{baseurl=http://mirror.0x.sg/};\
        s{^metalink}{#metalink};\
        print

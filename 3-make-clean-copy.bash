@@ -48,5 +48,6 @@ rm ./clean/notebooks/2-CNN/8-Speech/SpeechAnalysis_*
 
 # Copy over the locally installed keras zoo model parameters
 mkdir -p ./clean/.keras/models
+rsync -avz --progress ~/.keras/models/imagenet_class_index.json ./clean/.keras/models/
 rsync -avz --progress ~/.keras/models/nasnet_mobile.h5 ./clean/.keras/models/
 rsync -avz --progress ~/.keras/models/nasnet_mobile_no_top.h5 ./clean/.keras/models/
