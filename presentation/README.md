@@ -152,5 +152,8 @@ cd supervised-reptile/
 cd web/
 sh build.sh 
 ```
-This creates a ```model.js``` file, and semi-compressed JS files in new directory 'build/'
+This creates a ```model.js``` file, and semi-compressed JS files in new directory 'build/'.
+
+Adapt the ```style.css``` for 200x200 images, and also centering, etc (must *insist* on
+object id, since ```reveal.js``` overrides quite a lot).
 
