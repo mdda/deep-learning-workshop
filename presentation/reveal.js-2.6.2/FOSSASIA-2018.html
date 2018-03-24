@@ -459,15 +459,15 @@ Password: password
    <ul class="fix-spacing">
     <li>Uses vast numbers of images</li>
     <li>Huge computational resources</li>
-    <li>Does exactly what we told it to</li>
+    <li>Does exactly what we told it to do</li>
    </ul>
   </section>
 
   <section>
    <h2>Transfer Learning</h2>
-   <h3>Trained on top</h3>
+   <h3>Based on existing model</h3>
    <ul class="fix-spacing">
-    <li>Uses pretrained model</li>
+    <li>Uses pretrained (ImageNet) model</li>
     <li>Leverages it to classify new classes</li>
     <li>Much less training data required</li>
    </ul>
@@ -476,15 +476,234 @@ Password: password
 </section>
 
 
+<section>
+  <section>
+   <h2>Next Level Learning</h2>
+   <ul class="fix-spacing">
+    <li>Previous methods learn from large amounts of data</li>
+    <li style="list-style-type:none">
+     <ul>
+      <li>But humans can learn from very little data</li>
+      <li>We need models that do the same</li>
+     </ul>
+    </li>
+    <li>Ideally, we want the models to Learn how to Learn</li>
+   </ul>
+  </section>
 
+  <section>
+   <h2>Meta-Learning</h2>
+   <ul class="fix-spacing">
+    <li>Two main types of meta-learning : </li>
+    <li style="list-style-type:none">
+     <ol>
+      <li>Learn how to build the best model (structure)</li>
+      <li>Build a model that learns quickly</li>
+     </ol>
+    </li>
+   </ul>
+  </section>
+
+</section>
+
+
+<section>
+  <section>
+   <h2>Structure Building</h2>
+   <ul class="fix-spacing">
+    <li>Difficult to build models </li>
+    <li>So : Learn to create the best architecture</li>
+    <li><b>Already seen the results...</b></li>
+   </ul>
+  </section>
+
+  <section>
+   <h2>NASNET Cells</h2>
+   <ul class="fix-spacing">
+    <li>The NASNet structure is created </li>
+    <li style="list-style-type:none">
+     <ul>
+      <li>... by searching over architectures</li>
+     </ul>
+    </li>
+    <li>Better accuracy / speed / power tradeoffs than humans</li>
+    <p><small>( not the focus of this talk )</small></p>
+   </ul>
+  </section>
+
+</section>
+
+
+<section>
+  <section>
+   <h2>One-Shot Learning</h2>
+   <ul class="fix-spacing">
+    <li>Humans can learn from few examples</li>
+    <li>Need a model that can learn tasks quickly</li>
+    <li style="list-style-type:none">
+     <ul>
+      <li>Model should be trained on many tasks</li>
+      <li>Each task will only have small amounts of data</li>
+     </ul>
+    </li>
+   </ul>
+  </section>
+
+  <section>
+   <p>( backtrack a little )</p>
+   <h2>Regular-Learning</h2>
+   <ul class="fix-spacing">
+    <li>Training set: </li>
+    <li style="list-style-type:none">
+     <ul>
+      <li>A bunch of different classes</li>
+      <li>Each class has sample images to learn</li>
+     </ul>
+    </li>
+    <li>Test set: </li>
+    <li style="list-style-type:none">
+     <ul>
+      <li>Can the model classify a previously unseen image?</li>
+     </ul>
+    </li>
+   </ul>
+  </section>
+
+  <section>
+   <h2>Meta-Learning</h2>
+   <ul class="fix-spacing">
+    <li>Training set: </li>
+    <li style="list-style-type:none">
+     <ul>
+      <li>A bunch of different tasks</li>
+      <li>Each task is a different problem to learn</li>
+      <li style="list-style-type:none">
+       <ul>
+        <li>Each of those problems has small amounts of data</li>
+       </ul>
+      </li>
+     </ul>
+    </li>
+    <li>Test set: </li>
+    <li style="list-style-type:none">
+     <ul>
+      <li>Can the model learn a previously unseen task quickly?</li>
+     </ul>
+    </li>
+   </ul>
+  </section>
+</section>
+
+<section>
+  <section>
+   <h2>Hands-On : Meta-Learning</h2>
+   <a href="http://localhost:8080/8-MetaLearning/2-Reptile-Sines.ipynb" target=_blank>
+    <code>8-MetaLearning/<br/>2-Reptile-Sines.ipynb</code>
+   </a>
+  </section>
+
+  <section>
+   <h2>Reptile-Sines</h2>
+   <ul class="fix-spacing">
+    <li>Learn to learn tasks quickly</li>
+    <li>Each task in the meta-training set :</li>
+    <li style="list-style-type:none">
+     <ul>
+      <li>Create a 'sine wave' with random amplitude and phase</li>
+      <li style="list-style-type:none">
+       <ul>
+        <li>Training data is just a few points</li>
+        <li>Test whether new points can be predicted</li>
+       </ul>
+      </li>
+     </ul>
+    </li>
+    <li>The meta-test sees whether a single task learns quickly</li>
+   </ul>
+  </section>
+
+  <section>
+   <h2><a href="https://blog.openai.com/reptile/" target=_blank>Reptile</a> Model Search</h2>
+   <ul class="fix-spacing">
+    <li>OpenAI : <a href="https://arxiv.org/abs/1803.02999" target=_blank>Reptile: a Scalable Metalearning Algorithm</a></li>
+   </ul>
+   <code><pre>
+Initialize Φ. the initial parameter vector
+for iteration 1,2,3,…  do
+  Randomly sample a task T
+  Perform k>1 steps of SGD on task T, 
+    starting with parameters Φ, resulting in parameters W
+  Update: Φ ← Φ + ϵ(W−Φ)
+end for
+Return Φ
+</pre></code>
+  </section>
+
+</section>
+
+
+<section>
+  <section>
+   <h2>Hands-On : One-Shot Learning</h2>
+   <a href="./MetaLearning-demo.html" target=_blank>
+     Meta-Learning Demo- '3 boxes'
+   </a>
+  </section>
+
+  <section>
+   <h2><a href="https://github.com/brendenlake/omniglot" target=_blank>Omniglot Dataset</a></h2>
+   <ul class="fix-spacing">
+    <li>1623 different handwritten characters</li>
+    <li style="list-style-type:none">
+     <ul>
+      <li>from 50 different alphabets</li>
+     </ul>
+    </li>
+    <img width="640" height="360" src="img/Omniglot-clustered_640x360.png" alt="Omniglot clustered : sentient.ai" style="border:none;box-shadow:none">
+  </section>
+
+  <section>
+   <h2><a href="https://github.com/brendenlake/omniglot" target=_blank>Omniglot Dataset</a></h2>
+   <ul class="fix-spacing">
+    <li>Each of the 1623 characters</li>
+    <li style="list-style-type:none">
+     <ul>
+      <li> was drawn by 20 different people</li>
+     </ul>
+    </li>
+    <br/>
+    <li>Compare : MNIST</li>
+    <li style="list-style-type:none">
+     <ul>
+      <li>10 characters, drawn ~5000 times each</li>
+     </ul>
+    </li>
+  </section>
+
+  <section>
+   <h2>One-shot Classification</h2>
+   <ul class="fix-spacing">
+    <li>Each task trains on 1 example each for 3 classes :</li>
+    <li style="list-style-type:none">
+     <ul>
+      <li>Model pre-meta-trained on Omniglot</li>
+      <li>Actual model running in Javascript</li>
+     </ul>
+    </li>
+    <li>The user provides the meta-test task</li>
+    <li>... works pretty well</li>
+   </ul>
+  </section>
+
+</section>
 
 
 <section>
  <h2>Wrap-up</h2>
  <ul class="fix-spacing">
-  <li>Deep Learning may deserve some hype...</li>
   <li>Field is advancing very rapidly</li>
-  <li>Having a GPU is VERY helpful</li>
+  <li>Still within grasp of individuals</li>
+  <li>Open source applies to research too</li>
  </ul>
  <img width="517" height="223" src="img/GitHub-mdda_517x223.png" alt="GitHub - mdda" style="border:none;box-shadow:none">
  <p><small>* Please add a star... *</small></p>
@@ -498,7 +717,7 @@ Password: password
   <section>
    <h2>Deep Learning<br/>MeetUp Group</h2>
    <ul class="fix-spacing">
-    <li>Next Meeting = 20-March-2017</li>
+    <li>Next Meeting = ~19-April-2019</li>
     <li style="list-style-type:none">
       <ul>
         <li>Hosted by Google</li>
@@ -516,23 +735,59 @@ Password: password
    </ul>
   </section>
 
+
   <section>
-   <h2>10-week Deep Learning<br>Developer Course</h2>
+   <h2>Deep Learning : Jump-Start Workshop</h2>
    <ul class="fix-spacing">
-    <li>Plan : Start ~June</li>
-    <li>Weekly 3-hour sessions will include :</li>
+    <li>Dates + Cost : ~S$600 (funding available for SG/PR) :</li>
     <li style="list-style-type:none">
       <ul>
-        <li>Instruction</li>
-        <li>4 structured projects</li>
-        <li>2 self-directed projects</li>
+        <li>Full day (week-end)</li>
+        <li>Play with real models</li>
+        <li>Get inspired!</li>
+        <li>Pick-a-Project to do at home</li>
+        <li>Regroup on subsequent week-nights</li>
       </ul>
     </li>
-    <li>Cost: S$TBD</li>
-    <li>Expect to work hard...</li>
+    <li>See <a href="https://sginnovate.com/events/deep-learning-jump-start-workshop" target=_blank>SGInnovate Event Page</a> for details</li>
    </ul>
   </section>
 
+
+  <section>
+   <h2>8-week Deep Learning<br>Developer Course</h2>
+   <ul class="fix-spacing">
+    <li>25 September - 25-November</li>
+    <li>Twice-Weekly 3-hour sessions included :</li>
+    <li style="list-style-type:none">
+      <ul>
+        <li>Instruction</li>
+        <li>Individual Projects</li>
+        <li>Support by WSG</li>
+      </ul>
+    </li>
+    <li>Location : SGInnovate</li>
+    <li>Status : <b>FINISHED!</b></li>
+   </ul>
+  </section>
+
+  <section>
+   <h2>?-week Deep Learning<br>Developer Course</h2>
+   <ul class="fix-spacing">
+    <li>Plan : Start in a few months</li>
+    <li>Sessions will include :</li>
+    <li style="list-style-type:none">
+      <ul>
+        <li>Instruction</li>
+        <li>Individual Projects</li>
+        <li>Support by SG govt (planned)</li>
+      </ul>
+    </li>
+    <li>Location : SGInnovate</li>
+    <li>Status : <b>TBA</b></li>
+   </ul>
+  </section>
+  
 </section>
 
 
