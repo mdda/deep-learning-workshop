@@ -99,8 +99,16 @@ table.table-fix {
 <section>
  <h1>Deep Learning Workshop</h1>
  <h3>FOSSASIA 2018</h3>
+ <br/><br/>
  <p>
+   <b>Learn to Learn to Learn</b>
+ </p>
+ <p>
+  <div style="display:inline-block; text-align:left;">
   <small><a href="http://mdda.net">Martin Andrews</a> @ <a href="http://redcatlabs.com/">redcatlabs.com</a></small>
+  <br/>
+  <small><a href="http://mdda.net">Martin Andrews</a> @ <a href="http://reddragon.ai/">reddragon.ai</a></small>
+  </div>
  </p>
  <p>
   <small>25 March 2018</small>
@@ -127,12 +135,13 @@ table.table-fix {
   <li style="list-style-type:none">
     <ul>
       <li>&amp; Papers...</li>
+      <li>&amp; Dev Course...</li>
     </ul>
   </li>
- </ul>
- 
+ </ul> 
 </section>
 
+<!--
 <section>
   <section>
    <h2>What can be done now</h2>
@@ -189,16 +198,6 @@ table.table-fix {
    <p><i>Some good, some not-so-good</i></p>
   </section>
 
-<!--  
-  <section>
-   <h2>Reinforcement Learning</h2>
-   <p>Google's DeepMind purchase</p>
-   <p>Learn to play games from the pixels alone</p>
-   <img width="562" height="466" src="img/deep-mind_562x466.jpg" alt="DeepMind Atari" style="border:none;box-shadow:none">
-   <p><i>Better than humans 2 hours after switching on</i></p>
-  </section>
-!-->
-
   <section>
    <h2>Reinforcement Learning</h2>
    <p>Google DeepMind's AlphaGo</p>
@@ -207,6 +206,7 @@ table.table-fix {
   </section>
 
 </section>
+!-->
 
 <!--
 <section>
@@ -241,6 +241,19 @@ table.table-fix {
 !-->
 
 <section>
+ <h2>Learning to <br/>Learn to Learn</h2>
+ <ul class="fix-spacing">
+  <li>The basic ideas of Learning</li>
+  <li>Learning from a lot of data</li>
+  <li>Learning from some data</li>
+  <li>Learning from a little data</li>
+ </ul>
+ <p><small>NB: If you have VirtualBox : Install the 'OVA'</small></p>
+</section>
+
+
+<!--
+<section>
   <section>
    <h2>Basic Approach</h2>
    <ul class="fix-spacing">
@@ -262,7 +275,6 @@ table.table-fix {
    <img width="356" height="324" src="img/multi-layer_356x324.png" alt="Multi-Layer" style="border:none;box-shadow:none">
   </section>
 
-<!--
   <section>
    <h2>Supervised Learning</h2>
    <ul class="fix-spacing">
@@ -282,9 +294,9 @@ table.table-fix {
    <p>Follow the gradient of the error <br />w.r.t the connection weights</p>
    <img width="364" height="306" src="img/gradient-descent_364x306.png" alt="Gradient-Descent" style="border:none;box-shadow:none">
   </section>
-!-->
 
 </section>
+!-->
 
 <section>
   <section>
@@ -340,128 +352,6 @@ table.table-fix {
 </section>
 
 
-<!--
-<section>
-  <section>
-   <h2>Workshop : SGD</h2>
-    <ul>
-     <li style="list-style-type:none">
-      <ul>
-        <li>Go to : <code>http://ConvNetJS.com/</code></li>
-        <li>Look for : "Image 'painting'"</li>
-      </ul>
-    </li>
-   </ul>
-   <ximg width="473" height="665" src="img/ConvNetJS-Painting_473x665.png" alt="ConvNetJS Image Painting" style="border:none;box-shadow:none">
-   <img width="844" height="418" src="img/ConvNetJS-Painting_844x418.png" alt="ConvNetJS Image Painting" style="border:none;box-shadow:none">
-  </section>
-  
-  <section>
-   <h2>Simple Network</h2>
-   <img width="574" height="435" src="img/ConvNetJS-Painting-5_574x435.png" alt="ConvNetJS Painting : 5" style="border:none;box-shadow:none">
-  </section>
-  <section>
-   <h2>Wider Network</h2>
-   <img width="573" height="443" src="img/ConvNetJS-Painting-20_573x443.png" alt="ConvNetJS Painting : 20" style="border:none;box-shadow:none">
-  </section>
-  <section>
-   <h2>Two-Ply Network</h2>
-   <img width="571" height="427" src="img/ConvNetJS-Painting-10-10_571x427.png" alt="ConvNetJS Painting : 10+10" style="border:none;box-shadow:none">
-  </section>
-  <section>
-   <h2>Deep Network and Time</h2>
-   <img width="575" height="435" src="img/ConvNetJS-Painting-7x20_575x435.png" alt="ConvNetJS Painting : 10x7" style="border:none;box-shadow:none">
-  </section>
-</section>
-!-->
-
-<!--
-<section>
-  <section>
-   <h2>"Hello World" &rarr; MNIST</h2>
-   <ul class="fix-spacing">
-    <li>Nice dataset from the late 1980s</li>
-    <li>Training set of 50,000 28x28 images</li>
-    <li>Now end-of-life as a useful benchmark</li>
-   </ul>
-   <br />
-   <img width="255" height="204" src="img/mnist_100_digits_255x204.png" alt="MNIST digits" style="border:none;box-shadow:none">
-  </section>
-
-  <section>
-   <h2>Simple Network</h2>
-   <img width="829" height="425" src="img/netvis-mnist-100S_829x425.png" alt="Multi-Layer" style="border:none;box-shadow:none">
-   <p><i>... around 2-3% error rate on the test set</i></p>
-  </section>
-  
-  <section>
-   <h2>Workshop : MNIST</h2>
-   <ul class="fix-spacing">
-    <li>Go to : <code>http://ConvNetJS.com/</code></li>
-    <li>Look for : "Classify MNIST"</li>
-    <li><i>... CNN approach (rather than MLP)</i></li>
-   </ul>
-   <img width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
-  </section>
-
-  <section>
-   <h2>"LeNet"</h2>
-   <img width="759" height="209" src="img/lenet5_759x209.png" alt="LeNet5 Convolutional Layers" style="border:none;box-shadow:none">
-   <p><i>... around 0.8% error rate on the test set</i></p>
-  </section>
-</section>
-!-->
-
-<section>
-  <section>
-   <h2>Image Classification</h2>
-   <br />
-   <img width="850" height="314" src="img/ilsvrc1_850x314.png" alt="ImageNet Karpathy" style="border:none;box-shadow:none">
-   <p>In 2012, Deep Learning started to beat other approaches...</p>
-  </section>
-
-  <section>
-   <h2>What is a CNN?</h2>
-   <ul class="fix-spacing">
-    <li>Pixels in an images are 'organised' : </li>
-    <li style="list-style-type:none">
-      <ul>
-        <li>Up/down left/right</li>
-        <li>Translational invariance</li>
-      </ul>
-    </li>
-    <li>Idea : Use whole image as feature</li>
-    <li style="list-style-type:none">
-      <ul>
-        <li>Update parameters of 'Photoshop filters'</li>
-      </ul>
-    </li>
-    <li>Mathematical term : 'convolution kernel'</li>
-    <li style="list-style-type:none">
-      <ul>
-        <li>CNN = Convolutional Neural Network</li>
-      </ul>
-    </li>
-   </ul>
-  </section>
-  
-  <section>
-   <h2>CNN Filter</h2>
-   <img width="464" height="358" src="img/CNN-diagram_464x358.png" alt="CNN Diagram" style="border:none;box-shadow:none">
-  </section>
-
-  <section>
-   <h2>Play with a Filter</h2>
-   <img width="600" height="452" src="img/CNN-demo_600x452.png" alt="Convolution Demo" style="border:none;box-shadow:none">
-  </section>
-
-  <section>
-   <h2>CNN Flow</h2>
-   <img width="800" height="383" src="img/CNN-car-to-label_800x383.png" alt="CNN flow" style="border:none;box-shadow:none">
-  </section>
-</section>
-
-
 <section>
   <section>
    <h2>Image Competition</h2>
@@ -481,12 +371,25 @@ table.table-fix {
   </section>
   
   <section>
+   <h2>... Even More Complex</h2>
+   <img width="800" height="299" src="img/inception03_800x299.png" alt="Google Inception v3" style="border:none;box-shadow:none">
+   <p><i>Google Inception-v3 (2015)</i></p>
+  </section>
+  
+  <section>
+   <h2>... and Deeper</h2>
+   <img width="756" height="443" src="img/RevolutionOfDepth_756x443.png" alt="Revolution of Depth" style="border:none;box-shadow:none">
+   <p><i>Microsoft ResNet (2015)</i></p>
+  </section>
+  
+<!--  
+  <section>
    <h2>3-ImageNet-googlenet</h2>
    <ul class="fix-spacing">
     <li>Play with a pre-trained network</li>
    </ul>
   </section>
-
+!-->
 </section>
 
 
@@ -544,194 +447,36 @@ Password: password
 
 <section>
   <section>
-   <h2>... Even More Complex</h2>
-   <img width="800" height="299" src="img/inception03_800x299.png" alt="Google Inception v3" style="border:none;box-shadow:none">
-   <p><i>Google Inception-v3 (2015)</i></p>
+   <h2>Hands-On : ImageNet</h2>
+   <a href="http://localhost:8080/2-CNN/5-TransferLearning/5-ImageClassifier-keras.ipynb" target=_blank>
+    <code>2-CNN/5-TransferLearning/<br/>5-ImageClassifier-keras.ipynb</code>
+   </a>
   </section>
-  
-  <section>
-   <h2>... and Deeper</h2>
-   <img width="756" height="443" src="img/RevolutionOfDepth_756x443.png" alt="Revolution of Depth" style="border:none;box-shadow:none">
-   <p><i>Microsoft ResNet (2015)</i></p>
-  </section>
-  
-</section>
 
-<section>
   <section>
-   <h2>More CNNs ?</h2>
+   <h2>ImageNet Classification</h2>
+   <h3>Trained from Zero</h3>
    <ul class="fix-spacing">
-    <li>Since CNNs are good at images ...</li>
-    <li>... make everything into images</li>
+    <li>Uses vast numbers of images</li>
+    <li>Huge computational resources</li>
+    <li>Does exactly what we told it to</li>
    </ul>
   </section>
 
   <section>
-   <h2>Let's Abuse a CNN</h2>
+   <h2>Transfer Learning</h2>
+   <h3>Trained on top</h3>
    <ul class="fix-spacing">
-    <li>For example : <b>Speech Recognition</b></li>
-    <li>Make this into an Image Recognition task</li>
+    <li>Uses pretrained model</li>
+    <li>Leverages it to classify new classes</li>
+    <li>Much less training data required</li>
    </ul>
   </section>
-  
-  <section>
-   <h2>Speech Data 'stamps'</h2>
-   <img width="484" height="344" src="img/CNN-for-speech_data_484x344.png" alt="speech/SpeechRecognition_Dat" style="border:none;box-shadow:none">
-   <code>'speech/SpeechRecognition_Data.ipynb'</code>
-  </section>
-
-  <section>
-   <h2>CNN Speech Recognition</h2>
-   <ximg width="484" height="344" src="img/CNN-for-speech_data_484x344.png" alt="speech/SpeechRecognition_Dat" style="border:none;box-shadow:none">
-    
-   <code>'speech/SpeechRecognition_Learn.ipynb'</code>
-     
-<pre>stamps.shape: (31, 64, 32)
-labels.shape: (31,)
-batch_input_fn sizing :  (31, 64, 32, 1)
-
-INFO:tensorflow:Starting evaluation at 2017-03-18-04:31:04
-INFO:tensorflow:Evaluation [1/1]
-INFO:tensorflow:Finished evaluation at 2017-03-18-04:31:05
-{'accuracy': 1.0, 'loss': 0.0068151536, 'global_step': 3830}
-</pre>
-  </section>
-  
-</section>
-
-
-<!--
-<section>
-  <section>
-   <h2>5-Commerce</h2>
-   <ul class="fix-spacing">
-    <li></li>
-   </ul>
-   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
-  </section>
-</section>
-
-<section>
-  <section>
-   <h2>6-Visual-Art</h2>
-   <ul class="fix-spacing">
-    <li></li>
-   </ul>
-   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
-  </section>
-</section>
-!-->
-
-<!--
-<section>
-  <section>
-   <h2>LSTM Units</h2>
-   <img width="412" height="470" src="img/LSTM_412x470.png" alt="LSTM" style="border:none;box-shadow:none">
-  </section>
-
-  <section>
-   <h2>8-Natural-Language</h2>
-   <ul class="fix-spacing">
-    <li></li>
-   </ul>
-   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
-  </section>
-
-  <section>
-   <h2>Poetry : Epoch 1</h2>
-   <pre><code data-trim contenteditable>
-JDa&amp;g#sdWI&amp;MKW^gE)I}&amp;lt;UNK>f;6g)^5*|dXdBw6m\2&amp;XcXVy\ph8G&amp;lt;gAM&amp;>e4+mv5}OX8G*Yw9&amp;n3XW{h@&amp;T\Fk%BPMMI
-OV&amp;*C_] ._f$v4I~$@Z^&amp;[2
-mOVe`4W)"L-KClkO]wu]\$LCNadyo$h;>$jV7X$XK#4,T(y"sa6W0LWf\'_{\#XD]p%ck[;O`!Px\#E>/Or(.YZ|a]2}q|@a9.g3nV,U^qM	$+:nlk0sd;V-Z&amp;;7Y@Z "l-7P^C
-"xBF~~{n} n\ Pcbc9f?=y)FIc1h5kvjIi
-C&amp;lt;UNK>s	DWJr_$ZQtu"BTYm'|SMj-]Z&amp;lt;Vqj*.lh%IYW|q.GK:eNI"r>833?+RuUsOj_)a{\T}gH.zZR^(daC3mg5P0iFi]bqGo4?T|\>0_H&amp;g889voTh=~)^DDRYND46z1J]x;&amp;lt;U>>%eNIRckL)N8n&amp;lt;UNK>n3i)+Ln8
-?)9.#s7X]}$*sxZ"3tf ")
-@'HW.;I5)C.*%}&amp;lt;jcNLN+Z__RWoryOb#
-/`r
-   </code></pre>
-  </section>
-  
-  <section>
-   <h2>Poetry : Epoch 100</h2>
-   <pre><code data-trim contenteditable>
-Som the riscele his nreing the timest stordor hep pIs dach suedests her, so for farmauteds?
-By arnouy ig wore
-Thou hoasul dove he five grom ays he bare as bleen,
-The seend,
-And, an neeer,
-Whis with the rauk with, for be collenss ore his son froven faredure:
-Then andy bround'd the CowE nom shmlls everom thoy men ellone per in the lave ofpen the way ghiind, thour eyes in is ple gull heart sind, I I wild,
-Frreasuce anspeve, wrom fant beiver, not the afan
-And in thou' histwish a it wheme-tis lating ble the liveculd;
-Noorroint he fhallought, othelts.
-   </code></pre>
-  </section>
-  
-  <section>
-   <h2>Poetry : Epoch 1000</h2>
-   <pre><code data-trim contenteditable>
-AWhis grook my glass' to his sweet,
-Bub my fears liken?
-And of live every in seedher;
-A Lood stall,
-But tare tought than thencer sud earth,
-Use'st bee sechion,
-For all exprit' are a daud in heaven doth her infook perust the fork the tent.
-
-For maud,
-The pittent gover
-This and rimp,
-Who new
-  
-Thoir oldes and did hards, cound.
-   </code></pre>
-  </section>
-  
-  <section>
-   <h2>Plays : Epoch 338</h2>
-   <h3>Larger network...</h3>
-   <pre><code data-trim contenteditable>
-DEDENIUS	Why shoulmeying to to wife,
-	And thou say: and wall you teading for
-	that struke you down as sweet one.
-	With be more bornow, bly unjout on the account:
-	I duked you did four conlian unfortuned drausing-
-	to sicgia stranss, or not sleepplins his arms
-	Gentlemen? as write lord; gave sold.
-
-AENEMUUNS	Met that will knop unhian, where ever have
-	of the keep his jangst?icks he I love hide,
-	Jach heard which offen, sir!'
-
-	[Exit PATIIUS, MARGARUS arr	[Enter CLOTHUR]
-   </code></pre>
-  </section>
 
 </section>
 
-<section>
 
-  <section>
-   <h2>Image Labelling</h2>
-   <img width="642" height="484" src="img/image-labelling_642x484.png" alt="Image Labelling" style="border:none;box-shadow:none">
-  </section>
 
-  <section>
-   <h2>Image Labels</h2>
-   <img width="667" height="419" src="img/image-labelling-results_667x419.png" alt="Labelling Results" style="border:none;box-shadow:none">
-  </section>
-  
-</section>
-!-->
-
-<!--
-<section>
- <h2>"A.I. Effect"</h2>
- <ul class="fix-spacing">
-  <li><a href="https://en.wikipedia.org/wiki/AI_effect" target="_blank">A.I. is whatever hasn't been done yet</a></li>
- </ul>
-</section>
-!-->
 
 
 <section>
@@ -792,25 +537,24 @@ AENEMUUNS	Met that will knop unhian, where ever have
 
 
 
-
-
 <section>
  <h1>- QUESTIONS -</h1>
  <br>
  <h3>Martin.Andrews @<br> RedCatLabs.com</h3>
+ <h3>Martin.Andrews @<br> RedDragon.AI</h3>
  <br>
- <p>My blog : <a href="https://mdda.net/">http://mdda.net/</a></p>
+ <p>My blog : <a href="https://blog.mdda.net/">http://blog.mdda.net/</a></p>
  <p>GitHub : <a href="https://github.com/mdda">mdda</a></p>
 </section>
 
    </div>
   </div>
 
-<div id="redcatlabs-logo" style="background: url(img/redcatlabs_logo1_280x39.png);
+<div id="redcatlabs-logo" style="background: url(img/RedDragon_logo_260x39.png);
                                   position: absolute;
                                   bottom: 50px;
                                   left: 50px;
-                                  width: 280px;
+                                  width: 260px;
                                   height: 39px;">
 </div>  
 
