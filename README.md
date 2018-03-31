@@ -74,6 +74,11 @@ The modules also include pretrained state-of-the-art networks, such as GoogLeNet
   *  Slides for the talk are [here](http://redcatlabs.com/2017-06-22_TFandDL_Captioning/#/)
      with an accompanying [blog post](http://blog.mdda.net/ai/2017/06/22/presentation-at-tensorflow), which includes a video link
 
+* [FOSSASIA 2018](http://2018.fossasia.org/) : Deep Learning Workshop (1 hour)
+  *  Application : OpenAI's meta-learning "Reptile" sines demo
+  *  Slides for the talk are [here](http://redcatlabs.com/2018-03-25_FOSSASIA-Workshop/#/), 
+     with an accompanying [blog post](http://blog.mdda.net/ai/2018/03/25/presentation-at-FOSSASIA), which includes a video link
+
 
 **NB : Ensure Conference Workshop announcement / blurb includes VirtualBox warning label**
 
