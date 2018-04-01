@@ -170,6 +170,11 @@ And this repo can itself be run in 'local mode', using scripts in ```./local/```
 
 See the [local/README file](./local/README.md).
 
+Also worth investigating : [Google Colab](https://colab.research.google.com/), which
+allows the Free (as in Beer) use of a K40 GPU in a Jupyter-notebook-like interface.  In fact,
+there is also the possibility of pulling up GitHub-based notebooks directly using the
+url ```https://colab.research.google.com/github/USER/REPO/blob/master/NOTEBOOK```.  For
+example [https://colab.research.google.com/ github/ mdda/deep-learning-workshop/ blob/master/ notebooks/8-MetaLearning/2-Reptile-Sines.ipynb](https://colab.research.google.com/github/mdda/deep-learning-workshop/blob/master/notebooks/8-MetaLearning/2-Reptile-Sines.ipynb).
 
 
 #### Git-friendly iPython Notebooks
