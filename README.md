@@ -173,8 +173,14 @@ See the [local/README file](./local/README.md).
 Also worth investigating : [Google Colab](https://colab.research.google.com/), which
 allows the Free (as in Beer) use of a K40 GPU in a Jupyter-notebook-like interface.  In fact,
 there is also the possibility of pulling up GitHub-based notebooks directly using the
-url ```https://colab.research.google.com/github/USER/REPO/blob/master/NOTEBOOK```.  For
-example this link to [the recent revamped Reptile code from OpenAI](https://colab.research.google.com/github/mdda/deep-learning-workshop/blob/master/notebooks/8-MetaLearning/2-Reptile-Sines.ipynb).
+url :
+
+```
+https://colab.research.google.com/github/USER/REPO/blob/master/NOTEBOOK
+```  
+
+For a concrete example, look at this link to [the recent revamped Reptile code from OpenAI](https://colab.research.google.com/github/mdda/deep-learning-workshop/blob/master/notebooks/8-MetaLearning/2-Reptile-Sines.ipynb) that
+is in the MetaLearning folder of this repo.
 
 
 #### Git-friendly iPython Notebooks
