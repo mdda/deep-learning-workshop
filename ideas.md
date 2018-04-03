@@ -753,6 +753,11 @@ Early on, maybe keep the shitty random values, but change the connections.
         - The point about the phase is that it will have an arbitrary rotation if you just look at the current frame's magnitude. 
           But if you also look at the per-bin phases from the previous frames, or equivalently attempt to predict 
           only the phase difference for each bin relative to the preceding frame, it should be much better behaved statistically. 
+          
+  -  WaveRNN revamp
+     -  Helpful features for minimalist RNN
+        -  Have 'tap points' of previous outputs available at different input locations
+        -  Potentially pre-condition them on mels, (or RNN internal states)
 
      
   -  Word-order game instead of translation for embedding-in-context a la Socher
