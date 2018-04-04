@@ -868,6 +868,7 @@ Early on, maybe keep the shitty random values, but change the connections.
     +  3hrs later : Audio appears...
   - Now to document what happened (and the minimal steps to repeat)
     +  Sadly, it seemed to require reboots, which is annoying
-    
+    +  Also, the steps taken are now probably lost in the mists of time.
+
     
     
