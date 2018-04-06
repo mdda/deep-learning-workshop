@@ -74,6 +74,10 @@ The modules also include pretrained state-of-the-art networks, such as GoogLeNet
   *  Slides for the talk are [here](http://redcatlabs.com/2017-06-22_TFandDL_Captioning/#/)
      with an accompanying [blog post](http://blog.mdda.net/ai/2017/06/22/presentation-at-tensorflow), which includes a video link
 
+
+
+
+
 * [FOSSASIA 2018](http://2018.fossasia.org/) : Deep Learning Workshop (1 hour)
   *  Application : OpenAI's meta-learning "Reptile" sines demo
   *  Slides for the talk are [here](http://redcatlabs.com/2018-03-25_FOSSASIA-Workshop/#/), 
@@ -94,11 +98,11 @@ The VM itself includes :
   * Trained models from two of the 'big' ImageNet winners
   * Test Images for both recognition, 'e-commerce' and style-transfer modules
   * Corpuses and pretrained GloVe for the language examples
-* Tool chain (Python-oriented)
-  * Theano / Lasagne
-  * Tensorflow is included, and will become more prominent going forward
-    * (In the past ?) Tensorflow demanded far more RAM than Theano, and we can't assume that the VM will be allocated more than 2Gb
-    * Keras, plus other 'sugars', are also installed
+  * Locally-runnable versions of a CNN demonstrator, and OpenAI's '3-boxes' Reptile demo
+* Tool chain(s) (Python-oriented)
+  * <strike>Theano / Lasagne</strike>
+  * Tensorflow and Keras 
+  * PyTorch (CPU version)
 
 And this repo can itself be run in 'local mode', using scripts in ```./local/``` to :
 
