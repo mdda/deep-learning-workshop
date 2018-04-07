@@ -859,8 +859,21 @@ Early on, maybe keep the shitty random values, but change the connections.
   - Speech Generation
     + r9k9 has a nice page of speech-related stuff, but perhaps it's too specific
       -  Also, it may not be Deep Learning _per se_.
+
       
-      
+## Re-Think modularisation
+
+Now that Google's Colab can run notebooks directly, should rethink modularity :
+
++  More benefit (in visibility, for instance) from making individual Repos
+   -  But should try to avoid losing benefit of centrally installed datasets
+   -  Perhaps the individual downloader (which would have to exist) should download into ./data/... after checking
+   -  Within the VM-builder, add softlinks for ./date to a central data storage area
+      +   Datasets would be deduped naturally, and available off-line
++  Need to have some kind of sub-repo manifest :
+   -  Unneeded repos + data wouldn't be included
+   -  OTOH, if the VGG weights are excluded, there's more 'room' in the VM for other stuff
+
   
 ## Jack and PulseAudio
   - Write up how to make it work
