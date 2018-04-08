@@ -812,7 +812,20 @@ Early on, maybe keep the shitty random values, but change the connections.
     + ENAS is also a tempting idea
       - Overall number of back-prop steps would be similar
         -  But need to have structure updates
-        -  Possible to do in PyTorch or TensorFlow eager...
+        -  Possible to do in PyTorch or TensorFlow Eager Mode...
+      = Maybe create a simpler-to-understand version :
+        -  Have a fixed number of 'slots' that parameterised modules can operate on
+        -  Have a parameter/op budget, after which chain of ops is truncated
+        -  Ops are additive to the slots (so naturally 'residual-like')
+        -  Need to think how to 'impedence match' different sized layers
+           +  Images and RNN hidden states are two different cases
+           +  Images : Some kind of transpose operation (flipping depth for area) ?
+              - i.e. not information-destructive
+           +  RNN hidden state vector : Some kind of structured map (sparse-ish) between layers ?
+              - But that would be information-changing
+              - Possibly use random-projection (fixed seed) to remove memory access bandwith issue
+              
+              
         
     + Or a variation to explore the large, but sparse model idea of WaveRNN
       - Not clear what a toy problem should look like
@@ -873,6 +886,9 @@ Now that Google's Colab can run notebooks directly, should rethink modularity :
 +  Need to have some kind of sub-repo manifest :
    -  Unneeded repos + data wouldn't be included
    -  OTOH, if the VGG weights are excluded, there's more 'room' in the VM for other stuff
++  Keras (for instance), with its pre-computed weights, breaks having a clean 'build into tree' idea 
++  Need to clean out existing 'dual source' modules 
+   -  'speech' specifically needs tidying
 
   
 ## Jack and PulseAudio
