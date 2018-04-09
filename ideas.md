@@ -809,6 +809,14 @@ Early on, maybe keep the shitty random values, but change the connections.
               ie : less 'delightfull' than a single good result.
         -  OTOH, the 3 boxes classification is fun as JS, and the Sine-wave example makes it pretty clear
         
+      - Possible new idea :
+        +  Instead of trying for best weight initialisation to enable one-shot learning
+           -  Learn best structure, with standardised initialisation (say +1 / -1 for weights)
+           -  Or have structure consisting of two types of layers, 1 wholely positive, the other negative
+           -  Or have the structure scheme somehow define the initialisation spatially
+        +  Highlight that DNA could determine structure conducive to easy training
+
+        
     + ENAS is also a tempting idea
       - Overall number of back-prop steps would be similar
         -  But need to have structure updates
