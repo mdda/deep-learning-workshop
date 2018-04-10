@@ -65,7 +65,7 @@ nb = sys.stdin.read()
  
 json_in = json.loads(nb)
 nb_metadata = json_in["metadata"]
-suppress_output = True
+suppress_output = True  # This is the default value - i.e. clean outputs by default
 if "git" in nb_metadata:
     if "suppress_outputs" in nb_metadata["git"]:
         suppress_output = nb_metadata["git"]["suppress_outputs"]
@@ -81,6 +81,8 @@ def strip_output_from_cell(cell):
         cell["outputs"] = []
     if "prompt_number" in cell:
         del cell["prompt_number"]
+    if "execution_count" in cell:
+        cell["execution_count"]=None  # Translates to 'nil' in JSON
  
  
 if ipy_version == 2:
@@ -91,4 +93,4 @@ else:
     for cell in json_in["cells"]:
         strip_output_from_cell(cell)
  
-json.dump(json_in, sys.stdout, sort_keys=True, indent=1, separators=(",",": "))
+json.dump(json_in, sys.stdout, sort_keys=True, indent=1, separators=(",", ": "))

@@ -187,6 +187,8 @@ For a concrete example, look at this link to [the recent revamped Reptile code f
 is in the MetaLearning folder of this repo.
 
 
+
+
 #### Git-friendly iPython Notebooks
 
 Using the code from : http://pascalbugnion.net/blog/ipython-notebooks-and-git.html (and
@@ -225,6 +227,18 @@ simply add to its metadata (Edit-Metadata) as a first-level entry (``true`` is t
 ```
   "git" : { "suppress_outputs" : false },
 ```
+
+#### Git-friendly iPython Notebooks (Looks promising, but...)
+
+[nbstripout](https://github.com/kynan/nbstripout) seems to do what we want, and can be installed more easily.
+
+Within the local python environment (or do this globally, as root, if you're committed) :
+
+```
+pip install nbstripout
+````
+
+
 
 
 ### Useful resources

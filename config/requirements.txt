@@ -121,3 +121,6 @@ gensim
 
 # Plotting of graphs (simpler, but beautiful too)
 #seaborn
+
+
+nbstripout
