@@ -809,6 +809,11 @@ Early on, maybe keep the shitty random values, but change the connections.
               ie : less 'delightfull' than a single good result.
         -  OTOH, the 3 boxes classification is fun as JS, and the Sine-wave example makes it pretty clear
         
+      - Interesting that Reptile doesn't do descent using proper derivatives, but seems very effective
+        -  Where does the 'approximately in the right direction' SGD proof come from?
+        -  Does this allow for optimisation of other non-differentiable steps/ops
+           -  Even though the gradients don't exist, there's a reasonable proxy that would have the right sign in expectation?
+
       - Possible new idea :
         +  Instead of trying for best weight initialisation to enable one-shot learning
            -  Learn best structure, with standardised initialisation (say +1 / -1 for weights)
