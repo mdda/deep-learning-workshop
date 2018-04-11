@@ -122,5 +122,5 @@ gensim
 # Plotting of graphs (simpler, but beautiful too)
 #seaborn
 
-
-nbstripout
+# Nope : Continue to do this using the included script
+#nbstripout
