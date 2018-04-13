@@ -902,6 +902,11 @@ Now that Google's Colab can run notebooks directly, should rethink modularity :
 +  Keras (for instance), with its pre-computed weights, breaks having a clean 'build into tree' idea 
 +  Need to clean out existing 'dual source' modules 
    -  'speech' specifically needs tidying
++  Break out Transfer Learning
+   - Including data (and data loader)
+   =  Possible to have a standardised data loader in a module - or simply be explicit
+   -  Advantages of being self-contained :  Run on Colab outside of VM
+   
 
   
 ## Jack and PulseAudio
