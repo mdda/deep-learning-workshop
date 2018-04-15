@@ -820,6 +820,11 @@ Early on, maybe keep the shitty random values, but change the connections.
            -  Or have structure consisting of two types of layers, 1 wholely positive, the other negative
            -  Or have the structure scheme somehow define the initialisation spatially
         +  Highlight that DNA could determine structure conducive to easy training
+      
+      - (Probable) plan for talk at Thai AI Day:
+        +  Rewrite PyTorch-sines example using TensorFlow Eager mode
+           -  First-hand experience with Eager Mode
+           -  Allows wearing of TF polo with pride to Thai event...
 
         
     + ENAS is also a tempting idea
