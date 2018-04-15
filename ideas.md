@@ -907,6 +907,8 @@ Now that Google's Colab can run notebooks directly, should rethink modularity :
    =  Possible to have a standardised data loader in a module - or simply be explicit
    -  Advantages of being self-contained :  Run on Colab outside of VM
 +  Respond to PR acceptance + layer connectivity query on GoogLeNet in Keras
++  For own repos, should have a 'create artifact' makefile(?) 
+   -  Enable loading into Collab via Google Drive (or via DropBox) 
 
   
 ## Jack and PulseAudio
