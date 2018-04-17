@@ -915,6 +915,8 @@ Now that Google's Colab can run notebooks directly, should rethink modularity :
    - Including data (and data loader)
    =  Possible to have a standardised data loader in a module - or simply be explicit
    -  Advantages of being self-contained :  Run on Colab outside of VM
++  Break out MetaLearning now
+   -  What to do about 3-boxes JS example?
 +  Respond to PR acceptance + layer connectivity query on GoogLeNet in Keras
   
 ## Jack and PulseAudio

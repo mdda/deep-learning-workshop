@@ -1,0 +1,9 @@
+
+### TensorFlow
+# If you're running locally, this needs CUDA toolkit 9.0 and CuDNN v7
+--pre tensorflow-gpu>1.7.0
+
+
+### PyTorch
+# CUDA 9.0
+http://download.pytorch.org/whl/cu90/torch-0.3.1-cp36-cp36m-linux_x86_64.whl 

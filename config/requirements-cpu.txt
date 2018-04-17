@@ -1,0 +1,52 @@
+
+### TensorFlow
+
+--pre tensorflow>1.7.0
+
+
+### PyTorch
+
+http://download.pytorch.org/whl/cpu/torch-0.3.1-cp36-cp36m-linux_x86_64.whl 
+
+
+
+
+
+### Theano - actually : NO, it's being phased out
+
+## Theano-HEAD from git 
+#
+#--allow-external theano
+#--allow-unverified theano
+#git+https://github.com/Theano/Theano.git#egg=theano
+
+#theano>=0.7.0
+
+# Better (required by keras, if we use the theano backend) - and fixes 'pool' problem
+# --no-deps 
+#git+git://github.com/Theano/Theano.git#egg=theano
+
+# Try the Theano 'master'
+#https://github.com/Theano/Theano/archive/master.zip
+
+
+### Keras
+
+##   It doesn't matter that it's the PyPI version, since we're going to be using the TensorFlow backend
+##     ...  except that TensorFlow eats RAM : theano is/was a better choice to workshop
+## This bundles theano in... (14.7Mb)
+#keras>=0.3.2 
+
+# Better (required if we use the tensorflow backend)
+# --no-deps 
+#git+git://github.com/fchollet/keras.git
+#keras>=2.0.4
+
+# Even though Keras is *inside* TensorFlow...  IT LAGS BADLY...
+
+
+### Lasagne - NOPE, this is/was a Theano thing
+
+## Lasagne 'master'
+#https://github.com/Lasagne/Lasagne/archive/master.zip
+

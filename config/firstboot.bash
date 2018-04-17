@@ -14,7 +14,9 @@ virtualenv-3.6 -p python3 --system-site-packages ./env3
 
 pip install --upgrade pip
 
-pip install -r ./config/requirements.txt 
+pip install -r ./config/requirements-cpu.txt 
+#pip install -r ./config/requirements-gpu.txt 
+pip install -r ./config/requirements-all.txt 
 
 python -m nltk.downloader punkt
 python -m nltk.downloader averaged_perceptron_tagger
