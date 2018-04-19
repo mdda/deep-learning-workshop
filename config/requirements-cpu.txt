@@ -2,6 +2,7 @@
 ### TensorFlow
 
 --pre tensorflow>1.7.0
+tensorboard
 
 
 ### PyTorch
