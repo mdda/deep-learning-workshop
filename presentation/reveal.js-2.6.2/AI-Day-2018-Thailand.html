@@ -326,6 +326,7 @@ Load up:
 !-->
 
 <section>
+  <!--
   <section>
    <h2>Workshop : Neurons and Features</h2>
    <ul>
@@ -338,10 +339,14 @@ Load up:
    <img width="507" height="387" src="img/Tensorflow-PlayGound-local_507x387.png" alt="TensorFlow Playground" style="border:none;box-shadow:none">
    <p><small>(or search online for TensorFlow Playground)</small></p>
   </section>
+  !-->
   
   <section>
    <h2>TensorFlow Playground</h2>
    <img width="778" height="443" src="img/Tensorflow-PlayGound-layout_778x443.png" alt="TensorFlow Layout" style="border:none;box-shadow:none">
+   <a href="   https://playground.tensorflow.org/#activation=tanh&batchSize=10&dataset=gauss&regDataset=reg-plane&learningRate=0.03&regularizationRate=0&noise=0&networkShape=&seed=0.53727&showTestData=false&discretize=false&percTrainData=50&x=true&y=true&xTimesY=false&xSquared=false&ySquared=false&cosX=false&sinX=false&cosY=false&sinY=false&collectStats=false&problem=classification&initZero=false&hideText=false" target=_blank>
+    <code>http://playground.tensorflow.org/</code>
+   </a>
   </section>
 
   <section>
@@ -650,10 +655,20 @@ Password: password
 
 <section>
   <section>
-   <h2>Demo : Meta-Learning</h2>
-   <a href="http://localhost:8080/notebooks/8-MetaLearning/2-Reptile-Sines.ipynb" target=_blank>
-    <code>8-MetaLearning/<br/>2-Reptile-Sines.ipynb</code>
-   </a>
+   <h2><a href="https://blog.openai.com/reptile/" target=_blank>Reptile</a> Model Search</h2>
+   <ul class="fix-spacing">
+    <li>OpenAI : <a href="https://arxiv.org/abs/1803.02999" target=_blank>Reptile: a Scalable Metalearning Algorithm</a></li>
+   </ul>
+   <code><pre>
+Initialize Φ. the initial parameter vector
+for iteration 1,2,3,…  do
+  Randomly sample a task T
+  Perform k>1 steps of SGD on task T, 
+    starting with parameters Φ, resulting in parameters W
+  Update: Φ ← Φ + ϵ(W−Φ)
+end for
+Return Φ
+</pre></code>
   </section>
 
   <section>
@@ -677,20 +692,10 @@ Password: password
   </section>
 
   <section>
-   <h2><a href="https://blog.openai.com/reptile/" target=_blank>Reptile</a> Model Search</h2>
-   <ul class="fix-spacing">
-    <li>OpenAI : <a href="https://arxiv.org/abs/1803.02999" target=_blank>Reptile: a Scalable Metalearning Algorithm</a></li>
-   </ul>
-   <code><pre>
-Initialize Φ. the initial parameter vector
-for iteration 1,2,3,…  do
-  Randomly sample a task T
-  Perform k>1 steps of SGD on task T, 
-    starting with parameters Φ, resulting in parameters W
-  Update: Φ ← Φ + ϵ(W−Φ)
-end for
-Return Φ
-</pre></code>
+   <h2>Demo : Meta-Learning</h2>
+   <a href="http://localhost:8080/notebooks/8-MetaLearning/2-Reptile-Sines-PyTorch.ipynb" target=_blank>
+    <code>8-MetaLearning/<br/>2-Reptile-Sines-PyTorch.ipynb</code>
+   </a>
   </section>
 
 </section>
@@ -698,10 +703,22 @@ Return Φ
 
 <section>
   <section>
-   <h2>Hands-On : One-Shot Learning</h2>
-   <a href="./MetaLearning-demo.html" target=_blank>
-     Meta-Learning Demo - '3 boxes'
-   </a>
+   <h2>meta-MNIST</h2>
+   <ul class="fix-spacing">
+    <li>Goal : Learn to do character classification</li>
+    <li style="list-style-type:none">
+     <ul>
+        <li>... without knowing the character set</li>
+     </ul>
+    </li>
+    <li>So : Want to have a model that can learn...</li>
+    <li style="list-style-type:none">
+     <ul>
+        <li>... from just a few examples</li>
+        <li>... <i>or</i> from just one few example (!)</li>
+     </ul>
+    </li>
+   </ul>
   </section>
 
   <section>
@@ -713,7 +730,8 @@ Return Φ
       <li>from 50 different alphabets</li>
      </ul>
     </li>
-    <img width="640" height="360" src="img/Omniglot-clustered_640x360.png" alt="Omniglot clustered : sentient.ai" style="border:none;box-shadow:none">
+   </ul>
+   <img width="640" height="360" src="img/Omniglot-clustered_640x360.png" alt="Omniglot clustered : sentient.ai" style="border:none;box-shadow:none">
   </section>
 
   <section>
@@ -732,6 +750,7 @@ Return Φ
       <li>10 characters, drawn ~5000 times each</li>
      </ul>
     </li>
+   </ul>
   </section>
 
   <section>
@@ -749,8 +768,30 @@ Return Φ
    </ul>
   </section>
 
+  <section>
+   <h2>Hands-On : One-Shot Learning</h2>
+   <!--
+   <a href="./MetaLearning-demo.html" target=_blank>
+     Meta-Learning Demo - '3 boxes'
+   </a>
+   !-->
+   <a href="http://RedCatLabs.com/meta" target=_blank>
+    <code>http://RedCatLabs.com/meta</code>
+   </a>
+  </section>
+
 </section>
 
+<section>
+  <section>
+   <h2>TF Eager Mode</h2>
+   <a href="http://localhost:8080/notebooks/8-MetaLearning/2-Reptile-Sines-TFEager.ipynb" target=_blank>
+    <code>8-MetaLearning/<br/>2-Reptile-Sines-TFEager.ipynb</code>
+   </a>
+  </section>
+  
+  
+</section>
 
 <section>
  <h2>Wrap-up</h2>
