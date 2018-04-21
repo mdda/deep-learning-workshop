@@ -1,0 +1,997 @@
+<!doctype html>
+<html lang="en">
+
+ <head>
+  <meta charset="utf-8">
+
+  <title>AI Day - Singapore 2018</title>
+
+  <meta name="description" content="AI Day - Singapore 2018">
+  <meta name="author" content="Martin Andrews">
+
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <link rel="stylesheet" href="css/reveal.min.css">
+  <link rel="stylesheet" xhref="css/theme/default.css" href="css/theme/sky.css" id="theme">
+
+  <!-- For syntax highlighting -->
+  <link rel="stylesheet" href="lib/css/zenburn.css">
+
+  <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+  <script>
+   if( window.location.search.match( /print-pdf/gi ) ) {
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = 'css/print/pdf.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+   }
+  </script>
+
+  <!--[if lt IE 9]>
+  <script src="lib/js/html5shiv.js"></script>
+  <![endif]-->
+ </head>
+
+ <body>
+  <div class="reveal">
+   <!-- Any section element inside of this container is displayed as a slide -->
+   <div class="slides">
+    
+<style>
+table.table-fix {
+ margin-left:auto;  margin-right:auto; border-collapse:collapse; cell-padding:5px;
+ margin-top:20px;
+}
+.table-fix td,.table-fix th {
+ padding: 6px;
+}
+.table-fix th {
+ border-bottom:1pt solid black;
+}
+.fix-spacing li {
+ margin-bottom:16pt;
+}
+</style>
+
+<!--
+  AI Day 
+    Research Talk
+    Red Dragon Branding + Message
+
+  Learning to Learn to Learn
+  
+  Outline:
+    Learning from a lot of data
+    Learning from some data
+    Learning from a little data
+  
+  Supervised Learning
+    IMAGENET 
+    Demo
+    
+  Transfer Learning
+    IMAGENET + transfer learning
+      Network diagram
+    Demo
+    
+  MetaLearning
+    Explain the idea
+  
+    Reptile : 
+      Sine waves
+
+    OmniGlot = dataset
+    
+    Reptile : 
+      3 boxes
+    
+  Wrap up
+  
+  Ads : 
+    Red Dragon AI
+    Jump-Start Course
+    TF&DL Group
+  
+Load up:
+  Reptile blog post
+  cori silicon sample
+  
+  file:///home/andrewsm/OpenSource/deep-learning-workshop/presentation/reveal.js-2.6.2/tensorflow-playground/index.html
+  http://localhost:8080/tree/8-MetaLearning  
+  https://secure.img2-ag.wfcdn.com/im/31485909/resize-h310-w310%5Ecompr-r85/4561/45619744/studio-9-silicone-whisk.jpg
+  https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNzJQg_U3uAGcOLtlhGI8P8cXCqdGJHpcF8sHv_9wadASYPm02
+  http://redcatlabs.com/2018-04-21_AI-Day-Thailand/MetaLearning-demo.html
+  file:///home/andrewsm/OpenSource/deep-learning-workshop/presentation/reveal.js-2.6.2/MetaLearning-demo.html
+  
+  https://docs.google.com/presentation/d/1vImN468ZeMdGltsyHXSgyz7f_RSZbGwR9P5j2N9EbUo/edit#slide=id.g36be7b5696_0_230
+  https://www.tensorflow.org/get_started/eager
+  https://colab.research.google.com/github/tensorflow/models/blob/master/samples/core/get_started/eager.ipynb
+  https://www.tensorflow.org/programmers_guide/eager
+  
+  http://redcatlabs.com/w
+    http://redcatlabs.com/2018-04-29_AI-Day-Singapore/
+    
+  http://redcatlabs.com/meta 
+    http://redcatlabs.com/2018-04-29_AI-Day-Singapore/MetaLearning-demo.html
+    
+    
+!-->
+
+<section>
+ <h1>Learn to Learn to Learn</h1>
+ <h3>AI Day - Singapore 2018</h3>
+ <br/> 
+ <!--
+ <p>
+   <b>Learn to Learn to Learn</b>
+ </p>
+ !-->
+ <p>
+  <div style="display:inline-block; text-align:left;">
+  <!--
+  <small><a href="http://mdda.net">Martin Andrews</a> @ <a href="http://redcatlabs.com/">redcatlabs.com</a></small>
+  <br/>
+  !-->
+  <xsmall>
+    <a href="http://mdda.net">Martin Andrews</a> @ <a href="http://reddragon.ai/">reddragon.ai</a>
+  </xsmall>
+  </div>
+ </p>
+  <br/>
+ <p>
+  <xsmall>29 April 2018</xsmall>
+ </p>
+</section>
+
+<section>
+  <section>
+   <h2>About Me</h2>
+   <ul class="fix-spacing">
+    <li>Machine Intelligence / Startups / Finance</li>
+    <li style="list-style-type:none">
+      <ul>
+        <li>Moved from NYC to Singapore in Sep-2013</li>
+      </ul>
+    </li>
+    <li>2014 = 'fun' :</li>
+    <li style="list-style-type:none">
+      <ul>
+        <li>Machine Learning, Deep Learning, NLP</li>
+        <li>Robots, drones</li>
+      </ul>
+    </li>
+    <li>Since 2015 = 'serious' :: NLP + deep learning</li>
+    <li style="list-style-type:none">
+      <ul>
+        <li>&amp; Papers...</li>
+        <li>&amp; Dev Course...</li>
+      </ul>
+    </li>
+   </ul> 
+  </section>
+
+  <section>
+   <h2>About Red Dragon AI</h2>
+   <ul class="fix-spacing">
+    <li>Deep Learning Consulting &amp; Prototyping</li>
+    <li>Education / Training</li>
+    <li>Products : </li>
+    <li style="list-style-type:none">
+      <ul>
+        <li>Conversational Computing</li>
+        <li>Natural Voice Generation - multiple languages</li>
+        <li>Knowledgebase interaction &amp; reasoning</li>
+      </ul>
+    </li>
+   </ul> 
+  </section>
+</section>
+
+<!--
+<section>
+  <section>
+   <h2>What can be done now</h2>
+   <ul class="fix-spacing">
+    <li>Speech recognition</li>
+    <li>Language translation </li>
+    <li>Vision : </li>
+    <li style="list-style-type:none">
+      <ul>
+        <li>Object recognition</li>
+        <li>Automatic captioning</li>
+      </ul>
+    </li>
+    <li>Reinforcement Learning</li>
+   </ul>
+  </section>
+
+  <section>
+   <h2>Speech Recognition</h2>
+   <p>Android feature since <a href="http://www.phonearena.com/news/The-secret-of-Googles-amazing-voice-recognition-revealed-it-works-like-a-brain_id39938" target="_blank">Jellybean (v4.3, 2012)</a> using Cloud</p>
+   <p>Trained in ~5 days on 800 machine cluster</p>
+   <img width="444" height="360" src="img/speech_444x360.png" alt="Speech Recognition" xstyle="border:none;box-shadow:none">
+   <p>Embedded in phone since Android <a href="http://googleresearch.blogspot.sg/2015/08/the-neural-networks-behind-google-voice.html" target="_blank">Lollipop (v5.0, 2014)</a></p>
+  </section>
+
+  <section>
+   <h2>Translation</h2>
+   <p>Google's <a href="http://googleresearch.blogspot.sg/2015/07/how-google-translate-squeezes-deep.html" target="_blank">Deep Models</a> are on the phone</p>
+   <img width="640" height="160" src="img/google-translate_640x160.png" alt="Google Translate" xstyle="border:none;box-shadow:none">
+   <p><i>"Use your camera to translate text instantly in 26 languages"</i></p>
+   <p><i>Translations for typed text in 90 languages</i></p>
+  </section>
+
+  <section>
+   <h2>House Numbers</h2>
+   <p>Google Street-View (and ReCaptchas)</p>
+   <img width="598" height="400" src="img/house-numbers_598x400.png" alt="House Numbers" xstyle="border:none;box-shadow:none">
+   <p><i>
+     <a href="http://arxiv.org/abs/1312.6082" target="_blank">Better</a> 
+     than 
+     <a href="http://www.geek.com/news/googles-neutral-networks-are-now-better-than-humans-at-reading-addresses-1581653/" target="_blank">human</a>
+   </i></p>
+  </section>
+
+  <section>
+   <h2>Image Classification</h2>
+   <img width="574" height="469" src="img/ImageNet-Results_574x469.png" alt="ImageNet Results" style="border:none;box-shadow:none">
+   <p><i>(now better than human level)</i></p>
+  </section>
+
+  <section>
+   <h2>Captioning Images</h2>
+   <img width="667" height="419" src="img/image-labelling-results_667x419.png" alt="Labelling Results" style="border:none;box-shadow:none">
+   <p><i>Some good, some not-so-good</i></p>
+  </section>
+
+  <section>
+   <h2>Reinforcement Learning</h2>
+   <p>Google DeepMind's AlphaGo</p>
+   <p>Learn to play Go from (mostly) self-play</p>
+   <img width="902" height="337" src="img/AlphaGo-match5_902x337.png" alt="DeepMind AlphaGo Match 5" style="border:none;box-shadow:none">
+  </section>
+
+</section>
+!-->
+
+<!--
+<section>
+  <section>
+   <h2>Deep Learning</h2>
+   <ul class="fix-spacing">
+    <li>Neural Networks</li>
+    <li>Multiple layers</li>
+    <li>Fed with lots of Data</li>
+   </ul>
+  </section>
+  <section>
+   <h2>History</h2>
+   <ul class="fix-spacing">
+    <li>1980+ : Lots of enthusiasm for NNs</li>
+    <li>1995+ : Disillusionment = A.I. Winter (v2+)</li>
+    <li>2005+ : Stepwise improvement : Depth</li>
+    <li>2010+ : GPU revolution : Data</li>
+   </ul>
+  </section>
+  <section>
+   <h2>Who is involved</h2>
+   <ul class="fix-spacing">
+    <li>Google - Hinton (Toronto)</li>
+    <li>Facebook - LeCun (NYC)</li>
+    <li>Baidu - Ng (Stanford)</li>
+    <li>... Apple (acquisitions), etc</li>
+    <li>Universities, eg: Montreal (Bengio)</li>
+   </ul>
+  </section>
+</section>
+!-->
+
+<section>
+ <h2>Learning to <br/>Learn to Learn</h2>
+ <ul class="fix-spacing">
+  <li>The basic ideas of Learning</li>
+  <li>Learning from a lot of data</li>
+  <li>Learning from some data</li>
+  <li>Learning from a little data</li>
+ </ul>
+ <!--
+ <p><small>NB: If you have VirtualBox : Install the 'OVA'</small></p>
+ !-->
+</section>
+
+
+<!--
+<section>
+  <section>
+   <h2>Basic Approach</h2>
+   <ul class="fix-spacing">
+    <li>Same as original Neural Networks since 1980s</li>
+    <li>Simple mathematical units ...</li>
+    <li style="list-style-type:none"> ... combine to compute a complex function</li>
+   </ul>
+  </section>
+
+  <section>
+   <h2>Single "Neuron"</h2>
+   <img width="602" height="381" src="img/one-neuron_602x381.png" alt="One Neuron" style="border:none;box-shadow:none">
+   <p>Change weights to change output function</p>
+  </section>
+
+  <section>
+   <h2>Multi-Layer</h2>
+   <p>Layers of neurons combine and <br/>can form more complex functions</p>
+   <img width="356" height="324" src="img/multi-layer_356x324.png" alt="Multi-Layer" style="border:none;box-shadow:none">
+  </section>
+
+  <section>
+   <h2>Supervised Learning</h2>
+   <ul class="fix-spacing">
+    <li><strong>while</strong> not done :</li>
+    <li style="list-style-type:none">
+      <ul>
+        <li>Pick a training case (<code>x</code> &rarr; <code>target_y</code>)</li>
+        <li>Evaluate <code>output_y</code> from the <code>x</code></li>
+        <li>Modify the weights so that <code>output_y</code> is closer to <code>target_y</code> for that <code>x</code></li>
+      </ul>
+    </li>
+   </ul>
+  </section>
+
+  <section>
+   <h2>Gradient Descent</h2>
+   <p>Follow the gradient of the error <br />w.r.t the connection weights</p>
+   <img width="364" height="306" src="img/gradient-descent_364x306.png" alt="Gradient-Descent" style="border:none;box-shadow:none">
+  </section>
+
+</section>
+!-->
+
+<section>
+  <!--
+  <section>
+   <h2>Workshop : Neurons and Features</h2>
+   <ul>
+    <li style="list-style-type:none">
+     <ul>
+      <li>Go to the Javascript Example : TensorFlow</li>
+     </ul>
+    </li>
+   </ul>
+   <img width="507" height="387" src="img/Tensorflow-PlayGound-local_507x387.png" alt="TensorFlow Playground" style="border:none;box-shadow:none">
+   <p><small>(or search online for TensorFlow Playground)</small></p>
+  </section>
+  !-->
+  
+  <section>
+   <h2>TensorFlow Playground</h2>
+   <img width="778" height="443" src="img/Tensorflow-PlayGound-layout_778x443.png" alt="TensorFlow Layout" style="border:none;box-shadow:none">
+   <a href="   https://playground.tensorflow.org/#activation=tanh&batchSize=10&dataset=gauss&regDataset=reg-plane&learningRate=0.03&regularizationRate=0&noise=0&networkShape=&seed=0.53727&showTestData=false&discretize=false&percTrainData=50&x=true&y=true&xTimesY=false&xSquared=false&ySquared=false&cosX=false&sinX=false&cosY=false&sinY=false&collectStats=false&problem=classification&initZero=false&hideText=false" target=_blank>
+    <code>http://playground.tensorflow.org/</code>
+   </a>
+  </section>
+
+  <section>
+   <h2>Things to Understand</h2>
+   <ul>
+    <li>Hands-on : </li>
+    <li style="list-style-type:none">
+     <ul>
+      <li>Goal : learning to predict regions</li>
+      <li>Input features</li>
+      <li>What a single neuron can learn</li>
+      <li>The blame game</li>
+      <li>How deep networks 'create' features</li>
+     </ul>
+    </li>
+   </ul>
+  </section>
+  
+<!--
+  <section>
+   <h2>Things to Do</h2>
+   <ul>
+    <li>Investigate : </li>
+    <li style="list-style-type:none">
+     <ul>
+      <li>Minimal set of features</li>
+      <li>Minimal # of layers</li>
+      <li>Minimal widths</li>
+      <li>Effect of going less-minimal...</li>
+     </ul>
+    </li>
+   </ul>
+  </section>
+!-->
+</section>
+
+
+<section>
+  <section>
+   <h2>Image Competition</h2>
+   <ul class="fix-spacing">
+    <li>ImageNet aka ILSVRC</li>
+    <li>over 15 million labeled high-resolution images...</li>
+    <li style="list-style-type:none"> ... in over 22,000 categories</li>
+   </ul>
+   <br />
+   <img width="850" height="314" src="img/ilsvrc1_850x314.png" alt="ImageNet Karpathy" style="border:none;box-shadow:none">
+  </section>
+
+  <section>
+   <h2>More Complex Networks</h2>
+   <img width="614" height="286" src="img/googlenet-arch_1228x573.jpg" alt="Google ImageNet" style="border:none;box-shadow:none">
+   <p><i>GoogLeNet (2014)</i></p>
+  </section>
+  
+  <section>
+   <h2>... Even More Complex</h2>
+   <img width="800" height="299" src="img/inception03_800x299.png" alt="Google Inception v3" style="border:none;box-shadow:none">
+   <p><i>Google Inception-v3 (2015)</i></p>
+  </section>
+  
+  <section>
+   <h2>... and Deeper</h2>
+   <img width="756" height="443" src="img/RevolutionOfDepth_756x443.png" alt="Revolution of Depth" style="border:none;box-shadow:none">
+   <p><i>Microsoft ResNet (2015)</i></p>
+  </section>
+  
+<!--  
+  <section>
+   <h2>3-ImageNet-googlenet</h2>
+   <ul class="fix-spacing">
+    <li>Play with a pre-trained network</li>
+   </ul>
+  </section>
+!-->
+</section>
+
+<!--
+<section>
+  <section>
+   <h2>Workshop : VirtualBox</h2>
+   <ul class="fix-spacing">
+    <li>Import Appliance '<code>fossasia ... .OVA</code>'</li>
+    <li>Start the Virtual Machine...</li>
+   </ul>
+   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
+  </section>
+  
+  <section>
+   <h2>Workshop : Jupyter</h2>
+   <ul class="fix-spacing">
+    <li>On your 'host' machine</li>
+    <li>Go to <code>http://localhost:8080/</code></li>
+   </ul>
+   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
+  </section>
+  
+  <section>
+   <h2>VM : SSH</h2>
+   <p>From your 'host' machine :</p>
+   <pre><code data-trim contenteditable>
+ssh -p 8282 user@localhost     
+   </code></pre>
+  </section>
+  
+  <section>
+   <h2>VM : Console</h2>
+   <pre><code data-trim contenteditable>
+Login: user
+Password: password
+
+#...
+
+./run-jupyter.bash
+
+#....
+   </code></pre>
+  </section>
+  
+  <section>
+   <h2>Workshop : TensorBoard</h2>
+   <ul class="fix-spacing">
+    <li>On your 'host' machine</li>
+    <li>Go to <code>http://localhost:8081/</code></li>
+   </ul>
+   <ximg width="473" height="444" src="img/ConvNetJS-MNIST_473x444.png" alt="ConvNetJS MNIST" style="border:none;box-shadow:none">
+  </section>
+  
+</section>
+!-->
+
+<section>
+  <section>
+   <h2>ImageNet Classification</h2>
+   <h3>Trained from Zero</h3>
+   <ul class="fix-spacing">
+    <li>Uses vast numbers of images</li>
+    <li>Huge computational resources</li>
+    <li>Does exactly what we told it to do</li>
+   </ul>
+  </section>
+
+  <section>
+   <h2>Transfer Learning</h2>
+   <h3>Based on existing model</h3>
+   <ul class="fix-spacing">
+    <li>Use pretrained (ImageNet) model</li>
+    <li>Leverage it to classify new classes</li>
+    <li>Much less training data required</li>
+   </ul>
+  </section>
+
+  <section>
+   <h2>Demo : ImageNet</h2>
+   <a href="http://localhost:8080/notebooks/2-CNN/5-TransferLearning/5-ImageClassifier-keras.ipynb" target=_blank>
+    <code>2-CNN/5-TransferLearning/<br/>5-ImageClassifier-keras.ipynb</code>
+   </a>
+  </section>
+
+</section>
+
+
+<section>
+  <section>
+   <h2>Next Level Learning</h2>
+   <ul class="fix-spacing">
+    <li>Previous methods learn from large amounts of data</li>
+    <li style="list-style-type:none">
+     <ul>
+      <li>But humans can learn from very little data</li>
+      <li>We need models that do the same</li>
+     </ul>
+    </li>
+    <li>Ideally, we want the models to Learn how to Learn</li>
+   </ul>
+  </section>
+
+  <section>
+   <h2>Meta-Learning</h2>
+   <ul class="fix-spacing">
+    <li>Two main types of meta-learning : </li>
+    <li style="list-style-type:none">
+     <ol>
+      <li>Learn how to build the best model
+       <ul>
+        <li>Structure meta-learning</li>
+       </ul>
+      </li>
+      <li>Build a model that learns quickly
+       <ul>
+        <li>One-Shot Learning / Few-Shot Learning</li>
+       </ul>
+      </li>
+     </ol>
+    </li>
+   </ul>
+  </section>
+
+</section>
+
+
+<section>
+  <section>
+   <h2>Structure Meta-Learning</h2>
+   <ul class="fix-spacing">
+    <li>Problem : It's difficult for humans to build models</li>
+    <li>Solution : </li>
+    <li style="list-style-type:none">
+     <ul>
+      <li>Enable computers to build models</li>
+      <li>By searching model architectures efficiently</li>
+      <li>By predicting which architectures might work well</li>
+     </ul>
+    </li>
+    <li><b>Already seen the results...</b></li>
+   </ul>
+  </section>
+
+  <section>
+   <h2>NASNET Cells</h2>
+   <ul class="fix-spacing">
+    <li>The NASNet structure is created </li>
+    <li style="list-style-type:none">
+     <ul>
+      <li>... by searching over architectures</li>
+     </ul>
+    </li>
+    <li>Better accuracy / speed / power tradeoffs than humans</li>
+    <p><small>( not the focus of this talk )</small></p>
+   </ul>
+  </section>
+
+</section>
+
+
+<section>
+  <section>
+   <h2>One-Shot Learning</h2>
+   <ul class="fix-spacing">
+    <li>Humans can learn from few examples</li>
+    <li style="list-style-type:none">
+     <ul>
+      <li>eg : "Hammer-Whisk"</li>
+      <!--
+      https://secure.img2-ag.wfcdn.com/im/31485909/resize-h310-w310%5Ecompr-r85/4561/45619744/studio-9-silicone-whisk.jpg
+      https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNzJQg_U3uAGcOLtlhGI8P8cXCqdGJHpcF8sHv_9wadASYPm02
+      !-->
+     </ul>
+    </li>
+   </ul>
+  </section>
+
+  <section>
+   <h2>One-Shot Learning</h2>
+   <ul class="fix-spacing">
+    <li>Want a model that can also learn tasks quickly :</li>
+    <li style="list-style-type:none">
+     <ul>
+      <li>Model should be trained on many tasks</li>
+      <li>Each task will only have small amounts of data</li>
+     </ul>
+    </li>
+   </ul>
+  </section>
+
+  <section>
+   <p>( backtrack a little )</p>
+   <h2>Regular-Learning</h2>
+   <ul class="fix-spacing">
+    <li>Training set: </li>
+    <li style="list-style-type:none">
+     <ul>
+      <li>A bunch of different classes</li>
+      <li>Each class has sample images to learn</li>
+     </ul>
+    </li>
+    <li>Test set: </li>
+    <li style="list-style-type:none">
+     <ul>
+      <li>Can the model classify a previously unseen image?</li>
+     </ul>
+    </li>
+   </ul>
+  </section>
+
+  <section>
+   <h2>Meta-Learning</h2>
+   <ul class="fix-spacing">
+    <li>Training set: </li>
+    <li style="list-style-type:none">
+     <ul>
+      <li>A bunch of different tasks</li>
+      <li>Each task is a different problem to learn</li>
+      <li style="list-style-type:none">
+       <ul>
+        <li>Each of those problems has small amounts of data</li>
+       </ul>
+      </li>
+     </ul>
+    </li>
+    <li>Test set: </li>
+    <li style="list-style-type:none">
+     <ul>
+      <li>Can the model learn a previously unseen task quickly?</li>
+     </ul>
+    </li>
+   </ul>
+  </section>
+</section>
+
+<section>
+  <section>
+   <h2><a href="https://blog.openai.com/reptile/" target=_blank>Reptile</a> Model Search</h2>
+   <ul class="fix-spacing">
+    <li>OpenAI : <a href="https://arxiv.org/abs/1803.02999" target=_blank>Reptile: a Scalable Metalearning Algorithm</a></li>
+   </ul>
+   <code><pre>
+Initialize Φ. the initial parameter vector
+for iteration 1,2,3,…  do
+  Randomly sample a task T
+  Perform k>1 steps of SGD on task T, 
+    starting with parameters Φ, resulting in parameters W
+  Update: Φ ← Φ + ϵ(W−Φ)
+end for
+Return Φ
+</pre></code>
+  </section>
+
+  <section>
+   <h2>Reptile-Sines</h2>
+   <ul class="fix-spacing">
+    <li>Learn to learn tasks quickly</li>
+    <li>Each task in the meta-training set :</li>
+    <li style="list-style-type:none">
+     <ul>
+      <li>Creates a 'sine wave' with random amp. and phase</li>
+      <li style="list-style-type:none">
+       <ul>
+        <li>Training data is just a few points</li>
+        <li>Test whether new points can be predicted</li>
+       </ul>
+      </li>
+     </ul>
+    </li>
+    <li>The meta-test sees whether a single task learns quickly</li>
+   </ul>
+  </section>
+
+  <section>
+   <h2>Demo : Meta-Learning</h2>
+   <a href="http://localhost:8080/notebooks/8-MetaLearning/2-Reptile-Sines-PyTorch.ipynb" target=_blank>
+    <code>8-MetaLearning/<br/>2-Reptile-Sines-PyTorch.ipynb</code>
+   </a>
+  </section>
+
+</section>
+
+
+<section>
+  <section>
+   <h2>meta-MNIST</h2>
+   <ul class="fix-spacing">
+    <li>Goal : Learn to do character classification</li>
+    <li style="list-style-type:none">
+     <ul>
+        <li>... without knowing the character set</li>
+     </ul>
+    </li>
+    <li>So : Want to have a model that can learn...</li>
+    <li style="list-style-type:none">
+     <ul>
+        <li>... from just a few examples</li>
+        <li>... <i>or</i> from just one few example (!)</li>
+     </ul>
+    </li>
+   </ul>
+  </section>
+
+  <section>
+   <h2><a href="https://github.com/brendenlake/omniglot" target=_blank>Omniglot Dataset</a></h2>
+   <ul class="fix-spacing">
+    <li>1623 different handwritten characters</li>
+    <li style="list-style-type:none">
+     <ul>
+      <li>from 50 different alphabets</li>
+     </ul>
+    </li>
+   </ul>
+   <img width="640" height="360" src="img/Omniglot-clustered_640x360.png" alt="Omniglot clustered : sentient.ai" style="border:none;box-shadow:none">
+  </section>
+
+  <section>
+   <h2><a href="https://github.com/brendenlake/omniglot" target=_blank>Omniglot Dataset</a></h2>
+   <ul class="fix-spacing">
+    <li>Each of the 1623 characters</li>
+    <li style="list-style-type:none">
+     <ul>
+      <li> was drawn by 20 different people</li>
+     </ul>
+    </li>
+    <br/>
+    <li>Compare : MNIST</li>
+    <li style="list-style-type:none">
+     <ul>
+      <li>10 characters, drawn ~5000 times each</li>
+     </ul>
+    </li>
+   </ul>
+  </section>
+
+  <section>
+   <h2>One-shot Classification</h2>
+   <ul class="fix-spacing">
+    <li>Each task trains on 1 example each for 3 classes :</li>
+    <li style="list-style-type:none">
+     <ul>
+      <li>Model pre-meta-trained on Omniglot</li>
+      <li>Actual model running in Javascript</li>
+     </ul>
+    </li>
+    <li>The user provides the meta-test task</li>
+    <li>... works pretty well</li>
+   </ul>
+  </section>
+
+  <section>
+   <h2>Hands-On : One-Shot Learning</h2>
+   <!--
+   <a href="./MetaLearning-demo.html" target=_blank>
+     Meta-Learning Demo - '3 boxes'
+   </a>
+   !-->
+   <a href="http://RedCatLabs.com/meta" target=_blank>
+    <code>http://RedCatLabs.com/meta</code>
+   </a>
+  </section>
+
+</section>
+
+<section>
+  <section>
+   <h2>TensorFlow Content</h2>
+   <ul class="fix-spacing">
+    <li>Recent TensorFlow Summit (pays the bills)</li>
+    <li><strike>"Eager Mode" is PyTorch for TensorFlow</strike></li>
+    <li>TensorFlow Eager mode gives you :</li>
+    <li style="list-style-type:none">
+     <ul>
+      <li>Benefits of quick development <strike>(PyTorch)</strike> </li>
+      <li><b>AND</b> Tensorflow == production-ready</li>
+      <li><b>AND</b> Tensorflow == mobile+server+TPU</li>
+     </ul>
+    </li>
+   </ul>
+  </section>
+  
+  <section>
+   <h2>TF Eager Mode</h2>
+   <a href="https://www.youtube.com/watch?v=T8AW0fKP0Hs" target=_blank>
+    <img width="600" height="445" src="img/TensorFlow-Summit-2018_EagerMode_600x445.png" alt="TensorFlow Summit 2018 - Eager Mode" style="border:none;box-shadow:none">
+   </a>
+  </section>
+  
+  <section>
+   <h2>TF Eager Mode</h2>
+   <a href="http://localhost:8080/notebooks/8-MetaLearning/2-Reptile-Sines-TFEager.ipynb" target=_blank>
+    <code>8-MetaLearning/<br/>2-Reptile-Sines-TFEager.ipynb</code>
+   </a>
+  </section>
+  
+  
+</section>
+
+<section>
+ <h2>Wrap-up</h2>
+ <ul class="fix-spacing">
+  <li>Field is advancing very rapidly</li>
+  <li>Still within grasp of individuals</li>
+  <li>Open source applies to research too</li>
+ </ul>
+ <img width="517" height="223" src="img/GitHub-mdda_517x223.png" alt="GitHub - mdda" style="border:none;box-shadow:none">
+ <p><small>* Please add a star... *</small></p>
+</section>
+
+
+
+
+<section>
+
+  <section>
+   <h2>Deep Learning<br/>MeetUp Group</h2>
+   <ul class="fix-spacing">
+    <li>Next Meeting = ~22-May-2018</li>
+    <li style="list-style-type:none">
+      <ul>
+        <li>Hosted by Google in Singapore</li>
+      </ul>
+    </li>
+    <li>Typical Contents : </li>
+    <li style="list-style-type:none">
+      <ul>
+        <li>Talk for people starting out</li>
+        <li>Something from the bleeding-edge</li>
+        <li>Lightning Talks</li>
+      </ul>
+    </li>
+    <li><a href="https://www.meetup.com/TensorFlow-and-Deep-Learning-Singapore/" target="_blank">MeetUp.com / TensorFlow-and-Deep-Learning-Singapore</a></li>
+   </ul>
+  </section>
+
+
+  <section>
+   <h2>Deep Learning : Jump-Start Workshop</h2>
+   <ul class="fix-spacing">
+    <li>Dates + Cost : ~S$600 (funding available for SG/PR) :</li>
+    <li style="list-style-type:none">
+      <ul>
+        <li>Full day (week-end)</li>
+        <li>Play with real models</li>
+        <li>Get inspired!</li>
+        <li>Pick-a-Project to do at home</li>
+        <li>Regroup on subsequent week-nights</li>
+      </ul>
+    </li>
+    <li>See <a href="https://sginnovate.com/events/deep-learning-jump-start-workshop" target=_blank>SGInnovate Event Page</a> for details</li>
+   </ul>
+  </section>
+
+
+  <section>
+   <h2>8-week Deep Learning<br>Developer Course</h2>
+   <ul class="fix-spacing">
+    <li>25 September - 25-November</li>
+    <li>Twice-Weekly 3-hour sessions included :</li>
+    <li style="list-style-type:none">
+      <ul>
+        <li>Instruction</li>
+        <li>Individual Projects</li>
+        <li>Support by WSG</li>
+      </ul>
+    </li>
+    <li>Location : SGInnovate</li>
+    <li>Status : <b>FINISHED!</b></li>
+   </ul>
+  </section>
+
+  <section>
+   <h2>?-week Deep Learning<br>Developer Course</h2>
+   <ul class="fix-spacing">
+    <li>Plan : Start in a few months</li>
+    <li>Sessions will include :</li>
+    <li style="list-style-type:none">
+      <ul>
+        <li>Instruction</li>
+        <li>Individual Projects</li>
+        <li>Support by SG govt (planned)</li>
+      </ul>
+    </li>
+    <li>Location : SGInnovate</li>
+    <li>Status : <b>TBA</b></li>
+   </ul>
+  </section>
+  
+</section>
+
+
+
+<section>
+ <h1>- QUESTIONS -</h1>
+ <br>
+ <h3>Martin.Andrews @<br> RedCatLabs.com</h3>
+ <h3>Martin.Andrews @<br> RedDragon.AI</h3>
+ <br>
+ <p>My blog : <a href="https://blog.mdda.net/">http://blog.mdda.net/</a></p>
+ <p>GitHub : <a href="https://github.com/mdda">mdda</a></p>
+</section>
+
+   </div>
+  </div>
+
+<div id="redcatlabs-logo" style="background: url(img/RedDragon_logo_260x39.png);
+                                  position: absolute;
+                                  bottom: 50px;
+                                  left: 50px;
+                                  width: 260px;
+                                  height: 39px;">
+</div>  
+
+  <script src="lib/js/head.min.js"></script>
+  <script src="js/reveal.min.js"></script>
+
+  <script>
+
+   // Full list of configuration options available here:
+   // https://github.com/hakimel/reveal.js#configuration
+   Reveal.initialize({
+    controls: true,
+    progress: true,
+    history: true,
+    center: true,
+
+    theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+    transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+    // Parallax scrolling
+    // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+    // parallaxBackgroundSize: '2100px 900px',
+
+    // Optional libraries used to extend on reveal.js
+    dependencies: [
+     { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+     { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+     { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+     { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+     { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+     { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+    ]
+   });
+
+  </script>
+
+ </body>
+</html>
