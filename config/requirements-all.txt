@@ -1,6 +1,14 @@
+# This gets install after the -cpu or -gpu requirements
+
 
 # Jupyter (previously iPython)
 jupyter
+
+# TensorBoard itself
+tensorboard
+
+# Tensorboard interface for PyTorch
+tensorboardX
 
 
 ## Requests is only used in the GPU chooser, which is a pity.  OTOH, it's a good library
