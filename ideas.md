@@ -798,7 +798,7 @@ Early on, maybe keep the shitty random values, but change the connections.
      -  This is more of a business idea, really
     
 
-## FOSSASIA Ideas
+## FOSSASIA 2018 :
   - Meta-Learning
     + Reptile (OpenAI)
       - Has nice webpage/blog-post : https://blog.openai.com/reptile/
@@ -821,11 +821,13 @@ Early on, maybe keep the shitty random values, but change the connections.
            -  Or have the structure scheme somehow define the initialisation spatially
         +  Highlight that DNA could determine structure conducive to easy training
       
-      - (Probable) plan for talk at Thai AI Day:
+      - Plan for talk at Thai+Singapore AI Days:
         +  Rewrite PyTorch-sines example using TensorFlow Eager mode
            -  First-hand experience with Eager Mode
            -  Allows wearing of TF polo with pride to Thai event...
 
+
+## Next big conference ideas : 
         
     + ENAS is also a tempting idea
       - Overall number of back-prop steps would be similar
@@ -891,8 +893,9 @@ Early on, maybe keep the shitty random values, but change the connections.
     + r9k9 has a nice page of speech-related stuff, but perhaps it's too specific
       -  Also, it may not be Deep Learning _per se_.
 
+
       
-## Re-Think modularisation
+## Re-Think modularisation for deep-learning-workshop
 
 Now that Google's Colab can run notebooks directly, should rethink modularity :
 
