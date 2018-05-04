@@ -921,7 +921,19 @@ Now that Google's Colab can run notebooks directly, should rethink modularity :
 +  Break out MetaLearning now
    -  What to do about 3-boxes JS example?
 +  Respond to PR acceptance + layer connectivity query on GoogLeNet in Keras
+ 
   
+Also, figure out a good 'private code+data' workflow too:
+
++  For persistence (and data?), good to have Google Drive mounted
++  Local code repo (more likely : folder, or assembled .tar)
+   -  Upload to Colab after changes - automation?
+   -  Possible to store Google Drive key locally?
++  Or have a google cloud bucket that can be easily copied 
+   -   https://colab.research.google.com/notebook#fileId=/v2/external/notebooks/io.ipynb
+
+
+
 ## Jack and PulseAudio
   - Write up how to make it work
     +  First step : Make it work!
