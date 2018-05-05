@@ -931,6 +931,8 @@ Also, figure out a good 'private code+data' workflow too:
    -  Possible to store Google Drive key locally?
 +  Or have a google cloud bucket that can be easily copied 
    -   Created new Google Project r...-tts bucket cori-preprocessed-waver..
+      -  But folder upload mechanics completely fails on Chrome
+      -  and gsutils is Python2 - so need to set up a separate venv to avoid cluttering up otherwise-good system
    -   https://colab.research.google.com/notebook#fileId=/v2/external/notebooks/io.ipynb
 
 
