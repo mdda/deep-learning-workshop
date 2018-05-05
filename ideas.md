@@ -930,6 +930,7 @@ Also, figure out a good 'private code+data' workflow too:
    -  Upload to Colab after changes - automation?
    -  Possible to store Google Drive key locally?
 +  Or have a google cloud bucket that can be easily copied 
+   -   Created new Google Project r...-tts bucket cori-preprocessed-waver..
    -   https://colab.research.google.com/notebook#fileId=/v2/external/notebooks/io.ipynb
 
 
