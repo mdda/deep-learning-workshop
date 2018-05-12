@@ -936,6 +936,16 @@ Also, figure out a good 'private code+data' workflow too:
    -   https://colab.research.google.com/notebook#fileId=/v2/external/notebooks/io.ipynb
 
 
+## Intrinsic Dimension (Uber)
+
+*  https://eng.uber.com/intrinsic-dimension/
+   -  https://arxiv.org/abs/1804.08838
+   -  https://github.com/uber-research/intrinsic-dimension
+      -  Seems to be TensorFlow
+         -  Perhaps revelant for Thursday then...
+      -  But then what for Tuesday?
+
+
 
 ## Jack and PulseAudio
   - Write up how to make it work
