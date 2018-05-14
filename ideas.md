@@ -942,8 +942,10 @@ Also, figure out a good 'private code+data' workflow too:
    -  https://arxiv.org/abs/1804.08838
    -  https://github.com/uber-research/intrinsic-dimension
       -  Seems to be TensorFlow
-         -  Perhaps revelant for Thursday then...
-      -  But then what for Tuesday?
+         -  Perhaps revelant for Thursday then...  But too technical
+      -  https://medium.com/deep-learning-turkey/google-colab-free-gpu-tutorial-e113627b9f5d
+      -  'https://colab.research.google.com/github/' + repository + 'blob/master/' + file_in_repository
+         =  https://colab.research.google.com/github/mdda/deep-learning-workshop/blob/master/notebooks/work-in-progress/IntrinsicDimension.ipynb
 
 
 
