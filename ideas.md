@@ -827,6 +827,18 @@ Early on, maybe keep the shitty random values, but change the connections.
            -  Allows wearing of TF polo with pride to Thai event...
 
 
+## Intrinsic Dimension (Uber)  = DONE
+
+*  https://eng.uber.com/intrinsic-dimension/
+   -  https://arxiv.org/abs/1804.08838
+   -  https://github.com/uber-research/intrinsic-dimension
+      -  Seems to be TensorFlow
+         -  Perhaps revelant for Thursday then...  But too technical
+      -  https://medium.com/deep-learning-turkey/google-colab-free-gpu-tutorial-e113627b9f5d
+      -  'https://colab.research.google.com/github/' + repository + 'blob/master/' + file_in_repository
+         =  https://colab.research.google.com/github/mdda/deep-learning-workshop/blob/master/notebooks/work-in-progress/IntrinsicDimension.ipynb
+
+
 ## Next big conference ideas : 
         
     + ENAS is also a tempting idea
@@ -846,7 +858,6 @@ Early on, maybe keep the shitty random values, but change the connections.
               - Possibly use random-projection (fixed seed) to remove memory access bandwith issue
               
               
-        
     + Or a variation to explore the large, but sparse model idea of WaveRNN
       - Not clear what a toy problem should look like
         -  Would be great to do something with attention, or RNN
@@ -892,7 +903,7 @@ Early on, maybe keep the shitty random values, but change the connections.
   - Speech Generation
     + r9k9 has a nice page of speech-related stuff, but perhaps it's too specific
       -  Also, it may not be Deep Learning _per se_.
-
+    + Perhaps mel->spec should be a GAN process, rather than L2-optimised
 
       
 ## Re-Think modularisation for deep-learning-workshop
@@ -935,17 +946,6 @@ Also, figure out a good 'private code+data' workflow too:
       -  and gsutils is Python2 - so need to set up a separate venv to avoid cluttering up otherwise-good system
    -   https://colab.research.google.com/notebook#fileId=/v2/external/notebooks/io.ipynb
 
-
-## Intrinsic Dimension (Uber)
-
-*  https://eng.uber.com/intrinsic-dimension/
-   -  https://arxiv.org/abs/1804.08838
-   -  https://github.com/uber-research/intrinsic-dimension
-      -  Seems to be TensorFlow
-         -  Perhaps revelant for Thursday then...  But too technical
-      -  https://medium.com/deep-learning-turkey/google-colab-free-gpu-tutorial-e113627b9f5d
-      -  'https://colab.research.google.com/github/' + repository + 'blob/master/' + file_in_repository
-         =  https://colab.research.google.com/github/mdda/deep-learning-workshop/blob/master/notebooks/work-in-progress/IntrinsicDimension.ipynb
 
 
 
