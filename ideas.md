@@ -904,6 +904,9 @@ Early on, maybe keep the shitty random values, but change the connections.
     + r9k9 has a nice page of speech-related stuff, but perhaps it's too specific
       -  Also, it may not be Deep Learning _per se_.
     + Perhaps mel->spec should be a GAN process, rather than L2-optimised
+      -  Though, L2 would be a good baseline : Perhaps have 2 terms : 
+         - L2 difference term; plus
+         - Recurrent generated overlay (including noise for a latent space) in a residual fashion, fed into a CNN-like discriminator
 
       
 ## Re-Think modularisation for deep-learning-workshop
