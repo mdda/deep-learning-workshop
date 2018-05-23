@@ -907,6 +907,7 @@ Early on, maybe keep the shitty random values, but change the connections.
       -  Though, L2 would be a good baseline : Perhaps have 2 terms : 
          - L2 difference term; plus
          - Recurrent generated overlay (including noise for a latent space) in a residual fashion, fed into a CNN-like discriminator
+         - Ensure that L2 size of overlay 'not large' to ensure that mels would still back-fit well enough
 
       
 ## Re-Think modularisation for deep-learning-workshop
