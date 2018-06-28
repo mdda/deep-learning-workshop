@@ -966,4 +966,16 @@ Also, figure out a good 'private code+data' workflow too:
     +  Also, the steps taken are now probably lost in the mists of time.
 
     
-    
+## Next TF&DL ideas : 
+
+*  Attention-is-All-You-Need Special  
+   *  t2t library?
+   *  Keras clean version
+
+  
+
+## Next PyTorch&DL ideas : 
+
+
+
+
