@@ -971,6 +971,8 @@ Also, figure out a good 'private code+data' workflow too:
 *  Attention-is-All-You-Need Special  
    *  t2t library?
    *  Keras clean version
+   *  Blog post : https://jalammar.github.io/illustrated-transformer/
+        
 
   
 
