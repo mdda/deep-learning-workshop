@@ -978,6 +978,8 @@ Also, figure out a good 'private code+data' workflow too:
 
 ## Next PyTorch&DL ideas : 
 
-
-
+*  PyTorch on TPU(?)
+*  PyTorch 16-bit ops (https://github.com/NVIDIA/apex) and usage on GCP V100s
+   *  amp: Automatic Mixed Precision
+   *  FP16_Optimizer
 
