@@ -972,6 +972,8 @@ Also, figure out a good 'private code+data' workflow too:
    *  t2t library?
    *  Keras clean version
    *  Blog post : https://jalammar.github.io/illustrated-transformer/
+*  V100 16-bit optimisation
+   *  Keep it a little generic : Still has interesting mathematical issues
         
 
   
