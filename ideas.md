@@ -972,10 +972,12 @@ Also, figure out a good 'private code+data' workflow too:
    *  t2t library?
    *  Keras clean version
    *  Blog post : https://jalammar.github.io/illustrated-transformer/
-*  V100 16-bit optimisation
+*  P100+V100 16-bit optimisation
    *  Keep it a little generic : Still has interesting mathematical issues
-        
-
+   *  Should benchmark to see whether it's : 
+      *  a generic 2x speed-up from 32->16 ops (both P100 and V100); or
+      *  making use of the 16-bit Vector unit (V100 only) for a ~10x speed-up
+   *  Benchmark will determine whether 2+ times price increase is worth it for V100 vs P100
   
 
 ## Next PyTorch&DL ideas : 
