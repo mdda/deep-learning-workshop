@@ -978,6 +978,11 @@ Also, figure out a good 'private code+data' workflow too:
       *  a generic 2x speed-up from 32->16 ops (both P100 and V100); or
       *  making use of the 16-bit Vector unit (V100 only) for a ~10x speed-up
    *  Benchmark will determine whether 2+ times price increase is worth it for V100 vs P100
+      *  https://www.xcelerit.com/computing-benchmarks/insights/benchmarks-deep-learning-nvidia-p100-vs-v100-gpu/
+         *  Link suggests that float32s should improve from 9.3 to 14 : ~1.5x speedup
+      *  https://devblogs.nvidia.com/inside-volta/ - see Table 1
+         *  Link suggests that float32s should improve from 10.6 to 15.7 : ~1.5x speedup
+         *  ... unless we can get the Tensor Cores going (max then is 125 TFLOPS)
   
 
 ## Next PyTorch&DL ideas : 
