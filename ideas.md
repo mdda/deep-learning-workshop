@@ -972,6 +972,7 @@ Also, figure out a good 'private code+data' workflow too:
    *  t2t library?
    *  Keras clean version
    *  Blog post : https://jalammar.github.io/illustrated-transformer/
+   
 *  P100+V100 16-bit optimisation
    *  Keep it a little generic : Still has interesting mathematical issues
    *  Should benchmark to see whether it's : 
@@ -983,6 +984,8 @@ Also, figure out a good 'private code+data' workflow too:
       *  https://devblogs.nvidia.com/inside-volta/ - see Table 1
          *  Link suggests that float32s should improve from 10.6 to 15.7 : ~1.5x speedup
          *  ... unless we can get the Tensor Cores going (max then is 125 TFLOPS)
+   *  Potentially demo the TTS voice as a 'result' without releasing code
+      *  Emphasise that the PyTorch vs TF origins of the model are not as relevant as the ideas
   
 
 ## Next PyTorch&DL ideas : 
