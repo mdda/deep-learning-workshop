@@ -986,6 +986,10 @@ Also, figure out a good 'private code+data' workflow too:
          *  ... unless we can get the Tensor Cores going (max then is 125 TFLOPS)
    *  Potentially demo the TTS voice as a 'result' without releasing code
       *  Emphasise that the PyTorch vs TF origins of the model are not as relevant as the ideas
+   *  Test out the claim that Google likes PyTorch vs the reality
+   *  Will still need to do TPU tests (later) to see what the uplift is there
+      *  jupyter notebook example : https://github.com/tensorflow/tpu/blob/master/models/experimental/mnist_jupyter/Cloud-TPU-Demo.ipynb
+      *  keras -> TPUEstimator : https://github.com/tensorflow/tpu/blob/master/models/experimental/cifar_keras/cifar_keras.py
   
 
 ## Next PyTorch&DL ideas : 
