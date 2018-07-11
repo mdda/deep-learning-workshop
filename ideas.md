@@ -990,7 +990,12 @@ Also, figure out a good 'private code+data' workflow too:
    *  Will still need to do TPU tests (later) to see what the uplift is there
       *  jupyter notebook example : https://github.com/tensorflow/tpu/blob/master/models/experimental/mnist_jupyter/Cloud-TPU-Demo.ipynb
       *  keras -> TPUEstimator : https://github.com/tensorflow/tpu/blob/master/models/experimental/cifar_keras/cifar_keras.py
-  
+   *  For the demo training stats: 
+       *  Need to create a bucket with the training data
+       *  And a simple way to upload changed files (git pull from reddragon.ai ?)
+       *  Need to be able to create a machine with the potential to connect to K80, P100 and V100
+       *  Check whether 16/32-bit code 'fails-safe' to 32-bits (or even down to CPU...)
+       *  Benchmark by measuring training speed on (say) 1000 batches
 
 ## Next PyTorch&DL ideas : 
 
