@@ -994,6 +994,8 @@ Also, figure out a good 'private code+data' workflow too:
        *  Need to create a bucket with the training data
        *  And a simple way to upload changed files (git pull from reddragon.ai ?)
        *  Need to be able to create a machine with the potential to connect to K80, P100 and V100
+          *  https://cloud.google.com/compute/docs/gpus/add-gpus : "Adding or removing GPUs on existing instances"
+          *  Apparently, the image gets migrated between physical hardware - but you can't do that in the shell thing (seems reasonable)
        *  Check whether 16/32-bit code 'fails-safe' to 32-bits (or even down to CPU...)
        *  Benchmark by measuring training speed on (say) 1000 batches
 
