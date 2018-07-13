@@ -996,6 +996,9 @@ Also, figure out a good 'private code+data' workflow too:
        *  Need to be able to create a machine with the potential to connect to K80, P100 and V100
           *  https://cloud.google.com/compute/docs/gpus/add-gpus : "Adding or removing GPUs on existing instances"
           *  Apparently, the image gets migrated between physical hardware - but you can't do that in the shell thing (seems reasonable)
+          *  Also, new 'Cloud VM' : https://cloud.google.com/deep-learning-vm/docs/cli
+             *  But forces different VMs for TF and PyTorch :  tf-latest-cu92 & pytorch-latest-cu91 respectively
+             *  Has Jupyter installed already! : https://cloud.google.com/deep-learning-vm/docs/jupyter
        *  Check whether 16/32-bit code 'fails-safe' to 32-bits (or even down to CPU...)
        *  Benchmark by measuring training speed on (say) 1000 batches
 
