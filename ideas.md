@@ -973,8 +973,42 @@ Also, figure out a good 'private code+data' workflow too:
    *  Keras clean version
    *  Blog post : https://jalammar.github.io/illustrated-transformer/
    
-*  P100+V100 16-bit optimisation
-   *  Keep it a little generic : Still has interesting mathematical issues
+*  P100+V100 16-bit optimisation : 
+   *  Nvidia materials:
+      *  Blog post : https://devblogs.nvidia.com/mixed-precision-training-deep-neural-networks/
+      *  News : https://insidehpc.com/2018/06/nvidia-releases-code-accelerated-machine-learning/
+      *  Tensor Cores : https://news.developer.nvidia.com/introducing-apex-pytorch-extension-with-tools-to-realize-the-power-of-tensor-cores/
+      *  Apex : https://nvidia.github.io/apex/
+      *  Docs : https://docs.nvidia.com/deeplearning/sdk/mixed-precision-training/index.html
+      *  GPUtech : https://2018gputechconf.smarteventscloud.com/connect/sessionDetail.ww?SESSION_ID=81012
+          *   Training Neural Networks with Mixed Precision: Real Examples
+              *   Benjamin Barsdell (NVIDIA), Michael O'Connor (NVIDIA), Christian M. Sarofeen (NVIDIA)
+              *   We will cover the techniques for training DNNs with Tensor Cores described in 
+                  "S8923 - Training Neural Networks with Mixed Precision: Theory and Practice". 
+                  These methods were introduced for AI processing with the Volta GPU architecture. 
+                  Tensor Cores provide up to 120 TFlops throughput, mixing operations on IEEE half- and single-precision floats. 
+                  Techniques used will include loss-scaling, master weights copy, and choosing the proper precision for a given operation. 
+                  For each of TensorFlow and PyTorch we will describe a fp32 network definition 
+                  and then demonstrate the same network using mixed precision techniques.  
+          *   Video : http://on-demand.gputechconf.com/gtc/2018/video/S81012/
+          *   Slides : http://on-demand.gputechconf.com/gtc/2018/presentation/s81012-training-neural-networks-with-mixed-precision.pdf
+      *  GPUtech : https://2018gputechconf.smarteventscloud.com/connect/sessionDetail.ww?SESSION_ID=157371
+          *   Training Neural Networks with Mixed Precision: Theory and Practice
+              *  Paulius Micikevicius (NVIDIA)
+              *  We'll cover the theory and practice for training DNNs with Tensor Cores, 
+                 introduced for AI processing with the Volta GPU architecture. 
+                 Tensor Cores provide up to 120 TFlops throughput, mixing operations on IEEE half- and single-precision floats. 
+                 In the theory portion of the talk, we'll review the half-precision format, values that arise in DNN computations, 
+                 and techniques that maximize utilization of fp16 format by these values. 
+                 Techniques include loss-scaling, master weights, and choosing the proper precision for a given operation. 
+                 In the practice portion of this talk, we'll survey various models that have been trained in mixed precision, 
+                 matching the accuracy of fp32 training sessions while using the same hyperparameters. 
+                 Models include various architectures (feed forward, recurrent, generative) as well as cover diverse tasks 
+                 (image, speech, and language processing). 
+                 We'll also provide network design and training guidelines to maximize speed when using Tensor Cores.  
+          *   Video : http://on-demand.gputechconf.com/gtc/2018/video/S8923/
+          *   Slides : http://on-demand.gputechconf.com/gtc/2018/presentation/s8923-training-neural-networks-with-mixed-precision-theory-and-practice.pdf
+   *  Keep it a little generic (rather than TF-only) : There are interesting mathematical issues for any framework
    *  Should benchmark to see whether it's : 
       *  a generic 2x speed-up from 32->16 ops (both P100 and V100); or
       *  making use of the 16-bit Vector unit (V100 only) for a ~10x speed-up
@@ -986,21 +1020,22 @@ Also, figure out a good 'private code+data' workflow too:
          *  ... unless we can get the Tensor Cores going (max then is 125 TFLOPS)
    *  Potentially demo the TTS voice as a 'result' without releasing code
       *  Emphasise that the PyTorch vs TF origins of the model are not as relevant as the ideas
-   *  Test out the claim that Google likes PyTorch vs the reality
-   *  Will still need to do TPU tests (later) to see what the uplift is there
-      *  jupyter notebook example : https://github.com/tensorflow/tpu/blob/master/models/experimental/mnist_jupyter/Cloud-TPU-Demo.ipynb
-      *  keras -> TPUEstimator : https://github.com/tensorflow/tpu/blob/master/models/experimental/cifar_keras/cifar_keras.py
+      *  Test out the claim that Google likes PyTorch vs the reality
    *  For the demo training stats: 
        *  Need to create a bucket with the training data
        *  And a simple way to upload changed files (git pull from reddragon.ai ?)
+       *  Check whether 16/32-bit code 'fails-safe' to 32-bits (or even down to CPU...)
+       *  Benchmark by measuring training speed on (say) 1000 batches
        *  Need to be able to create a machine with the potential to connect to K80, P100 and V100
           *  https://cloud.google.com/compute/docs/gpus/add-gpus : "Adding or removing GPUs on existing instances"
           *  Apparently, the image gets migrated between physical hardware - but you can't do that in the shell thing (seems reasonable)
           *  Also, new 'Cloud VM' : https://cloud.google.com/deep-learning-vm/docs/cli
              *  But forces different VMs for TF and PyTorch :  tf-latest-cu92 & pytorch-latest-cu91 respectively
              *  Has Jupyter installed already! : https://cloud.google.com/deep-learning-vm/docs/jupyter
-       *  Check whether 16/32-bit code 'fails-safe' to 32-bits (or even down to CPU...)
-       *  Benchmark by measuring training speed on (say) 1000 batches
+   *  Will still need to do TPU tests (later) to see what the uplift is there
+      *  jupyter notebook example : https://github.com/tensorflow/tpu/blob/master/models/experimental/mnist_jupyter/Cloud-TPU-Demo.ipynb
+      *  keras -> TPUEstimator : https://github.com/tensorflow/tpu/blob/master/models/experimental/cifar_keras/cifar_keras.py
+
 
 ## Next PyTorch&DL ideas : 
 
