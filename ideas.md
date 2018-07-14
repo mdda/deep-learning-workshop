@@ -936,7 +936,10 @@ Now that Google's Colab can run notebooks directly, should rethink modularity :
 +  Break out MetaLearning now
    -  What to do about 3-boxes JS example?
 +  Respond to PR acceptance + layer connectivity query on GoogLeNet in Keras
- 
++  Actually, would make sense to have 'an intern' who would re-do the notebooks:
+   -  All use DataSets API for Keras
+      *  Maybe build an special 'ingester' bible, with lots of examples
+   -  Same for PyTorch(?) - except that the training loop thing may get smartened up in v1.0
   
 Also, figure out a good 'private code+data' workflow too:
 
