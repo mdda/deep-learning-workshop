@@ -1035,6 +1035,7 @@ Also, figure out a good 'private code+data' workflow too:
           *  Also, new 'Cloud VM' : https://cloud.google.com/deep-learning-vm/docs/cli
              *  But forces different VMs for TF and PyTorch :  tf-latest-cu92 & pytorch-latest-cu91 respectively
              *  Has Jupyter installed already! : https://cloud.google.com/deep-learning-vm/docs/jupyter
+       *  But SamW says that 'allocations' are needed for V100s - so potentially no time for this demo...
    *  Will still need to do TPU tests (later) to see what the uplift is there
       *  jupyter notebook example : https://github.com/tensorflow/tpu/blob/master/models/experimental/mnist_jupyter/Cloud-TPU-Demo.ipynb
       *  keras -> TPUEstimator : https://github.com/tensorflow/tpu/blob/master/models/experimental/cifar_keras/cifar_keras.py
