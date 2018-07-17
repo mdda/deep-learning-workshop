@@ -1037,6 +1037,7 @@ Also, figure out a good 'private code+data' workflow too:
              *  Has Jupyter installed already! : https://cloud.google.com/deep-learning-vm/docs/jupyter
        *  But SamW says that 'allocations' are needed for V100s - so potentially no time for this demo...
           *  Ok : So I had to apply for a (preemptible) GPU allocation in asia-northeast1 (cross-fingers)
+          *  And : Not available in asia-northeast1.  Trying for us-east1 and us-central1
    *  Will still need to do TPU tests (later) to see what the uplift is there
       *  jupyter notebook example : https://github.com/tensorflow/tpu/blob/master/models/experimental/mnist_jupyter/Cloud-TPU-Demo.ipynb
       *  keras -> TPUEstimator : https://github.com/tensorflow/tpu/blob/master/models/experimental/cifar_keras/cifar_keras.py
