@@ -977,73 +977,6 @@ Also, figure out a good 'private code+data' workflow too:
    *  Blog post : https://jalammar.github.io/illustrated-transformer/
    
 *  P100+V100 16-bit optimisation : 
-   *  Nvidia materials:
-      *  Blog post : https://devblogs.nvidia.com/mixed-precision-training-deep-neural-networks/
-      *  News : https://insidehpc.com/2018/06/nvidia-releases-code-accelerated-machine-learning/
-      *  Tensor Cores : https://news.developer.nvidia.com/introducing-apex-pytorch-extension-with-tools-to-realize-the-power-of-tensor-cores/
-      *  Apex : https://nvidia.github.io/apex/
-      *  Docs : https://docs.nvidia.com/deeplearning/sdk/mixed-precision-training/index.html
-      
-      *  GPUtech : https://2018gputechconf.smarteventscloud.com/connect/sessionDetail.ww?SESSION_ID=81012
-          *   Training Neural Networks with Mixed Precision: Real Examples
-              *   Benjamin Barsdell (NVIDIA), Michael O'Connor (NVIDIA), Christian M. Sarofeen (NVIDIA)
-              *   We will cover the techniques for training DNNs with Tensor Cores described in 
-                  "S8923 - Training Neural Networks with Mixed Precision: Theory and Practice". 
-                  These methods were introduced for AI processing with the Volta GPU architecture. 
-                  Tensor Cores provide up to 120 TFlops throughput, mixing operations on IEEE half- and single-precision floats. 
-                  Techniques used will include loss-scaling, master weights copy, and choosing the proper precision for a given operation. 
-                  For each of TensorFlow and PyTorch we will describe a fp32 network definition 
-                  and then demonstrate the same network using mixed precision techniques.  
-          *   Video : http://on-demand.gputechconf.com/gtc/2018/video/S81012/  <<< THIS IS THE BEST ONE FOR A BASE
-          *   Slides(11pp) : http://on-demand.gputechconf.com/gtc/2018/presentation/s81012-training-neural-networks-with-mixed-precision.pdf
-          
-      *  GPUtech : https://2018gputechconf.smarteventscloud.com/connect/sessionDetail.ww?SESSION_ID=157371
-          *   Training Neural Networks with Mixed Precision: Theory and Practice
-              *  Paulius Micikevicius (NVIDIA)
-              *  We'll cover the theory and practice for training DNNs with Tensor Cores, 
-                 introduced for AI processing with the Volta GPU architecture. 
-                 Tensor Cores provide up to 120 TFlops throughput, mixing operations on IEEE half- and single-precision floats. 
-                 In the theory portion of the talk, we'll review the half-precision format, values that arise in DNN computations, 
-                 and techniques that maximize utilization of fp16 format by these values. 
-                 Techniques include loss-scaling, master weights, and choosing the proper precision for a given operation. 
-                 In the practice portion of this talk, we'll survey various models that have been trained in mixed precision, 
-                 matching the accuracy of fp32 training sessions while using the same hyperparameters. 
-                 Models include various architectures (feed forward, recurrent, generative) as well as cover diverse tasks 
-                 (image, speech, and language processing). 
-                 We'll also provide network design and training guidelines to maximize speed when using Tensor Cores.  
-          *   Video : http://on-demand.gputechconf.com/gtc/2018/video/S8923/
-          *   Slides(37pp) : http://on-demand.gputechconf.com/gtc/2018/presentation/s8923-training-neural-networks-with-mixed-precision-theory-and-practice.pdf
-              *  Pretty terse at start, few code examples.  Application pictures and training curves.  Hints for V100 units too.
-              
-        *  GPUtech : 
-           *  Training of Deep Networks with Half-Precision Float
-              *  Boris Ginsburg (NVIDIA)
-              *  We'll describe new algorithms used to train very deep networks with half-precision float. 
-                 Float16 has two major potential benefits: better training speed and reduced memory footprint. 
-                 But Float16 has very narrow numerical range (0.00006,65504). 
-                 This narrow numerical range can result both in overflow ("inf/nan" problem) or underflow ("vanishing gradient") during training of deep networks. 
-                 We'll describe the new scaling algorithm, implemented in nvcaffe, which prevents these negative effects. 
-                 With this algorithm, we successfully trained such networks as Alexnet, GoogLeNet, Inception_v3, and Resnets without any loss in accuracy. 
-                 Other contributors to this work are S. Nikolaev, M. Houston, A. Kiswani, A. Gholaminejad, S. Migacz, H. Wu, A. Fit-Florea, and U. Kapasi.
-           *   Video : http://on-demand.gputechconf.com/gtc/2017/video/s7218-boris-ginsburg-training-of-deep-networks-with-half-precision-float.mp4
-           *   Slides() : http://on-demand.gputechconf.com/gtc/2017/presentation/s7218-training-with-mixed-precision-boris-ginsburg.pdf
-          
-        *  GPUtech : 
-           *  Mixed Precision Training of Deep NN with Volta
-              *   Boris Ginsburg (NVIDIA)
-              *   We'll describe training of very deep networks with mixed-precision float (("float16") using Volta Tensor Core. 
-                  Float16 has two major potential benefits: high training speed and reduced memory footprint. 
-                  But float16 has smaller numerical range than regular single precision float, 
-                  which can result in overflow or underflow ("vanishing gradient") during training. 
-                  We'll describe simple rescaling mechanism which solves these potential issues. 
-                  With this rescaling algorithm, we successfully used mixed precision training for such networks as 
-                  Alexnet, GoogLeNet, Inception_v3, and Resnets without any loss in accuracy.
-                  Other contributors to this work are S. Nikolaev, M. Houston, A. Kiswani, A. Gholaminejad, S. Migacz, H. Wu, A. Fit-Florea, and U. Kapasi.
-           *  Video : https://drive.google.com/file/d/0B596cb8D9K9kb1Ytd184TktZeDg/preview       
-           *  Slides(56pp) : http://on-demand.gputechconf.com/gtc-il/2017/presentation/sil7116-boris-ginsburg-mixed-precision-training-of-deep-nn-with-volta.pdf
-          
-              
-   *  Keep it a little generic (rather than TF-only) : There are interesting mathematical issues for any framework
    *  Should benchmark to see whether it's : 
       *  a generic 2x speed-up from 32->16 ops (both P100 and V100); or
       *  making use of the 16-bit Vector unit (V100 only) for a ~10x speed-up
@@ -1054,8 +987,6 @@ Also, figure out a good 'private code+data' workflow too:
          *  Link suggests that float32s should improve from 10.6 to 15.7 : ~1.5x speedup
          *  ... unless we can get the Tensor Cores going (max then is 125 TFLOPS)
    *  Potentially demo the TTS voice as a 'result' without releasing code
-      *  Emphasise that the PyTorch vs TF origins of the model are not as relevant as the ideas
-      *  Test out the claim that Google likes PyTorch vs the reality
    *  For the demo training stats: 
        *  Need to create a bucket with the training data
        *  And a simple way to upload changed files (git pull from reddragon.ai ?)
