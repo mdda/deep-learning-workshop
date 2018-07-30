@@ -839,75 +839,38 @@ Early on, maybe keep the shitty random values, but change the connections.
          =  https://colab.research.google.com/github/mdda/deep-learning-workshop/blob/master/notebooks/work-in-progress/IntrinsicDimension.ipynb
 
 
-## Next big conference ideas : 
-        
-    + ENAS is also a tempting idea
-      - Overall number of back-prop steps would be similar
-        -  But need to have structure updates
-        -  Possible to do in PyTorch or TensorFlow Eager Mode...
-      = Maybe create a simpler-to-understand version :
-        -  Have a fixed number of 'slots' that parameterised modules can operate on
-        -  Have a parameter/op budget, after which chain of ops is truncated
-        -  Ops are additive to the slots (so naturally 'residual-like')
-        -  Need to think how to 'impedence match' different sized layers
-           +  Images and RNN hidden states are two different cases
-           +  Images : Some kind of transpose operation (flipping depth for area) ?
-              - i.e. not information-destructive
-           +  RNN hidden state vector : Some kind of structured map (sparse-ish) between layers ?
-              - But that would be information-changing
-              - Possibly use random-projection (fixed seed) to remove memory access bandwith issue
-              
-              
-    + Or a variation to explore the large, but sparse model idea of WaveRNN
-      - Not clear what a toy problem should look like
-        -  Would be great to do something with attention, or RNN
-        -  One issue is how to keep track of the derivatives
-           - either do masking on a large matrix; or explicitly construct everything on-the-fly
-      - Nor clear whether sparseness can be 'discovered from below' or
-        requires a large model, and discovered redundency
-      - Interesting papers : 
-        -  Sparse Persistent RNNs: Squeezing Large Recurrent Networks On-Chip 
-           + https://openreview.net/pdf?id=HkxF5RgC-
-        
-    
-  - Word-Embeddings
-    + Translation via alignment of word embeddings in 2+ languages
-      - Possibilities : 
-        -  Matrix inversion (quickest case, if it works)
-        -  Iterative improvement (easiest to implement)
-        -  Adversarial improvement (pretty exciting)
-        -  Evolutionary-style improvement (combo-deal for teaching)
-      - fasttext2 is apparently quite an improvement
-        -  Downloadable under : Creative Commons Attribution-Share-Alike License 3.0: 
-           + English (clearly most-worked-on)
-             https://fasttext.cc/docs/en/english-vectors.html
-             -  English 651Mb .gz
-                https://s3-us-west-1.amazonaws.com/fasttext-vectors/wiki-news-300d-1M.vec.zip
-             -  English 958Mb .gz (with subword hinting)
-                https://s3-us-west-1.amazonaws.com/fasttext-vectors/wiki-news-300d-1M-subword.vec.zip
-           + 157 languages : includes Tamil, Hindi, Indonesian, Malaysian and "Chinese"
-             https://fasttext.cc/docs/en/crawl-vectors.html
-             -  Malay 678M .gz
-                https://s3-us-west-1.amazonaws.com/fasttext-vectors/word-vectors-v2/cc.ms.300.vec.gz
-             -  Chinese 1.3G .gz
-                https://s3-us-west-1.amazonaws.com/fasttext-vectors/word-vectors-v2/cc.zh.300.vec.gz
-        -  Need to consider word segmentation in Chinese (for instance)
-        -  Potential to replace GloVe in workshop notebooks 
-           + Useful starter blog : https://blog.manash.me/how-to-use-pre-trained-word-vectors-from-facebooks-fasttext-a71e6d55f27
-      - If multi-language, need to make sure that fonts + IME are installed
-      - One issue is that this will really require the USB VirtualBox install
-        -  Reduces options regarding using (for instance) Collab
-      - More important issue : The cross-language embedding tricks *don't seem to work*
-        -  Significantly reduces the attractiveness of teaching the topic 'hands-on'...
+## float16 outline :: DONE
+   
+*  P100+V100 16-bit optimisation : 
+   *  Should benchmark to see whether it's : 
+      *  a generic 2x speed-up from 32->16 ops (both P100 and V100); or
+      *  making use of the 16-bit Vector unit (V100 only) for a ~10x speed-up
+   *  Benchmark will determine whether 2+ times price increase is worth it for V100 vs P100
+      *  https://www.xcelerit.com/computing-benchmarks/insights/benchmarks-deep-learning-nvidia-p100-vs-v100-gpu/
+         *  Link suggests that float32s should improve from 9.3 to 14 : ~1.5x speedup
+      *  https://devblogs.nvidia.com/inside-volta/ - see Table 1
+         *  Link suggests that float32s should improve from 10.6 to 15.7 : ~1.5x speedup
+         *  ... unless we can get the Tensor Cores going (max then is 125 TFLOPS)
+   *  Potentially demo the TTS voice as a 'result' without releasing code
+   *  For the demo training stats: 
+       *  Need to create a bucket with the training data
+       *  And a simple way to upload changed files (git pull from reddragon.ai ?)
+       *  Check whether 16/32-bit code 'fails-safe' to 32-bits (or even down to CPU...)
+       *  Benchmark by measuring training speed on (say) 1000 batches
+       *  Need to be able to create a machine with the potential to connect to K80, P100 and V100
+          *  https://cloud.google.com/compute/docs/gpus/add-gpus : "Adding or removing GPUs on existing instances"
+          *  Apparently, the image gets migrated between physical hardware - but you can't do that in the shell thing (seems reasonable)
+          *  Also, new 'Cloud VM' : https://cloud.google.com/deep-learning-vm/docs/cli
+             *  But forces different VMs for TF and PyTorch :  tf-latest-cu92 & pytorch-latest-cu91 respectively
+             *  Has Jupyter installed already! : https://cloud.google.com/deep-learning-vm/docs/jupyter
+       *  But SamW says that 'allocations' are needed for V100s - so potentially no time for this demo...
+          *  Ok : So I had to apply for a (preemptible) GPU allocation in asia-northeast1 (cross-fingers)
+          *  And : Not available in asia-northeast1.  Trying for us-east1 and us-central1
+   *  Will still need to do TPU tests (later) to see what the uplift is there
+      *  jupyter notebook example : https://github.com/tensorflow/tpu/blob/master/models/experimental/mnist_jupyter/Cloud-TPU-Demo.ipynb
+      *  keras -> TPUEstimator : https://github.com/tensorflow/tpu/blob/master/models/experimental/cifar_keras/cifar_keras.py
 
-  - Speech Generation
-    + r9k9 has a nice page of speech-related stuff, but perhaps it's too specific
-      -  Also, it may not be Deep Learning _per se_.
-    + Perhaps mel->spec should be a GAN process, rather than L2-optimised
-      -  Though, L2 would be a good baseline : Perhaps have 2 terms : 
-         - L2 difference term; plus
-         - Recurrent generated overlay (including noise for a latent space) in a residual fashion, fed into a CNN-like discriminator
-         - Ensure that L2 size of overlay 'not large' to ensure that mels would still back-fit well enough
+
 
       
 ## Re-Think modularisation for deep-learning-workshop
@@ -968,43 +931,20 @@ Also, figure out a good 'private code+data' workflow too:
     +  Sadly, it seemed to require reboots, which is annoying
     +  Also, the steps taken are now probably lost in the mists of time.
 
-    
+
+
 ## Next TF&DL ideas : 
 
 *  Attention-is-All-You-Need Special  
    *  t2t library?
    *  Keras clean version
    *  Blog post : https://jalammar.github.io/illustrated-transformer/
-   
-*  P100+V100 16-bit optimisation : 
-   *  Should benchmark to see whether it's : 
-      *  a generic 2x speed-up from 32->16 ops (both P100 and V100); or
-      *  making use of the 16-bit Vector unit (V100 only) for a ~10x speed-up
-   *  Benchmark will determine whether 2+ times price increase is worth it for V100 vs P100
-      *  https://www.xcelerit.com/computing-benchmarks/insights/benchmarks-deep-learning-nvidia-p100-vs-v100-gpu/
-         *  Link suggests that float32s should improve from 9.3 to 14 : ~1.5x speedup
-      *  https://devblogs.nvidia.com/inside-volta/ - see Table 1
-         *  Link suggests that float32s should improve from 10.6 to 15.7 : ~1.5x speedup
-         *  ... unless we can get the Tensor Cores going (max then is 125 TFLOPS)
-   *  Potentially demo the TTS voice as a 'result' without releasing code
-   *  For the demo training stats: 
-       *  Need to create a bucket with the training data
-       *  And a simple way to upload changed files (git pull from reddragon.ai ?)
-       *  Check whether 16/32-bit code 'fails-safe' to 32-bits (or even down to CPU...)
-       *  Benchmark by measuring training speed on (say) 1000 batches
-       *  Need to be able to create a machine with the potential to connect to K80, P100 and V100
-          *  https://cloud.google.com/compute/docs/gpus/add-gpus : "Adding or removing GPUs on existing instances"
-          *  Apparently, the image gets migrated between physical hardware - but you can't do that in the shell thing (seems reasonable)
-          *  Also, new 'Cloud VM' : https://cloud.google.com/deep-learning-vm/docs/cli
-             *  But forces different VMs for TF and PyTorch :  tf-latest-cu92 & pytorch-latest-cu91 respectively
-             *  Has Jupyter installed already! : https://cloud.google.com/deep-learning-vm/docs/jupyter
-       *  But SamW says that 'allocations' are needed for V100s - so potentially no time for this demo...
-          *  Ok : So I had to apply for a (preemptible) GPU allocation in asia-northeast1 (cross-fingers)
-          *  And : Not available in asia-northeast1.  Trying for us-east1 and us-central1
-   *  Will still need to do TPU tests (later) to see what the uplift is there
-      *  jupyter notebook example : https://github.com/tensorflow/tpu/blob/master/models/experimental/mnist_jupyter/Cloud-TPU-Demo.ipynb
-      *  keras -> TPUEstimator : https://github.com/tensorflow/tpu/blob/master/models/experimental/cifar_keras/cifar_keras.py
 
+*  Something for the theme 'Explainable AI'
+   *  Beginners talk would be ideal
+   *  Lots of pictures
+   
+      
 
 ## Next PyTorch&DL ideas : 
 
@@ -1012,4 +952,67 @@ Also, figure out a good 'private code+data' workflow too:
 *  PyTorch 16-bit ops (https://github.com/NVIDIA/apex) and usage on GCP V100s
    *  amp: Automatic Mixed Precision
    *  FP16_Optimizer
+
+
+
+## Next big conference ideas : 
+        
+    + ENAS is also a tempting idea
+      - Overall number of back-prop steps would be similar
+        -  But need to have structure updates
+        -  Possible to do in PyTorch or TensorFlow Eager Mode...
+      = Maybe create a simpler-to-understand version :
+        -  Have a fixed number of 'slots' that parameterised modules can operate on
+        -  Have a parameter/op budget, after which chain of ops is truncated
+        -  Ops are additive to the slots (so naturally 'residual-like')
+        -  Need to think how to 'impedence match' different sized layers
+           +  Images and RNN hidden states are two different cases
+           +  Images : Some kind of transpose operation (flipping depth for area) ?
+              - i.e. not information-destructive
+           +  RNN hidden state vector : Some kind of structured map (sparse-ish) between layers ?
+              - But that would be information-changing
+              - Possibly use random-projection (fixed seed) to remove memory access bandwith issue
+              
+              
+    + Or a variation to explore the large, but sparse model idea of WaveRNN
+      - Not clear what a toy problem should look like
+        -  Would be great to do something with attention, or RNN
+        -  One issue is how to keep track of the derivatives
+           - either do masking on a large matrix; or explicitly construct everything on-the-fly
+      - Nor clear whether sparseness can be 'discovered from below' or
+        requires a large model, and discovered redundency
+      - Interesting papers : 
+        -  Sparse Persistent RNNs: Squeezing Large Recurrent Networks On-Chip 
+           + https://openreview.net/pdf?id=HkxF5RgC-
+        
+    
+  - Word-Embeddings
+    + Translation via alignment of word embeddings in 2+ languages
+      - Possibilities : 
+        -  Matrix inversion (quickest case, if it works)
+        -  Iterative improvement (easiest to implement)
+        -  Adversarial improvement (pretty exciting)
+        -  Evolutionary-style improvement (combo-deal for teaching)
+      - fasttext2 is apparently quite an improvement
+        -  Downloadable under : Creative Commons Attribution-Share-Alike License 3.0: 
+           + English (clearly most-worked-on)
+             https://fasttext.cc/docs/en/english-vectors.html
+             -  English 651Mb .gz
+                https://s3-us-west-1.amazonaws.com/fasttext-vectors/wiki-news-300d-1M.vec.zip
+             -  English 958Mb .gz (with subword hinting)
+                https://s3-us-west-1.amazonaws.com/fasttext-vectors/wiki-news-300d-1M-subword.vec.zip
+           + 157 languages : includes Tamil, Hindi, Indonesian, Malaysian and "Chinese"
+             https://fasttext.cc/docs/en/crawl-vectors.html
+             -  Malay 678M .gz
+                https://s3-us-west-1.amazonaws.com/fasttext-vectors/word-vectors-v2/cc.ms.300.vec.gz
+             -  Chinese 1.3G .gz
+                https://s3-us-west-1.amazonaws.com/fasttext-vectors/word-vectors-v2/cc.zh.300.vec.gz
+        -  Need to consider word segmentation in Chinese (for instance)
+        -  Potential to replace GloVe in workshop notebooks 
+           + Useful starter blog : https://blog.manash.me/how-to-use-pre-trained-word-vectors-from-facebooks-fasttext-a71e6d55f27
+      - If multi-language, need to make sure that fonts + IME are installed
+      - One issue is that this will really require the USB VirtualBox install
+        -  Reduces options regarding using (for instance) Collab
+      - More important issue : The cross-language embedding tricks *don't seem to work*
+        -  Significantly reduces the attractiveness of teaching the topic 'hands-on'...
 
