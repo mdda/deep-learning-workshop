@@ -944,11 +944,61 @@ Also, figure out a good 'private code+data' workflow too:
    *  Beginners talk would be ideal
    *  Lots of pictures
    
+- Word-Embeddings
+  + Translation via alignment of word embeddings in 2+ languages
+    - Possibilities : 
+      -  Matrix inversion (quickest case, if it works)
+      -  Iterative improvement (easiest to implement)
+      -  Adversarial improvement (pretty exciting)
+      -  Evolutionary-style improvement (combo-deal for teaching)
+    - fasttext2 is apparently quite an improvement
+      -  Downloadable under : Creative Commons Attribution-Share-Alike License 3.0: 
+         + English (clearly most-worked-on)
+           https://fasttext.cc/docs/en/english-vectors.html
+           -  English 651Mb .gz
+              https://s3-us-west-1.amazonaws.com/fasttext-vectors/wiki-news-300d-1M.vec.zip
+           -  English 958Mb .gz (with subword hinting)
+              https://s3-us-west-1.amazonaws.com/fasttext-vectors/wiki-news-300d-1M-subword.vec.zip
+         + 157 languages : includes Tamil, Hindi, Indonesian, Malaysian and "Chinese"
+           https://fasttext.cc/docs/en/crawl-vectors.html
+           -  Malay 678M .gz
+              https://s3-us-west-1.amazonaws.com/fasttext-vectors/word-vectors-v2/cc.ms.300.vec.gz
+           -  Chinese 1.3G .gz
+              https://s3-us-west-1.amazonaws.com/fasttext-vectors/word-vectors-v2/cc.zh.300.vec.gz
+      -  Need to consider word segmentation in Chinese (for instance)
+      -  Potential to replace GloVe in workshop notebooks 
+         + Useful starter blog : https://blog.manash.me/how-to-use-pre-trained-word-vectors-from-facebooks-fasttext-a71e6d55f27
+    - If multi-language, need to make sure that fonts + IME are installed
+    - One issue is that this will really require the USB VirtualBox install
+      -  Reduces options regarding using (for instance) Colab
+    - More important issue : The cross-language embedding tricks *don't seem to work*
+      -  Significantly reduces the attractiveness of teaching the topic 'hands-on'...
+
++ ENAS is also a tempting idea
+  - Overall number of back-prop steps would be similar
+    -  But need to have structure updates
+    -  Possible to do in PyTorch or TensorFlow Eager Mode...
+  = Maybe create a simpler-to-understand version :
+    -  Have a fixed number of 'slots' that parameterised modules can operate on
+    -  Have a parameter/op budget, after which chain of ops is truncated
+    -  Ops are additive to the slots (so naturally 'residual-like')
+    -  Need to think how to 'impedence match' different sized layers
+       +  Images and RNN hidden states are two different cases
+       +  Images : Some kind of transpose operation (flipping depth for area) ?
+          - i.e. not information-destructive
+       +  RNN hidden state vector : Some kind of structured map (sparse-ish) between layers ?
+          - But that would be information-changing
+          - Possibly use random-projection (fixed seed) to remove memory access bandwith issue
+  + Or DARTS (DeepMind) : https://deepmind.com/research/publications/darts-differentiable-architecture-search/
+          
       
 
 ## Next PyTorch&DL ideas : 
 
 *  PyTorch on TPU(?)
+   *  This is probably going to be tackled by emitting "HLO IR" for XLA to convert to TPU ops in a JIT manner
+      - https://www.tensorflow.org/performance/xla/jit
+      
 *  PyTorch 16-bit ops (https://github.com/NVIDIA/apex) and usage on GCP V100s
    *  amp: Automatic Mixed Precision
    *  FP16_Optimizer
@@ -957,23 +1007,6 @@ Also, figure out a good 'private code+data' workflow too:
 
 ## Next big conference ideas : 
         
-    + ENAS is also a tempting idea
-      - Overall number of back-prop steps would be similar
-        -  But need to have structure updates
-        -  Possible to do in PyTorch or TensorFlow Eager Mode...
-      = Maybe create a simpler-to-understand version :
-        -  Have a fixed number of 'slots' that parameterised modules can operate on
-        -  Have a parameter/op budget, after which chain of ops is truncated
-        -  Ops are additive to the slots (so naturally 'residual-like')
-        -  Need to think how to 'impedence match' different sized layers
-           +  Images and RNN hidden states are two different cases
-           +  Images : Some kind of transpose operation (flipping depth for area) ?
-              - i.e. not information-destructive
-           +  RNN hidden state vector : Some kind of structured map (sparse-ish) between layers ?
-              - But that would be information-changing
-              - Possibly use random-projection (fixed seed) to remove memory access bandwith issue
-              
-              
     + Or a variation to explore the large, but sparse model idea of WaveRNN
       - Not clear what a toy problem should look like
         -  Would be great to do something with attention, or RNN
@@ -985,34 +1018,14 @@ Also, figure out a good 'private code+data' workflow too:
         -  Sparse Persistent RNNs: Squeezing Large Recurrent Networks On-Chip 
            + https://openreview.net/pdf?id=HkxF5RgC-
         
-    
-  - Word-Embeddings
-    + Translation via alignment of word embeddings in 2+ languages
-      - Possibilities : 
-        -  Matrix inversion (quickest case, if it works)
-        -  Iterative improvement (easiest to implement)
-        -  Adversarial improvement (pretty exciting)
-        -  Evolutionary-style improvement (combo-deal for teaching)
-      - fasttext2 is apparently quite an improvement
-        -  Downloadable under : Creative Commons Attribution-Share-Alike License 3.0: 
-           + English (clearly most-worked-on)
-             https://fasttext.cc/docs/en/english-vectors.html
-             -  English 651Mb .gz
-                https://s3-us-west-1.amazonaws.com/fasttext-vectors/wiki-news-300d-1M.vec.zip
-             -  English 958Mb .gz (with subword hinting)
-                https://s3-us-west-1.amazonaws.com/fasttext-vectors/wiki-news-300d-1M-subword.vec.zip
-           + 157 languages : includes Tamil, Hindi, Indonesian, Malaysian and "Chinese"
-             https://fasttext.cc/docs/en/crawl-vectors.html
-             -  Malay 678M .gz
-                https://s3-us-west-1.amazonaws.com/fasttext-vectors/word-vectors-v2/cc.ms.300.vec.gz
-             -  Chinese 1.3G .gz
-                https://s3-us-west-1.amazonaws.com/fasttext-vectors/word-vectors-v2/cc.zh.300.vec.gz
-        -  Need to consider word segmentation in Chinese (for instance)
-        -  Potential to replace GloVe in workshop notebooks 
-           + Useful starter blog : https://blog.manash.me/how-to-use-pre-trained-word-vectors-from-facebooks-fasttext-a71e6d55f27
-      - If multi-language, need to make sure that fonts + IME are installed
-      - One issue is that this will really require the USB VirtualBox install
-        -  Reduces options regarding using (for instance) Collab
-      - More important issue : The cross-language embedding tricks *don't seem to work*
-        -  Significantly reduces the attractiveness of teaching the topic 'hands-on'...
+*  QandA
+   *  Use coverage somehow to force question understanding
+   *  Flipside of "Did the Model Understand the Question?"
+      +  https://arxiv.org/abs/1805.05492 
 
+
+*  IQ test (DeepMind)
+   +  Trivialise?
+
+*  Latent space predictions
+   +  Interpretability?
