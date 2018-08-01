@@ -1025,7 +1025,10 @@ Also, figure out a good 'private code+data' workflow too:
 
 
 *  IQ test (DeepMind)
-   +  Trivialise?
+   +  This seems like it's written in an overhyped style
+   +  Demonstrate that it can be done is a dumb way?
 
 *  Latent space predictions
+   +  Nice paper, though strange it doesn't mention Conciousness Prior
    +  Interpretability?
+   
