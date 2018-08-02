@@ -935,15 +935,21 @@ Also, figure out a good 'private code+data' workflow too:
 
 ## Next TF&DL ideas : 
 
+*  Something for the theme 'Explainable AI'
+   *  Beginners talk would be ideal
+      +  Lots of pictures
+   *  Check code for "Did the Model Understand the Question?"
+      +  https://arxiv.org/abs/1805.05492 
+          +  https://github.com/pramodkaushik/acl18_results
+          +  git clone https://github.com/pramodkaushik/acl18_results.git --recursive
+
+
 *  Attention-is-All-You-Need Special  
    *  t2t library?
    *  Keras clean version
    *  Blog post : https://jalammar.github.io/illustrated-transformer/
 
-*  Something for the theme 'Explainable AI'
-   *  Beginners talk would be ideal
-   *  Lots of pictures
-   
+
 - Word-Embeddings
   + Translation via alignment of word embeddings in 2+ languages
     - Possibilities : 
