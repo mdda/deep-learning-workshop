@@ -1011,7 +1011,7 @@ Also, figure out a good 'private code+data' workflow too:
    *  APEX : https://news.developer.nvidia.com/introducing-apex-pytorch-extension-with-tools-to-realize-the-power-of-tensor-cores/?ncid=--43654
    
 
-*  Cool repos :
+*  Cool repos : (from https://twitter.com/pytorch?lang=en) 
    +  VQA winning entry
       -   https://github.com/facebookresearch/pythia
       -   But datasets (AWS s3 dataset summary) are ~100-300Gb each...
@@ -1021,6 +1021,9 @@ Also, figure out a good 'private code+data' workflow too:
    +  DARTS  (https://arxiv.org/abs/1806.09055)
       -   https://github.com/quark0/darts
       -   NOTE: PyTorch 0.4 is not supported at this moment and would lead to OOM.
+   +  SparseMAP 
+      -   Competitive with DARTS?
+      -   https://github.com/vene/sparsemap
       
       
       
