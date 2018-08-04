@@ -1015,6 +1015,11 @@ Also, figure out a good 'private code+data' workflow too:
    +  VQA winning entry
       -   https://github.com/facebookresearch/pythia
       -   But datasets (AWS s3 dataset summary) are ~100-300Gb each...
+   +  VQA winning entry (CVPR2018)
+      -   https://github.com/jnhwkim/ban-vqa
+      -   https://arxiv.org/abs/1805.07932
+      -   You may need a machine with 4 GPUs, 64GB memory, and PyTorch v0.3.1 for Python 3.  :-(
+      -   Has a pretrained model, though
    +  PNASNet 
       -   https://github.com/chenxi116/PNASNet.pytorch
       -   Official version is TF : https://github.com/tensorflow/models/blob/master/research/slim/nets/nasnet/pnasnet.py
@@ -1024,6 +1029,10 @@ Also, figure out a good 'private code+data' workflow too:
    +  SparseMAP 
       -   Competitive with DARTS?
       -   https://github.com/vene/sparsemap
+   +  Salesforce 'GLAD' =  Global-Locally Self-Attentive Dialogue State Tracker 
+      -   https://github.com/salesforce/glad
+      -   The Dockerized @PyTorch implementation of our @acl2018 paper 
+      -   https://arxiv.org/abs/1805.09655
       
       
       
