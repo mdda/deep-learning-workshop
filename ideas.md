@@ -997,6 +997,9 @@ Also, figure out a good 'private code+data' workflow too:
           - Possibly use random-projection (fixed seed) to remove memory access bandwith issue
   + Or DARTS (DeepMind) : https://deepmind.com/research/publications/darts-differentiable-architecture-search/
           
+
++ Auto-Encoders for Fraud detection (Keras)
+  - https://medium.com/@curiousily/credit-card-fraud-detection-using-autoencoders-in-keras-tensorflow-for-hackers-part-vii-20e0c85301bd
       
 
 ## Next PyTorch&DL ideas : 
