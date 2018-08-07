@@ -1060,11 +1060,15 @@ Also, figure out a good 'private code+data' workflow too:
    *  Use coverage somehow to force question understanding
    *  Flipside of "Did the Model Understand the Question?"
       +  https://arxiv.org/abs/1805.05492 
-   *  SQuAD vs ARC (AllenNLP)
-      + ARC : https://arxiv.org/abs/1803.05457
+   *  SQuAD vs ARC (=AI2 Reasoning Challenge, by AllenNLP)
+      + ARC : http://data.allenai.org/arc/
+        -  Intro Paper : https://arxiv.org/abs/1803.05457
         -  Dataset includes Corpus that should cover 95% of material
+           +  http://data.allenai.org/arc/ has link to ZIP file
         -  Repo contains 3 decent methods for Q&A
+           +  https://github.com/allenai/arc-solvers
            +  These score well on the Easy Set, but poorly on the Challenge Set
+        -  To be added to the ARC leaderboard, please email arc@allenai.org with a link to your published/ArXiv paper on this dataset.
    * AllenNLP library now in PyTorch 
       +  Keras version Deprecated : https://github.com/allenai/deep_qa
 
