@@ -1045,21 +1045,28 @@ Also, figure out a good 'private code+data' workflow too:
 
 ## Next big conference ideas : 
         
-    + Or a variation to explore the large, but sparse model idea of WaveRNN
-      - Not clear what a toy problem should look like
-        -  Would be great to do something with attention, or RNN
-        -  One issue is how to keep track of the derivatives
-           - either do masking on a large matrix; or explicitly construct everything on-the-fly
-      - Nor clear whether sparseness can be 'discovered from below' or
-        requires a large model, and discovered redundency
-      - Interesting papers : 
-        -  Sparse Persistent RNNs: Squeezing Large Recurrent Networks On-Chip 
-           + https://openreview.net/pdf?id=HkxF5RgC-
+* Explore the large, but sparse model idea of WaveRNN
+  - Not clear what a toy problem should look like
+    -  Would be great to do something with attention, or RNN
+    -  One issue is how to keep track of the derivatives
+       - either do masking on a large matrix; or explicitly construct everything on-the-fly
+  - Nor clear whether sparseness can be 'discovered from below' or
+    requires a large model, and discovered redundancy
+  - Interesting papers : 
+    -  Sparse Persistent RNNs: Squeezing Large Recurrent Networks On-Chip 
+       + https://openreview.net/pdf?id=HkxF5RgC-
         
 *  QandA
    *  Use coverage somehow to force question understanding
    *  Flipside of "Did the Model Understand the Question?"
       +  https://arxiv.org/abs/1805.05492 
+   *  SQuAD vs ARC (AllenNLP)
+      + ARC : https://arxiv.org/abs/1803.05457
+        -  Dataset includes Corpus that should cover 95% of material
+        -  Repo contains 3 decent methods for Q&A
+           +  These score well on the Easy Set, but poorly on the Challenge Set
+   * AllenNLP library now in PyTorch 
+      +  Keras version Deprecated : https://github.com/allenai/deep_qa
 
 
 *  IQ test (DeepMind)
