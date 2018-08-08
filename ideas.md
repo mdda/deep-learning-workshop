@@ -1068,6 +1068,8 @@ Also, figure out a good 'private code+data' workflow too:
         -  Repo contains 3 decent methods for Q&A
            +  https://github.com/allenai/arc-solvers
            +  These score well on the Easy Set, but poorly on the Challenge Set
+              -  Info leak : If the question is in the Challenge Set, then it cannot be done via IR
+              -  Challenge Set may be slightly suceptible to 'exam technique'
         -  To be added to the ARC leaderboard, please email arc@allenai.org with a link to your published/ArXiv paper on this dataset.
    * AllenNLP library now in PyTorch 
       +  Keras version Deprecated : https://github.com/allenai/deep_qa
