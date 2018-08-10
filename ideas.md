@@ -1077,7 +1077,8 @@ Also, figure out a good 'private code+data' workflow too:
 
 *  IQ test (DeepMind)
    +  This seems like it's written in an overhyped style
-   +  Demonstrate that it can be done is a dumb way?
+      +  Demonstrate that it can be done is a dumb way?
+   +  Alternatively, try to beat their scores using some kind of learning over a 'meta' latent space
 
 *  Latent space predictions
    +  Nice paper, though strange it doesn't mention Conciousness Prior
