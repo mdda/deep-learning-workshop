@@ -1083,4 +1083,8 @@ Also, figure out a good 'private code+data' workflow too:
 *  Latent space predictions
    +  Nice paper, though strange it doesn't mention Conciousness Prior
    +  Interpretability?
+   +  Surprisal minimisation?
+   
+*  Classification as Q&A against training examples
+   +  Positive/Negative Contrast learning to get retrieval ~= attention
    
