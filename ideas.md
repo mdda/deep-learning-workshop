@@ -1080,11 +1080,20 @@ Also, figure out a good 'private code+data' workflow too:
       +  Demonstrate that it can be done is a dumb way?
    +  Alternatively, try to beat their scores using some kind of learning over a 'meta' latent space
 
-*  Latent space predictions
-   +  Nice paper, though strange it doesn't mention Conciousness Prior
+*  Latent space predictions (DeepMind)
+   +  https://deepmind.com/research/publications/representation-learning-contrastive-predictive-coding/
+      +  https://arxiv.org/abs/1807.03748
+      +  Nice paper, though strange it doesn't mention Conciousness Prior
    +  Interpretability?
    +  Surprisal minimisation?
-   
+   +  Contrast with :
+      +  Neural Discrete Representation Learning
+         +  https://arxiv.org/abs/1711.00937
+      +  Few-shot Autoregressive Density Estimation: Towards Learning to Learn Distributions
+         +  https://arxiv.org/abs/1710.10304
+      +  Associative Compression Networks for Representation Learning 
+         +  https://arxiv.org/abs/1804.02476
+      
 *  Classification as Q&A against training examples
    +  Positive/Negative Contrast learning to get retrieval ~= attention
    
