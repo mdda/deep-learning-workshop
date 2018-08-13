@@ -1097,3 +1097,5 @@ Also, figure out a good 'private code+data' workflow too:
 *  Classification as Q&A against training examples
    +  Positive/Negative Contrast learning to get retrieval ~= attention
    
+*  Demonstrations@NIPS (due 16-Sept-2018) : https://nips.cc/Demonstrations/demonstrationapplication
+   +  Dials for latent space changes for voices
