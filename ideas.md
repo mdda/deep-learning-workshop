@@ -1105,7 +1105,12 @@ Also, figure out a good 'private code+data' workflow too:
       + How about dial positions that reflect prominent conference speakers?
       
 *  Relationship Representations and/or Meta-Learning 
-   +  Tiny ImageNet
+   +  Tiny ImageNet (default course project for Stanford CS231N)
+      -  https://tiny-imagenet.herokuapp.com/
+      -  Tiny Imagenet has 200 classes. 
+      -  Each class has 500 training images, 50 validation images, and 50 test images. 
+      -  Training and validation sets with labels, images and bounding boxes. 
+      -  Only class label to be predicted.  Test labels not released.
    +  Pick top-n using pretrained network
    +  Then fine-train a meta-learned network to differentiate between the top-n
    +  Use that to raise 70s top-1 to 90s top-n
