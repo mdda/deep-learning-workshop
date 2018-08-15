@@ -1045,7 +1045,7 @@ Also, figure out a good 'private code+data' workflow too:
 
 ## Next big conference ideas : 
         
-* Explore the large, but sparse model idea of WaveRNN
+* WaveRNN : Explore the large, but sparse model ideas
   - Not clear what a toy problem should look like
     -  Would be great to do something with attention, or RNN
     -  One issue is how to keep track of the derivatives
@@ -1071,7 +1071,7 @@ Also, figure out a good 'private code+data' workflow too:
               -  Info leak : If the question is in the Challenge Set, then it cannot be done via IR
               -  Challenge Set may be slightly suceptible to 'exam technique'
         -  To be added to the ARC leaderboard, please email arc@allenai.org with a link to your published/ArXiv paper on this dataset.
-   * AllenNLP library now in PyTorch 
+   * AllenNLP library now in PyTorch (FWIW)
       +  Keras version Deprecated : https://github.com/allenai/deep_qa
 
 
@@ -1079,6 +1079,7 @@ Also, figure out a good 'private code+data' workflow too:
    +  This seems like it's written in an overhyped style
       +  Demonstrate that it can be done is a dumb way?
    +  Alternatively, try to beat their scores using some kind of learning over a 'meta' latent space
+
 
 *  Latent space predictions (DeepMind)
    +  https://deepmind.com/research/publications/representation-learning-contrastive-predictive-coding/
@@ -1093,11 +1094,20 @@ Also, figure out a good 'private code+data' workflow too:
          +  https://arxiv.org/abs/1710.10304
       +  Associative Compression Networks for Representation Learning 
          +  https://arxiv.org/abs/1804.02476
+
       
 *  Classification as Q&A against training examples
    +  Positive/Negative Contrast learning to get retrieval ~= attention
+
    
 *  Demonstrations@NIPS (due 16-Sept-2018) : https://nips.cc/Demonstrations/demonstrationapplication
    +  Dials for latent space changes for voices
       + How about dial positions that reflect prominent conference speakers?
       
+*  Relationship Representations and/or Meta-Learning 
+   +  Tiny ImageNet
+   +  Pick top-n using pretrained network
+   +  Then fine-train a meta-learned network to differentiate between the top-n
+   +  Use that to raise 70s top-1 to 90s top-n
+   
+  
