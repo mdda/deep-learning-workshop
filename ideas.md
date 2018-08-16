@@ -1106,7 +1106,8 @@ Also, figure out a good 'private code+data' workflow too:
       
 *  Relationship Representations and/or Meta-Learning 
    +  Tiny ImageNet (default course project for Stanford CS231N)
-      -  https://tiny-imagenet.herokuapp.com/
+      -  https://tiny-imagenet.herokuapp.com/ : also : https://www.kaggle.com/c/tiny-imagenet/data
+         *  train.images.zip 194.08 MB
       -  Tiny Imagenet has 200 classes. 
       -  Each class has 500 training images, 50 validation images, and 50 test images. 
       -  Training and validation sets with labels, images and bounding boxes. 
