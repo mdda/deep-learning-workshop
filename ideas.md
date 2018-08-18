@@ -1113,7 +1113,7 @@ Also, figure out a good 'private code+data' workflow too:
       -  Training and validation sets with labels, images and bounding boxes. 
       -  Only class label to be predicted.  Test labels not released.
    +  Pick top-n using pretrained network
-   +  Then fine-train a meta-learned network to differentiate between the top-n
-   +  Use that to raise 70s top-1 to 90s top-n
-   
-  
+   +  Then fine-train a meta-learned network to differentiate between the top-n (a mini-batch-worth?)
+   +  Use that to raise 70-80s top-1 to 90s top-n (?)
+      -  Problem: All images are really tiny, and so many mistakes are 'understandable'
+
