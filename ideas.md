@@ -1112,8 +1112,16 @@ Also, figure out a good 'private code+data' workflow too:
       -  Each class has 500 training images, 50 validation images, and 50 test images. 
       -  Training and validation sets with labels, images and bounding boxes. 
       -  Only class label to be predicted.  Test labels not released.
-   +  Pick top-n using pretrained network
-   +  Then fine-train a meta-learned network to differentiate between the top-n (a mini-batch-worth?)
+   +  Pick top-k using pretrained network
+   +  Then fine-train a meta-learned network to differentiate between the top-k (a mini-batch-worth?)
+      -  What does this actually mean?
+      -  The search for the top-k has produced a list of images with similar logits to the test image
+      -  But these images probably have different classes (up to k different ones)
+      -  Want to create a new model (meta-learned) that distinguishes between *classes* based on the logits
+      -  Loss for the meta-learned model could be :
+         *  regular cross-entropy (between k examples and their class labels) after n-optimiser-steps
+            -  to avoid renumbering the labels, use real ones.  Except it might just learn to do 'argmax'
+         *  
    +  Use that to raise 70-80s top-1 to 90s top-n (?)
       -  Problem: All images are really tiny, and so many mistakes are 'understandable'
 
