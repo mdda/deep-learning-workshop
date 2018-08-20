@@ -1119,11 +1119,14 @@ Also, figure out a good 'private code+data' workflow too:
       -  But these images probably have different classes (up to k different ones)
       -  Want to create a new model (meta-learned) that distinguishes between *classes* based on the logits
       -  Loss for the meta-learned model could be :
-         *  regular cross-entropy (between k examples and their class labels) after n-optimiser-steps
+         *  Regular cross-entropy (between k examples and their class labels) after n-optimiser-steps
             -  to avoid renumbering the labels, use real ones.  
             -  Except it might just learn to do 'argmax'
-            -  OTOH, the argmax thing is kind of factored into the search already, so more detail is required...
-         *  
+            -  OTOH, the argmax position information is somewhat factored into the search step already
+            -  So, perhaps the meta-learner could just build a refined model (like the SVM step in 'my' transfer learning)
+         *  Have a pair-wise comparison model, and train it to learn the co-occurrence matrix in only n-steps
+            -  Then pair-wise compare the test vector vs all the searched ones, and vote...
+            -  Possibly make loss dependent on final scoring rather than exclusively co-occurrence matrix fidelity
    +  Use that to raise 70-80s top-1 to 90s top-n (?)
       -  Problem: All images are really tiny, and so many mistakes are 'understandable'
 
