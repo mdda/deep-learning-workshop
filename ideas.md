@@ -1120,7 +1120,9 @@ Also, figure out a good 'private code+data' workflow too:
       -  Want to create a new model (meta-learned) that distinguishes between *classes* based on the logits
       -  Loss for the meta-learned model could be :
          *  regular cross-entropy (between k examples and their class labels) after n-optimiser-steps
-            -  to avoid renumbering the labels, use real ones.  Except it might just learn to do 'argmax'
+            -  to avoid renumbering the labels, use real ones.  
+            -  Except it might just learn to do 'argmax'
+            -  OTOH, the argmax thing is kind of factored into the search already, so more detail is required...
          *  
    +  Use that to raise 70-80s top-1 to 90s top-n (?)
       -  Problem: All images are really tiny, and so many mistakes are 'understandable'
