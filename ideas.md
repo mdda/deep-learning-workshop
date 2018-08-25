@@ -1023,6 +1023,8 @@ Also, figure out a good 'private code+data' workflow too:
       -   https://arxiv.org/abs/1805.07932
       -   You may need a machine with 4 GPUs, 64GB memory, and PyTorch v0.3.1 for Python 3.  :-(
       -   Has a pretrained model, though
+   +  VQA SoTA for VQA 1.0 "Tucker Decomposition of the correlation Tensor"
+      -   https://github.com/Cadene/vqa.pytorch
    +  PNASNet 
       -   https://github.com/chenxi116/PNASNet.pytorch
       -   Official version is TF : https://github.com/tensorflow/models/blob/master/research/slim/nets/nasnet/pnasnet.py
@@ -1130,3 +1132,15 @@ Also, figure out a good 'private code+data' workflow too:
    +  Use that to raise 70-80s top-1 to 90s top-n (?)
       -  Problem: All images are really tiny, and so many mistakes are 'understandable'
 
+   +  Useful repos
+      -  Success in Kaggle Tiny ImageNet (83.3% = 2nd place)
+         *  Fine-tuned pre-trained Xception network
+            *  Just expands small images to regular size using load_img(target_size=())
+            *  Freeze first 20 layers  :: for layer in pre_trained_model.layers[:20]:  layer.trainable = False
+            *  Augmentations : ... /blob/master/train_with_Xception.py#L72
+         *  https://github.com/ShehabMMohamed/TinyImageNet-KaggleCompetition
+         
+      -  Handle PyTorch DataSet for original data
+         *  https://github.com/leemengtaiwan/tiny-imagenet
+            *  Augmentations : ... /blob/master/tiny-imagenet.ipynb
+            
