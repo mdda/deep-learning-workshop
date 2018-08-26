@@ -1,3 +1,4 @@
+import time
 
 import torch
 import torchvision.transforms as transforms
@@ -7,6 +8,9 @@ from torch.utils.data import DataLoader
 from TinyImageNet import TinyImageNet
 
 from tensorboardX import SummaryWriter
+
+import xception
+
 
 # See https://github.com/leemengtaiwan/tiny-imagenet/blob/master/tiny-imagenet.ipynb 
 # for a lot of this code
@@ -60,14 +64,69 @@ if False:
   for _ in range(5):
     images, labels = tmpiter.next()
     show_images_horizontally(images, un_normalize=True)
-    
+   
+model_base = xception.xception()  # Loads weights into model
+
+print(model_base)
+
 
 
 #from tensorboardX import SummaryWriter
 if False:
-  sw = SummaryWriter(log_dir='./log', comment='xception-finetuning')
-  dummy_input = Variable(torch.rand(16, 3, 64, 64)).to(device)
-  sw.add_graph(resnet, (dummy_input, ))
+  summary_writer = SummaryWriter(log_dir='./log', comment='xception-finetuning')
+  dummy_input = torch.rand(16, 3, 64, 64).to(device)
+  summary_writer.add_graph(resnet, (dummy_input, ))
 
+exit(0)
 
+try:
+  for epoch in range(max_epochs):
+    start = time.time()
+    #lr_scheduler.step()
+    
+    epoch_loss = 0.0
+    resnet.train()
+    for idx, (data, target) in enumerate(trainloader):
+      data, target = data.to(device), target.to(device)
+      optimizer.zero_grad()
+      output = resnet(data)
+      batch_loss = ce_loss(output, target)
+      batch_loss.backward()
+      optimizer.step()
+      epoch_loss += batch_loss.item()
+  
+      if idx % 10 == 0:
+        print('{:.1f}% of epoch'.format(idx / float(len(trainloader)) * 100), end='\r')
+      
+      
+    # evaluate on validation set
+    num_hits = 0
+    num_instances = len(valid_set)
+    
+    with torch.no_grad():
+      resnet.eval()
+      for idx, (data, target) in enumerate(validloader):
+        data, target = data.to(device), target.to(device)
+        output = resnet(data)
+        _, pred = torch.max(output, 1) # output.topk(1) *1 = top1
 
+        num_hits += (pred == target).sum().item()
+#                 print('{:.1f}% of validation'.format(idx / float(len(validloader)) * 100), end='\r')
+
+    valid_acc = num_hits / num_instances * 100
+    print(f' Validation acc: {valid_acc}%')
+    sw.add_scalar('Validation Accuracy(%)', valid_acc, epoch + 1)
+        
+    epoch_loss /= float(len(trainloader))
+#         print("Time used in one epoch: {:.1f}".format(time.time() - start))
+    
+    # save model
+    torch.save(resnet.state_dict(), 'models/weight.pth')
+    
+    # record loss
+    sw.add_scalar('Running Loss', epoch_loss, epoch + 1)
+        
+        
+except KeyboardInterrupt:
+    print("Interrupted. Releasing resources...")
+    

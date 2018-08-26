@@ -16,3 +16,14 @@ Lee Meng Taiwan
 Shehab M Mohamed
   for actually putting the code for his TinyImageNet leaderboard on GitHub : Very informative!
   
+Remi Cadene (adapting tstandley's model from Chollet's paper)
+  for the xception pretrained model 
+  
+    https://github.com/Cadene/pretrained-models.pytorch/blob/master/pretrainedmodels/models/xception.py
+    :: https://raw.githubusercontent.com/Cadene/pretrained-models.pytorch/master/pretrainedmodels/models/xception.py
+    
+  with PyTorch 0.4 compatibility fix from 
+    https://github.com/creafz/pytorch-cnn-finetune/commit/648aadd4d4c589cfb2e09dcb0ee5131ecdba57d0
+    
+    
+  
