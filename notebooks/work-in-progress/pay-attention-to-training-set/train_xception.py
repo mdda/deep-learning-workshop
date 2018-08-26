@@ -109,9 +109,6 @@ if True:
 os.makedirs('./checkpoints', exist_ok=True)
 max_epochs = 120
 
-# RuntimeError: invalid argument 0: Sizes of tensors must match except in dimension 0. 
-#   Got 64 and 299 in dimension 2 at /pytorch/aten/src/TH/generic/THTensorMath.cpp:3616
-
 
 train_loader = DataLoader(training_set, batch_size=32, num_workers=4, shuffle=True)
 valid_loader = DataLoader(valid_set,    batch_size=32, num_workers=4)
@@ -138,6 +135,7 @@ try:
   
       if idx % 10 == 0:
         print('{:.1f}% of epoch'.format(idx / float(len(train_loader)) * 100), end='\r')
+        #break
       
     # evaluate on validation set
     num_hits, num_instances = 0, len(valid_set)
@@ -146,19 +144,19 @@ try:
       
       for idx, (data, target) in enumerate(valid_loader):
         data, target = data.to(device), target.to(device)
-        output = mode_base(data)
+        output = model_base(data)
         
         _, pred = torch.max(output, 1) # output.topk(1) *1 = top1
 
         num_hits += (pred == target).sum().item()
-        # print('{:.1f}% of validation'.format(idx / float(len(valid_loader)) * 100), end='\r')
+        print('{:.1f}% of validation'.format(idx / float(len(valid_loader)) * 100), end='\r')
 
     valid_acc = num_hits / num_instances * 100
     print(f' Validation acc: {valid_acc}%')
     summary_writer.add_scalar('Validation Accuracy(%)', valid_acc, epoch + 1)
         
-    epoch_loss /= float(len(trainloader))
-    # print("Time used in one epoch: {:.1f}".format(time.time() - start))
+    epoch_loss /= float(len(train_loader))
+    print("Time used in one epoch: {:.1f}".format(time.time() - start))
     
     # save model
     torch.save(model_base.state_dict(), './checkpoints/model_xception.pth')
