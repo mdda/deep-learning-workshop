@@ -1,6 +1,8 @@
+import os
 import time
 
 import torch
+
 import torchvision.transforms as transforms
 from torch.utils.data import DataLoader
 #from torch.autograd import Variable
@@ -55,78 +57,107 @@ in_memory = False
 training_set = TinyImageNet(dataset_root, 'train', transform=training_transform, in_memory=in_memory)
 valid_set    = TinyImageNet(dataset_root, 'val',   transform=valid_transform,    in_memory=in_memory)
 
+#print( training_set )
+#print( valid_set    )
 
-print( training_set )
-print( valid_set    )
+num_classes = len(training_set.label_texts)
+
 
 if False:
   tmpiter = iter(DataLoader(training_set, batch_size=10, shuffle=True))
   for _ in range(5):
     images, labels = tmpiter.next()
     show_images_horizontally(images, un_normalize=True)
-   
-model_base = xception.xception()  # Loads weights into model
 
-print(model_base)
+   
+model_base = xception.xception().to(device)  # Loads weights into model
+#print(model_base)
+
+# Switch off the trainability for some of the xception model 
+for layer in "conv1 conv2 block1 block2 block3".split(' '):
+  #model_base[layer].requires_grad = False  # Does not work...
+  #print(getattr(model_base, layer))
+  for p in getattr(model_base, layer).parameters():
+    p.requires_grad = False
+
+
+# Now substitute the last layer for what we're going to train
+model_base.last_linear = torch.nn.Linear(2048, num_classes)
+
+exit(0)
+
+optimizer = torch.optim.SGD(model_base.parameters(), lr=0.01, momentum=0.9, )  # weight_decay=0.0001
+lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, 20, gamma=0.3)
+
+ce_loss = torch.nn.CrossEntropyLoss()
 
 
 
 #from tensorboardX import SummaryWriter
-if False:
+if True:
+  os.makedirs('./log', exist_ok=True)
   summary_writer = SummaryWriter(log_dir='./log', comment='xception-finetuning')
   dummy_input = torch.rand(16, 3, 64, 64).to(device)
   summary_writer.add_graph(resnet, (dummy_input, ))
 
-exit(0)
+
+os.makedirs('./checkpoints', exist_ok=True)
+max_epochs = 120
+
+train_loader = DataLoader(training_set, batch_size=32, num_workers=4, shuffle=True)
+valid_loader = DataLoader(valid_set,    batch_size=32, num_workers=4)
 
 try:
   for epoch in range(max_epochs):
     start = time.time()
-    #lr_scheduler.step()
+    lr_scheduler.step()
     
     epoch_loss = 0.0
-    resnet.train()
-    for idx, (data, target) in enumerate(trainloader):
+    model_base.train()
+    
+    for idx, (data, target) in enumerate(train_loader):
       data, target = data.to(device), target.to(device)
+      
       optimizer.zero_grad()
-      output = resnet(data)
+      output = model_base(data)
+      
       batch_loss = ce_loss(output, target)
       batch_loss.backward()
+      
       optimizer.step()
       epoch_loss += batch_loss.item()
   
       if idx % 10 == 0:
         print('{:.1f}% of epoch'.format(idx / float(len(trainloader)) * 100), end='\r')
       
-      
     # evaluate on validation set
-    num_hits = 0
-    num_instances = len(valid_set)
-    
+    num_hits, num_instances = 0, len(valid_set)
     with torch.no_grad():
-      resnet.eval()
-      for idx, (data, target) in enumerate(validloader):
+      model_base.eval()
+      
+      for idx, (data, target) in enumerate(valid_loader):
         data, target = data.to(device), target.to(device)
-        output = resnet(data)
+        output = mode_base(data)
+        
         _, pred = torch.max(output, 1) # output.topk(1) *1 = top1
 
         num_hits += (pred == target).sum().item()
-#                 print('{:.1f}% of validation'.format(idx / float(len(validloader)) * 100), end='\r')
+        # print('{:.1f}% of validation'.format(idx / float(len(validloader)) * 100), end='\r')
 
     valid_acc = num_hits / num_instances * 100
     print(f' Validation acc: {valid_acc}%')
-    sw.add_scalar('Validation Accuracy(%)', valid_acc, epoch + 1)
+    summary_writer.add_scalar('Validation Accuracy(%)', valid_acc, epoch + 1)
         
     epoch_loss /= float(len(trainloader))
-#         print("Time used in one epoch: {:.1f}".format(time.time() - start))
+    # print("Time used in one epoch: {:.1f}".format(time.time() - start))
     
     # save model
-    torch.save(resnet.state_dict(), 'models/weight.pth')
+    torch.save(model_base.state_dict(), './checkpoints/model_xception.pth')
     
     # record loss
-    sw.add_scalar('Running Loss', epoch_loss, epoch + 1)
+    summary_writer.add_scalar('Running Loss', epoch_loss, epoch + 1)
         
         
 except KeyboardInterrupt:
-    print("Interrupted. Releasing resources...")
+  print("Interrupted. Releasing resources...")
     
