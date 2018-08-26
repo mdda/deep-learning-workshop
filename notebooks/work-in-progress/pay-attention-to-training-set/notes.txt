@@ -28,6 +28,7 @@
       -  ** Tiny ImageNet evaluaton server
          *  Data download : http://cs231n.stanford.edu/tiny-imagenet-200.zip
          *  https://tiny-imagenet.herokuapp.com/
+         
       -  ** Success in Kaggle Tiny ImageNet (83.3% = 2nd place) 
          *  Had to restructure the original folders to fit Keras' standard ingestion
          *  Fine-tuned pre-trained Xception network
@@ -87,4 +88,6 @@ head tiny-imagenet-200/val/val_annotations.txt
 
 ls -l tiny-imagenet-200/test/images/ |wc
 #  10001   90002  648902   # Lots of images
+
+
 
