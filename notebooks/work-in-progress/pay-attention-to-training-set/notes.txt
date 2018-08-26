@@ -1,0 +1,55 @@
+*  Meta-Learning workshop ?
+   +  Tiny ImageNet (default course project for Stanford CS231N)
+      -  https://tiny-imagenet.herokuapp.com/ : also : https://www.kaggle.com/c/tiny-imagenet/data
+         *  train.images.zip 194.08 MB
+      -  Tiny Imagenet has 200 classes. 
+      -  Each class has 500 training images, 50 validation images, and 50 test images. 
+      -  Training and validation sets with labels, images and bounding boxes. 
+      -  Only class label to be predicted.  Test labels not released.
+   +  Pick top-k using pretrained network
+   +  Then fine-train a meta-learned network to differentiate between the top-k (a mini-batch-worth?)
+      -  What does this actually mean?
+      -  The search for the top-k has produced a list of images with similar logits to the test image
+      -  But these images probably have different classes (up to k different ones)
+      -  Want to create a new model (meta-learned) that distinguishes between *classes* based on the logits
+      -  Loss for the meta-learned model could be :
+         *  Regular cross-entropy (between k examples and their class labels) after n-optimiser-steps
+            -  to avoid renumbering the labels, use real ones.  
+            -  Except it might just learn to do 'argmax'
+            -  OTOH, the argmax position information is somewhat factored into the search step already
+            -  So, perhaps the meta-learner could just build a refined model (like the SVM step in 'my' transfer learning)
+         *  Have a pair-wise comparison model, and train it to learn the co-occurrence matrix in only n-steps
+            -  Then pair-wise compare the test vector vs all the searched ones, and vote...
+            -  Possibly make loss dependent on final scoring rather than exclusively co-occurrence matrix fidelity
+   +  Use that to raise 70-80s top-1 to 90s top-n (?)
+      -  Problem: All images are really tiny, and so many mistakes are 'understandable'
+
+   +  Useful repos
+      -  ** Tiny ImageNet evaluaton server
+         *  Data download : http://cs231n.stanford.edu/tiny-imagenet-200.zip
+         *  https://tiny-imagenet.herokuapp.com/
+      -  ** Success in Kaggle Tiny ImageNet (83.3% = 2nd place) 
+         *  Had to restructure the original folders to fit Keras' standard ingestion
+         *  Fine-tuned pre-trained Xception network
+            *  Just expands small images to regular size using load_img(target_size=())
+            *  Freeze first 20 layers  :: for layer in pre_trained_model.layers[:20]:  layer.trainable = False
+            *  Load model with (include_top=False, pooling='avg') + Dense(200, softmax) on top
+            *  Augmentations : ... /blob/master/train_with_Xception.py#L72
+         *  https://github.com/ShehabMMohamed/TinyImageNet-KaggleCompetition
+         
+      -  ** Handle PyTorch DataSet for original data  (MIT)
+         *  https://github.com/leemengtaiwan/tiny-imagenet
+            *  Augmentations : ... /blob/master/tiny-imagenet.ipynb
+            
+      -  ** Pretrained xception for PyTorch  (BSD3)
+         *  https://github.com/Cadene/pretrained-models.pytorch/blob/master/pretrainedmodels/models/xception.py 
+            
+      -  Fine tuned a pre-trained net, Google's InceptionV3 on the Tiny ImageNet dataset
+         *  No LICENSE file
+         *  https://github.com/nexus-kgp/transfer-learning-inception-v3
+      -  Misc experiments
+         *  No LICENSE file
+         *  https://github.com/ZoeYUU/Tiny_ImageNet_Challenge
+      -  Kaggle competition page
+         *  Not clear that this is identical to the real thing
+         *  https://www.kaggle.com/c/tiny-imagenet/data
