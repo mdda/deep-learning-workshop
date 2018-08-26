@@ -16,7 +16,7 @@ from tensorboardX import SummaryWriter
 use_cuda = torch.cuda.is_available()
 device = torch.device("cuda" if use_cuda else "cpu")
 
-dataset_root = 'dataset'
+dataset_root = 'tiny-imagenet-200'
 
 # The output of torchvision datasets are PILImage images of range [0, 1]. 
 # We transform them to Tensors of normalized range [-1, 1].
@@ -57,10 +57,10 @@ if False:
 
 
 #from tensorboardX import SummaryWriter
-
-sw = SummaryWriter(log_dir='./log', comment='xception-finetuning')
-dummy_input = Variable(torch.rand(16, 3, 64, 64)).to(device)
-sw.add_graph(resnet, (dummy_input, ))
+if False:
+  sw = SummaryWriter(log_dir='./log', comment='xception-finetuning')
+  dummy_input = Variable(torch.rand(16, 3, 64, 64)).to(device)
+  sw.add_graph(resnet, (dummy_input, ))
 
 
 
