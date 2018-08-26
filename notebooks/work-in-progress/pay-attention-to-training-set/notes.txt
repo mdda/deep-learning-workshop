@@ -53,3 +53,38 @@
       -  Kaggle competition page
          *  Not clear that this is identical to the real thing
          *  https://www.kaggle.com/c/tiny-imagenet/data
+
+
+
+
+Set-up
+
+cd BASE
+
+wget http://cs231n.stanford.edu/tiny-imagenet-200.zip  # Length: 248100043 (237M) [application/zip]
+unzip tiny-imagenet-200.zip 
+rm tiny-imagenet-200.zip 
+
+# now have BASE/tiny-imagenet-200/
+## drwxrwxr-x.   3 andrewsm andrewsm    4096 Dec 12  2014 test
+## drwxrwxr-x. 202 andrewsm andrewsm    4096 Dec 12  2014 train
+## drwxrwxr-x.   3 andrewsm andrewsm    4096 Dec 12  2014 val
+## -rw-rw-r--.   1 andrewsm andrewsm    2000 Feb  9  2015 wnids.txt
+## -rw-------.   1 andrewsm andrewsm 2655750 Feb  9  2015 words.txt
+
+ls -l tiny-imagenet-200/train/ | wc
+#    201    1802   12010   # 200 class directories
+ls -l tiny-imagenet-200/train/n02415577/images/ | wc
+#    501    4502   34401   # Each class has 500 images in it
+
+ls -l tiny-imagenet-200/val/images/ | wc
+#  10001   90002  638902   # 10000 validation images
+
+head tiny-imagenet-200/val/val_annotations.txt 
+# val_0.JPEG	n03444034	0	32	44	62
+# val_1.JPEG	n04067472	52	55	57	59
+# val_2.JPEG	n04070727	4	0	60	55
+
+ls -l tiny-imagenet-200/test/images/ |wc
+#  10001   90002  648902   # Lots of images
+
