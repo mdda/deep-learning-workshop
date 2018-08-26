@@ -21,21 +21,27 @@ dataset_root = 'tiny-imagenet-200'
 # The output of torchvision datasets are PILImage images of range [0, 1]. 
 # We transform them to Tensors of normalized range [-1, 1].
 
-normalize = transforms.Normalize((.5, .5, .5), (.5, .5, .5))
+# https://pytorch.org/docs/stable/torchvision/transforms.html#torchvision.transforms.Resize
+# 3x299x299
+resize = transforms.Resize( [299, 299] )
 
 augmentation = transforms.RandomApply([
     transforms.RandomHorizontalFlip(),
     transforms.RandomRotation(10),
     transforms.RandomResizedCrop(64)], p=.8)
 
+normalize = transforms.Normalize(mean=(.5, .5, .5), std=(.5, .5, .5))
+
 training_transform = transforms.Compose([
     transforms.Lambda(lambda x: x.convert("RGB")),
+    resize, 
     augmentation,
     transforms.ToTensor(),
     normalize])
 
 valid_transform = transforms.Compose([
     transforms.Lambda(lambda x: x.convert("RGB")),
+    resize, 
     transforms.ToTensor(),
     normalize])
 
@@ -47,6 +53,7 @@ valid_set    = TinyImageNet(dataset_root, 'val',   transform=valid_transform,   
 
 
 print( training_set )
+print( valid_set    )
 
 if False:
   tmpiter = iter(DataLoader(training_set, batch_size=10, shuffle=True))
