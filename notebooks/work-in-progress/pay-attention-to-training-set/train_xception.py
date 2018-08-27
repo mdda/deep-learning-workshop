@@ -120,12 +120,12 @@ if True:
 
 
 os.makedirs('./checkpoints', exist_ok=True)
-max_epochs = 120
+epoch_start, max_epochs = 0, 120
 
 if args.checkpoint is not None:
   checkpoint = torch.load(args.checkpoint, map_location=lambda storage, loc: storage)
-  model.load_state_dict(checkpoint)
-  print("Loaded %s - assuming epoch_now=%d" % (args.checkpoint, args.epoch,))
+  model_base.load_state_dict(checkpoint)
+  print("Loaded %s - assuming epoch_now=%d" % (args.checkpoint, epoch_start,))
 
 train_loader = DataLoader(training_set, batch_size=32, num_workers=4, shuffle=True)
 valid_loader = DataLoader(valid_set,    batch_size=32, num_workers=4)
