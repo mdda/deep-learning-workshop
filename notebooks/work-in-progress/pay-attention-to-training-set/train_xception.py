@@ -152,8 +152,8 @@ try:
         print('{:.1f}% of validation'.format(idx / float(len(valid_loader)) * 100), end='\r')
 
     valid_acc = num_hits / num_instances * 100
-    print(f' Validation acc: {valid_acc}%')
-    summary_writer.add_scalar('Validation Accuracy(%)', valid_acc, epoch + 1)
+    print(" Validation acc: %.2f" % (valid_acc,))
+    summary_writer.add_scalar('Validation Accuracy(\%)', valid_acc, epoch + 1)
         
     epoch_loss /= float(len(train_loader))
     print("Time used in one epoch: {:.1f}".format(time.time() - start))
