@@ -134,7 +134,7 @@ try:
       epoch_loss += batch_loss.item()
   
       if idx % 10 == 0:
-        print('{:.1f}% of epoch'.format(idx / float(len(train_loader)) * 100), end='\r')
+        print('{:.1f}% of epoch {:d}'.format(idx / float(len(train_loader)) * 100, epoch,), end='\r')
         #break
       
     # evaluate on validation set
