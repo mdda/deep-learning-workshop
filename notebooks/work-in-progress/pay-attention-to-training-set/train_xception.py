@@ -18,7 +18,7 @@ parser = argparse.ArgumentParser(fromfile_prefix_chars='@')
   
 parser.add_argument("--dataset_root", default='tiny-imagenet-200', type=str, help="directory with tiny ImageNet inside")
 parser.add_argument("--checkpoint",   default=None, type=str, help="model checkpoint path to restart training")
-parser.add_argument("--epoch",        default=0, type=int, help="model checkpoint epoch")
+#parser.add_argument("--epoch",        default=0, type=int, help="model checkpoint epoch")
 parser.add_argument("--lr_initial",   default=0.01, type=float, help="initial lr (might be stepped down later)")
 
 args = parser.parse_args()
@@ -102,8 +102,6 @@ model_base.last_linear = torch.nn.Linear(2048, num_classes).to(device)
 
 
 optimizer = torch.optim.SGD(model_base.parameters(), lr=args.lr_initial, momentum=0.9, )  # weight_decay=0.0001
-#lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, 20, gamma=0.3, initial_lr=args.lr_initial, last_epoch=(args.epoch-1))
-lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, 20, gamma=0.3, )  # Do something with LR
 
 ce_loss = torch.nn.CrossEntropyLoss()
 
@@ -120,19 +118,23 @@ if True:
 
 
 os.makedirs('./checkpoints', exist_ok=True)
-epoch_start, max_epochs = 0, 120
+epoch_start, epoch_max = 0, 50
 
 if args.checkpoint is not None:
   checkpoint = torch.load(args.checkpoint, map_location=lambda storage, loc: storage)
-  model_base.load_state_dict(checkpoint)
+  model_base.load_state_dict(checkpoint['model'])
+  optimizer.load_state_dict(checkpoint['optimizer'])
+  epoch_start = checkpoint['epoch']
   print("Loaded %s - assuming epoch_now=%d" % (args.checkpoint, epoch_start,))
+
+lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, 20, gamma=0.3, last_epoch=epoch_start-1) 
+
 
 train_loader = DataLoader(training_set, batch_size=32, num_workers=4, shuffle=True)
 valid_loader = DataLoader(valid_set,    batch_size=32, num_workers=4)
 
 try:
-  for epoch_offset in range(max_epochs):
-    epoch = args.epoch + epoch_offset
+  for epoch in range(epoch_start+1, epoch_max):  # So this refers to the epoch-end value
     start = time.time()
     
     lr_scheduler.step()
@@ -153,7 +155,7 @@ try:
       epoch_loss += batch_loss.item()
   
       if idx % 10 == 0:
-        print('{:.1f}% of epoch {:d}'.format(idx / float(len(train_loader)) * 100, epoch,), end='\r')
+        print('{:.1f}% of epoch {:d}'.format(idx / float(len(train_loader)) * 100, epoch-1,), end='\r')
         #break
       
     # evaluate on validation set
@@ -172,7 +174,7 @@ try:
 
     valid_acc = num_hits / num_instances * 100
     print(" Validation acc: %.2f" % (valid_acc,))
-    summary_writer.add_scalar('Validation Accuracy(\%)', valid_acc, epoch + 1)
+    summary_writer.add_scalar('Validation Accuracy(\%)', valid_acc, epoch)
         
     epoch_loss /= float(len(train_loader))
     print("Time used in one epoch: {:.1f}".format(time.time() - start))
@@ -186,12 +188,12 @@ try:
       model=model_base.state_dict(), optimizer=optimizer.state_dict(), epoch=epoch,
     ), './checkpoints/model_xception_%04d.pth' % (epoch,))
     
-    checkpoint_old = './checkpoints/model_xception_%04d.pth' % (epoch-5,)
+    checkpoint_old = './checkpoints/model_xception_%04d.pth' % (epoch-3,)
     if True and os.path.isfile(checkpoint_old):
       os.remove(checkpoint_old)
     
     # record loss
-    summary_writer.add_scalar('Running Loss', epoch_loss, epoch + 1)
+    summary_writer.add_scalar('Running Loss', epoch_loss, epoch)
         
         
 except KeyboardInterrupt:
