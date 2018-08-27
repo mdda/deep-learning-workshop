@@ -159,7 +159,9 @@ try:
     print("Time used in one epoch: {:.1f}".format(time.time() - start))
     
     # save model
-    torch.save(model_base.state_dict(), './checkpoints/model_xception.pth')
+    torch.save(model_base.state_dict(), './checkpoints/model_xception_latest.pth')
+    if epoch % 10 == 0:
+      torch.save(model_base.state_dict(), './checkpoints/model_xception_%04d.pth' % (epoch,))
     
     # record loss
     summary_writer.add_scalar('Running Loss', epoch_loss, epoch + 1)

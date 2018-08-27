@@ -58,9 +58,11 @@
 
 
 
-Set-up
+Set-up:
+git clone https://github.com/mdda/deep-learning-workshop.git
 
-cd BASE
+PROJECTBASE=deep-learning-workshop/notebooks/work-in-progress/pay-attention-to-training-set
+cd ${PROJECTBASE}
 
 wget http://cs231n.stanford.edu/tiny-imagenet-200.zip  # Length: 248100043 (237M) [application/zip]
 unzip tiny-imagenet-200.zip 
@@ -90,4 +92,5 @@ ls -l tiny-imagenet-200/test/images/ |wc
 #  10001   90002  648902   # Lots of images
 
 
-
+# Now fine-tune an xception model 
+#   Model downloaded ~80Mb
