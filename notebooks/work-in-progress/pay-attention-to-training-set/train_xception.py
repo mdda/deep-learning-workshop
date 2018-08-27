@@ -17,7 +17,8 @@ import argparse
 parser = argparse.ArgumentParser(fromfile_prefix_chars='@')
   
 parser.add_argument("--dataset_root", default='tiny-imagenet-200', type=str, help="directory with tiny ImageNet inside")
-parser.add_argument("--checkpoint", default=None, nargs="?", type=str, help="model checkpoint path to restart training")
+parser.add_argument("--checkpoint",   default=None, type=str, help="model checkpoint path to restart training")
+parser.add_argument("--epoch",        default=0, type=int, help="model checkpoint epoch")
 
 args = parser.parse_args()
 
@@ -122,13 +123,16 @@ max_epochs = 120
 if args.checkpoint is not None:
   checkpoint = torch.load(args.checkpoint, map_location=lambda storage, loc: storage)
   model.load_state_dict(checkpoint)
+  print("Loaded %s - assuming epoch_now=%d" % (args.checkpoint, args.epoch,))
 
 train_loader = DataLoader(training_set, batch_size=32, num_workers=4, shuffle=True)
 valid_loader = DataLoader(valid_set,    batch_size=32, num_workers=4)
 
 try:
-  for epoch in range(max_epochs):
+  for epoch_offset in range(max_epochs):
+    epoch = args.epoch + epoch_offset
     start = time.time()
+    
     lr_scheduler.step()
     
     epoch_loss = 0.0
