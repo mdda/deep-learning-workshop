@@ -93,6 +93,7 @@ ls -l tiny-imagenet-200/test/images/ |wc
 
 
 # Now fine-tune an xception model 
-#   Model downloaded ~80Mb
+#   Model downloaded : 91,674,713 bytes
 # Ensure you're in a virtualenv that has python3 and pytorch, torchvision installed
+#  Also probably a good idea to do this within a ```screen```
 python train_xception.py
