@@ -101,7 +101,7 @@ model_base.last_linear = torch.nn.Linear(2048, num_classes).to(device)
 
 
 optimizer = torch.optim.SGD(model_base.parameters(), lr=0.01, momentum=0.9, )  # weight_decay=0.0001
-lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, 20, gamma=0.3)
+lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, 20, gamma=0.3, last_epoch=(args.epoch-1))
 
 ce_loss = torch.nn.CrossEntropyLoss()
 
