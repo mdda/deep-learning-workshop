@@ -13,6 +13,17 @@ from tensorboardX import SummaryWriter
 
 import xception
 
+import argparse
+parser = argparse.ArgumentParser(fromfile_prefix_chars='@')
+  
+parser.add_argument("--dataset_root", default='tiny-imagenet-200', type=str, help="directory with tiny ImageNet inside")
+parser.add_argument("--checkpoint", default=None, nargs="?", type=str, help="model checkpoint path to restart training")
+
+args = parser.parse_args()
+
+
+dataset_root = args.dataset_root
+
 
 # See https://github.com/leemengtaiwan/tiny-imagenet/blob/master/tiny-imagenet.ipynb 
 # for a lot of this code
@@ -22,7 +33,6 @@ import xception
 use_cuda = torch.cuda.is_available()
 device = torch.device("cuda" if use_cuda else "cpu")
 
-dataset_root = 'tiny-imagenet-200'
 
 # The output of torchvision datasets are PILImage images of range [0, 1]. 
 # We transform them to Tensors of normalized range [-1, 1].
@@ -109,6 +119,9 @@ if True:
 os.makedirs('./checkpoints', exist_ok=True)
 max_epochs = 120
 
+if args.checkpoint is not None:
+  checkpoint = torch.load(args.checkpoint, map_location=lambda storage, loc: storage)
+  model.load_state_dict(checkpoint)
 
 train_loader = DataLoader(training_set, batch_size=32, num_workers=4, shuffle=True)
 valid_loader = DataLoader(valid_set,    batch_size=32, num_workers=4)
