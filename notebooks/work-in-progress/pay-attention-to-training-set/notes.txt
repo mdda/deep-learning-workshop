@@ -104,4 +104,25 @@ python train_xception.py --checkpoint=./checkpoints/model_xception_latest.pth --
 
 python train_xception.py --checkpoint=./checkpoints/model_xception_0002.pth  # Updated version contains optimizer state and epoch number
 
+export INSTANCE_NAME="rdai-tts-p100-vm"  # As above
+gcloud compute scp $INSTANCE_NAME:~/deep-learning-workshop/notebooks/work-in-progress/pay-attention-to-training-set/checkpoints/model_xception_0035-preserve.pth checkpoints/
+# This acheives ~3.5Mb/s to download 158Mb
+gcloud compute scp $INSTANCE_NAME:~/deep-learning-workshop/notebooks/work-in-progress/pay-attention-to-training-set/checkpoints/model_xception_0052.pth checkpoints/
+
+
+
+
+TODO: 
+Move model-xception-fine definition code to xception.py (?)
+Create a model evaluation script
+Test downloaded checkpoint score(s)
+
+Convert all training images to logits
+Check a few validation image logits to prove that similar images are retrieved
+
+New training loop to train a 16-channel logit analysis tool to 'do better' than the regular network on 'test image' logits
+
+New meta-training loop to train a model that learns to classify the 16 examples more firmly, and then gets applied to 'test image' logits
+
+? Check a few validation image network random projections to prove that similar images are retrieved
 
