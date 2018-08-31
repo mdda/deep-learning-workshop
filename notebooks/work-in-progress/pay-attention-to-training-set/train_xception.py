@@ -159,7 +159,7 @@ try:
       epoch_loss += batch_loss.item()
   
       if idx % 10 == 0:
-        print('{:.1f}% of epoch {:d}'.format(idx / float(len(train_loader)) * 100, epoch-1,), end='\r')
+        print('%.1f%% of epoch %d' % (idx / float(len(train_loader)) * 100, epoch-1,), end='\r')
         #break
       
     # evaluate on validation set
@@ -174,14 +174,14 @@ try:
         _, pred = torch.max(output, 1) # output.topk(1) *1 = top1
 
         num_hits += (pred == target).sum().item()
-        print('{:.1f}% of validation'.format(idx / float(len(valid_loader)) * 100), end='\r')
+        print('%.1f%% of validation' % (idx / float(len(valid_loader)) * 100, ), end='\r')
 
     valid_acc = num_hits / num_instances * 100
     print(" Epoch %d validation acc: %.2f" % (epoch, valid_acc,))
     summary_writer.add_scalar('Validation Accuracy(\%)', valid_acc, epoch)
         
     epoch_loss /= float(len(train_loader))
-    print("Time used in epoch {:d}: {:.1f}, lr={:.8f}".format(epoch, time.time()-start, lr_scheduler.get_lr(), ))
+    print("Time used in epoch %d: %.1f, lr=%.8f" % (epoch, time.time()-start, lr_scheduler.get_lr(), ))
     
     # save model
     # torch.save(model_base.state_dict(), './checkpoints/model_xception_latest.pth')
