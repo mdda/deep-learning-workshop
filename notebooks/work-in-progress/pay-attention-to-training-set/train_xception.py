@@ -19,7 +19,8 @@ parser = argparse.ArgumentParser(fromfile_prefix_chars='@')
 parser.add_argument("--dataset_root", default='tiny-imagenet-200', type=str, help="directory with tiny ImageNet inside")
 parser.add_argument("--checkpoint",   default=None, type=str, help="model checkpoint path to restart training")
 #parser.add_argument("--epoch",        default=0, type=int, help="model checkpoint epoch")
-parser.add_argument("--lr_initial",   default=0.01, type=float, help="initial lr (might be stepped down later)")
+#parser.add_argument("--lr_initial",   default=0.01, type=float, help="initial lr (might be stepped down later)")
+parser.add_argument("--lr_initial",   default=0.001, type=float, help="initial lr (might be stepped down later)")
 
 args = parser.parse_args()
 
@@ -101,7 +102,8 @@ model_base.last_linear = torch.nn.Linear(2048, num_classes).to(device)
 
 
 
-optimizer = torch.optim.SGD(model_base.parameters(), lr=args.lr_initial, momentum=0.9, )  # weight_decay=0.0001
+#optimizer = torch.optim.SGD(model_base.parameters(), lr=args.lr_initial, momentum=0.9, )  # weight_decay=0.0001
+optimizer = torch.optim.Adam(model_base.parameters(), lr=args.lr_initial ) 
 
 ce_loss = torch.nn.CrossEntropyLoss()
 
@@ -132,6 +134,8 @@ lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, 20, gamma=0.3, last_ep
 
 train_loader = DataLoader(training_set, batch_size=32, num_workers=4, shuffle=True)
 valid_loader = DataLoader(valid_set,    batch_size=32, num_workers=4)
+
+valid_acc_best=-1
 
 try:
   for epoch in range(epoch_start+1, epoch_max):  # So this refers to the epoch-end value
@@ -173,24 +177,25 @@ try:
         print('{:.1f}% of validation'.format(idx / float(len(valid_loader)) * 100), end='\r')
 
     valid_acc = num_hits / num_instances * 100
-    print(" Validation acc: %.2f" % (valid_acc,))
+    print(" Epoch %d validation acc: %.2f" % (epoch, valid_acc,))
     summary_writer.add_scalar('Validation Accuracy(\%)', valid_acc, epoch)
         
     epoch_loss /= float(len(train_loader))
-    print("Time used in one epoch: {:.1f}".format(time.time() - start))
+    print("Time used in epoch {:d}: {:.1f}, lr={:.8f}".format(epoch, time.time()-start, lr_scheduler.get_lr(), ))
     
     # save model
     # torch.save(model_base.state_dict(), './checkpoints/model_xception_latest.pth')
+
+    if valid_acc_best<valid_acc:  # Save model if validation accuracy is higher than before
+      torch.save(dict(
+        model=model_base.state_dict(), optimizer=optimizer.state_dict(), epoch=epoch,
+      ), './checkpoints/model_xception_%04d.pth' % (epoch,))
+      valid_acc_best=valid_acc
     
     # save the model with a rolling window
-    
-    torch.save(dict(
-      model=model_base.state_dict(), optimizer=optimizer.state_dict(), epoch=epoch,
-    ), './checkpoints/model_xception_%04d.pth' % (epoch,))
-    
-    checkpoint_old = './checkpoints/model_xception_%04d.pth' % (epoch-3,)
-    if True and os.path.isfile(checkpoint_old):
-      os.remove(checkpoint_old)
+    #checkpoint_old = './checkpoints/model_xception_%04d.pth' % (epoch-3,)
+    #if True and os.path.isfile(checkpoint_old):
+    #  os.remove(checkpoint_old)
     
     # record loss
     summary_writer.add_scalar('Running Loss', epoch_loss, epoch)
