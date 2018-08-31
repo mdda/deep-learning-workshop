@@ -181,7 +181,8 @@ try:
     summary_writer.add_scalar('Validation Accuracy(\%)', valid_acc, epoch)
         
     epoch_loss /= float(len(train_loader))
-    print("Time used in epoch %d: %.1f, lr=%.8f" % (epoch, time.time()-start, lr_scheduler.get_lr(), ))
+    print("Time used in epoch %d: %.1f" % (epoch, time.time()-start, ))
+    print( lr_scheduler.get_lr() )
     
     # save model
     # torch.save(model_base.state_dict(), './checkpoints/model_xception_latest.pth')
