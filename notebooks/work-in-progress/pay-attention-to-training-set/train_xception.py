@@ -129,7 +129,7 @@ if args.checkpoint is not None:
   epoch_start = checkpoint['epoch']
   print("Loaded %s - assuming epoch_now=%d" % (args.checkpoint, epoch_start,))
 
-lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, 20, gamma=0.3, last_epoch=epoch_start-1) 
+lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, 10, gamma=0.5, last_epoch=epoch_start-1) 
 
 
 train_loader = DataLoader(training_set, batch_size=32, num_workers=4, shuffle=True)
