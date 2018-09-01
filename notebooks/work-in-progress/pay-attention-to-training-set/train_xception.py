@@ -103,8 +103,8 @@ model_base.last_linear = torch.nn.Linear(2048, num_classes).to(device)
 
 
 
-#optimizer = torch.optim.SGD(model_base.parameters(), lr=args.lr_initial, momentum=0.9, )  # weight_decay=0.0001
-optimizer = torch.optim.Adam(model_base.parameters(), lr=args.lr_initial ) 
+optimizer = torch.optim.SGD(model_base.parameters(), lr=args.lr_initial, momentum=0.9, )  # weight_decay=0.0001
+#optimizer = torch.optim.Adam(model_base.parameters(), lr=args.lr_initial ) 
 
 ce_loss = torch.nn.CrossEntropyLoss()
 
