@@ -1,5 +1,7 @@
 import os
+
 import time
+from datetime import datetime
 
 import torch
 
@@ -19,8 +21,7 @@ parser = argparse.ArgumentParser(fromfile_prefix_chars='@')
 parser.add_argument("--dataset_root", default='tiny-imagenet-200', type=str, help="directory with tiny ImageNet inside")
 parser.add_argument("--checkpoint",   default=None, type=str, help="model checkpoint path to restart training")
 #parser.add_argument("--epoch",        default=0, type=int, help="model checkpoint epoch")
-#parser.add_argument("--lr_initial",   default=0.01, type=float, help="initial lr (might be stepped down later)")
-parser.add_argument("--lr_initial",   default=0.001, type=float, help="initial lr (might be stepped down later)")
+parser.add_argument("--lr_initial",   default=0.01, type=float, help="initial lr (might be stepped down later)")
 
 args = parser.parse_args()
 
@@ -129,7 +130,7 @@ if args.checkpoint is not None:
   epoch_start = checkpoint['epoch']
   print("Loaded %s - assuming epoch_now=%d" % (args.checkpoint, epoch_start,))
 
-lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, 10, gamma=0.5, last_epoch=epoch_start-1) 
+lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, 10, gamma=0.75, last_epoch=epoch_start-1) 
 
 
 train_loader = DataLoader(training_set, batch_size=32, num_workers=4, shuffle=True)
@@ -181,8 +182,12 @@ try:
     summary_writer.add_scalar('Validation Accuracy(\%)', valid_acc, epoch)
         
     epoch_loss /= float(len(train_loader))
-    print("Time used in epoch %d: %.1f" % (epoch, time.time()-start, ))
-    print( lr_scheduler.get_lr() )
+    epoch_duration = time.time()-start
+    print("Time used in epoch %d: %.1f" % (epoch, epoch_duration, ))
+    print("  Expected finish time : %s" % ( datetime.fromtimestamp(
+          (epoch_max-epoch)*epoch_duration + time.time()
+        ).strftime("%A, %B %d, %Y %I:%M:%S"), ))
+    print("Learning rates : ",  lr_scheduler.get_lr() )
     
     # save model
     # torch.save(model_base.state_dict(), './checkpoints/model_xception_latest.pth')
