@@ -239,3 +239,61 @@ def xception(num_classes=1000, pretrained='imagenet'):
     del model.fc
     
     return model
+
+
+
+### Added by mdda ### 
+
+__all__.extend(['xception_tiny_imagenet',])
+
+def xception_tiny_imagenet(num_classes, device):
+  model_base = xception().to(device)  # Loads weights into model
+  #print(model_base)
+
+  # Switch off the trainability for some of the xception model 
+  for layer in "conv1 conv2 block1 block2 block3".split(' '):
+    #model_base[layer].requires_grad = False  # Does not work...
+    #print(getattr(model_base, layer))
+    for p in getattr(model_base, layer).parameters():
+      p.requires_grad = False
+
+  # Now substitute the last layer for what we're going to train
+  model_base.last_linear = torch.nn.Linear(2048, num_classes).to(device)
+
+  return model_base
+
+
+import torchvision.transforms as transforms
+
+__all__.extend(['training_transform', 'valid_transform',])
+
+# The output of torchvision datasets are PILImage images of range [0, 1]. 
+# We transform them to Tensors of normalized range [-1, 1].
+
+# https://pytorch.org/docs/stable/torchvision/transforms.html#torchvision.transforms.Resize
+# 3x299x299
+resize = transforms.Resize( size=299, )   # Operates on PIL images .. interpolation=PIL.Image.BILINEAR
+
+augmentation = transforms.RandomApply([
+    transforms.RandomHorizontalFlip(),
+    #transforms.RandomRotation(10),
+    transforms.RandomRotation(30),
+    #transforms.RandomResizedCrop(64),
+    transforms.RandomResizedCrop(299),
+], p=.8)
+
+normalize = transforms.Normalize(mean=(.5, .5, .5), std=(.5, .5, .5))
+
+training_transform = transforms.Compose([
+    transforms.Lambda(lambda x: x.convert("RGB")),
+    resize, 
+    augmentation,
+    transforms.ToTensor(),
+    normalize])
+
+valid_transform = transforms.Compose([
+    transforms.Lambda(lambda x: x.convert("RGB")),
+    resize, 
+    transforms.ToTensor(),
+    normalize])
+

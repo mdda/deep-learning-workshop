@@ -5,15 +5,15 @@ from datetime import datetime
 
 import torch
 
-import torchvision.transforms as transforms
+#import torchvision.transforms as transforms
 from torch.utils.data import DataLoader
 #from torch.autograd import Variable
 
 from TinyImageNet import TinyImageNet
+import xception
 
 from tensorboardX import SummaryWriter
 
-import xception
 
 import argparse
 parser = argparse.ArgumentParser(fromfile_prefix_chars='@')
@@ -43,36 +43,38 @@ device = torch.device("cuda" if use_cuda else "cpu")
 
 # https://pytorch.org/docs/stable/torchvision/transforms.html#torchvision.transforms.Resize
 # 3x299x299
-resize = transforms.Resize( size=299, )   # Operates on PIL images .. interpolation=PIL.Image.BILINEAR
+#resize = transforms.Resize( size=299, )   # Operates on PIL images .. interpolation=PIL.Image.BILINEAR
+#
+#augmentation = transforms.RandomApply([
+#    transforms.RandomHorizontalFlip(),
+#    #transforms.RandomRotation(10),
+#    transforms.RandomRotation(30),
+#    #transforms.RandomResizedCrop(64),
+#    transforms.RandomResizedCrop(299),
+#], p=.8)
+#
+#normalize = transforms.Normalize(mean=(.5, .5, .5), std=(.5, .5, .5))
+#
+#training_transform = transforms.Compose([
+#    transforms.Lambda(lambda x: x.convert("RGB")),
+#    resize, 
+#    augmentation,
+#    transforms.ToTensor(),
+#    normalize])
+#
+#valid_transform = transforms.Compose([
+#    transforms.Lambda(lambda x: x.convert("RGB")),
+#    resize, 
+#    transforms.ToTensor(),
+#    normalize])
 
-augmentation = transforms.RandomApply([
-    transforms.RandomHorizontalFlip(),
-    #transforms.RandomRotation(10),
-    transforms.RandomRotation(30),
-    #transforms.RandomResizedCrop(64),
-    transforms.RandomResizedCrop(299),
-], p=.8)
-
-normalize = transforms.Normalize(mean=(.5, .5, .5), std=(.5, .5, .5))
-
-training_transform = transforms.Compose([
-    transforms.Lambda(lambda x: x.convert("RGB")),
-    resize, 
-    augmentation,
-    transforms.ToTensor(),
-    normalize])
-
-valid_transform = transforms.Compose([
-    transforms.Lambda(lambda x: x.convert("RGB")),
-    resize, 
-    transforms.ToTensor(),
-    normalize])
-
+#training_transform = xception.training_transform
+#valid_transform    = xception.valid_transform
 
 in_memory = False
 
-training_set = TinyImageNet(dataset_root, 'train', transform=training_transform, in_memory=in_memory)
-valid_set    = TinyImageNet(dataset_root, 'val',   transform=valid_transform,    in_memory=in_memory)
+training_set = TinyImageNet(dataset_root, 'train', transform=xception.training_transform, in_memory=in_memory)
+valid_set    = TinyImageNet(dataset_root, 'val',   transform=xception.valid_transform,    in_memory=in_memory)
 
 #print( training_set )
 #print( valid_set    )
@@ -87,20 +89,20 @@ if False:
     show_images_horizontally(images, un_normalize=True)
 
 
+model_base = xception.xception_tiny_imagenet(num_classes, device)
    
-model_base = xception.xception().to(device)  # Loads weights into model
-#print(model_base)
-
-# Switch off the trainability for some of the xception model 
-for layer in "conv1 conv2 block1 block2 block3".split(' '):
-  #model_base[layer].requires_grad = False  # Does not work...
-  #print(getattr(model_base, layer))
-  for p in getattr(model_base, layer).parameters():
-    p.requires_grad = False
-
-# Now substitute the last layer for what we're going to train
-model_base.last_linear = torch.nn.Linear(2048, num_classes).to(device)
-
+#model_base = xception.xception().to(device)  # Loads weights into model
+##print(model_base)
+#
+## Switch off the trainability for some of the xception model 
+#for layer in "conv1 conv2 block1 block2 block3".split(' '):
+#  #model_base[layer].requires_grad = False  # Does not work...
+#  #print(getattr(model_base, layer))
+#  for p in getattr(model_base, layer).parameters():
+#    p.requires_grad = False
+#
+## Now substitute the last layer for what we're going to train
+#model_base.last_linear = torch.nn.Linear(2048, num_classes).to(device)
 
 
 optimizer = torch.optim.SGD(model_base.parameters(), lr=args.lr_initial, momentum=0.9, )  # weight_decay=0.0001
@@ -169,7 +171,7 @@ try:
       epoch_loss += batch_loss.item()
   
       if idx % 10 == 0:
-        print('%.1f%% of epoch %d' % (idx / float(len(train_loader)) * 100, epoch-1,), end='\r')  # Python 3 FTW!
+        print('%.1f%% of epoch %d' % (idx / float(len(train_loader)) * 100, epoch,), end='\r')  # Python 3 FTW!
         #break
       
     # evaluate on validation set

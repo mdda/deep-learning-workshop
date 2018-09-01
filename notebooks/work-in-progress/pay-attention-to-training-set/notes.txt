@@ -106,13 +106,15 @@ python train_xception.py --checkpoint=./checkpoints/model_xception_0002.pth  # U
 
 export INSTANCE_NAME="rdai-tts-p100-vm"  # As above
 gcloud compute scp $INSTANCE_NAME:~/deep-learning-workshop/notebooks/work-in-progress/pay-attention-to-training-set/checkpoints/model_xception_0035-preserve.pth checkpoints/
-# This acheives ~3.5Mb/s to download 158Mb
+# This achieves ~3.5Mb/s to download 158Mb
 gcloud compute scp $INSTANCE_NAME:~/deep-learning-workshop/notebooks/work-in-progress/pay-attention-to-training-set/checkpoints/model_xception_0052.pth checkpoints/
 
 
 
-
 TODO: 
+# Try different Optimizers : (Adam=poor, compared to SGD with momentum)
+# Try different LR-schedulers : (LRStep difficult to judge.  ReduceOnPlateau may make most sense)
+
 Move model-xception-fine definition code to xception.py (?)
 Create a model evaluation script
 Test downloaded checkpoint score(s)
