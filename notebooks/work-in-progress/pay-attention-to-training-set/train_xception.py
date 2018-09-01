@@ -123,15 +123,25 @@ if True:
 os.makedirs('./checkpoints', exist_ok=True)
 epoch_start, epoch_max = 0, 50
 
+def get_lr_scheduler(opt):
+  #return torch.optim.lr_scheduler.StepLR(opt, 10, gamma=0.75, last_epoch=epoch_start-1) 
+  return torch.optim.lr_scheduler.ReduceLROnPlateau(opt, mode='max', factor=0.5, verbose=True, )  # Measuring val_acc
+
 if args.checkpoint is not None:
   checkpoint = torch.load(args.checkpoint, map_location=lambda storage, loc: storage)
+  epoch_start = checkpoint['epoch']
+  
   model_base.load_state_dict(checkpoint['model'])
   optimizer.load_state_dict(checkpoint['optimizer'])
-  epoch_start = checkpoint['epoch']
+  
+  lr_scheduler = get_lr_scheduler(optimizer)
+  lr_scheduler.load_state_dict(checkpoint['lr_scheduler'])
+  
   print("Loaded %s - assuming epoch_now=%d" % (args.checkpoint, epoch_start,))
+  
+else:
+  lr_scheduler = get_lr_scheduler(optimizer)
 
-#lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, 10, gamma=0.75, last_epoch=epoch_start-1) 
-lr_scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, 'max', factor=0.5, verbose=True, )  # Measuring val_acc
 
 
 train_loader = DataLoader(training_set, batch_size=32, num_workers=4, shuffle=True)
@@ -186,16 +196,22 @@ try:
     print("  Expected finish time : %s" % ( datetime.fromtimestamp(
           (epoch_max-epoch)*epoch_duration + time.time()
         ).strftime("%A, %B %d, %Y %I:%M:%S"), ))
-    print("Learning rates : ",  lr_scheduler.get_lr() )
+        
+    if False: # For Step (not ReduceOnPlateau)
+      print("Learning rates : ",  lr_scheduler.get_lr() )
     
-    lr_scheduler.step(valid_acc)
+    if True:  # for ReduceOnPlateau
+      lr_scheduler.step(valid_acc)
         
     # save model
     # torch.save(model_base.state_dict(), './checkpoints/model_xception_latest.pth')
 
     if valid_acc_best<valid_acc:  # Save model if validation accuracy is higher than before
       torch.save(dict(
-        model=model_base.state_dict(), optimizer=optimizer.state_dict(), epoch=epoch,
+        epoch=epoch,
+        model=model_base.state_dict(), 
+        optimizer=optimizer.state_dict(), 
+        lr_scheduler=lr_scheduler.state_dict(), 
       ), './checkpoints/model_xception_%04d.pth' % (epoch,))
       valid_acc_best=valid_acc
     
