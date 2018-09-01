@@ -130,7 +130,8 @@ if args.checkpoint is not None:
   epoch_start = checkpoint['epoch']
   print("Loaded %s - assuming epoch_now=%d" % (args.checkpoint, epoch_start,))
 
-lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, 10, gamma=0.75, last_epoch=epoch_start-1) 
+#lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, 10, gamma=0.75, last_epoch=epoch_start-1) 
+lr_scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, 'max', factor=0.5, verbose=True, )  # Measuring val_acc
 
 
 train_loader = DataLoader(training_set, batch_size=32, num_workers=4, shuffle=True)
@@ -141,8 +142,6 @@ valid_acc_best=-1
 try:
   for epoch in range(epoch_start+1, epoch_max):  # So this refers to the epoch-end value
     start = time.time()
-    
-    lr_scheduler.step()
     
     epoch_loss = 0.0
     model_base.train()
@@ -180,7 +179,7 @@ try:
     valid_acc = num_hits / num_instances * 100
     print(" Epoch %d validation acc: %.2f" % (epoch, valid_acc,))
     summary_writer.add_scalar('Validation Accuracy(\%)', valid_acc, epoch)
-        
+
     epoch_loss /= float(len(train_loader))
     epoch_duration = time.time()-start
     print("Time used in epoch %d: %.1f" % (epoch, epoch_duration, ))
@@ -189,6 +188,8 @@ try:
         ).strftime("%A, %B %d, %Y %I:%M:%S"), ))
     print("Learning rates : ",  lr_scheduler.get_lr() )
     
+    lr_scheduler.step(valid_acc)
+        
     # save model
     # torch.save(model_base.state_dict(), './checkpoints/model_xception_latest.pth')
 
