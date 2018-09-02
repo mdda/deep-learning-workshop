@@ -112,10 +112,13 @@ gcloud compute scp $INSTANCE_NAME:~/deep-learning-workshop/notebooks/work-in-pro
 
 
 TODO: 
-# Try different Optimizers : (Adam=poor, compared to SGD with momentum)
-# Try different LR-schedulers : (LRStep difficult to judge.  ReduceOnPlateau may make most sense)
+-----
 
-Move model-xception-fine definition code to xception.py (?)
+DONE : Try different Optimizers : (Adam=poor, compared to SGD with momentum)
+DONE : Try different LR-schedulers : (LRStep difficult to judge.  ReduceOnPlateau may make most sense)
+
+DONE : Move model-xception-fine definition code to xception.py
+
 Create a model evaluation script
 Test downloaded checkpoint score(s)
 

@@ -1,6 +1,6 @@
 import os
 
-import time
+import time, pytz
 from datetime import datetime
 
 import torch
@@ -22,11 +22,12 @@ parser.add_argument("--dataset_root", default='tiny-imagenet-200', type=str, hel
 parser.add_argument("--checkpoint",   default=None, type=str, help="model checkpoint path to restart training")
 #parser.add_argument("--epoch",        default=0, type=int, help="model checkpoint epoch")
 parser.add_argument("--lr_initial",   default=0.01, type=float, help="initial lr (might be stepped down later)")
+parser.add_argument("--tz",           default='Asia/Singapore', type=str, help="Timezone for local finish time estimation")
 
 args = parser.parse_args()
 
-
 dataset_root = args.dataset_root
+tz = pytz.timezone(args.tz)
 
 
 # See https://github.com/leemengtaiwan/tiny-imagenet/blob/master/tiny-imagenet.ipynb 
@@ -194,10 +195,10 @@ try:
 
     epoch_loss /= float(len(train_loader))
     epoch_duration = time.time()-start
+    epoch_max_end = (epoch_max-epoch)*epoch_duration + time.time()
     print("Time used in epoch %d: %.1f" % (epoch, epoch_duration, ))
-    print("  Expected finish time : %s" % ( datetime.fromtimestamp(
-          (epoch_max-epoch)*epoch_duration + time.time()
-        ).strftime("%A, %B %d, %Y %I:%M:%S"), ))
+    print("  Expected finish time : %s (server)" % ( datetime.fromtimestamp(epoch_max_end).strftime("%A, %B %d, %Y %I:%M:%S %Z%z"), ))
+    print("  Expected finish time : %s (local)"  % ( datetime.fromtimestamp(epoch_max_end).astimezone(tz).strftime("%A, %B %d, %Y %I:%M:%S %Z%z"), ))
         
     if False: # For Step (not ReduceOnPlateau)
       print("Learning rates : ",  lr_scheduler.get_lr() )
