@@ -109,6 +109,10 @@ gcloud compute scp $INSTANCE_NAME:~/deep-learning-workshop/notebooks/work-in-pro
 # This achieves ~3.5Mb/s to download 158Mb
 gcloud compute scp $INSTANCE_NAME:~/deep-learning-workshop/notebooks/work-in-progress/pay-attention-to-training-set/checkpoints/model_xception_0052.pth checkpoints/
 
+# Try again, using reduceonplateau - to get ~77.55% validation set accuracy
+gcloud compute scp $INSTANCE_NAME:~/deep-learning-workshop/notebooks/work-in-progress/pay-attention-to-training-set/checkpoints-04-sgd-reduceonplateau/model_xception_0021.pth ./checkpoints-04-sgd-reduceonplateau/
+gcloud compute scp $INSTANCE_NAME:~/deep-learning-workshop/notebooks/work-in-progress/pay-attention-to-training-set/checkpoints-04-sgd-reduceonplateau/model_xception_0038.pth ./checkpoints-04-sgd-reduceonplateau/
+
 
 
 TODO: 
@@ -118,6 +122,7 @@ DONE : Try different Optimizers : (Adam=poor, compared to SGD with momentum)
 DONE : Try different LR-schedulers : (LRStep difficult to judge.  ReduceOnPlateau may make most sense)
 
 DONE : Move model-xception-fine definition code to xception.py
+DONE : TZ-aware estimates of finish time
 
 Create a model evaluation script
 Test downloaded checkpoint score(s)
