@@ -1,4 +1,9 @@
 *  Meta-Learning workshop ?
+   +  http://metalearning.ml/#schedule
+      -  Submission deadline: 17 October 2018 (Anywhere on Earth)
+      -  Notification: 23 November 2018
+      -  Camera ready: 3 December 2018
+      -  Workshop: 8 December 2018  (Saturday)
    +  Tiny ImageNet (default course project for Stanford CS231N)
       -  https://tiny-imagenet.herokuapp.com/ : also : https://www.kaggle.com/c/tiny-imagenet/data
          *  train.images.zip 194.08 MB
