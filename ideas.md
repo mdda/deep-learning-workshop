@@ -1007,6 +1007,12 @@ Also, figure out a good 'private code+data' workflow too:
 *  PyTorch on TPU(?)
    *  This is probably going to be tackled by emitting "HLO IR" for XLA to convert to TPU ops in a JIT manner
       - https://www.tensorflow.org/performance/xla/jit
+
+*  PyTorch v1.0     
+   *  Potential for this to be launched at the PyTorch conference
+      *  https://pytorch.fbreg.com/
+      *  02 Oct 2018
+      *  Sessions include : "What's New in PyTorch 1.0" and "Cloud Tooling"
       
 *  PyTorch 16-bit ops (https://github.com/NVIDIA/apex) and usage on GCP V100s
    *  amp: Automatic Mixed Precision
@@ -1046,18 +1052,19 @@ Also, figure out a good 'private code+data' workflow too:
 
 
 ## Next big conference ideas : 
-        
-* WaveRNN : Explore the large, but sparse model ideas
-  - Not clear what a toy problem should look like
-    -  Would be great to do something with attention, or RNN
-    -  One issue is how to keep track of the derivatives
-       - either do masking on a large matrix; or explicitly construct everything on-the-fly
-  - Nor clear whether sparseness can be 'discovered from below' or
-    requires a large model, and discovered redundancy
-  - Interesting papers : 
-    -  Sparse Persistent RNNs: Squeezing Large Recurrent Networks On-Chip 
-       + https://openreview.net/pdf?id=HkxF5RgC-
-        
+
+*  WaveRNN : Explore the large, but sparse model ideas
+   -  Not clear what a toy problem should look like
+      -  Would be great to do something with attention, or RNN
+      -  One issue is how to keep track of the derivatives
+         -  either do masking on a large matrix; or explicitly construct everything on-the-fly
+   -  Nor clear whether sparseness can be 'discovered from below' or
+      requires a large model, and discovered redundancy
+   -  Interesting papers : 
+      -  Sparse Persistent RNNs: Squeezing Large Recurrent Networks On-Chip 
+         +  https://openreview.net/pdf?id=HkxF5RgC-
+         
+
 *  QandA
    *  Use coverage somehow to force question understanding
    *  Flipside of "Did the Model Understand the Question?"
@@ -1097,11 +1104,12 @@ Also, figure out a good 'private code+data' workflow too:
       +  Associative Compression Networks for Representation Learning 
          +  https://arxiv.org/abs/1804.02476
 
-      
-*  Classification as Q&A against training examples
-   +  Positive/Negative Contrast learning to get retrieval ~= attention
-
    
+*  Pay Attention to the Training Data (now in own repo/folder)
+   *  Classification as Q&A against training examples
+      +  Positive/Negative Contrast learning to get retrieval ~= attention
+
+        
 *  Demonstrations@NIPS (due 16-Sept-2018) : https://nips.cc/Demonstrations/demonstrationapplication
    +  Dials for latent space changes for voices
       + How about dial positions that reflect prominent conference speakers?
