@@ -38,42 +38,7 @@ tz = pytz.timezone(args.tz)
 use_cuda = torch.cuda.is_available()
 device = torch.device("cuda" if use_cuda else "cpu")
 
-
-# The output of torchvision datasets are PILImage images of range [0, 1]. 
-# We transform them to Tensors of normalized range [-1, 1].
-
-# https://pytorch.org/docs/stable/torchvision/transforms.html#torchvision.transforms.Resize
-# 3x299x299
-#resize = transforms.Resize( size=299, )   # Operates on PIL images .. interpolation=PIL.Image.BILINEAR
-#
-#augmentation = transforms.RandomApply([
-#    transforms.RandomHorizontalFlip(),
-#    #transforms.RandomRotation(10),
-#    transforms.RandomRotation(30),
-#    #transforms.RandomResizedCrop(64),
-#    transforms.RandomResizedCrop(299),
-#], p=.8)
-#
-#normalize = transforms.Normalize(mean=(.5, .5, .5), std=(.5, .5, .5))
-#
-#training_transform = transforms.Compose([
-#    transforms.Lambda(lambda x: x.convert("RGB")),
-#    resize, 
-#    augmentation,
-#    transforms.ToTensor(),
-#    normalize])
-#
-#valid_transform = transforms.Compose([
-#    transforms.Lambda(lambda x: x.convert("RGB")),
-#    resize, 
-#    transforms.ToTensor(),
-#    normalize])
-
-#training_transform = xception.training_transform
-#valid_transform    = xception.valid_transform
-
 in_memory = False
-
 training_set = TinyImageNet(dataset_root, 'train', transform=xception.training_transform, in_memory=in_memory)
 valid_set    = TinyImageNet(dataset_root, 'val',   transform=xception.valid_transform,    in_memory=in_memory)
 
@@ -91,20 +56,6 @@ if False:
 
 
 model_base = xception.xception_tiny_imagenet(num_classes, device)
-   
-#model_base = xception.xception().to(device)  # Loads weights into model
-##print(model_base)
-#
-## Switch off the trainability for some of the xception model 
-#for layer in "conv1 conv2 block1 block2 block3".split(' '):
-#  #model_base[layer].requires_grad = False  # Does not work...
-#  #print(getattr(model_base, layer))
-#  for p in getattr(model_base, layer).parameters():
-#    p.requires_grad = False
-#
-## Now substitute the last layer for what we're going to train
-#model_base.last_linear = torch.nn.Linear(2048, num_classes).to(device)
-
 
 optimizer = torch.optim.SGD(model_base.parameters(), lr=args.lr_initial, momentum=0.9, )  # weight_decay=0.0001
 #optimizer = torch.optim.Adam(model_base.parameters(), lr=args.lr_initial ) 
@@ -113,7 +64,6 @@ ce_loss = torch.nn.CrossEntropyLoss()
 
 
 
-#from tensorboardX import SummaryWriter
 if True:
   os.makedirs('./log', exist_ok=True)
   summary_writer = SummaryWriter(log_dir='./log', comment='xception-finetuning')

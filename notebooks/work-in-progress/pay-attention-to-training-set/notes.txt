@@ -119,6 +119,11 @@ gcloud compute scp $INSTANCE_NAME:~/deep-learning-workshop/notebooks/work-in-pro
 gcloud compute scp $INSTANCE_NAME:~/deep-learning-workshop/notebooks/work-in-progress/pay-attention-to-training-set/checkpoints-04-sgd-reduceonplateau/model_xception_0038.pth ./checkpoints-04-sgd-reduceonplateau/
 
 
+python score_model.py --model=xception --checkpoint=./checkpoints-04-sgd-reduceonplateau/model_xception_0038.pth
+#   Score acc: 77.58
+
+
+
 
 TODO: 
 -----
@@ -129,8 +134,8 @@ DONE : Try different LR-schedulers : (LRStep difficult to judge.  ReduceOnPlatea
 DONE : Move model-xception-fine definition code to xception.py
 DONE : TZ-aware estimates of finish time
 
-Create a model evaluation script
-Test downloaded checkpoint score(s)
+DONE : Create a model evaluation script
+DONE : Test downloaded checkpoint score(s)
 
 Convert all training images to logits
 Check a few validation image logits to prove that similar images are retrieved
