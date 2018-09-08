@@ -244,7 +244,7 @@ def xception(num_classes=1000, pretrained='imagenet'):
 
 ### Added by mdda ### 
 
-__all__.extend(['xception_tiny_imagenet',])
+__all__.extend(['xception_tiny_imagenet', 'make_headless', ])
 
 def xception_tiny_imagenet(num_classes, device):
   model_base = xception().to(device)  # Loads weights into model
@@ -261,6 +261,13 @@ def xception_tiny_imagenet(num_classes, device):
   model_base.last_linear = torch.nn.Linear(2048, num_classes).to(device)
 
   return model_base
+
+
+def make_headless(model_base, device):
+  #model_base.last_linear = torch.nn.Identity(2048, 2048).to(device)
+  model_base.last_linear = torch.nn.Sequential().to(device)  # This is effectively the identity
+  return model_base
+
 
 
 import torchvision.transforms as transforms

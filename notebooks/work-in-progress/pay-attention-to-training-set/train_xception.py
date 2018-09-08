@@ -24,6 +24,8 @@ parser.add_argument("--checkpoint",   default=None, type=str, help="model checkp
 parser.add_argument("--lr_initial",   default=0.01, type=float, help="initial lr (might be stepped down later)")
 parser.add_argument("--tz",           default='Asia/Singapore', type=str, help="Timezone for local finish time estimation")
 
+parser.add_argument("--save_trainvalues",  default=None, type=str, help="save training values (logits?) and labels to file eg : 'tiny-imagenet-200_trainvals.npy'")
+
 args = parser.parse_args()
 
 dataset_root = args.dataset_root
@@ -100,6 +102,21 @@ else:
 train_loader = DataLoader(training_set, batch_size=32, num_workers=4, shuffle=True)
 valid_loader = DataLoader(valid_set,    batch_size=32, num_workers=4)
 
+if args.save_trainvalues is not None:  # Just save the training_set 'values+labels' to the file
+  training_set_raw = TinyImageNet(dataset_root, 'train', transform=xception.valid_transform, in_memory=in_memory)
+  train_loader_raw = DataLoader(training_set_raw, batch_size=32, num_workers=4, shuffle=False)
+  
+  model_base = xception.make_headless(model_base, device)
+  
+  model_base.eval()
+  for idx, (data, target) in enumerate(train_loader_raw):
+    data, target = data.to(device), target.to(device)
+    output = model_base(data)
+    print(output.size())
+    exit(0)
+  
+  
+  
 valid_acc_best=-1
 
 try:

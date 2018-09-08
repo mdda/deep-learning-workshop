@@ -122,6 +122,8 @@ gcloud compute scp $INSTANCE_NAME:~/deep-learning-workshop/notebooks/work-in-pro
 python score_model.py --model=xception --checkpoint=./checkpoints-04-sgd-reduceonplateau/model_xception_0038.pth
 #   Score acc: 77.58
 
+python train_xception.py --checkpoint=./checkpoints-04-sgd-reduceonplateau/model_xception_0038.pth --save_trainvalues=./tiny-imagenet-200_trainvals.npy
+
 
 
 
