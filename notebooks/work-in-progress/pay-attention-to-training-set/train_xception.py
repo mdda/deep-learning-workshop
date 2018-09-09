@@ -114,29 +114,19 @@ if args.save_trainvalues is not None:  # Just save the training_set 'values+labe
   with torch.no_grad():
     start = time.time()
     
-    #features, targets = [],[]
     features = torch.zeros( ( len_training*batch_size, 2048 ), device=device, dtype=torch.float32, requires_grad=False)
     targets  = torch.zeros( ( len_training*batch_size ), device=device, dtype=torch.long, requires_grad=False)
     
     for idx, (data, target) in enumerate(train_loader_raw):
       print("Batch %4d of %4d" % (idx, len_training, )) # target.size()  , end='\r'
-      #targets.append(target)
       data, target = data.to(device), target.to(device)
       output = model_base(data)
-      print( data.size(), target.size(), output.size(), )
-      
+      #print( data.size(), target.size(), output.size(), )
       features[ idx*batch_size:(idx+1)*batch_size, : ] = output.detach()
       targets [ idx*batch_size:(idx+1)*batch_size ] = target.detach()
-      #print(output.size())
-      #features.append(output)
       #if idx>5: break
     
-    #print("Concatentating data")
-    #targets  = torch.cat( targets, dim=0 )
-    #features = torch.cat( features, dim=0 )
-    #print(features_all.size())
-      
-    print("Savomg data")
+    print("Saving data")
     torch.save(dict(targets=targets, features=features,), args.save_trainvalues)
     print("Time used to generate features %.1fsecs" % (time.time()-start, ))
   exit(0)
