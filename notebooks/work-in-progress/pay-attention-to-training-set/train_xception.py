@@ -124,7 +124,7 @@ if args.save_trainvalues is not None:  # Just save the training_set 'values+labe
       #print( data.size(), target.size(), output.size(), )
       features[ idx*batch_size:(idx+1)*batch_size, : ] = output.detach()
       targets [ idx*batch_size:(idx+1)*batch_size ] = target.detach()
-      #if idx>5: break
+      if idx>5: break
     
     print("Saving data")
     torch.save(dict(targets=targets, features=features,), args.save_trainvalues)
