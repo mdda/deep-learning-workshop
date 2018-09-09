@@ -98,10 +98,6 @@ else:
   lr_scheduler = get_lr_scheduler(optimizer)
 
 
-
-train_loader = DataLoader(training_set, batch_size=32, num_workers=4, shuffle=True)
-valid_loader = DataLoader(valid_set,    batch_size=32, num_workers=4)
-
 if args.save_trainvalues is not None:  # Just save the training_set 'values+labels' to the file
   batch_size=100
   training_set_raw = TinyImageNet(dataset_root, 'train', transform=xception.valid_transform, in_memory=in_memory)
@@ -124,14 +120,17 @@ if args.save_trainvalues is not None:  # Just save the training_set 'values+labe
       #print( data.size(), target.size(), output.size(), )
       features[ idx*batch_size:(idx+1)*batch_size, : ] = output.detach()
       targets [ idx*batch_size:(idx+1)*batch_size ] = target.detach()
-      if idx>5: break
+      #if idx>5: break
     
     print("Saving data")
     torch.save(dict(targets=targets, features=features,), args.save_trainvalues)
     print("Time used to generate features %.1fsecs" % (time.time()-start, ))
   exit(0)
   
-  
+
+train_loader = DataLoader(training_set, batch_size=32, num_workers=4, shuffle=True)
+valid_loader = DataLoader(valid_set,    batch_size=32, num_workers=4)
+
 valid_acc_best=-1
 
 try:
