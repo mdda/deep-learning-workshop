@@ -103,7 +103,7 @@ train_loader = DataLoader(training_set, batch_size=32, num_workers=4, shuffle=Tr
 valid_loader = DataLoader(valid_set,    batch_size=32, num_workers=4)
 
 if args.save_trainvalues is not None:  # Just save the training_set 'values+labels' to the file
-  batch_size=32
+  batch_size=100
   training_set_raw = TinyImageNet(dataset_root, 'train', transform=xception.valid_transform, in_memory=in_memory)
   train_loader_raw = DataLoader(training_set_raw, batch_size=batch_size, num_workers=4, shuffle=False)
   len_training = len(train_loader_raw)
@@ -115,17 +115,18 @@ if args.save_trainvalues is not None:  # Just save the training_set 'values+labe
     start = time.time()
     
     #features, targets = [],[]
-    features = torch.zeros( ( len_training, 2048 ), device=device, requires_grad=False)
-    targets  = torch.zeros( ( len_training, 1 ), device=device, requires_grad=False)
+    features = torch.zeros( ( len_training*batch_size, 2048 ), device=device, dtype=torch.float32, requires_grad=False)
+    targets  = torch.zeros( ( len_training*batch_size ), device=device, dtype=torch.long, requires_grad=False)
     
     for idx, (data, target) in enumerate(train_loader_raw):
       print("Batch %4d of %4d" % (idx, len_training, )) # target.size()  , end='\r'
       #targets.append(target)
       data, target = data.to(device), target.to(device)
       output = model_base(data)
+      print( data.size(), target.size(), output.size(), )
       
-      targets [ idx*batch_size:(idx+1)*batch_size, : ] = target.detach().unsqueeze(-1)
       features[ idx*batch_size:(idx+1)*batch_size, : ] = output.detach()
+      targets [ idx*batch_size:(idx+1)*batch_size ] = target.detach()
       #print(output.size())
       #features.append(output)
       #if idx>5: break
