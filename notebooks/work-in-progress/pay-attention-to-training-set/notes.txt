@@ -219,10 +219,13 @@ Target=188, Found :  21, 122,  21,  21,  21,  95,  21, 137,  20,  21,  20, 149, 
 Target= 96, Found :  92,  14, 109,  91, 129,  95,  52,  10, 162,  83,  83,  71, 183,  71,  14, 109, Weights:  2->109,  2-> 83,  2-> 71,  2-> 14,  1->183,  1->162,  1->129,  1-> 95,  1-> 91,  1-> 52,  1-> 10
 Target= 75, Found : 154, 154,  66, 154, 154, 154, 154, 154,  78, 154, 154, 170, 154, 154, 170, 154, Weights: 11->154,  2->170,  1-> 78,  1-> 66
 
+:: Pure voting would give us 75% top1 accuracy (vs 77% with actual classifier)
+:: Looking at top1 of found (ignoring first entry) would give same
+
 
 
 TODO 
-  Should ignore first column in each group as (likely) it contains the training datapoint itself
+  DONE : Should ignore first column in each group as (likely) it contains the training datapoint itself
   Check with validation transforms (top-1 should be 100% match)
   Check on validation set 
   See whether top-n logits correspond (at all) to top-n retrievals (requires model up to logit layer)
