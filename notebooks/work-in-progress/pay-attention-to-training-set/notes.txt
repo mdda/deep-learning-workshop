@@ -180,6 +180,16 @@ Target=189, Found : 189, 189, 189, 189, 189, 189, 189, 189, 189, 189, 189, 189, 
 Target=  6, Found :   6,   6,   6,   6,   6,   6,   6,   6,   6,   6,   6,   6,   6,   6,   6,   6, Weights: +0.91, +0.71, +0.67, +0.66, +0.66, +0.66, +0.65, +0.64, +0.64, +0.63, +0.63, +0.63, +0.63, +0.63, +0.63, +0.62
 Target= 27, Found :  27,  27,  27,  27,  27,  74,  27,  74,  27,  27,  27,  27,  74,  27,  27,  27, Weights: +0.88, +0.46, +0.44, +0.43, +0.43, +0.43, +0.43, +0.42, +0.41, +0.41, +0.40, +0.40, +0.39, +0.39, +0.39, +0.39
 
+TODO 
+  Add train_judge.py to git
+  Check that x_hat=(x-means)/norm means that x_hat is now mean==0 and stdev==1
+  Check with validation transforms (top-1 should be 100% match)
+  Check on validation set 
+  See whether top-n logits correspond (at all) to top-n retrievals (requires model up to logit layer)
+  Maybe need to get 10 of each training class from the list of 'close' classes
+  Move pre-proc + attn into xception.py
+  Score for picking (say) max-vote in top-16 (x first one)
+  Think about subtracting/projecting x_features from all found examples (~PCA)
 
 
 New training loop to train a 16-channel logit analysis tool to 'do better' than the regular network on 'test image' logits
