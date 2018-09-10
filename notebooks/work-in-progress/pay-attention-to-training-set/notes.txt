@@ -145,7 +145,6 @@ DONE : Test downloaded checkpoint score(s)
 DONE : Convert all training images to features
 
 DONE : Check a few validation image logits to prove that similar images are retrieved ::
-NB: Should ignore first column in each group as (likely) it contains the training datapoint itself
 
 Target= 28, Found :  28,  28,  28,  28,  28,  28,  28,  28,  28,  28,  28,  28,  28,  28,  28,  28, Weights: +0.55, +0.51, +0.50, +0.49, +0.49, +0.49, +0.49, +0.49, +0.49, +0.48, +0.47, +0.47, +0.47, +0.46, +0.46, +0.46
 Target=161, Found : 161, 161, 161, 161, 161, 161, 161, 161, 161, 161, 161, 161, 161, 161, 161, 161, Weights: +1.00, +0.62, +0.57, +0.56, +0.56, +0.56, +0.56, +0.56, +0.56, +0.55, +0.55, +0.54, +0.54, +0.54, +0.54, +0.54
@@ -181,6 +180,8 @@ Target=  6, Found :   6,   6,   6,   6,   6,   6,   6,   6,   6,   6,   6,   6, 
 Target= 27, Found :  27,  27,  27,  27,  27,  74,  27,  74,  27,  27,  27,  27,  74,  27,  27,  27, Weights: +0.88, +0.46, +0.44, +0.43, +0.43, +0.43, +0.43, +0.42, +0.41, +0.41, +0.40, +0.40, +0.39, +0.39, +0.39, +0.39
 
 TODO 
+  Should ignore first column in each group as (likely) it contains the training datapoint itself
+  Maybe pass back training example idx to caller
   Add train_judge.py to git
   Check that x_hat=(x-means)/norm means that x_hat is now mean==0 and stdev==1
   Check with validation transforms (top-1 should be 100% match)
