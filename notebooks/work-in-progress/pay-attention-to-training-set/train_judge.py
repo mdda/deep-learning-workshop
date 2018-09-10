@@ -13,7 +13,7 @@ from TinyImageNet import TinyImageNet
 import xception
 
 from tensorboardX import SummaryWriter
-
+#from collections import Counter  # For the histogram debug printing
 
 import argparse
 parser = argparse.ArgumentParser(fromfile_prefix_chars='@')
@@ -149,11 +149,18 @@ try:
       attn_weights, attn_idx = torch.sort(attention, dim=1, descending=True, )  # Highest match at position [b, 0]
       
       for b in range( data.size(0) ):  # Each member of the batch
+        top_n = [ targets_trainingset[ attn_idx[b,i] ].cpu().item() for i in range(16) ]
+        top_n = top_n[1:]  # Take off the first entry
+        
+        counts = sorted( [ (top_n.count(x), x) for x in set(top_n)], reverse=True )  # Not super-fast
+        #print(counts)
+        
         print("Target=%3d, Found : %s, Weights: %s" % (
           target[b].cpu(), 
           #', '.join([ ("%+5.2f->%3d" % (attn_weights[b,i].cpu(), targets_trainingset[ attn_idx[b,i] ].cpu(), )) for i in range(16)]),
           ', '.join([ ("%3d" % (targets_trainingset[ attn_idx[b,i] ].cpu(), )) for i in range(16)]),
-          ', '.join([ ("%+5.2f" % (attn_weights[b,i].cpu(), )) for i in range(16)]),
+          #', '.join([ ("%+5.2f" % (attn_weights[b,i].cpu(), )) for i in range(16)]),
+          ', '.join([ ("%2d->%3d" % (c, i)) for c, i in counts ]),
           ))
       
       exit(0)
