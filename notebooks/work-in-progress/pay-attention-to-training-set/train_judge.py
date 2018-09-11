@@ -35,6 +35,7 @@ device = torch.device("cuda" if use_cuda else "cpu")
 
 in_memory = False
 training_set = TinyImageNet(dataset_root, 'train', transform=xception.training_transform, in_memory=in_memory)
+#training_set = TinyImageNet(dataset_root, 'train', transform=xception.valid_transform, in_memory=in_memory)
 valid_set    = TinyImageNet(dataset_root, 'val',   transform=xception.valid_transform,    in_memory=in_memory)
 
 num_classes = len(training_set.label_texts)
@@ -129,6 +130,7 @@ try:
     #model.train()
     
     for idx, (data, target) in enumerate(train_loader):
+    #for idx, (data, target) in enumerate(valid_loader):
       data, target = data.to(device), target.to(device)
       
       # Let's just go through the batch, and find the matching training set examples
@@ -158,7 +160,8 @@ try:
         print("Target=%3d, Found : %s, Weights: %s" % (
           target[b].cpu(), 
           #', '.join([ ("%+5.2f->%3d" % (attn_weights[b,i].cpu(), targets_trainingset[ attn_idx[b,i] ].cpu(), )) for i in range(16)]),
-          ', '.join([ ("%3d" % (targets_trainingset[ attn_idx[b,i] ].cpu(), )) for i in range(16)]),
+          #', '.join([ ("%3d" % (targets_trainingset[ attn_idx[b,i] ].cpu(), )) for i in range(1, 16)]),  # Skip first one
+          ', '.join([ ("%3d" % (targets_trainingset[ attn_idx[b,i] ].cpu(), )) for i in range(16)]),  # Use all
           #', '.join([ ("%+5.2f" % (attn_weights[b,i].cpu(), )) for i in range(16)]),
           ', '.join([ ("%2d->%3d" % (c, i)) for c, i in counts ]),
           ))
