@@ -1132,25 +1132,65 @@ var a=[]; $('div.maincard.Workshop').each( function() {
 https://nips.cc/Conferences/2018/Schedule?type=Workshop&day=4
 
 maincard_10939 :: Workshop on Security in Machine Learning
+  https://secml2018.github.io/
+  Submission deadline: October 26, 2018 Anywhere on Earth (AoE)
 maincard_10910 :: Continual Learning
+  https://sites.google.com/view/continual2018
+  19th October (any time)
 maincard_10941 :: NIPS 2018 workshop on Compact Deep Neural Networks with industrial applications
+  https://lixinfan01.wixsite.com/cdnnria
+  Extended abstract submission deadline:  20 Oct 2018
 maincard_10921 :: Machine Learning for Geophysical &amp; Geochemical Signals
+  http://www.physics.purdue.edu/MLGGS/
+  September 27, 2018	    Abstract Submission Closes
 maincard_10937 :: Visually grounded interaction and language
+  ?
+  November 1st 2018
 maincard_10908 :: Challenges and Opportunities for AI in Financial Services: the Impact of Fairness, Explainability, Accuracy, and Privacy
+  https://sites.google.com/view/feap-ai4fin-2018/
+  Submission deadline: Oct 25, 2018 23:59 AoE 
 maincard_10911 :: Critiquing and Correcting Trends in Machine Learning
+  https://ml-critique-correct.github.io/
+  Deadline: October 23, 2018
 maincard_10912 :: Deep Reinforcement Learning
+  ?
 maincard_10905 :: All of Bayesian Nonparametrics (Especially the Useful Bits)
+  https://sites.google.com/view/nipsbnp2018/
+  October 11, 2018: Round 1 Submission Deadline (recommended if you have no tickets)
+  November 1, 2018: Round 2 Submission Deadline 
 maincard_10919 :: MLSys: Workshop on Systems for ML and Open Source Software
+  http://learningsys.org/nips18/
+  Submission Deadline: October 19, 2018
 maincard_10914 :: Imitation Learning and its Challenges in Robotics
+  https://sites.google.com/view/nips18-ilr
+  Oct 19 - Submission deadline (AoE time)
 maincard_10945 :: NIPS 2018 Competition Track Day 1
+  https://nips.cc/Conferences/2018/CompetitionTrack
+  Various competition end-dates (not clear tickets will be available)
 maincard_10933 :: The second Conversational AI workshop – today's practice and tomorrow's potential
+  http://alborz-geramifard.com/workshops/nips18-Conversational-AI/Main.html
+  Submission: 25 October 2018 11:59 PM EST (link)
 maincard_10931 :: Modeling the Physical World: Learning, Perception, and Control
+  http://phys2018.csail.mit.edu/
+  Round 1 Submission Deadline: Sept 21, 2018
+  Round 2 Submission Deadline: Nov 1, 2018
 maincard_10930 :: Modeling and decision-making in the spatiotemporal domain
+  https://sites.google.com/site/nips18spatiotemporal/
+  Paper submission deadline:  September 30, 2018 11:59 pm UTC
 maincard_10936 :: Smooth Games Optimization and Machine Learning
+  ?
 maincard_10903 :: 2nd Workshop on Machine Learning on the Phone and other Consumer Devices (MLPCD 2)
+  https://sites.google.com/view/nips-2018-on-device-ml
+  Submission Deadline: Oct 26, 2018
 maincard_10906 :: Bayesian Deep Learning
+  http://bayesiandeeplearning.org/
+  Friday 2 November 2018
 maincard_10907 :: Causal Learning
+  https://easychair.org/cfp/NIPSCL2018
+  Submission deadline	October 28, 2018
 maincard_10940 :: Workshop on Social, Political, and Ethical Issues in AI
+  www.aiethicsworkshop.com
+  Submission deadline: October 11, 2018
 
 
 
