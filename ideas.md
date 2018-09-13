@@ -1123,7 +1123,10 @@ https://nips.cc/Conferences/2018/Schedule?type=Workshop&day=4
 //     <div class="maincardBody">Workshop on Security in Machine Learning</div>  
 
 var a=[]; $('div.maincard.Workshop').each( function() { 
-  a.push( $(this).attr("id")+" :: "+ $(this).find('.maincardBody').html() ) ;
+  var id=$(this).attr("id");
+  var num = id.substr(-5);
+  a.push( id+" :: "+num+" :: "+ $(this).find('.maincardBody').html() ) ;
+  window.open("https://nips.cc/Conferences/2018/Schedule?showEvent="+num, "_blank");
 }); console.log( a.join('\n') );
 
 https://nips.cc/Conferences/2018/Schedule?type=Workshop&day=4
@@ -1149,27 +1152,71 @@ maincard_10906 :: Bayesian Deep Learning
 maincard_10907 :: Causal Learning
 maincard_10940 :: Workshop on Social, Political, and Ethical Issues in AI
 
+
+
+
 https://nips.cc/Conferences/2018/Schedule?type=Workshop&day=5
 
 maincard_10922 :: Machine Learning for Health (ML4H): Moving beyond supervised learning in healthcare
+  https://ml4health.github.io/2018/
+  Fri Oct 26, 2018: Submission deadline at 11:59pm
 maincard_10924 :: Second Workshop on Machine Learning for Creativity and Design
+  https://nips2018creativity.github.io/
+  28 October 2018: Submission date for papers and art
 maincard_10923 :: Machine Learning for Molecules and Materials
+  http://www.quantum-machine.org/workshops/nips2018draft/
+  Deadline : October 18, 2018
 maincard_10928 :: Medical Imaging meets NIPS
+  https://sites.google.com/view/med-nips-2018
+  Submissions: Monday, October 15th, 23:59 PST
 maincard_10926 :: Machine Learning for the Developing World (ML4D): Achieving sustainable impact
+  https://sites.google.com/view/ml4d-nips-2018/
+  Submission deadline: October 25, 2018
 maincard_10929 :: Reinforcement Learning under Partial Observability
+  https://sites.google.com/site/rlponips2018/
+  Submission deadline: Friday, October 26, 2018, 23:00 UTC
 maincard_10934 :: Privacy Preserving Machine Learning
+  https://ppml-workshop.github.io/ppml/
+  Submission deadline: October 8, 2018 (11:59pm AoE) 
 maincard_10904 :: AI for social good
+  https://aiforsocialgood.github.io/2018/#
+  Deadline for submissions : October 2nd, 2018
 maincard_10918 :: Learning by Instruction
+  https://sites.google.com/view/lbi2018/
+  Submission deadline: Oct 25, 2018 23:59 AoE
 maincard_10932 :: NIPS 2018 Workshop on Meta-Learning
+  http://metalearning.ml/
+  Submission deadline: 19 October 2018 (Anywhere on Earth)
 maincard_10916 :: Integration of Deep Learning Theories
+  ?
 maincard_10946 :: NIPS 2018 Competition Track Day 2
+  https://nips.cc/Conferences/2018/CompetitionTrack
+  Various competition end-dates (not clear tickets will be available)
 maincard_10925 :: Machine Learning for Systems
+  ?
 maincard_10935 :: NIPS Workshop on Machine Learning for Intelligent Transportation Systems 2018
+  https://sites.google.com/site/nips2018mlits/home
+  Paper Submission Deadline: October 12, 2018
 maincard_10927 :: Relational Representation Learning
+  https://r2learning.github.io/
+  Submission Deadline: October 19th, 2018, 23:59 PST
 maincard_10909 :: CiML 2018 - Machine Learning competitions "in the wild": Playing in the real world or in real time
+  http://ciml.chalearn.org/
+  Abstract should be submitted by October 10th, 2018
 maincard_10915 :: Infer to Control: Probabilistic Reinforcement Learning and Structured Control
+  https://sites.google.com/view/infer2control-nips2018
+  ?
 maincard_10913 :: Emergent Communication Workshop
+  ?
 maincard_10917 :: Interpretability and Robustness in Audio, Speech, and Language
+  https://irasl.gitlab.io/
+  15th October – Abstract submission deadline / 22th October – Full paper submission deadline
 maincard_10920 :: Machine Learning Open Source Software 2018: Sustainable communities
+  https://2018.mloss.org/cfp/
+  Submission deadline: September 30, 2018, 11:59 pm UTC (in 17 days)
 maincard_10938 :: Wordplay: Reinforcement and Language Learning in Text-based Games
+  https://www.wordplay2018.com/
+  Midnight UTC on 9 November.
+
+  
 
