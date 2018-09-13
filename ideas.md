@@ -1114,3 +1114,62 @@ Also, figure out a good 'private code+data' workflow too:
    +  Dials for latent space changes for voices
       + How about dial positions that reflect prominent conference speakers?
       
+
+##  NIPS Workshops
+https://nips.cc/Conferences/2018/Schedule?type=Workshop&day=4
+  https://nips.cc/Conferences/2018/Schedule?showEvent=10939
+// <div onclick="showDetail(10939)">
+//   <div class="maincard narrower Workshop" id="maincard_10939">
+//     <div class="maincardBody">Workshop on Security in Machine Learning</div>  
+
+var a=[]; $('div.maincard.Workshop').each( function() { 
+  a.push( $(this).attr("id")+" :: "+ $(this).find('.maincardBody').html() ) ;
+}); console.log( a.join('\n') );
+
+https://nips.cc/Conferences/2018/Schedule?type=Workshop&day=4
+
+maincard_10939 :: Workshop on Security in Machine Learning
+maincard_10910 :: Continual Learning
+maincard_10941 :: NIPS 2018 workshop on Compact Deep Neural Networks with industrial applications
+maincard_10921 :: Machine Learning for Geophysical &amp; Geochemical Signals
+maincard_10937 :: Visually grounded interaction and language
+maincard_10908 :: Challenges and Opportunities for AI in Financial Services: the Impact of Fairness, Explainability, Accuracy, and Privacy
+maincard_10911 :: Critiquing and Correcting Trends in Machine Learning
+maincard_10912 :: Deep Reinforcement Learning
+maincard_10905 :: All of Bayesian Nonparametrics (Especially the Useful Bits)
+maincard_10919 :: MLSys: Workshop on Systems for ML and Open Source Software
+maincard_10914 :: Imitation Learning and its Challenges in Robotics
+maincard_10945 :: NIPS 2018 Competition Track Day 1
+maincard_10933 :: The second Conversational AI workshop – today's practice and tomorrow's potential
+maincard_10931 :: Modeling the Physical World: Learning, Perception, and Control
+maincard_10930 :: Modeling and decision-making in the spatiotemporal domain
+maincard_10936 :: Smooth Games Optimization and Machine Learning
+maincard_10903 :: 2nd Workshop on Machine Learning on the Phone and other Consumer Devices (MLPCD 2)
+maincard_10906 :: Bayesian Deep Learning
+maincard_10907 :: Causal Learning
+maincard_10940 :: Workshop on Social, Political, and Ethical Issues in AI
+
+https://nips.cc/Conferences/2018/Schedule?type=Workshop&day=5
+
+maincard_10922 :: Machine Learning for Health (ML4H): Moving beyond supervised learning in healthcare
+maincard_10924 :: Second Workshop on Machine Learning for Creativity and Design
+maincard_10923 :: Machine Learning for Molecules and Materials
+maincard_10928 :: Medical Imaging meets NIPS
+maincard_10926 :: Machine Learning for the Developing World (ML4D): Achieving sustainable impact
+maincard_10929 :: Reinforcement Learning under Partial Observability
+maincard_10934 :: Privacy Preserving Machine Learning
+maincard_10904 :: AI for social good
+maincard_10918 :: Learning by Instruction
+maincard_10932 :: NIPS 2018 Workshop on Meta-Learning
+maincard_10916 :: Integration of Deep Learning Theories
+maincard_10946 :: NIPS 2018 Competition Track Day 2
+maincard_10925 :: Machine Learning for Systems
+maincard_10935 :: NIPS Workshop on Machine Learning for Intelligent Transportation Systems 2018
+maincard_10927 :: Relational Representation Learning
+maincard_10909 :: CiML 2018 - Machine Learning competitions "in the wild": Playing in the real world or in real time
+maincard_10915 :: Infer to Control: Probabilistic Reinforcement Learning and Structured Control
+maincard_10913 :: Emergent Communication Workshop
+maincard_10917 :: Interpretability and Robustness in Audio, Speech, and Language
+maincard_10920 :: Machine Learning Open Source Software 2018: Sustainable communities
+maincard_10938 :: Wordplay: Reinforcement and Language Learning in Text-based Games
+
