@@ -1069,6 +1069,7 @@ Also, figure out a good 'private code+data' workflow too:
    *  Use coverage somehow to force question understanding
    *  Flipside of "Did the Model Understand the Question?"
       +  https://arxiv.org/abs/1805.05492 
+      +  Did a talk on this for August TF&DL 
    *  SQuAD vs ARC (=AI2 Reasoning Challenge, by AllenNLP)
       + ARC : http://data.allenai.org/arc/
         -  Intro Paper : https://arxiv.org/abs/1803.05457
@@ -1082,7 +1083,8 @@ Also, figure out a good 'private code+data' workflow too:
         -  To be added to the ARC leaderboard, please email arc@allenai.org with a link to your published/ArXiv paper on this dataset.
    * AllenNLP library now in PyTorch (FWIW)
       +  Keras version Deprecated : https://github.com/allenai/deep_qa
-
+   * *PROBLEM* : People are doing papers that are starting to tackle this issue...
+      +  ...
 
 *  IQ test (DeepMind)
    +  This seems like it's written in an overhyped style
@@ -1103,17 +1105,46 @@ Also, figure out a good 'private code+data' workflow too:
          +  https://arxiv.org/abs/1710.10304
       +  Associative Compression Networks for Representation Learning 
          +  https://arxiv.org/abs/1804.02476
-
+   +  v. nice to tackle
+   +  Fit with Relationship Representation Workshop?
+   
    
 *  Pay Attention to the Training Data (now in own repo/folder)
    *  Classification as Q&A against training examples
       +  Positive/Negative Contrast learning to get retrieval ~= attention
+      +  Problem is : training set is learned pretty efficiently
+      +  So there's not enough variation from which to build a good meta-learner
+
+
+*  Learning with Few Labels
+   *  UMAP to aid understanding of data
+      +  Random projection vs CNN projection
+         +  Label new training examples strategically
+         +  Compare label #s required vs : http://www.cs.ox.ac.uk/people/yarin.gal/website/PDFs/NIPS_2016_workshop_poster.pdf
+      +  Train on even numbers, predict odd numbers
+         +  Tests transfer learning ability / applicability of UMAP, say  
+      +  UMAP to provide additional training objectives to CNN?
+         +  Not sure of overall scheme
+      +  Overall, though, seems like a lot of steps to show something interesting
+   *  Has advantage of being of interest to DARPA too
+   *  Fits with MetaLearning Workshop (probably)
+
+*  Learn VAE from trained teacher
+   *  No need to train image-sized Decoder
+   *  Fits with which Workshop?
+
+
+*  Reasoning over Fact DB and Knowledge Axioms?
+   *  V. interesting
+   *  Potentially v. time consuming to 'get into it'
+   *  Not clear which workshop would be interested
 
         
-*  Demonstrations@NIPS (due 16-Sept-2018) : https://nips.cc/Demonstrations/demonstrationapplication
+*  NOPE : Demonstrations@NIPS (due 16-Sept-2018) : https://nips.cc/Demonstrations/demonstrationapplication
    +  Dials for latent space changes for voices
       + How about dial positions that reflect prominent conference speakers?
       
+
 
 ##  NIPS Workshops
 https://nips.cc/Conferences/2018/Schedule?type=Workshop&day=4
