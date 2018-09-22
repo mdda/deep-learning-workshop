@@ -1145,13 +1145,16 @@ Also, figure out a good 'private code+data' workflow too:
       +  Check performance of latent layer
          -  This will be (implicitly) trained with network structure as a ~prior
    *  Related new papers? 
-      +  https://arxiv.org/abs/1807.01613 : Conditional Neural Processes (DeepMind)
-      +  https://arxiv.org/abs/1809.07023 : Removing the Feature Correlation Effect of Multiplicative Noise (Calgary)
-   *  Related old papers: 
-      +  https://arxiv.org/abs/1511.06068 : Reducing Overfitting in Deep Networks by Decorrelating Representations 
-         -  substantial computational overhead (according to Calgary)
-      +  https://arxiv.org/abs/1611.01967 : Regularizing CNNs with Locally Constrained Decorrelations 
-         -  yield marginal improvements (according to Calgary)
+      +  https://arxiv.org/abs/1809.07023 : Removing the Feature Correlation Effect of Multiplicative Noise (Calgary, NIPS 2018)
+         +  Talks about applying changes to layers/activations/weights etc ...  Also, even closer : 
+         +  https://arxiv.org/abs/1511.06068 : Reducing Overfitting in Deep Networks by Decorrelating Representations 
+            -  substantial computational overhead (according to Calgary)
+         +  https://arxiv.org/abs/1611.01967 : Regularizing CNNs with Locally Constrained Decorrelations 
+            -  yield marginal improvements (according to Calgary)
+      +  https://arxiv.org/abs/1807.01613 : Conditional Neural Processes (DeepMind, ICML 2018)
+   *  Related old papers: (see above for tree)
+   
+   
 
 *  Learn VAE from trained teacher
    *  No need to train image-sized Decoder
