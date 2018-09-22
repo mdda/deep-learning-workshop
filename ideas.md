@@ -1147,9 +1147,12 @@ Also, figure out a good 'private code+data' workflow too:
       +  Better idea : correlation between two samples (at same *layer*) should be 1 or (mostly) 0
          -  Possible to do this locally too (won't need to use class labels to do this, hopefully)
          -  Maybe have some hyperparameter that suggests the proportion of examples that should be correlation-1 ?
+            -  This could be a moving similarity threshold that gets adjusted to imposed some pct of correlation-1 samples
+            -  Could also have an effect to decorrelate low-similarity samples, and leave high-similarity ones unadjusted
       +  Check performance of latent layer
          -  This will be (implicitly) trained with network structure as a ~prior
-   *  Related new papers? 
+      +  Puzzle : Won't this have been explored during the old autoencoder days?
+   *  Related papers :
       +  https://arxiv.org/abs/1809.07023 : Removing the Feature Correlation Effect of Multiplicative Noise (Calgary, NIPS 2018)
          +  Talks about applying changes to layers/activations/weights etc ...  Also, even closer : 
          +  https://arxiv.org/abs/1511.06068 : Reducing Overfitting in Deep Networks by Decorrelating Representations 
@@ -1158,9 +1161,9 @@ Also, figure out a good 'private code+data' workflow too:
             -  yield marginal improvements (according to Calgary)
             -  MNIST as a proof of concept, secondly we regularize wide residual networks on CIFAR-10, CIFAR-100, and SVHN
          +  TODO : Yoshua Bengio and James S Bergstra. Slow, decorrelated features for pretraining complex cell-like networks. In NIPS, pp. 99–107, 2009
+   *  Related papers (though maybe not):
       +  https://arxiv.org/abs/1807.01622 : Neural Processes (DeepMind, ICML 2018 workshop on Theoretical Foundations and Applications of Deep Generative Models)
       +  https://arxiv.org/abs/1807.01613 : Conditional Neural Processes (DeepMind, ICML 2018)
-   *  Related old papers: (see above for tree)
    
    
 
