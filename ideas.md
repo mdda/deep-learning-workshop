@@ -1137,11 +1137,14 @@ Also, figure out a good 'private code+data' workflow too:
       +  Could also adjust (W_(all), b) to have same effect
          -  That would be local learning / adjustment only
          -  Adjust b for direct mean shift, or all of W via local gradient calcuation
-   *  Idea : VAEs are learning IID N(0,1) except correlation exists between same classes
+   *  Idea : VAEs are learning IID N(0,1) : HOWEVER : correlations should exist between same classes
       +  Locally encourage distribution of corr(yi,yj) to be bimodal : Either ~0 or ~1
       +  Sometimes a pair of examples will be in the same class, other times not
       +  If the correlation between yi,yj is 'sufficiently' strong, then strengthen it, otherwise suppress it
-         -  Possible to do this locally too (won't need to use class labels to do this, hopefully)  
+         -  Possible to do this locally, but missing overall signal for which option to choose
+      +  Better idea : correlation between two samples (at same *layer*) should be 1 or (mostly) 0
+         -  Possible to do this locally too (won't need to use class labels to do this, hopefully)
+         -  Maybe have some hyperparameter that suggests the proportion of examples that should be correlation-1 ?
       +  Check performance of latent layer
          -  This will be (implicitly) trained with network structure as a ~prior
    *  Related new papers? 
