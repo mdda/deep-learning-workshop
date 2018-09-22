@@ -1146,8 +1146,10 @@ Also, figure out a good 'private code+data' workflow too:
          -  This will be (implicitly) trained with network structure as a ~prior
    *  Related new paper? : https://arxiv.org/abs/1807.01613 (Conditional Neural Processes)
    *  Related old papers: 
-      +  https://arxiv.org/abs/1511.06068 : Reducing Overfitting in Deep Networks by Decorrelating Representations
-      +  https://arxiv.org/abs/1611.01967 : Regularizing CNNs with Locally Constrained Decorrelations
+      +  https://arxiv.org/abs/1511.06068 : Reducing Overfitting in Deep Networks by Decorrelating Representations 
+         -  substantial computational overhead (according to DeepMind)
+      +  https://arxiv.org/abs/1611.01967 : Regularizing CNNs with Locally Constrained Decorrelations 
+         -  yield marginal improvements (according to DeepMind)
 
 *  Learn VAE from trained teacher
    *  No need to train image-sized Decoder
