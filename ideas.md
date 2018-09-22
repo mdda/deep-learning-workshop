@@ -1134,8 +1134,9 @@ Also, figure out a good 'private code+data' workflow too:
 *  Correlation-Norm
    *  BatchNorm fixes neural outputs (pre-activation) to be N(0,1)
    *  Usually done by tracking mini-batch (mean, stddev), and learning (mu, sigma) parameters to adjust 
-      +  Could also adjust (w_ij, b) to have same effect
+      +  Could also adjust (W_(all), b) to have same effect
          -  That would be local learning / adjustment only
+         -  Adjust b for direct mean shift, or all of W via local gradient calcuation
    *  Idea : VAEs are learning IID N(0,1) except correlation exists between same classes
       +  Locally encourage distribution of corr(yi,yj) to be bimodal : Either ~0 or ~1
       +  Sometimes a pair of examples will be in the same class, other times not
@@ -1144,6 +1145,9 @@ Also, figure out a good 'private code+data' workflow too:
       +  Check performance of latent layer
          -  This will be (implicitly) trained with network structure as a ~prior
    *  Related new paper? : https://arxiv.org/abs/1807.01613 (Conditional Neural Processes)
+   *  Related old papers: 
+      +  https://arxiv.org/abs/1511.06068 : Reducing Overfitting in Deep Networks by Decorrelating Representations
+      +  https://arxiv.org/abs/1611.01967 : Regularizing CNNs with Locally Constrained Decorrelations
 
 *  Learn VAE from trained teacher
    *  No need to train image-sized Decoder
