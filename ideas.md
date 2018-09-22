@@ -1086,6 +1086,7 @@ Also, figure out a good 'private code+data' workflow too:
    * *PROBLEM* : People are doing papers that are starting to tackle this issue...
       +  ...
 
+
 *  IQ test (DeepMind)
    +  This seems like it's written in an overhyped style
       +  Demonstrate that it can be done is a dumb way?
@@ -1128,6 +1129,20 @@ Also, figure out a good 'private code+data' workflow too:
       +  Overall, though, seems like a lot of steps to show something interesting
    *  Has advantage of being of interest to DARPA too
    *  Fits with MetaLearning Workshop (probably)
+   
+*  Correlation-Norm
+   *  BatchNorm fixes neural outputs (pre-activation) to be N(0,1)
+   *  Usually done by tracking mini-batch (mean, stddev), and learning (mu, sigma) parameters to adjust 
+      +  Could also adjust (w_ij, b) to have same effect
+         -  That would be local learning / adjustment only
+   *  Idea : VAEs are learning IID N(0,1) except correlation exists between same classes
+      +  Locally encourage distribution of corr(yi,yj) to be bimodal : Either ~0 or ~1
+      +  Sometimes a pair of examples will be in the same class, other times not
+      +  If the correlation between yi,yj is 'sufficiently' strong, then strengthen it, otherwise suppress it
+         -  Possible to do this locally too (won't need to use class labels to do this, hopefully)  
+      +  Check performance of latent layer
+         -  This will be (implicitly) trained with network structure as a ~prior
+
 
 *  Learn VAE from trained teacher
    *  No need to train image-sized Decoder
