@@ -1130,6 +1130,7 @@ Also, figure out a good 'private code+data' workflow too:
    *  Has advantage of being of interest to DARPA too
    *  Fits with MetaLearning Workshop (probably)
    
+   
 *  Correlation-Norm
    *  BatchNorm fixes neural outputs (pre-activation) to be N(0,1)
    *  Usually done by tracking mini-batch (mean, stddev), and learning (mu, sigma) parameters to adjust 
@@ -1142,7 +1143,7 @@ Also, figure out a good 'private code+data' workflow too:
          -  Possible to do this locally too (won't need to use class labels to do this, hopefully)  
       +  Check performance of latent layer
          -  This will be (implicitly) trained with network structure as a ~prior
-
+   *  Related new paper? : https://arxiv.org/abs/1807.01613 (Conditional Neural Processes)
 
 *  Learn VAE from trained teacher
    *  No need to train image-sized Decoder
