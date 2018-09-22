@@ -1137,8 +1137,10 @@ Also, figure out a good 'private code+data' workflow too:
       +  Could also adjust (W_(all), b) to have same effect
          -  That would be local learning / adjustment only
          -  Adjust b for direct mean shift, or all of W via local gradient calcuation
-   *  Idea : VAEs are learning IID N(0,1) : HOWEVER : correlations should exist between same classes
-      +  Locally encourage distribution of corr(yi,yj) to be bimodal : Either ~0 or ~1
+   *  Idea : VAEs are learning IID N(0,1) : HOWEVER : correlations should exist between same classes 
+      +  Note that IID of features just means that they are independent for a given example
+      +  But this doesn't address intra-batch correlations
+   *  Locally encourage distribution of corr(yi,yj) to be bimodal : Either ~0 or ~1
       +  Sometimes a pair of examples will be in the same class, other times not
       +  If the correlation between yi,yj is 'sufficiently' strong, then strengthen it, otherwise suppress it
          -  Possible to do this locally, but missing overall signal for which option to choose
@@ -1154,6 +1156,9 @@ Also, figure out a good 'private code+data' workflow too:
             -  substantial computational overhead (according to Calgary)
          +  https://arxiv.org/abs/1611.01967 : Regularizing CNNs with Locally Constrained Decorrelations 
             -  yield marginal improvements (according to Calgary)
+            -  MNIST as a proof of concept, secondly we regularize wide residual networks on CIFAR-10, CIFAR-100, and SVHN
+         +  TODO : Yoshua Bengio and James S Bergstra. Slow, decorrelated features for pretraining complex cell-like networks. In NIPS, pp. 99–107, 2009
+      +  https://arxiv.org/abs/1807.01622 : Neural Processes (DeepMind, ICML 2018 workshop on Theoretical Foundations and Applications of Deep Generative Models)
       +  https://arxiv.org/abs/1807.01613 : Conditional Neural Processes (DeepMind, ICML 2018)
    *  Related old papers: (see above for tree)
    
