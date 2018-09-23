@@ -1163,8 +1163,11 @@ Also, figure out a good 'private code+data' workflow too:
          -  Batch mean produces a mean->0 for each channel
          -  l2 and cov seem to be same idea (channel image vs itself, and channel images vs each other, respectively)
          -  Across the Batch, this is still the same principle, except that 'hurdle' will probably tune to a really low value
+            -  Probably possible to work out idealised hurdle values for a given proportion of cosine~1 results
+      +  Should have a .detach() option after each layer to enforce locality (or not)
       +  Check performance of latent layer
          -  This will be (implicitly) trained with network structure as a ~prior
+         -  Adjust existing MNIST.pytorch with UMAP to have a batch_size and next_to_final_hidden_layer_size of multiples of 8
       +  Puzzle : Won't this have been explored during the old autoencoder days?
       
    *  Related papers :
