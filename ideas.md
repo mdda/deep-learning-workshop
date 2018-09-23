@@ -1149,7 +1149,16 @@ Also, figure out a good 'private code+data' workflow too:
          -  Maybe have some hyperparameter that suggests the proportion of examples that should be correlation-1 ?
             -  This could be a moving similarity threshold that gets adjusted to imposed some pct of correlation-1 samples
             -  Could also have an effect to decorrelate low-similarity samples, and leave high-similarity ones unadjusted
-      +  Can do this on Dense Layers
+      +  Can do this on Dense Layers :
+         -  Do Batch mean to find current means
+         -  Do 8x8 blocks across batch of (vec-mean)*(vec-mean).T to get l2 and cov stats within each vector in batch
+            -  These matrices should be ~I, since we want to make the elements independent if possible
+            -  The independence is normally given to us by enforcing a small bottleneck, causing the representation elements to fight to be differentiated
+            -  Local loss is mean^2 + (l^2-1)^2 + cov^2
+         -  Across the Batch work out vector cosine similarity (in groups of 'batch_sample', which could be whole batch)
+            -  There is some hurdle similarity (probably related to batch_sample size, but also vector length
+            -  Either batch_sample is in small size, or just use a small number of (random?) offsets between samples in batch to bound computation required
+            -  Local loss is sum_across_pairs( if cosign>hurdle : (1-cosign)^2, else cosign^2 )
       +  Check performance of latent layer
          -  This will be (implicitly) trained with network structure as a ~prior
       +  Puzzle : Won't this have been explored during the old autoencoder days?
