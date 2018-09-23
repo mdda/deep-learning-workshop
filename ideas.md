@@ -1155,10 +1155,14 @@ Also, figure out a good 'private code+data' workflow too:
             -  These matrices should be ~I, since we want to make the elements independent if possible
             -  The independence is normally given to us by enforcing a small bottleneck, causing the representation elements to fight to be differentiated
             -  Local loss is mean^2 + (l^2-1)^2 + cov^2
-         -  Across the Batch work out vector cosine similarity (in groups of 'batch_sample', which could be whole batch)
+         -  Across the Batch, work out vector cosine similarity (in groups of 'batch_sample', which could be whole batch)
             -  There is some hurdle similarity (probably related to batch_sample size, but also vector length
             -  Either batch_sample is in small size, or just use a small number of (random?) offsets between samples in batch to bound computation required
-            -  Local loss is sum_across_pairs( if cosign>hurdle : (1-cosign)^2, else cosign^2 )
+            -  Local loss is sum_across_pairs( if cosign>hurdle : (1-cosine)^2, else cosine^2 )
+      +  Can do this (less?) on Conv2D Layers (channels correspond to vector-elements in Dense, but... ):
+         -  Batch mean produces a mean->0 for each channel
+         -  l2 and cov seem to be same idea (channel image vs itself, and channel images vs each other, respectively)
+         -  Across the Batch, this is still the same principle, except that 'hurdle' will probably tune to a really low value
       +  Check performance of latent layer
          -  This will be (implicitly) trained with network structure as a ~prior
       +  Puzzle : Won't this have been explored during the old autoencoder days?
