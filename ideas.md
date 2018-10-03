@@ -1182,6 +1182,7 @@ Also, figure out a good 'private code+data' workflow too:
       *  CorrelationExplanation : http://github.com/gregversteeg/CorEx
       *  Also : _READ/Papers/_LIVE/Backprop/*.pdf ...
          +  Bengio-2015_Biologically-Plausible_1502.04156v1.pdf
+         +  Bengio-2015_EnergyInferenceApproximatesBackProp_1510.02777v2.pdf (inconclusive, though)
          
    *  Potentially related papers (though probably not):
       +  https://arxiv.org/abs/1807.01622 : Neural Processes (DeepMind, ICML 2018 workshop on Theoretical Foundations and Applications of Deep Generative Models)
