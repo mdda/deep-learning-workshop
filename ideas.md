@@ -1179,8 +1179,11 @@ Also, figure out a good 'private code+data' workflow too:
             -  yield marginal improvements (according to Calgary)
             -  MNIST as a proof of concept, secondly we regularize wide residual networks on CIFAR-10, CIFAR-100, and SVHN
          +  TODO : Yoshua Bengio and James S Bergstra. Slow, decorrelated features for pretraining complex cell-like networks. In NIPS, pp. 99–107, 2009
+      *  CorrelationExplanation : http://github.com/gregversteeg/CorEx
+      *  Also : _READ/Papers/_LIVE/Backprop/*.pdf ...
+         +  Bengio-2015_Biologically-Plausible_1502.04156v1.pdf
          
-   *  Related papers (though probably not):
+   *  Potentially related papers (though probably not):
       +  https://arxiv.org/abs/1807.01622 : Neural Processes (DeepMind, ICML 2018 workshop on Theoretical Foundations and Applications of Deep Generative Models)
       +  https://arxiv.org/abs/1807.01613 : Conditional Neural Processes (DeepMind, ICML 2018)
    
