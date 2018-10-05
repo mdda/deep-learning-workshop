@@ -1221,6 +1221,10 @@ var a=[]; $('div.maincard.Workshop').each( function() {
   window.open("https://nips.cc/Conferences/2018/Schedule?showEvent="+num, "_blank");
 }); console.log( a.join('\n') );
 
+
+#### Need to go through this list ASAP...
+
+
 https://nips.cc/Conferences/2018/Schedule?type=Workshop&day=4
 
 maincard_10939 :: Workshop on Security in Machine Learning
