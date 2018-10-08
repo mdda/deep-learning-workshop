@@ -1381,7 +1381,7 @@ maincard_10934 :: Privacy Preserving Machine Learning
 maincard_10920 :: Machine Learning Open Source Software 2018: Sustainable communities
   https://2018.mloss.org/cfp/
   # Submission deadline: September 30, 2018, 11:59 pm UTC (in 17 days)
-  (Extended) submission deadline: 8 October 2018
+  (Extended) Submission Deadline: October 8, 2018, 11:59 pm UTC
 
   Previous : https://mloss.org/workshop/icml15/
     2. ML related projects : As the theme for this year is open ecosystems, projects of a more general nature such as software 
@@ -1390,6 +1390,7 @@ maincard_10920 :: Machine Learning Open Source Software 2018: Sustainable commun
     Submission format: abstract with no page limit. Please note that there will be no proceedings, i.e. the abstracts will not be published.
     We look forward for submissions that are novel, exciting and that appeal to the wider community.
 
+  Putting together something on the "Building, growing and sustaining ML communities" theme
 
 
 maincard_10936 :: Smooth Games Optimization and Machine Learning
