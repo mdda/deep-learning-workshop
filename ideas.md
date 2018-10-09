@@ -1373,8 +1373,6 @@ maincard_10921 :: Machine Learning for Geophysical &amp; Geochemical Signals
   September 27, 2018	    Abstract Submission Closes
 
 
-### Coming Week :
-
 maincard_10934 :: Privacy Preserving Machine Learning
   https://ppml-workshop.github.io/ppml/
   Submission deadline: October 8, 2018 (11:59pm AoE) 
@@ -1392,6 +1390,8 @@ maincard_10920 :: Machine Learning Open Source Software 2018: Sustainable commun
 
   Putting together something on the "Building, growing and sustaining ML communities" theme
 
+
+### Coming Week :
 
 maincard_10936 :: Smooth Games Optimization and Machine Learning
   https://sgo-workshop.github.io/
@@ -1437,9 +1437,9 @@ maincard_10917 :: Interpretability and Robustness in Audio, Speech, and Language
   15th October – Abstract submission deadline / 22th October – Full paper submission deadline
     maximum 1 reserved ticked for each accepted paper).
 
-maincard_10910 :: Continual Learning
-  https://sites.google.com/view/continual2018
-  19th October (any time)
+maincard_10932 :: NIPS 2018 Workshop on Meta-Learning
+  http://metalearning.ml/
+  Submission deadline: 17 October 2018 (11:59 PM anywhere on Earth) (nipsfinal ok)
 
 maincard_10923 :: Machine Learning for Molecules and Materials
   http://www.quantum-machine.org/workshops/nips2018draft/
@@ -1455,12 +1455,12 @@ maincard_10930 :: Modeling and decision-making in the spatiotemporal domain
   https://sites.google.com/site/nips18spatiotemporal/
   #Paper submission deadline:  September 30, 2018 11:59 pm UTC
   October 19, 2018 11:59 pm AOE
-maincard_10932 :: NIPS 2018 Workshop on Meta-Learning
-  http://metalearning.ml/
-  Submission deadline: 19 October 2018 (Anywhere on Earth)
+maincard_10910 :: Continual Learning
+  https://sites.google.com/view/continual2018
+  19th October (any time)
 maincard_10927 :: Relational Representation Learning
   https://r2learning.github.io/
-  Submission Deadline: October 19th, 2018, 23:59 PST
+  Submission Deadline: October 19th, 2018, 23:59 PST (double-blind)
 
 maincard_10941 :: NIPS 2018 workshop on Compact Deep Neural Networks with industrial applications
   https://lixinfan01.wixsite.com/cdnnria
