@@ -1388,10 +1388,8 @@ maincard_10920 :: Machine Learning Open Source Software 2018: Sustainable commun
     Submission format: abstract with no page limit. Please note that there will be no proceedings, i.e. the abstracts will not be published.
     We look forward for submissions that are novel, exciting and that appeal to the wider community.
 
-  Putting together something on the "Building, growing and sustaining ML communities" theme
+  Submitted a talk proposal on the theme "Building, growing and sustaining ML communities" 
 
-
-### Coming Week :
 
 maincard_10936 :: Smooth Games Optimization and Machine Learning
   https://sgo-workshop.github.io/
@@ -1401,6 +1399,8 @@ maincard_10936 :: Smooth Games Optimization and Machine Learning
 maincard_10909 :: CiML 2018 - Machine Learning competitions "in the wild": Playing in the real world or in real time
   http://ciml.chalearn.org/
   Abstract should be submitted by October 10th, 2018
+
+### Coming Week :
 
 maincard_10905 :: All of Bayesian Nonparametrics (Especially the Useful Bits)
   https://sites.google.com/view/nipsbnp2018/
