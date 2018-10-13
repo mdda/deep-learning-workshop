@@ -26,9 +26,9 @@ relation_splits_path = os.path.join('.', 'orig', 'omerlevy-bidaf_no_answer-2e986
 #    12000    427110   2688895 orig/omerlevy-bidaf_no_answer-2e9868b224e4/relation_splits/test.1
 #   852600  31536596 194344654 total
 
-def yield_relations(relation_phase='train', relation_split=1, only_positive=True):
+def yield_relations(relation_phase='train', relation_split=1, only_positive=True, len_max_return=512):
   relation_file=os.path.join( relation_splits_path, "%s.%d" % (relation_phase, relation_split))
-  len_max_txt=0
+  len_max_txt, len_max_count = 0,0
   with open(relation_file, 'r') as fp:
     reader = csv.reader(fp, delimiter='\t')
     for i, each in enumerate(reader):
@@ -59,10 +59,14 @@ def yield_relations(relation_phase='train', relation_split=1, only_positive=True
       if i % 10000 == 0:
         print("Line %d" % (i,))
     
-      if only_positive and len(indices)==0:
-        continue
+      #if only_positive and len(indices)==0:
+      #  continue
       
       len_txt = len(ques) + len(sent) + 3
+      
+      if len_txt>len_max_return:
+        len_max_count+=1
+        print(i, len_max_count, len_max_txt,  len_max_count/i*100.)
       
       if len_max_txt<len_txt:
         len_max_txt=len_txt
@@ -71,7 +75,7 @@ def yield_relations(relation_phase='train', relation_split=1, only_positive=True
         
       #if i>1000: break
       
-  print(len_max_txt)
+  print(i, len_max_count, len_max_txt,  len_max_count/i*100.)
 
 
 
