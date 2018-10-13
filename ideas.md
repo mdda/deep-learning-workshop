@@ -1366,6 +1366,8 @@ maincard_10938 :: Wordplay: Reinforcement and Language Learning in Text-based Ga
 
 
 
+## Date-sorted
+
 ### Already passed
 
 maincard_10921 :: Machine Learning for Geophysical &amp; Geochemical Signals
@@ -1422,6 +1424,7 @@ maincard_10935 :: NIPS Workshop on Machine Learning for Intelligent Transportati
 maincard_10915 :: Infer to Control: Probabilistic Reinforcement Learning and Structured Control
   https://sites.google.com/view/infer2control-nips2018
   Submission deadline: October 12, 2018 (Anywhere on Earth)
+
 
 ### Coming Week :
 

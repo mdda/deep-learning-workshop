@@ -1,0 +1,141 @@
+
+### http://metalearning.ml/2018/#submission-instructions
+
+Some of the fundamental questions that this workshop aims to address are:
+
+*  What are the fundamental differences in the learning “task” compared to traditional “non-meta” learners?
+*  Is there a practical limit to the number of meta-learning layers (e.g., would a meta-meta-meta-learning algorithm be of practical use)?
+*  How can we design more sample-efficient meta-learning methods?
+*  How can we exploit our domain knowledge to effectively guide the meta-learning process?
+*  What are the meta-learning processes in nature (e.g, in humans), and how can we take inspiration from them?
+*  Which ML approaches are best suited for meta-learning, in which circumstances, and why?
+*  What principles can we learn from meta-learning to help us design the next generation of learning systems?
+
+
+### https://r2learning.github.io/
+
+Topics include, but are not limited to:
+
+*  Algorithmic approaches: E.g., probabilistic generative models, message-passing neural networks, embedding methods, dimensionality reduction techniques, group-invariant architectures etc. for relational data
+*  Theoretical aspects: E.g., when and why do learned representations aid relational reasoning? How does the non-i.i.d. nature of relational data conflict with our current understanding of representation learning?
+*  Optimization and scalability challenges due to the inherent discreteness and curse of dimensionality of relational datasets
+*  Evaluation of learned relational representations
+*  Security and privacy challenges
+*  Domain-specific applications
+*  Any other topic of interest
+
+
+Zero-Shot Relation Extraction via Reading Comprehension
+*  https://arxiv.org/pdf/1706.04115.pdf
+*  http://nlp.cs.washington.edu/zeroshot/  # Data
+*  https://bitbucket.org/omerlevy/bidaf_no_answer  # Code
+
+Graph Convolution over Pruned Dependency Trees Improves Relation Extraction
+*  https://arxiv.org/abs/1809.10185
+
+Scene Graph Parsing as Dependency Parsing  
+*  https://arxiv.org/pdf/1803.09189.pdf
+*  https://github.com/Yusics/bist-parser/tree/sgparser
+
+
+BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding
+*  https://arxiv.org/pdf/1810.04805.pdf
+  
+## Other datasets
+
+SemEval-2010 Task 8: Multi-Way Classification of Semantic Relations Between Pairs of Nominals
+*  http://aclweb.org/anthology/S/S10/S10-1006.pdf
+*  http://www.kozareva.com/downloads.html  # SemEval-2010 Task 8 Dataset
+
+Teaching Machines to Read and Comprehend
+*  https://arxiv.org/abs/1506.03340
+*  NER-anonamised Daily Mail stories with questions
+*  https://github.com/deepmind/rc-data # Data creator
+*  https://cs.nyu.edu/~kcho/DMQA/  # Data raw download
+
+
+## Pull in data
+
+cd REPO/notebooks/work-in-progress/2018-10_ZeroShotRelationships
+
+wget http://nlp.cs.washington.edu/zeroshot/evaluate.py
+
+ln -s /mnt/rdai/reddragon/2018-10_ZeroShotRelationships_orig orig
+
+cd orig
+#git clone https://bitbucket.org/omerlevy/bidaf_no_answer
+#hg pull && hg update default
+wget https://bitbucket.org/omerlevy/bidaf_no_answer/get/2e9868b224e4.zip  # 96Kb
+unzip 2e9868b224e4.zip
+cd omerlevy-bidaf_no_answer-2e9868b224e4/
+
+
+#wget http://nlp.cs.washington.edu/zeroshot/relation_splits.tar.bz2
+#bunzip2 relation_splits.tar.bz2  # Output .tar : 1,936,209,920
+#tar -xf relation_splits.tar 
+## rm relation_splits.tar  # should be fine
+
+wget http://nlp.cs.washington.edu/zeroshot/raw_data.tar.bz2    # 1.3Gb
+bunzip2 relation_splits.tar.bz2  # Output .tar : 6,909,859,840
+tar -xf relation_splits.tar 
+
+
+
+
+
+# OK, so ignore the previous paper's model : It wants TF 0.11 ...
+
+# Inaccurate (negative_example): 
+# IUCN conservation status	What is the endangered status of XXX?	Bawean deer	The Bawean deer (Hyelaphus kuhlii), also known as Kuhl's hog deer or Bawean hog deer, is a highly threatened species of deer found only in the island 
+of Bawean (Gresik Regency) in Indonesia.
+
+# Need to get 'glove.6B.100d.txt' into current directory...
+
+
+. ~/env3/bin/activate
+
+# ./run_prep.sh relation_splits  # Bad paths... so do the following : 
+run_name=relation_splits
+python -m zeroshot.zeroshot2squad ${run_name}/train ${run_name}/train-v1.1.json
+python -m zeroshot.zeroshot2squad ${run_name}/test ${run_name}/dev-v1.1.json
+python -m squad.prepro -s ${run_name} -t ${run_name}
+
+num=1
+run_squad=${run_name}-squad/${num}
+mkdir -p ${run_squad}
+python -m zeroshot.zeroshot2squad ${run_name}/train.${num} ${run_squad}/train-v1.1.json
+python -m zeroshot.zeroshot2squad ${run_name}/test.${num} ${run_squad}/dev-v1.1.json
+python -m squad.prepro -s ${run_squad} --glove_dir . -t ${run_squad}  # This will take a while...
+
+# my/tensorflow/nn.py : First lines should be :
+"""
+#from tensorflow.python.ops.rnn_cell import _linear
+from tensorflow.contrib.rnn.python.ops import core_rnn_cell
+linear = core_rnn_cell._linear
+"""
+
+# my/tensorflow/rnn.py : Near top should be :
+"""
+# from tensorflow.python.ops.rnn import bidirectional_rnn as _bidirectional_rnn
+from tensorflow.python.ops.rnn import static_bidirectional_rnn as _bidirectional_rnn
+"""
+
+python -m basic.cli --mode train --noload --debug
+
+# The model was trained with NVidia Titan X (Pascal Architecture, 2016). 
+# The model requires at least 12GB of GPU RAM. 
+# If your GPU RAM is smaller than 12GB, you can either decrease batch size (performance might degrade), 
+# or you can use multi GPU (see below). 
+# The training converges at ~18k steps, and it took ~4s per step (i.e. ~20 hours).
+
+python -m basic.cli --mode train --noload --batch_size 400 --sent_size_th 60 --num_steps 0 --num_epochs 3 \
+                    --len_opt --cluster --num_gpus 1 --run_id 1 --data_dir ${run_squad} --eval_period 500
+# When something starts to work ...
+#Loaded 835951/840000 examples from train
+#Loaded 11870/12000 examples from dev
+
+cd  ../../orig
+git clone https://github.com/openai/finetune-transformer-lm.git
+rm -rf  finetune-transformer-lm/.git
+git clone https://github.com/huggingface/pytorch-openai-transformer-lm.git
+
