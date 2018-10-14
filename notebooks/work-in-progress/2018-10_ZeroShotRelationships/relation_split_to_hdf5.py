@@ -60,23 +60,23 @@ def valid_relations(relation_file=None, only_positive=True, len_max_return=512, 
 
 def save_relations(relation_phase='train', relation_fold=1, 
                    file_stub='', valid_ids=None,
-                   only_positive=True, len_max_return=512, skip_too_long=True, ):
+                   only_positive=True, bpe_max=128, skip_too_long=False, ):
   relation_file=os.path.join( relation_splits_path, "%s.%d" % (relation_phase, relation_fold))
   file_out     =os.path.join( relation_splits_path, "%s.%d%s.hdf5" % (relation_phase, relation_fold, file_stub))
   
   if valid_ids is None:
     valid_ids = valid_relations(relation_file, only_positive=only_positive, 
-                                               len_max_return=len_max_return, 
+                                               len_max_return=bpe_max*6, 
                                                skip_too_long=skip_too_long,)
   
   with h5py.File(file_out, 'w') as h5f:
     h5_data1 = h5f.create_dataset('features',
-                           shape=(len(valid_ids), len_max_return),
+                           shape=(len(valid_ids), bpe_max),
                            compression=None,
                            dtype='int32')
     
     h5_data2 = h5f.create_dataset('labels',
-                           shape=(len(valid_ids), len_max_return),
+                           shape=(len(valid_ids), bpe_max),
                            compression=None,
                            dtype='bool')
 
@@ -89,12 +89,26 @@ def save_relations(relation_phase='train', relation_fold=1,
                .replace(' Co.', ' #CO').replace(' Co ', ' #CO ')
                .replace(' B.V.', ' #BV').replace(' B.V ', ' #BV ')
                .replace(' D.C.', ' #DC').replace(' D.C ', ' #DC ')
+               .replace(' Mousse T. ', ' #MOUSSET ').replace(' Mousse T ', ' #MOUSSET ')
+               .replace(' S.C.S.C.', ' #SCSC').replace(' S.C.S.C ', ' #SCSC ')
+               .replace(' R.I.O.', ' #RIO').replace(' R.I.O ', ' #RIO ')
+               .replace('S.K.', '#SK').replace('S.K', '#SK')
+               .replace(' B2 K ', ' #B2K ').replace(' B2K', ' #B2K')
+               .replace(' E.N.I.', ' #ENI').replace(' E.N.I ', ' #ENI ')
              ).strip()
     
-    idx=0
+    idx, bpe_truncate_count = 0, 0
     with open(relation_file, 'r') as fp:
       reader = csv.reader(fp, delimiter='\t')
       for i, each in enumerate(reader):
+        if i % 10000 == 0:
+          print("Line %d" % (i,))
+          
+        #if i<250000: continue
+        #if i<410000: continue
+        #if i<590000: continue
+        #if i<650000: continue
+        #if i<780000: continue
         if i not in valid_ids: continue
         
         rel, ques_xxx, ques_arg, sent = each[:4]
@@ -157,22 +171,20 @@ def save_relations(relation_phase='train', relation_fold=1,
               
         else:
           pass
-
-        if i % 10000 == 0:
-          print("Line %d" % (i,))
       
         if ques_arg not in sent:
           print("MISSING ENTITY : '%s' not in '%s'" % (ques_arg, sent))
           exit(0)
       
-        len_txt = len(ques) + len(sent) + 3
-        if len_txt>len_max_return:
-          print("Truncating #%i" % (i,))
+        bpe_len = len(ques_enc) + len(sent_enc) + 3
+        if bpe_len>bpe_max:
+          bpe_truncate_count += 1
+          print("Truncating #%i, rate = %.2f%%" % (idx, 100.*bpe_truncate_count/idx))
+          pass
           #continue
-          exit(1)
+          #exit(1)
        
         #h5_data1[idx,:] = 
-        
         idx+=1 
         
       
@@ -211,7 +223,9 @@ if __name__ == '__main__':
     tokens_special = len(encoder) - tokens_regular  # Number of extra tokens
   
     #save_relations(file_stub='_pos', relation_phase='test', only_positive=True)  
-    save_relations(file_stub='_pos', relation_phase='train', only_positive=True)  
+    #save_relations(file_stub='_pos', relation_phase='test', only_positive=False)  
+    #save_relations(file_stub='_pos', relation_phase='train', only_positive=True)  
+    save_relations(file_stub='_pos', relation_phase='train', only_positive=False)  
     
     #yield_relations(relation_phase='train', only_positive=False)  # 832336
     #yield_relations(relation_phase='train', only_positive=True)   # 417627
