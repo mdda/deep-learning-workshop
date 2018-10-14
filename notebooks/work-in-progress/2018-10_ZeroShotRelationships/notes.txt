@@ -139,3 +139,19 @@ git clone https://github.com/openai/finetune-transformer-lm.git
 rm -rf  finetune-transformer-lm/.git
 git clone https://github.com/huggingface/pytorch-openai-transformer-lm.git
 
+
+# Need to go to the Rocstories website to get download links to files - put them in 'rocstories_dataset'
+ls -l rocstories_dataset/
+-rw-rw-r--. 1 andrewsm andrewsm   574480 Oct 14 18:58 'cloze_test_test__spring2016 - cloze_test_ALL_test.csv'
+-rw-rw-r--. 1 andrewsm andrewsm   575510 Oct 14 18:56 'cloze_test_val__spring2016 - cloze_test_ALL_val.csv'
+-rw-rw-r--. 1 andrewsm andrewsm 14537764 Oct 14 18:52 'ROCStories_winter2017 - ROCStories_winter2017.csv'
+
+python train.py --dataset rocstories --desc rocstories --submit --analysis \
+                --data_dir rocstories_dataset \
+                --bpe_path=../finetune-transformer-lm/model/vocab_40000.bpe \
+                --encoder_path=../finetune-transformer-lm/model/encoder_bpe_40000.json 
+# Works
+
+
+
+

@@ -84,6 +84,9 @@ def save_relations(relation_phase='train', relation_fold=1,
         rel, ques_xxx, ques_arg, sent = each[:4]
         ques = ques_xxx.replace('XXX', ques_arg)
           
+        (ques_enc, ques_clean), (sent_enc, sent_clean) = text_encoder.encode_and_clean([ques, sent], verbose=False)
+        print( len(ques), len(ques.split(' ')), len(ques_clean.split(' ')), len(ques_enc), ques_clean )
+        
         indices = []
         if len(each) > 4:
           ans_list = each[4:]
@@ -91,16 +94,7 @@ def save_relations(relation_phase='train', relation_fold=1,
           indices = [(sent.index(ans), sent.index(ans) + len(ans)) for ans in ans_list]
         else:
           pass
-        
-        #print(rel, indices)
-        #print( len(ques), len(enc_ques) )
-        #if len(ques) != len(enc_ques):
-        #  print( ques )
-        #print( enc_ques )
 
-        enc_ques, enc_sent = text_encoder.encode([ques, sent], verbose=False)
-        print( len(ques), len(ques.split(' ')), len(enc_ques) )
-        
         if i % 10000 == 0:
           print("Line %d" % (i,))
       
