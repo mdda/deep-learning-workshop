@@ -99,7 +99,6 @@ def save_relations(relation_phase='train', relation_fold=1,
         #print( enc_ques )
 
         enc_ques, enc_sent = text_encoder.encode([ques, sent], verbose=False)
-        print( len(ques), len(enc_ques) )
         print( len(ques), len(ques.split(' ')), len(enc_ques) )
         
         if i % 10000 == 0:
