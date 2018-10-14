@@ -66,8 +66,6 @@ def yield_relations(relation_phase='train', relation_split=1, only_positive=True
       if only_positive and len(indices)==0:
         continue
       
-      valid += 1  # We're going to want this for the hdf5 accessible version
-      
       len_txt = len(ques) + len(sent) + 3
       
       if len_max_txt<len_txt:
@@ -80,6 +78,8 @@ def yield_relations(relation_phase='train', relation_split=1, only_positive=True
         print("Skipping #%i, len_max_count=%d, len_max_txt=%d, pct_long=%.2f%%" % (i, len_max_count, len_max_txt,  len_max_count/i*100., ))
         continue
         
+      valid += 1  # We're going to want this for the hdf5 accessible version
+      
       #if i>1000: break
       
       #yield i, ques, sent, indices
@@ -87,6 +87,7 @@ def yield_relations(relation_phase='train', relation_split=1, only_positive=True
   print(i, valid, len_max_count, len_max_txt,  len_max_count/i*100.)
 
 # TODO : Fn to get list of relationship_types and relationship_templates for each type
+
 
 
 class StepwiseClassifierModel(nn.Module):
@@ -210,7 +211,10 @@ if __name__ == '__main__':
     #n_special = tokens_special =3  
     tokens_special = len(encoder) - tokens_regular  # Number of extra tokens
     
-    yield_relations(only_positive=False)
+    #yield_relations(relation_phase='train', only_positive=False)  # 832336
+    #yield_relations(relation_phase='train', only_positive=True)   # 417627
+    #yield_relations(relation_phase='test', only_positive=False)   #  11892
+    #yield_relations(relation_phase='test', only_positive=True)    #   5940
     exit(0)
     
     #max_len = n_ctx // 2 - 2
