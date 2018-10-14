@@ -60,9 +60,12 @@ def valid_relations(relation_file=None, only_positive=True, len_max_return=512, 
 
 def save_relations(relation_phase='train', relation_fold=1, 
                    file_stub='', valid_ids=None,
-                   only_positive=True, bpe_max=n_ctx, skip_too_long=False, ):
+                   only_positive=True, bpe_max=None, skip_too_long=False, ):
   relation_file=os.path.join( relation_splits_path, "%s.%d" % (relation_phase, relation_fold))
   file_out     =os.path.join( relation_splits_path, "%s.%d%s.hdf5" % (relation_phase, relation_fold, file_stub))
+  
+  if bpe_max is None:
+    bpe_max = n_ctx
   
   if valid_ids is None:
     valid_ids = valid_relations(relation_file, only_positive=only_positive, 
@@ -191,11 +194,11 @@ def save_relations(relation_phase='train', relation_fold=1,
         len_xs = len(xs)
 
         xs_np = np.zeros((1, bpe_max), dtype=np.int32)
-        xs_np[:len_xs] = xs
+        xs_np[0, :len_xs] = xs
        
         ys_np = np.zeros((1, bpe_max), dtype=np.bool)
         for bpe_start, bpe_end in bpe_ranges:
-          ys_np[bpe_start:bpe_end] = 1
+          ys_np[0, bpe_start:bpe_end] = 1
        
         h5_data1[idx,:] = xs_np
         h5_data2[idx,:] = ys_np
@@ -238,15 +241,15 @@ if __name__ == '__main__':
     
     tokens_special = len(encoder) - tokens_regular  # Number of extra tokens
   
-    if False:  # This tests the various files
-      #save_relations(file_stub='_pos', relation_phase='train', only_positive=True)  
-      #save_relations(file_stub='_pos', relation_phase='train', only_positive=False)  
+    if True:  # This tests the various files
+      save_relations(file_stub='_pos', relation_phase='train', only_positive=True)  
+      save_relations(file_stub='_all', relation_phase='train', only_positive=False)  
       
-      save_relations(file_stub='_pos', relation_phase='dev', only_positive=False)  
-      #save_relations(file_stub='_pos', relation_phase='dev', only_positive=True)  
+      save_relations(file_stub='_pos', relation_phase='dev', only_positive=True)  
+      save_relations(file_stub='_all', relation_phase='dev', only_positive=False)  
       
       #save_relations(file_stub='_pos', relation_phase='test', only_positive=True)  
-      #save_relations(file_stub='_pos', relation_phase='test', only_positive=False)  
+      save_relations(file_stub='_all', relation_phase='test', only_positive=False)  
     
     exit(0)
     save_relations(file_stub=args.stub, relation_phase=args.phase, relation_fold=args.fold, only_positive=args.positive)  
