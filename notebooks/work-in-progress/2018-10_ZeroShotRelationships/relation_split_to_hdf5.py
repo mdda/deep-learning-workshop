@@ -130,7 +130,7 @@ def save_relations(relation_phase='train', relation_fold=1,
         #print( ques ) 
         #print( ques_clean ) 
         
-        indices = []
+        bpe_ranges=[]
         if len(each) > 4:
           ans_list = each[4:]
           
@@ -168,7 +168,9 @@ def save_relations(relation_phase='train', relation_fold=1,
             if s_word_start_idx>0:
               bpe_start_idx=sum( ans_len[:s_word_start_idx-1] )
             bpe_end_idx  =sum( ans_len[:s_word_end_idx-1] )
-              
+            
+            bpe_ranges.append( (bpe_start_idx, bpe_end_idx) )  
+            
         else:
           pass
       
@@ -180,11 +182,24 @@ def save_relations(relation_phase='train', relation_fold=1,
         if bpe_len>bpe_max:
           bpe_truncate_count += 1
           print("Truncating #%i, rate = %.2f%%" % (idx, 100.*bpe_truncate_count/idx))
-          pass
-          #continue
-          #exit(1)
+          trunc = bpe_max - 3 - len(ques_enc) 
+          
+        else:
+          trunc = None
+
+        xs = [token_start] + ques_enc + [token_delim] + sent_enc[:trunc] + [token_clf]
+        len_xs = len(xs)
+
+        xs_np = np.zeros((1, bpe_max), dtype=np.int32)
+        xs_np[:len_xs] = xs
        
-        #h5_data1[idx,:] = 
+        ys_np = np.zeros((1, bpe_max), dtype=np.bool)
+        for bpe_start, bpe_end in bpe_ranges:
+          ys_np[bpe_start:bpe_end] = 1
+       
+        h5_data1[idx,:] = xs_np
+        h5_data2[idx,:] = ys_np
+        
         idx+=1 
         
       
@@ -215,10 +230,9 @@ if __name__ == '__main__':
     n_vocab = len(text_encoder.encoder)
     
     tokens_regular = n_vocab
-    encoder['_start_']     = len(encoder)  # Last number (increments)
-    encoder['_delimiter_'] = len(encoder)  # Last number (increments)
-    encoder['_classify_']  = len(encoder)  # Last number (increments)
-    token_clf = encoder['_classify_']
+    token_start = encoder['_start_']     = len(encoder)  # Last number (increments)
+    token_delim = encoder['_delimiter_'] = len(encoder)  # Last number (increments)
+    token_clf   = encoder['_classify_']  = len(encoder)  # Last number (increments)
     
     tokens_special = len(encoder) - tokens_regular  # Number of extra tokens
   
