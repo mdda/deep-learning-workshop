@@ -81,12 +81,14 @@ def save_relations(relation_phase='train', relation_fold=1,
                            dtype='bool')
 
     def fixer(s):
-      return ((' '+s+' ').replace('F.C.', '#FC').replace('F.C', '#FC')
+      return ((' '+s+' ')
+               .replace('F.C.', '#FC').replace('F.C', '#FC')
                .replace(' Jr.', ' #JUNIOR').replace(' Jr ', ' #JUNIOR ')
                .replace(' Inc.', ' #INC').replace(' Inc ', ' #INC ')
                .replace(' Bros.', ' #BROS').replace(' Bros ', ' #BROS ')
                .replace(' Co.', ' #CO').replace(' Co ', ' #CO ')
                .replace(' B.V.', ' #BV').replace(' B.V ', ' #BV ')
+               .replace(' D.C.', ' #DC').replace(' D.C ', ' #DC ')
              ).strip()
     
     idx=0
@@ -110,9 +112,9 @@ def save_relations(relation_phase='train', relation_fold=1,
         ques_enc, sent_enc = encs
         ques_clean, sent_clean = cleans
         
-        print( len(ques), len(ques.split(' ')), len(ques_clean.split(' ')), len(ques_enc), ques_clean )
-        print( ques ) 
-        print( ques_clean ) 
+        print( i, len(ques), len(ques.split(' ')), len(ques_clean.split(' ')), len(ques_enc), ques_clean )
+        #print( ques ) 
+        #print( ques_clean ) 
         
         indices = []
         if len(each) > 4:
@@ -143,7 +145,7 @@ def save_relations(relation_phase='train', relation_fold=1,
             s_word_start_idx = len( sent_fix[:s_char_start_idx-1].split(' ') )
             s_word_end_idx = s_word_start_idx + len( ans_fix.split(' ') )
             
-            print( ans_fix, (sent_fix.split(' '))[s_word_start_idx : s_word_end_idx] )  # Seems to make sense?
+            #print( ans_fix, (sent_fix.split(' '))[s_word_start_idx : s_word_end_idx] )  # Seems to make sense = YES
             
             # So now for the bpe positions...
             # start is sum of previous bpe positions (special case for start==0)
