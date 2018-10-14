@@ -10,6 +10,7 @@ import torch.nn.functional as F
 
 sys.path.append('orig/pytorch-openai-transformer-lm')
 from model_pytorch import TransformerModel, load_openai_pretrained_model, DEFAULT_CONFIG
+from opt import OpenAIAdam
 from text_utils import TextEncoder
 from utils import ResultLogger
 
@@ -50,7 +51,7 @@ def yield_relations(relation_phase='train', relation_split=1, only_positive=True
         pass
             
       #print(rel, indices)
-      enc_ques = text_encoder.encode(ques, verbose=False)
+      #enc_ques = text_encoder.encode(ques, verbose=False)
       #print( len(ques), len(enc_ques) )
       #if len(ques) != len(enc_ques):
       #  print( ques )
@@ -59,23 +60,63 @@ def yield_relations(relation_phase='train', relation_split=1, only_positive=True
       if i % 10000 == 0:
         print("Line %d" % (i,))
     
-      #if only_positive and len(indices)==0:
-      #  continue
+      if ques_arg not in sent:
+        print("MISSING ENTITY : '%s' not in '%s'" % (ques_arg, sent))
+    
+      if only_positive and len(indices)==0:
+        continue
       
       len_txt = len(ques) + len(sent) + 3
       
-      if len_txt>len_max_return:
-        len_max_count+=1
-        print(i, len_max_count, len_max_txt,  len_max_count/i*100.)
-      
       if len_max_txt<len_txt:
         len_max_txt=len_txt
-        print( ques, sent )
-        print(len_max_txt)
+        #print( ques, sent )
+        #print(len_max_txt)
+        
+      if len_txt>len_max_return:
+        len_max_count+=1
+        print("Skipping #%i, len_max_count=%d, len_max_txt=%d, pct_long=%.2f%%" % (i, len_max_count, len_max_txt,  len_max_count/i*100., ))
+        continue
         
       #if i>1000: break
       
-  print(i, len_max_count, len_max_txt,  len_max_count/i*100.)
+      #yield i, ques, sent, indices
+      
+  #print(i, len_max_count, len_max_txt,  len_max_count/i*100.)
+
+# TODO : Fn to get list of relationship_types and relationship_templates for each type
+
+
+class StepwiseClassifierModel(nn.Module):
+    """ Transformer with stepwise classifier(s) """
+    def __init__(self, cfg, n_classifier=2, one_hot=True, vocab=40990, n_ctx=512):
+        super(StepwiseClassifierModel, self).__init__()
+        self.n_embd = cfg.n_embd
+        self.n_ctx = cfg.n_ctx
+        self.n_classifier = n_classifier
+        
+        self.transformer = TransformerModel(cfg, vocab=vocab, n_ctx=n_ctx)
+        self.stepwise = nn.Linear(self.n_embd, n_classifier)
+
+        nn.init.normal_(self.stepwise.weight, std = 0.02)
+        nn.init.normal_(self.stepwise.bias, 0)
+
+    def forward(self, x):   # x is the input text
+        # x ~ np.zeros((n_batch, 2, n_ctx, 2), dtype=np.int32)  # This is for their 0 vs 1 model
+        # x ~ np.zeros((n_batch, n_ctx, 2), dtype=np.int32)     # This is more normal use-case
+        # x[..., -1] is for [input_sequence, positions]
+        
+        h = self.transformer(x)  # These are the transformers embeddings (n_batch, n_ctx, n_embd) 
+        
+        #lm_logits = self.lm_head(h)
+        #task_logits = self.task_head(h, x)
+        #return lm_logits, task_logits
+
+        task_logits = self.stepwise( h.view(-1, self.n_embd) ).view(-1, x.size(1), self.n_classifier)
+        # Should be (n_batch, n_ctx, n_classifier)
+        
+        return task_logits
+
 
 
 
@@ -91,35 +132,37 @@ if __name__ == '__main__':
     #parser.add_argument('--submit', action='store_true')
     #parser.add_argument('--analysis', action='store_true')
     parser.add_argument('--seed', type=int, default=42)
-    parser.add_argument('--n_iter', type=int, default=3)
-    parser.add_argument('--n_batch', type=int, default=8)
+    parser.add_argument('--batch_size', type=int, default=8)
+    parser.add_argument('--n_epoch', type=int, default=3)
     parser.add_argument('--max_grad_norm', type=int, default=1)
     parser.add_argument('--lr', type=float, default=6.25e-5)
     parser.add_argument('--lr_warmup', type=float, default=0.002)
     parser.add_argument('--n_ctx', type=int, default=512)
     
-    # Standard for pre-trained model
-    #parser.add_argument('--n_embd', type=int, default=768)
-    #parser.add_argument('--n_head', type=int, default=12)
-    #parser.add_argument('--n_layer', type=int, default=12)
-    #parser.add_argument('--embd_pdrop', type=float, default=0.1)
-    #parser.add_argument('--attn_pdrop', type=float, default=0.1)
-    #parser.add_argument('--resid_pdrop', type=float, default=0.1)
-    #parser.add_argument('--clf_pdrop', type=float, default=0.1)
-    #parser.add_argument('--afn', type=str, default='gelu')
+    # Standard for pre-trained model  START
+    parser.add_argument('--n_embd', type=int, default=768)
+    parser.add_argument('--n_head', type=int, default=12)
+    parser.add_argument('--n_layer', type=int, default=12)
+    parser.add_argument('--embd_pdrop', type=float, default=0.1)
+    parser.add_argument('--attn_pdrop', type=float, default=0.1)
+    parser.add_argument('--resid_pdrop', type=float, default=0.1)
+    parser.add_argument('--clf_pdrop', type=float, default=0.1)
+    parser.add_argument('--afn', type=str, default='gelu')
+    # Standard for pre-trained model  END
     
+    parser.add_argument('--encoder_path', type=str, default=pretrained_model_path+'/encoder_bpe_40000.json')
+    parser.add_argument('--bpe_path', type=str, default=pretrained_model_path+'/vocab_40000.bpe')
+
     parser.add_argument('--l2', type=float, default=0.01)
     parser.add_argument('--vector_l2', action='store_true')
     parser.add_argument('--opt', type=str, default='adam')
     parser.add_argument('--lr_schedule', type=str, default='warmup_linear')
-    parser.add_argument('--encoder_path', type=str, default=pretrained_model_path+'/encoder_bpe_40000.json')
-    parser.add_argument('--bpe_path', type=str, default=pretrained_model_path+'/vocab_40000.bpe')
     parser.add_argument('--n_transfer', type=int, default=12)
     parser.add_argument('--lm_coef', type=float, default=0.5)
     parser.add_argument('--b1', type=float, default=0.9)
     parser.add_argument('--b2', type=float, default=0.999)
     parser.add_argument('--e', type=float, default=1e-8)
-    parser.add_argument('--n_valid', type=int, default=374)
+    #parser.add_argument('--n_valid', type=int, default=374)
 
     args = parser.parse_args()
     print(args)
@@ -156,17 +199,17 @@ if __name__ == '__main__':
     # (teX1, teX2, teX3)) = encode_dataset(*rocstories(data_dir, n_valid=args.n_valid),
     #                                      encoder=text_encoder)
     
-    regular_tokens = n_vocab
-    encoder['_start_'] = len(encoder)      # Last number (increments)
+    tokens_regular = n_vocab
+    encoder['_start_']     = len(encoder)  # Last number (increments)
     encoder['_delimiter_'] = len(encoder)  # Last number (increments)
-    encoder['_classify_'] = len(encoder)   # Last number (increments)
+    encoder['_classify_']  = len(encoder)  # Last number (increments)
+    token_clf = encoder['_classify_']
     
-    clf_token = encoder['_classify_']
-    #n_special = 3  
-    n_special = len(encoder) - regular_tokens  # Number of extra tokens
+    #n_special = tokens_special =3  
+    tokens_special = len(encoder) - tokens_regular  # Number of extra tokens
     
-    yield_relations()
-    exit(0)
+    #yield_relations()
+    #exit(0)
     
     #max_len = n_ctx // 2 - 2
     
@@ -179,9 +222,9 @@ if __name__ == '__main__':
     #                               len(x3[:max_len])) for x1, x2, x3 in zip(teX1, teX2, teX3)]
     #    ) + 3, n_ctx)
     
-    n_ctx = 100 # max length of encoded strings...
+    #n_ctx = 100 # max length of encoded strings...
         
-    vocab = n_vocab + n_special + n_ctx
+    vocab = tokens_regular + tokens_special + n_ctx
     
     #trX, trM = transform_roc(trX1, trX2, trX3)
     #vaX, vaM = transform_roc(vaX1, vaX2, vaX3)
@@ -193,37 +236,31 @@ if __name__ == '__main__':
     #n_valid = len(vaY)
     #n_batch_train = args.n_batch * max(n_gpu, 1)
     #n_updates_total = (n_train // n_batch_train) * args.n_iter
+    
+    n_updates_total = (840000 // args.batch_size) * args.n_epoch
 
-    #dh_model = DoubleHeadModel(args, clf_token, 'multiple_choice', vocab, n_ctx)
+    model_stepwise = StepwiseClassifierModel(args, n_classifier=2, vocab=vocab, n_ctx=n_ctx)
 
     criterion = nn.CrossEntropyLoss(reduce=False)
-    model_opt = OpenAIAdam(dh_model.parameters(),
-                           lr=args.lr,
-                           schedule=args.lr_schedule,
-                           warmup=args.lr_warmup,
-                           t_total=n_updates_total,
-                           b1=args.b1,
-                           b2=args.b2,
-                           e=args.e,
-                           l2=args.l2,
-                           vector_l2=args.vector_l2,
+    model_opt = OpenAIAdam(model_stepwise.parameters(),
+                           lr=args.lr, schedule=args.lr_schedule, 
+                           warmup=args.lr_warmup, t_total=n_updates_total,
+                           b1=args.b1, b2=args.b2, e=args.e,
+                           l2=args.l2, ector_l2=args.vector_l2,
                            max_grad_norm=args.max_grad_norm)
-    compute_loss_fct = MultipleChoiceLossCompute(criterion,
-                                                 criterion,
-                                                 args.lm_coef,
-                                                 model_opt)
+                           
+    #compute_loss_fct = MultipleChoiceLossCompute(criterion,
+    #                                             criterion,
+    #                                             args.lm_coef,
+    #                                             model_opt)
                                                  
-    load_openai_pretrained_model(dh_model.transformer, n_ctx=n_ctx, n_special=n_special)
-
-    model_tflm = TransformerModel(args)
-    load_openai_pretrained_model( model_tflm, 
-                                  path=pretrained_model_path+'/',
-                                  path_names=os.path.join('.', 'orig', 'pytorch-openai-transformer-lm')+'/',
+    load_openai_pretrained_model(model_stepwise.transformer, n_ctx=n_ctx, n_special=tokens_special,
+                                 path=pretrained_model_path+'/',
+                                 path_names=os.path.join('.', 'orig', 'pytorch-openai-transformer-lm')+'/',
                                 )
-    model_full = model_tflm
-
-    model_full.to(device)
-    model_full = nn.DataParallel(model_full)
+    
+    model_stepwise.to(device)
+    model_stepwise = nn.DataParallel(model_stepwise)
 
     exit(0) 
     
