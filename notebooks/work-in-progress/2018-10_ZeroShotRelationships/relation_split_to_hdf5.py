@@ -224,14 +224,9 @@ if __name__ == '__main__':
   
     #save_relations(file_stub='_pos', relation_phase='test', only_positive=True)  
     #save_relations(file_stub='_pos', relation_phase='test', only_positive=False)  
+    #save_relations(file_stub='_pos', relation_phase='dev', only_positive=False)  
+    #save_relations(file_stub='_pos', relation_phase='dev', only_positive=True)  
+    
     #save_relations(file_stub='_pos', relation_phase='train', only_positive=True)  
     save_relations(file_stub='_pos', relation_phase='train', only_positive=False)  
-    
-    #yield_relations(relation_phase='train', only_positive=False)  # 832336
-    #yield_relations(relation_phase='train', only_positive=True)   # 417627
-    #yield_relations(relation_phase='test', only_positive=False)   #  11892
-    #yield_relations(relation_phase='test', only_positive=True)    #   5940
-    #exit(0)
-    
-    vocab = tokens_regular + tokens_special + n_ctx
     

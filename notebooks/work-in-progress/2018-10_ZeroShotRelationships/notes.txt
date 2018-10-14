@@ -160,3 +160,11 @@ python train.py --dataset rocstories --desc rocstories --submit --analysis \
 
 
 
+cd REPO/notebooks/work-in-progress/2018-10_ZeroShotRelationships
+
+. ~/env3/bin/activate
+
+python relation_split_to_hdf5.py 
+
+
+
