@@ -32,6 +32,11 @@ def valid_relations(relation_file=None, only_positive=True, len_max_return=512, 
     reader = csv.reader(fp, delimiter='\t')
     for i, each in enumerate(reader):
       rel, ques_xxx, ques_arg, sent = each[:4]
+      
+      if 'Canadhan' in ques_arg:
+        print("GOTCHA!")
+        ques_arg = ques_arg.replace('Canadhan', 'Canadian')
+      
       ques = ques_xxx.replace('XXX', ques_arg)
 
       if i % 10000 == 0:
@@ -74,6 +79,15 @@ def save_relations(relation_phase='train', relation_fold=1,
                            shape=(len(valid_ids), len_max_return),
                            compression=None,
                            dtype='bool')
+
+    def fixer(s):
+      return ((' '+s+' ').replace('F.C.', '#FC').replace('F.C', '#FC')
+               .replace(' Jr.', ' #JUNIOR').replace(' Jr ', ' #JUNIOR ')
+               .replace(' Inc.', ' #INC').replace(' Inc ', ' #INC ')
+               .replace(' Bros.', ' #BROS').replace(' Bros ', ' #BROS ')
+               .replace(' Co.', ' #CO').replace(' Co ', ' #CO ')
+               .replace(' B.V.', ' #BV').replace(' B.V ', ' #BV ')
+             ).strip()
     
     idx=0
     with open(relation_file, 'r') as fp:
@@ -82,6 +96,11 @@ def save_relations(relation_phase='train', relation_fold=1,
         if i not in valid_ids: continue
         
         rel, ques_xxx, ques_arg, sent = each[:4]
+        
+        if 'Canadhan' in ques_arg:
+          print("GOTCHA!")
+          ques_arg = ques_arg.replace('Canadhan', 'Canadian')
+        
         ques = ques_xxx.replace('XXX', ques_arg)
           
         #(ques_enc, ques_clean), (sent_enc, sent_clean)
@@ -99,17 +118,41 @@ def save_relations(relation_phase='train', relation_fold=1,
         if len(each) > 4:
           ans_list = each[4:]
           
-          ans_encs, ans_cleans, ans_lens = text_encoder.encode_and_clean(ans_list)
-          
           # These are offsets in characters
           #indices = [(sent.index(ans), sent.index(ans) + len(ans)) for ans in ans_list]
           
           #for ans in ans_list:
-          for ans in ans_cleans:
-            #ans = ans.replace('F.C.', 'F.C').replace('Jr.', 'Jr')
-            if ans not in sent_clean:
-              print("ANS cleaned away! '%s' not in '%s' " % (ans, sent_clean,) )
+          #  s_char_start_idx = sent.index(ans) # in characters
+          #  s_word_start_idx = len( sent[:s_char_start_idx-1].split(' ') )
+          #  s_word_end_idx = s_word_start_idx + len( ans.split(' ') )
+          #  #print( ans, (sent.split(' '))[s_word_start_idx : s_word_end_idx] )  # Seems to make sense
+          # 
+          #  # Now convert original sent word indices to clean word indices ...
+            
+          ans_encs, ans_cleans, ans_lens = text_encoder.encode_and_clean(ans_list)
+          
+          sent_fix = fixer(sent_clean)
+          for ans_i, ans in enumerate(ans_cleans):
+            ans_fix = fixer(ans)
+            if ans_fix not in sent_fix:
+              print("%i : ANS cleaned away! '%s' not in '%s'" % (i, ans_fix, sent_fix,) )
               exit(0)
+              
+            # Now we've found the ans_fix, let's figure out the bpe locations...
+            s_char_start_idx = sent_fix.index(ans_fix) # in characters
+            s_word_start_idx = len( sent_fix[:s_char_start_idx-1].split(' ') )
+            s_word_end_idx = s_word_start_idx + len( ans_fix.split(' ') )
+            
+            print( ans_fix, (sent_fix.split(' '))[s_word_start_idx : s_word_end_idx] )  # Seems to make sense?
+            
+            # So now for the bpe positions...
+            # start is sum of previous bpe positions (special case for start==0)
+            ans_len = ans_lens[ans_i]
+            bpe_start_idx = 0
+            if s_word_start_idx>0:
+              bpe_start_idx=sum( ans_len[:s_word_start_idx-1] )
+            bpe_end_idx  =sum( ans_len[:s_word_end_idx-1] )
+              
         else:
           pass
 
@@ -165,7 +208,8 @@ if __name__ == '__main__':
     
     tokens_special = len(encoder) - tokens_regular  # Number of extra tokens
   
-    save_relations(file_stub='_pos', relation_phase='test', only_positive=True)  
+    #save_relations(file_stub='_pos', relation_phase='test', only_positive=True)  
+    save_relations(file_stub='_pos', relation_phase='train', only_positive=True)  
     
     #yield_relations(relation_phase='train', only_positive=False)  # 832336
     #yield_relations(relation_phase='train', only_positive=True)   # 417627
