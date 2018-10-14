@@ -84,14 +84,32 @@ def save_relations(relation_phase='train', relation_fold=1,
         rel, ques_xxx, ques_arg, sent = each[:4]
         ques = ques_xxx.replace('XXX', ques_arg)
           
-        (ques_enc, ques_clean), (sent_enc, sent_clean) = text_encoder.encode_and_clean([ques, sent], verbose=False)
+        #(ques_enc, ques_clean), (sent_enc, sent_clean)
+        #(ques_enc, sent_enc), (ques_clean, sent_clean) = text_encoder.encode_and_clean([ques, sent])
+        
+        encs, cleans, lens = text_encoder.encode_and_clean([ques, sent])
+        ques_enc, sent_enc = encs
+        ques_clean, sent_clean = cleans
+        
         print( len(ques), len(ques.split(' ')), len(ques_clean.split(' ')), len(ques_enc), ques_clean )
+        print( ques ) 
+        print( ques_clean ) 
         
         indices = []
         if len(each) > 4:
           ans_list = each[4:]
+          
+          ans_encs, ans_cleans, ans_lens = text_encoder.encode_and_clean(ans_list)
+          
           # These are offsets in characters
-          indices = [(sent.index(ans), sent.index(ans) + len(ans)) for ans in ans_list]
+          #indices = [(sent.index(ans), sent.index(ans) + len(ans)) for ans in ans_list]
+          
+          #for ans in ans_list:
+          for ans in ans_cleans:
+            #ans = ans.replace('F.C.', 'F.C').replace('Jr.', 'Jr')
+            if ans not in sent_clean:
+              print("ANS cleaned away! '%s' not in '%s' " % (ans, sent_clean,) )
+              exit(0)
         else:
           pass
 
