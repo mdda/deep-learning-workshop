@@ -29,7 +29,7 @@ relation_splits_path = os.path.join('.', 'orig', 'omerlevy-bidaf_no_answer-2e986
 
 def yield_relations(relation_phase='train', relation_split=1, only_positive=True, len_max_return=512):
   relation_file=os.path.join( relation_splits_path, "%s.%d" % (relation_phase, relation_split))
-  len_max_txt, len_max_count = 0,0
+  valid, len_max_txt, len_max_count = 0,0,0
   with open(relation_file, 'r') as fp:
     reader = csv.reader(fp, delimiter='\t')
     for i, each in enumerate(reader):
@@ -66,6 +66,8 @@ def yield_relations(relation_phase='train', relation_split=1, only_positive=True
       if only_positive and len(indices)==0:
         continue
       
+      valid += 1  # We're going to want this for the hdf5 accessible version
+      
       len_txt = len(ques) + len(sent) + 3
       
       if len_max_txt<len_txt:
@@ -82,7 +84,7 @@ def yield_relations(relation_phase='train', relation_split=1, only_positive=True
       
       #yield i, ques, sent, indices
       
-  #print(i, len_max_count, len_max_txt,  len_max_count/i*100.)
+  print(i, valid, len_max_count, len_max_txt,  len_max_count/i*100.)
 
 # TODO : Fn to get list of relationship_types and relationship_templates for each type
 
@@ -208,8 +210,8 @@ if __name__ == '__main__':
     #n_special = tokens_special =3  
     tokens_special = len(encoder) - tokens_regular  # Number of extra tokens
     
-    #yield_relations()
-    #exit(0)
+    yield_relations(only_positive=False)
+    exit(0)
     
     #max_len = n_ctx // 2 - 2
     
