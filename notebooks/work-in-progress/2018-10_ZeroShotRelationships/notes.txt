@@ -144,6 +144,7 @@ git clone https://github.com/openai/finetune-transformer-lm.git
 rm -rf  finetune-transformer-lm/.git
 git clone https://github.com/huggingface/pytorch-openai-transformer-lm.git
 
+# cp --no-clobber orig/pytorch-openai-transformer-lm/text_utils.py ..  # Their text_utils needs updating : Bring it into my repo
 
 # Need to go to the Rocstories website to get download links to files - put them in 'rocstories_dataset'
 ls -l rocstories_dataset/

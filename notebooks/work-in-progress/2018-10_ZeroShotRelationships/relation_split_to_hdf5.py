@@ -5,8 +5,8 @@ import argparse
 import numpy as np
 import h5py
 
-sys.path.append('orig/pytorch-openai-transformer-lm')
-from text_utils import TextEncoder
+from text_utils import TextEncoder  # This is my version
+#sys.path.append('orig/pytorch-openai-transformer-lm')
 
 import csv
 
@@ -241,7 +241,7 @@ if __name__ == '__main__':
     
     tokens_special = len(encoder) - tokens_regular  # Number of extra tokens
   
-    if True:  # This tests the various files
+    if True:  # This tests the various files - takes ~2h30 for all
       save_relations(file_stub='_pos', relation_phase='train', only_positive=True)  
       save_relations(file_stub='_all', relation_phase='train', only_positive=False)  
       
