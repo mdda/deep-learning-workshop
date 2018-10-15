@@ -25,7 +25,11 @@ relation_splits_path = os.path.join('.', 'orig', 'omerlevy-bidaf_no_answer-2e986
 
 # https://github.com/rasbt/deep-learning-book/blob/master/code/model_zoo/pytorch_ipynb/custom-data-loader-csv.ipynb
 
-def valid_relations(relation_file=None, only_positive=True, len_max_return=512, skip_too_long=True):
+# By default, return 
+def valid_relations(relation_phase='train', relation_fold=1, 
+                    only_positive=False, len_max_return=512, skip_too_long=False):
+  relation_file=os.path.join( relation_splits_path, "%s.%d" % (relation_phase, relation_fold))
+
   len_max_count=0
   valid=[]
   with open(relation_file, 'r') as fp:
@@ -56,21 +60,14 @@ def valid_relations(relation_file=None, only_positive=True, len_max_return=512, 
         continue
         
       valid.append(i)  # This is a list of the valid indices
-  return valid
+  return relation_file, valid
 
-def save_relations(relation_phase='train', relation_fold=1, 
-                   file_stub='', valid_ids=None,
-                   only_positive=True, bpe_max=None, skip_too_long=False, ):
-  relation_file=os.path.join( relation_splits_path, "%s.%d" % (relation_phase, relation_fold))
-  file_out     =os.path.join( relation_splits_path, "%s.%d%s.hdf5" % (relation_phase, relation_fold, file_stub))
+def save_relations(relation_file, valid_ids=None, file_stub='_all', bpe_max=None):
+  #file_out = os.path.join( relation_file, "%s.%d%s.hdf5" % (relation_phase, relation_fold, file_stub))
+  file_out = relation_file + "%s.hdf5" % (file_stub, )
   
   if bpe_max is None:
     bpe_max = n_ctx
-  
-  if valid_ids is None:
-    valid_ids = valid_relations(relation_file, only_positive=only_positive, 
-                                               len_max_return=bpe_max*6, 
-                                               skip_too_long=skip_too_long,)
   
   with h5py.File(file_out, 'w') as h5f:
     h5_data1 = h5f.create_dataset('features',
@@ -81,7 +78,12 @@ def save_relations(relation_phase='train', relation_fold=1,
     h5_data2 = h5f.create_dataset('labels',
                            shape=(len(valid_ids), bpe_max),
                            compression=None,
-                           dtype='bool')
+                           dtype='int8')
+
+    h5_data3 = h5f.create_dataset('deps',
+                           shape=(len(valid_ids), bpe_max),
+                           compression=None,
+                           dtype='int8')  # >>bpe_max
 
     def fixer(s):
       return ((' '+s+' ')
@@ -125,54 +127,104 @@ def save_relations(relation_phase='train', relation_fold=1,
         #(ques_enc, ques_clean), (sent_enc, sent_clean)
         #(ques_enc, sent_enc), (ques_clean, sent_clean) = text_encoder.encode_and_clean([ques, sent])
         
-        encs, cleans, lens = text_encoder.encode_and_clean([ques, sent])
-        ques_enc, sent_enc = encs
-        ques_clean, sent_clean = cleans
-        
-        print( i, len(ques), len(ques.split(' ')), len(ques_clean.split(' ')), len(ques_enc), ques_clean )
+        #encs, cleans, lens = text_encoder.encode_and_clean([ques, sent])
+        #ques_enc, sent_enc = encs
+        #ques_clean, sent_clean = cleans
+        #print( i, len(ques), len(ques.split(' ')), len(ques_clean.split(' ')), len(ques_enc), ques_clean )
         #print( ques ) 
         #print( ques_clean ) 
+
+        xs_np = np.zeros((1, bpe_max), dtype=np.int32)  # bpe encoding of constructed input string
+        ys_np = np.zeros((1, bpe_max), dtype=np.int8)   # class : 0=?, 1=start_ans, 2=end_ans, 3=is_xxx
+        zs_np = np.zeros((1, bpe_max), dtype=np.int8)   # position that is parent of this, 0=irrelevant (a mask value)
         
-        bpe_ranges=[]
+
+        ques_nlp  = text_encoder.nlp( ques )
+        ques_encs = text_encoder.encode_nlp(ques_nlp)
+        ques_enc = text_encoder.flatten_bpes( ques_encs )
+        
+        sent_nlp  = text_encoder.nlp( sent )
+        sent_encs = text_encoder.encode_nlp(sent_nlp)
+        sent_enc = text_encoder.flatten_bpes( sent_encs )
+
+        # Save the bpe encoding 
+        bpe_len = len(ques_enc) + len(sent_enc) + 3
+        if bpe_len>bpe_max:
+          bpe_truncate_count += 1
+          print("Truncating #%i, rate = %.2f%%" % (idx, 100.*bpe_truncate_count/idx))
+          trunc = bpe_max - 3 - len(ques_enc) 
+        else:
+          trunc = None
+
+        xs = [token_start] + ques_enc + [token_delim] + sent_enc[:trunc] + [token_clf]
+        len_xs = len(xs)
+        ques_offset = 1
+        sent_offset = 1 + len(ques_enc) + 1
+        
+        xs_np[0, :len_xs] = xs
+       
+
+        # Need these for answer offsets, and dependency offsets
+        sent_nlp_offsets = [ token.idx for token in sent_nlp ]
+        sent_enc_offsets = text_encoder.cumlen_bpes( sent_encs )
+        
         if len(each) > 4:
           ans_list = each[4:]
           
           # These are offsets in characters
           #indices = [(sent.index(ans), sent.index(ans) + len(ans)) for ans in ans_list]
           
-          #for ans in ans_list:
-          #  s_char_start_idx = sent.index(ans) # in characters
-          #  s_word_start_idx = len( sent[:s_char_start_idx-1].split(' ') )
-          #  s_word_end_idx = s_word_start_idx + len( ans.split(' ') )
-          #  #print( ans, (sent.split(' '))[s_word_start_idx : s_word_end_idx] )  # Seems to make sense
-          # 
-          #  # Now convert original sent word indices to clean word indices ...
+          # Let's find out what the bpe indices are - since we have the offsets within _nlp from token.idx
+          # Go through the sent_blp_offsets, looking for the indices
+          for ans in ans_list:
+            c_start = sent.index(ans)
+            c_end   = c_start + len(ans)
             
-          ans_encs, ans_cleans, ans_lens = text_encoder.encode_and_clean(ans_list)
+            word_start = sent_nlp_offsets.index(c_start) 
+            word_end   = sent_nlp_offsets.index(c_end) 
           
-          sent_fix = fixer(sent_clean)
-          for ans_i, ans in enumerate(ans_cleans):
-            ans_fix = fixer(ans)
-            if ans_fix not in sent_fix:
-              print("%i : ANS cleaned away! '%s' not in '%s'" % (i, ans_fix, sent_fix,) )
-              exit(0)
+            blp_start = sent_enc_offsets[ word_start ]
+            blp_end   = sent_enc_offsets[ word_end ]
+            
+            ys_np[ blp_start ] = 1
+            ys_np[ blp_end ]   = 2
+
+            
+          if False:
+            for ans in ans_list:
+              s_char_start_idx = sent.index(ans) # in characters
+              s_word_start_idx = len( sent[:s_char_start_idx-1].split(' ') )
+              s_word_end_idx = s_word_start_idx + len( ans.split(' ') )
+              #print( ans, (sent.split(' '))[s_word_start_idx : s_word_end_idx] )  # Seems to make sense
+             
+              # Now convert original sent word indices to clean word indices ...
+          
+          if False:
+            ans_encs, ans_cleans, ans_lens = text_encoder.encode_and_clean(ans_list)
+            
+            sent_fix = fixer(sent_clean)
+            for ans_i, ans in enumerate(ans_cleans):
+              ans_fix = fixer(ans)
+              if ans_fix not in sent_fix:
+                print("%i : ANS cleaned away! '%s' not in '%s'" % (i, ans_fix, sent_fix,) )
+                exit(0)
+                
+              # Now we've found the ans_fix, let's figure out the bpe locations...
+              s_char_start_idx = sent_fix.index(ans_fix) # in characters
+              s_word_start_idx = len( sent_fix[:s_char_start_idx-1].split(' ') )
+              s_word_end_idx = s_word_start_idx + len( ans_fix.split(' ') )
               
-            # Now we've found the ans_fix, let's figure out the bpe locations...
-            s_char_start_idx = sent_fix.index(ans_fix) # in characters
-            s_word_start_idx = len( sent_fix[:s_char_start_idx-1].split(' ') )
-            s_word_end_idx = s_word_start_idx + len( ans_fix.split(' ') )
-            
-            #print( ans_fix, (sent_fix.split(' '))[s_word_start_idx : s_word_end_idx] )  # Seems to make sense = YES
-            
-            # So now for the bpe positions...
-            # start is sum of previous bpe positions (special case for start==0)
-            ans_len = ans_lens[ans_i]
-            bpe_start_idx = 0
-            if s_word_start_idx>0:
-              bpe_start_idx=sum( ans_len[:s_word_start_idx-1] )
-            bpe_end_idx  =sum( ans_len[:s_word_end_idx-1] )
-            
-            bpe_ranges.append( (bpe_start_idx, bpe_end_idx) )  
+              #print( ans_fix, (sent_fix.split(' '))[s_word_start_idx : s_word_end_idx] )  # Seems to make sense = YES
+              
+              # So now for the bpe positions...
+              # start is sum of previous bpe positions (special case for start==0)
+              ans_len = ans_lens[ans_i]
+              bpe_start_idx = 0
+              if s_word_start_idx>0:
+                bpe_start_idx=sum( ans_len[:s_word_start_idx-1] )
+              bpe_end_idx  =sum( ans_len[:s_word_end_idx-1] )
+              
+              bpe_ranges.append( (bpe_start_idx, bpe_end_idx) )  
             
         else:
           pass
@@ -181,32 +233,18 @@ def save_relations(relation_phase='train', relation_fold=1,
           print("MISSING ENTITY : '%s' not in '%s'" % (ques_arg, sent))
           exit(0)
       
-        bpe_len = len(ques_enc) + len(sent_enc) + 3
-        if bpe_len>bpe_max:
-          bpe_truncate_count += 1
-          print("Truncating #%i, rate = %.2f%%" % (idx, 100.*bpe_truncate_count/idx))
-          trunc = bpe_max - 3 - len(ques_enc) 
-          
-        else:
-          trunc = None
-
-        xs = [token_start] + ques_enc + [token_delim] + sent_enc[:trunc] + [token_clf]
-        len_xs = len(xs)
-
-        xs_np = np.zeros((1, bpe_max), dtype=np.int32)
-        xs_np[0, :len_xs] = xs
-       
-        ys_np = np.zeros((1, bpe_max), dtype=np.bool)
-        for bpe_start, bpe_end in bpe_ranges:
-          ys_np[0, bpe_start:bpe_end] = 1
+        #ys_np = np.zeros((1, bpe_max), dtype=np.bool)
+        #for bpe_start, bpe_end in bpe_ranges:
+        #  ys_np[0, bpe_start:bpe_end] = 1
        
         h5_data1[idx,:] = xs_np
         h5_data2[idx,:] = ys_np
+        h5_data3[idx,:] = zs_np
         
         idx+=1 
-        
-      
+
   #print(i, valid, len_max_count, len_max_count/i*100.)
+  return file_out
 
 
 
@@ -241,6 +279,19 @@ if __name__ == '__main__':
     
     tokens_special = len(text_encoder.encoder) - tokens_regular  # Number of extra tokens
   
+    if True:  # This tests the various files - takes ~2h30 for all
+      dev_file, valid_dev_ids_all = valid_relations(relation_phase='dev', relation_fold=args.fold, 
+                                                    len_max_return=n_ctx*6, skip_too_long=False, only_positive=False,)
+                                                    
+      dev_hdf5 = save_relations(dev_file, valid_ids=valid_dev_ids_all)  # Saves ALL
+      
+      exit(0)
+
+      valid_train_ids_all = valid_relations(relation_phase='train', relation_fold=args.fold, len_max_return=n_ctx*6, skip_too_long=False)
+      valid_train_ids_pos = valid_relations(relation_phase='train', relation_fold=args.fold, len_max_return=n_ctx*6, skip_too_long=True)
+      
+      valid_test_ids_all  = valid_relations(relation_phase='test', relation_fold=args.fold, len_max_return=n_ctx*6, skip_too_long=False)
+      
     if False:  # This tests the various files - takes ~2h30 for all
       save_relations(file_stub='_pos', relation_phase='train', only_positive=True)  
       save_relations(file_stub='_all', relation_phase='train', only_positive=False)  
@@ -251,24 +302,26 @@ if __name__ == '__main__':
       #save_relations(file_stub='_pos', relation_phase='test', only_positive=True)  
       save_relations(file_stub='_all', relation_phase='test', only_positive=False)  
     
-    s="This is a simple test of the text encoder. It's difficult to believe it will work."
-    #encs, cleans, lens = text_encoder.encode_and_clean([s])
-    #print(encs[0], cleans[0], lens[0])
-    #print( text_encoder.decode(encs[0]) )
+    if False:
+      s="This is a simple test of the text encoder. It's difficult to believe it will work."
+      #encs, cleans, lens = text_encoder.encode_and_clean([s])
+      #print(encs[0], cleans[0], lens[0])
+      #print( text_encoder.decode(encs[0]) )
 
-    s_nlp = text_encoder.nlp(s)
-    bpes = text_encoder.encode_nlp(s_nlp)
-    print( bpes )
-    #bpe = [item for sublist in bpes for item in sublist]
-    bpe = text_encoder.flatten_bpes(bpes)
-    #print( bpe )
-    print( s )
-    print( text_encoder.decode(bpe) )
+      s_nlp = text_encoder.nlp(s)
+      bpes = text_encoder.encode_nlp(s_nlp)
+      print( bpes )
+      
+      bpe = text_encoder.flatten_bpes(bpes)
+      #print( bpe )
+      print( s )
+      print( text_encoder.decode(bpe) )
+      
+      for token in s_nlp:
+        # idx is a character-wise index in the original document
+        print( "%3d : %2d %10s %2d %10s" % (token.idx, token.i, token.text, token.head.i, token.head.text,) )
     
-    for token in s_nlp:
-      print( "%3d : %2d %10s %2d %10s" % (token.idx, token.i, token.text, token.head.i, token.head.text,) )
-    
-    #for token in doc:    
     exit(0)
+    
     save_relations(file_stub=args.stub, relation_phase=args.phase, relation_fold=args.fold, only_positive=args.positive)  
     

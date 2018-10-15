@@ -139,6 +139,13 @@ class TextEncoder(object):
         
     def flatten_bpes(self, bpes):
       return [item for sublist in bpes for item in sublist]
+      
+    def cumlen_bpes(self, bpes):
+      lens,tot=[],0
+      for b in bpes:
+        lens.append(tot)
+        tot+= len(b)
+      return lens  # Returns arr[ word_idx ] -> bpe_offset
 
     def decode(self, bpe_arr):  # This is a flat array
       #for s in bpe_arr:
