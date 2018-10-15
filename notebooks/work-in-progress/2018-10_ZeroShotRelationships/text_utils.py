@@ -125,3 +125,8 @@ class TextEncoder(object):
                 texts_bpes.append(text_bpe)
                 lens_bpes.append(len_bpe)
         return texts_bpes, texts_clean, lens_bpes
+
+# Ought to have bpe decoder ...
+# https://github.com/eladhoffer/seq2seq.pytorch/blob/master/seq2seq/tools/tokenizer.py
+## Better : https://github.com/soaxelbrooke/python-bpe
+

@@ -168,4 +168,3 @@ cd REPO/notebooks/work-in-progress/2018-10_ZeroShotRelationships
 python relation_split_to_hdf5.py 
 
 
-
