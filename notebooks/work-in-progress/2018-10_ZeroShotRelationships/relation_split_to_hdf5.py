@@ -124,6 +124,11 @@ def save_relations(relation_file, valid_ids=None, file_stub='_all', bpe_max=None
         
         ques = ques_xxx.replace('XXX', ques_arg)
           
+        # Make sure the ques_arg is highlightable
+        if ques_arg not in sent:
+          print("MISSING ENTITY : '%s' not in '%s'" % (ques_arg, sent))
+          exit(0)
+
         #(ques_enc, ques_clean), (sent_enc, sent_clean)
         #(ques_enc, sent_enc), (ques_clean, sent_clean) = text_encoder.encode_and_clean([ques, sent])
         
@@ -135,7 +140,7 @@ def save_relations(relation_file, valid_ids=None, file_stub='_all', bpe_max=None
         #print( ques_clean ) 
 
         xs_np = np.zeros((1, bpe_max), dtype=np.int32)  # bpe encoding of constructed input string
-        ys_np = np.zeros((1, bpe_max), dtype=np.int8)   # class : 0=?, 1=start_ans, 2=end_ans, 3=is_xxx
+        ys_np = np.zeros((1, bpe_max), dtype=np.int8)   # class : 0=?, 1=start_ques, 2=end_ques, 3=start_ans, 4=end_ans, 
         zs_np = np.zeros((1, bpe_max), dtype=np.int8)   # position that is parent of this, 0=irrelevant (a mask value)
         
 
@@ -165,21 +170,29 @@ def save_relations(relation_file, valid_ids=None, file_stub='_all', bpe_max=None
        
 
         # Need these for answer offsets, and dependency offsets
+        ques_enc_offsets = text_encoder.cumlen_bpes( ques_encs )
+        
         sent_nlp_offsets = [ token.idx for token in sent_nlp ]
         sent_nlp_offsets_len = len(sent_nlp_offsets)
         sent_enc_offsets = text_encoder.cumlen_bpes( sent_encs )
         
-        if len(each) > 4:
-          ans_list = each[4:]
+        #if len(each) > 4:
+        #  ans_list = each[4:]
+        
+        if True:  # Always look up ques too
+          highlight_arr = [ ques_arg ]
+          if len(each) > 4:
+            highlight_arr.extend(each[4:])
+          
           
           # These are offsets in characters
           #indices = [(sent.index(ans), sent.index(ans) + len(ans)) for ans in ans_list]
           
           # Let's find out what the bpe indices are - since we have the offsets within _nlp from token.idx
           # Go through the sent_blp_offsets, looking for the indices
-          for ans in ans_list:
-            c_start = sent.index(ans)
-            c_end   = c_start + len(ans)
+          for highlight_i, highlight in enumerate(highlight_arr):
+            c_start = sent.index(highlight)
+            c_end   = c_start + len(highlight)
             
             #print( len(sent), sent_nlp_offsets ) 
           
@@ -191,18 +204,19 @@ def save_relations(relation_file, valid_ids=None, file_stub='_all', bpe_max=None
             while word_end<sent_nlp_offsets_len and sent_nlp_offsets[word_end]<c_end:
               word_end+=1
             
-            #print(ans, word_start, word_end, sent_nlp_offsets[word_start], sent_nlp_offsets[word_end], )
+            #print(highlight, word_start, word_end, sent_nlp_offsets[word_start], sent_nlp_offsets[word_end], )
             
             bpe_start = sent_enc_offsets[ word_start ]
             bpe_end   = sent_enc_offsets[ word_end ] 
-            
+  
+            class_base = 0 if highlight_i==0 else 2
             if sent_offset+bpe_start<bpe_max:
-              ys_np[0, sent_offset+bpe_start ] = 1
+              ys_np[0, sent_offset+bpe_start ] = class_base+1
             if sent_offset+bpe_end<bpe_max:
-              ys_np[0, sent_offset+bpe_end ]   = 2
+              ys_np[0, sent_offset+bpe_end ]   = class_base+2
 
             if True:
-              print( "%6d '%s' '%s'" % (i, ans , text_encoder.decode( sent_enc[bpe_start:bpe_end] ) ),)
+              print( "%6d %1d %1d '%s' '%s'" % (i, highlight_i, class_base, highlight, text_encoder.decode( sent_enc[bpe_start:bpe_end] ) ),)
             
             
           if False:
@@ -240,23 +254,28 @@ def save_relations(relation_file, valid_ids=None, file_stub='_all', bpe_max=None
               bpe_end_idx  =sum( ans_len[:s_word_end_idx-1] )
               
               bpe_ranges.append( (bpe_start_idx, bpe_end_idx) )  
-            
-        else:
-          pass
-      
-        if ques_arg not in sent:
-          print("MISSING ENTITY : '%s' not in '%s'" % (ques_arg, sent))
-          exit(0)
 
-        # Possibly, do the ques_xxx highlighting
-
-        # Next : Do the dependency zs
-        #  Required (easy to do both)
-
-      
+          
         #ys_np = np.zeros((1, bpe_max), dtype=np.bool)
         #for bpe_start, bpe_end in bpe_ranges:
         #  ys_np[0, bpe_start:bpe_end] = 1
+
+
+        # Next : Do the dependency zs
+        #  Easy enough to do both ques and sent :
+        
+        for i, tok in enumerate(ques_nlp):
+          bpe_loc = ques_enc_offsets[ i ] + ques_offset
+          bpe_head = ques_enc_offsets[ tok.head.i ] + ques_offset
+          if bpe_loc<bpe_max:
+            zs_np[0, bpe_loc ] = bpe_head
+
+        for i, tok in enumerate(sent_nlp):
+          bpe_loc = sent_enc_offsets[ i ] + sent_offset
+          bpe_head = sent_enc_offsets[ tok.head.i ] + sent_offset
+          if bpe_loc<bpe_max:
+            zs_np[0, bpe_loc ] = bpe_head
+
        
         h5_data1[idx,:] = xs_np
         h5_data2[idx,:] = ys_np
@@ -301,13 +320,13 @@ if __name__ == '__main__':
     tokens_special = len(text_encoder.encoder) - tokens_regular  # Number of extra tokens
   
     if True:  # This tests the various files - takes ~2h30 for all
-      if True:
+      if False:
         train_file, valid_train_ids_all = valid_relations(relation_phase='train', relation_fold=args.fold, 
                                                       len_max_return=n_ctx*6, skip_too_long=False, only_positive=False,)
                                                       
         train_hdf5 = save_relations(train_file, valid_ids=valid_train_ids_all)  # Saves ALL
         
-      if False:
+      if True:
         dev_file, valid_dev_ids_all = valid_relations(relation_phase='dev', relation_fold=args.fold, 
                                                       len_max_return=n_ctx*6, skip_too_long=False, only_positive=False,)
                                                       
