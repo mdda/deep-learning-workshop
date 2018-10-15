@@ -114,6 +114,8 @@ def save_relations(relation_file, valid_ids=None, file_stub='_all', bpe_max=None
         #if i<590000: continue
         #if i<650000: continue
         #if i<780000: continue
+        #if i<66970: continue
+        
         if i not in valid_ids: continue
         
         rel, ques_xxx, ques_arg, sent = each[:4]
@@ -194,12 +196,16 @@ def save_relations(relation_file, valid_ids=None, file_stub='_all', bpe_max=None
             c_start = sent.index(highlight)
             c_end   = c_start + len(highlight)
             
-            #print( len(sent), sent_nlp_offsets ) 
-          
+            #print(len(sent), c_start, sent_nlp_offsets)
+            #print( highlight, '|', sent ) 
             #word_start = sent_nlp_offsets.index(c_start) 
             word_start = 0
-            while sent_nlp_offsets[word_start]<c_start:
+            while word_start<sent_nlp_offsets_len and sent_nlp_offsets[word_start]<c_start:
               word_start+=1
+              
+            if word_start>=sent_nlp_offsets_len: # NOT FOUND as a single word
+              continue  # eg: Last 'word' = 'http://de.wikipedia.org/wiki/Offenburg#St.C3.A4dtepartnerschaften'
+              
             word_end = word_start+1
             while word_end<sent_nlp_offsets_len and sent_nlp_offsets[word_end]<c_end:
               word_end+=1
@@ -355,18 +361,24 @@ if __name__ == '__main__':
     
     tokens_special = len(text_encoder.encoder) - tokens_regular  # Number of extra tokens
   
-    if True:  # This tests the various files - takes ~2h30 for all
-      if False:
+    if True:  # This tests the various files - takes <5hrs
+      if True:  # 4h15mins ?
         train_file, valid_train_ids_all = valid_relations(relation_phase='train', relation_fold=args.fold, 
                                                       len_max_return=n_ctx*6, skip_too_long=False, only_positive=False,)
                                                       
         train_hdf5 = save_relations(train_file, valid_ids=valid_train_ids_all)  # Saves ALL
         
-      if True:
+      if False:  # <12secs
         dev_file, valid_dev_ids_all = valid_relations(relation_phase='dev', relation_fold=args.fold, 
                                                       len_max_return=n_ctx*6, skip_too_long=False, only_positive=False,)
                                                       
         dev_hdf5 = save_relations(dev_file, valid_ids=valid_dev_ids_all)  # Saves ALL
+      
+      if True:   # <4mins
+        test_file, valid_test_ids_all = valid_relations(relation_phase='test', relation_fold=args.fold, 
+                                                      len_max_return=n_ctx*6, skip_too_long=False, only_positive=False,)
+                                                      
+        test_hdf5 = save_relations(test_file, valid_ids=valid_test_ids_all)  # Saves ALL
       
       exit(0)
 
