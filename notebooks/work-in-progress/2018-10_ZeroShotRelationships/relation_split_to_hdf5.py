@@ -275,7 +275,13 @@ def save_relations(relation_file, valid_ids=None, file_stub='_all', bpe_max=None
           bpe_head = sent_enc_offsets[ tok.head.i ] + sent_offset
           if bpe_loc<bpe_max:
             zs_np[0, bpe_loc ] = bpe_head
-
+  
+        #print( xs_np[0, :len_xs] )
+        #print( ys_np[0, :len_xs] )
+        #print( zs_np[0, :len_xs] )
+        
+        #print( text_encoder.decode( list( xs_np[0, :len_xs] ) ) )
+        #print( list( enumerate( zip( list(xs_np[0, :len_xs]), list(ys_np[0, :len_xs]), list(zs_np[0, :len_xs])) ) ))
        
         h5_data1[idx,:] = xs_np
         h5_data2[idx,:] = ys_np
@@ -286,7 +292,37 @@ def save_relations(relation_file, valid_ids=None, file_stub='_all', bpe_max=None
   #print(i, valid, len_max_count, len_max_count/i*100.)
   return file_out
 
+"""  Dependencies make sense!
+| what party does willem drees serve ? | willem drees was born in amsterdam on july 5 , 1886 . |
+[(40478, 0, 0), 
 
+1(599, 0, 2), what 
+2(2555, 0, 7), party
+3(1056, 0, 7), does
+4(25912, 0, 5), willem
+5(975, 0, 7), (514, 0, 0), drees
+7(4103, 0, 7), serve
+8(257, 0, 7),  ?
+
+(40479, 0, 0), 
+
+
+
+10(25912, 1, 11), willem
+11(975, 0, 14), (514, 0, 0), drees
+13(509, 2, 14), was
+14(3105, 0, 14), born
+15(500, 0, 14), in 
+16(23680, 0, 15), amsterdam
+17(504, 0, 14),  on
+18(10128, 0, 17), july
+19(284, 0, 18),  5 
+20(240, 0, 18), ','
+21(8083, 0, 18), (35962, 0, 0),  1886
+23(239, 0, 14),   '.'
+
+(40480, 0, 0)]
+"""
 
 
 if __name__ == '__main__':

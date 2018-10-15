@@ -154,7 +154,8 @@ class TextEncoder(object):
       dec, w = [], ''
       for s in bpe_arr:
         #print(s, self.decoder[s])
-        d = self.decoder[s]
+        #d = self.decoder[s]
+        d = self.decoder[s] if s<len(self.decoder) else '|</w>'
         if d.endswith('</w>'):
           dec.append(w+d[:-4])
           w=''
