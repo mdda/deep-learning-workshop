@@ -247,6 +247,12 @@ def save_relations(relation_file, valid_ids=None, file_stub='_all', bpe_max=None
         if ques_arg not in sent:
           print("MISSING ENTITY : '%s' not in '%s'" % (ques_arg, sent))
           exit(0)
+
+        # Possibly, do the ques_xxx highlighting
+
+        # Next : Do the dependency zs
+        #  Required (easy to do both)
+
       
         #ys_np = np.zeros((1, bpe_max), dtype=np.bool)
         #for bpe_start, bpe_end in bpe_ranges:
