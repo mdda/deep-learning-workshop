@@ -141,10 +141,10 @@ class TextEncoder(object):
       return [item for sublist in bpes for item in sublist]
       
     def cumlen_bpes(self, bpes):
-      lens,tot=[],0
+      lens,tot=[0],0
       for b in bpes:
-        lens.append(tot)
         tot+= len(b)
+        lens.append(tot)
       return lens  # Returns arr[ word_idx ] -> bpe_offset
 
     def decode(self, bpe_arr):  # This is a flat array

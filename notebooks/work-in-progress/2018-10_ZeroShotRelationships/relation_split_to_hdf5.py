@@ -166,6 +166,7 @@ def save_relations(relation_file, valid_ids=None, file_stub='_all', bpe_max=None
 
         # Need these for answer offsets, and dependency offsets
         sent_nlp_offsets = [ token.idx for token in sent_nlp ]
+        sent_nlp_offsets_len = len(sent_nlp_offsets)
         sent_enc_offsets = text_encoder.cumlen_bpes( sent_encs )
         
         if len(each) > 4:
@@ -180,15 +181,27 @@ def save_relations(relation_file, valid_ids=None, file_stub='_all', bpe_max=None
             c_start = sent.index(ans)
             c_end   = c_start + len(ans)
             
-            word_start = sent_nlp_offsets.index(c_start) 
-            word_end   = sent_nlp_offsets.index(c_end) 
+            #print( len(sent), sent_nlp_offsets ) 
           
-            blp_start = sent_enc_offsets[ word_start ]
-            blp_end   = sent_enc_offsets[ word_end ]
+            word_start = sent_nlp_offsets.index(c_start) 
+            word_end = word_start+1
+            while word_end<sent_nlp_offsets_len and sent_nlp_offsets[word_end]<c_end:
+              word_end+=1
             
-            ys_np[ blp_start ] = 1
-            ys_np[ blp_end ]   = 2
+            #print(ans, word_start, word_end, sent_nlp_offsets[word_start], sent_nlp_offsets[word_end], )
+            
+            bpe_start = sent_enc_offsets[ word_start ]
+            bpe_end   = sent_enc_offsets[ word_end ] 
+            
+            if sent_offset+bpe_start<bpe_max:
+              ys_np[0, sent_offset+bpe_start ] = 1
+            if sent_offset+bpe_end<bpe_max:
+              ys_np[0, sent_offset+bpe_end ]   = 2
 
+            if True:
+              print( ans )
+              print( text_encoder.decode( sent_enc[bpe_start:bpe_end] ) )
+            
             
           if False:
             for ans in ans_list:
