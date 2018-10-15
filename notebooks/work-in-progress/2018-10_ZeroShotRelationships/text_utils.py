@@ -38,7 +38,9 @@ class TextEncoder(object):
     """
 
     def __init__(self, encoder_path, bpe_path):
-        self.nlp = spacy.load('en', disable=['parser', 'tagger', 'ner', 'textcat'])
+        #self.nlp = spacy.load('en', disable=['parser', 'tagger', 'ner', 'textcat'])
+        self.nlp = spacy.load('en', disable=['ner', 'textcat']) # 'parser', 'tagger', 
+        
         self.encoder = json.load(open(encoder_path))
         self.decoder = {v:k for k,v in self.encoder.items()}
         merges = open(bpe_path, encoding='utf-8').read().split('\n')[1:-1]
@@ -109,7 +111,7 @@ class TextEncoder(object):
                 texts_tokens.append(text_tokens)
         return texts_tokens
 
-    def encode_and_clean(self, texts):
+    def encode_and_clean(self, text):
         texts_bpes, texts_clean, lens_bpes = [], [], []
         if True:
             for text in texts:
@@ -125,6 +127,34 @@ class TextEncoder(object):
                 texts_bpes.append(text_bpe)
                 lens_bpes.append(len_bpe)
         return texts_bpes, texts_clean, lens_bpes
+
+    def encode_nlp(self, text_nlp):  # text_nlp is a spacy nlp(text)
+        #text_nlp = self.nlp(text_standardize(ftfy.fix_text(text)))
+        bpes = []
+        for token in text_nlp:
+            token_text = token.text
+            bpe = [self.encoder.get(t, 0) for t in self.bpe(token_text.lower()).split(' ')]
+            bpes.append(bpe)
+        return bpes # This is an array of word-ish arrays
+        
+    def flatten_bpes(self, bpes):
+      return [item for sublist in bpes for item in sublist]
+
+    def decode(self, bpe_arr):  # This is a flat array
+      #for s in bpe_arr:
+      #  print(s, self.decoder[s])
+      #dec = ''.join([ self.decoder[s] for s in bpe])
+      dec, w = [], ''
+      for s in bpe_arr:
+        #print(s, self.decoder[s])
+        d = self.decoder[s]
+        if d.endswith('</w>'):
+          dec.append(w+d[:-4])
+          w=''
+        else:
+          w+=d
+      return ' '.join(dec)
+
 
 # Ought to have bpe decoder ...
 # https://github.com/eladhoffer/seq2seq.pytorch/blob/master/seq2seq/tools/tokenizer.py

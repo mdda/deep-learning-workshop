@@ -231,17 +231,17 @@ if __name__ == '__main__':
     n_ctx = args.n_ctx
 
     text_encoder = TextEncoder(args.encoder_path, args.bpe_path)
-    encoder = text_encoder.encoder
+    #encoder = text_encoder.encoder
     n_vocab = len(text_encoder.encoder)
     
     tokens_regular = n_vocab
-    token_start = encoder['_start_']     = len(encoder)  # Last number (increments)
-    token_delim = encoder['_delimiter_'] = len(encoder)  # Last number (increments)
-    token_clf   = encoder['_classify_']  = len(encoder)  # Last number (increments)
+    token_start = text_encoder.encoder['_start_']     = len(text_encoder.encoder)  # Last number (increments)
+    token_delim = text_encoder.encoder['_delimiter_'] = len(text_encoder.encoder)  # Last number (increments)
+    token_clf   = text_encoder.encoder['_classify_']  = len(text_encoder.encoder)  # Last number (increments)
     
-    tokens_special = len(encoder) - tokens_regular  # Number of extra tokens
+    tokens_special = len(text_encoder.encoder) - tokens_regular  # Number of extra tokens
   
-    if True:  # This tests the various files - takes ~2h30 for all
+    if False:  # This tests the various files - takes ~2h30 for all
       save_relations(file_stub='_pos', relation_phase='train', only_positive=True)  
       save_relations(file_stub='_all', relation_phase='train', only_positive=False)  
       
@@ -251,6 +251,24 @@ if __name__ == '__main__':
       #save_relations(file_stub='_pos', relation_phase='test', only_positive=True)  
       save_relations(file_stub='_all', relation_phase='test', only_positive=False)  
     
+    s="This is a simple test of the text encoder. It's difficult to believe it will work."
+    #encs, cleans, lens = text_encoder.encode_and_clean([s])
+    #print(encs[0], cleans[0], lens[0])
+    #print( text_encoder.decode(encs[0]) )
+
+    s_nlp = text_encoder.nlp(s)
+    bpes = text_encoder.encode_nlp(s_nlp)
+    print( bpes )
+    #bpe = [item for sublist in bpes for item in sublist]
+    bpe = text_encoder.flatten_bpes(bpes)
+    #print( bpe )
+    print( s )
+    print( text_encoder.decode(bpe) )
+    
+    for token in s_nlp:
+      print( "%3d : %2d %10s %2d %10s" % (token.idx, token.i, token.text, token.head.i, token.head.text,) )
+    
+    #for token in doc:    
     exit(0)
     save_relations(file_stub=args.stub, relation_phase=args.phase, relation_fold=args.fold, only_positive=args.positive)  
     
