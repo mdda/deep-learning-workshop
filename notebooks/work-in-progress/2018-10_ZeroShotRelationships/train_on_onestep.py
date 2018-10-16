@@ -359,7 +359,7 @@ if __name__ == '__main__':
           #dep_loss_tot = dep_loss_masked.sum() / batch_size
           dep_loss_tot = dep_loss.masked_fill_( deps==0, 0. ).sum()
           
-          print("Factor hints (class_loss=%8.4f, deps_loss=%10.4f, fac=%.8f)" % ( class_loss_tot.item(), dep_loss_tot.item(), class_loss_tot.item()/dep_loss_tot.item(), ))
+          factor_hints="Factor hints (class_loss=%8.4f, deps_loss=%10.4f, fac=%.8f)" % ( class_loss_tot.item(), dep_loss_tot.item(), class_loss_tot.item()/dep_loss_tot.item(), )
           #factor hints :  (231.14927673339844, 225.23297119140625, 1.0262674932124587)
 
           batch_loss = class_loss_tot + args.dep_fac * dep_loss_tot
@@ -373,12 +373,9 @@ if __name__ == '__main__':
           
           if idx % 10 == 0:
             print('%.1f%% of epoch %d' % (idx / float(len(train_loader)) * 100, epoch,), end='\r')  # Python 3 FTW!
-            #break
 
-          #if idx % 10 == 0:
-          #  calc_duration = time.time()-start
-          #  epoch_max_end = (epoch_max-epoch)*epoch_duration + time.time()
-          #  print("Time used in epoch %d: %.1f" % (epoch, epoch_duration, ))
+          if idx % 100 == 0:
+            print(factor_hints)
 
           sentences_since_last_check = (idx-idx_loss_check)*batch_size
           if sentences_since_last_check > 50000:  # Potentially save every 50000 sentences  (~30mins)
