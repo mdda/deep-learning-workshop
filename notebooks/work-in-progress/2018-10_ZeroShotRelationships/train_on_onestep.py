@@ -88,8 +88,9 @@ class StepwiseClassifierModel(nn.Module):
         nn.init.normal_(self.stepwise_classifier.weight, std = 0.02)
         nn.init.normal_(self.stepwise_classifier.bias, 0)
         
-        # Add the attention pointer network
-        
+        # Add the attention pointer idea
+        self.c_attn = Conv1D(self.n_embd*2, 1, self.n_embd)
+        self.attn_dropout = nn.Dropout(cfg.attn_pdrop)
 
     def forward(self, x):   # x is the input text
         ## NO : x ~ np.zeros((n_batch, 2, n_ctx, 2), dtype=np.int32)  # This is for their 0 vs 1 model
@@ -104,8 +105,31 @@ class StepwiseClassifierModel(nn.Module):
 
         task_logits = self.stepwise( h.view(-1, self.n_embd) ).view(-1, x.size(1), self.n_classifier)
         # Should be (n_batch, n_ctx, n_classifier)
+
+
+        # Also project h on to the attention pointer
+        # ~ Attention.forward
+        attn = self.c_attn(h)
+      
+        # reshape for query and key
+        query, key = attn.split(self.n_embd, dim=2)
         
-        return task_logits
+        # ~ Attention.split_heads(self, x, k=False):
+        new_h_shape = h.size()[:-1] + (1 , h.size(-1))  # Insert an extra dimension
+        query = query.view(*new_h_shape).permute(0, 2, 1, 3)  
+        key   = key.view(  *new_h_shape).permute(0, 2, 3, 1)
+        
+        # ~ Attention._attn(self, q, k, v):
+        w = torch.matmul(query, key)
+        #if True:  # self.scale:
+        #  w = w / math.sqrt(self.n_embd)
+        
+        # Now, we have a weighting matrix (logits) over the different locations
+        #w = nn.Softmax(dim=-1)(w)   # 
+        print("w.size()=", w.size())
+        attn_logits = w 
+        
+        return task_logits, attn_logits
 
 
 
@@ -241,7 +265,8 @@ if __name__ == '__main__':
     #                                             args.lm_coef,
     #                                             model_opt)
                                                  
-    load_openai_pretrained_model(model_stepwise.transformer, n_ctx=n_ctx, n_special=args.tokens_special,  # n_ctx adjust for embedding...
+    load_openai_pretrained_model(model_stepwise.transformer, 
+                                 n_special=args.tokens_special,  n_ctx=n_ctx,   # n_ctx adjusts embedding size to include positional
                                  path=pretrained_model_path+'/',
                                  path_names=os.path.join('.', 'orig', 'pytorch-openai-transformer-lm')+'/',
                                 )
