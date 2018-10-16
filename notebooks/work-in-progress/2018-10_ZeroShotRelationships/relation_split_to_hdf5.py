@@ -85,22 +85,22 @@ def save_relations(relation_file, valid_ids=None, file_stub='_all', bpe_max=None
                            compression=None,
                            dtype='int8')  # >>bpe_max
 
-    def fixer(s):
-      return ((' '+s+' ')
-               .replace('F.C.', '#FC').replace('F.C', '#FC')
-               .replace(' Jr.', ' #JUNIOR').replace(' Jr ', ' #JUNIOR ')
-               .replace(' Inc.', ' #INC').replace(' Inc ', ' #INC ')
-               .replace(' Bros.', ' #BROS').replace(' Bros ', ' #BROS ')
-               .replace(' Co.', ' #CO').replace(' Co ', ' #CO ')
-               .replace(' B.V.', ' #BV').replace(' B.V ', ' #BV ')
-               .replace(' D.C.', ' #DC').replace(' D.C ', ' #DC ')
-               .replace(' Mousse T. ', ' #MOUSSET ').replace(' Mousse T ', ' #MOUSSET ')
-               .replace(' S.C.S.C.', ' #SCSC').replace(' S.C.S.C ', ' #SCSC ')
-               .replace(' R.I.O.', ' #RIO').replace(' R.I.O ', ' #RIO ')
-               .replace('S.K.', '#SK').replace('S.K', '#SK')
-               .replace(' B2 K ', ' #B2K ').replace(' B2K', ' #B2K')
-               .replace(' E.N.I.', ' #ENI').replace(' E.N.I ', ' #ENI ')
-             ).strip()
+    #def fixer(s):
+    #  return ((' '+s+' ')
+    #           .replace('F.C.', '#FC').replace('F.C', '#FC')
+    #           .replace(' Jr.', ' #JUNIOR').replace(' Jr ', ' #JUNIOR ')
+    #           .replace(' Inc.', ' #INC').replace(' Inc ', ' #INC ')
+    #           .replace(' Bros.', ' #BROS').replace(' Bros ', ' #BROS ')
+    #           .replace(' Co.', ' #CO').replace(' Co ', ' #CO ')
+    #           .replace(' B.V.', ' #BV').replace(' B.V ', ' #BV ')
+    #           .replace(' D.C.', ' #DC').replace(' D.C ', ' #DC ')
+    #           .replace(' Mousse T. ', ' #MOUSSET ').replace(' Mousse T ', ' #MOUSSET ')
+    #           .replace(' S.C.S.C.', ' #SCSC').replace(' S.C.S.C ', ' #SCSC ')
+    #           .replace(' R.I.O.', ' #RIO').replace(' R.I.O ', ' #RIO ')
+    #           .replace('S.K.', '#SK').replace('S.K', '#SK')
+    #           .replace(' B2 K ', ' #B2K ').replace(' B2K', ' #B2K')
+    #           .replace(' E.N.I.', ' #ENI').replace(' E.N.I ', ' #ENI ')
+    #         ).strip()
     
     idx, bpe_truncate_count = 0, 0
     with open(relation_file, 'r') as fp:
@@ -296,6 +296,7 @@ def save_relations(relation_file, valid_ids=None, file_stub='_all', bpe_max=None
         idx+=1 
 
   #print(i, valid, len_max_count, len_max_count/i*100.)
+  print("Saved to %s" % (file_out,))
   return file_out
 
 """  Dependencies make sense!
@@ -361,6 +362,8 @@ if __name__ == '__main__':
     
     tokens_special = len(text_encoder.encoder) - tokens_regular  # Number of extra tokens
   
+    vocab_count = tokens_regular + tokens_special
+  
     if args.phase is not None:  # This creates the various HDF5 files - takes <5hrs for --phase=train,dev,test
       if 'train' in args.phase:  # 4h15mins ?
         train_file, valid_train_ids_all = valid_relations(relation_phase='train', relation_fold=args.fold, 
@@ -381,7 +384,7 @@ if __name__ == '__main__':
         test_hdf5 = save_relations(test_file, valid_ids=valid_test_ids_all)  # Saves ALL
       
 
-      if False;
+      if False:
         valid_train_ids_all = valid_relations(relation_phase='train', relation_fold=args.fold, len_max_return=n_ctx*6, skip_too_long=False)
         valid_train_ids_pos = valid_relations(relation_phase='train', relation_fold=args.fold, len_max_return=n_ctx*6, skip_too_long=True)
         
@@ -418,6 +421,8 @@ if __name__ == '__main__':
         # idx is a character-wise index in the original document
         print( "%3d : %2d %10s %2d %10s" % (token.idx, token.i, token.text, token.head.i, token.head.text,) )
     
+    print("--token_clf=%d" % (token_clf, ))
+    print("--vocab_count=%d" % (vocab_count, ))
     exit(0)
     
     

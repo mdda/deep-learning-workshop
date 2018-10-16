@@ -8,85 +8,32 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
+import h5py
+from torch.utils.data import Dataset
+from torch.utils.data import DataLoader
+
+#from text_utils import TextEncoder   # This is my version
+
 sys.path.append('orig/pytorch-openai-transformer-lm')
 from model_pytorch import TransformerModel, load_openai_pretrained_model, DEFAULT_CONFIG
 from opt import OpenAIAdam
-from text_utils import TextEncoder
 from utils import ResultLogger
-
-import csv
 
 pretrained_model_path = os.path.join('.', 'orig', 'finetune-transformer-lm', 'model')
 
 # So, let's read in a text file
 relation_splits_path = os.path.join('.', 'orig', 'omerlevy-bidaf_no_answer-2e9868b224e4', 'relation_splits', )
 
-
 #   840000  31087632 191519344 orig/omerlevy-bidaf_no_answer-2e9868b224e4/relation_splits/train.1
 #      600     21854    136415 orig/omerlevy-bidaf_no_answer-2e9868b224e4/relation_splits/dev.1
 #    12000    427110   2688895 orig/omerlevy-bidaf_no_answer-2e9868b224e4/relation_splits/test.1
 #   852600  31536596 194344654 total
 
-def yield_relations(relation_phase='train', relation_split=1, only_positive=True, len_max_return=512):
-  relation_file=os.path.join( relation_splits_path, "%s.%d" % (relation_phase, relation_split))
-  valid, len_max_txt, len_max_count = 0,0,0
-  with open(relation_file, 'r') as fp:
-    reader = csv.reader(fp, delimiter='\t')
-    for i, each in enumerate(reader):
-      rel, ques_xxx, ques_arg, sent = each[:4]
-      ques = ques_xxx.replace('XXX', ques_arg)
-        
-      indices = []
-      if len(each) > 4:
-        ans_list = each[4:]
-        # These are offsets in characters
-        indices = [(sent.index(ans), sent.index(ans) + len(ans)) for ans in ans_list]
-        #starts, ends = zip(*indices)
-        #ans_start = min(starts)
-        #ans_end = max(ends)
-        #ans = sent[ans_start:ans_end]
-        #qa['answers'].append({'text': ans, 'answer_start': ans_start})
-      else:
-        # Negative example
-        pass
-            
-      #print(rel, indices)
-      #enc_ques = text_encoder.encode(ques, verbose=False)
-      #print( len(ques), len(enc_ques) )
-      #if len(ques) != len(enc_ques):
-      #  print( ques )
-      #print( enc_ques )
-    
-      if i % 10000 == 0:
-        print("Line %d" % (i,))
-    
-      if ques_arg not in sent:
-        print("MISSING ENTITY : '%s' not in '%s'" % (ques_arg, sent))
-    
-      if only_positive and len(indices)==0:
-        continue
-      
-      len_txt = len(ques) + len(sent) + 3
-      
-      if len_max_txt<len_txt:
-        len_max_txt=len_txt
-        #print( ques, sent )
-        #print(len_max_txt)
-        
-      if len_txt>len_max_return:
-        len_max_count+=1
-        print("Skipping #%i, len_max_count=%d, len_max_txt=%d, pct_long=%.2f%%" % (i, len_max_count, len_max_txt,  len_max_count/i*100., ))
-        continue
-        
-      valid += 1  # We're going to want this for the hdf5 accessible version
-      
-      #if i>1000: break
-      
-      #yield i, ques, sent, indices
-      
-  print(i, valid, len_max_count, len_max_txt,  len_max_count/i*100.)
-
 # TODO : Fn to get list of relationship_types and relationship_templates for each type
+
+
+# Props to : https://github.com/rasbt/deep-learning-book/blob/master/code/model_zoo/pytorch_ipynb/custom-data-loader-csv.ipynb
+
 
 
 
@@ -152,9 +99,15 @@ if __name__ == '__main__':
     parser.add_argument('--clf_pdrop', type=float, default=0.1)
     parser.add_argument('--afn', type=str, default='gelu')
     # Standard for pre-trained model  END
+
     
     parser.add_argument('--encoder_path', type=str, default=pretrained_model_path+'/encoder_bpe_40000.json')
     parser.add_argument('--bpe_path', type=str, default=pretrained_model_path+'/vocab_40000.bpe')
+    
+    parser.add_argument('--relation_hdf5', type=str, default='dev.1_all.hdf5')
+    parser.add_argument('--token_clf', type=int, default=40480)  # Printed out by relation_split_to_hdf5
+    parser.add_argument('--vocab_count', type=int, default=40481)  # Printed out by relation_split_to_hdf5
+
 
     parser.add_argument('--l2', type=float, default=0.01)
     parser.add_argument('--vector_l2', action='store_true')
@@ -192,56 +145,31 @@ if __name__ == '__main__':
 
     logger = ResultLogger(path=os.path.join(log_dir, '{}.jsonl'.format(desc)), **args.__dict__)
     
-    text_encoder = TextEncoder(args.encoder_path, args.bpe_path)
-    encoder = text_encoder.encoder
-    n_vocab = len(text_encoder.encoder)
-
-    #print("Encoding dataset...")
-    #((trX1, trX2, trX3, trY),
-    # (vaX1, vaX2, vaX3, vaY),
-    # (teX1, teX2, teX3)) = encode_dataset(*rocstories(data_dir, n_valid=args.n_valid),
-    #                                      encoder=text_encoder)
-    
-    tokens_regular = n_vocab
-    encoder['_start_']     = len(encoder)  # Last number (increments)
-    encoder['_delimiter_'] = len(encoder)  # Last number (increments)
-    encoder['_classify_']  = len(encoder)  # Last number (increments)
-    token_clf = encoder['_classify_']
+    #text_encoder = TextEncoder(args.encoder_path, args.bpe_path)
+    #encoder = text_encoder.encoder
+    #n_vocab = len(text_encoder.encoder)
+    #
+    #tokens_regular = n_vocab
+    #encoder['_start_']     = len(encoder)  # Last number (increments)
+    #encoder['_delimiter_'] = len(encoder)  # Last number (increments)
+    #encoder['_classify_']  = len(encoder)  # Last number (increments)
+    #token_clf = encoder['_classify_']
+    token_clf = args.token_clf
     
     #n_special = tokens_special =3  
-    tokens_special = len(encoder) - tokens_regular  # Number of extra tokens
-    
-    #yield_relations(relation_phase='train', only_positive=False)  # 832336
-    #yield_relations(relation_phase='train', only_positive=True)   # 417627
-    #yield_relations(relation_phase='test', only_positive=False)   #  11892
-    #yield_relations(relation_phase='test', only_positive=True)    #   5940
-    exit(0)
-    
-    #max_len = n_ctx // 2 - 2
-    
-    #n_ctx = min(max(
-    #    [len(x1[:max_len]) + max(len(x2[:max_len]),
-    #                             len(x3[:max_len])) for x1, x2, x3 in zip(trX1, trX2, trX3)]
-    #    + [len(x1[:max_len]) + max(len(x2[:max_len]),
-    #                               len(x3[:max_len])) for x1, x2, x3 in zip(vaX1, vaX2, vaX3)]
-    #    + [len(x1[:max_len]) + max(len(x2[:max_len]),
-    #                               len(x3[:max_len])) for x1, x2, x3 in zip(teX1, teX2, teX3)]
-    #    ) + 3, n_ctx)
-    
-    #n_ctx = 100 # max length of encoded strings...
-        
-    vocab = tokens_regular + tokens_special + n_ctx
-    
-    #trX, trM = transform_roc(trX1, trX2, trX3)
-    #vaX, vaM = transform_roc(vaX1, vaX2, vaX3)
-    
-    #if submit:
-    #    teX, teM = transform_roc(teX1, teX2, teX3)
+    #tokens_special = len(encoder) - tokens_regular  # Number of extra tokens
 
-    #n_train = len(trY)
-    #n_valid = len(vaY)
-    #n_batch_train = args.n_batch * max(n_gpu, 1)
-    #n_updates_total = (n_train // n_batch_train) * args.n_iter
+    
+    relation_hdf5 = os.path.join(relation_splits_path, args.relation_hdf5)
+    with h5py.File(relation_hdf5, 'r') as h5f:
+      print(h5f['features'].shape)
+      print(h5f['labels'].shape)
+      print(h5f['deps'].shape)
+
+    #n_ctx = args.n_ctx   # max length of encoded strings...
+    #vocab_max = args.vocab_count + n_ctx
+
+    exit(0)
     
     n_updates_total = (840000 // args.batch_size) * args.n_epoch
 
