@@ -72,7 +72,7 @@ class Hdf5Dataset(Dataset):
     features_with_positions = np.stack( [ features, self.postitional_encoder ], axis=1 )
     #print(features.shape, features_with_positions.shape)  # (128,) (128, 2)
       
-    return features_with_positions, labels, deps
+    return features_with_positions, labels.astype(np.int32), deps.astype(np.int32)
 
   def __len__(self):
     return self.num_entries
@@ -83,17 +83,19 @@ class Hdf5Dataset(Dataset):
 
 class StepwiseClassifierModel(nn.Module):
     """ Transformer with stepwise classifier(s) """
-    def __init__(self, cfg, n_classifier=2, one_hot=True, vocab_count=None, n_ctx=128): # 40990
+    def __init__(self, cfg, n_classifier=None, one_hot=True, vocab_count=None, n_ctx=128): # 40990
         super(StepwiseClassifierModel, self).__init__()
         self.n_embd = cfg.n_embd
         self.n_ctx = n_ctx
         self.n_classifier = n_classifier
         
         self.transformer = TransformerModel(cfg, vocab=vocab_count+n_ctx, n_ctx=n_ctx)
-        self.stepwise_classifier = nn.Linear(self.n_embd, n_classifier)
+        
+        #self.stepwise_classifier = nn.Linear(self.n_embd, n_classifier)
+        #nn.init.normal_(self.stepwise_classifier.weight, std = 0.02)
+        #nn.init.normal_(self.stepwise_classifier.bias, 0)
 
-        nn.init.normal_(self.stepwise_classifier.weight, std = 0.02)
-        nn.init.normal_(self.stepwise_classifier.bias, 0)
+        self.stepwise_classifier = Conv1D(n_classifier, 1, self.n_embd)
         
         # Add the attention pointer idea
         self.c_attn = Conv1D(self.n_embd*2, 1, self.n_embd)
@@ -110,8 +112,12 @@ class StepwiseClassifierModel(nn.Module):
         #task_logits = self.task_head(h, x)
         #return lm_logits, task_logits
 
-        task_logits = self.stepwise( h.view(-1, self.n_embd) ).view(-1, x.size(1), self.n_classifier)
-        # Should be (n_batch, n_ctx, n_classifier)
+        #task_logits = self.stepwise_classifier( h.view(-1, self.n_embd) )
+        #.view(-1, x.size(1), self.n_classifier)
+        
+        task_logits = self.stepwise_classifier( h ).permute( 0, 2, 1) # CrossEntropy expects classifier to be in second position
+        #print("task_logits.size()=",  task_logits.size() ) 
+        #       task_logits.size()= torch.Size([8, 5, 128])  (n_batch, n_classifier, n_ctx)
 
 
         # Also project h on to the attention pointer
@@ -122,19 +128,30 @@ class StepwiseClassifierModel(nn.Module):
         query, key = attn.split(self.n_embd, dim=2)
         
         # ~ Attention.split_heads(self, x, k=False):
-        new_h_shape = h.size()[:-1] + (1 , h.size(-1))  # Insert an extra dimension
-        query = query.view(*new_h_shape).permute(0, 2, 1, 3)  
-        key   = key.view(  *new_h_shape).permute(0, 2, 3, 1)
+        #new_h_shape = h.size()[:-1] + (1 , h.size(-1))  # Insert an extra dimension
+        #query = query.view(*new_h_shape).permute(0, 2, 1, 3)  
+        #key   = key.view(  *new_h_shape).permute(0, 2, 3, 1)
+        #query = query.view(*new_h_shape).permute(0, 1, 3)  
+        
+        # Above can be simplified, since we don't need to get too fancy...
+        key   = key.permute(0, 2, 1)
+        #print( "query.size()=", query.size())
+        #        query.size()= torch.Size([8, 128, 768])  = batch, time_step, matcher
+        #print( "key.size()=", key.size())
+        #        key.size()= torch.Size([8, 768, 128])    = batch, matcher, time_step
         
         # ~ Attention._attn(self, q, k, v):
         w = torch.matmul(query, key)
-        #if True:  # self.scale:
-        #  w = w / math.sqrt(self.n_embd)
+        if True:  # self.scale:
+          w = w / np.sqrt(self.n_embd)  # simple scaling, since we're adding up a dot product
         
         # Now, we have a weighting matrix (logits) over the different locations
         #w = nn.Softmax(dim=-1)(w)   # 
-        print("w.size()=", w.size())
-        attn_logits = w 
+        
+        #print("w.size()=", w.size())
+        #       w.size()= torch.Size([8, 128, 128])  ( thinking about it : batch, time_step, position_score )
+
+        attn_logits = w.permute( 0, 2, 1) # CrossEntropy expects classifier to be in second position ( batch, position_score, time_step )
         
         return task_logits, attn_logits
 
@@ -184,13 +201,14 @@ if __name__ == '__main__':
 
     
     parser.add_argument('--encoder_path', type=str, default=pretrained_model_path+'/encoder_bpe_40000.json')
-    parser.add_argument('--bpe_path', type=str, default=pretrained_model_path+'/vocab_40000.bpe')
+    parser.add_argument('--bpe_path',     type=str, default=pretrained_model_path+'/vocab_40000.bpe')
     
     parser.add_argument('--relation_hdf5', type=str, default='dev.1_all.hdf5')
     
     parser.add_argument('--tokens_special', type=int, default=3)  # Printed out by relation_split_to_hdf5
-    parser.add_argument('--token_clf', type=int, default=40480)   # Printed out by relation_split_to_hdf5
-    parser.add_argument('--vocab_count', type=int, default=40481) # Printed out by relation_split_to_hdf5
+    parser.add_argument('--token_clf',      type=int, default=40480) # Printed out by relation_split_to_hdf5
+    parser.add_argument('--vocab_count',    type=int, default=40481) # Printed out by relation_split_to_hdf5
+    parser.add_argument('--n_classes',      type=int, default=5)     #  #label classes = len({0, 1,2, 3,4})
     #parser.add_argument('--n_ctx', type=int, default=128)   # Max length of input texts in bpes - get this from input hdf5 shapes
 
     parser.add_argument('--batch_size_per_gpu', type=int, default=8)
@@ -270,7 +288,7 @@ if __name__ == '__main__':
                       batch_size=batch_size, 
                       shuffle=False, num_workers=4)
     
-    model_stepwise = StepwiseClassifierModel(args, n_classifier=2, vocab_count=args.vocab_count)
+    model_stepwise = StepwiseClassifierModel(args, n_classifier=args.n_classes, vocab_count=args.vocab_count)
 
     #criterion = nn.CrossEntropyLoss(reduce=False)
     model_opt = OpenAIAdam(model_stepwise.parameters(),
@@ -332,12 +350,12 @@ if __name__ == '__main__':
           #batch_loss = ce_loss(output, target)
           
           # https://pytorch.org/docs/stable/nn.html?highlight=loss#torch.nn.BCEWithLogitsLoss
-          class_loss = nn.BCEWithLogitsLoss()( out_class_logits, labels )
+          class_loss = nn.CrossEntropyLoss(reduction='none')( out_class_logits, labels )
           print(class_loss.size())
           class_loss_tot = class_loss.sum() / batch_size
           
           # The dep loss should be ignored for those deps which == 0
-          dep_loss = nn.BCEWithLogitsLoss()( out_deps_logits, deps )
+          dep_loss = nn.CrossEntropyLoss(reduction='none')( out_deps_logits, deps )
           print(dep_loss.size())
           dep_loss_masked = dep_loss * ( deps>0 )  # This zeros out all positions where deps == 0
           dep_loss_tot = dep_loss_masked.sum() / batch_size

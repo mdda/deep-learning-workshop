@@ -78,12 +78,12 @@ def save_relations(relation_file, valid_ids=None, file_stub='_all', bpe_max=None
     h5_data2 = h5f.create_dataset('labels',
                            shape=(len(valid_ids), bpe_max),
                            compression=None,
-                           dtype='int8')
+                           dtype='uint8')
 
     h5_data3 = h5f.create_dataset('deps',
                            shape=(len(valid_ids), bpe_max),
                            compression=None,
-                           dtype='int8')  # >>bpe_max
+                           dtype='uint8')  # >>bpe_max
 
     #def fixer(s):
     #  return ((' '+s+' ')
