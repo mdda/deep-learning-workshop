@@ -336,7 +336,7 @@ if __name__ == '__main__':
     
     parser.add_argument('--n_ctx', type=int, default=128)
     
-    parser.add_argument('--phase', type=str, default='train')
+    parser.add_argument('--phase', type=str, default=None)
     parser.add_argument('--fold',  type=int, default=1)
     parser.add_argument('--stub',  type=str, default='')
     parser.add_argument('--positive',  type=bool, default=False)
@@ -361,33 +361,33 @@ if __name__ == '__main__':
     
     tokens_special = len(text_encoder.encoder) - tokens_regular  # Number of extra tokens
   
-    if True:  # This tests the various files - takes <5hrs
-      if True:  # 4h15mins ?
+    if args.phase is not None:  # This creates the various HDF5 files - takes <5hrs for --phase=train,dev,test
+      if 'train' in args.phase:  # 4h15mins ?
         train_file, valid_train_ids_all = valid_relations(relation_phase='train', relation_fold=args.fold, 
                                                       len_max_return=n_ctx*6, skip_too_long=False, only_positive=False,)
                                                       
         train_hdf5 = save_relations(train_file, valid_ids=valid_train_ids_all)  # Saves ALL
         
-      if False:  # <12secs
+      if 'dev' in args.phase:  # <12secs
         dev_file, valid_dev_ids_all = valid_relations(relation_phase='dev', relation_fold=args.fold, 
                                                       len_max_return=n_ctx*6, skip_too_long=False, only_positive=False,)
                                                       
         dev_hdf5 = save_relations(dev_file, valid_ids=valid_dev_ids_all)  # Saves ALL
       
-      if True:   # <4mins
+      if 'test' in args.phase:   # <4mins
         test_file, valid_test_ids_all = valid_relations(relation_phase='test', relation_fold=args.fold, 
                                                       len_max_return=n_ctx*6, skip_too_long=False, only_positive=False,)
                                                       
         test_hdf5 = save_relations(test_file, valid_ids=valid_test_ids_all)  # Saves ALL
       
-      exit(0)
 
-      valid_train_ids_all = valid_relations(relation_phase='train', relation_fold=args.fold, len_max_return=n_ctx*6, skip_too_long=False)
-      valid_train_ids_pos = valid_relations(relation_phase='train', relation_fold=args.fold, len_max_return=n_ctx*6, skip_too_long=True)
+      if False;
+        valid_train_ids_all = valid_relations(relation_phase='train', relation_fold=args.fold, len_max_return=n_ctx*6, skip_too_long=False)
+        valid_train_ids_pos = valid_relations(relation_phase='train', relation_fold=args.fold, len_max_return=n_ctx*6, skip_too_long=True)
+        
+        valid_test_ids_all  = valid_relations(relation_phase='test', relation_fold=args.fold, len_max_return=n_ctx*6, skip_too_long=False)
       
-      valid_test_ids_all  = valid_relations(relation_phase='test', relation_fold=args.fold, len_max_return=n_ctx*6, skip_too_long=False)
-      
-    if False:  # This tests the various files - takes ~2h30 for all
+    if False:  # OLD STYLE : This tests the various files - takes ~2h30 for all
       save_relations(file_stub='_pos', relation_phase='train', only_positive=True)  
       save_relations(file_stub='_all', relation_phase='train', only_positive=False)  
       
@@ -396,8 +396,10 @@ if __name__ == '__main__':
       
       #save_relations(file_stub='_pos', relation_phase='test', only_positive=True)  
       save_relations(file_stub='_all', relation_phase='test', only_positive=False)  
+
+      #save_relations(file_stub=args.stub, relation_phase=args.phase, relation_fold=args.fold, only_positive=args.positive)  
     
-    if False:
+    if args.phase is None:
       s="This is a simple test of the text encoder. It's difficult to believe it will work."
       #encs, cleans, lens = text_encoder.encode_and_clean([s])
       #print(encs[0], cleans[0], lens[0])
@@ -418,5 +420,4 @@ if __name__ == '__main__':
     
     exit(0)
     
-    save_relations(file_stub=args.stub, relation_phase=args.phase, relation_fold=args.fold, only_positive=args.positive)  
     

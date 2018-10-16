@@ -165,6 +165,14 @@ cd REPO/notebooks/work-in-progress/2018-10_ZeroShotRelationships
 
 . ~/env3/bin/activate
 
-python relation_split_to_hdf5.py 
+python relation_split_to_hdf5.py --phase=train,dev,test
 
 
+# TODO : 
+#   Create HDF5 dataset reader per blog post.  Assume that ids=ALL if not given
+#   Create additional 'head' with attention-direction loss fn
+#   Make sure that something happens when training on the dev set (model loading, training steps, model saving, etc)
+#   Kick off training with attn_loss=0 (leave running?)
+#   Think about GCP P100 for additional training...  Maybe multiple P100s?  or Multiple instances?
+#   Create a test script that can evaluate the results on a saved model
+#   Write paper...
