@@ -82,7 +82,7 @@ class StepwiseClassifierModel(nn.Module):
         self.n_ctx = n_ctx
         self.n_classifier = n_classifier
         
-        self.transformer = TransformerModel(cfg, vocab=vocab_count, n_ctx=n_ctx)
+        self.transformer = TransformerModel(cfg, vocab=vocab_count+n_ctx, n_ctx=n_ctx)
         self.stepwise_classifier = nn.Linear(self.n_embd, n_classifier)
 
         nn.init.normal_(self.stepwise_classifier.weight, std = 0.02)
@@ -241,7 +241,7 @@ if __name__ == '__main__':
     #                                             args.lm_coef,
     #                                             model_opt)
                                                  
-    load_openai_pretrained_model(model_stepwise.transformer, n_ctx=512, n_special=args.tokens_special,  # n_ctx adjust for embedding...
+    load_openai_pretrained_model(model_stepwise.transformer, n_ctx=n_ctx, n_special=args.tokens_special,  # n_ctx adjust for embedding...
                                  path=pretrained_model_path+'/',
                                  path_names=os.path.join('.', 'orig', 'pytorch-openai-transformer-lm')+'/',
                                 )
