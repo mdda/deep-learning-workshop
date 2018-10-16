@@ -273,13 +273,13 @@ def save_relations(relation_file, valid_ids=None, file_stub='_all', bpe_max=None
         for i, tok in enumerate(ques_nlp):
           bpe_loc = ques_enc_offsets[ i ] + ques_offset
           bpe_head = ques_enc_offsets[ tok.head.i ] + ques_offset
-          if bpe_loc<bpe_max:
+          if bpe_loc<bpe_max and bpe_head<bpe_max:  # Don't point outside range either
             zs_np[0, bpe_loc ] = bpe_head
 
         for i, tok in enumerate(sent_nlp):
           bpe_loc = sent_enc_offsets[ i ] + sent_offset
           bpe_head = sent_enc_offsets[ tok.head.i ] + sent_offset
-          if bpe_loc<bpe_max:
+          if bpe_loc<bpe_max and bpe_head<bpe_max:  # Don't point outside range either
             zs_np[0, bpe_loc ] = bpe_head
   
         #print( xs_np[0, :len_xs] )

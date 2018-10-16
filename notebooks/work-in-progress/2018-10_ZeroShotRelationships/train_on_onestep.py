@@ -61,18 +61,23 @@ class Hdf5Dataset(Dataset):
       index = self.valid_indices[index]
       
     features = self.h5f['features'][index]
-    labels   = self.h5f['labels'][index]
-    deps     = self.h5f['deps'][index]
+    labels   = self.h5f['labels'][index].astype(np.int64)
+    deps     = self.h5f['deps'][index].astype(np.int64)
+    
+    # https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.clip.html
+    np.clip(deps, 0, self.n_ctx-1, out=deps)
     
     #if self.transform is not None:
     #  features = self.transform(features)
       
     #xmb[:, :, :, 1] = np.arange(n_vocab + n_special, n_vocab + n_special + n_ctx)
     #xmb[:, 1] = np.arange(n_vocab + n_special, n_vocab + n_special + n_ctx) # This is a single row, of batch=1
-    features_with_positions = np.stack( [ features, self.postitional_encoder ], axis=1 )
+
+    #features_with_positions = np.stack( [ features, self.postitional_encoder ], axis=1 )
+    features_with_positions = np.stack( [ features, self.postitional_encoder.copy() ], axis=1 )  # May be safer when multithreaded?
     #print(features.shape, features_with_positions.shape)  # (128,) (128, 2)
       
-    return features_with_positions, labels.astype(np.int64), deps.astype(np.int64)
+    return features_with_positions, labels, deps
 
   def __len__(self):
     return self.num_entries
@@ -280,7 +285,7 @@ if __name__ == '__main__':
 
     train_loader = DataLoader(dataset=train_dataset, 
                       batch_size=batch_size, 
-                      shuffle=False, num_workers=1)
+                      shuffle=False, num_workers=1)   # 2 leads to device side asserts...
     
     model_stepwise = StepwiseClassifierModel(args, n_classifier=args.n_classes, vocab_count=args.vocab_count)
 
@@ -326,11 +331,10 @@ if __name__ == '__main__':
     try:
       idx_loss_check, loss_recent_tot = 0, 0.
       for epoch in range(epoch_start+1, epoch_max):  # So this refers to the epoch-end value
-        start = time.time()
-        
-        #loss_epoch = 0.0
-        model_stepwise.train()
+        time_estimate_last = t_start = time.time()
 
+        model_stepwise.train()
+      
         for idx, (features, labels, deps) in enumerate(train_loader):
           features, labels, deps = features.to(device), labels.to(device), deps.to(device)
           
@@ -392,15 +396,16 @@ if __name__ == '__main__':
               loss_best=loss_recent
               idx_loss_check, loss_recent_tot = idx, 0.  # Restart running tallies
           
-            if True:
-              calc_duration = time.time()-start
-              calc_fraction = len(train_dataset)/(1+idx*batch_size)
-              epoch_duration = calc_duration/calc_fraction
-              epoch_max_end = (epoch_max-epoch-(1.-calc_fraction))*epoch_duration + time.time()
-              print("Time used for %.2f of epoch %d: %.1f seconds" % (calc_fraction, epoch, calc_duration, ))
-              print("  Expected finish time : %s (server)" % ( datetime.fromtimestamp(epoch_max_end).strftime("%A, %B %d, %Y %I:%M:%S %Z%z"), ))
-              print("  Expected finish time : %s (local)"  % ( datetime.fromtimestamp(epoch_max_end).astimezone(tz).strftime("%A, %B %d, %Y %I:%M:%S %Z%z"), ))
-
+          t_now = time.time()
+          if t_now - time_estimate_last>5*60.: # Update every 5 minutes
+            calc_duration = t_now-t_start
+            calc_fraction = len(train_dataset)/(1+idx*batch_size)
+            epoch_duration = calc_duration/calc_fraction
+            epoch_max_end = (epoch_max-epoch-(1.-calc_fraction))*epoch_duration + time.time()
+            print("Time used for %.2f of epoch %d: %.1f seconds" % (calc_fraction, epoch, calc_duration, ))
+            print("  Expected finish time : %s (server)" % ( datetime.fromtimestamp(epoch_max_end).strftime("%A, %B %d, %Y %I:%M:%S %Z%z"), ))
+            print("  Expected finish time : %s (local)"  % ( datetime.fromtimestamp(epoch_max_end).astimezone(tz).strftime("%A, %B %d, %Y %I:%M:%S %Z%z"), ))
+            time_estimate_last = time.time()  # Keep track of estimate times
         
         idx_loss_check -= len(train_dataset)/batch_size  # Keep track of reset idxs
         

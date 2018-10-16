@@ -178,7 +178,9 @@ python relation_split_to_hdf5.py --phase=train,dev,test
 #   Write paper...
 
 
-#python train_on_onestep.py --relation_hdf5=dev.1_all.hdf5 --stub=base --dep_fac=0.0
+# Try out code with ...
+python train_on_onestep.py --relation_hdf5=dev.1_all.hdf5 --stub=base --dep_fac=0.0
 
+# Real deal :
 python train_on_onestep.py --relation_hdf5=train.1_all.hdf5 --stub=base --dep_fac=0.0
 
