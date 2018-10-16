@@ -3,6 +3,10 @@ import os, sys
 import argparse
 import random
 
+import time, pytz
+from datetime import datetime
+tz = pytz.timezone(args.tz)
+
 import numpy as np
 import torch
 import torch.nn as nn
@@ -73,6 +77,9 @@ class Hdf5Dataset(Dataset):
   def __len__(self):
     return self.num_entries
 
+  def close(self):
+    self.h5f.close()
+    
 
 class StepwiseClassifierModel(nn.Module):
     """ Transformer with stepwise classifier(s) """
@@ -90,7 +97,7 @@ class StepwiseClassifierModel(nn.Module):
         
         # Add the attention pointer idea
         self.c_attn = Conv1D(self.n_embd*2, 1, self.n_embd)
-        self.attn_dropout = nn.Dropout(cfg.attn_pdrop)
+        #self.attn_dropout = nn.Dropout(cfg.attn_pdrop)  # Not in there yet
 
     def forward(self, x):   # x is the input text
         ## NO : x ~ np.zeros((n_batch, 2, n_ctx, 2), dtype=np.int32)  # This is for their 0 vs 1 model
@@ -133,32 +140,35 @@ class StepwiseClassifierModel(nn.Module):
 
 
 
-
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
+    
+    parser.add_argument("--checkpoint",   default=None, type=str, help="model checkpoint path to restart training")
     
     parser.add_argument('--desc', type=str, default='default', help="Description")
     #parser.add_argument('--dataset', type=str)
     parser.add_argument('--log_dir', type=str, default='log/')
-    parser.add_argument('--save_dir', type=str, default='save/')
-    parser.add_argument('--data_dir', type=str, default='data/')
+    #parser.add_argument('--save_dir', type=str, default='save/')
+    #parser.add_argument('--data_dir', type=str, default='data/')
     #parser.add_argument('--submission_dir', type=str, default='submission/')
     #parser.add_argument('--submit', action='store_true')
     #parser.add_argument('--analysis', action='store_true')
     parser.add_argument('--seed', type=int, default=42)
     parser.add_argument('--max_grad_norm', type=int, default=1)
-    parser.add_argument('--lr', type=float, default=6.25e-5)
-    parser.add_argument('--lr_warmup', type=float, default=0.002)
     
     parser.add_argument('--l2', type=float, default=0.01)
     parser.add_argument('--vector_l2', action='store_true')
     parser.add_argument('--opt', type=str, default='adam')
+
+    parser.add_argument('--lr', type=float, default=6.25e-5)
+    parser.add_argument('--lr_warmup', type=float, default=0.002)
     parser.add_argument('--lr_schedule', type=str, default='warmup_linear')
-    parser.add_argument('--n_transfer', type=int, default=12)
-    parser.add_argument('--lm_coef', type=float, default=0.5)
     parser.add_argument('--b1', type=float, default=0.9)
     parser.add_argument('--b2', type=float, default=0.999)
     parser.add_argument('--e', type=float, default=1e-8)
+
+    parser.add_argument('--n_transfer', type=int, default=12)
+    parser.add_argument('--lm_coef', type=float, default=0.5)
     #parser.add_argument('--n_valid', type=int, default=374)
 
     # Standard for pre-trained model  START
@@ -183,10 +193,10 @@ if __name__ == '__main__':
     parser.add_argument('--vocab_count', type=int, default=40481) # Printed out by relation_split_to_hdf5
     #parser.add_argument('--n_ctx', type=int, default=128)   # Max length of input texts in bpes - get this from input hdf5 shapes
 
-    parser.add_argument('--batch_size', type=int, default=8)
-    parser.add_argument('--n_epoch',    type=int, default=3)
-
-
+    parser.add_argument('--batch_size_per_gpu', type=int, default=8)
+    parser.add_argument('--n_epoch',            type=int, default=3)
+    
+    parser.add_argument('--dep_fac',            type=float, default=0.0)
 
     args = parser.parse_args()
     print(args)
@@ -242,17 +252,24 @@ if __name__ == '__main__':
     
     train_size = len(train_dataset)
     n_ctx = train_dataset.n_ctx
+    
+    batch_size = args.batch_size_per_gpu
+    n_gpus = torch.cuda.device_count()
+    
+    if n_gpus > 1:  # https://pytorch.org/tutorials/beginner/blitz/data_parallel_tutorial.html
+      print("Let's use %d GPUs!" % (n_gpus, ))
+      batch_size *= n_gpus
+
+    n_updates_total = (train_size // batch_size) * args.n_epoch
+
 
     train_loader = DataLoader(dataset=train_dataset, 
-                      batch_size=args.batch_size, 
+                      batch_size=batch_size, 
                       shuffle=False, num_workers=4)
     
-    
-    n_updates_total = (train_size // args.batch_size) * args.n_epoch
-
     model_stepwise = StepwiseClassifierModel(args, n_classifier=2, vocab_count=args.vocab_count)
 
-    criterion = nn.CrossEntropyLoss(reduce=False)
+    #criterion = nn.CrossEntropyLoss(reduce=False)
     model_opt = OpenAIAdam(model_stepwise.parameters(),
                            lr=args.lr, schedule=args.lr_schedule, 
                            warmup=args.lr_warmup, t_total=n_updates_total,
@@ -265,14 +282,109 @@ if __name__ == '__main__':
     #                                             args.lm_coef,
     #                                             model_opt)
                                                  
-    load_openai_pretrained_model(model_stepwise.transformer, 
-                                 n_special=args.tokens_special,  n_ctx=n_ctx,   # n_ctx adjusts embedding size to include positional
-                                 path=pretrained_model_path+'/',
-                                 path_names=os.path.join('.', 'orig', 'pytorch-openai-transformer-lm')+'/',
-                                )
+    epoch_start, epoch_max, loss_best = 0, args.n_epochs, None
+
+    os.makedirs('./checkpoints', exist_ok=True)
+    if args.checkpoint is None:
+      load_openai_pretrained_model(
+        model_stepwise.transformer, 
+        n_special=args.tokens_special,  n_ctx=n_ctx,   # n_ctx adjusts embedding size to include positional
+        path=pretrained_model_path+'/',
+        path_names=os.path.join('.', 'orig', 'pytorch-openai-transformer-lm')+'/',
+      )
+      
+    else:
+      checkpoint = torch.load(args.checkpoint, map_location=lambda storage, loc: storage)
+      epoch_start = checkpoint['epoch']
+      
+      model_stepwise.load_state_dict(checkpoint['model'])
+      model_opt.load_state_dict(checkpoint['optimizer'])
+      
+      #lr_scheduler = get_lr_scheduler(optimizer)
+      #lr_scheduler.load_state_dict(checkpoint['lr_scheduler'])
+      
+      print("Loaded %s - assuming epoch_now=%d" % (args.checkpoint, epoch_start,))
+
     
     model_stepwise.to(device)
-    model_stepwise = nn.DataParallel(model_stepwise)
+
+    if torch.cuda.device_count() > 1:  # https://pytorch.org/tutorials/beginner/blitz/data_parallel_tutorial.html
+      print("Let's use", torch.cuda.device_count(), "GPUs!")
+      model_stepwise = nn.DataParallel(model_stepwise)
+
+    try:
+      idx_loss_check=0
+      for epoch in range(epoch_start+1, epoch_max):  # So this refers to the epoch-end value
+        start = time.time()
+        
+        epoch_loss = 0.0
+        model_base.train()
+
+        for idx, (features, labels, deps) in enumerate(train_loader):
+          features, labels, deps = features.to(device), labels.to(device), deps.to(device)
+          
+          model_opt.zero_grad()
+          out_class_logits, out_deps_logits = model_stepwise(features)
+          
+          #batch_loss = ce_loss(output, target)
+          
+          # https://pytorch.org/docs/stable/nn.html?highlight=loss#torch.nn.BCEWithLogitsLoss
+          class_loss = nn.BCEWithLogitsLoss()( out_class_logits, labels )
+          print(class_loss.size())
+          class_loss_tot = class_loss.sum() / batch_size
+          
+          # The dep loss should be ignored for those deps which == 0
+          dep_loss = nn.BCEWithLogitsLoss()( out_deps_logits, deps )
+          print(dep_loss.size())
+          dep_loss_masked = dep_loss * ( deps>0 )  # This zeros out all positions where deps == 0
+          dep_loss_tot = dep_loss_masked.sum() / batch_size
+          
+          print( class_loss_tot, dep_loss_tot, class_loss_tot/(dep_loss_tot) )
+          batch_loss = class_loss_tot + args.dep_fac * dep_loss_tot
+          
+          batch_loss.backward()
+          
+          model_opt.step()
+          epoch_loss += batch_loss.item()
+          recent_loss += batch_loss.item()
+          
+          if idx % 10 == 0:
+            print('%.1f%% of epoch %d' % (idx / float(len(train_loader)) * 100, epoch,), end='\r')  # Python 3 FTW!
+            #break
+
+          #if idx % 10 == 0:
+          #  calc_duration = time.time()-start
+          #  epoch_max_end = (epoch_max-epoch)*epoch_duration + time.time()
+          #  print("Time used in epoch %d: %.1f" % (epoch, epoch_duration, ))
+
+          sentences_since_last_check = (idx-idx_loss_check)*batch_size
+          if sentences_since_last_check > 10000:  # Potentially save every 10000 sentences
+            loss_recent = loss_recent / float(sentences_since_last_check)
+          
+            if loss_best is None or loss_best>loss_recent:  # Save model if loss has decreased
+              torch.save(dict(
+                epoch=epoch,
+                model=model_stepwise.state_dict(), 
+                optimizer=model_opt.state_dict(), 
+                #lr_scheduler=lr_scheduler.state_dict(), 
+              ), './checkpoints/model-stepwise_%04d.pth' % (epoch,))
+              loss_best=loss_recent
+              idx_loss_check=idx
+          
+        epoch_duration = time.time()-start
+        epoch_max_end = (epoch_max-epoch)*epoch_duration + time.time()
+        print("Time used in epoch %d: %.1f" % (epoch, epoch_duration, ))
+        print("  Expected finish time : %s (server)" % ( datetime.fromtimestamp(epoch_max_end).strftime("%A, %B %d, %Y %I:%M:%S %Z%z"), ))
+        print("  Expected finish time : %s (local)"  % ( datetime.fromtimestamp(epoch_max_end).astimezone(tz).strftime("%A, %B %d, %Y %I:%M:%S %Z%z"), ))
+        
+    except KeyboardInterrupt:
+      print("Interrupted. Releasing resources...")
+    
+    finally:
+      train_dataset.close()
+
+
+
 
     exit(0) 
     
