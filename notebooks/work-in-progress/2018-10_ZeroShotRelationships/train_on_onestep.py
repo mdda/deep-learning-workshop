@@ -396,7 +396,7 @@ if __name__ == '__main__':
           t_now = time.time()
           if t_now - time_estimate_last>5*60.: # Update every 5 minutes
             calc_duration = t_now-t_start
-            calc_fraction = len(train_dataset)/(1+idx*batch_size)
+            calc_fraction = (idx*batch_size)/len(train_dataset)
             epoch_duration = calc_duration/calc_fraction
             epoch_max_end = (epoch_max-epoch-(1.-calc_fraction))*epoch_duration + time.time()
             print("Time used for %.2f of epoch %d: %.1f seconds" % (calc_fraction, epoch, calc_duration, ))
