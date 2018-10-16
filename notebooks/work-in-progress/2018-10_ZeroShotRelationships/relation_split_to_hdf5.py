@@ -335,7 +335,7 @@ def save_relations(relation_file, valid_ids=None, file_stub='_all', bpe_max=None
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     
-    parser.add_argument('--n_ctx', type=int, default=128)
+    parser.add_argument('--n_ctx', type=int, default=128)    # Max length of input texts in bpes
     
     parser.add_argument('--phase', type=str, default=None)
     parser.add_argument('--fold',  type=int, default=1)
@@ -423,6 +423,7 @@ if __name__ == '__main__':
     
     print("--token_clf=%d" % (token_clf, ))
     print("--vocab_count=%d" % (vocab_count, ))
+    print("--tokens_special=%d" % (tokens_special, ))
     exit(0)
     
     

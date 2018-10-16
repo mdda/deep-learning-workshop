@@ -34,25 +34,65 @@ relation_splits_path = os.path.join('.', 'orig', 'omerlevy-bidaf_no_answer-2e986
 
 # Props to : https://github.com/rasbt/deep-learning-book/blob/master/code/model_zoo/pytorch_ipynb/custom-data-loader-csv.ipynb
 
+class Hdf5Dataset(Dataset):
+  """Custom Dataset for loading entries from HDF5 databases"""
 
+  def __init__(self, h5_path, vocab_count, valid_indices=None): # transform=None, 
+    self.h5f = h5py.File(h5_path, 'r')
+    features = self.h5f['features']
+    
+    self.valid_indices=valid_indices          
+    if valid_indices is None:
+      self.num_entries = features.shape[0]
+    else:
+      self.num_entries = len(valid_indices)
+    #self.transform = transform
+    
+    self.n_ctx = features.shape[1]
+
+    self.postitional_encoder = np.arange(vocab_count, vocab_count + self.n_ctx)
+      
+  def __getitem__(self, index):
+    if self.valid_indices is not None:  # find on-disk index
+      index = self.valid_indices[index]
+      
+    features = self.h5f['features'][index]
+    labels   = self.h5f['labels'][index]
+    deps     = self.h5f['deps'][index]
+    
+    #if self.transform is not None:
+    #  features = self.transform(features)
+      
+    #xmb[:, :, :, 1] = np.arange(n_vocab + n_special, n_vocab + n_special + n_ctx)
+    #xmb[:, 1] = np.arange(n_vocab + n_special, n_vocab + n_special + n_ctx) # This is a single row, of batch=1
+    features_with_positions = np.stack( [ features, self.postitional_encoder ], axis=1 )
+    print(features.shape, features_with_positions.shape)
+      
+    return features_with_positions, label, deps
+
+  def __len__(self):
+    return self.num_entries
 
 
 class StepwiseClassifierModel(nn.Module):
     """ Transformer with stepwise classifier(s) """
-    def __init__(self, cfg, n_classifier=2, one_hot=True, vocab=40990, n_ctx=512):
+    def __init__(self, cfg, n_classifier=2, one_hot=True, vocab_count=None, n_ctx=128): # 40990
         super(StepwiseClassifierModel, self).__init__()
         self.n_embd = cfg.n_embd
-        self.n_ctx = cfg.n_ctx
+        self.n_ctx = n_ctx
         self.n_classifier = n_classifier
         
-        self.transformer = TransformerModel(cfg, vocab=vocab, n_ctx=n_ctx)
-        self.stepwise = nn.Linear(self.n_embd, n_classifier)
+        self.transformer = TransformerModel(cfg, vocab=vocab_count, n_ctx=n_ctx)
+        self.stepwise_classifier = nn.Linear(self.n_embd, n_classifier)
 
-        nn.init.normal_(self.stepwise.weight, std = 0.02)
-        nn.init.normal_(self.stepwise.bias, 0)
+        nn.init.normal_(self.stepwise_classifier.weight, std = 0.02)
+        nn.init.normal_(self.stepwise_classifier.bias, 0)
+        
+        # Add the attention pointer network
+        
 
     def forward(self, x):   # x is the input text
-        # x ~ np.zeros((n_batch, 2, n_ctx, 2), dtype=np.int32)  # This is for their 0 vs 1 model
+        ## NO : x ~ np.zeros((n_batch, 2, n_ctx, 2), dtype=np.int32)  # This is for their 0 vs 1 model
         # x ~ np.zeros((n_batch, n_ctx, 2), dtype=np.int32)     # This is more normal use-case
         # x[..., -1] is for [input_sequence, positions]
         
@@ -82,15 +122,23 @@ if __name__ == '__main__':
     #parser.add_argument('--submit', action='store_true')
     #parser.add_argument('--analysis', action='store_true')
     parser.add_argument('--seed', type=int, default=42)
-    parser.add_argument('--batch_size', type=int, default=8)
-    parser.add_argument('--n_epoch', type=int, default=3)
     parser.add_argument('--max_grad_norm', type=int, default=1)
     parser.add_argument('--lr', type=float, default=6.25e-5)
     parser.add_argument('--lr_warmup', type=float, default=0.002)
-    parser.add_argument('--n_ctx', type=int, default=512)
     
+    parser.add_argument('--l2', type=float, default=0.01)
+    parser.add_argument('--vector_l2', action='store_true')
+    parser.add_argument('--opt', type=str, default='adam')
+    parser.add_argument('--lr_schedule', type=str, default='warmup_linear')
+    parser.add_argument('--n_transfer', type=int, default=12)
+    parser.add_argument('--lm_coef', type=float, default=0.5)
+    parser.add_argument('--b1', type=float, default=0.9)
+    parser.add_argument('--b2', type=float, default=0.999)
+    parser.add_argument('--e', type=float, default=1e-8)
+    #parser.add_argument('--n_valid', type=int, default=374)
+
     # Standard for pre-trained model  START
-    parser.add_argument('--n_embd', type=int, default=768)
+    parser.add_argument('--n_embd', type=int, default=768)  # This is the internal feature width
     parser.add_argument('--n_head', type=int, default=12)
     parser.add_argument('--n_layer', type=int, default=12)
     parser.add_argument('--embd_pdrop', type=float, default=0.1)
@@ -105,20 +153,16 @@ if __name__ == '__main__':
     parser.add_argument('--bpe_path', type=str, default=pretrained_model_path+'/vocab_40000.bpe')
     
     parser.add_argument('--relation_hdf5', type=str, default='dev.1_all.hdf5')
-    parser.add_argument('--token_clf', type=int, default=40480)  # Printed out by relation_split_to_hdf5
-    parser.add_argument('--vocab_count', type=int, default=40481)  # Printed out by relation_split_to_hdf5
+    
+    parser.add_argument('--tokens_special', type=int, default=3)  # Printed out by relation_split_to_hdf5
+    parser.add_argument('--token_clf', type=int, default=40480)   # Printed out by relation_split_to_hdf5
+    parser.add_argument('--vocab_count', type=int, default=40481) # Printed out by relation_split_to_hdf5
+    #parser.add_argument('--n_ctx', type=int, default=128)   # Max length of input texts in bpes - get this from input hdf5 shapes
+
+    parser.add_argument('--batch_size', type=int, default=8)
+    parser.add_argument('--n_epoch',    type=int, default=3)
 
 
-    parser.add_argument('--l2', type=float, default=0.01)
-    parser.add_argument('--vector_l2', action='store_true')
-    parser.add_argument('--opt', type=str, default='adam')
-    parser.add_argument('--lr_schedule', type=str, default='warmup_linear')
-    parser.add_argument('--n_transfer', type=int, default=12)
-    parser.add_argument('--lm_coef', type=float, default=0.5)
-    parser.add_argument('--b1', type=float, default=0.9)
-    parser.add_argument('--b2', type=float, default=0.999)
-    parser.add_argument('--e', type=float, default=1e-8)
-    #parser.add_argument('--n_valid', type=int, default=374)
 
     args = parser.parse_args()
     print(args)
@@ -132,7 +176,7 @@ if __name__ == '__main__':
     # Constants
     #submit = args.submit
     #dataset = args.dataset
-    n_ctx = args.n_ctx
+    #n_ctx = args.n_ctx
     save_dir = args.save_dir
     desc = args.desc
     data_dir = args.data_dir
@@ -161,19 +205,28 @@ if __name__ == '__main__':
 
     
     relation_hdf5 = os.path.join(relation_splits_path, args.relation_hdf5)
-    with h5py.File(relation_hdf5, 'r') as h5f:
-      print(h5f['features'].shape)
-      print(h5f['labels'].shape)
-      print(h5f['deps'].shape)
+    
+    #with h5py.File(relation_hdf5, 'r') as h5f:
+    #  print(h5f['features'].shape)
+    #  print(h5f['labels'].shape)
+    #  print(h5f['deps'].shape)
 
-    #n_ctx = args.n_ctx   # max length of encoded strings...
+    #n_ctx = args.n_ctx   # 
     #vocab_max = args.vocab_count + n_ctx
 
-    exit(0)
+    train_dataset = Hdf5Dataset(h5_path=relation_hdf5, vocab_count=args.vocab_count)
     
-    n_updates_total = (840000 // args.batch_size) * args.n_epoch
+    train_size = len(train_dataset)
+    n_ctx = train_dataset.n_ctx
 
-    model_stepwise = StepwiseClassifierModel(args, n_classifier=2, vocab=vocab, n_ctx=n_ctx)
+    train_loader = DataLoader(dataset=train_dataset, 
+                      batch_size=args.batch_size, 
+                      shuffle=False, num_workers=4)
+    
+    
+    n_updates_total = (train_size // args.batch_size) * args.n_epoch
+
+    model_stepwise = StepwiseClassifierModel(args, n_classifier=2, vocab_count=args.vocab_count)
 
     criterion = nn.CrossEntropyLoss(reduce=False)
     model_opt = OpenAIAdam(model_stepwise.parameters(),
@@ -188,7 +241,7 @@ if __name__ == '__main__':
     #                                             args.lm_coef,
     #                                             model_opt)
                                                  
-    load_openai_pretrained_model(model_stepwise.transformer, n_ctx=n_ctx, n_special=tokens_special,
+    load_openai_pretrained_model(model_stepwise.transformer, n_ctx=512, n_special=args.tokens_special,  # n_ctx adjust for embedding...
                                  path=pretrained_model_path+'/',
                                  path_names=os.path.join('.', 'orig', 'pytorch-openai-transformer-lm')+'/',
                                 )
