@@ -176,3 +176,9 @@ python relation_split_to_hdf5.py --phase=train,dev,test
 #   Think about GCP P100 for additional training...  Maybe multiple P100s?  or Multiple instances?
 #   Create a test script that can evaluate the results on a saved model
 #   Write paper...
+
+
+#python train_on_onestep.py --relation_hdf5=dev.1_all.hdf5 --stub=base --dep_fac=0.0
+
+python train_on_onestep.py --relation_hdf5=train.1_all.hdf5 --stub=base --dep_fac=0.0
+

@@ -72,7 +72,7 @@ class Hdf5Dataset(Dataset):
     features_with_positions = np.stack( [ features, self.postitional_encoder ], axis=1 )
     #print(features.shape, features_with_positions.shape)  # (128,) (128, 2)
       
-    return features_with_positions, labels.astype(np.int32), deps.astype(np.int32)
+    return features_with_positions, labels.astype(np.int64), deps.astype(np.int64)
 
   def __len__(self):
     return self.num_entries
@@ -161,8 +161,8 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     
     parser.add_argument("--checkpoint",   default=None, type=str, help="model checkpoint path to restart training")
+    parser.add_argument('--stub', type=str, default='base', help="Description")
     
-    parser.add_argument('--desc', type=str, default='default', help="Description")
     #parser.add_argument('--dataset', type=str)
     parser.add_argument('--log_dir', type=str, default='log/')
     #parser.add_argument('--save_dir', type=str, default='save/')
@@ -211,11 +211,12 @@ if __name__ == '__main__':
     parser.add_argument('--n_classes',      type=int, default=5)     #  #label classes = len({0, 1,2, 3,4})
     #parser.add_argument('--n_ctx', type=int, default=128)   # Max length of input texts in bpes - get this from input hdf5 shapes
 
-    parser.add_argument('--batch_size_per_gpu', type=int, default=8)
+    parser.add_argument('--batch_size_per_gpu', type=int, default=32)  
     parser.add_argument('--n_epoch',            type=int, default=3)
     parser.add_argument("--tz",                 type=str, default='Asia/Singapore', help="Timezone for local finish time estimation")
     
-    parser.add_argument('--dep_fac',            type=float, default=0.0)
+    parser.add_argument('--dep_fac',            type=float, default=0.)
+    #parser.add_argument('--dep_fac',            type=float, default=0.02)
     
 
     args = parser.parse_args()
@@ -229,20 +230,13 @@ if __name__ == '__main__':
     tz = pytz.timezone(args.tz)
 
     # Constants
-    #submit = args.submit
-    #dataset = args.dataset
-    #n_ctx = args.n_ctx
-    #save_dir = args.save_dir
-    desc = args.desc
-    #data_dir = args.data_dir
-    log_dir = args.log_dir
-    #submission_dir = args.submission_dir
+    #log_dir = args.log_dir
+    #logger = ResultLogger(path=os.path.join(log_dir, '{}.jsonl'.format(args.stub)), **args.__dict__)
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     n_gpu = torch.cuda.device_count()
     print("device", device, "n_gpu", n_gpu)
 
-    #logger = ResultLogger(path=os.path.join(log_dir, '{}.jsonl'.format(desc)), **args.__dict__)
     
     #text_encoder = TextEncoder(args.encoder_path, args.bpe_path)
     #encoder = text_encoder.encoder
@@ -286,11 +280,10 @@ if __name__ == '__main__':
 
     train_loader = DataLoader(dataset=train_dataset, 
                       batch_size=batch_size, 
-                      shuffle=False, num_workers=4)
+                      shuffle=False, num_workers=1)
     
     model_stepwise = StepwiseClassifierModel(args, n_classifier=args.n_classes, vocab_count=args.vocab_count)
 
-    #criterion = nn.CrossEntropyLoss(reduce=False)
     model_opt = OpenAIAdam(model_stepwise.parameters(),
                            lr=args.lr, schedule=args.lr_schedule, 
                            warmup=args.lr_warmup, t_total=n_updates_total,
@@ -298,12 +291,7 @@ if __name__ == '__main__':
                            l2=args.l2, ector_l2=args.vector_l2,
                            max_grad_norm=args.max_grad_norm)
                            
-    #compute_loss_fct = MultipleChoiceLossCompute(criterion,
-    #                                             criterion,
-    #                                             args.lm_coef,
-    #                                             model_opt)
-                                                 
-    epoch_start, epoch_max, loss_best = 0, args.n_epoch, None
+    epoch_start, epoch_max, loss_best = -1, args.n_epoch, None
 
     os.makedirs('./checkpoints', exist_ok=True)
     if args.checkpoint is None:
@@ -332,13 +320,15 @@ if __name__ == '__main__':
     if torch.cuda.device_count() > 1:  # https://pytorch.org/tutorials/beginner/blitz/data_parallel_tutorial.html
       print("Let's use", torch.cuda.device_count(), "GPUs!")
       model_stepwise = nn.DataParallel(model_stepwise)
+      
+    #zero = torch.zeros(1).to(device)
 
     try:
-      idx_loss_check=0
+      idx_loss_check, loss_recent_tot = 0, 0.
       for epoch in range(epoch_start+1, epoch_max):  # So this refers to the epoch-end value
         start = time.time()
         
-        epoch_loss = 0.0
+        #loss_epoch = 0.0
         model_stepwise.train()
 
         for idx, (features, labels, deps) in enumerate(train_loader):
@@ -351,23 +341,31 @@ if __name__ == '__main__':
           
           # https://pytorch.org/docs/stable/nn.html?highlight=loss#torch.nn.BCEWithLogitsLoss
           class_loss = nn.CrossEntropyLoss(reduction='none')( out_class_logits, labels )
-          print(class_loss.size())
-          class_loss_tot = class_loss.sum() / batch_size
+          #print("class_loss.size()=", class_loss.size())
+          #       class_loss.size()= torch.Size([8, 128])
+          class_loss_tot = class_loss.sum()
           
           # The dep loss should be ignored for those deps which == 0
           dep_loss = nn.CrossEntropyLoss(reduction='none')( out_deps_logits, deps )
-          print(dep_loss.size())
-          dep_loss_masked = dep_loss * ( deps>0 )  # This zeros out all positions where deps == 0
-          dep_loss_tot = dep_loss_masked.sum() / batch_size
+          #print("dep_loss.size()=", dep_loss.size())
+          #       dep_loss.size()= torch.Size([8, 128])
+
+          #dep_loss_masked = dep_loss * ( deps>0 )  # This zeros out all positions where deps == 0
+          #dep_loss_masked = torch.where(deps>0, dep_loss, zero)  # This zeros out all positions where deps == 0
+          #dep_loss_tot = dep_loss_masked.sum() / batch_size
+          dep_loss_tot = dep_loss.masked_fill_( deps==0, 0. ).sum()
           
-          print( class_loss_tot, dep_loss_tot, class_loss_tot/(dep_loss_tot) )
+          print("Factor hints (class_loss=%8.4f, deps_loss=%10.4f, fac=%.8f)" % ( class_loss_tot.item(), dep_loss_tot.item(), class_loss_tot.item()/dep_loss_tot.item(), ))
+          #factor hints :  (231.14927673339844, 225.23297119140625, 1.0262674932124587)
+
           batch_loss = class_loss_tot + args.dep_fac * dep_loss_tot
           
           batch_loss.backward()
           
           model_opt.step()
-          epoch_loss += batch_loss.item()
-          recent_loss += batch_loss.item()
+          
+          loss_this = batch_loss.item()
+          loss_recent_tot += loss_this
           
           if idx % 10 == 0:
             print('%.1f%% of epoch %d' % (idx / float(len(train_loader)) * 100, epoch,), end='\r')  # Python 3 FTW!
@@ -379,24 +377,38 @@ if __name__ == '__main__':
           #  print("Time used in epoch %d: %.1f" % (epoch, epoch_duration, ))
 
           sentences_since_last_check = (idx-idx_loss_check)*batch_size
-          if sentences_since_last_check > 10000:  # Potentially save every 10000 sentences
-            loss_recent = loss_recent / float(sentences_since_last_check)
+          if sentences_since_last_check > 50000:  # Potentially save every 50000 sentences  (~30mins)
+            loss_recent = loss_recent_tot / float(sentences_since_last_check)   # loss per sentence
           
-            if loss_best is None or loss_best>loss_recent:  # Save model if loss has decreased
+            if loss_best is None or loss_recent<loss_best:  # Save model if loss has decreased
+              fname = './checkpoints/model-stepwise_%s_%04d-%06d.pth' % (args.stub, epoch, idx*batch_size,)
+              print("Saving Checkpoint : '%s', loss_recent=%.4f" % (fname, loss_recent, ))
               torch.save(dict(
                 epoch=epoch,
                 model=model_stepwise.state_dict(), 
                 optimizer=model_opt.state_dict(), 
                 #lr_scheduler=lr_scheduler.state_dict(), 
-              ), './checkpoints/model-stepwise_%04d.pth' % (epoch,))
+              ), fname)
               loss_best=loss_recent
-              idx_loss_check=idx
+              idx_loss_check, loss_recent_tot = idx, 0.  # Restart running tallies
           
-        epoch_duration = time.time()-start
-        epoch_max_end = (epoch_max-epoch)*epoch_duration + time.time()
-        print("Time used in epoch %d: %.1f" % (epoch, epoch_duration, ))
-        print("  Expected finish time : %s (server)" % ( datetime.fromtimestamp(epoch_max_end).strftime("%A, %B %d, %Y %I:%M:%S %Z%z"), ))
-        print("  Expected finish time : %s (local)"  % ( datetime.fromtimestamp(epoch_max_end).astimezone(tz).strftime("%A, %B %d, %Y %I:%M:%S %Z%z"), ))
+            if True:
+              calc_duration = time.time()-start
+              calc_fraction = len(train_dataset)/(1+idx*batch_size)
+              epoch_duration = calc_duration/calc_fraction
+              epoch_max_end = (epoch_max-epoch-(1.-calc_fraction))*epoch_duration + time.time()
+              print("Time used for %.2f of epoch %d: %.1f seconds" % (calc_fraction, epoch, calc_duration, ))
+              print("  Expected finish time : %s (server)" % ( datetime.fromtimestamp(epoch_max_end).strftime("%A, %B %d, %Y %I:%M:%S %Z%z"), ))
+              print("  Expected finish time : %s (local)"  % ( datetime.fromtimestamp(epoch_max_end).astimezone(tz).strftime("%A, %B %d, %Y %I:%M:%S %Z%z"), ))
+
+        
+        idx_loss_check -= len(train_dataset)/batch_size  # Keep track of reset idxs
+        
+        #epoch_duration = time.time()-start
+        #epoch_max_end = (epoch_max-epoch)*epoch_duration + time.time()
+        #print("Time used in epoch %d: %.1f seconds" % (epoch, epoch_duration, ))
+        #print("  Expected finish time : %s (server)" % ( datetime.fromtimestamp(epoch_max_end).strftime("%A, %B %d, %Y %I:%M:%S %Z%z"), ))
+        #print("  Expected finish time : %s (local)"  % ( datetime.fromtimestamp(epoch_max_end).astimezone(tz).strftime("%A, %B %d, %Y %I:%M:%S %Z%z"), ))
         
     except KeyboardInterrupt:
       print("Interrupted. Releasing resources...")
