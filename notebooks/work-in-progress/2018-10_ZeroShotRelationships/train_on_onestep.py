@@ -5,7 +5,6 @@ import random
 
 import time, pytz
 from datetime import datetime
-tz = pytz.timezone(args.tz)
 
 import numpy as np
 import torch
@@ -20,6 +19,7 @@ from torch.utils.data import DataLoader
 
 sys.path.append('orig/pytorch-openai-transformer-lm')
 from model_pytorch import TransformerModel, load_openai_pretrained_model, DEFAULT_CONFIG
+from model_pytorch import Conv1D
 from opt import OpenAIAdam
 from utils import ResultLogger
 
@@ -70,9 +70,9 @@ class Hdf5Dataset(Dataset):
     #xmb[:, :, :, 1] = np.arange(n_vocab + n_special, n_vocab + n_special + n_ctx)
     #xmb[:, 1] = np.arange(n_vocab + n_special, n_vocab + n_special + n_ctx) # This is a single row, of batch=1
     features_with_positions = np.stack( [ features, self.postitional_encoder ], axis=1 )
-    print(features.shape, features_with_positions.shape)
+    #print(features.shape, features_with_positions.shape)  # (128,) (128, 2)
       
-    return features_with_positions, label, deps
+    return features_with_positions, labels, deps
 
   def __len__(self):
     return self.num_entries
@@ -195,8 +195,10 @@ if __name__ == '__main__':
 
     parser.add_argument('--batch_size_per_gpu', type=int, default=8)
     parser.add_argument('--n_epoch',            type=int, default=3)
+    parser.add_argument("--tz",                 type=str, default='Asia/Singapore', help="Timezone for local finish time estimation")
     
     parser.add_argument('--dep_fac',            type=float, default=0.0)
+    
 
     args = parser.parse_args()
     print(args)
@@ -206,14 +208,15 @@ if __name__ == '__main__':
     torch.manual_seed(args.seed)
     torch.cuda.manual_seed_all(args.seed)
 
+    tz = pytz.timezone(args.tz)
 
     # Constants
     #submit = args.submit
     #dataset = args.dataset
     #n_ctx = args.n_ctx
-    save_dir = args.save_dir
+    #save_dir = args.save_dir
     desc = args.desc
-    data_dir = args.data_dir
+    #data_dir = args.data_dir
     log_dir = args.log_dir
     #submission_dir = args.submission_dir
 
@@ -221,7 +224,7 @@ if __name__ == '__main__':
     n_gpu = torch.cuda.device_count()
     print("device", device, "n_gpu", n_gpu)
 
-    logger = ResultLogger(path=os.path.join(log_dir, '{}.jsonl'.format(desc)), **args.__dict__)
+    #logger = ResultLogger(path=os.path.join(log_dir, '{}.jsonl'.format(desc)), **args.__dict__)
     
     #text_encoder = TextEncoder(args.encoder_path, args.bpe_path)
     #encoder = text_encoder.encoder
@@ -282,7 +285,7 @@ if __name__ == '__main__':
     #                                             args.lm_coef,
     #                                             model_opt)
                                                  
-    epoch_start, epoch_max, loss_best = 0, args.n_epochs, None
+    epoch_start, epoch_max, loss_best = 0, args.n_epoch, None
 
     os.makedirs('./checkpoints', exist_ok=True)
     if args.checkpoint is None:
@@ -318,7 +321,7 @@ if __name__ == '__main__':
         start = time.time()
         
         epoch_loss = 0.0
-        model_base.train()
+        model_stepwise.train()
 
         for idx, (features, labels, deps) in enumerate(train_loader):
           features, labels, deps = features.to(device), labels.to(device), deps.to(device)
@@ -383,28 +386,4 @@ if __name__ == '__main__':
     finally:
       train_dataset.close()
 
-
-
-
     exit(0) 
-    
-    n_updates = 0
-    n_epochs = 0
-    if dataset != 'stsb':
-        trYt = trY
-    if submit:
-        path = os.path.join(save_dir, desc, 'best_params')
-        torch.save(dh_model.state_dict(), make_path(path))
-    best_score = 0
-    for i in range(args.n_iter):
-        print("running epoch", i)
-        run_epoch()
-        n_epochs += 1
-        log(save_dir, desc)
-    if submit:
-        path = os.path.join(save_dir, desc, 'best_params')
-        dh_model.load_state_dict(torch.load(path))
-        predict(dataset, args.submission_dir)
-        if args.analysis:
-            rocstories_analysis(data_dir, os.path.join(args.submission_dir, 'ROCStories.tsv'),
-                                os.path.join(log_dir, 'rocstories.jsonl'))
