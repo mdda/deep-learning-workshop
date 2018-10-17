@@ -184,6 +184,15 @@ python train_on_onestep.py --relation_hdf5=dev.1_all.hdf5 --stub=base --dep_fac=
 # Real deal :
 python train_on_onestep.py --relation_hdf5=train.1_all.hdf5 --stub=base --dep_fac=0.0
 
+Saving Checkpoint : './checkpoints/model-stepwise_base_0000-150048.pth', loss_recent=1.0170
+...
+Saving Checkpoint : './checkpoints/model-stepwise_base_0000-650208.pth', loss_recent=0.5590
+Saving Checkpoint : './checkpoints/model-stepwise_base_0000-700224.pth', loss_recent=0.5383
+Saving Checkpoint : './checkpoints/model-stepwise_base_0000-750240.pth', loss_recent=0.5181
+Saving Checkpoint : './checkpoints/model-stepwise_base_0000-800256.pth', loss_recent=0.5061
+Saving Checkpoint : './checkpoints/model-stepwise_base_0001-011136.pth', loss_recent=0.5059
+Saving Checkpoint : './checkpoints/model-stepwise_base_0001-061152.pth', loss_recent=0.4592
+
 -rw-rw-r--. 1 andrewsm andrewsm 1409989614 Oct 17 04:20 model-stepwise_base_0000-050016.pth
 -rw-rw-r--. 1 andrewsm andrewsm 1409989614 Oct 17 04:41 model-stepwise_base_0000-100032.pth
 -rw-rw-r--. 1 andrewsm andrewsm 1409989614 Oct 17 05:02 model-stepwise_base_0000-150048.pth
@@ -215,4 +224,5 @@ Factor hints (class_loss=  6.0767, deps_loss= 5829.8833, fac=0.00104233)
 Factor hints (class_loss=  9.1029, deps_loss= 5803.7627, fac=0.00156844)
 Factor hints (class_loss=  1.2308, deps_loss= 5650.0684, fac=0.00021784)
 Factor hints (class_loss=  9.0883, deps_loss= 5750.9033, fac=0.00158032)
+
 
