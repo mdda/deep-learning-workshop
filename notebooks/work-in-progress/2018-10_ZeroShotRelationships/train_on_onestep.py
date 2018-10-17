@@ -161,6 +161,30 @@ class StepwiseClassifierModel(nn.Module):
         return task_logits, attn_logits
 
 
+def run_predictions(test_loader=None, output_file=None):
+  print("run_predictions() -> %s" % (output_file, ))
+  model_stepwise.eval()
+
+  predictions_arr, targets_arr = [], []
+  for idx, (features, labels, deps) in enumerate(test_loader):
+    #features, labels, deps = features.to(device), labels.to(device), deps.to(device)
+    features = features.to(device)
+    
+    out_class_logits, out_deps_logits = model_stepwise(features)
+
+    # Ok, so now what...
+    #   Ignore the deps
+    #   Just save off the out_class_logits and corresponding labels
+  
+    predictions_arr.append( out_class_logits.detach().cpu().numpy() )
+    targets_arr.append( labels.detach().cpu().numpy() )
+  
+    if (idx+1) % 10 == 0:
+      print('%.1f%% of predictions' % (idx / float(len(test_loader)) * 100, ), end='\r')
+      break
+
+  np.savez(output_file, predictions=np.array( predictions_arr ), targets=np.array( targets_arr ), )
+  
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -223,6 +247,7 @@ if __name__ == '__main__':
     parser.add_argument('--dep_fac',            type=float, default=0.)
     #parser.add_argument('--dep_fac',            type=float, default=0.02)
     
+    parser.add_argument('--predict', action='store_true')
 
     args = parser.parse_args()
     print(args)
@@ -282,10 +307,6 @@ if __name__ == '__main__':
     n_updates_total = (train_size // batch_size) * args.n_epoch
 
 
-    train_loader = DataLoader(dataset=train_dataset, 
-                      batch_size=batch_size, 
-                      shuffle=False, num_workers=1)   # 2 leads to device side asserts...
-    
     model_stepwise = StepwiseClassifierModel(args, n_classifier=args.n_classes, vocab_count=args.vocab_count)
 
     model_opt = OpenAIAdam(model_stepwise.parameters(),
@@ -326,6 +347,16 @@ if __name__ == '__main__':
       model_stepwise = nn.DataParallel(model_stepwise)
       
     #zero = torch.zeros(1).to(device)
+
+    if args.predict: 
+      # Predict out results for all the 'relation_hdf5' instead
+      test_loader = DataLoader(dataset=train_dataset, batch_size=1, shuffle=False)   # , num_workers=1
+      run_predictions(test_loader=test_loader, output_file="%s_%s.npz" % (relation_hdf5, args.stub))
+      exit(0)
+
+    train_loader = DataLoader(dataset=train_dataset, 
+                      batch_size=batch_size, 
+                      shuffle=False, num_workers=1)   # 2 leads to device side asserts...
 
     try:
       idx_loss_check, loss_recent_tot = 0, 0.
@@ -428,6 +459,15 @@ if __name__ == '__main__':
         #print("Time used in epoch %d: %.1f seconds" % (epoch, epoch_duration, ))
         #print("  Expected finish time : %s (server)" % ( datetime.fromtimestamp(epoch_max_end).strftime("%A, %B %d, %Y %H:%M:%S %Z%z"), ))
         #print("  Expected finish time : %s (local)"  % ( datetime.fromtimestamp(epoch_max_end).astimezone(tz).strftime("%A, %B %d, %Y %H:%M:%S %Z%z"), ))
+
+        # End-of-epoch saving
+        fname = './checkpoints/model-stepwise_%s_%04d-%06d_end-epoch.pth' % (args.stub, epoch, idx*batch_size,)
+        print("Saving End-epoch checkpoint : '%s'" % (fname, ))
+        torch.save(dict(
+          epoch=epoch,
+          model=model_stepwise.state_dict(), 
+          optimizer=model_opt.state_dict(), 
+        ), fname)
         
     except KeyboardInterrupt:
       print("Interrupted. Releasing resources...")

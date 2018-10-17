@@ -192,6 +192,19 @@ Saving Checkpoint : './checkpoints/model-stepwise_base_0000-800256.pth', loss_re
 Saving Checkpoint : './checkpoints/model-stepwise_base_0001-011136.pth', loss_recent=0.5059
 Saving Checkpoint : './checkpoints/model-stepwise_base_0001-061152.pth', loss_recent=0.4592
 Saving Checkpoint : './checkpoints/model-stepwise_base_0001-211200.pth', loss_recent=0.4179
+...
+Saving Checkpoint : './checkpoints/model-stepwise_base_0002-077984.pth', loss_recent=0.2855
+Saving Checkpoint : './checkpoints/model-stepwise_base_0002-128000.pth', loss_recent=0.2753
+Saving Checkpoint : './checkpoints/model-stepwise_base_0002-178016.pth', loss_recent=0.2605
+Saving Checkpoint : './checkpoints/model-stepwise_base_0002-236992.pth', loss_recent=0.2605
+Saving Checkpoint : './checkpoints/model-stepwise_base_0002-337024.pth', loss_recent=0.2382
+Saving Checkpoint : './checkpoints/model-stepwise_base_0002-393664.pth', loss_recent=0.2382
+Saving Checkpoint : './checkpoints/model-stepwise_base_0002-494624.pth', loss_recent=0.2294
+Saving Checkpoint : './checkpoints/model-stepwise_base_0002-594656.pth', loss_recent=0.2141
+Saving Checkpoint : './checkpoints/model-stepwise_base_0002-703968.pth', loss_recent=0.2090
+Saving Checkpoint : './checkpoints/model-stepwise_base_0002-753984.pth', loss_recent=0.2079
+Saving Checkpoint : './checkpoints/model-stepwise_base_0002-804000.pth', loss_recent=0.2041
+
 
 -rw-rw-r--. 1 andrewsm andrewsm 1409989614 Oct 17 04:20 model-stepwise_base_0000-050016.pth
 -rw-rw-r--. 1 andrewsm andrewsm 1409989614 Oct 17 04:41 model-stepwise_base_0000-100032.pth
@@ -211,9 +224,11 @@ Saving Checkpoint : './checkpoints/model-stepwise_base_0001-211200.pth', loss_re
 -rw-rw-r--. 1 andrewsm andrewsm 1409989614 Oct 17 09:37 model-stepwise_base_0000-800256.pth
 -rw-rw-r--. 1 andrewsm andrewsm 1409989614 Oct 17 09:59 model-stepwise_base_0001-011136.pth
 
+
 #Time per 1000.  ~ >>> (3*60+10)*60./(800256-350112)*1000.
 # 25.325229259970143 secs on TitanX
 
+morning
 Factor hints (class_loss=  4.5217, deps_loss= 5344.4214, fac=0.00084607)
 Factor hints (class_loss=  8.4208, deps_loss= 6178.9131, fac=0.00136283)
 Factor hints (class_loss= 34.4343, deps_loss= 6007.8652, fac=0.00573154)
@@ -224,6 +239,31 @@ Factor hints (class_loss=  6.0767, deps_loss= 5829.8833, fac=0.00104233)
 Factor hints (class_loss=  9.1029, deps_loss= 5803.7627, fac=0.00156844)
 Factor hints (class_loss=  1.2308, deps_loss= 5650.0684, fac=0.00021784)
 Factor hints (class_loss=  9.0883, deps_loss= 5750.9033, fac=0.00158032)
+
+evening
+Factor hints (class_loss=  1.3447, deps_loss= 5558.3813, fac=0.00024193)
+Factor hints (class_loss= 18.4624, deps_loss= 6056.8135, fac=0.00304820)
+Factor hints (class_loss=  0.1400, deps_loss= 6122.2803, fac=0.00002287)
+Factor hints (class_loss=  0.0526, deps_loss= 5790.4863, fac=0.00000908)
+Factor hints (class_loss= 21.1384, deps_loss= 5803.6270, fac=0.00364228)
+Factor hints (class_loss=  3.1123, deps_loss= 6002.5112, fac=0.00051850)
+Factor hints (class_loss= 60.7331, deps_loss= 5879.1123, fac=0.01033032)
+Factor hints (class_loss=  1.3860, deps_loss= 5668.1182, fac=0.00024452)
+Factor hints (class_loss=  3.6776, deps_loss= 6045.1016, fac=0.00060836)
+Factor hints (class_loss= 15.7819, deps_loss= 6411.4414, fac=0.00246152)
+Factor hints (class_loss= 21.9232, deps_loss= 5676.2529, fac=0.00386227)
+Factor hints (class_loss=  0.3627, deps_loss= 6797.3110, fac=0.00005336)
+Factor hints (class_loss= 16.1702, deps_loss= 5596.6489, fac=0.00288926)
+Factor hints (class_loss=  0.0677, deps_loss= 5657.2944, fac=0.00001196)
+Factor hints (class_loss=  0.7334, deps_loss= 5572.8364, fac=0.00013160)
+Factor hints (class_loss=  0.7809, deps_loss= 6325.0166, fac=0.00012346)
+Factor hints (class_loss=  9.2523, deps_loss= 5544.1602, fac=0.00166883)
+
+# Locally
+python train_on_onestep.py --relation_hdf5=dev.1_all.hdf5 --stub=base --predict --checkpoint=./checkpoints/model-stepwise_base_0002-804000.pth
+
+
+
 
 # https://cloud.google.com/compute/docs/gpus/add-gpus
 # Modify 'rdai-tts-p100-vm' 
