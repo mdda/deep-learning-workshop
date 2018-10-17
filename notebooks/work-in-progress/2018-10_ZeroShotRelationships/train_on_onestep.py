@@ -348,8 +348,8 @@ if __name__ == '__main__':
       #      name = k[7:] # remove 'module.' of dataparallel
       #    new_state_dict[name]=v
       #  return new_state_dict
-
-      model.load_state_dict(new_state_dict)      
+      #
+      #model.load_state_dict(new_state_dict)      
       
       model_stepwise.load_state_dict(checkpoint['model'])
       model_opt.load_state_dict(checkpoint['optimizer'])
