@@ -184,3 +184,32 @@ python train_on_onestep.py --relation_hdf5=dev.1_all.hdf5 --stub=base --dep_fac=
 # Real deal :
 python train_on_onestep.py --relation_hdf5=train.1_all.hdf5 --stub=base --dep_fac=0.0
 
+-rw-rw-r--. 1 andrewsm andrewsm 1409989614 Oct 17 04:20 model-stepwise_base_0000-050016.pth
+-rw-rw-r--. 1 andrewsm andrewsm 1409989614 Oct 17 04:41 model-stepwise_base_0000-100032.pth
+-rw-rw-r--. 1 andrewsm andrewsm 1409989614 Oct 17 05:02 model-stepwise_base_0000-150048.pth
+-rw-rw-r--. 1 andrewsm andrewsm 1409989614 Oct 17 05:23 model-stepwise_base_0000-200064.pth
+-rw-rw-r--. 1 andrewsm andrewsm 1409989614 Oct 17 05:44 model-stepwise_base_0000-250080.pth
+-rw-rw-r--. 1 andrewsm andrewsm 1409989614 Oct 17 06:05 model-stepwise_base_0000-300096.pth
+-rw-rw-r--. 1 andrewsm andrewsm 1409989614 Oct 17 06:27 model-stepwise_base_0000-350112.pth
+-rw-rw-r--. 1 andrewsm andrewsm 1409989614 Oct 17 06:48 model-stepwise_base_0000-400128.pth
+-rw-rw-r--. 1 andrewsm andrewsm 1409989614 Oct 17 07:09 model-stepwise_base_0000-450144.pth
+-rw-rw-r--. 1 andrewsm andrewsm 1409989614 Oct 17 07:30 model-stepwise_base_0000-500160.pth
+-rw-rw-r--. 1 andrewsm andrewsm 1409989614 Oct 17 07:51 model-stepwise_base_0000-550176.pth
+-rw-rw-r--. 1 andrewsm andrewsm 1409989614 Oct 17 08:13 model-stepwise_base_0000-600192.pth
+-rw-rw-r--. 1 andrewsm andrewsm 1409989614 Oct 17 08:34 model-stepwise_base_0000-650208.pth
+-rw-rw-r--. 1 andrewsm andrewsm 1409989614 Oct 17 08:55 model-stepwise_base_0000-700224.pth
+-rw-rw-r--. 1 andrewsm andrewsm 1409989614 Oct 17 09:16 model-stepwise_base_0000-750240.pth
+-rw-rw-r--. 1 andrewsm andrewsm 1409989614 Oct 17 09:37 model-stepwise_base_0000-800256.pth
+-rw-rw-r--. 1 andrewsm andrewsm 1409989614 Oct 17 09:59 model-stepwise_base_0001-011136.pth
+
+Factor hints (class_loss=  4.5217, deps_loss= 5344.4214, fac=0.00084607)
+Factor hints (class_loss=  8.4208, deps_loss= 6178.9131, fac=0.00136283)
+Factor hints (class_loss= 34.4343, deps_loss= 6007.8652, fac=0.00573154)
+Factor hints (class_loss=  6.2002, deps_loss= 5839.6787, fac=0.00106173)
+Factor hints (class_loss= 14.6076, deps_loss= 6349.5327, fac=0.00230058)
+Factor hints (class_loss= 13.9885, deps_loss= 6815.1782, fac=0.00205256)
+Factor hints (class_loss=  6.0767, deps_loss= 5829.8833, fac=0.00104233)
+Factor hints (class_loss=  9.1029, deps_loss= 5803.7627, fac=0.00156844)
+Factor hints (class_loss=  1.2308, deps_loss= 5650.0684, fac=0.00021784)
+Factor hints (class_loss=  9.0883, deps_loss= 5750.9033, fac=0.00158032)
+
