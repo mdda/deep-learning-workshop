@@ -277,7 +277,6 @@ if __name__ == '__main__':
     n_gpus = torch.cuda.device_count()
     
     if n_gpus > 1:  # https://pytorch.org/tutorials/beginner/blitz/data_parallel_tutorial.html
-      print("Let's use %d GPUs!" % (n_gpus, ))
       batch_size *= n_gpus
 
     n_updates_total = (train_size // batch_size) * args.n_epoch
@@ -403,8 +402,11 @@ if __name__ == '__main__':
             print("Time used for %.2f of epoch %d: %.1f seconds" % (calc_fraction, epoch, calc_duration, ))
             print("  Time per 1000 lines : %.3f seconds" % (epoch_duration/len(train_dataset)*1000., ))
             print("  Expected finish time : %s (server)" % ( datetime.fromtimestamp(epoch_max_end).strftime("%A, %B %d, %Y %I:%M:%S %Z%z"), ))
-            print("  Expected finish time : %s (local)"  % ( datetime.fromtimestamp(epoch_max_end).astimezone(tz).strftime("%A, %B %d, %Y %I:%M:%S %Z%z"), ))
+            print("  Expected finish time : %s (local)"  % ( tz.localize(datetime.fromtimestamp(epoch_max_end)).strftime("%A, %B %d, %Y %I:%M:%S %Z%z"), ))
             time_estimate_last = time.time()  # Keep track of estimate times
+        
+            #  datetime.fromtimestamp(1247634536).strftime("%A, %B %d, %Y %I:%M:%S %Z%z")
+
         
         idx_loss_check -= len(train_dataset)/batch_size  # Keep track of reset idxs
         

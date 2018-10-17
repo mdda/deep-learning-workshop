@@ -70,20 +70,21 @@ unzip 2e9868b224e4.zip
 cd omerlevy-bidaf_no_answer-2e9868b224e4/
 
 
-#wget http://nlp.cs.washington.edu/zeroshot/relation_splits.tar.bz2
-#bunzip2 relation_splits.tar.bz2  # Output .tar : 1,936,209,920
-#tar -xf relation_splits.tar 
+wget http://nlp.cs.washington.edu/zeroshot/relation_splits.tar.bz2
+bunzip2 relation_splits.tar.bz2  # Output .tar : 1,936,209,920
+tar -xf relation_splits.tar 
 ## rm relation_splits.tar  # should be fine
 
-wget http://nlp.cs.washington.edu/zeroshot/raw_data.tar.bz2    # 1.3Gb
-bunzip2 relation_splits.tar.bz2  # Output .tar : 6,909,859,840
-tar -xf relation_splits.tar 
+#wget http://nlp.cs.washington.edu/zeroshot/raw_data.tar.bz2    # 1.3Gb
+#bunzip2 relation_splits.tar.bz2  # Output .tar : 6,909,859,840
+#tar -xf relation_splits.tar 
 
 
 
 
 
 # OK, so ignore the previous paper's model : It wants TF 0.11 ...
+#### IGNORE START  #### 
 
 # Inaccurate (negative_example): 
 # IUCN conservation status	What is the endangered status of XXX?	Bawean deer	The Bawean deer (Hyelaphus kuhlii), also known as Kuhl's hog deer or Bawean hog deer, is a highly threatened species of deer found only in the island 
@@ -134,9 +135,7 @@ python -m basic.cli --mode train --noload --batch_size 400 --sent_size_th 60 --n
 #Loaded 835951/840000 examples from train
 #Loaded 11870/12000 examples from dev
 
-
-
-
+#### IGNORE END #### 
 
 
 cd  ../../orig
@@ -226,4 +225,62 @@ Factor hints (class_loss=  9.1029, deps_loss= 5803.7627, fac=0.00156844)
 Factor hints (class_loss=  1.2308, deps_loss= 5650.0684, fac=0.00021784)
 Factor hints (class_loss=  9.0883, deps_loss= 5750.9033, fac=0.00158032)
 
+# https://cloud.google.com/compute/docs/gpus/add-gpus
+# Modify 'rdai-tts-p100-vm' 
+#  to have 4*P100, and 
+#    $0.43 USD per GPU per hour
+#  attach a 200Gb persistent disk : 'zero-shot-relationships'
+#    https://cloud.google.com/persistent-disk/
+
+# https://cloud.google.com/tpu/docs/pricing
+#   Potential : $1.35 USD per TPU per hour (preemptible)
+
+
+export INSTANCE_NAME="rdai-tts-p100-vm"
+gcloud compute instances start $INSTANCE_NAME
+
+gcloud compute ssh $INSTANCE_NAME
+
+cd ~/deep-learning-workshop/notebooks/work-in-progress/2018-10_ZeroShotRelationships/
+mkdir orig # ... Follow instructions above ...
+
+
+scp *.hdf5 rdai-tts-p100-vm:~/deep-learning-workshop/notebooks/work-in-progress/2018-10_ZeroShotRelationships/orig/omerlevy-bidaf_no_answer-2e9868b224e4/relation_splits/
+
+cd ~/deep-learning-workshop/notebooks/work-in-progress/2018-10_ZeroShotRelationships/orig/omerlevy-bidaf_no_answer-2e9868b224e4/relation_splits/
+md5sum *
+6e8fe51b869fecb6acd241df9fab07d8  dev.1_all.hdf5
+de44a1feb2392ce91b03f3d7b5feba35  test.1_all.hdf5
+e735c9a89f98613e2e64af0ac794bf5e  train.1_all.hdf5
+
+# locally :
+md5sum *.hdf5
+6e8fe51b869fecb6acd241df9fab07d8  dev.1_all.hdf5
+de44a1feb2392ce91b03f3d7b5feba35  test.1_all.hdf5
+e735c9a89f98613e2e64af0ac794bf5e  train.1_all.hdf5
+
+
+# Mount new persistent disk : 
+#   https://devopscube.com/mount-extra-disks-on-google-cloud/
+sudo lsblk
+#NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+#sda      8:0    0   30G  0 disk 
+#└─sda1   8:1    0   30G  0 part /
+#sdb      8:16   0  200G  0 disk 
+
+
+cd ~/deep-learning-workshop/notebooks/work-in-progress/2018-10_ZeroShotRelationships/
+mkdir checkpoints
+
+sudo mkfs.ext4 -m 0 -F -E lazy_itable_init=0,lazy_journal_init=0,discard /dev/sdb
+sudo mount -o discard,defaults /dev/sdb checkpoints
+
+
+
+. ~/env3/bin/activate
+
+python train_on_onestep.py --relation_hdf5=dev.1_all.hdf5 --stub=base --dep_fac=0.0
+# Functions (after fixing :: grep 'f"' orig/pytorch-openai-transformer-lm/*.py) 3.6 string formatting
+
+python train_on_onestep.py --relation_hdf5=train.1_all.hdf5 --stub=base --dep_fac=0.0
 
