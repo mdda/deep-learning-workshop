@@ -318,6 +318,14 @@ if __name__ == '__main__':
                            
     epoch_start, epoch_max, loss_best = -1, args.n_epoch, None
 
+
+    model_stepwise.to(device)
+
+    if torch.cuda.device_count() > 1:  # https://pytorch.org/tutorials/beginner/blitz/data_parallel_tutorial.html
+      print("Let's use", torch.cuda.device_count(), "GPUs!")
+      model_stepwise = nn.DataParallel(model_stepwise)
+      
+
     os.makedirs('./checkpoints', exist_ok=True)
     if args.checkpoint is None:
       load_openai_pretrained_model(
@@ -331,6 +339,18 @@ if __name__ == '__main__':
       checkpoint = torch.load(args.checkpoint, map_location=lambda storage, loc: storage)
       epoch_start = checkpoint['epoch']
       
+      #from collections import OrderedDict
+      #def fix_dict(state_dict):
+      #  new_state_dict = OrderedDict()
+      #  for k, v in state_dict.items():
+      #    name = k
+      #    if name.startswith('module.'):
+      #      name = k[7:] # remove 'module.' of dataparallel
+      #    new_state_dict[name]=v
+      #  return new_state_dict
+
+      model.load_state_dict(new_state_dict)      
+      
       model_stepwise.load_state_dict(checkpoint['model'])
       model_opt.load_state_dict(checkpoint['optimizer'])
       
@@ -340,12 +360,6 @@ if __name__ == '__main__':
       print("Loaded %s - assuming epoch_now=%d" % (args.checkpoint, epoch_start,))
 
     
-    model_stepwise.to(device)
-
-    if torch.cuda.device_count() > 1:  # https://pytorch.org/tutorials/beginner/blitz/data_parallel_tutorial.html
-      print("Let's use", torch.cuda.device_count(), "GPUs!")
-      model_stepwise = nn.DataParallel(model_stepwise)
-      
     #zero = torch.zeros(1).to(device)
 
     if args.predict: 

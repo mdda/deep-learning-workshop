@@ -320,9 +320,9 @@ sudo lsblk
 cd ~/deep-learning-workshop/notebooks/work-in-progress/2018-10_ZeroShotRelationships/
 mkdir checkpoints
 
-sudo mkfs.ext4 -m 0 -F -E lazy_itable_init=0,lazy_journal_init=0,discard /dev/sdb
+## sudo mkfs.ext4 -m 0 -F -E lazy_itable_init=0,lazy_journal_init=0,discard /dev/sdb
 sudo mount -o discard,defaults /dev/sdb checkpoints
-sudo chown andrewsm:andrewsm checkpoints
+sudo chmod a+x checkpoints
 
 
 
@@ -352,3 +352,9 @@ python train_on_onestep.py --relation_hdf5=train.1_all.hdf5 --stub=fac1.0 --dep_
 
 
 python train_on_onestep.py --relation_hdf5=train.1_all.hdf5 --stub=fac0.1 --dep_fac=0.1
+
+# Locally test the test script
+python train_on_onestep.py --relation_hdf5=dev.1_all.hdf5 --stub=base --predict --checkpoint=./checkpoints/
+
+# Locally run the test script
+python train_on_onestep.py --relation_hdf5=test.1_all.hdf5 --stub=base --predict --checkpoint=./checkpoints/
