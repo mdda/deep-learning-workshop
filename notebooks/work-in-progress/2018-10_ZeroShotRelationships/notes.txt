@@ -407,5 +407,5 @@ python train_on_onestep.py --relation_hdf5=train.1_all.hdf5 --stub=fac0.1 --dep_
 |    3      1374      C   python                                      8689MiB |
 +-----------------------------------------------------------------------------+
 
-
-
+# Start again with 'no answer' forced labels
+python train_on_onestep.py --relation_hdf5=train.1_all.hdf5 --stub=fac0.1 --dep_fac=0.1
