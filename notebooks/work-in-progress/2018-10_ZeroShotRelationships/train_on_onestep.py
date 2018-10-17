@@ -318,6 +318,13 @@ if __name__ == '__main__':
                            
     epoch_start, epoch_max, loss_best = -1, args.n_epoch, None
 
+    if args.checkpoint is None:
+      load_openai_pretrained_model(
+        model_stepwise.transformer, 
+        n_special=args.tokens_special,  n_ctx=n_ctx,   # n_ctx adjusts embedding size to include positional
+        path=pretrained_model_path+'/',
+        path_names=os.path.join('.', 'orig', 'pytorch-openai-transformer-lm')+'/',
+      )
 
     model_stepwise.to(device)
 
@@ -327,15 +334,8 @@ if __name__ == '__main__':
       
 
     os.makedirs('./checkpoints', exist_ok=True)
-    if args.checkpoint is None:
-      load_openai_pretrained_model(
-        model_stepwise.transformer, 
-        n_special=args.tokens_special,  n_ctx=n_ctx,   # n_ctx adjusts embedding size to include positional
-        path=pretrained_model_path+'/',
-        path_names=os.path.join('.', 'orig', 'pytorch-openai-transformer-lm')+'/',
-      )
       
-    else:
+    if args.checkpoint is not None:
       checkpoint = torch.load(args.checkpoint, map_location=lambda storage, loc: storage)
       epoch_start = checkpoint['epoch']
       

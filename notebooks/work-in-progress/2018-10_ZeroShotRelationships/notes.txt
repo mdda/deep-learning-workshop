@@ -265,12 +265,12 @@ python train_on_onestep.py --relation_hdf5=dev.1_all.hdf5 --stub=base --predict 
 # Locally run the test script
 python train_on_onestep.py --relation_hdf5=test.1_all.hdf5 --stub=base --predict --checkpoint=./checkpoints/model-stepwise_base_0002-804000.pth
 
-Assessment via test_on_onestep : 
-  #precision=37.56% recall=40.10% F1=38.79%  # intersection/ans
-  precision=30.97% recall=33.06% F1=31.98%  # intersection/union of a_start_best, a_end_best
+#Assessment via test_on_onestep : 
+##  #precision=37.56% recall=40.10% F1=38.79%  # intersection/ans
+##  precision=30.97% recall=33.06% F1=31.98%  # intersection/union of a_start_best, a_end_best
 
-Paper result for 'Multiple Templates' : (1_Allen_ZeroShotRelationExtraction-ReadingComprehension_1706.04115.pdf - Table 3)
-  precision=43.61% recall=36.45% F1=39.61%
+#Paper result for 'Multiple Templates' : (1_Allen_ZeroShotRelationExtraction-ReadingComprehension_1706.04115.pdf - Table 3)
+##  precision=43.61% recall=36.45% F1=39.61%
 
 
 # https://cloud.google.com/compute/docs/gpus/add-gpus
@@ -293,7 +293,8 @@ cd ~/deep-learning-workshop/notebooks/work-in-progress/2018-10_ZeroShotRelations
 mkdir orig # ... Follow instructions above ...
 
 
-scp *.hdf5 rdai-tts-p100-vm:~/deep-learning-workshop/notebooks/work-in-progress/2018-10_ZeroShotRelationships/orig/omerlevy-bidaf_no_answer-2e9868b224e4/relation_splits/
+gcloud compute scp *.hdf5 rdai-tts-p100-vm:~/deep-learning-workshop/notebooks/work-in-progress/2018-10_ZeroShotRelationships/orig/omerlevy-bidaf_no_answer-2e9868b224e4/relation_splits/
+
 
 cd ~/deep-learning-workshop/notebooks/work-in-progress/2018-10_ZeroShotRelationships/orig/omerlevy-bidaf_no_answer-2e9868b224e4/relation_splits/
 md5sum *
@@ -351,10 +352,23 @@ screen -S QAZRE
 python train_on_onestep.py --relation_hdf5=train.1_all.hdf5 --stub=fac1.0 --dep_fac=1.0
 
 
+# Remotely test the test script
+python train_on_onestep.py --relation_hdf5=dev.1_all.hdf5 --stub=fac1.0 --predict --checkpoint=./checkpoints/model-stepwise_fac1.0_0001-760576.pth
+
+# Remotely run the test script
+python train_on_onestep.py --relation_hdf5=test.1_all.hdf5 --stub=fac1.0 --predict --checkpoint=./checkpoints/model-stepwise_fac1.0_0001-760576.pth
+
+export REMOTE_BASE="rdai-tts-p100-vm:~/deep-learning-workshop/notebooks/work-in-progress/2018-10_ZeroShotRelationships"
+export REL_PATH="orig/omerlevy-bidaf_no_answer-2e9868b224e4/relation_splits"
+## mv ${REL_PATH}/test.1_all.hdf5_base.npz ${REL_PATH}/test.1_all.hdf5_fac1.0.npz
+gcloud compute scp ${REMOTE_BASE}/${REL_PATH}/test.1_all.hdf5_fac1.0.npz  ${REL_PATH}/
+
+# Assessment via test_on_onestep : 
+## precision=24.67% recall=43.13% F1=31.39%
+
+
+
+
+# Next run : 
 python train_on_onestep.py --relation_hdf5=train.1_all.hdf5 --stub=fac0.1 --dep_fac=0.1
 
-# Locally test the test script
-python train_on_onestep.py --relation_hdf5=dev.1_all.hdf5 --stub=base --predict --checkpoint=./checkpoints/
-
-# Locally run the test script
-python train_on_onestep.py --relation_hdf5=test.1_all.hdf5 --stub=base --predict --checkpoint=./checkpoints/
