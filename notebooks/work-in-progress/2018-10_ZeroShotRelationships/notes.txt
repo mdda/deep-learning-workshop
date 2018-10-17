@@ -285,9 +285,22 @@ python train_on_onestep.py --relation_hdf5=dev.1_all.hdf5 --stub=base --dep_fac=
 
 python train_on_onestep.py --relation_hdf5=train.1_all.hdf5 --stub=base --dep_fac=0.0
 
-# Time used for 0.06 of epoch 0: 300.7 seconds
-#   Time per 1000 lines : 6.024 seconds
-#   Expected finish time : Wednesday, October 17, 2018 12:08:41  (server)
+Factor hints (class_loss=29012.3672, deps_loss=23580.5684, fac=1.23035063)
+Factor hints (class_loss=455.4864, deps_loss=23485.1406, fac=0.01939466)
+Factor hints (class_loss=271.1743, deps_loss=23552.4355, fac=0.01151364)
+Factor hints (class_loss=217.7633, deps_loss=25605.2051, fac=0.00850465)
+Time used for 0.06 of epoch 0: 300.5 seconds
+  Time per 1000 lines : 6.005 seconds
+  Expected finish time : Wednesday, October 17, 2018 12:21:37  (server)
+  Expected finish time : Wednesday, October 17, 2018 12:21:37 +08+0800 (local)
+Factor hints (class_loss=176.8094, deps_loss=23848.9160, fac=0.00741373)
+Factor hints (class_loss=173.7655, deps_loss=22794.8516, fac=0.00762301)
+Factor hints (class_loss=119.6408, deps_loss=25449.4863, fac=0.00470111)
+Factor hints (class_loss=162.4608, deps_loss=24370.5605, fac=0.00666627)
 
 
-python train_on_onestep.py --relation_hdf5=train.1_all.hdf5 --stub=base --dep_fac=0.0
+screen -S QAZRE
+python train_on_onestep.py --relation_hdf5=train.1_all.hdf5 --stub=fac1.0 --dep_fac=1.0
+
+
+python train_on_onestep.py --relation_hdf5=train.1_all.hdf5 --stub=fac0.1 --dep_fac=0.1

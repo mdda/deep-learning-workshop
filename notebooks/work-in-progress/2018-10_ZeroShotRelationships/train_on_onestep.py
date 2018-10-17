@@ -398,16 +398,26 @@ if __name__ == '__main__':
             calc_duration = t_now-t_start
             calc_fraction = (idx*batch_size)/len(train_dataset)
             epoch_duration = calc_duration/calc_fraction
-            epoch_max_secs = (epoch_max-epoch-(1.-calc_fraction))*epoch_duration 
-            epoch_max_end = epoch_max_secs + time.time()
+            epoch_max_secs = (epoch_max-(epoch+calc_fraction))*epoch_duration 
+            epoch_max_end = epoch_max_secs + time.time()  # This is since the epoch in seconds
             print("Time used for %.2f of epoch %d: %.1f seconds" % (calc_fraction, epoch, calc_duration, ))
             print("  Time per 1000 lines : %.3f seconds" % (epoch_duration/len(train_dataset)*1000., ))
             print("  Expected finish in : %.2f hours" % ( epoch_max_secs/60/60, ))
-            print("  Expected finish time : %s (server)" % ( datetime.fromtimestamp(epoch_max_end).strftime("%A, %B %d, %Y %I:%M:%S %Z%z"), ))
-            print("  Expected finish time : %s (local)"  % ( tz.localize(datetime.fromtimestamp(epoch_max_end)).strftime("%A, %B %d, %Y %I:%M:%S %Z%z"), ))
+            #print("  Expected finish time : %s (server)" % ( datetime.fromtimestamp(epoch_max_end).strftime("%A, %B %d, %Y %I:%M:%S %Z%z"), ))
+            #print("  Expected finish time : %s (local)"  % ( tz.localize(datetime.fromtimestamp(epoch_max_end)).strftime("%A, %B %d, %Y %I:%M:%S %Z%z"), ))
+            print("  Expected finish time : %s (server)" % ( datetime.fromtimestamp(epoch_max_end, tz=tz).strftime("%A, %B %d, %Y %I:%M:%S %Z%z"), ))
             time_estimate_last = time.time()  # Keep track of estimate times
         
+            # https://stackoverflow.com/questions/1398674/display-the-time-in-a-different-time-zone
+        
+            #  import time, pytz
+            #  from datetime import datetime, timezone
             #  datetime.fromtimestamp(1247634536).strftime("%A, %B %d, %Y %I:%M:%S %Z%z")
+            #  datetime.fromtimestamp(time.time()).strftime("%A, %B %d, %Y %I:%M:%S %Z%z")  # GCP appears to report in UTC
+            #  datetime.fromtimestamp(time.time(), timezone.utc).strftime("%A, %B %d, %Y %I:%M:%S %Z%z") 
+            #  tz = pytz.timezone('Asia/Singapore')
+            #  datetime.fromtimestamp(time.time(), timezone.utc).astimezone(tz=tz).strftime("%A, %B %d, %Y %I:%M:%S %Z%z")
+            #  tz.localize(datetime.fromtimestamp(time.time(), timezone.utc)).strftime("%A, %B %d, %Y %I:%M:%S %Z%z")
 
         
         idx_loss_check -= len(train_dataset)/batch_size  # Keep track of reset idxs
