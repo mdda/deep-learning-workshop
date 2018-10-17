@@ -265,6 +265,12 @@ python train_on_onestep.py --relation_hdf5=dev.1_all.hdf5 --stub=base --predict 
 # Locally run the test script
 python train_on_onestep.py --relation_hdf5=test.1_all.hdf5 --stub=base --predict --checkpoint=./checkpoints/model-stepwise_base_0002-804000.pth
 
+Assessment via test_on_onestep : 
+  #precision=37.56% recall=40.10% F1=38.79%  # intersection/ans
+  precision=30.97% recall=33.06% F1=31.98%  # intersection/union of a_start_best, a_end_best
+
+Paper result for 'Multiple Templates' : (1_Allen_ZeroShotRelationExtraction-ReadingComprehension_1706.04115.pdf - Table 3)
+  precision=43.61% recall=36.45% F1=39.61%
 
 
 # https://cloud.google.com/compute/docs/gpus/add-gpus
