@@ -75,8 +75,11 @@ class Hdf5Dataset(Dataset):
     #print(features.shape, features_with_positions.shape)  # (128,) (128, 2)
 
     if 3 not in list(labels):  # There is no answer to this question : Force duff values
-      labels[0]=3
-      labels[1]=4
+      labels[0]=4 # end is before start
+      labels[1]=3
+    if 4 not in list(labels):  # There is no answer to this question : Force duff values
+      labels[0]=4 # end is before start
+      labels[1]=3
       
     # https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.clip.html
     np.clip(deps, 0, self.n_ctx-1, out=deps)
