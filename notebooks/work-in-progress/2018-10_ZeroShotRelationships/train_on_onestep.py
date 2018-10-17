@@ -378,7 +378,8 @@ if __name__ == '__main__':
             print(factor_hints)
 
           sentences_since_last_check = (idx-idx_loss_check)*batch_size
-          if sentences_since_last_check > 50000:  # Potentially save every 50000 sentences  (~30mins)
+          #if sentences_since_last_check > 50000:  # Potentially save every 50000 sentences  (~30mins on TitanX)
+          if sentences_since_last_check > 200000:  # Potentially save every 50000 sentences  (~2hrs on TitanX)
             loss_recent = loss_recent_tot / float(sentences_since_last_check)   # loss per sentence
           
             if loss_best is None or loss_recent<loss_best:  # Save model if loss has decreased

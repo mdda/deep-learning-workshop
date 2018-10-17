@@ -192,6 +192,7 @@ Saving Checkpoint : './checkpoints/model-stepwise_base_0000-750240.pth', loss_re
 Saving Checkpoint : './checkpoints/model-stepwise_base_0000-800256.pth', loss_recent=0.5061
 Saving Checkpoint : './checkpoints/model-stepwise_base_0001-011136.pth', loss_recent=0.5059
 Saving Checkpoint : './checkpoints/model-stepwise_base_0001-061152.pth', loss_recent=0.4592
+Saving Checkpoint : './checkpoints/model-stepwise_base_0001-211200.pth', loss_recent=0.4179
 
 -rw-rw-r--. 1 andrewsm andrewsm 1409989614 Oct 17 04:20 model-stepwise_base_0000-050016.pth
 -rw-rw-r--. 1 andrewsm andrewsm 1409989614 Oct 17 04:41 model-stepwise_base_0000-100032.pth
