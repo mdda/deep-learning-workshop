@@ -259,9 +259,11 @@ Factor hints (class_loss=  0.7334, deps_loss= 5572.8364, fac=0.00013160)
 Factor hints (class_loss=  0.7809, deps_loss= 6325.0166, fac=0.00012346)
 Factor hints (class_loss=  9.2523, deps_loss= 5544.1602, fac=0.00166883)
 
-# Locally
+# Locally test the test script
 python train_on_onestep.py --relation_hdf5=dev.1_all.hdf5 --stub=base --predict --checkpoint=./checkpoints/model-stepwise_base_0002-804000.pth
 
+# Locally run the test script
+python train_on_onestep.py --relation_hdf5=test.1_all.hdf5 --stub=base --predict --checkpoint=./checkpoints/model-stepwise_base_0002-804000.pth
 
 
 

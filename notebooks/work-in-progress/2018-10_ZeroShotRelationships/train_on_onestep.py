@@ -181,7 +181,7 @@ def run_predictions(test_loader=None, output_file=None):
   
     if (idx+1) % 10 == 0:
       print('%.1f%% of predictions' % (idx / float(len(test_loader)) * 100, ), end='\r')
-      break
+      #break
 
   np.savez(output_file, predictions=np.array( predictions_arr ), targets=np.array( targets_arr ), )
   
@@ -349,7 +349,7 @@ if __name__ == '__main__':
     #zero = torch.zeros(1).to(device)
 
     if args.predict: 
-      # Predict out results for all the 'relation_hdf5' instead
+      # Predict out results for all the 'relation_hdf5' instead (batch_size=1 not efficient, but 'sure')
       test_loader = DataLoader(dataset=train_dataset, batch_size=1, shuffle=False)   # , num_workers=1
       run_predictions(test_loader=test_loader, output_file="%s_%s.npz" % (relation_hdf5, args.stub))
       exit(0)
