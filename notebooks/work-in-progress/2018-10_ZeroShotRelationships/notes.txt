@@ -375,6 +375,9 @@ gcloud compute scp ${REMOTE_BASE}/${REL_PATH}/test.1_all.hdf5_fac1.0.npz  ${REL_
 python train_on_onestep.py --relation_hdf5=train.1_all.hdf5 --stub=fac0.1 --dep_fac=0.1
 python train_on_onestep.py --relation_hdf5=train.1_all.hdf5 --stub=fac0.1 --dep_fac=0.1 --checkpoint=./checkpoints/model-stepwise_fac0.1_0000-600192.pth
 
+# Update with 'no answer' forced labels
+python train_on_onestep.py --relation_hdf5=train.1_all.hdf5 --stub=fac0.1 --dep_fac=0.1 --checkpoint=./checkpoints/model-stepwise_fac0.1_0001-400128.pth
+
 +-----------------------------------------------------------------------------+
 | NVIDIA-SMI 396.44                 Driver Version: 396.44                    |
 |-------------------------------+----------------------+----------------------+
