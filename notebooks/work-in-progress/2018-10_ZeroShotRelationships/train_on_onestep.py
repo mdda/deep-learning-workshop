@@ -398,9 +398,11 @@ if __name__ == '__main__':
             calc_duration = t_now-t_start
             calc_fraction = (idx*batch_size)/len(train_dataset)
             epoch_duration = calc_duration/calc_fraction
-            epoch_max_end = (epoch_max-epoch-(1.-calc_fraction))*epoch_duration + time.time()
+            epoch_max_secs = (epoch_max-epoch-(1.-calc_fraction))*epoch_duration 
+            epoch_max_end = epoch_max_secs + time.time()
             print("Time used for %.2f of epoch %d: %.1f seconds" % (calc_fraction, epoch, calc_duration, ))
             print("  Time per 1000 lines : %.3f seconds" % (epoch_duration/len(train_dataset)*1000., ))
+            print("  Expected finish in : %.2f hours" % ( epoch_max_secs/60/60, ))
             print("  Expected finish time : %s (server)" % ( datetime.fromtimestamp(epoch_max_end).strftime("%A, %B %d, %Y %I:%M:%S %Z%z"), ))
             print("  Expected finish time : %s (local)"  % ( tz.localize(datetime.fromtimestamp(epoch_max_end)).strftime("%A, %B %d, %Y %I:%M:%S %Z%z"), ))
             time_estimate_last = time.time()  # Keep track of estimate times

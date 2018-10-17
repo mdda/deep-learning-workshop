@@ -211,8 +211,8 @@ Saving Checkpoint : './checkpoints/model-stepwise_base_0001-211200.pth', loss_re
 -rw-rw-r--. 1 andrewsm andrewsm 1409989614 Oct 17 09:37 model-stepwise_base_0000-800256.pth
 -rw-rw-r--. 1 andrewsm andrewsm 1409989614 Oct 17 09:59 model-stepwise_base_0001-011136.pth
 
-Time per 1000.  ~ >>> (3*60+10)*60./(800256-350112)*1000.
-25.325229259970143
+#Time per 1000.  ~ >>> (3*60+10)*60./(800256-350112)*1000.
+# 25.325229259970143 secs on TitanX
 
 Factor hints (class_loss=  4.5217, deps_loss= 5344.4214, fac=0.00084607)
 Factor hints (class_loss=  8.4208, deps_loss= 6178.9131, fac=0.00136283)
@@ -274,6 +274,7 @@ mkdir checkpoints
 
 sudo mkfs.ext4 -m 0 -F -E lazy_itable_init=0,lazy_journal_init=0,discard /dev/sdb
 sudo mount -o discard,defaults /dev/sdb checkpoints
+sudo chown andrewsm:andrewsm checkpoints
 
 
 
@@ -284,3 +285,9 @@ python train_on_onestep.py --relation_hdf5=dev.1_all.hdf5 --stub=base --dep_fac=
 
 python train_on_onestep.py --relation_hdf5=train.1_all.hdf5 --stub=base --dep_fac=0.0
 
+# Time used for 0.06 of epoch 0: 300.7 seconds
+#   Time per 1000 lines : 6.024 seconds
+#   Expected finish time : Wednesday, October 17, 2018 12:08:41  (server)
+
+
+python train_on_onestep.py --relation_hdf5=train.1_all.hdf5 --stub=base --dep_fac=0.0
