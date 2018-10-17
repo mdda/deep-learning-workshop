@@ -64,9 +64,6 @@ class Hdf5Dataset(Dataset):
     labels   = self.h5f['labels'][index].astype(np.int64)
     deps     = self.h5f['deps'][index].astype(np.int64)
     
-    # https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.clip.html
-    np.clip(deps, 0, self.n_ctx-1, out=deps)
-    
     #if self.transform is not None:
     #  features = self.transform(features)
       
@@ -76,7 +73,14 @@ class Hdf5Dataset(Dataset):
     #features_with_positions = np.stack( [ features, self.postitional_encoder ], axis=1 )
     features_with_positions = np.stack( [ features, self.postitional_encoder.copy() ], axis=1 )  # May be safer when multithreaded?
     #print(features.shape, features_with_positions.shape)  # (128,) (128, 2)
+
+    if 3 not in list(labels):  # There is no answer to this question : Force duff values
+      labels[0]=3
+      labels[1]=4
       
+    # https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.clip.html
+    np.clip(deps, 0, self.n_ctx-1, out=deps)
+    
     return features_with_positions, labels, deps
 
   def __len__(self):
@@ -165,7 +169,7 @@ def run_predictions(test_loader=None, output_file=None):
   print("run_predictions() -> %s" % (output_file, ))
   model_stepwise.eval()
 
-  predictions_arr, targets_arr = [], []
+  predictions_arr, targets_arr, txts_arr = [], [], []
   for idx, (features, labels, deps) in enumerate(test_loader):
     #features, labels, deps = features.to(device), labels.to(device), deps.to(device)
     features = features.to(device)
@@ -178,12 +182,19 @@ def run_predictions(test_loader=None, output_file=None):
   
     predictions_arr.append( out_class_logits.detach().cpu().numpy() )
     targets_arr.append( labels.detach().cpu().numpy() )
+    
+    bpes = list( features.detach().cpu().numpy()[0,:,0] )
+    #txt = text_encoder.decode( bpes )
+    txt = text_encoder.decode_as_fragments( bpes )
+    txts_arr.append( txt )
   
     if (idx+1) % 10 == 0:
       print('%.1f%% of predictions' % (idx / float(len(test_loader)) * 100, ), end='\r')
       #break
 
   np.savez(output_file, predictions=np.array( predictions_arr ), targets=np.array( targets_arr ), )
+  with open(output_file+'.txt', 'w') as f:
+    f.write('\n'.join(txts_arr))
   
 
 if __name__ == '__main__':
@@ -365,6 +376,10 @@ if __name__ == '__main__':
     if args.predict: 
       # Predict out results for all the 'relation_hdf5' instead (batch_size=1 not efficient, but 'sure')
       test_loader = DataLoader(dataset=train_dataset, batch_size=1, shuffle=False)   # , num_workers=1
+      
+      from text_utils import TextEncoder   # This is my version
+      text_encoder = TextEncoder(args.encoder_path, args.bpe_path)      
+      
       run_predictions(test_loader=test_loader, output_file="%s_%s.npz" % (relation_hdf5, args.stub))
       exit(0)
 
@@ -422,8 +437,8 @@ if __name__ == '__main__':
             print(factor_hints)
 
           sentences_since_last_check = (idx-idx_loss_check)*batch_size
-          #if sentences_since_last_check > 50000:  # Potentially save every 50000 sentences  (~30mins on TitanX)
-          if sentences_since_last_check > 200000:  # Potentially save every 50000 sentences  (~2hrs on TitanX)
+          #if sentences_since_last_check > 50000:  # Potentially save every  50000 sentences  (~30mins on TitanX)
+          if sentences_since_last_check > 200000:  # Potentially save every 200000 sentences  (~2hrs on TitanX)
             loss_recent = loss_recent_tot / float(sentences_since_last_check)   # loss per sentence
           
             if loss_best is None or loss_recent<loss_best:  # Save model if loss has decreased

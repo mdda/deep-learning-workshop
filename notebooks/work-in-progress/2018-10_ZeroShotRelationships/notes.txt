@@ -276,7 +276,7 @@ python train_on_onestep.py --relation_hdf5=test.1_all.hdf5 --stub=base --predict
 # https://cloud.google.com/compute/docs/gpus/add-gpus
 # Modify 'rdai-tts-p100-vm' 
 #  to have 4*P100, and 
-#    $0.43 USD per GPU per hour
+#    $0.43 USD per GPU per hour  (confirmed to have 16Gb of memory each)
 #  attach a 200Gb persistent disk : 'zero-shot-relationships'
 #    https://cloud.google.com/persistent-disk/
 
@@ -322,6 +322,8 @@ cd ~/deep-learning-workshop/notebooks/work-in-progress/2018-10_ZeroShotRelations
 mkdir checkpoints
 
 ## sudo mkfs.ext4 -m 0 -F -E lazy_itable_init=0,lazy_journal_init=0,discard /dev/sdb
+
+cd ~/deep-learning-workshop/notebooks/work-in-progress/2018-10_ZeroShotRelationships/
 sudo mount -o discard,defaults /dev/sdb checkpoints
 sudo chmod a+x checkpoints
 
@@ -371,4 +373,36 @@ gcloud compute scp ${REMOTE_BASE}/${REL_PATH}/test.1_all.hdf5_fac1.0.npz  ${REL_
 
 # Next run : 
 python train_on_onestep.py --relation_hdf5=train.1_all.hdf5 --stub=fac0.1 --dep_fac=0.1
+python train_on_onestep.py --relation_hdf5=train.1_all.hdf5 --stub=fac0.1 --dep_fac=0.1 --checkpoint=./checkpoints/model-stepwise_fac0.1_0000-600192.pth
+
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 396.44                 Driver Version: 396.44                    |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|===============================+======================+======================|
+|   0  Tesla P100-PCIE...  Off  | 00000000:00:04.0 Off |                    0 |
+| N/A   76C    P0   193W / 250W |  10601MiB / 16280MiB |     99%      Default |
++-------------------------------+----------------------+----------------------+
+|   1  Tesla P100-PCIE...  Off  | 00000000:00:05.0 Off |                    0 |
+| N/A   71C    P0   187W / 250W |   8699MiB / 16280MiB |     97%      Default |
++-------------------------------+----------------------+----------------------+
+|   2  Tesla P100-PCIE...  Off  | 00000000:00:06.0 Off |                    0 |
+| N/A   70C    P0   189W / 250W |   8699MiB / 16280MiB |     98%      Default |
++-------------------------------+----------------------+----------------------+
+|   3  Tesla P100-PCIE...  Off  | 00000000:00:07.0 Off |                    0 |
+| N/A   71C    P0   203W / 250W |   8699MiB / 16280MiB |    100%      Default |
++-------------------------------+----------------------+----------------------+
+                                                                               
++-----------------------------------------------------------------------------+
+| Processes:                                                       GPU Memory |
+|  GPU       PID   Type   Process name                             Usage      |
+|=============================================================================|
+|    0      1374      C   python                                     10591MiB |
+|    1      1374      C   python                                      8689MiB |
+|    2      1374      C   python                                      8689MiB |
+|    3      1374      C   python                                      8689MiB |
++-----------------------------------------------------------------------------+
+
+
 

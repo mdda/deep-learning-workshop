@@ -163,6 +163,15 @@ class TextEncoder(object):
           w+=d
       return ' '.join(dec)
 
+    def decode_as_fragments(self, bpe_arr):  # This is a flat array
+      dec = []
+      for s in bpe_arr:
+        d = self.decoder[s] if s<len(self.decoder) else '|'
+        if d.endswith('</w>'):
+          dec.append(d[:-4])
+        else:
+          dec.append(d)
+      return ' '.join(dec)
 
 # Ought to have bpe decoder ...
 # https://github.com/eladhoffer/seq2seq.pytorch/blob/master/seq2seq/tools/tokenizer.py
