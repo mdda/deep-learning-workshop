@@ -400,7 +400,7 @@ if __name__ == '__main__':
             epoch_duration = calc_duration/calc_fraction
             epoch_max_end = (epoch_max-epoch-(1.-calc_fraction))*epoch_duration + time.time()
             print("Time used for %.2f of epoch %d: %.1f seconds" % (calc_fraction, epoch, calc_duration, ))
-            print("  Time per 1000 lines : %.2f seconds" % (epoch_duration/len(train_dataset)*1000., ))
+            print("  Time per 1000 lines : %.3f seconds" % (epoch_duration/len(train_dataset)*1000., ))
             print("  Expected finish time : %s (server)" % ( datetime.fromtimestamp(epoch_max_end).strftime("%A, %B %d, %Y %I:%M:%S %Z%z"), ))
             print("  Expected finish time : %s (local)"  % ( datetime.fromtimestamp(epoch_max_end).astimezone(tz).strftime("%A, %B %d, %Y %I:%M:%S %Z%z"), ))
             time_estimate_last = time.time()  # Keep track of estimate times

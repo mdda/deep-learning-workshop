@@ -202,6 +202,9 @@ python train_on_onestep.py --relation_hdf5=train.1_all.hdf5 --stub=base --dep_fa
 -rw-rw-r--. 1 andrewsm andrewsm 1409989614 Oct 17 09:37 model-stepwise_base_0000-800256.pth
 -rw-rw-r--. 1 andrewsm andrewsm 1409989614 Oct 17 09:59 model-stepwise_base_0001-011136.pth
 
+Time per 1000.  ~ >>> (3*60+10)*60./(800256-350112)*1000.
+25.325229259970143
+
 Factor hints (class_loss=  4.5217, deps_loss= 5344.4214, fac=0.00084607)
 Factor hints (class_loss=  8.4208, deps_loss= 6178.9131, fac=0.00136283)
 Factor hints (class_loss= 34.4343, deps_loss= 6007.8652, fac=0.00573154)
