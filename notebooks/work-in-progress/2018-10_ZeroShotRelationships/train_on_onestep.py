@@ -19,7 +19,7 @@ from torch.utils.data import DataLoader
 
 sys.path.append('orig/pytorch-openai-transformer-lm')
 from model_pytorch import TransformerModel, load_openai_pretrained_model, DEFAULT_CONFIG
-from model_pytorch import Conv1D
+from model_pytorch import Conv1D, Block
 from opt import OpenAIAdam
 from utils import ResultLogger
 
@@ -109,18 +109,29 @@ class Hdf5Dataset(Dataset):
 
 class StepwiseClassifierModel(nn.Module):
     """ Transformer with stepwise classifier(s) """
-    def __init__(self, cfg, n_classifier=None, one_hot=True, vocab_count=None, n_ctx=128): # 40990
+    def __init__(self, cfg, n_classifier=None, one_hot=True, vocab_count=None, n_ctx=128, extra_block=False): # 40990
         super(StepwiseClassifierModel, self).__init__()
         self.n_embd = cfg.n_embd
         self.n_ctx = n_ctx
         self.n_classifier = n_classifier
+        self.extra_block = extra_block
         
         self.transformer = TransformerModel(cfg, vocab=vocab_count+n_ctx, n_ctx=n_ctx)
         
         self.stepwise_classifier = Conv1D(n_classifier, 1, self.n_embd)
         
-        # Add the attention pointer idea
+
+        ## Add the attention pointer idea
+        if extra_block: 
+          # First : Add an additional transformer layer
+          self.full_block = Block(n_ctx, cfg, scale=True)
+          
+          # BBBUUUTTT ::  force it into full-attentional mode ::
+          #self.full_block.attn.register_buffer('b', torch.tril(torch.ones(n_ctx, n_ctx)).view(1, 1, n_ctx, n_ctx))
+          self.full_block.attn.register_buffer('b',            (torch.ones(n_ctx, n_ctx)).view(1, 1, n_ctx, n_ctx))
+        
         self.c_attn = Conv1D(self.n_embd*2, 1, self.n_embd)
+        
         #self.attn_dropout = nn.Dropout(cfg.attn_pdrop)  # Not in there yet
 
     def forward(self, x):   # x is the input text
@@ -135,9 +146,14 @@ class StepwiseClassifierModel(nn.Module):
         #       task_logits.size()= torch.Size([8, 5, 128])  (n_batch, n_classifier, n_ctx)
 
 
-        # Also project h on to the attention pointer
-        # ~ Attention.forward
-        attn = self.c_attn(h)
+        if self.extra_block:  
+          # New way : project h on to the attention pointer
+          h_after_extra_full_block = self.full_block(h)
+          attn = self.c_attn(h_after_extra_full_block)
+        else:
+          # ~ Attention.forward
+          attn = self.c_attn(h)  # This was 'old style'
+
       
         # reshape for query and key
         query, key = attn.split(self.n_embd, dim=2)
@@ -263,6 +279,7 @@ if __name__ == '__main__':
     parser.add_argument("--tz",                 type=str, default='Asia/Singapore', help="Timezone for local finish time estimation")
     
     parser.add_argument('--dep_fac',            type=float, default=0.)
+    parser.add_argument('--extra_block',        action='store_true')
     
     parser.add_argument('--predict', action='store_true')
 
@@ -320,7 +337,7 @@ if __name__ == '__main__':
     n_updates_total = (train_size // batch_size) * args.n_epoch
 
 
-    model_stepwise = StepwiseClassifierModel(args, n_classifier=args.n_classes, vocab_count=args.vocab_count)
+    model_stepwise = StepwiseClassifierModel(args, n_classifier=args.n_classes, vocab_count=args.vocab_count, extra_block=args.extra_block)
 
     model_opt = OpenAIAdam(model_stepwise.parameters(),
                            lr=args.lr, schedule=args.lr_schedule, 

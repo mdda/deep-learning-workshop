@@ -547,13 +547,14 @@ python train_on_onestep.py --relation_hdf5=test.1_all.hdf5 --stub=baseno --predi
 gcloud compute scp ${REMOTE_BASE}/${REL_PATH}/test.1_all.hdf5_baseno.npz  ${REL_PATH}/
 
 
-##  Now move over to no-ans at end training
+##  Now move over to (no-ans at token_clf) training
 git pull
 python train_on_onestep.py --relation_hdf5=train.1_all.hdf5 --stub=baseclf --dep_fac=0.0 --n_epoch=5
 
 
 
-
+git pull
+python train_on_onestep.py --relation_hdf5=train.1_all.hdf5 --stub=fac0.1-clf-extra --dep_fac=0.1 --n_epoch=1 --extra_block
 
 
 
