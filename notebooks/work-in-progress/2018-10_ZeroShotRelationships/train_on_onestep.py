@@ -141,18 +141,18 @@ class StepwiseClassifierModel(nn.Module):
         
         h = self.transformer(x)  # These are the transformers embeddings (n_batch, n_ctx, n_embd) 
         
+
+        if self.extra_block:  # This can look forwards too
+          h = self.full_block(h)
+
+
         task_logits = self.stepwise_classifier( h ).permute( 0, 2, 1) # CrossEntropy expects classifier to be in second position
         #print("task_logits.size()=",  task_logits.size() ) 
         #       task_logits.size()= torch.Size([8, 5, 128])  (n_batch, n_classifier, n_ctx)
 
 
-        if self.extra_block:  
-          # New way : project h on to the attention pointer
-          h_after_extra_full_block = self.full_block(h)
-          attn = self.c_attn(h_after_extra_full_block)
-        else:
-          # ~ Attention.forward
-          attn = self.c_attn(h)  # This was 'old style'
+        # ~ Attention.forward
+        attn = self.c_attn(h)  # This was 'old style'
 
       
         # reshape for query and key
