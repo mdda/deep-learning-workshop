@@ -388,7 +388,7 @@ if __name__ == '__main__':
 
     train_loader = DataLoader(dataset=train_dataset, 
                       batch_size=batch_size, 
-                      shuffle=False, num_workers=1)   # 2 leads to device side asserts...
+                      shuffle=False)   # 2 leads to device side asserts...  , num_workers=1
 
     try:
       idx_loss_check, loss_recent_tot = 0, 0.
