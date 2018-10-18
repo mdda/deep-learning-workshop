@@ -186,18 +186,19 @@ def run_predictions(test_loader=None, output_file=None):
     predictions_arr.append( out_class_logits.detach().cpu().numpy() )
     targets_arr.append( labels.detach().cpu().numpy() )
     
-    bpes = list( features.detach().cpu().numpy()[0,:,0] )
-    #txt = text_encoder.decode( bpes )
-    txt = text_encoder.decode_as_fragments( bpes )
-    txts_arr.append( txt )
+    #bpes = list( features.detach().cpu().numpy()[0,:,0] )
+    ##txt = text_encoder.decode( bpes )
+    #txt = text_encoder.decode_as_fragments( bpes )
+    #txts_arr.append( txt )
   
     if (idx+1) % 10 == 0:
       print('%.1f%% of predictions' % (idx / float(len(test_loader)) * 100, ), end='\r')
       #break
 
   np.savez(output_file, predictions=np.array( predictions_arr ), targets=np.array( targets_arr ), )
-  with open(output_file+'.txt', 'w') as f:
-    f.write('\n'.join(txts_arr))
+  
+  #with open(output_file+'.txt', 'w') as f:
+  #  f.write('\n'.join(txts_arr))
   
 
 if __name__ == '__main__':
@@ -259,7 +260,6 @@ if __name__ == '__main__':
     parser.add_argument("--tz",                 type=str, default='Asia/Singapore', help="Timezone for local finish time estimation")
     
     parser.add_argument('--dep_fac',            type=float, default=0.)
-    #parser.add_argument('--dep_fac',            type=float, default=0.02)
     
     parser.add_argument('--predict', action='store_true')
 
@@ -272,10 +272,6 @@ if __name__ == '__main__':
     torch.cuda.manual_seed_all(args.seed)
 
     tz = pytz.timezone(args.tz)
-
-    # Constants
-    #log_dir = args.log_dir
-    #logger = ResultLogger(path=os.path.join(log_dir, '{}.jsonl'.format(args.stub)), **args.__dict__)
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     n_gpu = torch.cuda.device_count()
@@ -380,8 +376,9 @@ if __name__ == '__main__':
       # Predict out results for all the 'relation_hdf5' instead (batch_size=1 not efficient, but 'sure')
       test_loader = DataLoader(dataset=train_dataset, batch_size=1, shuffle=False)   # , num_workers=1
       
-      from text_utils import TextEncoder   # This is my version
-      text_encoder = TextEncoder(args.encoder_path, args.bpe_path)      
+      # This is now done by the dataset generation script
+      #from text_utils import TextEncoder   # This is my version
+      #text_encoder = TextEncoder(args.encoder_path, args.bpe_path)      
       
       run_predictions(test_loader=test_loader, output_file="%s_%s.npz" % (relation_hdf5, args.stub))
       exit(0)

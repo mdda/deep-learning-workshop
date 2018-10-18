@@ -147,31 +147,33 @@ class TextEncoder(object):
         lens.append(tot)
       return lens  # Returns arr[ word_idx ] -> bpe_offset
 
-    def decode(self, bpe_arr):  # This is a flat array
+    def decode(self, bpe_arr, inter_bpe=''):  # This is a flat array # Maybe : inter_bpe='@@'
       #for s in bpe_arr:
       #  print(s, self.decoder[s])
       #dec = ''.join([ self.decoder[s] for s in bpe])
+      
+      lendec = len(self.decoder)
       dec, w = [], ''
       for s in bpe_arr:
         #print(s, self.decoder[s])
         #d = self.decoder[s]
-        d = self.decoder[s] if s<len(self.decoder) else '|</w>'
+        d = self.decoder[s] if s<lendec else '|</w>'
         if d.endswith('</w>'):
           dec.append(w+d[:-4])
           w=''
         else:
-          w+=d
+          w+=d+inter_bpe
       return ' '.join(dec)
 
-    def decode_as_fragments(self, bpe_arr):  # This is a flat array
-      dec = []
-      for s in bpe_arr:
-        d = self.decoder[s] if s<len(self.decoder) else '|'
-        if d.endswith('</w>'):
-          dec.append(d[:-4])
-        else:
-          dec.append(d)
-      return ' '.join(dec)
+    #def decode_as_fragments(self, bpe_arr):  # This is a flat array
+    #  dec = []
+    #  for s in bpe_arr:
+    #    d = self.decoder[s] if s<len(self.decoder) else '|'
+    #    if d.endswith('</w>'):
+    #      dec.append(d[:-4])
+    #    else:
+    #      dec.append(d)
+    #  return ' '.join(dec)
 
 # Ought to have bpe decoder ...
 # https://github.com/eladhoffer/seq2seq.pytorch/blob/master/seq2seq/tools/tokenizer.py

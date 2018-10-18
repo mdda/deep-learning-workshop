@@ -164,7 +164,8 @@ cd REPO/notebooks/work-in-progress/2018-10_ZeroShotRelationships
 
 . ~/env3/bin/activate
 
-python relation_split_to_hdf5.py --phase=train,dev,test
+python relation_split_to_hdf5.py --phase=train
+python relation_split_to_hdf5.py --phase=dev,test --save_bpe
 
 
 # TODO : 
@@ -510,13 +511,40 @@ Saving End-epoch checkpoint : './checkpoints/model-stepwise_fac0.02_0002-839936_
 
 python train_on_onestep.py --relation_hdf5=test.1_all.hdf5 --stub=fac0.02 --predict --checkpoint=./checkpoints/model-stepwise_fac0.02_0002-839936_end-epoch.pth
 
+gcloud compute scp ${REMOTE_BASE}/${REL_PATH}/test.1_all.hdf5_fac0.02.npz  ${REL_PATH}/
+
+# Assessment via test_on_onestep : 
+## precision=55.43% recall=19.11% F1=28.42%  # using p_ij  #  fac0.1
+## 
+
+
+
+
+
+
+# Now running this with the baseno [0:2] ~ 4,3 training data...
+python train_on_onestep.py --relation_hdf5=train.1_all.hdf5 --stub=baseno --dep_fac=0.0 --n_epoch=5
+
+Factor hints (class_loss=217.6262, deps_loss=25597.0469, fac=0.00850201)
+Factor hints (class_loss=195.7768, deps_loss=25347.2812, fac=0.00772378)
+Factor hints (class_loss=206.4771, deps_loss=24933.8594, fac=0.00828099)
+Time used for 0.85 of epoch 2: 4809.7 seconds
+  Time per 1000 lines : 6.735 seconds
+  Expected finish in : 3.38 hours
+  Expected finish time : Friday, October 19, 2018 02:15:36 +08+0800 (local)
+Factor hints (class_loss=199.8273, deps_loss=23559.3867, fac=0.00848185)
+Saving Checkpoint : './checkpoints/model-stepwise_baseno_0002-720896.pth', loss_recent=1.5658
+Saving Checkpoint : './checkpoints/model-stepwise_baseno_0003-081024.pth', loss_recent=1.5545
+
+
+
+
+
+
+
+
+
+
 
 # TODO : Extend the training?
 python train_on_onestep.py --relation_hdf5=train.1_all.hdf5 --stub=fac0.02 --dep_fac=0.02  --checkpoint=./checkpoints/model-stepwise_fac0.02_0002-839936_end-epoch.pth --n_epoch=5
-
-
-
-# Should run this with the baseno [0:2] ~ 4,3 training data...
-python train_on_onestep.py --relation_hdf5=train.1_all.hdf5 --stub=baseno --dep_fac=0.0 --n_epoch=5
-
-

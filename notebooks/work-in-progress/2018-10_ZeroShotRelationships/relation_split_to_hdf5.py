@@ -62,9 +62,10 @@ def valid_relations(relation_phase='train', relation_fold=1,
       valid.append(i)  # This is a list of the valid indices
   return relation_file, valid
 
-def save_relations(relation_file, valid_ids=None, file_stub='_all', bpe_max=None):
+def save_relations(relation_file, valid_ids=None, file_stub='_all', bpe_max=None, save_bpe=False):
   #file_out = os.path.join( relation_file, "%s.%d%s.hdf5" % (relation_phase, relation_fold, file_stub))
   file_out = relation_file + "%s.hdf5" % (file_stub, )
+  text_out = relation_file + "%s.bpe" % (file_stub, )
   
   if bpe_max is None:
     bpe_max = n_ctx
@@ -102,7 +103,7 @@ def save_relations(relation_file, valid_ids=None, file_stub='_all', bpe_max=None
     #           .replace(' E.N.I.', ' #ENI').replace(' E.N.I ', ' #ENI ')
     #         ).strip()
     
-    idx, bpe_truncate_count = 0, 0
+    idx, bpe_truncate_count, bpe_save_arr = 0, 0, []
     with open(relation_file, 'r') as fp:
       reader = csv.reader(fp, delimiter='\t')
       for i, each in enumerate(reader):
@@ -170,6 +171,9 @@ def save_relations(relation_file, valid_ids=None, file_stub='_all', bpe_max=None
         
         xs_np[0, :len_xs] = xs
        
+        if save_bpe:  # Append this to array to be saved to disk
+          bpe_save_arr.append( text_encoder.decode( xs, inter_bpe='@@' ) )
+
 
         # Need these for answer offsets, and dependency offsets
         ques_enc_offsets = text_encoder.cumlen_bpes( ques_encs )
@@ -296,7 +300,13 @@ def save_relations(relation_file, valid_ids=None, file_stub='_all', bpe_max=None
         idx+=1 
 
   #print(i, valid, len_max_count, len_max_count/i*100.)
-  print("Saved to %s" % (file_out,))
+  print("Saved data to %s" % (file_out,))
+  
+  if save_bpe:
+    with open(text_out, 'w') as f:
+      f.write('\n'.join(bpe_save_arr))
+    print("Saved bpe data to %s" % (text_out,))
+    
   return file_out
 
 """  Dependencies make sense!
@@ -340,10 +350,13 @@ if __name__ == '__main__':
     parser.add_argument('--phase', type=str, default=None)
     parser.add_argument('--fold',  type=int, default=1)
     parser.add_argument('--stub',  type=str, default='')
+    parser.add_argument('--save_bpe', action='store_true')
+
     parser.add_argument('--positive',  type=bool, default=False)
     
     parser.add_argument('--encoder_path', type=str, default=pretrained_model_path+'/encoder_bpe_40000.json')
     parser.add_argument('--bpe_path', type=str, default=pretrained_model_path+'/vocab_40000.bpe')
+
 
     args = parser.parse_args()
     print(args)
@@ -369,19 +382,19 @@ if __name__ == '__main__':
         train_file, valid_train_ids_all = valid_relations(relation_phase='train', relation_fold=args.fold, 
                                                       len_max_return=n_ctx*6, skip_too_long=False, only_positive=False,)
                                                       
-        train_hdf5 = save_relations(train_file, valid_ids=valid_train_ids_all)  # Saves ALL
+        train_hdf5 = save_relations(train_file, valid_ids=valid_train_ids_all, save_bpe=args.save_bpe)  # Saves ALL
         
       if 'dev' in args.phase:  # <12secs
         dev_file, valid_dev_ids_all = valid_relations(relation_phase='dev', relation_fold=args.fold, 
                                                       len_max_return=n_ctx*6, skip_too_long=False, only_positive=False,)
                                                       
-        dev_hdf5 = save_relations(dev_file, valid_ids=valid_dev_ids_all)  # Saves ALL
+        dev_hdf5 = save_relations(dev_file, valid_ids=valid_dev_ids_all, save_bpe=args.save_bpe)  # Saves ALL
       
       if 'test' in args.phase:   # <4mins
         test_file, valid_test_ids_all = valid_relations(relation_phase='test', relation_fold=args.fold, 
                                                       len_max_return=n_ctx*6, skip_too_long=False, only_positive=False,)
                                                       
-        test_hdf5 = save_relations(test_file, valid_ids=valid_test_ids_all)  # Saves ALL
+        test_hdf5 = save_relations(test_file, valid_ids=valid_test_ids_all, save_bpe=args.save_bpe)  # Saves ALL
       
 
       if False:
