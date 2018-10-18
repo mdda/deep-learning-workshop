@@ -467,3 +467,56 @@ Factor hints (class_loss=192.0340, deps_loss=  551.7582, fac=0.34804023)
 Saving End-epoch checkpoint : './checkpoints/model-stepwise_fac0.1_0001-839936_end-epoch.pth'
 
 python train_on_onestep.py --relation_hdf5=train.1_all.hdf5 --stub=fac0.1 --dep_fac=0.1 --checkpoint=./checkpoints/model-stepwise_fac0.1_0002-839936_end-epoch.pth --n_epoch=5
+
+
+
+python train_on_onestep.py --relation_hdf5=train.1_all.hdf5 --stub=fac0.02 --dep_fac=0.02
+
+Factor hints (class_loss=223.2570, deps_loss= 1481.2102, fac=0.15072607)
+Factor hints (class_loss=211.9604, deps_loss= 1401.0105, fac=0.15129106)
+Factor hints (class_loss=196.1872, deps_loss= 1312.2306, fac=0.14950667)
+Factor hints (class_loss=204.6235, deps_loss= 1759.9146, fac=0.11626901)
+Saving Checkpoint : './checkpoints/model-stepwise_fac0.02_0001-160384.pth', loss_recent=2.0039
+
+Factor hints (class_loss=234.9280, deps_loss= 1539.1934, fac=0.15263058)
+Factor hints (class_loss=198.6711, deps_loss= 1532.9457, fac=0.12960086)
+Factor hints (class_loss=222.6590, deps_loss= 1567.9419, fac=0.14200719)
+Saving Checkpoint : './checkpoints/model-stepwise_fac0.02_0001-360448.pth', loss_recent=1.9098
+
+Factor hints (class_loss=216.5104, deps_loss= 1278.1627, fac=0.16939190)
+Factor hints (class_loss=202.8433, deps_loss= 1384.3292, fac=0.14652819)
+Saving Checkpoint : './checkpoints/model-stepwise_fac0.02_0001-560512.pth', loss_recent=1.8569
+Factor hints (class_loss=201.3995, deps_loss= 1333.3656, fac=0.15104597)
+Factor hints (class_loss=219.0672, deps_loss= 1239.7926, fac=0.17669667)
+
+Saving Checkpoint : './checkpoints/model-stepwise_fac0.02_0001-760576.pth', loss_recent=1.8242
+Factor hints (class_loss=189.2207, deps_loss= 1184.1119, fac=0.15979971)
+Factor hints (class_loss=217.4455, deps_loss= 1151.4514, fac=0.18884469)
+Factor hints (class_loss=196.9379, deps_loss= 1192.1925, fac=0.16518969)
+
+Saving End-epoch checkpoint : './checkpoints/model-stepwise_fac0.02_0001-839936_end-epoch.pth'
+
+Factor hints (class_loss=194.4754, deps_loss= 1045.6996, fac=0.18597633)
+Factor hints (class_loss=187.8143, deps_loss= 1010.2685, fac=0.18590533)
+Saving Checkpoint : './checkpoints/model-stepwise_fac0.02_0002-120704.pth', loss_recent=1.7843
+Factor hints (class_loss=199.0331, deps_loss= 1381.5564, fac=0.14406438)
+
+Saving Checkpoint : './checkpoints/model-stepwise_fac0.02_0002-320768.pth', loss_recent=1.7356
+Saving Checkpoint : './checkpoints/model-stepwise_fac0.02_0002-520832.pth', loss_recent=1.7111
+
+Saving Checkpoint : './checkpoints/model-stepwise_fac0.02_0002-720896.pth', loss_recent=1.6952
+Saving End-epoch checkpoint : './checkpoints/model-stepwise_fac0.02_0002-839936_end-epoch.pth'
+
+
+python train_on_onestep.py --relation_hdf5=test.1_all.hdf5 --stub=fac0.02 --predict --checkpoint=./checkpoints/model-stepwise_fac0.02_0002-839936_end-epoch.pth
+
+
+# TODO : Extend the training?
+python train_on_onestep.py --relation_hdf5=train.1_all.hdf5 --stub=fac0.02 --dep_fac=0.02  --checkpoint=./checkpoints/model-stepwise_fac0.02_0002-839936_end-epoch.pth --n_epoch=5
+
+
+
+# Should run this with the baseno [0:2] ~ 4,3 training data...
+python train_on_onestep.py --relation_hdf5=train.1_all.hdf5 --stub=baseno --dep_fac=0.0 --n_epoch=5
+
+
