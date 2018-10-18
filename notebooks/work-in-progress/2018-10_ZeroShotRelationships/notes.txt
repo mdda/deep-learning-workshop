@@ -409,3 +409,37 @@ python train_on_onestep.py --relation_hdf5=train.1_all.hdf5 --stub=fac0.1 --dep_
 
 # Start again with 'no answer' forced labels
 python train_on_onestep.py --relation_hdf5=train.1_all.hdf5 --stub=fac0.1 --dep_fac=0.1
+
+
+Saving Checkpoint : './checkpoints/model-stepwise_fac0.1_0001-760576.pth', loss_recent=2.2232
+Factor hints (class_loss=199.1927, deps_loss=  617.2078, fac=0.32273209)
+Time used for 0.92 of epoch 1: 4506.6 seconds
+  Time per 1000 lines : 5.843 seconds
+  Expected finish in : 1.47 hours
+  Expected finish time : Wednesday, October 17, 2018 23:37:18  (server)
+  Expected finish time : Thursday, October 18, 2018 07:37:18 +08+0800 (local)
+Factor hints (class_loss=215.0347, deps_loss=  622.1494, fac=0.34563187)
+Factor hints (class_loss=199.8563, deps_loss=  689.3589, fac=0.28991617)
+Factor hints (class_loss=215.8770, deps_loss=  829.4865, fac=0.26025383)
+Factor hints (class_loss=221.7887, deps_loss=  877.3491, fac=0.25279410)
+Time used for 0.98 of epoch 1: 4807.2 seconds
+  Time per 1000 lines : 5.841 seconds
+  Expected finish in : 1.39 hours
+  Expected finish time : Wednesday, October 17, 2018 23:37:15  (server)
+  Expected finish time : Thursday, October 18, 2018 07:37:15 +08+0800 (local)
+Factor hints (class_loss=206.2093, deps_loss=  751.4877, fac=0.27440149)
+Saving End-epoch checkpoint : './checkpoints/model-stepwise_fac0.1_0001-839936_end-epoch.pth'
+
+
+
+pip install ftfy, spacy
+python -m spacy download en
+python train_on_onestep.py --relation_hdf5=test.1_all.hdf5 --stub=fac0.1 --predict --checkpoint=./checkpoints/model-stepwise_fac0.1_0001-839936_end-epoch.pth
+
+gcloud compute scp ${REMOTE_BASE}/${REL_PATH}/test.1_all.hdf5_fac0.1.npz  ${REL_PATH}/
+
+# Assessment via test_on_onestep : 
+## precision=55.43% recall=19.11% F1=28.42%  # using p_ij
+
+
+python train_on_onestep.py --relation_hdf5=train.1_all.hdf5 --stub=fac0.1 --dep_fac=0.1 --checkpoint=./checkpoints/model-stepwise_fac0.1_0001-839936_end-epoch.pth --n_epoch=5
