@@ -443,3 +443,18 @@ gcloud compute scp ${REMOTE_BASE}/${REL_PATH}/test.1_all.hdf5_fac0.1.npz  ${REL_
 
 
 python train_on_onestep.py --relation_hdf5=train.1_all.hdf5 --stub=fac0.1 --dep_fac=0.1 --checkpoint=./checkpoints/model-stepwise_fac0.1_0001-839936_end-epoch.pth --n_epoch=5
+
+# Relevant tabs :
+https://arxiv.org/pdf/1810.04805.pdf
+https://arxiv.org/pdf/1803.09189.pdf
+https://arxiv.org/pdf/1706.04115.pdf
+http://nlp.cs.washington.edu/zeroshot/
+https://bitbucket.org/omerlevy/bidaf_no_answer/src/2e9868b224e4?at=default
+https://arxiv.org/pdf/1809.10185.pdf
+https://arxiv.org/pdf/1611.01603.pdf
+https://allennlp.org/elmo
+https://arxiv.org/pdf/1802.05365.pdf
+https://tfhub.dev/google/elmo/2
+https://github.com/huggingface/pytorch-openai-transformer-lm
+https://arxiv.org/abs/1706.04115
+https://arxiv.org/pdf/1806.08730.pdf
