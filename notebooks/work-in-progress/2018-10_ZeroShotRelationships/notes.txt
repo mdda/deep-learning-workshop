@@ -428,8 +428,11 @@ Time used for 0.98 of epoch 1: 4807.2 seconds
   Expected finish time : Wednesday, October 17, 2018 23:37:15  (server)
   Expected finish time : Thursday, October 18, 2018 07:37:15 +08+0800 (local)
 Factor hints (class_loss=206.2093, deps_loss=  751.4877, fac=0.27440149)
-Saving End-epoch checkpoint : './checkpoints/model-stepwise_fac0.1_0001-839936_end-epoch.pth'
 
+
+
+
+Saving Checkpoint : './checkpoints/model-stepwise_fac0.1_0002-800256.pth', loss_recent=1.9000
 
 
 pip install ftfy, spacy
@@ -458,3 +461,9 @@ https://tfhub.dev/google/elmo/2
 https://github.com/huggingface/pytorch-openai-transformer-lm
 https://arxiv.org/abs/1706.04115
 https://arxiv.org/pdf/1806.08730.pdf
+
+Factor hints (class_loss=210.2790, deps_loss=  634.4976, fac=0.33141021)
+Factor hints (class_loss=192.0340, deps_loss=  551.7582, fac=0.34804023)
+Saving End-epoch checkpoint : './checkpoints/model-stepwise_fac0.1_0001-839936_end-epoch.pth'
+
+python train_on_onestep.py --relation_hdf5=train.1_all.hdf5 --stub=fac0.1 --dep_fac=0.1 --checkpoint=./checkpoints/model-stepwise_fac0.1_0002-839936_end-epoch.pth --n_epoch=5
