@@ -540,10 +540,16 @@ Factor hints (class_loss=183.4029, deps_loss=24861.5137, fac=0.00737698)
 Saving Checkpoint : './checkpoints/model-stepwise_baseno_0004-641536.pth', loss_recent=1.4739
 Factor hints (class_loss=184.2379, deps_loss=25274.0234, fac=0.00728961)
 Factor hints (class_loss=184.8552, deps_loss=23345.1270, fac=0.00791836)
-# model-stepwise_baseno_0004-641536.pth
 
-python train_on_onestep.py --relation_hdf5=test.1_all.hdf5 --stub=baseno --predict --checkpoint=./checkpoints/model-stepwise_baseno_0004-641536.pth
+# model-stepwise_baseno_0004-641536.pth COMPLAINS, use instead : model-stepwise_baseno_0004-441472.pth
+
+python train_on_onestep.py --relation_hdf5=test.1_all.hdf5 --stub=baseno --predict --checkpoint=./checkpoints/model-stepwise_baseno_0004-441472.pth
 gcloud compute scp ${REMOTE_BASE}/${REL_PATH}/test.1_all.hdf5_baseno.npz  ${REL_PATH}/
+
+
+##  Now move over to no-ans at end training
+git pull
+python train_on_onestep.py --relation_hdf5=train.1_all.hdf5 --stub=baseclf --dep_fac=0.0 --n_epoch=5
 
 
 

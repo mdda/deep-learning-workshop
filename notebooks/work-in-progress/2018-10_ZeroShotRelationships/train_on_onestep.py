@@ -466,8 +466,9 @@ if __name__ == '__main__':
             print("Time used for %.2f of epoch %d: %.1f seconds" % (calc_fraction, epoch, calc_duration, ))
             print("  Time per 1000 lines : %.3f seconds" % (epoch_duration/len(train_dataset)*1000., ))
             print("  Expected finish in : %.2f hours" % ( epoch_max_secs/60/60, ))
-            print("  Expected finish time : %s (server)"  % ( datetime.fromtimestamp(epoch_max_end).strftime("%A, %B %d, %Y %H:%M:%S %Z%z"), ))
-            print("  Expected finish time : %s (local)"   % ( datetime.fromtimestamp(epoch_max_end, timezone.utc).astimezone(tz=tz).strftime("%A, %B %d, %Y %H:%M:%S %Z%z"), ))
+            #print("  Expected finish time : %s (server)"  % ( datetime.fromtimestamp(epoch_max_end).strftime("%A, %B %d, %Y %H:%M:%S %Z%z"), ))
+            print("  Expected finish time : %s (%s)"   % ( 
+                datetime.fromtimestamp(epoch_max_end, timezone.utc).astimezone(tz=tz).strftime("%A, %B %d, %Y %H:%M:%S %Z%z"), args.tz, ))
             
             #print("  Expected finish time : %s (local)"  % ( tz.localize(datetime.fromtimestamp(epoch_max_end)).strftime("%A, %B %d, %Y %H:%M:%S %Z%z"), ))
             
