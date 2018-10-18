@@ -521,7 +521,6 @@ gcloud compute scp ${REMOTE_BASE}/${REL_PATH}/test.1_all.hdf5_fac0.02.npz  ${REL
 
 
 
-
 # Now running this with the baseno [0:2] ~ 4,3 training data...
 python train_on_onestep.py --relation_hdf5=train.1_all.hdf5 --stub=baseno --dep_fac=0.0 --n_epoch=5
 
@@ -535,9 +534,16 @@ Time used for 0.85 of epoch 2: 4809.7 seconds
 Factor hints (class_loss=199.8273, deps_loss=23559.3867, fac=0.00848185)
 Saving Checkpoint : './checkpoints/model-stepwise_baseno_0002-720896.pth', loss_recent=1.5658
 Saving Checkpoint : './checkpoints/model-stepwise_baseno_0003-081024.pth', loss_recent=1.5545
+Saving Checkpoint : './checkpoints/model-stepwise_baseno_0004-441472.pth', loss_recent=1.4768
+Factor hints (class_loss=204.8316, deps_loss=24427.4961, fac=0.00838529)
+Factor hints (class_loss=183.4029, deps_loss=24861.5137, fac=0.00737698)
+Saving Checkpoint : './checkpoints/model-stepwise_baseno_0004-641536.pth', loss_recent=1.4739
+Factor hints (class_loss=184.2379, deps_loss=25274.0234, fac=0.00728961)
+Factor hints (class_loss=184.8552, deps_loss=23345.1270, fac=0.00791836)
+# model-stepwise_baseno_0004-641536.pth
 
-
-
+python train_on_onestep.py --relation_hdf5=test.1_all.hdf5 --stub=baseno --predict --checkpoint=./checkpoints/model-stepwise_baseno_0004-641536.pth
+gcloud compute scp ${REMOTE_BASE}/${REL_PATH}/test.1_all.hdf5_baseno.npz  ${REL_PATH}/
 
 
 

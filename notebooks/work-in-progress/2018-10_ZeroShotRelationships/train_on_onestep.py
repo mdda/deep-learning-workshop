@@ -64,6 +64,12 @@ class Hdf5Dataset(Dataset):
     labels   = self.h5f['labels'][index].astype(np.int64)
     deps     = self.h5f['deps'][index].astype(np.int64)
     
+    # Find the token_clf
+    token_clf_pos = np.nonzero( features==token_clf )[-1].sum()  # This is zero if it is not found
+    if token_clf_pos>=features.shape[0]-1:  
+      #print("token_clf_pos right at end, index=", index, token_clf_pos, features.shape[0]-1)
+      token_clf_pos=features.shape[0]-2 # Need to have this location, and the next one
+    
     #if self.transform is not None:
     #  features = self.transform(features)
       
@@ -74,12 +80,20 @@ class Hdf5Dataset(Dataset):
     features_with_positions = np.stack( [ features, self.postitional_encoder.copy() ], axis=1 )  # May be safer when multithreaded?
     #print(features.shape, features_with_positions.shape)  # (128,) (128, 2)
 
-    if 3 not in list(labels):  # There is no answer to this question : Force duff values
-      labels[0]=4 # end is before start
-      labels[1]=3
-    if 4 not in list(labels):  # There is no answer to this question : Force duff values
-      labels[0]=4 # end is before start
-      labels[1]=3
+    unanswerable=False
+    if 3 not in list(labels):  # There is no answer to this question
+      unanswerable=True
+    if 4 not in list(labels):  # There is no answer to this question
+      unanswerable=True
+    
+    print(token_clf_pos, unanswerable)
+    if unanswerable:
+      if False:
+        labels[0]=4 # end is before start
+        labels[1]=3
+      if True:
+        labels[token_clf_pos  ] = 4 # end is before start
+        labels[token_clf_pos+1] = 3
       
     # https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.clip.html
     np.clip(deps, 0, self.n_ctx-1, out=deps)
@@ -103,10 +117,6 @@ class StepwiseClassifierModel(nn.Module):
         
         self.transformer = TransformerModel(cfg, vocab=vocab_count+n_ctx, n_ctx=n_ctx)
         
-        #self.stepwise_classifier = nn.Linear(self.n_embd, n_classifier)
-        #nn.init.normal_(self.stepwise_classifier.weight, std = 0.02)
-        #nn.init.normal_(self.stepwise_classifier.bias, 0)
-
         self.stepwise_classifier = Conv1D(n_classifier, 1, self.n_embd)
         
         # Add the attention pointer idea
@@ -119,13 +129,6 @@ class StepwiseClassifierModel(nn.Module):
         # x[..., -1] is for [input_sequence, positions]
         
         h = self.transformer(x)  # These are the transformers embeddings (n_batch, n_ctx, n_embd) 
-        
-        #lm_logits = self.lm_head(h)
-        #task_logits = self.task_head(h, x)
-        #return lm_logits, task_logits
-
-        #task_logits = self.stepwise_classifier( h.view(-1, self.n_embd) )
-        #.view(-1, x.size(1), self.n_classifier)
         
         task_logits = self.stepwise_classifier( h ).permute( 0, 2, 1) # CrossEntropy expects classifier to be in second position
         #print("task_logits.size()=",  task_logits.size() ) 
@@ -158,12 +161,12 @@ class StepwiseClassifierModel(nn.Module):
           w = w / np.sqrt(self.n_embd)  # simple scaling, since we're adding up a dot product
         
         # Now, we have a weighting matrix (logits) over the different locations
-        #w = nn.Softmax(dim=-1)(w)   # 
+        #w = nn.Softmax(dim=-1)(w)   # Don't do this here, since we use pure logits with the loss_fn
         
         #print("w.size()=", w.size())
         #       w.size()= torch.Size([8, 128, 128])  ( thinking about it : batch, time_step, position_score )
 
-        attn_logits = w.permute( 0, 2, 1) # CrossEntropy expects classifier to be in second position ( batch, position_score, time_step )
+        attn_logits = w.permute(0, 2, 1) # CrossEntropy expects classifier to be in second position ( batch, position_score, time_step )
         
         return task_logits, attn_logits
 
