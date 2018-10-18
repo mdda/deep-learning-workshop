@@ -86,7 +86,7 @@ class Hdf5Dataset(Dataset):
     if 4 not in list(labels):  # There is no answer to this question
       unanswerable=True
     
-    print(token_clf_pos, unanswerable)
+    #print(token_clf_pos, unanswerable)
     if unanswerable:
       if False:
         labels[0]=4 # end is before start
