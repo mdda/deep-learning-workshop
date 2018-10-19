@@ -764,10 +764,25 @@ test.1_all.hdf5_base-clf-extra1.npz                                             
 test.1_all.hdf5_base-clf-extra2.npz                                                                                         100%   41MB   1.5MB/s   00:27    
 test.1_all.hdf5_base-clf-extra3.npz                                                                                         100%   41MB   1.2MB/s   00:33    
 test.1_all.hdf5_fac0.02-clf-extra1.npz                                                                                      100%   41MB   1.2MB/s   00:35    
+test.1_all.hdf5_fac0.02-clf-extra2.npz                                                                                      100%   41MB   3.1MB/s   00:13 
 
 
+python train_on_onestep.py --relation_hdf5=train.1_all.hdf5 --stub=base-clf-extra-do --dep_fac=0.0 --n_epoch=1 --extra_block
+  Expected finish time : Saturday, October 20, 2018 03:35:06 +08+0800 (Asia/Singapore)
+0 6200 Factor hints (class_loss= 57.4853, deps_loss=18264.9216, fac=0.00314730)
+Saving Checkpoint : './checkpoints/model-stepwise_base-clf-extra-do_0000-800256.pth', loss_recent=0.3977
+0 6300 Factor hints (class_loss= 66.5949, deps_loss=19274.7452, fac=0.00345504)
+0 6400 Factor hints (class_loss= 51.1637, deps_loss=20018.2434, fac=0.00255586)
+0 6500 Factor hints (class_loss= 80.7796, deps_loss=18448.3566, fac=0.00437869)
+Saving End-epoch checkpoint : './checkpoints/model-stepwise_base-clf-extra-do_0000-839936_end-epoch.pth'
 
 
-python train_on_onestep.py --relation_hdf5=train.1_all.hdf5 --stub=base-clf-extra-do --dep_fac=0.0 --n_epoch=2 --extra_block
+python train_on_onestep.py --relation_hdf5=test.1_all.hdf5 --stub=base-clf-extra-do1    --extra_block --predict --checkpoint=./checkpoints/model-stepwise_base-clf-extra-do_0000-839936_end-epoch.pth
+test.1_all.hdf5_base-clf-extra-do1.npz                                                                                      100%   41MB   2.3MB/s   00:17    
 
-#python train_on_onestep.py --relation_hdf5=train.1_all.hdf5 --stub=fac0.02-clf-extra-do --dep_fac=0.02 --n_epoch=5 --extra_block
+
+python train_on_onestep.py --relation_hdf5=train.1_all.hdf5 --stub=base-clf-extra-do03 --dep_fac=0.0 --n_epoch=3 --extra_block --clf_pdrop=0.3
+
+
+# TODO :
+#python train_on_onestep.py --relation_hdf5=train.1_all.hdf5 --stub=fac0.1-clf-extra-do --dep_fac=0.1 --n_epoch=2 --extra_block
