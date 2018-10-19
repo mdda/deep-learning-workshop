@@ -433,12 +433,15 @@ if __name__ == '__main__':
           #print("dep_loss.size()=", dep_loss.size())
           #       dep_loss.size()= torch.Size([8, 128])
 
-          #dep_loss_masked = dep_loss * ( deps>0 )  # This zeros out all positions where deps == 0
           #dep_loss_masked = torch.where(deps>0, dep_loss, zero)  # This zeros out all positions where deps == 0
           #dep_loss_tot = dep_loss_masked.sum() / batch_size
           dep_loss_tot = dep_loss.masked_fill_( deps==0, 0. ).sum()
           
-          factor_hints="Factor hints (class_loss=%8.4f, deps_loss=%10.4f, fac=%.8f)" % ( class_loss_tot.item(), dep_loss_tot.item(), class_loss_tot.item()/dep_loss_tot.item(), )
+          factor_hints="Factor hints (class_loss=%8.4f, deps_loss=%10.4f, fac=%.8f)" % ( 
+                    class_loss_tot.item()/batch_size*100., 
+                    dep_loss_tot.item()/batch_size*100., 
+                    class_loss_tot.item()/dep_loss_tot.item(), )
+                    
           #factor hints :  (231.14927673339844, 225.23297119140625, 1.0262674932124587)
 
           batch_loss = class_loss_tot + args.dep_fac * dep_loss_tot
@@ -454,7 +457,7 @@ if __name__ == '__main__':
             print('%.1f%% of epoch %d' % (idx / float(len(train_loader)) * 100, epoch,), end='\r')  # Python 3 FTW!
 
           if idx % 100 == 0:
-            print(factor_hints)
+            print(epoch, idx, factor_hints)
 
           sentences_since_last_check = (idx-idx_loss_check)*batch_size
           #if sentences_since_last_check > 50000:  # Potentially save every  50000 sentences  (~30mins on TitanX)
@@ -463,7 +466,7 @@ if __name__ == '__main__':
           
             if loss_best is None or loss_recent<loss_best:  # Save model if loss has decreased
               fname = './checkpoints/model-stepwise_%s_%04d-%06d.pth' % (args.stub, epoch, idx*batch_size,)
-              print("Saving Checkpoint : '%s', loss_recent=%.4f" % (fname, loss_recent, ))
+              print("Saving Checkpoint : '%s', loss_recent=%.4f" % (fname, loss_recent/batch_size*100., ))
               torch.save(dict(
                 epoch=epoch,
                 model=model_stepwise.state_dict(), 
