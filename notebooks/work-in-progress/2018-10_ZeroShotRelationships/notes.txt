@@ -670,5 +670,36 @@ Saving End-epoch checkpoint : './checkpoints/model-stepwise_fac0.02-clf-extra_00
 Factor hints (class_loss= 60.4158, deps_loss= 1315.0813, fac=0.04594071)
 Factor hints (class_loss= 38.5199, deps_loss=  984.4031, fac=0.03913019)
 Factor hints (class_loss= 22.1790, deps_loss= 1378.7698, fac=0.01608610)
-
+...
+Factor hints (class_loss= 21.8342, deps_loss= 1148.4146, fac=0.01901244)
+Factor hints (class_loss= 28.4681, deps_loss= 1073.7638, fac=0.02651243)
+Factor hints (class_loss= 15.2139, deps_loss=  996.5071, fac=0.01526720)
+Saving Checkpoint : './checkpoints/model-stepwise_fac0.02-clf-extra_0002-120704.pth', loss_recent=0.4171
+...
+Factor hints (class_loss= 16.9287, deps_loss=  939.5686, fac=0.01801753)
+Factor hints (class_loss=  3.7140, deps_loss=  815.6996, fac=0.00455321)
+Saving Checkpoint : './checkpoints/model-stepwise_fac0.02-clf-extra_0003-281088.pth', loss_recent=0.2615
+Factor hints (class_loss= 30.3928, deps_loss= 1038.0977, fac=0.02927742)
+Time used for 0.35 of epoch 3: 2103.1 seconds
+  Time per 1000 lines : 7.190 seconds
+  Expected finish in : 2.77 hours
+  Expected finish time : Friday, October 19, 2018 19:26:04 +08+0800 (Asia/Singapore)
+Factor hints (class_loss= 43.1823, deps_loss= 1176.2476, fac=0.03671188)
+Factor hints (class_loss=  7.4813, deps_loss=  875.1732, fac=0.00854842)
+Factor hints (class_loss=  8.8583, deps_loss=  915.9918, fac=0.00967077)
+Factor hints (class_loss= 12.3679, deps_loss=  944.9523, fac=0.01308842)
+...
+Saving End-epoch checkpoint : './checkpoints/model-stepwise_fac0.02-clf-extra_0003-839936_end-epoch.pth'
+Factor hints (class_loss= 24.1291, deps_loss=  954.0272, fac=0.02529180)
+Factor hints (class_loss= 10.8070, deps_loss=  664.5237, fac=0.01626278)
+Factor hints (class_loss=  7.8779, deps_loss= 1029.5698, fac=0.00765167)
+Factor hints (class_loss=  0.7965, deps_loss=  799.9205, fac=0.00099576)
+Saving Checkpoint : './checkpoints/model-stepwise_fac0.02-clf-extra_0004-041344.pth', loss_recent=0.2190
+Time used for 0.05 of epoch 4: 302.0 seconds
+  Time per 1000 lines : 7.305 seconds
+  Expected finish in : 1.62 hours
+  Expected finish time : Friday, October 19, 2018 19:27:31 +08+0800 (Asia/Singapore)
+Factor hints (class_loss=  4.0647, deps_loss=  844.2839, fac=0.00481442)
+Factor hints (class_loss= 22.8976, deps_loss=  658.6575, fac=0.03476399)
+Factor hints (class_loss=  1.5992, deps_loss=  714.8778, fac=0.00223699)
 
