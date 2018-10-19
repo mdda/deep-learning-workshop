@@ -118,9 +118,6 @@ class StepwiseClassifierModel(nn.Module):
         
         self.transformer = TransformerModel(cfg, vocab=vocab_count+n_ctx, n_ctx=n_ctx)
         
-        self.stepwise_classifier = Conv1D(n_classifier, 1, self.n_embd)
-        
-
         ## Add the attention pointer idea
         if extra_block: 
           # First : Add an additional transformer layer
@@ -129,10 +126,12 @@ class StepwiseClassifierModel(nn.Module):
           # BBBUUUTTT ::  force it into full-attentional mode ::
           #self.full_block.attn.register_buffer('b', torch.tril(torch.ones(n_ctx, n_ctx)).view(1, 1, n_ctx, n_ctx))
           self.full_block.attn.register_buffer('b',            (torch.ones(n_ctx, n_ctx)).view(1, 1, n_ctx, n_ctx))
-        
+
+        self.stepwise_dropout    = nn.Dropout(cfg.clf_pdrop)        
+        self.stepwise_classifier = Conv1D(n_classifier, 1, self.n_embd)
+
+        self.attn_dropout = nn.Dropout(cfg.attn_pdrop)        
         self.c_attn = Conv1D(self.n_embd*2, 1, self.n_embd)
-        
-        #self.attn_dropout = nn.Dropout(cfg.attn_pdrop)  # Not in there yet
 
     def forward(self, x):   # x is the input text
         ## NO : x ~ np.zeros((n_batch, 2, n_ctx, 2), dtype=np.int32)  # This is for their 0 vs 1 model
@@ -145,15 +144,16 @@ class StepwiseClassifierModel(nn.Module):
         if self.extra_block:  # This can look forwards too
           h = self.full_block(h)
 
-
-        task_logits = self.stepwise_classifier( h ).permute( 0, 2, 1) # CrossEntropy expects classifier to be in second position
+        #  for classification step-wise
+        h_stepwise_input = self.stepwise_dropout(h)
+        task_logits = self.stepwise_classifier( h_stepwise_input ).permute( 0, 2, 1) # CrossEntropy expects classifier to be in second position
         #print("task_logits.size()=",  task_logits.size() ) 
         #       task_logits.size()= torch.Size([8, 5, 128])  (n_batch, n_classifier, n_ctx)
 
 
         # ~ Attention.forward
-        attn = self.c_attn(h)  # This was 'old style'
-
+        h_attn_input = self.stepwise_dropout(h)
+        attn = self.c_attn(h_attn_input)
       
         # reshape for query and key
         query, key = attn.split(self.n_embd, dim=2)

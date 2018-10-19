@@ -702,4 +702,72 @@ Time used for 0.05 of epoch 4: 302.0 seconds
 Factor hints (class_loss=  4.0647, deps_loss=  844.2839, fac=0.00481442)
 Factor hints (class_loss= 22.8976, deps_loss=  658.6575, fac=0.03476399)
 Factor hints (class_loss=  1.5992, deps_loss=  714.8778, fac=0.00223699)
+..
+Factor hints (class_loss=  2.7074, deps_loss=  866.1650, fac=0.00312576)
+Saving Checkpoint : './checkpoints/model-stepwise_fac0.02-clf-extra_0004-641536.pth', loss_recent=0.1790
+Factor hints (class_loss=  5.7157, deps_loss=  822.3781, fac=0.00695019)
+Factor hints (class_loss=  0.3353, deps_loss=  598.0361, fac=0.00056059)
+Time used for 0.80 of epoch 4: 4810.9 seconds
+  Time per 1000 lines : 7.177 seconds
+  Expected finish in : 0.34 hours
+  Expected finish time : Friday, October 19, 2018 19:25:43 +08+0800 (Asia/Singapore)
+Factor hints (class_loss= 28.6475, deps_loss=  648.2436, fac=0.04419250)
+Factor hints (class_loss= 12.3236, deps_loss=  885.7830, fac=0.01391269)
+Factor hints (class_loss=  0.7052, deps_loss=  701.9750, fac=0.00100454)
+Time used for 0.85 of epoch 4: 5111.2 seconds
+  Time per 1000 lines : 7.175 seconds
+  Expected finish in : 0.25 hours
+  Expected finish time : Friday, October 19, 2018 19:25:42 +08+0800 (Asia/Singapore)
+Factor hints (class_loss=  1.4758, deps_loss=  632.9872, fac=0.00233143)
+Factor hints (class_loss= 15.6992, deps_loss=  832.4217, fac=0.01885973)
+Factor hints (class_loss=  7.6746, deps_loss=  765.7046, fac=0.01002288)
+Time used for 0.90 of epoch 4: 5411.3 seconds
+  Time per 1000 lines : 7.174 seconds
+  Expected finish in : 0.17 hours
+  Expected finish time : Friday, October 19, 2018 19:25:41 +08+0800 (Asia/Singapore)
+Factor hints (class_loss=  1.8898, deps_loss=  716.0955, fac=0.00263897)
+Factor hints (class_loss=  5.2627, deps_loss=  629.7241, fac=0.00835713)
+Factor hints (class_loss= 14.0213, deps_loss=  666.3241, fac=0.02104284)
+Factor hints (class_loss=  1.3130, deps_loss=  677.8322, fac=0.00193699)
+Time used for 0.95 of epoch 4: 5711.4 seconds
+  Time per 1000 lines : 7.173 seconds
+  Expected finish in : 0.09 hours
+  Expected finish time : Friday, October 19, 2018 19:25:39 +08+0800 (Asia/Singapore)
+Factor hints (class_loss=  1.4606, deps_loss=  817.3002, fac=0.00178706)
+Factor hints (class_loss=  7.3650, deps_loss=  906.3050, fac=0.00812644)
+Factor hints (class_loss= 17.9694, deps_loss=  841.8687, fac=0.02134470)
+Saving End-epoch checkpoint : './checkpoints/model-stepwise_fac0.02-clf-extra_0004-839936_end-epoch.pth'
 
+
+
+python train_on_onestep.py --relation_hdf5=test.1_all.hdf5 --stub=base-clf-extra4    --extra_block --predict --checkpoint=./checkpoints/model-stepwise_base-clf-extra_0003-839936_end-epoch.pth
+python train_on_onestep.py --relation_hdf5=test.1_all.hdf5 --stub=fac0.02-clf-extra4 --extra_block --predict --checkpoint=./checkpoints/model-stepwise_fac0.02-clf-extra_0003-839936_end-epoch.pth # ?weak-ref error
+python train_on_onestep.py --relation_hdf5=test.1_all.hdf5 --stub=fac0.02-clf-extra5 --extra_block --predict --checkpoint=./checkpoints/model-stepwise_fac0.02-clf-extra_0004-839936_end-epoch.pth
+#test.1_all.hdf5_base-clf-extra4.npz
+#test.1_all.hdf5_fac0.02-clf-extra4.npz
+#test.1_all.hdf5_fac0.02-clf-extra5.npz
+
+gcloud compute scp ${REMOTE_BASE}/${REL_PATH}/test.1_all.hdf5_*extra*.npz  ${REL_PATH}/
+#test.1_all.hdf5_base-clf-extra4.npz                                                                                         100%   41MB   2.3MB/s   00:18    
+#test.1_all.hdf5_fac0.02-clf-extra4.npz                                                                                      100%   41MB   2.2MB/s   00:18    
+#test.1_all.hdf5_fac0.02-clf-extra5.npz                                                                                      100%   41MB   1.8MB/s   00:22    
+
+
+
+python train_on_onestep.py --relation_hdf5=test.1_all.hdf5 --stub=base-clf-extra1    --extra_block --predict --checkpoint=./checkpoints/model-stepwise_base-clf-extra_0000-839936_end-epoch.pth
+python train_on_onestep.py --relation_hdf5=test.1_all.hdf5 --stub=base-clf-extra2    --extra_block --predict --checkpoint=./checkpoints/model-stepwise_base-clf-extra_0001-839936_end-epoch.pth
+python train_on_onestep.py --relation_hdf5=test.1_all.hdf5 --stub=base-clf-extra3    --extra_block --predict --checkpoint=./checkpoints/model-stepwise_base-clf-extra_0002-839936_end-epoch.pth
+python train_on_onestep.py --relation_hdf5=test.1_all.hdf5 --stub=fac0.02-clf-extra1 --extra_block --predict --checkpoint=./checkpoints/model-stepwise_fac0.02-clf-extra_0000-839936_end-epoch.pth
+python train_on_onestep.py --relation_hdf5=test.1_all.hdf5 --stub=fac0.02-clf-extra2 --extra_block --predict --checkpoint=./checkpoints/model-stepwise_fac0.02-clf-extra_0001-839936_end-epoch.pth
+
+test.1_all.hdf5_base-clf-extra1.npz                                                                                         100%   41MB   1.7MB/s   00:23    
+test.1_all.hdf5_base-clf-extra2.npz                                                                                         100%   41MB   1.5MB/s   00:27    
+test.1_all.hdf5_base-clf-extra3.npz                                                                                         100%   41MB   1.2MB/s   00:33    
+test.1_all.hdf5_fac0.02-clf-extra1.npz                                                                                      100%   41MB   1.2MB/s   00:35    
+
+
+
+
+python train_on_onestep.py --relation_hdf5=train.1_all.hdf5 --stub=base-clf-extra-do --dep_fac=0.0 --n_epoch=2 --extra_block
+
+#python train_on_onestep.py --relation_hdf5=train.1_all.hdf5 --stub=fac0.02-clf-extra-do --dep_fac=0.02 --n_epoch=5 --extra_block
