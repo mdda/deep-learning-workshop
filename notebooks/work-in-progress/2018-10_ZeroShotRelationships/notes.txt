@@ -640,8 +640,35 @@ Factor hints (class_loss= 30.0499, deps_loss=  242.6052, fac=0.12386338)
 Saving End-epoch checkpoint : './checkpoints/model-stepwise_fac0.1-clf-extra_0000-839968_end-epoch.pth'
 
 
-# TODO On GCP : 
+# RUNNING On GCP : 
 git pull
 python train_on_onestep.py --relation_hdf5=train.1_all.hdf5 --stub=fac0.02-clf-extra --dep_fac=0.02 --n_epoch=5 --extra_block
+Factor hints (class_loss=128.0616, deps_loss= 2245.1643, fac=0.05703887)
+Factor hints (class_loss= 76.1013, deps_loss= 2231.0840, fac=0.03410956)
+Saving Checkpoint : './checkpoints/model-stepwise_fac0.02-clf-extra_0000-400128.pth', loss_recent=1.1983
+Factor hints (class_loss= 58.7096, deps_loss= 2217.0830, fac=0.02648055)
+Time used for 0.49 of epoch 0: 3005.3 seconds
+  Time per 1000 lines : 7.240 seconds
+  Expected finish in : 7.61 hours
+  Expected finish time : Friday, October 19, 2018 19:29:38 +08+0800 (Asia/Singapore)
+Factor hints (class_loss= 79.3488, deps_loss= 2049.4536, fac=0.03871705)
+Factor hints (class_loss= 98.8306, deps_loss= 2370.9326, fac=0.04168429)
+Factor hints (class_loss= 96.3353, deps_loss= 2136.8147, fac=0.04508360)
+...
+Factor hints (class_loss= 71.2041, deps_loss= 1708.2195, fac=0.04168322)
+Factor hints (class_loss= 45.5585, deps_loss= 1169.6462, fac=0.03895065)
+Saving Checkpoint : './checkpoints/model-stepwise_fac0.02-clf-extra_0001-360448.pth', loss_recent=0.5567
+Factor hints (class_loss= 81.4754, deps_loss= 1168.1217, fac=0.06974903)
+Factor hints (class_loss= 29.0369, deps_loss= 1348.5143, fac=0.02153248)
+Factor hints (class_loss= 37.8925, deps_loss= 1938.2567, fac=0.01954981)
+Factor hints (class_loss= 22.0796, deps_loss= 1345.1158, fac=0.01641465)
+Time used for 0.45 of epoch 1: 2704.5 seconds
+  Time per 1000 lines : 7.177 seconds
+  Expected finish in : 5.95 hours
+  Expected finish time : Friday, October 19, 2018 19:25:42 +08+0800 (Asia/Singapore)
+Saving End-epoch checkpoint : './checkpoints/model-stepwise_fac0.02-clf-extra_0001-839936_end-epoch.pth'
+Factor hints (class_loss= 60.4158, deps_loss= 1315.0813, fac=0.04594071)
+Factor hints (class_loss= 38.5199, deps_loss=  984.4031, fac=0.03913019)
+Factor hints (class_loss= 22.1790, deps_loss= 1378.7698, fac=0.01608610)
 
 
