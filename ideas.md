@@ -1501,24 +1501,27 @@ maincard_10939 :: Workshop on Security in Machine Learning
 maincard_10922 :: Machine Learning for Health (ML4H): Moving beyond supervised learning in healthcare
   https://ml4health.github.io/2018/
   Fri Oct 26, 2018: Submission deadline at 11:59pm
-maincard_10903 :: 2nd Workshop on Machine Learning on the Phone and other Consumer Devices (MLPCD 2)
-  https://sites.google.com/view/nips-2018-on-device-ml
-  Submission Deadline: Oct 26, 2018
 maincard_10929 :: Reinforcement Learning under Partial Observability
   https://sites.google.com/site/rlponips2018/
   Submission deadline: Friday, October 26, 2018, 23:00 UTC
-
-maincard_10924 :: Second Workshop on Machine Learning for Creativity and Design
-  https://nips2018creativity.github.io/
-  28 October 2018: Submission date for papers and art
+maincard_10903 :: 2nd Workshop on Machine Learning on the Phone and other Consumer Devices (MLPCD 2)
+  https://sites.google.com/view/nips-2018-on-device-ml
+  Submission Deadline: Oct 26, 2018
+    ** Has potential (in progress)
+    
 maincard_10907 :: Causal Learning
   https://easychair.org/cfp/NIPSCL2018
   Submission deadline	October 28, 2018
+maincard_10924 :: Second Workshop on Machine Learning for Creativity and Design
+  https://nips2018creativity.github.io/
+  28 October 2018: Submission date for papers and art
+    ** Has potential (prototyping)
   
 maincard_10937 :: Visually grounded interaction and language
   https://nips2018vigil.github.io/
   https://cmt3.research.microsoft.com/VIGIL2018
   November 1st 2018 (Final Decisions : November 8th, 2018, first 20 accepted workshop papers only to get tickets - 1 each)
+    ** Has potential (ideas stage)
 
 maincard_10931 :: Modeling the Physical World: Learning, Perception, and Control
   http://phys2018.csail.mit.edu/
