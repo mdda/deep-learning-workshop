@@ -1391,7 +1391,7 @@ maincard_10920 :: Machine Learning Open Source Software 2018: Sustainable commun
     We look forward for submissions that are novel, exciting and that appeal to the wider community.
 
   Submitted a talk proposal on the theme "Building, growing and sustaining ML communities" 
-  Notification of acceptance: 21 October 2018
+    Notification of acceptance: 21 October 2018
 
 
 
@@ -1426,8 +1426,6 @@ maincard_10915 :: Infer to Control: Probabilistic Reinforcement Learning and Str
   Submission deadline: October 12, 2018 (Anywhere on Earth)
 
 
-### Coming Week :
-
 maincard_10928 :: Medical Imaging meets NIPS
   https://sites.google.com/view/med-nips-2018
   Submissions: Monday, October 15th, 23:59 PST
@@ -1435,6 +1433,10 @@ maincard_10904 :: AI for social good
   https://aiforsocialgood.github.io/2018/#
   #Deadline for submissions : October 2nd, 2018
   October 15th, 2018 midnight eastern time
+  
+  Submitted a talk proposal on the theme "Scalable Social Benefits through Teaching Deep Learning Skills" 
+    Notification of acceptance: November 1st, 2018
+  
 maincard_10917 :: Interpretability and Robustness in Audio, Speech, and Language
   https://irasl.gitlab.io/
   15th October – Abstract submission deadline / 22th October – Full paper submission deadline
@@ -1468,6 +1470,12 @@ maincard_10927 :: Relational Representation Learning
 maincard_10941 :: NIPS 2018 workshop on Compact Deep Neural Networks with industrial applications
   https://lixinfan01.wixsite.com/cdnnria
   Extended abstract submission deadline:  20 Oct 2018
+
+  Submitted a talk proposal on the theme "Transformer to CNN: Label-scarce distillation for efficient text classification" 
+    Acceptance notification: 29 Oct. 2018
+
+
+### Coming Week :
 
 maincard_10911 :: Critiquing and Correcting Trends in Machine Learning
   https://ml-critique-correct.github.io/

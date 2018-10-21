@@ -782,6 +782,9 @@ test.1_all.hdf5_base-clf-extra-do1.npz                                          
 
 
 python train_on_onestep.py --relation_hdf5=train.1_all.hdf5 --stub=base-clf-extra-do03 --dep_fac=0.0 --n_epoch=3 --extra_block --clf_pdrop=0.3
+python train_on_onestep.py --relation_hdf5=test.1_all.hdf5 --stub=base-clf-extra-do03 --extra_block --clf_pdrop=0.3 --predict --checkpoint=./checkpoints/model-stepwise_base-clf-extra-do03_0000-839936_end-epoch.pth
+test.1_all.hdf5_base-clf-extra-do03.npz
+
 
 
 # TODO :
