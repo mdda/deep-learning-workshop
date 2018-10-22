@@ -1206,6 +1206,13 @@ Also, figure out a good 'private code+data' workflow too:
       + How about dial positions that reflect prominent conference speakers?
       
 
+*  Learning to match sentences with graphs
+   +  Better groundtruth annotator for "Scene Graph Parsing as Dependency Parsing"
+      -  Current Oracle gets only 70% F1 on the actual data
+      -  Current best dependency-tree sentence parser idea -> graph gets 50%
+      -  So bigger win may be in refining the annotator
+
+
 
 ##  NIPS Workshops
 https://nips.cc/Conferences/2018/Schedule?type=Workshop&day=4
