@@ -1,0 +1,48 @@
+
+Image Retrieval using Scene Graphs  (2015)
+  Justin Johnson; Ranjay Krishna; Michael Stark; 
+    Li-Jia Li; David A. Shamma; Michael S. Bernstein; Li Fei-Fei
+  https://hci.stanford.edu/publications/2015/scenegraphs/JohnsonCVPR2015.pdf
+  https://cs.stanford.edu/people/jcjohns/cvpr15_supp/
+
+Visual Genome: Connecting Language and Vision Using Crowdsourced Dense Image Annotations  (2016)
+  Ranjay Krishna; Yuke Zhu; Oliver Groth; Justin Johnson; Kenji Hata; Joshua Kravitz; Stephanie Chen; Yannis Kalantidis; 
+    Li-Jia Li; David A. Shamma; Michael S. Bernstein; Li Fei-Fei
+  Ranjay Krishna et al 2016
+  https://arxiv.org/abs/1602.07332
+  
+Scene Graph Parsing as Dependency Parsing
+  https://arxiv.org/pdf/1803.09189.pdf
+  https://github.com/Yusics/bist-parser/tree/sgparser
+  https://yusics.github.io/#about
+  
+
+Multiple objective XYZ?
+  Structure SVM ?
+
+
+PyTorch graph NNs (or DeepMind TF/sonnet library?)
+  Graph Infomax?
+  
+
+-----------
+
+maincard_10937 :: Visually grounded interaction and language
+  https://nips2018vigil.github.io/
+  https://cmt3.research.microsoft.com/VIGIL2018
+  November 1st 2018 (Final Decisions : November 8th, 2018, first 20 accepted workshop papers only to get tickets - 1 each)
+    ** Has potential (ideas stage)
+
+
+*  Learning to match sentences with graphs
+   +  Better groundtruth annotator for "Scene Graph Parsing as Dependency Parsing"
+      -  Current Oracle gets only 70% F1 on the actual data
+      -  Current best dependency-tree sentence parser idea -> graph gets 50%
+      -  So bigger win may be in refining the annotator
+
+-----------
+
+
+cd ../2018-10_SceneGraphParsing
+
+
