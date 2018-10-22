@@ -77,4 +77,18 @@ unzip image_data.json.zip     #   17Mb expanded
 unzip region_graphs.json.zip  # 2783Mb expanded 
 unzip attributes.json.zip     #  462Mb expanded
 
+# dnf install jq
+# Length of files is : 108077, so : Not divisible by 10...
 
+# jq '.[0:2]' attributes.json # seems to work as expected...
+for i in 0 1 2 3 4 5 6 7 8 9; do 
+  let idx0=i\*10810
+  let idx1=(i+1)\*10810
+  echo "Processing section ${i} : .[${idx0}:${idx1}]" 
+  #jq ".[${idx0}:${idx1}]" image_data.json --compact-output > image_data_${i}.json
+  jq ".[${idx0}:${idx1}] | length" image_data.json
+  #jq ".[${idx0}:${idx1}]" attributes.json --compact-output > all_attributes_${i}.json
+  jq ".[${idx0}:${idx1}]" region_graphs.json --compact-output > all_region_graphs_${i}.json
+done
+
+jq '.[0:10800]' attributes.json --compact-output > all_attributes_0.json
