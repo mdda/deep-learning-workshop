@@ -39,10 +39,42 @@ maincard_10937 :: Visually grounded interaction and language
       -  Current Oracle gets only 70% F1 on the actual data
       -  Current best dependency-tree sentence parser idea -> graph gets 50%
       -  So bigger win may be in refining the annotator
-
+      @inproceedings{wang2018sgparser,     
+        title={Scene Graph Parsing as Dependency Parsing},  
+        author={Wang, Yu-Siang and Liu, Chenxi and Zeng, Xiaohui and Yuille, Alan},  
+        booktitle={NAACL},  
+        year={2018}
+      } 
+      
 -----------
 
 
 cd ../2018-10_SceneGraphParsing
+#git clone https://github.com/Yusics/bist-parser.git
+git clone https://github.com/mdda/bist-parser.git
+cd bist-parser
+git branch -a  # list the branches
+git checkout sgparser
+git branch
+
+#Split Visual Genome image_data, all_region_graphs, all_attributes into 10 pieces, 
+#  and named these files x_%num, where x={image_data, all_region_graphs, all_attributes} and num={0..9}. 
+#  (The size for the every first 9 pieces is all_region_graph.size()/10) and put them into preprocess/. 
+#  The reason to split to 10 pieces is for acclerating the preprocessing speed.
+
+# NB : version 1.4 has 'ground truth' synsets for objects and relationships and is "Cleaner"
+#   Which versions did the sgparser paper use?
+
+# https://visualgenome.org/  # Using version 1.2 (2016-08-29)
+mkdir -p data/visual-genome
+cd data/visual-genome
+
+wget https://visualgenome.org/static/data/dataset/image_data.json.zip     #   1.7Mb
+wget https://visualgenome.org/static/data/dataset/region_graphs.json.zip  # 316Mb
+wget https://visualgenome.org/static/data/dataset/attributes.json.zip     #  79Mb
+
+unzip image_data.json.zip     #   17Mb expanded
+unzip region_graphs.json.zip  # 2783Mb expanded 
+unzip attributes.json.zip     #  462Mb expanded
 
 
