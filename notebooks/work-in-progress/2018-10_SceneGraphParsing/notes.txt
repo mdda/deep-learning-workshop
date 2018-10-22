@@ -131,3 +131,9 @@ ls -l #
 -rw-rw-r--. 1 andrewsm andrewsm    1651518 Oct 22 23:32 image_data_8.json
 -rw-rw-r--. 1 andrewsm andrewsm    1647935 Oct 22 23:32 image_data_9.json
 
+
+
+# May be no need to change line 10, if the following doesn't error...
+# python
+# from nltk.corpus import wordnet
+
