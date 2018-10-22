@@ -81,6 +81,8 @@ unzip attributes.json.zip     #  462Mb expanded
 # Length of files is : 108077, so : Not divisible by 10...
 
 # jq '.[0:2]' attributes.json # seems to work as expected...
+# jq '.[0:10800]' attributes.json --compact-output > all_attributes_0.json
+
 for i in 0 1 2 3 4 5 6 7 8 9; do 
   let idx0=i\*10810
   let idx1=(i+1)\*10810
@@ -91,4 +93,41 @@ for i in 0 1 2 3 4 5 6 7 8 9; do
   jq ".[${idx0}:${idx1}]" region_graphs.json --compact-output > all_region_graphs_${i}.json
 done
 
-jq '.[0:10800]' attributes.json --compact-output > all_attributes_0.json
+ls -l # 
+-rw-rw-r--. 1 andrewsm andrewsm   83280561 Aug 31  2016 attributes.json.zip
+-rw-r--r--. 1 andrewsm andrewsm  462562682 Aug 30  2016 attributes.json
+-rw-rw-r--. 1 andrewsm andrewsm   36569979 Oct 22 23:27 all_attributes_0.json
+-rw-rw-r--. 1 andrewsm andrewsm   33547444 Oct 22 23:27 all_attributes_1.json
+-rw-rw-r--. 1 andrewsm andrewsm   28669514 Oct 22 23:28 all_attributes_2.json
+-rw-rw-r--. 1 andrewsm andrewsm   29871897 Oct 22 23:28 all_attributes_3.json
+-rw-rw-r--. 1 andrewsm andrewsm   46276399 Oct 22 23:28 all_attributes_4.json
+-rw-rw-r--. 1 andrewsm andrewsm   49162434 Oct 22 23:28 all_attributes_5.json
+-rw-rw-r--. 1 andrewsm andrewsm   49715384 Oct 22 23:29 all_attributes_6.json
+-rw-rw-r--. 1 andrewsm andrewsm   33832425 Oct 22 23:29 all_attributes_7.json
+-rw-rw-r--. 1 andrewsm andrewsm   28747220 Oct 22 23:29 all_attributes_8.json
+-rw-rw-r--. 1 andrewsm andrewsm   28822199 Oct 22 23:29 all_attributes_9.json
+-rw-rw-r--. 1 andrewsm andrewsm  331673448 Sep  1  2016 region_graphs.json.zip
+-rw-r--r--. 1 andrewsm andrewsm 2783274985 Aug 31  2016 region_graphs.json
+-rw-rw-r--. 1 andrewsm andrewsm  268183906 Oct 22 23:41 all_region_graphs_0.json
+-rw-rw-r--. 1 andrewsm andrewsm  267817332 Oct 22 23:43 all_region_graphs_1.json
+-rw-rw-r--. 1 andrewsm andrewsm  235354414 Oct 22 23:44 all_region_graphs_2.json
+-rw-rw-r--. 1 andrewsm andrewsm  240178442 Oct 22 23:46 all_region_graphs_3.json
+-rw-rw-r--. 1 andrewsm andrewsm  249988322 Oct 22 23:47 all_region_graphs_4.json
+-rw-rw-r--. 1 andrewsm andrewsm  252083492 Oct 22 23:48 all_region_graphs_5.json
+-rw-rw-r--. 1 andrewsm andrewsm  251913454 Oct 22 23:50 all_region_graphs_6.json
+-rw-rw-r--. 1 andrewsm andrewsm  267635875 Oct 22 23:51 all_region_graphs_7.json
+-rw-rw-r--. 1 andrewsm andrewsm  236921148 Oct 22 23:52 all_region_graphs_8.json
+-rw-rw-r--. 1 andrewsm andrewsm  238587733 Oct 22 23:54 all_region_graphs_9.json
+-rw-rw-r--. 1 andrewsm andrewsm    1780854 Jun 22  2016 image_data.json.zip
+-rw-r--r--. 1 andrewsm andrewsm   17612822 Jun 21  2016 image_data.json
+-rw-rw-r--. 1 andrewsm andrewsm    1574689 Oct 22 23:32 image_data_0.json
+-rw-rw-r--. 1 andrewsm andrewsm    1651645 Oct 22 23:32 image_data_1.json
+-rw-rw-r--. 1 andrewsm andrewsm    1651530 Oct 22 23:32 image_data_2.json
+-rw-rw-r--. 1 andrewsm andrewsm    1651465 Oct 22 23:32 image_data_3.json
+-rw-rw-r--. 1 andrewsm andrewsm    1630257 Oct 22 23:32 image_data_4.json
+-rw-rw-r--. 1 andrewsm andrewsm    1629786 Oct 22 23:32 image_data_5.json
+-rw-rw-r--. 1 andrewsm andrewsm    1629908 Oct 22 23:32 image_data_6.json
+-rw-rw-r--. 1 andrewsm andrewsm    1651695 Oct 22 23:32 image_data_7.json
+-rw-rw-r--. 1 andrewsm andrewsm    1651518 Oct 22 23:32 image_data_8.json
+-rw-rw-r--. 1 andrewsm andrewsm    1647935 Oct 22 23:32 image_data_9.json
+
