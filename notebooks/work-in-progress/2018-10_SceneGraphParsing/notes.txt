@@ -144,16 +144,16 @@ cat attributes.json    | jq -n --compact-output --stream 'fromstream(1|truncate_
 cat region_graphs.json | jq -n --compact-output --stream 'fromstream(1|truncate_stream(inputs))' > region_graphs.json.rows
 
 
-
-
-
-
-
-
-
-
 cd ../../bist-parser/preprocess/
 ln -s ../../data/visual-genome data
+
+bash ./preprocess.sh
+python split_preprocess.py 0000 coco_train
+python split_preprocess.py 0000 coco_dev
+
+# TODO (fix first) :
+python data_to_conll.py --input pre_coco_train.json --output coco_train.conll --train True
+python data_to_conll.py --input pre_coco_dev.json   --output coco_dev.conll   --train False
 
 
 
