@@ -19,11 +19,15 @@ Scene Graph Parsing as Dependency Parsing
 
 Multiple objective XYZ?
   Structure SVM ?
+    1_x_MultitaskStructuredPredictionForEntityAnalysis_ma17a.pdf
 
 
 PyTorch graph NNs (or DeepMind TF/sonnet library?)
   Graph Infomax?
-  
+  https://www.reddit.com/r/MachineLearning/comments/9pbf4p/r_deepmind_is_releasing_their_graph_nn_library/
+    https://github.com/deepmind/graph_nets
+    https://github.com/rusty1s/pytorch_geometric
+    https://github.com/stellargraph/stellargraph
 
 -----------
 
