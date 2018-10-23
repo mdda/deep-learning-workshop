@@ -162,9 +162,11 @@ python split_preprocess.py ALL coco_dev
 python data_to_conll.py --input ./output/pre_coco_dev.json.rows   --output ./output/coco_dev.conll
 cp ./output/coco_dev.conll ./output/coco_dev.conll.oracle
 
-# Takes <6mins on 1,070,158 sentences
-python data_to_conll.py --input ./output/pre_coco_train.json.rows --output ./output/coco_train.conll --train
+# Takes <6mins on 1,070,158 sentences (--train skips some potentially wierd examples)
+python data_to_conll.py --input ./output/pre_coco_train.json.rows --output ./output/coco_train.conll --train # For training a network
 
+# Takes <6mins on 1,070,158 sentences (omitting --train evaluates all sentences)
+python data_to_conll.py --input ./output/pre_coco_train.json.rows --output ./output/coco_train.conll.oracle  # Not --train for evaluation
 
 # Test the Oracle performance 
 
@@ -172,11 +174,14 @@ cd ../model/src/utils/evaluation_script/
 
 . ~/env3/bin/activate   # Evaluation code updated to be 2/3 compatible
 bash eval.sh  # -> python spice_eval.py
-#Ground-truth count : 547682 != Predictions count  : 547802  FIXED BY SETTING dev AS not --train
-Predictions count  : 547802 == Ground-truth count : 547802
 
-# TODO=actual evaluation
+# On the dev set : 
+# Predictions count  : 547802 == Ground-truth count : 547802
+# SPICE score: 0.6630
 
+# On the train set : 
+# Number of predictions :  1070159
+# SPICE score: 0.6635
 
 
 ...
