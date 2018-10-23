@@ -159,25 +159,26 @@ python split_preprocess.py ALL coco_dev
 # Now do the assignments (the "Oracle" for the original paper)
 
 # Takes <4mins on   547,801 sentences
-python data_to_conll.py --input ./output/pre_coco_dev.json.rows   --output ./output/coco_dev.conll   --train False
+python data_to_conll.py --input ./output/pre_coco_dev.json.rows   --output ./output/coco_dev.conll
 cp ./output/coco_dev.conll ./output/coco_dev.conll.oracle
 
 # Takes <6mins on 1,070,158 sentences
-python data_to_conll.py --input ./output/pre_coco_train.json.rows --output ./output/coco_train.conll --train True
+python data_to_conll.py --input ./output/pre_coco_train.json.rows --output ./output/coco_train.conll --train
 
 
 # Test the Oracle performance 
 
 cd ../model/src/utils/evaluation_script/
+
+. ~/env3/bin/activate   # Evaluation code updated to be 2/3 compatible
 bash eval.sh  # -> python spice_eval.py
+#Ground-truth count : 547682 != Predictions count  : 547802  FIXED BY SETTING dev AS not --train
+Predictions count  : 547802 == Ground-truth count : 547802
 
-# ... but : still need to do rowwise change...  done length check, TODO=actual evaluation
-
-# FIX THESE...
+# TODO=actual evaluation
 
 
 
-# TODO (fix first) :
 ...
 
 
