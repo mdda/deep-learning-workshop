@@ -187,10 +187,50 @@ bash eval.sh  # -> python spice_eval.py
 ...
 
 
-
-
-
 # May be no need to change line 10, if the following doesn't error...
 # python
 # from nltk.corpus import wordnet
+
+
+
+# Plan(?)
+
+* Create an embedding-based 'reverse Oracle'
+  - Takes existing region tuples and caption (like existing Oracle)
+  - Goes through the tuples, and finds :
+    - (Logic is : every object must be mentioned in caption)
+      - each object based on exact word-sequence match
+      - each unfound object, based on exact word-sequence match with its wordnet synnet
+      - each unfound object, based on embedding similarity
+      - must find something
+      - where found word is not in  wordnet synnet, add to a 'generalisation substitutions' dictionary
+    - (Logic is : every relationship must be mentioned in caption)
+      - ditto
+    - (Potential Logic is : every ?attribute? must be mentioned in caption)
+      - Quite possible that only some attributes are in the caption
+      - ?ditto? but going through the above steps for a list of the attribute words, each in turn
+      - So attribute words are 'claimed' by the caption against successively more generous criteria
+      - But have a minimum cosine similarity limit, whereby similarity is too weak to 'claim'
+  - Output is a set of 'verified' tuples, that use the found words in the caption exactly
+  
+* More sophisticated Oracle
+  - Remove tuples where attributes are not in caption
+  - Should improve overall F1 (though seem a slightly unfair comparison)
+
+* Transformer-based parser of the original captions
+  - Add directed arrow 'head' which does attention-tracking (like dependency tree idea for ZeroShotRelationships)
+    - Attributes point to Subject / Object
+    - Subject points to relationship
+    - Object points to relationship (like a dependency parse)
+    - multi-word elements point to previous word in phrase
+  - Add word-type 
+    - 0=Irrelevant word
+    - 1=Attribute
+    - 2=Subject
+    - 3=Object
+    - 4=Relationship
+  - Training should be done in 'regular way' 
+    - constructing the targets from the caption+'verified tuples' (which now match exactly)
+  - For test/predictions, reconstruct graph by looking at the output attention+types
+    - Also include 'translations' from the 'generalisation substitutions' dictionary
 
