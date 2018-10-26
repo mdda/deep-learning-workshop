@@ -192,8 +192,20 @@ bash eval.sh  # -> python spice_eval.py
 # from nltk.corpus import wordnet
 
 
+TODO first : 
+
+Indices into rows:
+  Update region-ifier == split_preprocess
+  region-to-conll     == data_to_conll
+  spice test          == spice_eval
+
+Look at code : 
+  Do extra Attributes in gold tuples affect the spice score?
+
+
 
 # Plan(?)
+
 
 * Create an embedding-based 'reverse Oracle'
   - Takes existing region tuples and caption (like existing Oracle)
@@ -233,4 +245,16 @@ bash eval.sh  # -> python spice_eval.py
     - constructing the targets from the caption+'verified tuples' (which now match exactly)
   - For test/predictions, reconstruct graph by looking at the output attention+types
     - Also include 'translations' from the 'generalisation substitutions' dictionary
+
+
+
+
+https://github.com/rusty1s/pytorch_geometric
+https://arxiv.org/pdf/1711.08920.pdf
+https://rusty1s.github.io/pytorch_geometric/build/html/notes/introduction.html
+https://rusty1s.github.io/pytorch_geometric/build/html/notes/create_dataset.html
+
+pip install --upgrade pip
+pip install --upgrade torch-scatter torch-sparse torch-cluster torch-spline-conv
+pip install torch-geometric
 
