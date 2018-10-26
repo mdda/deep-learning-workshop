@@ -258,3 +258,25 @@ pip install --upgrade pip
 pip install --upgrade torch-scatter torch-sparse torch-cluster torch-spline-conv
 pip install torch-geometric
 
+
+
+
+https://visualgenome.org/VGViz/explore
+https://visualgenome.org/api/v0/api_beginners_tutorial.html
+https://visualgenome.org/api/v0/api_home.html
+https://visualgenome.org/static/data/dataset/readme_v1_4.txt
+
+
+#  Look at image0 in training set :
+image0.regions.txt :  "image_id": 2415075
+grep 2415075 data/image_data.json.rows 
+# --> https://cs.stanford.edu/people/rak248/VG_100K_2/2415075.jpg
+
+# region_graphs :
+"relationships":[{ ...
+"relationships":[] // nada
+
+wc output/pre_coco_train.json.rows.orig # 1,070,159 rows
+wc data/image_data.json.rows            #   108,077 rows
+
+## Hmm - need to check paper to see whether numbers make sense
