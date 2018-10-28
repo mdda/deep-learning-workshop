@@ -184,7 +184,14 @@ bash eval.sh  # -> python spice_eval.py
 # SPICE score: 0.6635
 
 
-...
+# Chase...  -- Yes, actually bad in the source dataset...
+image_id=498263, region_id=5969774, Phrase:  ['toiletin a bathroom']
+REFERENCE tuples:	 [['bathroom'], ['toilet'], ('toilet', 'is white'), ('toilet', 'in', 'bathroom')]
+PREDICT tuples  :	 [['bathroom']]
+spice_score:  0.4
+
+
+..
 
 
 # May be no need to change line 10, if the following doesn't error...
@@ -195,17 +202,41 @@ bash eval.sh  # -> python spice_eval.py
 TODO first : 
 
 Indices into rows:
-  Update region-ifier == split_preprocess
-  region-to-conll     == data_to_conll
-  spice test          == spice_eval
+  Update region-ifier == split_preprocess  # DONE
+  region-to-conll     == data_to_conll     # DONE
+  spice test          == spice_eval        # DONE
 
-Look at code : 
+Look at code : (DONE)
   Do extra Attributes in gold tuples affect the spice score?
+    Function seems to be 'evaluate_spice' - which appears not to dump unused tuples
+
+
+#  Look at image0 in training set :
+image0.regions.txt :  "image_id": 2415075
+grep 2415075 data/image_data.json.rows 
+# --> https://cs.stanford.edu/people/rak248/VG_100K_2/2415075.jpg
+
+# region_graphs :
+"relationships":[{ ...
+"relationships":[] // nada
+
+wc output/pre_coco_train.json.rows.orig # 1,070,159 rows
+wc data/image_data.json.rows            #   108,077 rows
+
+## Hmm - need to check paper to see whether numbers make sense
+
+
+# This is now in "visual-genome-api-playground.ipynb"
+#mkdir -p api; cd api
+#git clone https://github.com/ranjaykrishna/visual_genome_python_driver.git
+#cd ..
+# Have a look at the results back from the original source using : visual-genome-api-playground.ipynb
+
+##   Actually, they seem to check out vs API results, so we just have to accept that the 'genome' isn't very clean...
 
 
 
 # Plan(?)
-
 
 * Create an embedding-based 'reverse Oracle'
   - Takes existing region tuples and caption (like existing Oracle)
@@ -224,10 +255,18 @@ Look at code :
       - So attribute words are 'claimed' by the caption against successively more generous criteria
       - But have a minimum cosine similarity limit, whereby similarity is too weak to 'claim'
   - Output is a set of 'verified' tuples, that use the found words in the caption exactly
-  
+
 * More sophisticated Oracle
   - Remove tuples where attributes are not in caption
   - Should improve overall F1 (though seem a slightly unfair comparison)
+
+* Actually, the above is simplistic, since the tuples may contain a lot of irrelevant data already
+  -  What can we trust?
+     -  Looks like only the phrase is the 'real deal'
+  
+  
+  
+
 
 * Transformer-based parser of the original captions
   - Add directed arrow 'head' which does attention-tracking (like dependency tree idea for ZeroShotRelationships)
@@ -249,6 +288,16 @@ Look at code :
 
 
 
+
+
+
+
+
+
+
+
+
+
 https://github.com/rusty1s/pytorch_geometric
 https://arxiv.org/pdf/1711.08920.pdf
 https://rusty1s.github.io/pytorch_geometric/build/html/notes/introduction.html
@@ -266,25 +315,4 @@ https://visualgenome.org/api/v0/api_beginners_tutorial.html
 https://visualgenome.org/api/v0/api_home.html
 https://visualgenome.org/static/data/dataset/readme_v1_4.txt
 
-
-#  Look at image0 in training set :
-image0.regions.txt :  "image_id": 2415075
-grep 2415075 data/image_data.json.rows 
-# --> https://cs.stanford.edu/people/rak248/VG_100K_2/2415075.jpg
-
-# region_graphs :
-"relationships":[{ ...
-"relationships":[] // nada
-
-wc output/pre_coco_train.json.rows.orig # 1,070,159 rows
-wc data/image_data.json.rows            #   108,077 rows
-
-## Hmm - need to check paper to see whether numbers make sense
-
-
-
-mkdir api
-cd api
-git clone https://github.com/ranjaykrishna/visual_genome_python_driver.git
-cd ..
 
