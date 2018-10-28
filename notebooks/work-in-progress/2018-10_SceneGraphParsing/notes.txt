@@ -263,6 +263,22 @@ wc data/image_data.json.rows            #   108,077 rows
 * Actually, the above is simplistic, since the tuples may contain a lot of irrelevant data already
   -  What can we trust?
      -  Looks like only the phrase is the 'real deal'
+     -  We do know that the number of objects+attributes+relationships mentioned 
+        can be no more than the number of 'real words' in the phrase
+  -  Suggestion (process in order):
+     -  Look for all exact single and multi-word matches in the object list
+     -  Look for all exact single and multi-word matches in the relationship list for the 'relation word(s)'
+     -  Look for all exact single and multi-word matches in the attribute list
+     -  #Having eliminated the found stuff, do the same with their synsets
+     -  Now do a fuzzy search (based on GloVe?) - giving us cosine matches (averaged across words) for all
+     -  Each entity can only have one source word - so match them off
+     -  Each 'relationship word' can only have one source word - so match them off
+     -  Each attribute can only have one source word - so match them off
+     
+  -  But also have the constraints 
+     -  relationships must join valid objects
+     -  attributes must be for valid objects
+     
   
   
   
