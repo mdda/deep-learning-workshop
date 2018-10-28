@@ -280,3 +280,11 @@ wc output/pre_coco_train.json.rows.orig # 1,070,159 rows
 wc data/image_data.json.rows            #   108,077 rows
 
 ## Hmm - need to check paper to see whether numbers make sense
+
+
+
+mkdir api
+cd api
+git clone https://github.com/ranjaykrishna/visual_genome_python_driver.git
+cd ..
+
