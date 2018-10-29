@@ -69,7 +69,9 @@ for row_num, refs_json in enumerate(refs_file):
       if ' ' in obj.strip():
         print("Multiword object : '%s'" % (obj,))
         multiwords['o'][obj.strip()] += 1
+
     continue
+
     
   obj_set = set([ obj.strip() for obj in objects ])
 
@@ -85,11 +87,23 @@ for row_num, refs_json in enumerate(refs_file):
       a = attribute[0]
       if a not in obj_set:
         print("Didn't find attributed object'%s' in '%s' for '%s'" % (a, "|".join(list(obj_set)), phrase,))
+
+    continue
     
+  # First convert all the multiwords available...    
+  phrase_padded = ' %s ' % phrase
+  
+  for relationship in relationships:
+    action=relationship[1].strip()
+    if ' ' in action:
+      print("Multiword action : '%s' in '%s'?" % (action, phrase))
+      #multiwords['r'][action.strip()] += 1
+      
+      if (' %s ' % action) in phrase_padded:
+        print("Multiword action : '%s' found" % (action,))
+      else:
+        print("Multiword action : '%s' ******** NOT FOUND ********" % (action,))
         
-    
-    
-    
     
     
     
