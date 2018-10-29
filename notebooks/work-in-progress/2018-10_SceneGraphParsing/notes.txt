@@ -280,8 +280,13 @@ wc data/image_data.json.rows            #   108,077 rows
      -  attributes must be for valid objects
      
   
-  
-  
+python tidy_refs.py --multiwords
+python tidy_refs.py --testnodes   # No response==Good
+
+
+
+
+
 
 
 * Transformer-based parser of the original captions
