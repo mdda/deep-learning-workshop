@@ -288,7 +288,7 @@ ln -s /mnt/rdai/reddragon/2018-10_ZeroShotRelationships_orig orig
 ln -s ../2018-10_ZeroShotRelationships/text_utils.py .
 
 
-
+python conll_to_transformer.py --phase=train --save_bpe --stub=v1
 
 
 

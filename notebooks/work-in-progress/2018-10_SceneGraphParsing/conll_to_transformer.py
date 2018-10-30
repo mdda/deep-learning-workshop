@@ -23,13 +23,14 @@ def valid_relations(relation_file):
   with open(relation_file, 'r') as fp:
     reader = csv.reader(fp, delimiter='\t')
     for i, each in enumerate(reader):
-      if i % 10000 == 0:
+      if i % 100000 == 0:
         print("Line %d" % (i,))
 
       if len(each)==0:
         valid.append( valid_count )
         valid_count+=1
       
+  print("Last Line = %d" % (i,))
   return relation_file, valid
 
 def save_relations(relation_file, valid_ids=None, file_stub='_all', bpe_max=None, save_bpe=False):
@@ -81,74 +82,84 @@ def save_relations(relation_file, valid_ids=None, file_stub='_all', bpe_max=None
         if idx not in valid_ids: continue
         
         print( conll_data )
-        exit(0)
-
+        #exit(0)
         
-        rel, ques_xxx, ques_arg, sent = each[:4]
+        words, parents, relationships, properties = [], [], [], []
+        for each in conll_data:
+          node_id, node_word, parent_id_str, rel, prop = each
+          parent_id = 0 if parent_id_str=='_' else int(parent_id_str)
+          words.append(
+            node_word.lower().replace('.', ' ').replace(',', ' ').replace('  ', ' ').strip()
+          )
+          parents.append(int(parent_id))  # For OBJ which is SUBJ, this ==0, otherwise ->PRED
+          relationships.append(rel)   # Maybe has 'same' indicator
+          properties.append(prop)     # _/OBJ/ATTR/PRED
         
-        if 'Canadhan' in ques_arg:
-          print("GOTCHA!")
-          ques_arg = ques_arg.replace('Canadhan', 'Canadian')
-        
-        ques = ques_xxx.replace('XXX', ques_arg)
-          
-        # Make sure the ques_arg is highlightable
-        if ques_arg not in sent:
-          print("MISSING ENTITY : '%s' not in '%s'" % (ques_arg, sent))
-          exit(0)
-
-        #(ques_enc, ques_clean), (sent_enc, sent_clean)
-        #(ques_enc, sent_enc), (ques_clean, sent_clean) = text_encoder.encode_and_clean([ques, sent])
-        
-        #encs, cleans, lens = text_encoder.encode_and_clean([ques, sent])
-        #ques_enc, sent_enc = encs
-        #ques_clean, sent_clean = cleans
-        #print( i, len(ques), len(ques.split(' ')), len(ques_clean.split(' ')), len(ques_enc), ques_clean )
-        #print( ques ) 
-        #print( ques_clean ) 
-
         xs_np = np.zeros((1, bpe_max), dtype=np.int32)  # bpe encoding of constructed input string
-        ys_np = np.zeros((1, bpe_max), dtype=np.int8)   # class : 0=?, 1=start_ques, 2=end_ques, 3=start_ans, 4=end_ans, 
-        zs_np = np.zeros((1, bpe_max), dtype=np.int8)   # position that is parent of this, 0=irrelevant (a mask value)
+        ys_np = np.zeros((1, bpe_max), dtype=np.int8)   # class : 0=IGNORE, 1=same, 2=SUBJECT-OBJECT, 3=VERB'S-OBJECT, 4=ATTRIB
+        zs_np = np.zeros((1, bpe_max), dtype=np.int8)   # position that is linked to, 0=irrelevant (a mask value)
         
+        #sent_nlp  = text_encoder.nlp( sent )
+        #sent_encs = text_encoder.encode_nlp(sent_nlp)
 
-        ques_nlp  = text_encoder.nlp( ques )
-        ques_encs = text_encoder.encode_nlp(ques_nlp)
-        ques_enc = text_encoder.flatten_bpes( ques_encs )
-        
-        sent_nlp  = text_encoder.nlp( sent )
-        sent_encs = text_encoder.encode_nlp(sent_nlp)
+        sent_encs = text_encoder.encode_tokenized_text(words)
         sent_enc = text_encoder.flatten_bpes( sent_encs )
 
         # Save the bpe encoding 
-        bpe_len = len(ques_enc) + len(sent_enc) + 3
+        bpe_len = len(sent_enc) + 2
         if bpe_len>bpe_max:
           bpe_truncate_count += 1
           print("Truncating #%i, rate = %.2f%%" % (idx, 100.*bpe_truncate_count/idx))
-          trunc = bpe_max - 3 - len(ques_enc) 
+          trunc = bpe_max - 2
         else:
           trunc = None
 
-        xs = [token_start] + ques_enc + [token_delim] + sent_enc[:trunc] + [token_clf]
+        xs = [token_start] + sent_enc[:trunc] + [token_clf]
         len_xs = len(xs)
-        ques_offset = 1
-        sent_offset = 1 + len(ques_enc) + 1
-        
         xs_np[0, :len_xs] = xs
        
         if save_bpe:  # Append this to array to be saved to disk
           bpe_save_arr.append( text_encoder.decode( xs, inter_bpe='@@' ) )
+          #print( bpe_save_arr )
 
+        ####### HERE #######
+        #exit(0)
 
         # Need these for answer offsets, and dependency offsets
-        ques_enc_offsets = text_encoder.cumlen_bpes( ques_encs )
+        #sent_nlp_offsets = [ token.idx for token in sent_nlp ]
+        #sent_nlp_offsets_len = len(sent_nlp_offsets)
         
-        sent_nlp_offsets = [ token.idx for token in sent_nlp ]
-        sent_nlp_offsets_len = len(sent_nlp_offsets)
         sent_enc_offsets = text_encoder.cumlen_bpes( sent_encs )
+
+        # Go through the words, and mark the bpe locations accordingly
+        for wi, word in enumerate(words):
+          # ys: class : 0=IGNORE, 1=same, 2=SUBJECT-OBJECT, 3=VERB'S-OBJECT, 4=ATTRIB, 5=VERB
+          cls, prop, parent = 0, properties[wi], parents[wi]
+          if relationships[wi]=='same': 
+            cls=1
+          else:
+            if prop=='OBJ':
+              if parent==0: cls=2
+              else: cls=3
+            else:
+              if prop=='ATTR': cls=4
+              else:
+                if prop=='PRED': cls=5
+                else:
+                  print("What is this : ", word, parent, relationships[wi], prop)
+                  pass
+          
+          w_bpe = sent_enc_offsets[wi+1]  # wi+1 to account for <START>
+          ys_np[0, w_bpe] = cls  # Just the first one in each word
+          
+          parent_bpe = sent_enc_offsets[parent] # Already is 1-based
+          zs_np[0, w_bpe] = parent_bpe
+
+        print(xs_np[:len_xs])
+        print(ys_np[:len_xs])
+        print(zs_np[:len_xs])
+        exit(0)
         
-        #if len(each) > 4:
-        #  ans_list = each[4:]
         
         if True:  # Always look up ques too
           highlight_arr = [ ques_arg ]
@@ -312,8 +323,8 @@ if __name__ == '__main__':
     
     parser.add_argument('--n_ctx', type=int, default=128)    # Max length of input texts in bpes
     
-    #parser.add_argument('--phase', type=str, default=None)
-    #parser.add_argument('--fold',  type=int, default=1)
+    parser.add_argument('--path', type=str, default='./bist-parser/preprocess/output')   
+    parser.add_argument('--phase', type=str, default=None)   # train, dev, None(=misc testing)
     parser.add_argument('--stub',  type=str, default='')
     parser.add_argument('--save_bpe', action='store_true')
 
@@ -330,7 +341,6 @@ if __name__ == '__main__':
     n_ctx = args.n_ctx
 
     text_encoder = TextEncoder(args.encoder_path, args.bpe_path)
-    #encoder = text_encoder.encoder
     n_vocab = len(text_encoder.encoder)
     
     tokens_regular = n_vocab
@@ -341,51 +351,20 @@ if __name__ == '__main__':
     tokens_special = len(text_encoder.encoder) - tokens_regular  # Number of extra tokens
   
     vocab_count = tokens_regular + tokens_special
-  
+
     if args.phase is not None:  # This creates the various HDF5 files - takes <5hrs for --phase=train,dev,test
       if 'train' in args.phase:  # 4h15mins ?
-        train_file, valid_train_ids_all = valid_relations(relation_phase='train', relation_fold=args.fold, 
-                                                      len_max_return=n_ctx*6, skip_too_long=False, only_positive=False,)
-                                                      
+        train_file, valid_train_ids_all = valid_relations(args.path+'/coco_train.conll')
         train_hdf5 = save_relations(train_file, valid_ids=valid_train_ids_all, save_bpe=args.save_bpe)  # Saves ALL
         
       if 'dev' in args.phase:  # <12secs
-        dev_file, valid_dev_ids_all = valid_relations(relation_phase='dev', relation_fold=args.fold, 
-                                                      len_max_return=n_ctx*6, skip_too_long=False, only_positive=False,)
-                                                      
+        dev_file, valid_dev_ids_all = valid_relations(args.path+'/coco_dev.conll')
         dev_hdf5 = save_relations(dev_file, valid_ids=valid_dev_ids_all, save_bpe=args.save_bpe)  # Saves ALL
       
-      if 'test' in args.phase:   # <4mins
-        test_file, valid_test_ids_all = valid_relations(relation_phase='test', relation_fold=args.fold, 
-                                                      len_max_return=n_ctx*6, skip_too_long=False, only_positive=False,)
-                                                      
-        test_hdf5 = save_relations(test_file, valid_ids=valid_test_ids_all, save_bpe=args.save_bpe)  # Saves ALL
-      
-
-      if False:
-        valid_train_ids_all = valid_relations(relation_phase='train', relation_fold=args.fold, len_max_return=n_ctx*6, skip_too_long=False)
-        valid_train_ids_pos = valid_relations(relation_phase='train', relation_fold=args.fold, len_max_return=n_ctx*6, skip_too_long=True)
-        
-        valid_test_ids_all  = valid_relations(relation_phase='test', relation_fold=args.fold, len_max_return=n_ctx*6, skip_too_long=False)
-      
-    if False:  # OLD STYLE : This tests the various files - takes ~2h30 for all
-      save_relations(file_stub='_pos', relation_phase='train', only_positive=True)  
-      save_relations(file_stub='_all', relation_phase='train', only_positive=False)  
-      
-      save_relations(file_stub='_pos', relation_phase='dev', only_positive=True)  
-      save_relations(file_stub='_all', relation_phase='dev', only_positive=False)  
-      
-      #save_relations(file_stub='_pos', relation_phase='test', only_positive=True)  
-      save_relations(file_stub='_all', relation_phase='test', only_positive=False)  
-
-      #save_relations(file_stub=args.stub, relation_phase=args.phase, relation_fold=args.fold, only_positive=args.positive)  
     
     if args.phase is None:
       s="This is a simple test of the text encoder. It's difficult to believe it will work."
-      #encs, cleans, lens = text_encoder.encode_and_clean([s])
-      #print(encs[0], cleans[0], lens[0])
-      #print( text_encoder.decode(encs[0]) )
-
+      
       s_nlp = text_encoder.nlp(s)
       bpes = text_encoder.encode_nlp(s_nlp)
       print( bpes )

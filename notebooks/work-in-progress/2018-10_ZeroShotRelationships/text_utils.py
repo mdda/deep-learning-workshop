@@ -137,6 +137,13 @@ class TextEncoder(object):
             bpes.append(bpe)
         return bpes # This is an array of word-ish arrays
         
+    def encode_tokenized_text(self, text_arr):  # text_arr is a pre-tokenized array
+        bpes = []
+        for token_text in text_arr:
+            bpe = [self.encoder.get(t, 0) for t in self.bpe(token_text.lower()).split(' ')]
+            bpes.append(bpe)
+        return bpes # This is an array of word-ish arrays
+        
     def flatten_bpes(self, bpes):
       return [item for sublist in bpes for item in sublist]
       
