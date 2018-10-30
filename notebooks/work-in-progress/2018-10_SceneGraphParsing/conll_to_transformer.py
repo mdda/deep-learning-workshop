@@ -155,9 +155,11 @@ def save_relations(relation_file, valid_ids=None, file_stub='_all', bpe_max=None
           parent_bpe = sent_enc_offsets[parent] # Already is 1-based
           zs_np[0, w_bpe] = parent_bpe
 
-        print(xs_np[:len_xs])
-        print(ys_np[:len_xs])
-        print(zs_np[:len_xs])
+        #print(len_xs)
+        #print(xs_np[0,:len_xs])
+        #print(ys_np[0,:len_xs])
+        #print(zs_np[0,:len_xs])
+        print( np.array( [xs_np[0], ys_np[0], zs_np[0]] )[:, :len_xs] )
         exit(0)
         
         
