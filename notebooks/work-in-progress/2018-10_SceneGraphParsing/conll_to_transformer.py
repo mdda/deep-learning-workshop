@@ -87,10 +87,14 @@ def save_relations(relation_file, valid_ids=None, file_stub='_all', bpe_max=None
         words, parents, relationships, properties = [], [], [], []
         for each in conll_data:
           node_id, node_word, parent_id_str, rel, prop = each
+          
+          word_clean = node_word.lower().replace('.', ' ').replace(',', ' ').replace('  ', ' ').strip()
+          if len(word_clean)==0: 
+            #continue
+            word_clean='_'
           parent_id = 0 if parent_id_str=='_' else int(parent_id_str)
-          words.append(
-            node_word.lower().replace('.', ' ').replace(',', ' ').replace('  ', ' ').strip()
-          )
+          
+          words.append( word_clean )
           parents.append(int(parent_id))  # For OBJ which is SUBJ, this ==0, otherwise ->PRED
           relationships.append(rel)   # Maybe has 'same' indicator
           properties.append(prop)     # _/OBJ/ATTR/PRED
@@ -160,122 +164,18 @@ def save_relations(relation_file, valid_ids=None, file_stub='_all', bpe_max=None
         #print(ys_np[0,:len_xs])
         #print(zs_np[0,:len_xs])
         print( np.array( [xs_np[0], ys_np[0], zs_np[0]] )[:, :len_xs] )
-        exit(0)
-        
-        
-        if True:  # Always look up ques too
-          highlight_arr = [ ques_arg ]
-          if len(each) > 4:
-            highlight_arr.extend(each[4:])
-          
-          
-          # These are offsets in characters
-          #indices = [(sent.index(ans), sent.index(ans) + len(ans)) for ans in ans_list]
-          
-          # Let's find out what the bpe indices are - since we have the offsets within _nlp from token.idx
-          # Go through the sent_blp_offsets, looking for the indices
-          for highlight_i, highlight in enumerate(highlight_arr):
-            c_start = sent.index(highlight)
-            c_end   = c_start + len(highlight)
-            
-            #print(len(sent), c_start, sent_nlp_offsets)
-            #print( highlight, '|', sent ) 
-            #word_start = sent_nlp_offsets.index(c_start) 
-            word_start = 0
-            while word_start<sent_nlp_offsets_len and sent_nlp_offsets[word_start]<c_start:
-              word_start+=1
-              
-            if word_start>=sent_nlp_offsets_len: # NOT FOUND as a single word
-              continue  # eg: Last 'word' = 'http://de.wikipedia.org/wiki/Offenburg#St.C3.A4dtepartnerschaften'
-              
-            word_end = word_start+1
-            while word_end<sent_nlp_offsets_len and sent_nlp_offsets[word_end]<c_end:
-              word_end+=1
-            
-            #print(highlight, word_start, word_end, sent_nlp_offsets[word_start], sent_nlp_offsets[word_end], )
-            
-            bpe_start = sent_enc_offsets[ word_start ]
-            bpe_end   = sent_enc_offsets[ word_end ] 
-  
-            class_base = 0 if highlight_i==0 else 2
-            if sent_offset+bpe_start<bpe_max:
-              ys_np[0, sent_offset+bpe_start ] = class_base+1
-            if sent_offset+bpe_end<bpe_max:
-              ys_np[0, sent_offset+bpe_end ]   = class_base+2
 
-            if True:
-              print( "%6d %1d %1d '%s' '%s'" % (i, highlight_i, class_base, highlight, text_encoder.decode( sent_enc[bpe_start:bpe_end] ) ),)
-            
-            
-          if False:
-            for ans in ans_list:
-              s_char_start_idx = sent.index(ans) # in characters
-              s_word_start_idx = len( sent[:s_char_start_idx-1].split(' ') )
-              s_word_end_idx = s_word_start_idx + len( ans.split(' ') )
-              #print( ans, (sent.split(' '))[s_word_start_idx : s_word_end_idx] )  # Seems to make sense
-             
-              # Now convert original sent word indices to clean word indices ...
-          
-          if False:
-            ans_encs, ans_cleans, ans_lens = text_encoder.encode_and_clean(ans_list)
-            
-            sent_fix = fixer(sent_clean)
-            for ans_i, ans in enumerate(ans_cleans):
-              ans_fix = fixer(ans)
-              if ans_fix not in sent_fix:
-                print("%i : ANS cleaned away! '%s' not in '%s'" % (i, ans_fix, sent_fix,) )
-                exit(0)
-                
-              # Now we've found the ans_fix, let's figure out the bpe locations...
-              s_char_start_idx = sent_fix.index(ans_fix) # in characters
-              s_word_start_idx = len( sent_fix[:s_char_start_idx-1].split(' ') )
-              s_word_end_idx = s_word_start_idx + len( ans_fix.split(' ') )
-              
-              #print( ans_fix, (sent_fix.split(' '))[s_word_start_idx : s_word_end_idx] )  # Seems to make sense = YES
-              
-              # So now for the bpe positions...
-              # start is sum of previous bpe positions (special case for start==0)
-              ans_len = ans_lens[ans_i]
-              bpe_start_idx = 0
-              if s_word_start_idx>0:
-                bpe_start_idx=sum( ans_len[:s_word_start_idx-1] )
-              bpe_end_idx  =sum( ans_len[:s_word_end_idx-1] )
-              
-              bpe_ranges.append( (bpe_start_idx, bpe_end_idx) )  
-
-          
-        #ys_np = np.zeros((1, bpe_max), dtype=np.bool)
-        #for bpe_start, bpe_end in bpe_ranges:
-        #  ys_np[0, bpe_start:bpe_end] = 1
-
-
-        # Next : Do the dependency zs
-        #  Easy enough to do both ques and sent :
-        
-        for i, tok in enumerate(ques_nlp):
-          bpe_loc = ques_enc_offsets[ i ] + ques_offset
-          bpe_head = ques_enc_offsets[ tok.head.i ] + ques_offset
-          if bpe_loc<bpe_max and bpe_head<bpe_max:  # Don't point outside range either
-            zs_np[0, bpe_loc ] = bpe_head
-
-        for i, tok in enumerate(sent_nlp):
-          bpe_loc = sent_enc_offsets[ i ] + sent_offset
-          bpe_head = sent_enc_offsets[ tok.head.i ] + sent_offset
-          if bpe_loc<bpe_max and bpe_head<bpe_max:  # Don't point outside range either
-            zs_np[0, bpe_loc ] = bpe_head
-  
-        #print( xs_np[0, :len_xs] )
-        #print( ys_np[0, :len_xs] )
-        #print( zs_np[0, :len_xs] )
-        
         #print( text_encoder.decode( list( xs_np[0, :len_xs] ) ) )
         #print( list( enumerate( zip( list(xs_np[0, :len_xs]), list(ys_np[0, :len_xs]), list(zs_np[0, :len_xs])) ) ))
+
+        #exit(0)
        
         h5_data1[idx,:] = xs_np
         h5_data2[idx,:] = ys_np
         h5_data3[idx,:] = zs_np
         
         idx+=1 
+        conll_data = []  # Reset
 
   #print(i, valid, len_max_count, len_max_count/i*100.)
   print("Saved data to %s" % (file_out,))
