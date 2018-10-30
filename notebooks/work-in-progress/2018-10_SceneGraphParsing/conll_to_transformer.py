@@ -80,7 +80,8 @@ def save_relations(relation_file, valid_ids=None, file_stub='_all', bpe_max=None
         
         if idx not in valid_ids: continue
         
-
+        print( conll_data )
+        exit(0)
 
         
         rel, ques_xxx, ques_arg, sent = each[:4]
@@ -311,12 +312,12 @@ if __name__ == '__main__':
     
     parser.add_argument('--n_ctx', type=int, default=128)    # Max length of input texts in bpes
     
-    parser.add_argument('--phase', type=str, default=None)
-    parser.add_argument('--fold',  type=int, default=1)
+    #parser.add_argument('--phase', type=str, default=None)
+    #parser.add_argument('--fold',  type=int, default=1)
     parser.add_argument('--stub',  type=str, default='')
     parser.add_argument('--save_bpe', action='store_true')
 
-    parser.add_argument('--positive',  type=bool, default=False)
+    #parser.add_argument('--positive',  type=bool, default=False)
     
     parser.add_argument('--encoder_path', type=str, default=pretrained_model_path+'/encoder_bpe_40000.json')
     parser.add_argument('--bpe_path', type=str, default=pretrained_model_path+'/vocab_40000.bpe')
