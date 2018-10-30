@@ -284,6 +284,9 @@ python tidy_refs.py --multiwords
 python tidy_refs.py --testnodes   # No response==Good
 
 
+ln -s /mnt/rdai/reddragon/2018-10_ZeroShotRelationships_orig orig
+ln -s ../2018-10_ZeroShotRelationships/text_utils.py .
+
 
 
 

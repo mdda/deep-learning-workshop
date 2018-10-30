@@ -14,56 +14,25 @@ import csv
 pretrained_model_path = os.path.join('.', 'orig', 'finetune-transformer-lm', 'model')
 
 # Needed for the train/dev/test files
-relation_splits_path = os.path.join('.', 'orig', 'omerlevy-bidaf_no_answer-2e9868b224e4', 'relation_splits', )
+#relation_splits_path = os.path.join('.', 'orig', 'omerlevy-bidaf_no_answer-2e9868b224e4', 'relation_splits', )
 
-
-#   840000  31087632 191519344 orig/omerlevy-bidaf_no_answer-2e9868b224e4/relation_splits/train.1
-#      600     21854    136415 orig/omerlevy-bidaf_no_answer-2e9868b224e4/relation_splits/dev.1
-#    12000    427110   2688895 orig/omerlevy-bidaf_no_answer-2e9868b224e4/relation_splits/test.1
-#   852600  31536596 194344654 total
-
-
-# https://github.com/rasbt/deep-learning-book/blob/master/code/model_zoo/pytorch_ipynb/custom-data-loader-csv.ipynb
 
 # By default, return 
-def valid_relations(relation_phase='train', relation_fold=1, 
-                    only_positive=False, len_max_return=512, skip_too_long=False):
-  relation_file=os.path.join( relation_splits_path, "%s.%d" % (relation_phase, relation_fold))
-
-  len_max_count=0
-  valid=[]
+def valid_relations(relation_file):
+  valid, valid_count = [], 0
   with open(relation_file, 'r') as fp:
     reader = csv.reader(fp, delimiter='\t')
     for i, each in enumerate(reader):
-      rel, ques_xxx, ques_arg, sent = each[:4]
-      
-      if 'Canadhan' in ques_arg:
-        print("GOTCHA!")
-        ques_arg = ques_arg.replace('Canadhan', 'Canadian')
-      
-      ques = ques_xxx.replace('XXX', ques_arg)
-
       if i % 10000 == 0:
         print("Line %d" % (i,))
-    
-      if ques_arg not in sent:
-        print("MISSING ENTITY : '%s' not in '%s'" % (ques_arg, sent))
-        exit(0)
-    
-      if only_positive and len(each)<=4:
-        continue
+
+      if len(each)==0:
+        valid.append( valid_count )
+        valid_count+=1
       
-      len_txt = len(ques) + len(sent) + 3
-      if len_txt>len_max_return and skip_too_long:
-        len_max_count+=1
-        print("Skipping #%i, len_max_count=%d,pct_long=%.2f%%" % (i, len_max_count, len_max_count/i*100., ))
-        continue
-        
-      valid.append(i)  # This is a list of the valid indices
   return relation_file, valid
 
 def save_relations(relation_file, valid_ids=None, file_stub='_all', bpe_max=None, save_bpe=False):
-  #file_out = os.path.join( relation_file, "%s.%d%s.hdf5" % (relation_phase, relation_fold, file_stub))
   file_out = relation_file + "%s.hdf5" % (file_stub, )
   text_out = relation_file + "%s.bpe" % (file_stub, )
   
@@ -86,23 +55,6 @@ def save_relations(relation_file, valid_ids=None, file_stub='_all', bpe_max=None
                            compression=None,
                            dtype='uint8')  # >>bpe_max
 
-    #def fixer(s):
-    #  return ((' '+s+' ')
-    #           .replace('F.C.', '#FC').replace('F.C', '#FC')
-    #           .replace(' Jr.', ' #JUNIOR').replace(' Jr ', ' #JUNIOR ')
-    #           .replace(' Inc.', ' #INC').replace(' Inc ', ' #INC ')
-    #           .replace(' Bros.', ' #BROS').replace(' Bros ', ' #BROS ')
-    #           .replace(' Co.', ' #CO').replace(' Co ', ' #CO ')
-    #           .replace(' B.V.', ' #BV').replace(' B.V ', ' #BV ')
-    #           .replace(' D.C.', ' #DC').replace(' D.C ', ' #DC ')
-    #           .replace(' Mousse T. ', ' #MOUSSET ').replace(' Mousse T ', ' #MOUSSET ')
-    #           .replace(' S.C.S.C.', ' #SCSC').replace(' S.C.S.C ', ' #SCSC ')
-    #           .replace(' R.I.O.', ' #RIO').replace(' R.I.O ', ' #RIO ')
-    #           .replace('S.K.', '#SK').replace('S.K', '#SK')
-    #           .replace(' B2 K ', ' #B2K ').replace(' B2K', ' #B2K')
-    #           .replace(' E.N.I.', ' #ENI').replace(' E.N.I ', ' #ENI ')
-    #         ).strip()
-    
     idx, bpe_truncate_count, bpe_save_arr = 0, 0, []
     with open(relation_file, 'r') as fp:
       reader = csv.reader(fp, delimiter='\t')
