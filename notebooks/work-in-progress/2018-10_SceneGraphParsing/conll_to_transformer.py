@@ -40,36 +40,48 @@ def save_relations(relation_file, valid_ids=None, file_stub='_all', bpe_max=None
     bpe_max = n_ctx
   
   with h5py.File(file_out, 'w') as h5f:
-    h5_data1 = h5f.create_dataset('features',
+    h5_data1 = h5f.create_dataset('features',  # These are the bpe
                            shape=(len(valid_ids), bpe_max),
                            compression=None,
                            dtype='int32')
     
-    h5_data2 = h5f.create_dataset('labels',
+    h5_data2 = h5f.create_dataset('labels',    # Types { N/a, ATTR, SUBJ, PRED, etc...)
                            shape=(len(valid_ids), bpe_max),
                            compression=None,
                            dtype='uint8')
 
-    h5_data3 = h5f.create_dataset('deps',
+    h5_data3 = h5f.create_dataset('deps',      # Links to next node
                            shape=(len(valid_ids), bpe_max),
                            compression=None,
                            dtype='uint8')  # >>bpe_max
 
-    idx, bpe_truncate_count, bpe_save_arr = 0, 0, []
+    idx, bpe_truncate_count, bpe_save_arr = -1, 0, []
+    """
+    fout.write(str(node.id))
+    fout.write("\t"+node.word)
+    fout.write("\t"+(str(node.parent_id) if node.parent_id != None else '_')) 
+    fout.write("\t"+(str(node.rel) if node.rel != None else '_'))
+    fout.write("\t"+(str(node.prop) if node.prop != None else '_')+'\n')
+    """
+  
     with open(relation_file, 'r') as fp:
       reader = csv.reader(fp, delimiter='\t')
+      conll_data = []
       for i, each in enumerate(reader):
         if i % 10000 == 0:
           print("Line %d" % (i,))
           
-        #if i<250000: continue
-        #if i<410000: continue
-        #if i<590000: continue
-        #if i<650000: continue
-        #if i<780000: continue
-        #if i<66970: continue
+        if len(each)>0:
+          conll_data.append( each )
+          continue
         
-        if i not in valid_ids: continue
+        # Ok, so now conll_data has a block in the correct format...
+        idx += 1
+        
+        if idx not in valid_ids: continue
+        
+
+
         
         rel, ques_xxx, ques_arg, sent = each[:4]
         
