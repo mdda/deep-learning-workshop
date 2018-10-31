@@ -294,18 +294,26 @@ ln -s ../2018-10_ZeroShotRelationships/text_utils.py .
 python conll_to_transformer.py --phase=train --save_bpe --stub=v128
 python conll_to_transformer.py --phase=train --save_bpe --stub=v32 --n_ctx=32
 
-## train :
+
+## train = 100mins :
 
 python conll_to_transformer.py --phase=train --save_bpe --stub=v32 --n_ctx=32
 
-#Line 6300000, valid_count=1029066
 #Line 6400000, valid_count=1044916
 #Line 6,500,000, valid_count=1,061,160
 #Last Line = 6,552,437
 
+Saved data to ./bist-parser/preprocess/output/coco_train.conll_all.hdf5
+  bpe_maximum 98, bpe_truncate_count 18, bpe_max 32
+Saved bpe data to ./bist-parser/preprocess/output/coco_train.conll_all.bpe
+--token_clf=40480
+--vocab_count=40481
+--tokens_special=3
+Wed Oct 31 16:56:10 +08 2018
 
 
-## dev : 
+
+## dev  = 30mins : 
 
 python conll_to_transformer.py --phase=dev --save_bpe --stub=v32 --n_ctx=32
 
