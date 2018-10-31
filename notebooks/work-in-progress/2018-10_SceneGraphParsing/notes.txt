@@ -279,17 +279,46 @@ wc data/image_data.json.rows            #   108,077 rows
      -  relationships must join valid objects
      -  attributes must be for valid objects
      
+pip install h5py ftfy spacy
+python -m spacy download en
   
 python tidy_refs.py --multiwords
 python tidy_refs.py --testnodes   # No response==Good
 
 
-ln -s /mnt/rdai/reddragon/2018-10_ZeroShotRelationships_orig orig
+#ln -s /mnt/rdai/reddragon/2018-10_ZeroShotRelationships_orig orig
+ln -s ../2018-10_ZeroShotRelationships/orig .
 ln -s ../2018-10_ZeroShotRelationships/text_utils.py .
 
 
-python conll_to_transformer.py --phase=train --save_bpe --stub=v1
+python conll_to_transformer.py --phase=train --save_bpe --stub=v128
+python conll_to_transformer.py --phase=train --save_bpe --stub=v32 --n_ctx=32
 
+## train :
+
+python conll_to_transformer.py --phase=train --save_bpe --stub=v32 --n_ctx=32
+
+#Line 6300000, valid_count=1029066
+#Line 6400000, valid_count=1044916
+#Line 6,500,000, valid_count=1,061,160
+#Last Line = 6,552,437
+
+
+
+## dev : 
+
+python conll_to_transformer.py --phase=dev --save_bpe --stub=v32 --n_ctx=32
+
+#Line 3200000, valid_count=522438
+#Line 3,300,000, valid_count=538,226
+#Last Line = 3,358,266
+
+Saved data to ./bist-parser/preprocess/output/coco_dev.conll_all.hdf5
+  bpe_maximum 52, bpe_truncate_count 13, bpe_max 32
+Saved bpe data to ./bist-parser/preprocess/output/coco_dev.conll_all.bpe
+--token_clf=40480
+--vocab_count=40481
+--tokens_special=3
 
 
 * Transformer-based parser of the original captions

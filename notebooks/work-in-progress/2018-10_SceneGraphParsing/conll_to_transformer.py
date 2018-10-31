@@ -19,16 +19,16 @@ pretrained_model_path = os.path.join('.', 'orig', 'finetune-transformer-lm', 'mo
 
 # By default, return 
 def valid_relations(relation_file):
-  valid, valid_count = [], 0
+  valid, idx = [], -1
   with open(relation_file, 'r') as fp:
     reader = csv.reader(fp, delimiter='\t')
     for i, each in enumerate(reader):
-      if i % 100000 == 0:
-        print("Line %d" % (i,))
-
       if len(each)==0:
-        valid.append( valid_count )
-        valid_count+=1
+        idx += 1 
+        valid.append( idx )
+
+      if i % 100000 == 0:
+        print("Line %d, idx=%d" % (i, idx,))
       
   print("Last Line = %d" % (i,))
   return relation_file, valid
@@ -183,7 +183,6 @@ def save_relations(relation_file, valid_ids=None, file_stub='_all', bpe_max=None
         h5_data2[idx,:] = ys_np
         h5_data3[idx,:] = zs_np
         
-        idx+=1 
         conll_data = []  # Reset
 
   #print(i, valid, len_max_count, len_max_count/i*100.)
