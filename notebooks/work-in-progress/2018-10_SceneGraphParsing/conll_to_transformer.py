@@ -101,7 +101,7 @@ def save_relations(relation_file, valid_ids=None, file_stub='_all', bpe_max=None
           properties.append(prop)     # _/OBJ/ATTR/PRED
         
         xs_np = np.zeros((1, bpe_max), dtype=np.int32)  # bpe encoding of constructed input string
-        ys_np = np.zeros((1, bpe_max), dtype=np.int8)   # class : 0=IGNORE, 1=same, 2=SUBJECT-OBJECT, 3=VERB'S-OBJECT, 4=ATTRIB
+        ys_np = np.zeros((1, bpe_max), dtype=np.int8)   # class : 0=IGNORE, 1=same, 2=SUBJECT-OBJECT, 3=VERB'S-OBJECT, 4=ATTRIB, 5=VERB
         zs_np = np.zeros((1, bpe_max), dtype=np.int8)   # position that is linked to, 0=irrelevant (a mask value)
         
         #sent_nlp  = text_encoder.nlp( sent )
@@ -264,13 +264,13 @@ if __name__ == '__main__':
     vocab_count = tokens_regular + tokens_special
 
     if args.phase is not None:  # This creates the various HDF5 files - takes <5hrs for --phase=train,dev,test
-      if 'train' in args.phase:  # 4h15mins ?
+      if 'train' in args.phase:  # 2h
         train_file, valid_train_ids_all = valid_relations(args.path+'/coco_train.conll')
-        train_hdf5 = save_relations(train_file, valid_ids=valid_train_ids_all, save_bpe=args.save_bpe)  # Saves ALL
+        train_hdf5 = save_relations(train_file, valid_ids=valid_train_ids_all, file_stub=args.stub, save_bpe=args.save_bpe)  # Saves ALL
         
-      if 'dev' in args.phase:  # <12secs
+      if 'dev' in args.phase:  # 40mins
         dev_file, valid_dev_ids_all = valid_relations(args.path+'/coco_dev.conll')
-        dev_hdf5 = save_relations(dev_file, valid_ids=valid_dev_ids_all, save_bpe=args.save_bpe)  # Saves ALL
+        dev_hdf5 = save_relations(dev_file, valid_ids=valid_dev_ids_all, file_stub=args.stub, save_bpe=args.save_bpe)  # Saves ALL
       
     
     if args.phase is None:

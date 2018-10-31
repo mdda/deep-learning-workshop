@@ -329,6 +329,10 @@ Saved bpe data to ./bist-parser/preprocess/output/coco_dev.conll_all.bpe
 --tokens_special=3
 
 
+python train_grapher.py --stub=v32 --batch_size_per_gpu=128
+
+
+
 * Transformer-based parser of the original captions
   - Add directed arrow 'head' which does attention-tracking (like dependency tree idea for ZeroShotRelationships)
     - Attributes point to Subject / Object
