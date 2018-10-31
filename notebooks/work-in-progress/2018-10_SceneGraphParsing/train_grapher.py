@@ -434,7 +434,7 @@ if __name__ == '__main__':
             loss_recent = loss_recent_tot / float(sentences_since_last_check)   # loss per sentence
           
             if loss_best is None or loss_recent<loss_best:  # Save model if loss has decreased
-              fname = './checkpoints/model-stepwise_%s_%02d-%07d.pth' % (args.stub, epoch, idx*batch_size,)
+              fname = './checkpoints/model-grapher_%s_%02d-%07d.pth' % (args.stub, epoch, idx*batch_size,)
               print("Saving Checkpoint : '%s', loss_recent=%.4f" % (fname, loss_recent/batch_size*100., ))
               torch.save(dict(
                 epoch=epoch,
@@ -465,7 +465,7 @@ if __name__ == '__main__':
         idx_loss_check -= len(train_dataset)/batch_size  # Keep track of reset idxs
         
         # End-of-epoch saving
-        fname = './checkpoints/model-stepwise_%s_%02d-%07d_end-epoch.pth' % (args.stub, epoch, idx*batch_size,)
+        fname = './checkpoints/model-grapher_%s_%02d-%07d_end-epoch.pth' % (args.stub, epoch, idx*batch_size,)
         print("Saving End-epoch checkpoint : '%s'" % (fname, ))
         torch.save(dict(
           epoch=epoch,

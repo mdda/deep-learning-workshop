@@ -331,6 +331,19 @@ Saved bpe data to ./bist-parser/preprocess/output/coco_dev.conll_all.bpe
 
 python train_grapher.py --stub=v32 --batch_size_per_gpu=128
 
+export INSTANCE_NAME="rdai-tts-p100-vm"
+gcloud compute instances start $INSTANCE_NAME
+
+gcloud compute ssh $INSTANCE_NAME
+
+cd ~/deep-learning-workshop/notebooks/work-in-progress/2018-10_SceneGraphParsing
+mkdir -p checkpoints
+sudo mount -o discard,defaults /dev/sdb checkpoints
+sudo chmod a+x checkpoints
+
+
+gcloud compute scp $INSTANCE_NAME:[REMOTE_FILE_PATH]
+gcloud compute scp *.hdf5 rdai-tts-p100-vm:~/deep-learning-workshop/notebooks/work-in-progress/....
 
 
 * Transformer-based parser of the original captions
