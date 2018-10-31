@@ -82,7 +82,7 @@ def save_relations(relation_file, valid_ids=None, file_stub='_all', bpe_max=None
         
         if idx not in valid_ids: continue
         
-        print( conll_data )
+        print(idx, bpe_maximum, conll_data )
         #exit(0)
         
         words, parents, relationships, properties = [], [], [], []
@@ -169,8 +169,10 @@ def save_relations(relation_file, valid_ids=None, file_stub='_all', bpe_max=None
         #print(xs_np[0,:len_xs])
         #print(ys_np[0,:len_xs])
         #print(zs_np[0,:len_xs])
-        print( np.array( [xs_np[0], ys_np[0], zs_np[0]] )[:, :len_xs] )
-        print()
+        
+        if False:
+          print( np.array( [xs_np[0], ys_np[0], zs_np[0]] )[:, :len_xs] )
+          print()
 
         #print( text_encoder.decode( list( xs_np[0, :len_xs] ) ) )
         #print( list( enumerate( zip( list(xs_np[0, :len_xs]), list(ys_np[0, :len_xs]), list(zs_np[0, :len_xs])) ) ))
