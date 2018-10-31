@@ -342,8 +342,11 @@ sudo mount -o discard,defaults /dev/sdb checkpoints
 sudo chmod a+x checkpoints
 
 
-gcloud compute scp $INSTANCE_NAME:[REMOTE_FILE_PATH]
-gcloud compute scp *.hdf5 rdai-tts-p100-vm:~/deep-learning-workshop/notebooks/work-in-progress/....
+#gcloud compute scp $INSTANCE_NAME:[REMOTE_FILE_PATH]
+gcloud compute scp bist-parser/preprocess/output/*_v32* rdai-tts-p100-vm:~/deep-learning-workshop/notebooks/work-in-progress/2018-10_SceneGraphParsing/bist-parser/preprocess/output/
+
+python train_grapher.py --stub=v32 --batch_size_per_gpu=128
+
 
 
 * Transformer-based parser of the original captions

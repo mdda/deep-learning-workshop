@@ -188,7 +188,7 @@ def run_predictions(test_loader=None, output_file=None):
   print("run_predictions() -> %s" % (output_file, ))
   model_stepwise.eval()
 
-  predictions_arr, targets_arr, txts_arr = [], [], []
+  labels_arr, deps_arr = [], []
   for idx, (features, labels, deps) in enumerate(test_loader):
     #features, labels, deps = features.to(device), labels.to(device), deps.to(device)
     features = features.to(device)
@@ -196,25 +196,22 @@ def run_predictions(test_loader=None, output_file=None):
     out_class_logits, out_deps_logits = model_stepwise(features)
 
     # Ok, so now what...
-    #   Ignore the deps
-    #   Just save off the out_class_logits and corresponding labels
+    #   Just save off the argmax(out_class_logits) and argmax(out_deps_logits)
   
-    predictions_arr.append( out_class_logits.detach().cpu().numpy() )
-    targets_arr.append( labels.detach().cpu().numpy() )
+    _, labels_predicted =  torch.max( out_class_logits, 1)
+    _, deps_predicted   =  torch.max( out_deps_logits, 1)
     
-    #bpes = list( features.detach().cpu().numpy()[0,:,0] )
-    ##txt = text_encoder.decode( bpes )
-    #txt = text_encoder.decode_as_fragments( bpes )
-    #txts_arr.append( txt )
+    print( labels_predicted.shape, deps_predicted.shape )
   
+    labels_arr.append( labels_predicted.detach().cpu().numpy() )
+    deps_arr.append( deps_predicted.detach().cpu().numpy() )
+    
     if (idx+1) % 10 == 0:
       print('%.1f%% of predictions' % (idx / float(len(test_loader)) * 100, ), end='\r')
       #break
 
-  np.savez(output_file, predictions=np.array( predictions_arr ), targets=np.array( targets_arr ), )
-  
-  #with open(output_file+'.txt', 'w') as f:
-  #  f.write('\n'.join(txts_arr))
+  np.savez(output_file, labels=np.array( labels_arr ), deps=np.array( deps_arr ), )
+
   
 
 if __name__ == '__main__':
