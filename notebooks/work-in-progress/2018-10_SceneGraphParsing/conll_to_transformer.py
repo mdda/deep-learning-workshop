@@ -64,7 +64,8 @@ def save_relations(relation_file, valid_ids=None, file_stub='_all', bpe_max=None
     fout.write("\t"+(str(node.rel) if node.rel != None else '_'))
     fout.write("\t"+(str(node.prop) if node.prop != None else '_')+'\n')
     """
-  
+    bpe_maximum=0  # Track bow long we need
+    
     with open(relation_file, 'r') as fp:
       reader = csv.reader(fp, delimiter='\t')
       conll_data = []
@@ -111,6 +112,9 @@ def save_relations(relation_file, valid_ids=None, file_stub='_all', bpe_max=None
 
         # Save the bpe encoding 
         bpe_len = len(sent_enc) + 2
+        
+        if bpe_maximum<bpe_len:
+          bpe_maximum=bpe_len  
         if bpe_len>bpe_max:
           bpe_truncate_count += 1
           print("Truncating #%i, rate = %.2f%%" % (idx, 100.*bpe_truncate_count/idx))
@@ -150,20 +154,23 @@ def save_relations(relation_file, valid_ids=None, file_stub='_all', bpe_max=None
               else:
                 if prop=='PRED': cls=5
                 else:
-                  print("What is this : ", word, parent, relationships[wi], prop)
-                  pass
-          
+                  #print("What is this : ", word, parent, relationships[wi], prop)
+                  pass  # Fall through cls=0 == ignore
+        
           w_bpe = sent_enc_offsets[wi+1]  # wi+1 to account for <START>
-          ys_np[0, w_bpe] = cls  # Just the first one in each word
+          if w_bpe<bpe_max: # make sure we're within the bpe limit
+            ys_np[0, w_bpe] = cls  # Just the first one in each word
           
-          parent_bpe = sent_enc_offsets[parent] # Already is 1-based
-          zs_np[0, w_bpe] = parent_bpe
+            parent_bpe = sent_enc_offsets[parent] # Already is 1-based
+            if parent_bpe<bpe_max:  # make sure we're pointing within the bpe limit
+              zs_np[0, w_bpe] = parent_bpe
 
         #print(len_xs)
         #print(xs_np[0,:len_xs])
         #print(ys_np[0,:len_xs])
         #print(zs_np[0,:len_xs])
         print( np.array( [xs_np[0], ys_np[0], zs_np[0]] )[:, :len_xs] )
+        print()
 
         #print( text_encoder.decode( list( xs_np[0, :len_xs] ) ) )
         #print( list( enumerate( zip( list(xs_np[0, :len_xs]), list(ys_np[0, :len_xs]), list(zs_np[0, :len_xs])) ) ))
@@ -179,6 +186,7 @@ def save_relations(relation_file, valid_ids=None, file_stub='_all', bpe_max=None
 
   #print(i, valid, len_max_count, len_max_count/i*100.)
   print("Saved data to %s" % (file_out,))
+  print("  bpe_maximum %d, bpe_truncate_count %d, bpe_max %d" % (bpe_maximum, bpe_truncate_count, bpe_max, ))
   
   if save_bpe:
     with open(text_out, 'w') as f:
