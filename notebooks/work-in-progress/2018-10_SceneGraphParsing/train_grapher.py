@@ -59,10 +59,10 @@ class Hdf5Dataset(Dataset):
     deps     = self.h5f['deps'][index].astype(np.int64)
     
     # Find the token_clf
-    token_clf_pos = np.nonzero( features==token_clf )[-1].sum()  # This is zero if it is not found
-    if token_clf_pos>=features.shape[0]-1:  
-      #print("token_clf_pos right at end, index=", index, token_clf_pos, features.shape[0]-1)
-      token_clf_pos=features.shape[0]-2 # Need to have this location, and the next one
+    #token_clf_pos = np.nonzero( features==token_clf )[-1].sum()  # This is zero if it is not found
+    #if token_clf_pos>=features.shape[0]-1:  
+    #  #print("token_clf_pos right at end, index=", index, token_clf_pos, features.shape[0]-1)
+    #  token_clf_pos=features.shape[0]-2 # Need to have this location, and the next one
     
     #if self.transform is not None:
     #  features = self.transform(features)
@@ -74,20 +74,20 @@ class Hdf5Dataset(Dataset):
     features_with_positions = np.stack( [ features, self.postitional_encoder.copy() ], axis=1 )  # May be safer when multithreaded?
     #print(features.shape, features_with_positions.shape)  # (128,) (128, 2)
 
-    unanswerable=False
-    if 3 not in list(labels):  # There is no answer to this question
-      unanswerable=True
-    if 4 not in list(labels):  # There is no answer to this question
-      unanswerable=True
+    #unanswerable=False
+    #if 3 not in list(labels):  # There is no answer to this question
+    #  unanswerable=True
+    #if 4 not in list(labels):  # There is no answer to this question
+    #  unanswerable=True
     
     #print(token_clf_pos, unanswerable)
-    if unanswerable:
-      if False:
-        labels[0]=4 # end is before start
-        labels[1]=3
-      if True:
-        labels[token_clf_pos  ] = 4 # end is before start
-        labels[token_clf_pos+1] = 3
+    #if unanswerable:
+    #  if False:
+    #    labels[0]=4 # end is before start
+    #    labels[1]=3
+    #  if True:
+    #    labels[token_clf_pos  ] = 4 # end is before start
+    #    labels[token_clf_pos+1] = 3
       
     # https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.clip.html
     np.clip(deps, 0, self.n_ctx-1, out=deps)
@@ -270,10 +270,10 @@ if __name__ == '__main__':
     parser.add_argument('--n_classes',      type=int, default=6)     #  #label classes = len({0, 1, 2,3, 4, 5})
 
     parser.add_argument('--batch_size_per_gpu', type=int, default=128)  # 9.6Gb on TitanX
-    parser.add_argument('--n_epoch',            type=int, default=3)
+    parser.add_argument('--n_epoch',            type=int, default=4)
     parser.add_argument("--tz",                 type=str, default='Asia/Singapore', help="Timezone for local finish time estimation")
     
-    parser.add_argument('--dep_fac',            type=float, default=1.0)
+    parser.add_argument('--dep_fac',            type=float, default=5.0)
     parser.add_argument('--extra_blocks',       type=int, default=1)
     
     parser.add_argument('--predict', action='store_true')
@@ -434,7 +434,7 @@ if __name__ == '__main__':
             loss_recent = loss_recent_tot / float(sentences_since_last_check)   # loss per sentence
           
             if loss_best is None or loss_recent<loss_best:  # Save model if loss has decreased
-              fname = './checkpoints/model-stepwise_%s_%04d-%06d.pth' % (args.stub, epoch, idx*batch_size,)
+              fname = './checkpoints/model-stepwise_%s_%02d-%07d.pth' % (args.stub, epoch, idx*batch_size,)
               print("Saving Checkpoint : '%s', loss_recent=%.4f" % (fname, loss_recent/batch_size*100., ))
               torch.save(dict(
                 epoch=epoch,
@@ -465,7 +465,7 @@ if __name__ == '__main__':
         idx_loss_check -= len(train_dataset)/batch_size  # Keep track of reset idxs
         
         # End-of-epoch saving
-        fname = './checkpoints/model-stepwise_%s_%04d-%06d_end-epoch.pth' % (args.stub, epoch, idx*batch_size,)
+        fname = './checkpoints/model-stepwise_%s_%02d-%07d_end-epoch.pth' % (args.stub, epoch, idx*batch_size,)
         print("Saving End-epoch checkpoint : '%s'" % (fname, ))
         torch.save(dict(
           epoch=epoch,
