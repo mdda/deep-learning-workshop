@@ -363,8 +363,6 @@ python transformer_to_conll.py --npz=coco_dev.conll_v32.hdf5_v32label.npz
 
 
 
-
-
 * Transformer-based parser of the original captions
   - Add directed arrow 'head' which does attention-tracking (like dependency tree idea for ZeroShotRelationships)
     - Attributes point to Subject / Object

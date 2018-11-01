@@ -30,9 +30,29 @@ def convert_to_conll(npz_file, bpe_file, conll_file):
     for i in bpe_word_idx:
       label = labels_idx[i]
       dep = deps_idx[i]
-      print(i, label, dep)
+      #print(i, label, dep)
+      
+      parent_id_str = str(dep)
+      rel, prop ='_', '_'
+      if label==0:
+        parent_id_str = '_'
+      elif label==1:
+        rel='same'
+      elif label==2:
+        parent_id_str, prop = '0', 'OBJ'
+      elif label==3:
+        rel, prop = 'OBJT', 'OBJ'
+      elif label==4:
+        rel, prop = 'ATTR', 'ATTR'
+      elif label==5:
+        rel, prop = 'PRED', 'PRED'
+              
+      # node_id, node_word, parent_id_str, rel, prop = each
+      print("%d\t%s\t%s\t%s\t%s" % (i, words[i], parent_id_str, rel, prop,)) 
     
+    #f_conll.write('\n')
     
+    if idx>5: break
     if idx>9645: break
     if idx>9820: break
     
