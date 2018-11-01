@@ -203,8 +203,8 @@ def run_predictions(test_loader=None, output_file=None):
     
     # print( labels_predicted.shape, deps_predicted.shape ) # on P100s : torch.Size([512, 32]) torch.Size([512, 32])
   
-    labels_arr.append( labels_predicted.detach().cpu().numpy() )
-    deps_arr.append( deps_predicted.detach().cpu().numpy() )
+    labels_arr.append( labels_predicted.detach().cpu().numpy().astype(np.uint8) )
+    deps_arr.append( deps_predicted.detach().cpu().numpy().astype(np.uint8) )
     
     if (idx+1) % 10 == 0:
       print('%.1f%% of predictions' % (idx / float(len(test_loader)) * 100, ), end='\r')
