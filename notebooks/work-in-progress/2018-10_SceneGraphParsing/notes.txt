@@ -346,6 +346,7 @@ sudo chmod a+x checkpoints
 gcloud compute scp bist-parser/preprocess/output/*_v32* rdai-tts-p100-vm:~/deep-learning-workshop/notebooks/work-in-progress/2018-10_SceneGraphParsing/bist-parser/preprocess/output/
 
 python train_grapher.py --stub=v32 --batch_size_per_gpu=128
+python train_grapher.py --stub=v32 --batch_size_per_gpu=128 --predict --checkpoint=checkpoints/model-grapher_v32_02-0354304.pth
 
 
 
