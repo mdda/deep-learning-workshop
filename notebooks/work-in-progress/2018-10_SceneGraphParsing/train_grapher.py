@@ -208,10 +208,21 @@ def run_predictions(test_loader=None, output_file=None):
     
     if (idx+1) % 10 == 0:
       print('%.1f%% of predictions' % (idx / float(len(test_loader)) * 100, ), end='\r')
-      #break
+      break
 
-  np.savez(output_file, labels=np.array( labels_arr ), deps=np.array( deps_arr ), )
-
+  #np.savez(output_file, labels=np.array( labels_arr ), deps=np.array( deps_arr ), )
+  np.savez(output_file, labels=np.vstack( labels_arr ), deps=np.vstack( deps_arr ), )
+  
+  """  
+  import numpy as np
+a=np.array([[1,2,3],[4,5,6]])
+b=np.array([[7,6,5],[4,8,6]])
+np.vstack([a,b])
+#array([[1, 2, 3],
+#       [4, 5, 6],
+#       [7, 6, 5],
+#       [4, 8, 6]])
+  """
   
 
 if __name__ == '__main__':
