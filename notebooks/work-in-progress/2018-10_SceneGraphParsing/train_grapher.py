@@ -413,9 +413,9 @@ if __name__ == '__main__':
           #print("dep_loss.size()=", dep_loss.size())
           #       dep_loss.size()= torch.Size([8, 128])
 
-          #dep_loss_masked = torch.where(deps>0, dep_loss, zero)  # This zeros out all positions where deps == 0
+          #dep_loss_masked = torch.where(labels>0, dep_loss, zero)  # This zeros out all positions where labels == 0
           #dep_loss_tot = dep_loss_masked.sum() / batch_size
-          dep_loss_tot = dep_loss.masked_fill_( deps==0, 0. ).sum()
+          dep_loss_tot = dep_loss.masked_fill_( labels==0, 0. ).sum()
           
           factor_hints="Factor hints (class_loss=%8.4f, deps_loss=%10.4f, fac=%.8f)" % ( 
                     class_loss_tot.item()/batch_size*100., 

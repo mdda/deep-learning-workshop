@@ -96,7 +96,7 @@ def save_relations(relation_file, valid_ids=None, file_stub='_all', bpe_max=None
           parent_id = 0 if parent_id_str=='_' else int(parent_id_str)
           
           words.append( word_clean )
-          parents.append(int(parent_id))  # For OBJ which is SUBJ, this ==0, otherwise ->PRED
+          parents.append(parent_id)  # For OBJ which is SUBJ, this ==0, otherwise ->PRED
           relationships.append(rel)   # Maybe has 'same' indicator
           properties.append(prop)     # _/OBJ/ATTR/PRED
         
@@ -129,9 +129,6 @@ def save_relations(relation_file, valid_ids=None, file_stub='_all', bpe_max=None
         if save_bpe:  # Append this to array to be saved to disk
           bpe_save_arr.append( text_encoder.decode( xs, inter_bpe='@@' ) )
           #print( bpe_save_arr )
-
-        ####### HERE #######
-        #exit(0)
 
         # Need these for answer offsets, and dependency offsets
         #sent_nlp_offsets = [ token.idx for token in sent_nlp ]
