@@ -345,12 +345,21 @@ sudo chmod a+x checkpoints
 #gcloud compute scp $INSTANCE_NAME:[REMOTE_FILE_PATH]
 gcloud compute scp bist-parser/preprocess/output/*_v32* rdai-tts-p100-vm:~/deep-learning-workshop/notebooks/work-in-progress/2018-10_SceneGraphParsing/bist-parser/preprocess/output/
 
+# Rerun with label==0 change
 python train_grapher.py --stub=v32 --batch_size_per_gpu=128 --relation_hdf5=coco_train.conll_v32.hdf5
+
+# Previous with deps==0 (seems wrong)
 python train_grapher.py --stub=v32 --batch_size_per_gpu=128 --relation_hdf5=coco_dev.conll_v32.hdf5 --predict --checkpoint=checkpoints/model-grapher_v32_02-0354304.pth
 
-gcloud compute scp rdai-tts-p100-vm:~/deep-learning-workshop/notebooks/work-in-progress/2018-10_SceneGraphParsing/bist-parser/preprocess/output/*_v32.npz bist-parser/preprocess/output/ 
+# Rerun with label==0 change
+python train_grapher.py --stub=v32label --batch_size_per_gpu=128 --relation_hdf5=coco_dev.conll_v32.hdf5 --predict --checkpoint=./checkpoints/model-grapher_v32_03-0615424.pth
 
+
+gcloud compute scp rdai-tts-p100-vm:~/deep-learning-workshop/notebooks/work-in-progress/2018-10_SceneGraphParsing/bist-parser/preprocess/output/*_v32.npz bist-parser/preprocess/output/ 
 python transformer_to_conll.py # defaults should be fine
+
+gcloud compute scp rdai-tts-p100-vm:~/deep-learning-workshop/notebooks/work-in-progress/2018-10_SceneGraphParsing/bist-parser/preprocess/output/coco_dev.conll_v32.hdf5_v32label.npz bist-parser/preprocess/output/ 
+python transformer_to_conll.py --npz=coco_dev.conll_v32.hdf5_v32label.npz
 
 
 
