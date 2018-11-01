@@ -374,10 +374,13 @@ if __name__ == '__main__':
     
     if args.predict: 
       # Predict out results for all the 'relation_hdf5' instead (batch_size=1 not efficient, but 'sure')
-      test_loader = DataLoader(dataset=train_dataset, batch_size=1, shuffle=False)   # , num_workers=1
+      #test_loader = DataLoader(dataset=train_dataset, batch_size=1, shuffle=False)   # , num_workers=1
       
-      #run_predictions(test_loader=test_loader, output_file="%s_%s.npz" % (relation_hdf5, args.stub))
-      run_predictions(test_loader=test_loader, output_file="%s_%s.conll" % (relation_hdf5, args.stub))
+      # Predict out results for all the 'relation_hdf5' instead
+      test_loader = DataLoader(dataset=train_dataset, batch_size=batch_size, shuffle=False)   # , num_workers=1
+      
+      run_predictions(test_loader=test_loader, output_file="%s_%s.npz" % (relation_hdf5, args.stub))
+      #run_predictions(test_loader=test_loader, output_file="%s_%s.conll" % (relation_hdf5, args.stub))
       exit(0)
 
     train_loader = DataLoader(dataset=train_dataset, 
