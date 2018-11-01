@@ -359,7 +359,22 @@ gcloud compute scp rdai-tts-p100-vm:~/deep-learning-workshop/notebooks/work-in-p
 python transformer_to_conll.py # defaults should be fine
 
 gcloud compute scp rdai-tts-p100-vm:~/deep-learning-workshop/notebooks/work-in-progress/2018-10_SceneGraphParsing/bist-parser/preprocess/output/coco_dev.conll_v32.hdf5_v32label.npz bist-parser/preprocess/output/ 
-python transformer_to_conll.py --npz=coco_dev.conll_v32.hdf5_v32label.npz
+python transformer_to_conll.py --npz=coco_dev.conll_v32.hdf5_v32label.npz --conll=coco_dev.conll_v32label
+
+
+cd bist-parser/model/src/utils/evaluation_script/
+
+. ~/env3/bin/activate   # Evaluation code updated to be 2/3 compatible
+bash eval.sh  # -> python spice_eval.py
+
+preproc=../../../../preprocess/output
+
+# Evaluate Oracle : 
+time python spice_eval.py ${preproc}/pre_coco_dev.json.rows ${preproc}/coco_dev.conll.oracle
+# SPICE score: 0.6630
+
+# Evaluate Transformer : 
+time python spice_eval.py ${preproc}/pre_coco_dev.json.rows ${preproc}/coco_dev.conll_v32label
 
 
 

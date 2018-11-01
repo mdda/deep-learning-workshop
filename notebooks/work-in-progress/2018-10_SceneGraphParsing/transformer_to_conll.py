@@ -20,19 +20,26 @@ def convert_to_conll(npz_file, bpe_file, conll_file):
     #bpe_word_len[0] = 0 # Fix up first entry idx=0
     bpe_word_idx = np.cumsum(bpe_word_len)[:-2]  # Take off ending
     
-    print(idx, bpe_word_idx, bpe_words)
+    print(idx, bpe_words)
+    #print(idx, bpe_word_idx, bpe_words)
     #print(idx, bpe_word_len, bpe_word_idx, bpe_words)
     
     labels_idx = labels[idx,:]
     deps_idx = deps[idx,:]
     
     # Ok, so now let's go through the indices and look at the values
+    line_i=0
     for i in bpe_word_idx:
-      label = labels_idx[i]
-      dep = deps_idx[i]
-      #print(i, label, dep)
+      line_i+=1
       
-      parent_id_str = str(dep)
+      label = labels_idx[i]
+      dep = deps_idx[i]   # Ahh - but this is in bpe units ... translate to words...
+      dep_word_idx = np.searchsorted(bpe_word_idx, dep, side='right')
+     
+      if dep!=dep_word_idx:
+        print(i, label, dep, dep_word_idx)
+      
+      parent_id_str = str(dep_word_idx)
       rel, prop ='_', '_'
       if label==0:
         parent_id_str = '_'
@@ -48,13 +55,16 @@ def convert_to_conll(npz_file, bpe_file, conll_file):
         rel, prop = 'PRED', 'PRED'
               
       # node_id, node_word, parent_id_str, rel, prop = each
-      print("%d\t%s\t%s\t%s\t%s" % (i, words[i], parent_id_str, rel, prop,)) 
+      conll_line = "%d\t%s\t%s\t%s\t%s" % (line_i, words[line_i], parent_id_str, rel, prop,)
+      print(conll_line)
+      
+      f_conll.write(conll_line+'\n')
+      
+    f_conll.write('\n')
     
-    #f_conll.write('\n')
-    
-    if idx>5: break
-    if idx>9645: break
-    if idx>9820: break
+    #if idx>15: break
+    #if idx>9645: break
+    #if idx>9820: break
     
     
     
