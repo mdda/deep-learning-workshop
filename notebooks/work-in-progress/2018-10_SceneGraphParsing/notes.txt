@@ -370,11 +370,27 @@ bash eval.sh  # -> python spice_eval.py
 preproc=../../../../preprocess/output
 
 # Evaluate Oracle : 
-time python spice_eval.py ${preproc}/pre_coco_dev.json.rows ${preproc}/coco_dev.conll.oracle
-# SPICE score: 0.6630
+time python spice_eval.py ${preproc}/pre_coco_dev.json.rows ${preproc}/coco_dev.conll.oracle                  # SPICE score: 0.6630
+time python spice_eval.py ${preproc}/pre_coco_dev.json.rows ${preproc}/coco_dev.conll.oracle --limit_tuples   # SPICE score: 0.7256
+
+
+image_id=150358, region_id=21789, Phrase:  ['blue and red bus']
+REFERENCE tuples:	 [['bus'], ('bus', 'red'), ('bus', 'passenger'), ('bus', 'black'), ('bus', 'white')]
+1	blue	4	ATTR	ATTR
+2	and	_	_	_
+3	red	4	ATTR	ATTR
+4	bus	0	_	OBJ
+PREDICT tuples  :	 [['bus'], ('bus', 'red'), ('bus', 'blue')]
+Max words in :  {'bus', 'red', 'blue'}
+count_tuple=3, num_pred=3, num_ref=5 -- tuples_max=3
+num_ref=tuples_max
+spice_score:  1.0
+
+
 
 # Evaluate Transformer : 
-time python spice_eval.py ${preproc}/pre_coco_dev.json.rows ${preproc}/coco_dev.conll_v32label
+time python spice_eval.py ${preproc}/pre_coco_dev.json.rows ${preproc}/coco_dev.conll_v32label                  # SPICE score: 0.5221
+time python spice_eval.py ${preproc}/pre_coco_dev.json.rows ${preproc}/coco_dev.conll_v32label --limit_tuples   # SPICE score: 0.5750
 
 
 

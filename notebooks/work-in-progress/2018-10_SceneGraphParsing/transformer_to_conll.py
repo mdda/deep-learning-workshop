@@ -58,6 +58,9 @@ def convert_to_conll(npz_file, bpe_file, conll_file):
       conll_line = "%d\t%s\t%s\t%s\t%s" % (line_i, words[line_i], parent_id_str, rel, prop,)
       print(conll_line)
       
+      if dep_word_idx>len( bpe_word_idx ):
+        exit(0)
+      
       f_conll.write(conll_line+'\n')
       
     f_conll.write('\n')
