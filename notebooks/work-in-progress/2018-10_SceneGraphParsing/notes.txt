@@ -417,8 +417,30 @@ time python spice_eval.py ${preproc}/pre_coco_dev.json.rows ${preproc}/coco_dev.
 
 
 
+images.forEach(i=>console.log(i.image_id,i.url,i.regions[0].text));  // white fluffy cat page
+VM1951:1 2405715 "https://cs.stanford.edu/people/rak248/VG_100K_2/2405715.jpg" ["Stone wall the cat is sitting on"]
+VM1951:1 2358832 "https://cs.stanford.edu/people/rak248/VG_100K/2358832.jpg" ["a cat sitting down"]
+VM1951:1 2351438 "https://cs.stanford.edu/people/rak248/VG_100K/2351438.jpg" ["a cat with a backpack"]
+VM1951:1 2387285 "https://cs.stanford.edu/people/rak248/VG_100K_2/2387285.jpg" ["cat licking itself"]
+VM1951:1 2412335 "https://cs.stanford.edu/people/rak248/VG_100K_2/2412335.jpg" ["A cat is sitting on a bag."]
+VM1951:1 2335967 "https://cs.stanford.edu/people/rak248/VG_100K/2335967.jpg" ["A white, orange and black cat"]
+VM1951:1 2400035 "https://cs.stanford.edu/people/rak248/VG_100K_2/2400035.jpg" ["a tabby cat"]
+VM1951:1 2393745 "https://cs.stanford.edu/people/rak248/VG_100K_2/2393745.jpg" ["orange and pink cat ears"]
+VM1951:1 2333431 "https://cs.stanford.edu/people/rak248/VG_100K/2333431.jpg" ["the cat is sleepy"]  *********
+VM1951:1 2330770 "https://cs.stanford.edu/people/rak248/VG_100K/2330770.jpg" ["head of a cat"]
 
-
+images.forEach(i=>console.log(i.image_id,i.url));  // image used in paper
+images.forEach(i=>console.log(i.image_id,i.url,i.regions[0].text));
+VM1953:1 2333432 "https://cs.stanford.edu/people/rak248/VG_100K/2333432.jpg" ["a cat sitting on a window seal"]
+VM1953:1 2317478 "https://cs.stanford.edu/people/rak248/VG_100K/2317478.jpg" ["cat paw "]
+VM1953:1  285703 "https://cs.stanford.edu/people/rak248/VG_100K/285703.jpg" [" a tile in a floor "]
+VM1953:1 2357312 "https://cs.stanford.edu/people/rak248/VG_100K/2357312.jpg" ["cat has his mouth open"] **************
+VM1953:1 2344930 "https://cs.stanford.edu/people/rak248/VG_100K/2344930.jpg" ["the reflection of a cat on the water"]
+VM1953:1 2379874 "https://cs.stanford.edu/people/rak248/VG_100K_2/2379874.jpg" ["a fluffy cat inside"]
+VM1953:1 2363821 "https://cs.stanford.edu/people/rak248/VG_100K/2363821.jpg" ["Adult cat laying on bed. "]
+VM1953:1 2332737 "https://cs.stanford.edu/people/rak248/VG_100K/2332737.jpg" ["the head of a cat"]
+VM1953:1 2379559 "https://cs.stanford.edu/people/rak248/VG_100K_2/2379559.jpg" ["Cat has pink nose."]
+VM1953:1 2365700 "https://cs.stanford.edu/people/rak248/VG_100K/2365700.jpg" ["right eye of cat"]
 
 
 
