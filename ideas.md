@@ -1213,6 +1213,8 @@ Also, figure out a good 'private code+data' workflow too:
       -  So bigger win may be in refining the annotator
 
 
+*  InfoMax / MinimumDescriptionLength -> Maximise information density
+
 
 ##  NIPS Workshops
 https://nips.cc/Conferences/2018/Schedule?type=Workshop&day=4
