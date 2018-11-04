@@ -443,6 +443,23 @@ VM1953:1 2379559 "https://cs.stanford.edu/people/rak248/VG_100K_2/2379559.jpg" [
 VM1953:1 2365700 "https://cs.stanford.edu/people/rak248/VG_100K/2365700.jpg" ["right eye of cat"]
 
 
+grep 2357312 data/visual-genome/attributes.json.rows 
+#... lots ...
+
+grep 2357312 data/visual-genome/region_graphs.json.rows 
+
+{"regions":[
+  {"relationships":[{"synsets":["along.r.01"],"predicate":"ON","relationship_id":4218683,"object_id":3332562,"subject_id":3332563}],
+   "region_id":2796477,"width":205,
+   "synsets":[{"entity_idx_start":0,"entity_idx_end":3,"entity_name":"cat","synset_name":"cat.n.01"},
+              {"entity_idx_start":12,"entity_idx_end":17,"entity_name":"mouth","synset_name":"mouth.n.01"}],
+   "height":420,"image_id":2357312,
+   "objects":[{"name":"cat","h":370,"object_id":3332562,"synsets":["cat.n.01"],"w":335,"y":40,"x":163},
+              {"name":"mouth","h":75,"object_id":3332563,"synsets":["mouth.n.01"],"w":112,"y":103,"x":257}],
+   "phrase":"cat has his mouth open","y":3,"x":202
+  },
+  // ...
+]}
 
 
 
