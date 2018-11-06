@@ -468,3 +468,7 @@ grep 2357312 data/visual-genome/region_graphs.json.rows
 ]}
 
 
+Next steps...
+
+https://colab.research.google.com/github/tensorflow/tpu/blob/master/tools/colab/bert_finetuning_with_cloud_tpus.ipynb
+
