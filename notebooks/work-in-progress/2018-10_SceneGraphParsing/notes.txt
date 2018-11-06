@@ -415,6 +415,12 @@ time python spice_eval.py ${preproc}/pre_coco_dev.json.rows ${preproc}/coco_dev.
 
 
 
+https://visualgenome.org/VGViz/explore
+https://visualgenome.org/api/v0/api_beginners_tutorial.html
+https://visualgenome.org/api/v0/api_home.html
+https://visualgenome.org/static/data/dataset/readme_v1_4.txt
+
+
 
 
 images.forEach(i=>console.log(i.image_id,i.url,i.regions[0].text));  // white fluffy cat page
@@ -460,24 +466,5 @@ grep 2357312 data/visual-genome/region_graphs.json.rows
   },
   // ...
 ]}
-
-
-
-https://github.com/rusty1s/pytorch_geometric
-https://arxiv.org/pdf/1711.08920.pdf
-https://rusty1s.github.io/pytorch_geometric/build/html/notes/introduction.html
-https://rusty1s.github.io/pytorch_geometric/build/html/notes/create_dataset.html
-
-pip install --upgrade pip
-pip install --upgrade torch-scatter torch-sparse torch-cluster torch-spline-conv
-pip install torch-geometric
-
-
-
-
-https://visualgenome.org/VGViz/explore
-https://visualgenome.org/api/v0/api_beginners_tutorial.html
-https://visualgenome.org/api/v0/api_home.html
-https://visualgenome.org/static/data/dataset/readme_v1_4.txt
 
 
