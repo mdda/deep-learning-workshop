@@ -1400,7 +1400,7 @@ maincard_10920 :: Machine Learning Open Source Software 2018: Sustainable commun
     We look forward for submissions that are novel, exciting and that appeal to the wider community.
 
   Submitted a talk proposal on the theme "Building, growing and sustaining ML communities" 
-    Notification of acceptance: 21 October 2018
+    Notification of acceptance: 21 October 2018 = YES!
 
 
 
@@ -1444,7 +1444,7 @@ maincard_10904 :: AI for social good
   October 15th, 2018 midnight eastern time
   
   Submitted a talk proposal on the theme "Scalable Social Benefits through Teaching Deep Learning Skills" 
-    Notification of acceptance: November 1st, 2018
+    Notification of acceptance: November 1st, 2018 == NO :-(
   
 maincard_10917 :: Interpretability and Robustness in Audio, Speech, and Language
   https://irasl.gitlab.io/
@@ -1454,6 +1454,7 @@ maincard_10917 :: Interpretability and Robustness in Audio, Speech, and Language
 maincard_10932 :: NIPS 2018 Workshop on Meta-Learning
   http://metalearning.ml/
   Submission deadline: 17 October 2018 (11:59 PM anywhere on Earth) (nipsfinal ok)
+  *Missed deadline*
 
 maincard_10923 :: Machine Learning for Molecules and Materials
   http://www.quantum-machine.org/workshops/nips2018draft/
@@ -1475,16 +1476,15 @@ maincard_10910 :: Continual Learning
 maincard_10927 :: Relational Representation Learning
   https://r2learning.github.io/
   Submission Deadline: October 19th, 2018, 23:59 PST (double-blind)
+  *Missed deadline*
 
 maincard_10941 :: NIPS 2018 workshop on Compact Deep Neural Networks with industrial applications
   https://lixinfan01.wixsite.com/cdnnria
   Extended abstract submission deadline:  20 Oct 2018
 
   Submitted a talk proposal on the theme "Transformer to CNN: Label-scarce distillation for efficient text classification" 
-    Acceptance notification: 29 Oct. 2018
+    Acceptance notification: 29 Oct. 2018 == YES!
 
-
-### Coming Week :
 
 maincard_10911 :: Critiquing and Correcting Trends in Machine Learning
   https://ml-critique-correct.github.io/
@@ -1516,7 +1516,11 @@ maincard_10929 :: Reinforcement Learning under Partial Observability
 maincard_10903 :: 2nd Workshop on Machine Learning on the Phone and other Consumer Devices (MLPCD 2)
   https://sites.google.com/view/nips-2018-on-device-ml
   Submission Deadline: Oct 26, 2018
-    ** Has potential (in progress)
+    ** Has potential (Done)
+  Notification: Nov 9, 2018 (was Nov 5, 2018)
+
+
+    
     
 maincard_10907 :: Causal Learning
   https://easychair.org/cfp/NIPSCL2018
@@ -1524,13 +1528,15 @@ maincard_10907 :: Causal Learning
 maincard_10924 :: Second Workshop on Machine Learning for Creativity and Design
   https://nips2018creativity.github.io/
   28 October 2018: Submission date for papers and art
-    ** Has potential (prototyping)
   
 maincard_10937 :: Visually grounded interaction and language
   https://nips2018vigil.github.io/
   https://cmt3.research.microsoft.com/VIGIL2018
-  November 1st 2018 (Final Decisions : November 8th, 2018, first 20 accepted workshop papers only to get tickets - 1 each)
-    ** Has potential (ideas stage)
+  November 1st 2018 (submitted)
+    ** Submitted """Scene Graph Parsing by Attention Graph"""
+
+  Final Decisions : November 8th, 2018
+
 
 maincard_10931 :: Modeling the Physical World: Learning, Perception, and Control
   http://phys2018.csail.mit.edu/
@@ -1547,6 +1553,8 @@ maincard_10913 :: Emergent Communication Workshop
 maincard_10938 :: Wordplay: Reinforcement and Language Learning in Text-based Games
   https://www.wordplay2018.com/
   Midnight UTC on 9 November.
+
+### ALL DONE!
 
 
 
