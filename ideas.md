@@ -1381,7 +1381,7 @@ maincard_10903 :: 2nd Workshop on Machine Learning on the Phone and other Consum
   https://sites.google.com/view/nips-2018-on-device-ml
   Submission Deadline: Oct 26, 2018
     ** Has potential (Done)
-  Notification: Nov 9, 2018 (was Nov 5, 2018)
+  Notification: Nov 12, 2018 (Nov 9, 2018) (was Nov 5, 2018)
     
     
 maincard_10907 :: Causal Learning
@@ -1397,7 +1397,7 @@ maincard_10937 :: Visually grounded interaction and language
   November 1st 2018 (submitted)
     ** Submitted """Scene Graph Parsing by Attention Graph"""
 
-  Final Decisions : November 8th, 2018
+  Final Decisions : November 9th, (was November 8th,) 2018
 
 
 maincard_10931 :: Modeling the Physical World: Learning, Perception, and Control
