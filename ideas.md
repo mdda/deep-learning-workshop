@@ -1396,8 +1396,7 @@ maincard_10937 :: Visually grounded interaction and language
   https://cmt3.research.microsoft.com/VIGIL2018
   November 1st 2018 (submitted)
     ** Submitted """Scene Graph Parsing by Attention Graph"""
-
-  Final Decisions : November 9th, (was November 8th,) 2018
+  Final Decisions : November 9th, (was November 8th,) 2018 == YES!
 
 
 maincard_10931 :: Modeling the Physical World: Learning, Perception, and Control
