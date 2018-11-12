@@ -1397,6 +1397,9 @@ maincard_10937 :: Visually grounded interaction and language
   November 1st 2018 (submitted)
     ** Submitted """Scene Graph Parsing by Attention Graph"""
   Final Decisions : November 9th, (was November 8th,) 2018 == YES!
+    Camera ready are due by the 22nd of November.
+    Poster instruction can be found here. https://nips.cc/Conferences/2018/AcceptedWorkshopFAQ
+    Oral acceptance will be sent by the 16th of November.
 
 
 maincard_10931 :: Modeling the Physical World: Learning, Perception, and Control
