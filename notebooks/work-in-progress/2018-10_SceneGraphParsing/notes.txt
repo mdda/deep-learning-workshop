@@ -470,5 +470,10 @@ grep 2357312 data/visual-genome/region_graphs.json.rows
 
 Next steps...
 
-https://colab.research.google.com/github/tensorflow/tpu/blob/master/tools/colab/bert_finetuning_with_cloud_tpus.ipynb
+BERT for TPU:
+  https://colab.research.google.com/github/tensorflow/tpu/blob/master/tools/colab/bert_finetuning_with_cloud_tpus.ipynb
+  
+Also interesting TPU-oriented slides/notebook :  
+  http://bit.ly/tpu-dev
+  http://bit.ly/keras-tpu
 
