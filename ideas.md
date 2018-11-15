@@ -1381,7 +1381,7 @@ maincard_10903 :: 2nd Workshop on Machine Learning on the Phone and other Consum
   https://sites.google.com/view/nips-2018-on-device-ml
   Submission Deadline: Oct 26, 2018
     ** Has potential (Done)
-  Notification: Nov 12, 2018 (Nov 9, 2018) (was Nov 5, 2018)
+  Notification: Nov 12, 2018 (Nov 9, 2018) (was Nov 5, 2018) == YES!
     
     
 maincard_10907 :: Causal Learning
