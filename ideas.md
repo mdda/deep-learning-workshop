@@ -1193,17 +1193,19 @@ Also, figure out a good 'private code+data' workflow too:
 *  Learn VAE from trained teacher
    *  No need to train image-sized Decoder
    *  Fits with which Workshop?
-
+      - no longer relevant
 
 *  Reasoning over Fact DB and Knowledge Axioms?
    *  V. interesting
    *  Potentially v. time consuming to 'get into it'
    *  Not clear which workshop would be interested
+      - no longer relevant
 
         
 *  NOPE : Demonstrations@NIPS (due 16-Sept-2018) : https://nips.cc/Demonstrations/demonstrationapplication
    +  Dials for latent space changes for voices
       + How about dial positions that reflect prominent conference speakers?
+      + no longer relevant
       
 
 *  Learning to match sentences with graphs
@@ -1211,9 +1213,12 @@ Also, figure out a good 'private code+data' workflow too:
       -  Current Oracle gets only 70% F1 on the actual data
       -  Current best dependency-tree sentence parser idea -> graph gets 50%
       -  So bigger win may be in refining the annotator
+      -  Seems to have merit...  => ViGIL workshop paper
 
 
 *  InfoMax / MinimumDescriptionLength -> Maximise information density
+
+
 
 
 ##  NIPS Workshops
