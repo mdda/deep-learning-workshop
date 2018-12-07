@@ -17,6 +17,12 @@ The code in this repo is precisely the code used to get the results reported in 
 Workshop paper.  However, there is a fair amount of data preprocessing to perform,
 which is a little fiddly.
 
+```
+cd ../2018-10_SceneGraphParsing
+#  Download an updated 'bist-parser' to handle the Visual Genome data preprocessing
+git clone https://github.com/mdda/bist-parser.git
+```
+
 Explicit details for reproducing the results will appear here.
 
 In the mean-time, please see the ```notes.txt``` file for hints...   
