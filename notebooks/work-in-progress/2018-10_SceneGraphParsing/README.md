@@ -18,22 +18,113 @@ The code in this repo is precisely the code used to get the results reported in 
 Workshop paper.  However, there is a fair amount of data preprocessing to perform,
 which is a little fiddly.
 
+
+#### Visual Genome data
+
+Download and unpack the Visual Genome data :
 ```
 cd ../2018-10_SceneGraphParsing
-
 mkdir -p data/visual-genome/
-cd data/visual-genome/
-# 
-wget visual-genome-data...
 
-#  Download an updated 'bist-parser' to handle the Visual Genome data preprocessing
+cd data/visual-genome/
+wget https://visualgenome.org/static/data/dataset/image_data.json.zip     #   1.7Mb
+wget https://visualgenome.org/static/data/dataset/region_graphs.json.zip  # 316Mb
+wget https://visualgenome.org/static/data/dataset/attributes.json.zip     #  79Mb
+
+unzip image_data.json.zip     #   17Mb expanded
+unzip region_graphs.json.zip  # 2783Mb expanded 
+unzip attributes.json.zip     #  462Mb expanded
+
+cat image_data.json    | jq -n --compact-output --stream 'fromstream(1|truncate_stream(inputs))' > image_data.json.rows
+cat attributes.json    | jq -n --compact-output --stream 'fromstream(1|truncate_stream(inputs))' > attributes.json.rows
+cat region_graphs.json | jq -n --compact-output --stream 'fromstream(1|truncate_stream(inputs))' > region_graphs.json.rows
+```
+
+####  Download an updated 'bist-parser' to handle the Visual Genome data preprocessing
+
+```
+cd ../2018-10_SceneGraphParsing
 git clone https://github.com/mdda/bist-parser.git
 
 cd bist-parser
-mkdir 
-# Run the preprocessing steps
+git branch -a  # list the branches
+git checkout sgparser
+git branch
 ```
 
-Explicit details for reproducing the results will appear here.
+#### Run the preprocessing steps
+```
+cd ../2018-10_SceneGraphParsing/
+
+# Link the data directory so that it's easily visible from the bist-parser repo
+cd ./bist-parser/preprocess/
+ln -s ../../data/visual-genome data
+
+
+# Run the preprocessing steps
+. ~/env3/bin/activate   # Preprocessing code updated to be 2/3 compatible
+
+# This just makes sure all the images have ids
+bash ./preprocess.sh
+
+# This creates the train/dev split, according to whether the image id is in the pre-computed pickle
+python split_preprocess.py ALL coco_train
+python split_preprocess.py ALL coco_dev
+
+# Now do the assignments (the "Oracle" for the original paper)
+
+# Takes <4mins on   547,801 sentences
+python data_to_conll.py --input ./output/pre_coco_dev.json.rows   --output ./output/coco_dev.conll
+cp ./output/coco_dev.conll ./output/coco_dev.conll.oracle
+
+# Takes <6mins on 1,070,158 sentences (--train skips some potentially wierd examples)
+python data_to_conll.py --input ./output/pre_coco_train.json.rows --output ./output/coco_train.conll --train # For training a network
+
+# Takes <6mins on 1,070,158 sentences (omitting --train evaluates all sentences)
+python data_to_conll.py --input ./output/pre_coco_train.json.rows --output ./output/coco_train.conll.oracle  # Not --train for evaluation
+
+```
+
+#### Test the Oracle performance 
+```
+cd ../2018-10_SceneGraphParsing/
+cd ./bist-parser/model/src/utils/evaluation_script/
+
+. ~/env3/bin/activate   # Evaluation code updated to be 2/3 compatible
+
+bash eval.sh  # -> python spice_eval.py
+
+# On the dev set : 
+# Predictions count  : 547802 == Ground-truth count : 547802
+# SPICE score: 0.6630
+
+# On the train set : 
+# Number of predictions :  1070159
+# SPICE score: 0.6635
+
+```
+
+#  More details for reproducing the results are appearing here...
+
+
+#### Link to the pre-trained OpenAI GPT data
+
+TODO : MOVE THESE INTO THIS FOLDER, AND EXPLAIN ORIGINS...
+```
+ln -s ../2018-10_ZeroShotRelationships/orig .
+ln -s ../2018-10_ZeroShotRelationships/text_utils.py .
+
+```
+
+
+#### Train the transformer model 
+
+```
+## train = 100mins :
+python conll_to_transformer.py --phase=train --save_bpe --stub=v32 --n_ctx=32
+```
+
+
+
 
 In the mean-time, please see the ```notes.txt``` file for hints...   

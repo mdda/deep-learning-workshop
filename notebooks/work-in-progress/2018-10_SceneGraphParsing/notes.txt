@@ -84,6 +84,9 @@ unzip attributes.json.zip     #  462Mb expanded
 # dnf install jq
 # Length of files is : 108077, so : Not divisible by 10...
 
+
+### This is the way mandated by the original bist-parser code : Extremely inefficient
+
 # jq '.[0:2]' attributes.json # seems to work as expected...
 # jq '.[0:10800]' attributes.json --compact-output > all_attributes_0.json
 
