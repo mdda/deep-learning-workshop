@@ -105,14 +105,15 @@ bash eval.sh  # -> python spice_eval.py
 ```
 
 #  More details for reproducing the results are appearing here...
-
-
 #### Link to the pre-trained OpenAI GPT data
 
-TODO : MOVE THESE INTO THIS FOLDER, AND EXPLAIN ORIGINS...
 ```
-ln -s ../2018-10_ZeroShotRelationships/orig .
-ln -s ../2018-10_ZeroShotRelationships/text_utils.py .
+git clone https://github.com/openai/finetune-transformer-lm.git
+rm -rf  finetune-transformer-lm/.git
+
+git clone https://github.com/huggingface/pytorch-openai-transformer-lm.git
+rm -rf  pytorch-openai-transformer-lm/.git
+
 
 ```
 

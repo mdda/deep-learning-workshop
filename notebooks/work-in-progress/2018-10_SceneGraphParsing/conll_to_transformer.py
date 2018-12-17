@@ -6,15 +6,15 @@ import numpy as np
 import h5py
 
 from text_utils import TextEncoder  # This is my version
-#sys.path.append('orig/pytorch-openai-transformer-lm')
+#sys.path.append('pytorch-openai-transformer-lm')
 
 import csv
 
 # Needed for BPE stuff
-pretrained_model_path = os.path.join('.', 'orig', 'finetune-transformer-lm', 'model')
+pretrained_model_path = os.path.join('.', 'finetune-transformer-lm', 'model')
 
 # Needed for the train/dev/test files
-#relation_splits_path = os.path.join('.', 'orig', 'omerlevy-bidaf_no_answer-2e9868b224e4', 'relation_splits', )
+#relation_splits_path = os.path.join('.', 'omerlevy-bidaf_no_answer-2e9868b224e4', 'relation_splits', )
 
 
 # By default, return 
