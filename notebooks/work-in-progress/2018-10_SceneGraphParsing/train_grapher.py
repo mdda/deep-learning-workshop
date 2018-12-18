@@ -17,13 +17,13 @@ from torch.utils.data import DataLoader
 
 #from text_utils import TextEncoder   # This is my version
 
-sys.path.append('orig/pytorch-openai-transformer-lm')
+sys.path.append('./pytorch-openai-transformer-lm')
 from model_pytorch import TransformerModel, load_openai_pretrained_model, DEFAULT_CONFIG
 from model_pytorch import Conv1D, Block
 from opt import OpenAIAdam
 from utils import ResultLogger
 
-pretrained_model_path = os.path.join('.', 'orig', 'finetune-transformer-lm', 'model')
+pretrained_model_path = os.path.join('.', 'finetune-transformer-lm', 'model')
 
 
 
