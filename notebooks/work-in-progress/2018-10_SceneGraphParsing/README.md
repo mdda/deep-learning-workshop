@@ -113,19 +113,86 @@ rm -rf  finetune-transformer-lm/.git
 
 git clone https://github.com/huggingface/pytorch-openai-transformer-lm.git
 rm -rf  pytorch-openai-transformer-lm/.git
-
-
 ```
 
 
-#### Train the transformer model 
+#### Create training and test data for the transformer model 
 
 ```
 ## train = 100mins :
 python conll_to_transformer.py --phase=train --save_bpe --stub=v32 --n_ctx=32
+
+## output ~ 
+#Line 6400000, valid_count=1044916
+#Line 6,500,000, valid_count=1,061,160
+#Last Line = 6,552,437
+#
+#Saved data to ./bist-parser/preprocess/output/coco_train.conll_all.hdf5
+#  bpe_maximum 98, bpe_truncate_count 18, bpe_max 32
+#Saved bpe data to ./bist-parser/preprocess/output/coco_train.conll_all.bpe
+#--token_clf=40480
+#--vocab_count=40481
+#--tokens_special=3
+
+## dev  = 30mins : 
+python conll_to_transformer.py --phase=dev --save_bpe --stub=v32 --n_ctx=32
+
+## output ~
+#Line 3200000, valid_count=522438
+#Line 3,300,000, valid_count=538,226
+#Last Line = 3,358,266
+#
+#Saved data to ./bist-parser/preprocess/output/coco_dev.conll_all.hdf5
+#  bpe_maximum 52, bpe_truncate_count 13, bpe_max 32
+#Saved bpe data to ./bist-parser/preprocess/output/coco_dev.conll_all.bpe
+#--token_clf=40480
+#--vocab_count=40481
+#--tokens_special=3
+```
+
+#### Train the transformer model 
+
+```
+python train_grapher.py --stub=v32 --batch_size_per_gpu=128
 ```
 
 
+#### Test the transformer model 
 
+Choose a checkpoint and run the model in ```--predict``` mode, and then convert the result to a ```conll`` file:
 
-In the mean-time, please see the ```notes.txt``` file for hints...   
+```
+python train_grapher.py --stub=v32 --batch_size_per_gpu=128 \
+       --relation_hdf5=coco_dev.conll_v32.hdf5 --predict \
+       --checkpoint=./checkpoints/model-grapher_v32_03-0615424.pth
+
+python transformer_to_conll.py \
+       --npz=coco_dev.conll_v32.hdf5_v32.npz \
+       --conll=coco_dev.conll_v32
+```
+
+Then run the SPICE scorer on the ```conll``` file produced 
+(the ```--limit_tuples``` option enforces a sanity-check, whereby the number of possible correct nodes
+is limited by the number of non-trival words) :
+
+```
+cd bist-parser/model/src/utils/evaluation_script/
+
+preproc=../../../../preprocess/output
+
+## Evaluate Oracle 
+time python spice_eval.py ${preproc}/pre_coco_dev.json.rows ${preproc}/coco_dev.conll.oracle               
+# -> SPICE score: 0.6630
+
+time python spice_eval.py ${preproc}/pre_coco_dev.json.rows ${preproc}/coco_dev.conll.oracle --limit_tuples   
+# -> SPICE score: 0.7256
+
+## Evaluate transformer model
+time python spice_eval.py ${preproc}/pre_coco_dev.json.rows ${preproc}/coco_dev.conll_v32label                  
+# -> SPICE score: 0.5221
+
+time python spice_eval.py ${preproc}/pre_coco_dev.json.rows ${preproc}/coco_dev.conll_v32label --limit_tuples   
+# -> SPICE score: 0.5750
+```
+
+If the above doesn't make sense, please also see the ```notes.txt``` file for hints...  (or file an issue)
