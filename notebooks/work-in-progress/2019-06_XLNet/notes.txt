@@ -2,6 +2,20 @@
 
 *  Paper : XLNet: Generalized Autoregressive Pretraining for Language Understanding
     +  https://arxiv.org/abs/1906.08237
+    
+###  HN : https://news.ycombinator.com/item?id=20229145
+
+*  This is NOT "just throwing more compute" at the problem.
+*  The authors have devised a clever dual-masking-plus-caching mechanism to induce an attention-based model to learn to predict tokens 
+   from all possible permutations of the factorization order of all other tokens in the same input sequence. 
+*  In expectation, the model learns to gather information from all positions on both sides of each token in order to predict the token.
+   +  For example, if the input sequence has four tokens, ["The", "cat", "is", "furry"], 
+      in one training step the model will try to predict "is" after seeing "The", then "cat", then "furry". 
+   +  In another training step, the model might see "furry" first, then "The", then "cat". 
+   +  Note that the original sequence order is always retained, e.g., the model always knows that "furry" is the fourth token.
+*  The masking-and-caching algorithm that accomplishes this does not seem trivial to me.
+*  The improvements to SOTA performance in a range of tasks are significant -- see tables 2, 3, 4, 5, and 6 in the paper.
+
 
 
 
