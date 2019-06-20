@@ -16,6 +16,15 @@
 *  The masking-and-caching algorithm that accomplishes this does not seem trivial to me.
 *  The improvements to SOTA performance in a range of tasks are significant -- see tables 2, 3, 4, 5, and 6 in the paper.
 
+*  Primarily from CMU with 5 authors and 1 from Google (with the legend Quoc from Google and Ruslan Salakhutdinov is also excellent)
+
+*  Most of the statements they make regarding orderless autoregression, including statements about the "independence assumption" made by BERT, are misleading at best.
+*  See the section "Comparison with BERT" which has a nice worked example that is reasonably understandable 
+   without necessarily fully understanding the rest of the paper.
+   +   it is obvious that XLNet always learns more dependency pairs given the same target and contains “denser” effective training signals
+       -   BERT is only masking 15% of the tokens, so isn't the amount of dependency pairs like 18% higher at most?
+           *   That's a small but significant difference, allowing them to improve performance by a small but significant amount.
+
 
 
 
