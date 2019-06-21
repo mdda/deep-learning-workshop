@@ -25,9 +25,24 @@
        -   BERT is only masking 15% of the tokens, so isn't the amount of dependency pairs like 18% higher at most?
            *   That's a small but significant difference, allowing them to improve performance by a small but significant amount.
 
+###  Reddit : https://www.reddit.com/r/MachineLearning/comments/c2q5k7/r_xlnet_a_new_pretraining_method_for_nlp_that/
 
+*  Note that XLNet was trained on much larger dataset (10x) for more tokens processed (4x) than BERT, 
+   not to mention that the dataset used is much more inherently diverse than before. 
+*  Ablation study was performed on the same training dataset (table 6). 
+   The result seems to me as if the substantial improvement in this setting is coming mostly from the use of Transformer-XL (i.e. larger context size). 
 
+*  For ablation study in table 6, you can see the advantage of PLM objective function when comparing row 2 & row 3. 
+   Row 4 and row 5 also illustrate the effectiveness of memory is far from explaining the gap between BERT and XLNet. 
 
+*  Permutation extracts bidirectional contexts. A left-to-right LM must be much worse for text understanding. 
+   Though it might be helpful for text generation, which is beyond the scope of this paper.
+   
+*  BERT is a bitch to productionize if you can't use GPUs for inference.
+
+*  "BERT neglects dependency between the masked positions" -> each position is predicted independently, 
+    i.e. transformer does not see the predicted symbol x_i in the input when it predicts the symbol x_j. Instead it sees x_i = [MASK]
+*  "suffers from a pretrain-finetune discrepancy" -> When you fine-tune, the symbol [MASK[ is absent, while the model kinda expects it.
 
 ## Talk outline
 
@@ -36,9 +51,10 @@
    +   Tokenisation
    +   MASKing idea (from BERT)
        -   Recent improvements (word-wise)
+           *   newest iteration of BERT (outlined at top of BERT https://github.com/google-research/bert)
    +   Sophisticated MASKing / permutations
    +   Training task (remove BERT's sentence-follow task)
-       -   Training intensity
+       -   Training intensity  : We train XLNet-Large on 512 TPU v3 chips for 500K steps with an Adam optimizer
    +   Results
 
 *  Extra dimensions
