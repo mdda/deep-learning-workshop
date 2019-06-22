@@ -2,6 +2,7 @@
 
 *  Paper : XLNet: Generalized Autoregressive Pretraining for Language Understanding
     +  https://arxiv.org/abs/1906.08237
+
     
 ###  HN : https://news.ycombinator.com/item?id=20229145
 
@@ -43,6 +44,11 @@
 *  "BERT neglects dependency between the masked positions" -> each position is predicted independently, 
     i.e. transformer does not see the predicted symbol x_i in the input when it predicts the symbol x_j. Instead it sees x_i = [MASK]
 *  "suffers from a pretrain-finetune discrepancy" -> When you fine-tune, the symbol [MASK[ is absent, while the model kinda expects it.
+
+*   So I dug into their released code and found out they set the mask to 'None', i.e. no mask is used during fine-tuning. 
+*   Just think of it as a Transformer encoder when used during fine-tuning and evaluation, 
+    though it was pretrained in a Transformer-decoder way (get around the standard LM issue by using permutations to get all tokens to see the full context).
+
 
 ## Talk outline
 
