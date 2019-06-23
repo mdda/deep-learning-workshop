@@ -3,6 +3,20 @@
 *  Paper : XLNet: Generalized Autoregressive Pretraining for Language Understanding
     +  https://arxiv.org/abs/1906.08237
 
+*  Model : https://github.com/zihangdai/xlnet
+    -  Original authors : 
+    -  Released pretrained model : XLNet-Large, Cased: 24-layer, 1024-hidden, 16-heads
+    -  Coming soon : 
+          *  We will release an XLNet-Base by the end of June, 2019.
+    -  Google Groups :  [XLNet on Google Groups](https://groups.google.com/forum/#!forum/xlnet)
+    -  PR for Colab demo notebook : https://github.com/zihangdai/xlnet/pull/47
+    
+*  renatoviolin's repo : https://github.com/renatoviolin/xlnet == XLNet: fine tuning on RTX 2080 GPU - 8 GB
+    -  Alternative methods of finetuning XLNet on constrained hardware - which obtained 86.24 F1 on SQuAD2.0 with a 8GB memory GPU.         
+    -  With those modifications I could achieve 86,23 F1-Score on the Squad-2.0 dev_set, 
+       training for 85000 steps (~ 3 epochs of the full dataset). This training took about 5-6 hours.
+       
+
     
 ###  HN : https://news.ycombinator.com/item?id=20229145
 
