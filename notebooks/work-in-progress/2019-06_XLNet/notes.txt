@@ -9,13 +9,40 @@
     -  Coming soon : 
           *  We will release an XLNet-Base by the end of June, 2019.
     -  Google Groups :  [XLNet on Google Groups](https://groups.google.com/forum/#!forum/xlnet)
-    -  PR for Colab demo notebook : https://github.com/zihangdai/xlnet/pull/47
+    -  PR for Colab demo notebook : https://github.com/zihangdai/xlnet/pull/47  (Almost 'in')
+          *  From https://github.com/aditya-malte/Colab-XLNet-FineTuning
     
 *  renatoviolin's repo : https://github.com/renatoviolin/xlnet == XLNet: fine tuning on RTX 2080 GPU - 8 GB
     -  Alternative methods of finetuning XLNet on constrained hardware - which obtained 86.24 F1 on SQuAD2.0 with a 8GB memory GPU.         
     -  With those modifications I could achieve 86,23 F1-Score on the Squad-2.0 dev_set, 
        training for 85000 steps (~ 3 epochs of the full dataset). This training took about 5-6 hours.
+    -  Also see : https://github.com/zihangdai/xlnet/issues/64 for announcement/details
        
+
+*  Clarification in https://github.com/zihangdai/xlnet/issues/54 "why not use a partial factorization ?"
+   + Assume the original sentence is 12345678, and the permutation is 12367845. 
+     The last two tokens, i.e.: 4 and 5, are to be predicted. 
+     What we want is: let token 123678 attend to each other 
+     (note that according to the paper, i cannot attend to j if i < j, i.e.: 2 only attend to 1, 3 only attend to 12, etc.), 
+     let token 4 attend to 123678, and let token 5 attend to 1236784.
+
+   +  I haven't fully understood the source code, but this comment says can attend if i > j or j is non-masked. 
+      Combined with the above example, are token 4 and 5 masked? 
+      And token 123678 DO attend to each other because j is non-masked?
+      If this understanding is correct, please update the formula in the paper accordingly to address this issue. Thanks.
+
+      -  Yes, tokens 123678 have bidirectional attention and they attend to all the other tokens, 
+         while tokens 4 and 5 use an auto-regressive factorization conditioned on 123678. 
+         This is what we meant in our paper, but I agree that the description was not clear and specific enough. 
+         Will fix the paper soon.
+
+*  https://github.com/zihangdai/xlnet/issues/14  "The model did not distinguish all possible factorization order"
+   +  I am confused about the factorization order. Looks the model did not distinguish all possible factorization order. ...
+      -  Permuting the sequence order is different from permuting the factorization order (See Remark in Sec 2.2). 
+         We don't permute the sequence order as in NADE because that would essentially make the model orderless, 
+         which is reduced to low-capacity bag-of-words (See related work in Sec 1).
+      -  [Loc1(x1), Loc2(x2)] and [Loc2(x2), Loc1(x1)] are the same for a Transformer(-XL), 
+         because position encodings are the only thing that defines the sequence order.
 
     
 ###  HN : https://news.ycombinator.com/item?id=20229145
@@ -78,3 +105,6 @@
    +   Results
 
 *  Extra dimensions
+
+
+   +   XLNet NER : https://github.com/zihangdai/xlnet/issues/68
