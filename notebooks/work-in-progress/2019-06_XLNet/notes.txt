@@ -3,8 +3,11 @@
 *  Paper : XLNet: Generalized Autoregressive Pretraining for Language Understanding
     +  https://arxiv.org/abs/1906.08237
 
-*  Model : https://github.com/zihangdai/xlnet
-    -  Original authors : 
+*  Model : https://github.com/zihangdai/xlnet  (Apache 2.0)
+    -  Original authors
+    -  Code : 
+        -  tpu_estimator.py = Yuk 
+        -  See embedding_lookup() below
     -  Released pretrained model : XLNet-Large, Cased: 24-layer, 1024-hidden, 16-heads
     -  Coming soon : 
           *  We will release an XLNet-Base by the end of June, 2019.
@@ -43,6 +46,23 @@
          which is reduced to low-capacity bag-of-words (See related work in Sec 1).
       -  [Loc1(x1), Loc2(x2)] and [Loc2(x2), Loc1(x1)] are the same for a Transformer(-XL), 
          because position encodings are the only thing that defines the sequence order.
+
+```
+def embedding_lookup(x, n_token, d_embed, initializer, use_tpu=True,
+                     scope='embedding', reuse=None, dtype=tf.float32):
+  """TPU and GPU embedding_lookup function."""
+  with tf.variable_scope(scope, reuse=reuse):
+    lookup_table = tf.get_variable('lookup_table', [n_token, d_embed],
+                                   dtype=dtype, initializer=initializer)
+    if use_tpu:
+      one_hot_idx = tf.one_hot(x, n_token, dtype=dtype)
+      if one_hot_idx.shape.ndims == 2:
+        return tf.einsum('in,nd->id', one_hot_idx, lookup_table), lookup_table
+      else:
+        return tf.einsum('ibn,nd->ibd', one_hot_idx, lookup_table), lookup_table
+    else:
+      return tf.nn.embedding_lookup(lookup_table, x), lookup_table
+```
 
     
 ###  HN : https://news.ycombinator.com/item?id=20229145
