@@ -8,6 +8,7 @@
     -  Code : 
         -  tpu_estimator.py = Yuk 
         -  See embedding_lookup() below
+        -  "In run_classifier.py, we pad the sequence at the beginning, which becomes [PAD, PAD, ..., A, SEP, B, SEP, CLS]."
     -  Released pretrained model : XLNet-Large, Cased: 24-layer, 1024-hidden, 16-heads
     -  Coming soon : 
           *  We will release an XLNet-Base by the end of June, 2019.
@@ -120,6 +121,7 @@ def embedding_lookup(x, n_token, d_embed, initializer, use_tpu=True,
        -   Recent improvements (word-wise)
            *   newest iteration of BERT (outlined at top of BERT https://github.com/google-research/bert)
    +   Sophisticated MASKing / permutations
+   +   relative_positional_encoding like Transformer-XL
    +   Training task (remove BERT's sentence-follow task)
        -   Training intensity  : We train XLNet-Large on 512 TPU v3 chips for 500K steps with an Adam optimizer
    +   Results
