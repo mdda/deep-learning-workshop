@@ -118,15 +118,19 @@ def embedding_lookup(x, n_token, d_embed, initializer, use_tpu=True,
    +   Transformers (and what do they do)
    +   Tokenisation
    +   MASKing idea (from BERT)
+       -   Paper : https://arxiv.org/abs/1810.04805 "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding"
        -   Recent improvements (word-wise)
            *   newest iteration of BERT (outlined at top of BERT https://github.com/google-research/bert)
    +   Sophisticated MASKing / permutations
    +   relative_positional_encoding like Transformer-XL
+       -   Paper : https://arxiv.org/abs/1901.02860 "Transformer-XL: Attentive Language Models Beyond a Fixed-Length Context"
    +   Training task (remove BERT's sentence-follow task)
        -   Training intensity  : We train XLNet-Large on 512 TPU v3 chips for 500K steps with an Adam optimizer
    +   Results
 
+
 *  Extra dimensions
 
-
    +   XLNet NER : https://github.com/zihangdai/xlnet/issues/68
+   
+   
