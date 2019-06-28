@@ -112,6 +112,11 @@ def embedding_lookup(x, n_token, d_embed, initializer, use_tpu=True,
     though it was pretrained in a Transformer-decoder way (get around the standard LM issue by using permutations to get all tokens to see the full context).
 
 
+### Blog posts
+
+*   Medium: https://towardsdatascience.com/what-is-xlnet-and-why-it-outperforms-bert-8d8fce710335
+
+
 ## Talk outline
 
 *  Features of XLNet :
@@ -122,10 +127,17 @@ def embedding_lookup(x, n_token, d_embed, initializer, use_tpu=True,
        -   Recent improvements (word-wise)
            *   newest iteration of BERT (outlined at top of BERT https://github.com/google-research/bert)
    +   Sophisticated MASKing / permutations
-   +   relative_positional_encoding like Transformer-XL
+   +   relative_positional_encoding like Transformer-XL  (exact same authors, permuted order)
        -   Paper : https://arxiv.org/abs/1901.02860 "Transformer-XL: Attentive Language Models Beyond a Fixed-Length Context"
    +   Training task (remove BERT's sentence-follow task)
        -   Training intensity  : We train XLNet-Large on 512 TPU v3 chips for 500K steps with an Adam optimizer
+       -   BERT Training : 
+           *   Pre-training is fairly expensive (four days on 4 to 16 Cloud TPUs, each with 64GB of RAM), but is a one-time procedure for each language
+           *   Fine-tuning is inexpensive. All of the results in the paper can be replicated in at most 1 hour on a single Cloud TPU, 
+               or a few hours on a GPU, starting from the exact same pre-trained model. 
+               SQuAD, for example, can be trained in around 30 minutes on a single Cloud TPU to achieve a Dev F1 score of 91.0%, 
+               which is the single system state-of-the-art.
+               
    +   Results
 
 
