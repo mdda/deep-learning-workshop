@@ -1,0 +1,21 @@
+## XLNet
+
+*  Paper : XLNet: Generalized Autoregressive Pretraining for Language Understanding
+    +  https://arxiv.org/abs/1906.08237
+
+
+
+
+## Talk outline
+
+*  Features of XLNet :
+   +   Transformers (and what do they do)
+   +   Tokenisation
+   +   MASKing idea (from BERT)
+       -   Recent improvements (word-wise)
+   +   Sophisticated MASKing / permutations
+   +   Training task (remove BERT's sentence-follow task)
+       -   Training intensity
+   +   Results
+
+*  Extra dimensions
