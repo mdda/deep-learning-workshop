@@ -115,6 +115,15 @@ def embedding_lookup(x, n_token, d_embed, initializer, use_tpu=True,
 ### Blog posts
 
 *   Medium: https://towardsdatascience.com/what-is-xlnet-and-why-it-outperforms-bert-8d8fce710335
+   +   Illustration of "Permutation Language Modeling"
+       -   Seems like it should really be called "Variable Length Combinination Language Modeling" (TBD)
+
+
+### Video posts
+
+*   YouTube : XLNet Explained (NLP Breakfasts) - 25m24s
+   +   https://www.youtube.com/watch?v=naOuE9gLbZo
+   +   Good explanation (particularly the 2-Stream idea)
 
 
 ## Talk outline
