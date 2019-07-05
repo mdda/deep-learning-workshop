@@ -48,6 +48,9 @@
       -  [Loc1(x1), Loc2(x2)] and [Loc2(x2), Loc1(x1)] are the same for a Transformer(-XL), 
          because position encodings are the only thing that defines the sequence order.
 
+*  XLNet NER : https://github.com/zihangdai/xlnet/issues/68
+
+
 ```
 def embedding_lookup(x, n_token, d_embed, initializer, use_tpu=True,
                      scope='embedding', reuse=None, dtype=tf.float32):
@@ -64,6 +67,9 @@ def embedding_lookup(x, n_token, d_embed, initializer, use_tpu=True,
     else:
       return tf.nn.embedding_lookup(lookup_table, x), lookup_table
 ```
+
+*   Not a one-hot op in TF :
+    -    https://github.com/tensorflow/tensorflow/blob/fd28b784b2e82ddb2c72196668374e244cfdf205/tensorflow/python/ops/embedding_ops.py#L133
 
     
 ###  HN : https://news.ycombinator.com/item?id=20229145
@@ -87,6 +93,7 @@ def embedding_lookup(x, n_token, d_embed, initializer, use_tpu=True,
    +   it is obvious that XLNet always learns more dependency pairs given the same target and contains “denser” effective training signals
        -   BERT is only masking 15% of the tokens, so isn't the amount of dependency pairs like 18% higher at most?
            *   That's a small but significant difference, allowing them to improve performance by a small but significant amount.
+
 
 ###  Reddit : https://www.reddit.com/r/MachineLearning/comments/c2q5k7/r_xlnet_a_new_pretraining_method_for_nlp_that/
 
@@ -123,7 +130,7 @@ def embedding_lookup(x, n_token, d_embed, initializer, use_tpu=True,
 
 *   YouTube : XLNet Explained (NLP Breakfasts) - 25m24s
    +   https://www.youtube.com/watch?v=naOuE9gLbZo
-   +   Good explanation (particularly the 2-Stream idea)
+   +   Good explanation (including the 2-Stream idea)
 
 
 ## Talk outline
@@ -150,8 +157,26 @@ def embedding_lookup(x, n_token, d_embed, initializer, use_tpu=True,
    +   Results
 
 
-*  Extra dimensions
+*  Extra dimensions  (mostly BERT-derived)
 
-   +   XLNet NER : https://github.com/zihangdai/xlnet/issues/68
+   +   Finding NLP functionality (~ELMo style weighting of embeddings)
+       -    BERT Rediscovers the Classical NLP Pipeline
+       -    https://arxiv.org/abs/1905.05950
+       
+   +   Adapter layers
+       -   Parameter-Efficient Transfer Learning for NLP 
+       -   https://arxiv.org/abs/1902.00751
+       
+   +   Cooking with BERT
+       -   VideoBERT: A Joint Model for Video and Language Representation Learning
+       -   https://arxiv.org/abs/1904.01766
+
+       
+   +   ?Transformer head pruning
+       -   Are Sixteen Heads Really Better than One?
+       -   https://arxiv.org/abs/1905.10650
+
    
-   
+   +   Distilling from Language Models (RDAI NeurIPS workshop paper)
+   +   Generating graphs from transformers (RDAI NeurIPS workshop paper)
+   +   Factoids from source text (RDAI ICML-accepted workshop paper)
